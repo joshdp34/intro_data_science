@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "STA 2300 Intro to Data Science",
     "section": "",
-    "text": "Introduction\nThese are the lecture notes for STA 2381 - Introductory Statistical Methods.\nPrerequisites: None\n\nCourse Description:\nParametric statistical methods. Topics range from descriptive statistics through regression and one-way analysis of variance. Applications are typically from biology and medicine. Computer data analysis is required.",
+    "text": "Introduction\nThese are the lecture notes for STA 2300 - Intro to Data Science\nPrerequisites: None\n\nCourse Description:\nPrinciples of data science, including problem workflow, variable types, visualization, modeling, programming, data management and cleaning, reproducibility, and big data.",
     "crumbs": [
       "Introduction"
     ]
@@ -12,31 +12,81 @@
   {
     "objectID": "01.html",
     "href": "01.html",
-    "title": "1  Session 1 – R setup",
+    "title": "1  Session 1 – R setup",
     "section": "",
     "text": "Objectives",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Session 1 – R setup</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Session 1 – R setup</span>"
     ]
   },
   {
     "objectID": "01.html#objectives",
     "href": "01.html#objectives",
-    "title": "1  Session 1 – R setup",
+    "title": "1  Session 1 – R setup",
     "section": "",
     "text": "Explore the data‑science lifecycle. The R for Data Science introduction models data science as a cycle: you begin by importing and tidying raw data; then understand it through an iterative loop of transforming, visualising and modelling; and finally communicate your results. Programming surrounds all of these steps and supports them. Today you will learn why each component is important and how they connect.\nRecognise the tools you need. To run the code in R for Data Science you need R, RStudio, the tidyverse package collection and a handful of other packages. We will install R (from the Comprehensive R Archive Network), download RStudio (an integrated development environment), and install the tidyverse.\nPrepare your computing environment. By the end of class you should have R and RStudio installed, know how to install and load packages, and be able to run simple R commands (arithmetic, vector creation, summary statistics). We will also introduce a dataset that you will revisit throughout the semester.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Session 1 – R setup</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Session 1 – R setup</span>"
     ]
   },
   {
     "objectID": "01.html#notes",
     "href": "01.html#notes",
-    "title": "1  Session 1 – R setup",
+    "title": "1  Session 1 – R setup",
     "section": "Notes",
     "text": "Notes\n\nThe data‑science workflow\nData science is not a linear process. You first import data from files, databases or the web; tidy it so that each variable is a column and each observation a row; transform, visualise and model your data in an iterative loop to understand patterns and relationships; and then communicate your findings to others. Programming is a cross‑cutting skill that supports each of these phases. Throughout this course, you will move back and forth between these steps rather than following them in a strict order.\n\n\nTools and setup\nYou need four things to run the book’s code: R, RStudio, the tidyverse and some additional packages.\n\nR is the programming language you will use. Download the latest version from CRAN at https://cloud.r-project.org. A new major version of R is released once a year, with minor versions in between; updating regularly ensures compatibility.\n\nRStudio is an integrated development environment (IDE) for R. Download it from https://posit.co/download/rstudio-desktop/. RStudio is updated a couple of times a year. When you start RStudio, you will see a console pane for typing R code and an output pane for plots.\nThe tidyverse is a collection of packages for data manipulation, visualization and programming. To install all core tidyverse packages at once, run install.packages(\"tidyverse\") in the R console. After installation, load the tidyverse with library(tidyverse); this attaches packages such as dplyr, ggplot2, tidyr, readr, stringr, forcats, lubridate, purrr and tibble. You only need to install a package once, but you must load it in each new R session.\nOther packages. We will occasionally use packages outside the tidyverse (e.g., palmerpenguins, nycflights13, arrow, rvest, duckdb). When you encounter an error that a package is not installed, run install.packages(\"package_name\") to install the package.\n\n\n\nInstalling and testing your environment\n\nInstall R and RStudio as described above. Accept the default installation options.\n\nInstall the tidyverse. Open RStudio and run the following in the console:\n\n\ninstall.packages(\"tidyverse\")   # installs core tidyverse packages\nlibrary(tidyverse)               \n\n\nTry basic R commands. Use R as a calculator and practise creating vectors and computing summaries:\n\n\n2 + 2                  # arithmetic\n\n[1] 4\n\nx &lt;- c(1, 2, 3, 5, 7)  # create a numeric vector\nx * 2                  # vectorised multiplication\n\n[1]  2  4  6 10 14\n\nmean(x)                # compute the average\n\n[1] 3.6\n\nsum(x &gt; 4)             # count values greater than 4 (logical vector)\n\n[1] 2\n\n\nNotice that R performs operations element‑wise on vectors, and the assignment operator &lt;- stores values. Use descriptive variable names and indent your code neatly; we will discuss code style in a later class.\n\n\nTake‑aways\n\nThe data‑science process is iterative, looping through import, tidy, transform, visualize, model and communicate. Understanding develops as you cycle through these steps.\nTo do data science in R you need the R language, the RStudio IDE, the tidyverse package collection and other supporting packages. Installing and loading packages early will save time later.\nR is vectorized: arithmetic operations and functions operate on entire vectors. Use the assignment operator &lt;- to store results and choose descriptive variable names to write readable code.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Session 1 – R setup</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Session 1 – R setup</span>"
+    ]
+  },
+  {
+    "objectID": "02.html",
+    "href": "02.html",
+    "title": "2  Session 2 – Data visualization basics",
+    "section": "",
+    "text": "Objectives",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Session 2 – Data visualization basics</span>"
+    ]
+  },
+  {
+    "objectID": "02.html#objectives",
+    "href": "02.html#objectives",
+    "title": "2  Session 2 – Data visualization basics",
+    "section": "",
+    "text": "Appreciate the importance of visualization. A simple graph can convey more information than any other device. You will learn how the grammar of graphics underlies ggplot2.\nCreate basic plots. Use ggplot2 to draw scatterplots, bar charts and histograms.\nUnderstand variable types. Recognize when to use different plot types based on whether variables are categorical or numeric.\nPrepare for layering. Today’s material sets the stage for Session 3 on layering, where you’ll add geoms, adjust positions and facet plots.\n\n\nNotes\nWhy use ggplot2? R has several systems for making graphs, but ggplot2 is one of the most elegant and versatile. It implements the grammar of graphics—a coherent system for describing and building graphs. Learning this grammar enables you to create a wide range of plots with consistent syntax.\nBuilding your first plots The data-visualization chapter starts with a simple scatterplot to illustrate aesthetic mappings and geometric objects. Aesthetic mappings tie variables to graphical properties (x and y positions, colour, shape), while geoms specify the type of plot.\n\nScatterplots show the relationship between two numeric variables. For example, plotting penguin flipper length vs. body mass can reveal whether larger penguins tend to have longer flippers. Map species or island to colour or shape to uncover additional structure.\nBar charts display the distribution of a categorical variable—for example, counting penguins by species.\nHistograms reveal the distribution of a numeric variable. Choose a bin width that balances detail with clarity.\n\nTo illustrate these concepts, load the tidyverse and palmerpenguins packages, then experiment with commands like:\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +\n  geom_point()\n\n\n\n\n\n\n\nggplot(penguins, aes(x = species)) +\n  geom_bar()\n\n\n\n\n\n\n\nggplot(penguins, aes(x = body_mass_g)) +\n  geom_histogram(binwidth = 200)\n\n\n\n\n\n\n\n\nBe sure to label axes and titles with labs(), choose appropriate scales, and consider transparency (alpha) to reduce overplotting.\n\n\nKey take‑awayss\n\nggplot2 implements a coherent grammar of graphics.\nScatterplots reveal relationships between numeric variables; bar charts and histograms show distributions.\nUnderstanding your variables (categorical vs. numeric) guides your choice of plot type.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Session 2 – Data visualization basics</span>"
+    ]
+  },
+  {
+    "objectID": "03.html",
+    "href": "03.html",
+    "title": "3  Session 3 – The layered grammar of graphics",
+    "section": "",
+    "text": "Objectives",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Session 3 – The layered grammar of graphics</span>"
+    ]
+  },
+  {
+    "objectID": "03.html#objectives",
+    "href": "03.html#objectives",
+    "title": "3  Session 3 – The layered grammar of graphics",
+    "section": "",
+    "text": "Deepen your understanding of ggplot2. Explore the layered grammar of graphics—how aesthetic mappings, geometric objects and facets combine to build complex plots.\nMaster aesthetic mappings. Map variables to color, shape, size and alpha correctly. Avoid mapping categorical variables to size or alpha (it implies a false ordering) and note that mapping a categorical variable to shape uses only six shapes, so additional groups are dropped.\nLayer multiple geoms. Add multiple geoms to a plot (e.g., points and smooth lines) and distinguish between global and local aesthetic mappings. Use the group aesthetic to draw separate curves for each category.\nUse faceting and coordinate systems. Split data into panels using facet_wrap() or facet_grid() and adjust scales. Experiment with coordinate transforms such as coord_flip() and coord_polar().",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Session 3 – The layered grammar of graphics</span>"
+    ]
+  },
+  {
+    "objectID": "03.html#notes",
+    "href": "03.html#notes",
+    "title": "3  Session 3 – The layered grammar of graphics",
+    "section": "Notes",
+    "text": "Notes\nLayered grammar of graphics – Every plot can be built from layers consisting of data, aesthetic mappings, geoms, optional statistical transformations, position adjustments and a coordinate system. Building plots layer by layer allows incremental refinement.\nAesthetic mappings – The aes() function connects variables to graphical attributes. Mapping a categorical variable to color is generally safe; mapping it to shape works but only six shapes are available; mapping to size or alpha is discouraged and yields warnings.\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\n# Mapping species to color and shape (safe if ≤ 6 categories)\nggplot(penguins, aes(x = flipper_length_mm,\n                     y = body_mass_g,\n                     color = species,\n                     shape = species)) +\n  geom_point()\n\n\n\n\n\n\n\n# Mapping a categorical variable to size or alpha generates warnings\nggplot(penguins, aes(x = flipper_length_mm,\n                     y = body_mass_g,\n                     size = species)) +\n  geom_point()  # Warning: Using size for a discrete variable is not advised\n\n\n\n\n\n\n\n\nMappings defined in ggplot() apply globally, while mappings inside a geom override them for that layer.\n\n# Global mapping applies color to both geoms\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +\n  geom_point() +\n  geom_smooth(method = \"loess\", se = FALSE)\n\n\n\n\n\n\n\n# Local mapping overrides global color for the point layer only\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +\n  geom_point(aes(color = species)) +\n  geom_smooth(method = \"loess\", se = FALSE)\n\n\n\n\n\n\n\n\nLayering geoms – Different geoms (e.g., geom_point, geom_smooth, geom_bar) draw different types of objects. Overlaying geoms reveals multiple aspects of the data. When using geoms like geom_smooth(), ggplot2 automatically groups data by discrete variables; you can explicitly set group to control grouping.\n\n# Overlay scatterplot with separate curves per species\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +\n  geom_point(aes(color = species)) +\n  geom_smooth(aes(group = species), method = \"loess\", se = FALSE)\n\n\n\n\n\n\n\n\nFacets – Use facet_wrap() to create a grid of subplots for one categorical variable, and facet_grid() for two variables. You can allow axes to vary across facets with the scales argument.\n\n# Facet by island\nggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +\n  geom_point() +\n  facet_wrap(~ island)\n\n\n\n\n\n\n\n# Facet by species and sex with free y‑axis\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +\n  geom_point() +\n  facet_grid(species ~ sex, scales = \"free_y\")\n\n\n\n\n\n\n\n\nCoordinate systems – Transform plots using different coordinate systems to improve interpretability. For example, swap axes using coord_flip() or create a polar bar chart with coord_polar().\n\n# Flip axes in a boxplot\nggplot(penguins, aes(x = species, y = body_mass_g)) +\n  geom_boxplot() +\n  coord_flip()\n\n\n\n\n\n\n\n# Polar coordinates for a bar chart\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  coord_polar()",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Session 3 – The layered grammar of graphics</span>"
     ]
   }
 ]
