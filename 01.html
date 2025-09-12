@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.6.42">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>STA 2300 Intro to Data Science - 1&nbsp; Session 1 – R setup</title>
+
+
+<title>1&nbsp; Session 1 – R setup – STA 2300 Intro to Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -30,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -53,6 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -65,16 +69,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-2ea2d3e7f2364fcda3d434693d3458e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -83,11 +94,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><style type="text/css">
+}</script>
+<style type="text/css">
 .sidebar .chapter-number {
 color: #FFB81c;
 }
@@ -130,24 +143,33 @@ document.addEventListener('click', (event) => {
   }
 });
 </script>
+
+
 </head>
+
 <body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Session 1 – R setup</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Session 1 – R setup</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./"></a> 
         <div class="sidebar-tools-main">
@@ -166,7 +188,7 @@ document.addEventListener('click', (event) => {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
@@ -196,31 +218,39 @@ document.addEventListener('click', (event) => {
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4 – Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5 – Data transformation (II): grouping and summarizing</span></span></a>
+  </div>
+</li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
-  <li>
-<a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-<li><a href="#the-datascience-workflow" id="toc-the-datascience-workflow" class="nav-link" data-scroll-target="#the-datascience-workflow">The data‑science workflow</a></li>
+  <li><a href="#the-datascience-workflow" id="toc-the-datascience-workflow" class="nav-link" data-scroll-target="#the-datascience-workflow">The data‑science workflow</a></li>
   <li><a href="#tools-and-setup" id="toc-tools-and-setup" class="nav-link" data-scroll-target="#tools-and-setup">Tools and setup</a></li>
   <li><a href="#installing-and-testing-your-environment" id="toc-installing-and-testing-your-environment" class="nav-link" data-scroll-target="#installing-and-testing-your-environment">Installing and testing your environment</a></li>
   <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways">Take‑aways</a></li>
+  </ul></li>
   </ul>
-</li>
-  </ul></nav>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">
-<span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Session 1 – R setup</span>
-</h1>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Session 1 – R setup</span></h1>
 </div>
 
 
@@ -233,66 +263,72 @@ document.addEventListener('click', (event) => {
   </div>
   
 
-</header><section id="objectives" class="level2"><h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+
+</header>
+
+
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li>
-<strong>Explore the data‑science lifecycle.</strong> The <em>R for Data Science</em> introduction models data science as a cycle: you begin by <strong>importing</strong> and <strong>tidying</strong> raw data; then <strong>understand</strong> it through an iterative loop of <strong>transforming</strong>, <strong>visualising</strong> and <strong>modelling</strong>; and finally <strong>communicate</strong> your results. Programming surrounds all of these steps and supports them. Today you will learn why each component is important and how they connect.</li>
-<li>
-<strong>Recognise the tools you need.</strong> To run the code in <em>R for Data Science</em> you need <strong>R</strong>, <strong>RStudio</strong>, the <strong>tidyverse</strong> package collection and a handful of other packages. We will install R (from the Comprehensive&nbsp;R&nbsp;Archive&nbsp;Network), download RStudio (an integrated development environment), and install the tidyverse.</li>
-<li>
-<strong>Prepare your computing environment.</strong> By the end of class you should have R and RStudio installed, know how to install and load packages, and be able to run simple R commands (arithmetic, vector creation, summary statistics). We will also introduce a dataset that you will revisit throughout the semester.</li>
-</ul></section><section id="notes" class="level2"><h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<section id="the-datascience-workflow" class="level3"><h3 class="anchored" data-anchor-id="the-datascience-workflow">The data‑science workflow</h3>
+<li><strong>Explore the data‑science lifecycle.</strong> The <em>R for Data Science</em> introduction models data science as a cycle: you begin by <strong>importing</strong> and <strong>tidying</strong> raw data; then <strong>understand</strong> it through an iterative loop of <strong>transforming</strong>, <strong>visualising</strong> and <strong>modelling</strong>; and finally <strong>communicate</strong> your results. Programming surrounds all of these steps and supports them. Today you will learn why each component is important and how they connect.</li>
+<li><strong>Recognise the tools you need.</strong> To run the code in <em>R for Data Science</em> you need <strong>R</strong>, <strong>RStudio</strong>, the <strong>tidyverse</strong> package collection and a handful of other packages. We will install R (from the Comprehensive&nbsp;R&nbsp;Archive&nbsp;Network), download RStudio (an integrated development environment), and install the tidyverse.</li>
+<li><strong>Prepare your computing environment.</strong> By the end of class you should have R and RStudio installed, know how to install and load packages, and be able to run simple R commands (arithmetic, vector creation, summary statistics). We will also introduce a dataset that you will revisit throughout the semester.</li>
+</ul>
+</section>
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<section id="the-datascience-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="the-datascience-workflow">The data‑science workflow</h3>
 <p>Data science is not a linear process. You first <strong>import</strong> data from files, databases or the web; <strong>tidy</strong> it so that each variable is a column and each observation a row; <strong>transform</strong>, <strong>visualise</strong> and <strong>model</strong> your data in an iterative loop to understand patterns and relationships; and then <strong>communicate</strong> your findings to others. Programming is a cross‑cutting skill that supports each of these phases. Throughout this course, you will move back and forth between these steps rather than following them in a strict order.</p>
-</section><section id="tools-and-setup" class="level3"><h3 class="anchored" data-anchor-id="tools-and-setup">Tools and setup</h3>
+</section>
+<section id="tools-and-setup" class="level3">
+<h3 class="anchored" data-anchor-id="tools-and-setup">Tools and setup</h3>
 <p>You need four things to run the book’s code: <strong>R</strong>, <strong>RStudio</strong>, the <strong>tidyverse</strong> and some additional packages.</p>
 <ul>
-<li>
-<strong>R</strong> is the programming language you will use. Download the latest version from CRAN at <a href="https://cloud.r-project.org" class="uri">https://cloud.r-project.org</a>. A new major version of R is released once a year, with minor versions in between; updating regularly ensures compatibility.<br>
+<li><strong>R</strong> is the programming language you will use. Download the latest version from CRAN at <a href="https://cloud.r-project.org" class="uri">https://cloud.r-project.org</a>. A new major version of R is released once a year, with minor versions in between; updating regularly ensures compatibility.<br>
 </li>
-<li>
-<strong>RStudio</strong> is an integrated development environment (IDE) for R. Download it from <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a>. RStudio is updated a couple of times a year. When you start RStudio, you will see a console pane for typing R code and an output pane for plots.</li>
-<li>
-<strong>The tidyverse</strong> is a collection of packages for data manipulation, visualization and programming. To install all core tidyverse packages at once, run <code>install.packages("tidyverse")</code> in the R console. After installation, load the tidyverse with <code><a href="https://tidyverse.tidyverse.org">library(tidyverse)</a></code>; this attaches packages such as <em>dplyr</em>, <em>ggplot2</em>, <em>tidyr</em>, <em>readr</em>, <em>stringr</em>, <em>forcats</em>, <em>lubridate</em>, <em>purrr</em> and <em>tibble</em>. You only need to install a package once, but you must load it in each new R session.</li>
-<li>
-<strong>Other packages.</strong> We will occasionally use packages outside the tidyverse (e.g., <em>palmerpenguins</em>, <em>nycflights13</em>, <em>arrow</em>, <em>rvest</em>, <em>duckdb</em>). When you encounter an error that a package is not installed, run <code>install.packages("package_name")</code> to install the package.</li>
-</ul></section><section id="installing-and-testing-your-environment" class="level3"><h3 class="anchored" data-anchor-id="installing-and-testing-your-environment">Installing and testing your environment</h3>
+<li><strong>RStudio</strong> is an integrated development environment (IDE) for R. Download it from <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a>. RStudio is updated a couple of times a year. When you start RStudio, you will see a console pane for typing R code and an output pane for plots.</li>
+<li><strong>The tidyverse</strong> is a collection of packages for data manipulation, visualization and programming. To install all core tidyverse packages at once, run <code>install.packages("tidyverse")</code> in the R console. After installation, load the tidyverse with <code>library(tidyverse)</code>; this attaches packages such as <em>dplyr</em>, <em>ggplot2</em>, <em>tidyr</em>, <em>readr</em>, <em>stringr</em>, <em>forcats</em>, <em>lubridate</em>, <em>purrr</em> and <em>tibble</em>. You only need to install a package once, but you must load it in each new R session.</li>
+<li><strong>Other packages.</strong> We will occasionally use packages outside the tidyverse (e.g., <em>palmerpenguins</em>, <em>nycflights13</em>, <em>arrow</em>, <em>rvest</em>, <em>duckdb</em>). When you encounter an error that a package is not installed, run <code>install.packages("package_name")</code> to install the package.</li>
+</ul>
+</section>
+<section id="installing-and-testing-your-environment" class="level3">
+<h3 class="anchored" data-anchor-id="installing-and-testing-your-environment">Installing and testing your environment</h3>
 <ol type="1">
-<li>
-<strong>Install R and RStudio</strong> as described above. Accept the default installation options.<br>
+<li><strong>Install R and RStudio</strong> as described above. Accept the default installation options.<br>
 </li>
-<li>
-<strong>Install the tidyverse.</strong> Open RStudio and run the following in the console:</li>
+<li><strong>Install the tidyverse.</strong> Open RStudio and run the following in the console:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span>   <span class="co"># installs core tidyverse packages</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>               </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)   <span class="co"># installs core tidyverse packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)               </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="3" type="1">
-<li>
-<strong>Try basic R commands.</strong> Use R as a calculator and practise creating vectors and computing summaries:</li>
+<li><strong>Try basic R commands.</strong> Use R as a calculator and practise creating vectors and computing summaries:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">2</span> <span class="op">+</span> <span class="fl">2</span>                  <span class="co"># arithmetic</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span>                  <span class="co"># arithmetic</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
 </div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">7</span><span class="op">)</span>  <span class="co"># create a numeric vector</span></span>
-<span><span class="va">x</span> <span class="op">*</span> <span class="fl">2</span>                  <span class="co"># vectorised multiplication</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)  <span class="co"># create a numeric vector</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">*</span> <span class="dv">2</span>                  <span class="co"># vectorised multiplication</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  2  4  6 10 14</code></pre>
 </div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>                <span class="co"># compute the average</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)                <span class="co"># compute the average</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3.6</code></pre>
 </div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">4</span><span class="op">)</span>             <span class="co"># count values greater than 4 (logical vector)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x <span class="sc">&gt;</span> <span class="dv">4</span>)             <span class="co"># count values greater than 4 (logical vector)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
 </div>
 <p>Notice that R performs operations element‑wise on vectors, and the assignment operator <code>&lt;-</code> stores values. Use descriptive variable names and indent your code neatly; we will discuss code style in a later class.</p>
-</section><section id="takeaways" class="level3"><h3 class="anchored" data-anchor-id="takeaways">Take‑aways</h3>
+</section>
+<section id="takeaways" class="level3">
+<h3 class="anchored" data-anchor-id="takeaways">Take‑aways</h3>
 <ul>
 <li>The data‑science process is <strong>iterative</strong>, looping through import, tidy, transform, visualize, model and communicate. Understanding develops as you cycle through these steps.</li>
 <li>To do data science in R you need the <strong>R language</strong>, the <strong>RStudio IDE</strong>, the <strong>tidyverse</strong> package collection and other supporting packages. Installing and loading packages early will save time later.</li>
@@ -300,7 +336,11 @@ document.addEventListener('click', (event) => {
 </ul>
 
 
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -335,18 +375,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -378,11 +407,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -392,8 +458,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -405,7 +480,129 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -449,6 +646,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -474,6 +672,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -534,6 +758,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
