@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Session 3 – The layered grammar of graphics – STA 2300 Intro to Data Science</title>
+<title>6&nbsp; Session 6 – Data import: reading CSV &amp; flat files – STA 2300 Intro to Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -156,7 +156,7 @@ document.addEventListener('click', (event) => {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3 – The layered grammar of graphics</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6 – Data import: reading CSV &amp; flat files</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -208,7 +208,7 @@ document.addEventListener('click', (event) => {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03.html" class="sidebar-item-text sidebar-link active">
+  <a href="./03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3 – The layered grammar of graphics</span></span></a>
   </div>
 </li>
@@ -226,7 +226,7 @@ document.addEventListener('click', (event) => {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06.html" class="sidebar-item-text sidebar-link">
+  <a href="./06.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6 – Data import: reading CSV &amp; flat files</span></span></a>
   </div>
 </li>
@@ -241,7 +241,15 @@ document.addEventListener('click', (event) => {
    
   <ul>
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
-  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
+  <ul class="collapse">
+  <li><a href="#why-import-data" id="toc-why-import-data" class="nav-link" data-scroll-target="#why-import-data">Why import data?</a></li>
+  <li><a href="#reading-csv-files-with-readr" id="toc-reading-csv-files-with-readr" class="nav-link" data-scroll-target="#reading-csv-files-with-readr">Reading CSV files with <code>readr</code></a></li>
+  <li><a href="#handling-missing-values-and-nonsyntactic-names" id="toc-handling-missing-values-and-nonsyntactic-names" class="nav-link" data-scroll-target="#handling-missing-values-and-nonsyntactic-names">Handling missing values and non‑syntactic names</a></li>
+  <li><a href="#how-readr-guesses-column-types" id="toc-how-readr-guesses-column-types" class="nav-link" data-scroll-target="#how-readr-guesses-column-types">How readr guesses column types</a></li>
+  <li><a href="#reading-multiple-files-and-combining-them" id="toc-reading-multiple-files-and-combining-them" class="nav-link" data-scroll-target="#reading-multiple-files-and-combining-them">Reading multiple files and combining them</a></li>
+  <li><a href="#writing-data-back-to-disk" id="toc-writing-data-back-to-disk" class="nav-link" data-scroll-target="#writing-data-back-to-disk">Writing data back to disk</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -250,7 +258,7 @@ document.addEventListener('click', (event) => {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3 – The layered grammar of graphics</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6 – Data import: reading CSV &amp; flat files</span></h1>
 </div>
 
 
@@ -270,137 +278,152 @@ document.addEventListener('click', (event) => {
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Deepen your understanding of ggplot2.</strong> Explore the layered grammar of graphics—how aesthetic mappings, geometric objects and facets combine to build complex plots.</li>
-<li><strong>Master aesthetic mappings.</strong> Map variables to color, shape, size and alpha correctly. Avoid mapping categorical variables to size or alpha (it implies a false ordering) and note that mapping a categorical variable to shape uses only six shapes, so additional groups are dropped.</li>
-<li><strong>Layer multiple geoms.</strong> Add multiple geoms to a plot (e.g., points and smooth lines) and distinguish between global and local aesthetic mappings. Use the <code>group</code> aesthetic to draw separate curves for each category.</li>
-<li><strong>Use faceting and coordinate systems.</strong> Split data into panels using <code>facet_wrap()</code> or <code>facet_grid()</code> and adjust scales. Experiment with coordinate transforms such as <code>coord_flip()</code> and <code>coord_polar()</code>.</li>
+<li><strong>Read your own data into R.</strong> Up to now we have worked with datasets that come bundled with packages. In practice you will often need to import data from your own files. This session introduces the <code>readr</code> functions for reading plain‑text rectangular data (CSV, TSV and other delimited formats). You will learn how to specify file paths and handle column names, types and missing values.</li>
+<li><strong>Control column names, missing values and types.</strong> When you run <code>read_csv()</code> it prints the number of rows and columns read and a summary of the column specification. You will learn how to rename variables, skip header lines, define which strings should be treated as missing, and override the type guessing heuristic that readr uses.</li>
+<li><strong>Read multiple files and combine them.</strong> Real projects often involve multiple data files (for example, one file per month). You can pass a vector of file paths to <code>read_csv()</code> and use the <code>id</code> argument to record the source of each observation. We will practice finding files with <code>list.files()</code>, reading them into a single tibble and combining them using <code>bind_rows()</code>.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<p><strong>Layered grammar of graphics</strong> – Every plot can be built from layers consisting of data, aesthetic mappings, geoms, optional statistical transformations, position adjustments and a coordinate system. Building plots layer by layer allows incremental refinement.</p>
-<p><strong>Aesthetic mappings</strong> – The <code>aes()</code> function connects variables to graphical attributes. Mapping a categorical variable to color is generally safe; mapping it to shape works but only six shapes are available; mapping to size or alpha is discouraged and yields warnings.</p>
+<section id="why-import-data" class="level3">
+<h3 class="anchored" data-anchor-id="why-import-data">Why import data?</h3>
+<p>Working with data included in R packages is convenient when you are learning, but eventually you need to apply the tools to your own data. <em>R for Data Science</em> notes that this chapter focuses on <strong>reading plain‑text rectangular files</strong> and provides practical advice for handling <strong>column names, types and missing data</strong>. The goal is to help you get your data into a tidy tibble so that you can immediately start transforming and visualizing it.</p>
+</section>
+<section id="reading-csv-files-with-readr" class="level3">
+<h3 class="anchored" data-anchor-id="reading-csv-files-with-readr">Reading CSV files with <code>readr</code></h3>
+<p>The <code>readr</code> package is part of the tidyverse and provides fast functions for reading delimited files. The most common function is <code>read_csv()</code>, which expects a path to a comma‑separated file. When you read a file, readr prints a message showing the number of rows and columns, the delimiter used and the column specification. This message includes the guessed type for each column and can be silenced with <code>show_col_types = FALSE</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Mapping species to color and shape (safe if ≤ 6 categories)</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> body_mass_g,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> species,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">shape =</span> species)) <span class="sc">+</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: reading a simple CSV file from a URL</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>students <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"https://pos.it/r4ds-students-csv"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>students</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  `Student ID` `Full Name`      favourite.food     mealPlan            AGE  
+         &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;              &lt;chr&gt;               &lt;chr&gt;
+1            1 Sunil Huffmann   Strawberry yoghurt Lunch only          4    
+2            2 Barclay Lynn     French fries       Lunch only          5    
+3            3 Jayendra Lyne    N/A                Breakfast and lunch 7    
+4            4 Leon Rossini     Anchovies          Lunch only          &lt;NA&gt; 
+5            5 Chidiegwu Dunkel Pizza              Breakfast and lunch five 
+6            6 Güvenç Attila    Ice cream          Lunch only          6    </code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppress the column spec message</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>students_quiet <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"https://pos.it/r4ds-students-csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mapping a categorical variable to size or alpha generates warnings</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> body_mass_g,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">size =</span> species)) <span class="sc">+</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()  <span class="co"># Warning: Using size for a discrete variable is not advised</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Mappings defined in <code>ggplot()</code> apply globally, while mappings inside a geom override them for that layer.</p>
+<p>Use the <code>file</code> argument to read files stored locally. It is good practice to keep data in a dedicated <code>data/</code> folder within your project and refer to it using relative paths. If your file has a header row containing the names of the columns (as most CSVs do), readr uses it automatically. If not, set <code>col_names = FALSE</code> and optionally provide a vector of names via <code>col_names = c("...", ...)</code>.</p>
+</section>
+<section id="handling-missing-values-and-nonsyntactic-names" class="level3">
+<h3 class="anchored" data-anchor-id="handling-missing-values-and-nonsyntactic-names">Handling missing values and non‑syntactic names</h3>
+<p>A CSV file does not encode missing values explicitly, so readr treats <strong>empty fields</strong> as <code>NA</code>. In practice, missing values are often recorded with sentinel strings such as <code>"N/A"</code> or <code>"."</code>. You can tell <code>read_csv()</code> which strings should be considered missing using the <code>na</code> argument. For example, in the <code>students.csv</code> file the string <code>"N/A"</code> is used to mark missing foods. By specifying <code>na = c("N/A", "")</code>, readr converts those strings to <code>NA</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Global mapping applies color to both geoms</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>students2 <span class="ot">=</span> <span class="fu">read_csv</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://pos.it/r4ds-students-csv"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"N/A"</span>, <span class="st">""</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>students2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  `Student ID` `Full Name`      favourite.food     mealPlan            AGE  
+         &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;              &lt;chr&gt;               &lt;chr&gt;
+1            1 Sunil Huffmann   Strawberry yoghurt Lunch only          4    
+2            2 Barclay Lynn     French fries       Lunch only          5    
+3            3 Jayendra Lyne    &lt;NA&gt;               Breakfast and lunch 7    
+4            4 Leon Rossini     Anchovies          Lunch only          &lt;NA&gt; 
+5            5 Chidiegwu Dunkel Pizza              Breakfast and lunch five 
+6            6 Güvenç Attila    Ice cream          Lunch only          6    </code></pre>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Local mapping overrides global color for the point layer only</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Layering geoms</strong> – Different geoms (e.g., <code>geom_point</code>, <code>geom_smooth</code>, <code>geom_bar</code>) draw different types of objects. Overlaying geoms reveals multiple aspects of the data. When using geoms like <code>geom_smooth()</code>, ggplot2 automatically groups data by discrete variables; you can explicitly set <code>group</code> to control grouping.</p>
+<p>Sometimes column names contain spaces or other characters that make them <strong>non‑syntactic</strong> in R. In that case they are surrounded by backticks in the tibble, and you must use backticks to refer to them. A simple solution is to rename the columns after import using <code>rename()</code> or the <code>janitor::clean_names()</code> helper (the latter converts names to <code>snake_case</code>).</p>
+</section>
+<section id="how-readr-guesses-column-types" class="level3">
+<h3 class="anchored" data-anchor-id="how-readr-guesses-column-types">How readr guesses column types</h3>
+<p>Because a CSV file does not contain type information, readr <strong>guesses the type of each column</strong>. It samples up to 1,000 values from across the file and asks: <em>does the column contain only logical values?</em> <em>Only numbers?</em> <em>Does it match ISO8601 date format?</em> If none of those tests succeed, readr assumes the column is a string. This heuristic works well for clean datasets but can fail when there are unexpected values (e.g., a period <code>.</code> to represent a missing number).</p>
+<p>When type guessing fails you can provide your own <strong>column specification</strong> via the <code>col_types</code> argument. This argument is a named list or a <code>cols()</code> specification where each name matches a column and each value is a type function (e.g., <code>col_double()</code>, <code>col_integer()</code>, <code>col_character()</code>, <code>col_date()</code>, <code>col_datetime()</code>). For example, if a numeric ID is misread as a number but should be a character (because you never intend to sum it), specify <code>col_types = list(student_id = col_character())</code>. readr provides nine column types including</p>
+<ul>
+<li>logicals</li>
+<li>doubles</li>
+<li>integers</li>
+<li>characters</li>
+<li>factors</li>
+<li>dates</li>
+<li>date‑time</li>
+<li>permissive numbers</li>
+<li>skipped columns</li>
+</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Overlay scatterplot with separate curves per species</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">group =</span> species), <span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A small CSV with a custom missing value "."</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>simple_csv <span class="ot">=</span> <span class="st">"x</span><span class="sc">\n</span><span class="st">10</span><span class="sc">\n</span><span class="st">.</span><span class="sc">\n</span><span class="st">20</span><span class="sc">\n</span><span class="st">30"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Default guess treats the period as a string</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>df_default <span class="ot">=</span> <span class="fu">read_csv</span>(simple_csv)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>df_default</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 1
+  x    
+  &lt;chr&gt;
+1 10   
+2 .    
+3 20   
+4 30   </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Override the type to double and inspect problems</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df_num <span class="ot">=</span> <span class="fu">read_csv</span>(simple_csv, <span class="at">col_types =</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">col_double</span>()))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">problems</span>(df_num)  <span class="co"># shows where parsing failed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 5
+    row   col expected actual file                                              
+  &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;                                             
+1     3     1 a double .      C:/Users/Joshua_Patrick/AppData/Local/Temp/Rtmpcz…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tell readr to treat "." as NA so guessing succeeds</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_fixed <span class="ot">=</span> <span class="fu">read_csv</span>(simple_csv, <span class="at">na =</span> <span class="st">"."</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df_fixed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 1
+      x
+  &lt;dbl&gt;
+1    10
+2    NA
+3    20
+4    30</code></pre>
 </div>
 </div>
-</div>
-<p><strong>Facets</strong> – Use <code>facet_wrap()</code> to create a grid of subplots for one categorical variable, and <code>facet_grid()</code> for two variables. You can allow axes to vary across facets with the <code>scales</code> argument.</p>
+<p>If you have many columns with the same type, you can set a <strong>default type</strong> using <code>cols(.default = col_character())</code>. To read only a subset of columns, use <code>cols_only()</code> with the columns you want.</p>
+</section>
+<section id="reading-multiple-files-and-combining-them" class="level3">
+<h3 class="anchored" data-anchor-id="reading-multiple-files-and-combining-them">Reading multiple files and combining them</h3>
+<p>In many projects you receive data split across multiple files—perhaps one file per month or per site. Instead of reading each file separately and then binding the results, you can pass a <strong>vector of file paths</strong> to <code>read_csv()</code>. readr will read all of them and stack the rows together. The optional <code>id</code> argument adds a column that records the file each row came from.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Facet by island</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppose you have three monthly sales files stored in data/01-sales.csv, 02-sales.csv, 03-sales.csv</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>sales_files <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"data/01-sales.csv"</span>, <span class="st">"data/02-sales.csv"</span>, <span class="st">"data/03-sales.csv"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read and combine, adding a 'file' column to identify the source</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">=</span> <span class="fu">read_csv</span>(sales_files, <span class="at">id =</span> <span class="st">"file"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Facet by species and sex with free y‑axis</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(species <span class="sc">~</span> sex, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Coordinate systems</strong> – Transform plots using different coordinate systems to improve interpretability. For example, swap axes using <code>coord_flip()</code> or create a polar bar chart with <code>coord_polar()</code>.</p>
+<p>You often don’t know the names of all the files ahead of time. Use <code>list.files()</code> to find files whose names match a pattern (e.g., <code>"sales\\.csv$"</code>) and set <code>full.names = TRUE</code> so the full path is returned.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Flip axes in a boxplot</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find all CSV files ending with 'sales.csv' in the data directory</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>sales_files <span class="ot">=</span> <span class="fu">list.files</span>(<span class="st">"data"</span>, <span class="at">pattern =</span> <span class="st">"sales</span><span class="sc">\\</span><span class="st">.csv$"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>sales_files</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">=</span> <span class="fu">read_csv</span>(sales_files, <span class="at">id =</span> <span class="st">"file"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Polar coordinates for a bar chart</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
+<p>Once you have imported multiple files you can combine them explicitly with <code>dplyr::bind_rows()</code> or <code>bind_cols()</code>, depending on whether you want to stack rows or columns. <code>bind_rows()</code> requires identical column names, so pay attention to names and types when reading.</p>
+</section>
+<section id="writing-data-back-to-disk" class="level3">
+<h3 class="anchored" data-anchor-id="writing-data-back-to-disk">Writing data back to disk</h3>
+<p><code>readr</code> also provides <code>write_csv()</code> and <code>write_tsv()</code> for saving tibbles to disk. Remember that when you write to CSV the column specification is lost—you must regenerate types when reading the file again. For intermediate results consider using <code>write_rds()</code> and <code>read_rds()</code>, which store R objects in a binary format preserving types.</p>
+<!-- ## In‑class activity (≈60 min) -->
+<!-- Today’s activity gives you hands‑on practice importing and combining data.  Work individually or in small groups.  A shared dataset (e.g., **nycflights13** or **palmerpenguins**) will be split into several CSV files ahead of time.  Download the files from the course site or find them in your project’s `data/` folder. -->
+<!-- 1. **Inspect the files (10 min)** – Each student chooses one of the CSV files and opens it in a text editor or uses `read_csv()` with `n_max = 5` to glimpse the first few rows.  Note the column names and any potential issues: missing values recorded as strings (e.g., `"."` or `"NA"`), inconsistent capitalization, or unexpected characters. -->
+<!-- 2. **Import with `read_csv()` (15 min)** – Use `read_csv()` to import your file.  If you see a warning about parsing problems, call `problems()` to identify the row and column causing trouble.  Adjust the `na` argument or supply a `col_types` list to fix the issue.  Discuss with your partner which types were guessed correctly and which ones needed manual specification.  Try adding `show_col_types = FALSE` to reduce clutter in your console. -->
+<!-- 3. **Combine files (20 min)** – As a group, collect the names of all the CSV files and store them in a character vector.  Use `list.files()` with a pattern if the files follow a naming convention (e.g., `*_penguins.csv`).  Read all files at once using `read_csv(file_vector, id = "source")`.  Inspect the resulting tibble—does it include a new `source` column?  Alternatively, read the files one by one and combine them using `bind_rows()`. -->
+<!-- 4. **Explore the combined data (15 min)** – Verify that the combined dataset has the expected number of rows and that the columns have consistent types.  Use `summarize()` to compute simple summaries (e.g., number of observations per file, mean of a numeric variable).  Discuss strategies for detecting import errors: inconsistent column names, mismatched types or unusual missing values.  Reflect on how the import step lays the groundwork for the tidy data work you will do in the next session. -->
+<!-- This activity will form the basis for the tidy‑data exercises in Session 7.  Save your cleaned and combined tibble to your project folder using `write_csv()` or `write_rds()` so you can use it again. -->
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
