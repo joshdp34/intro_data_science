@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Session 5 – Data transformation (II): grouping and summarizing – STA 2300 Intro to Data Science</title>
+<title>7&nbsp; Session 7 – Tidy data &amp; pivoting – STA 2300 Intro to Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -156,7 +156,7 @@ document.addEventListener('click', (event) => {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5 – Data transformation (II): grouping and summarizing</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7 – Tidy data &amp; pivoting</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -220,7 +220,7 @@ document.addEventListener('click', (event) => {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05.html" class="sidebar-item-text sidebar-link active">
+  <a href="./05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5 – Data transformation (II): grouping and summarizing</span></span></a>
   </div>
 </li>
@@ -232,7 +232,7 @@ document.addEventListener('click', (event) => {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07.html" class="sidebar-item-text sidebar-link">
+  <a href="./07.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7 – Tidy data &amp; pivoting</span></span></a>
   </div>
 </li>
@@ -247,7 +247,13 @@ document.addEventListener('click', (event) => {
    
   <ul>
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
-  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
+  <ul class="collapse">
+  <li><a href="#what-is-tidy-data" id="toc-what-is-tidy-data" class="nav-link" data-scroll-target="#what-is-tidy-data">What is tidy data?</a></li>
+  <li><a href="#lengthening-data-with-pivot_longer" id="toc-lengthening-data-with-pivot_longer" class="nav-link" data-scroll-target="#lengthening-data-with-pivot_longer">Lengthening data with <code>pivot_longer()</code></a></li>
+  <li><a href="#widening-data-with-pivot_wider" id="toc-widening-data-with-pivot_wider" class="nav-link" data-scroll-target="#widening-data-with-pivot_wider">Widening data with <code>pivot_wider()</code></a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key take‑aways</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -256,7 +262,7 @@ document.addEventListener('click', (event) => {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5 – Data transformation (II): grouping and summarizing</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7 – Tidy data &amp; pivoting</span></h1>
 </div>
 
 
@@ -276,125 +282,127 @@ document.addEventListener('click', (event) => {
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Change the unit of analysis with grouping.</strong> Use <code>group_by()</code> to organize data into subsets (groups) so that subsequent operations operate within each group rather than on the whole data set.</li>
-<li><strong>Compute summaries across groups.</strong> Apply <code>summarize()</code> to compute summary statistics (counts, means, medians, etc.) for each group. Understand that <code>summarize()</code> returns one row for each combination of grouping variables.</li>
-<li><strong>Use helper functions.</strong> Learn to use helpers like <code>n()</code> and <code>n_distinct()</code> within <code>summarize()</code> to count observations and distinct values.</li>
-<li><strong>Select top or bottom observations per group.</strong> Use <code>slice_max()</code> and <code>slice_min()</code> to find the largest or smallest values within each group.</li>
-<li><strong>Enhance pipelines.</strong> Continue to use the pipe (<code>|&gt;</code> or <code>%&gt;%</code>) to link <code>group_by()</code>, <code>summarize()</code> and other verbs into clear analytical workflows.</li>
+<li><strong>Define tidy data.</strong> Understand the three rules that make a dataset tidy: each <strong>variable</strong> must live in its own column, each <strong>observation</strong> must occupy its own row, and each <strong>value</strong> must appear in a single cell. Appreciate why a consistent data structure makes it easier to learn and use tidyverse tools.</li>
+<li><strong>Lengthen data with <code>pivot_longer()</code>.</strong> Use <code>pivot_longer()</code> from the <em>tidyr</em> package to reshape untidy datasets by gathering column names into a new variable and their values into another variable. Learn how to select columns to pivot, specify the names of the new variables and optionally drop missing values.</li>
+<li><strong>Handle multiple variables in column names.</strong> Recognize when column headers encode multiple pieces of information (e.g., method, gender and age) and use the <code>names_to</code>/<code>names_sep</code> arguments of <code>pivot_longer()</code> to split them into separate variables.</li>
+<li><strong>Widen data with <code>pivot_wider()</code>.</strong> Use <code>pivot_wider()</code> to spread rows into columns when each observation is represented across multiple rows. Learn how to choose the <code>names_from</code>, <code>values_from</code> and <code>id_cols</code> arguments so that each row uniquely identifies an observation.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<p><strong>Grouping</strong> – <code>group_by()</code> does not change the data itself; it changes how dplyr verbs operate. After grouping, verbs like <code>summarize()</code>, <code>mutate()</code>, and <code>filter()</code> perform their operations separately on each group.</p>
+<section id="what-is-tidy-data" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-tidy-data">What is tidy data?</h3>
+<p>Tidy data is a <strong>standard way to organize your datasets</strong> so that they work naturally with the tidyverse. In tidy data:</p>
+<ol type="1">
+<li><strong>Each variable is a column, each column is a variable.</strong> A dataset like <code>table1</code> from <em>R for Data Science</em> has one column for each variable and is easiest to work with.</li>
+<li><strong>Each observation is a row.</strong> Each row of a tidy data frame corresponds to one observation of all variables.</li>
+<li><strong>Each value is a cell.</strong> Every cell contains a single value for one variable in one observation.</li>
+</ol>
+<p>The pay‑off for tidying data is twofold. First, adopting a single consistent structure makes it easier to learn a suite of tools because they all assume the same underlying format. Second, placing variables in columns allows R’s vectorised functions to operate naturally.</p>
+</section>
+<section id="lengthening-data-with-pivot_longer" class="level3">
+<h3 class="anchored" data-anchor-id="lengthening-data-with-pivot_longer">Lengthening data with <code>pivot_longer()</code></h3>
+<p>Most real datasets aren’t tidy because they are organised for data entry or reporting rather than analysis. The <strong><code>pivot_longer()</code></strong> function lengthens data by gathering a set of columns into key–value pairs. Its most important arguments are:</p>
+<ul>
+<li><code>cols</code>: which columns to pivot. You can specify them explicitly (<code>bp1:bp2</code>) or using tidyselect helpers such as <code>starts_with()</code>.</li>
+<li><code>names_to</code>: the name of the new variable created from column names. For example, converting week columns (<code>wk1</code>, <code>wk2</code>, …) into a variable called <code>week</code>.</li>
+<li><code>values_to</code>: the name of the variable that will hold the values from the pivoted columns.</li>
+<li><code>values_drop_na</code>: set to <code>TRUE</code> to drop rows where all the pivoted columns contain <code>NA</code>.</li>
+</ul>
+<p>Here is a simple example using the built‑in <code>billboard</code> dataset, which records weekly Billboard chart positions. Each row is a song and each <code>wk?</code> column gives its rank in that week. To tidy this dataset, we gather the week columns into a new <code>week</code> variable and the ranks into a <code>rank</code> variable:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Group penguins by species and island</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>penguins_by <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">group_by</span>(species, island)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>penguins_by</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>billboard_long <span class="ot">&lt;-</span> billboard <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"wk"</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"week"</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"rank"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">week =</span> <span class="fu">parse_number</span>(week))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>billboard_long <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 344 × 8
-# Groups:   species, island [5]
-   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
- 1 Adelie  Torgersen           39.1          18.7               181        3750
- 2 Adelie  Torgersen           39.5          17.4               186        3800
- 3 Adelie  Torgersen           40.3          18                 195        3250
- 4 Adelie  Torgersen           NA            NA                  NA          NA
- 5 Adelie  Torgersen           36.7          19.3               193        3450
- 6 Adelie  Torgersen           39.3          20.6               190        3650
- 7 Adelie  Torgersen           38.9          17.8               181        3625
- 8 Adelie  Torgersen           39.2          19.6               195        4675
- 9 Adelie  Torgersen           34.1          18.1               193        3475
-10 Adelie  Torgersen           42            20.2               190        4250
-# ℹ 334 more rows
-# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<pre><code># A tibble: 6 × 5
+  artist track                   date.entered  week  rank
+  &lt;chr&gt;  &lt;chr&gt;                   &lt;date&gt;       &lt;dbl&gt; &lt;dbl&gt;
+1 2 Pac  Baby Don't Cry (Keep... 2000-02-26       1    87
+2 2 Pac  Baby Don't Cry (Keep... 2000-02-26       2    82
+3 2 Pac  Baby Don't Cry (Keep... 2000-02-26       3    72
+4 2 Pac  Baby Don't Cry (Keep... 2000-02-26       4    77
+5 2 Pac  Baby Don't Cry (Keep... 2000-02-26       5    87
+6 2 Pac  Baby Don't Cry (Keep... 2000-02-26       6    94</code></pre>
 </div>
 </div>
-<p><strong>Summarizing</strong> – <code>summarize()</code> collapses multiple rows to a single row for each group. Without any grouping, it returns a single row summarizing the entire data frame.</p>
+<p>This call transforms the 317 × 79 <code>billboard</code> tibble into a 5307 × 5 tibble with one row per song–week combination.</p>
+<p>When column names contain <strong>multiple pieces of information</strong>, you can split them into several new variables by supplying a vector of names and a separator. For example, the <code>who2</code> dataset records TB cases with column names like <code>sp_m_014</code>, which combine the method (<code>sp</code>), gender (<code>m</code>) and age range (<code>014</code>). The following call extracts those parts into separate variables:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarize mean body mass and count per species-island group</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>penguin_summary <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species, island) <span class="sc">|&gt;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">count =</span> <span class="fu">n</span>(),  <span class="co"># number of observations</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_mass =</span> <span class="fu">sd</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">distinct_years =</span> <span class="fu">n_distinct</span>(year)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  penguin_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>who2_long <span class="ot">&lt;-</span> who2 <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">!</span>(country<span class="sc">:</span>year),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"diagnosis"</span>, <span class="st">"gender"</span>, <span class="st">"age"</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"_"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"count"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>who2_long <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 6
-# Groups:   species [3]
-  species   island    count mean_mass sd_mass distinct_years
-  &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;     &lt;dbl&gt;   &lt;dbl&gt;          &lt;int&gt;
-1 Adelie    Biscoe       44     3710.    488.              3
-2 Adelie    Dream        56     3688.    455.              3
-3 Adelie    Torgersen    52     3706.    445.              3
-4 Chinstrap Dream        68     3733.    384.              3
-5 Gentoo    Biscoe      124     5076.    504.              3</code></pre>
+<pre><code># A tibble: 6 × 6
+  country      year diagnosis gender age   count
+  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;
+1 Afghanistan  1980 sp        m      014      NA
+2 Afghanistan  1980 sp        m      1524     NA
+3 Afghanistan  1980 sp        m      2534     NA
+4 Afghanistan  1980 sp        m      3544     NA
+5 Afghanistan  1980 sp        m      4554     NA
+6 Afghanistan  1980 sp        m      5564     NA</code></pre>
 </div>
 </div>
-<p>In <code>summarize()</code>, the summary functions must return a single value. Functions such as <code>mean()</code>, <code>median()</code>, <code>sd()</code> and counts like <code>n()</code> and <code>n_distinct()</code> are typical.</p>
-<p><strong>Ungrouping</strong> – After summarizing, grouping remains; use <code>ungroup()</code> if you wish to remove grouping for subsequent operations. Alternatively, the <code>.groups</code> argument in <code>summarize()</code> can control the grouping structure of the result.</p>
-<p><strong>Finding extremes within groups</strong> – <code>slice_max()</code> and <code>slice_min()</code> extract rows with the highest or lowest values within each group.</p>
+<p>The <strong><code>names_sep</code></strong> argument splits each original column name at the underscore and assigns the pieces to the new variables (<code>diagnosis</code>, <code>gender</code>, <code>age</code>). The <strong><code>values_to</code></strong> argument stores the counts.</p>
+</section>
+<section id="widening-data-with-pivot_wider" class="level3">
+<h3 class="anchored" data-anchor-id="widening-data-with-pivot_wider">Widening data with <code>pivot_wider()</code></h3>
+<p>Sometimes a single observation is spread across multiple rows, and you need to widen the data by creating new columns. The function <strong><code>pivot_wider()</code></strong> increases the number of columns and decreases the number of rows. It is particularly useful when you have long data with a variable that identifies the type of measurement and another variable with the corresponding value.</p>
+<p>The key arguments are:</p>
+<ul>
+<li><code>names_from</code>: the column whose unique values will become new column names.</li>
+<li><code>values_from</code>: the column containing the values to fill those new columns.</li>
+<li><code>id_cols</code>: optional columns that uniquely identify each row; if you omit this, <code>pivot_wider()</code> will attempt to infer them but may produce duplicate rows.</li>
+</ul>
+<p>As an example, the <code>cms_patient_experience</code> dataset from the Centers for Medicare &amp; Medicaid Services records multiple performance measures for each healthcare organization. Each organization appears on multiple rows, one per measure. To put each organization on its own row with separate columns for each measure code, use <code>pivot_wider()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Top 3 diamonds by price for each cut</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>top_diamonds <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cut) <span class="sc">|&gt;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> price, <span class="at">n =</span> <span class="dv">3</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>top_diamonds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cms_wide <span class="ot">&lt;-</span> cms_patient_experience <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> <span class="fu">starts_with</span>(<span class="st">"org"</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> measure_cd,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> prf_rate</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>cms_wide <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 15 × 10
-# Groups:   cut [5]
-   carat cut       color clarity depth table price     x     y     z
-   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1  2.01 Fair      G     SI1      70.6    64 18574  7.43  6.64  4.69
- 2  2.02 Fair      H     VS2      64.5    57 18565  8     7.95  5.14
- 3  4.5  Fair      J     I1       65.8    58 18531 10.2  10.2   6.72
- 4  2.8  Good      G     SI2      63.8    58 18788  8.9   8.85  0   
- 5  2.07 Good      I     VS2      61.8    61 18707  8.12  8.16  5.03
- 6  2.67 Good      F     SI2      63.8    58 18686  8.69  8.64  5.54
- 7  2    Very Good G     SI1      63.5    56 18818  7.9   7.97  5.04
- 8  2    Very Good H     SI1      62.8    57 18803  7.95  8     5.01
- 9  2.03 Very Good H     SI1      63      60 18781  8     7.93  5.02
-10  2.29 Premium   I     VS2      60.8    60 18823  8.5   8.47  5.16
-11  2.29 Premium   I     SI1      61.8    59 18797  8.52  8.45  5.24
-12  2.04 Premium   H     SI1      58.1    60 18795  8.37  8.28  4.84
-13  1.51 Ideal     G     IF       61.7    55 18806  7.37  7.41  4.56
-14  2.07 Ideal     G     SI2      62.5    55 18804  8.2   8.13  5.11
-15  2.15 Ideal     G     SI2      62.6    54 18791  8.29  8.35  5.21</code></pre>
+<pre><code># A tibble: 6 × 8
+  org_pac_id org_nm  CAHPS_GRP_1 CAHPS_GRP_2 CAHPS_GRP_3 CAHPS_GRP_5 CAHPS_GRP_8
+  &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+1 0446157747 USC CA…          63          87          86          57          85
+2 0446162697 ASSOCI…          59          85          83          63          88
+3 0547164295 BEAVER…          49          NA          75          44          73
+4 0749333730 CAPE P…          67          84          85          65          82
+5 0840104360 ALLIAN…          66          87          87          64          87
+6 0840109864 REX HO…          73          87          84          67          91
+# ℹ 1 more variable: CAHPS_GRP_12 &lt;dbl&gt;</code></pre>
 </div>
 </div>
-<p><strong>Pipelines</strong> – Continue chaining operations: group, summarize, arrange, and visualize, reading the pipe as “then”. Example:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Relationship between diamond carat and mean price by cut</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>diamond_summary <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cut) <span class="sc">|&gt;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">count =</span> <span class="fu">n</span>(),</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_carat =</span> <span class="fu">mean</span>(carat),</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_price =</span> <span class="fu">mean</span>(price)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_price))</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>diamond_summary <span class="sc">|&gt;</span> </span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> mean_price)) <span class="sc">+</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="05_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
+<p>By specifying the identifier columns (<code>org_pac_id</code> and <code>org_nm</code>), <code>pivot_wider()</code> ensures that each organisation occupies a single row and creates a column for each measure code. If you omit <code>id_cols</code>, you may see duplicate rows because <code>pivot_wider()</code> cannot uniquely identify observations on its own.</p>
+</section>
+<section id="key-takeaways" class="level3">
+<h3 class="anchored" data-anchor-id="key-takeaways">Key take‑aways</h3>
+<ul>
+<li><strong>Tidy data has a consistent structure:</strong> variables in columns, observations in rows and values in cells. This organization simplifies analysis and leverages R’s vectorization.</li>
+<li><strong><code>pivot_longer()</code> gathers columns into key–value pairs</strong>. Use <code>cols</code> to select columns to gather, <code>names_to</code> and <code>values_to</code> to name the new variables, and <code>values_drop_na</code> to remove structural missing values.</li>
+<li><strong>Split multiple pieces of information</strong> encoded in column names with <code>names_to</code> and <code>names_sep</code>.</li>
+<li><strong><code>pivot_wider()</code> spreads values across new columns</strong>, reversing a <code>pivot_longer()</code> when observations are spread across rows. Use <code>names_from</code>, <code>values_from</code> and (optionally) <code>id_cols</code> to control the reshaping.</li>
+<li><strong>Practice on real data.</strong> Tidy datasets are not always ready-made; most analyses require some tidying. Being proficient with pivoting functions allows you to structure your data before visualizing, transforming or modelling.</li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
