@@ -427,11 +427,11 @@ document.addEventListener('click', (event) => {
 <pre><code># A tibble: 5 × 4
   carrier flight flight_id is_three_digit
   &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;     &lt;lgl&gt;         
-1 US        2171 US-2171   FALSE         
-2 EV        4372 EV-4372   FALSE         
-3 DL        1377 DL-1377   FALSE         
-4 B6         418 B6-418    TRUE          
-5 UA        1524 UA-1524   FALSE         </code></pre>
+1 UA         544 UA-544    TRUE          
+2 EV        4672 EV-4672   FALSE         
+3 EV        4380 EV-4380   FALSE         
+4 UA         695 UA-695    TRUE          
+5 MQ        3737 MQ-3737   FALSE         </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the numeric part of the flight ID</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>flights_small <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">number_only =</span> <span class="fu">str_extract</span>(flight_id, <span class="st">"</span><span class="sc">\\</span><span class="st">d+"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -439,11 +439,11 @@ document.addEventListener('click', (event) => {
 <pre><code># A tibble: 5 × 4
   carrier flight flight_id number_only
   &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;      
-1 US        2171 US-2171   2171       
-2 EV        4372 EV-4372   4372       
-3 DL        1377 DL-1377   1377       
-4 B6         418 B6-418    6          
-5 UA        1524 UA-1524   1524       </code></pre>
+1 UA         544 UA-544    544        
+2 EV        4672 EV-4672   4672       
+3 EV        4380 EV-4380   4380       
+4 UA         695 UA-695    695        
+5 MQ        3737 MQ-3737   3737       </code></pre>
 </div>
 </div>
 <p>Notice that <code>\d</code> in a regex matches any digit (short for <code>[0-9]</code>), so <code>\d+</code> extracts one or more consecutive digits. We had to escape the backslash in the string to make sure it reached the regular‑expression engine.</p>
@@ -473,7 +473,7 @@ document.addEventListener('click', (event) => {
 </section>
 <section id="working-with-messy-strings-in-tibbles" class="level3">
 <h3 class="anchored" data-anchor-id="working-with-messy-strings-in-tibbles">Working with messy strings in tibbles</h3>
-<p>Character columns often encode multiple variables in one field. To tidy them, combine <code>stringr</code> and tidyr. As an example, consider the built‑in <code>who2</code> dataset where column names like <code>sp_m_014</code> describe the diagnosis, gender and age group. We can pivot the data longer and then separate the compound names into distinct variables【64448323371950†L438-L456】:</p>
+<p>Character columns often encode multiple variables in one field. To tidy them, combine <code>stringr</code> and tidyr. As an example, consider the built‑in <code>who2</code> dataset where column names like <code>sp_m_014</code> describe the diagnosis, gender and age group. We can pivot the data longer and then separate the compound names into distinct variables:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>who2_long <span class="ot">=</span>  who2 <span class="sc">|&gt;</span> <span class="fu">pivot_longer</span>(</span>
