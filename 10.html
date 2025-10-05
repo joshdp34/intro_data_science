@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Session 7 – Tidy data &amp; pivoting – STA 2300 Intro to Data Science</title>
+<title>10&nbsp; Session 10 – Variable types III: factors – STA 2300 Intro to Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -156,7 +156,7 @@ document.addEventListener('click', (event) => {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7 – Tidy data &amp; pivoting</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10 – Variable types III: factors</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -232,7 +232,7 @@ document.addEventListener('click', (event) => {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07.html" class="sidebar-item-text sidebar-link active">
+  <a href="./07.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7 – Tidy data &amp; pivoting</span></span></a>
   </div>
 </li>
@@ -250,7 +250,7 @@ document.addEventListener('click', (event) => {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10.html" class="sidebar-item-text sidebar-link">
+  <a href="./10.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10 – Variable types III: factors</span></span></a>
   </div>
 </li>
@@ -267,9 +267,11 @@ document.addEventListener('click', (event) => {
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#what-is-tidy-data" id="toc-what-is-tidy-data" class="nav-link" data-scroll-target="#what-is-tidy-data">What is tidy data?</a></li>
-  <li><a href="#lengthening-data-with-pivot_longer" id="toc-lengthening-data-with-pivot_longer" class="nav-link" data-scroll-target="#lengthening-data-with-pivot_longer">Lengthening data with <code>pivot_longer()</code></a></li>
-  <li><a href="#widening-data-with-pivot_wider" id="toc-widening-data-with-pivot_wider" class="nav-link" data-scroll-target="#widening-data-with-pivot_wider">Widening data with <code>pivot_wider()</code></a></li>
+  <li><a href="#why-factors" id="toc-why-factors" class="nav-link" data-scroll-target="#why-factors">Why factors?</a></li>
+  <li><a href="#creating-factors" id="toc-creating-factors" class="nav-link" data-scroll-target="#creating-factors">Creating factors</a></li>
+  <li><a href="#reordering-levels" id="toc-reordering-levels" class="nav-link" data-scroll-target="#reordering-levels">Reordering levels</a></li>
+  <li><a href="#modifying-levels" id="toc-modifying-levels" class="nav-link" data-scroll-target="#modifying-levels">Modifying levels</a></li>
+  <li><a href="#ordered-factors" id="toc-ordered-factors" class="nav-link" data-scroll-target="#ordered-factors">Ordered factors</a></li>
   <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key take‑aways</a></li>
   </ul></li>
   </ul>
@@ -280,7 +282,7 @@ document.addEventListener('click', (event) => {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7 – Tidy data &amp; pivoting</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10 – Variable types III: factors</span></h1>
 </div>
 
 
@@ -300,124 +302,218 @@ document.addEventListener('click', (event) => {
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Define tidy data.</strong> Understand the three rules that make a dataset tidy: each <strong>variable</strong> must live in its own column, each <strong>observation</strong> must occupy its own row, and each <strong>value</strong> must appear in a single cell. Appreciate why a consistent data structure makes it easier to learn and use tidyverse tools.</li>
-<li><strong>Lengthen data with <code>pivot_longer()</code>.</strong> Use <code>pivot_longer()</code> from the <em>tidyr</em> package to reshape untidy datasets by gathering column names into a new variable and their values into another variable. Learn how to select columns to pivot, specify the names of the new variables and optionally drop missing values.</li>
-<li><strong>Handle multiple variables in column names.</strong> Recognize when column headers encode multiple pieces of information (e.g., method, gender and age) and use the <code>names_to</code>/<code>names_sep</code> arguments of <code>pivot_longer()</code> to split them into separate variables.</li>
-<li><strong>Widen data with <code>pivot_wider()</code>.</strong> Use <code>pivot_wider()</code> to spread rows into columns when each observation is represented across multiple rows. Learn how to choose the <code>names_from</code>, <code>values_from</code> and <code>id_cols</code> arguments so that each row uniquely identifies an observation.</li>
+<li><strong>Understand why factors exist.</strong> Factors represent <strong>categorical variables</strong> with a fixed and known set of possible values. They prevent accidental typos and give you control over the order in which categories appear in summaries and plots. Learn why treating categories as strings can lead to problems and how factors solve those problems.</li>
+<li><strong>Create and inspect factors.</strong> Use <code>factor()</code> or <code>forcats::fct()</code> to convert character vectors to factors, specify levels and handle invalid values. Learn to inspect and summarize factor levels with <code>levels()</code> and <code>count()</code>.</li>
+<li><strong>Reorder factor levels for better visualization.</strong> Use <code>fct_reorder()</code> to order levels by the values of another variable, <code>fct_relevel()</code> to manually move levels to the front and <code>fct_reorder2()</code> when ordering line‑plot legends. Explore <code>fct_infreq()</code> and <code>fct_rev()</code> to arrange levels by frequency.</li>
+<li><strong>Modify and collapse levels.</strong> Relabel categories with <code>fct_recode()</code>, combine multiple levels with <code>fct_collapse()</code> and lump rare categories into “other” with the <code>fct_lump_*()</code> family.</li>
+<li><strong>Work with ordered factors.</strong> Create ordered factors for ordinal data (e.g., satisfaction ratings) and appreciate when an intrinsic order exists.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<section id="what-is-tidy-data" class="level3">
-<h3 class="anchored" data-anchor-id="what-is-tidy-data">What is tidy data?</h3>
-<p>Tidy data is a <strong>standard way to organize your datasets</strong> so that they work naturally with the tidyverse. In tidy data:</p>
-<ol type="1">
-<li><strong>Each variable is a column, each column is a variable.</strong> A dataset like <code>table1</code> from <em>R for Data Science</em> has one column for each variable and is easiest to work with.</li>
-<li><strong>Each observation is a row.</strong> Each row of a tidy data frame corresponds to one observation of all variables.</li>
-<li><strong>Each value is a cell.</strong> Every cell contains a single value for one variable in one observation.</li>
-</ol>
-<p>The pay‑off for tidying data is twofold. First, adopting a single consistent structure makes it easier to learn a suite of tools because they all assume the same underlying format. Second, placing variables in columns allows R’s vectorised functions to operate naturally.</p>
+<section id="why-factors" class="level3">
+<h3 class="anchored" data-anchor-id="why-factors">Why factors?</h3>
+<p>In data analysis, <strong>categorical variables</strong> often have a limited set of allowed values (e.g., months, continents, income bands). Storing them as plain strings introduces two common issues: you can type invalid values and the default alphabetical sorting is rarely meaningful. A <strong>factor</strong> solves these problems by enforcing a list of valid levels and providing explicit control over their order. For example, the months “Jan”, “Feb”, … “Dec” should appear in calendar order, not alphabetical. Converting a character vector of month names to a factor with those 12 levels ensures that invalid spellings become missing values (or an error if you use <code>forcats::fct()</code>), and sorting follows the chosen level order.</p>
+<p>Factors are also necessary for <strong>plotting</strong>. When you map a factor to the y‑axis of a bar chart or to color/shape, ggplot2 displays the categories in the order given by the factor. If you leave your categorical variable as a character, ggplot2 silently converts it to a factor using the alphabetical order.</p>
 </section>
-<section id="lengthening-data-with-pivot_longer" class="level3">
-<h3 class="anchored" data-anchor-id="lengthening-data-with-pivot_longer">Lengthening data with <code>pivot_longer()</code></h3>
-<p>Most real datasets aren’t tidy because they are organised for data entry or reporting rather than analysis. The <strong><code>pivot_longer()</code></strong> function lengthens data by gathering a set of columns into key–value pairs. Its most important arguments are:</p>
-<ul>
-<li><code>cols</code>: which columns to pivot. You can specify them explicitly (<code>bp1:bp2</code>) or using tidyselect helpers such as <code>starts_with()</code>.</li>
-<li><code>names_to</code>: the name of the new variable created from column names. For example, converting week columns (<code>wk1</code>, <code>wk2</code>, …) into a variable called <code>week</code>.</li>
-<li><code>values_to</code>: the name of the variable that will hold the values from the pivoted columns.</li>
-<li><code>values_drop_na</code>: set to <code>TRUE</code> to drop rows where all the pivoted columns contain <code>NA</code>.</li>
-</ul>
-<p>Here is a simple example using the built‑in <code>billboard</code> dataset, which records weekly Billboard chart positions. Each row is a song and each <code>wk?</code> column gives its rank in that week. To tidy this dataset, we gather the week columns into a new <code>week</code> variable and the ranks into a <code>rank</code> variable:</p>
+<section id="creating-factors" class="level3">
+<h3 class="anchored" data-anchor-id="creating-factors">Creating factors</h3>
+<p>Base R provides a <code>factor()</code> function. You pass a character vector and optionally a vector of <strong>levels</strong>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>billboard_long <span class="ot">&lt;-</span> billboard <span class="sc">|&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"wk"</span>),</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"week"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"rank"</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">week =</span> <span class="fu">parse_number</span>(week))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>billboard_long <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>months_raw  <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Dec"</span>, <span class="st">"Apr"</span>, <span class="st">"Jan"</span>, <span class="st">"Mar"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>month_levels <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Jan"</span>, <span class="st">"Feb"</span>, <span class="st">"Mar"</span>, <span class="st">"Apr"</span>, <span class="st">"May"</span>, <span class="st">"Jun"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Jul"</span>, <span class="st">"Aug"</span>, <span class="st">"Sep"</span>, <span class="st">"Oct"</span>, <span class="st">"Nov"</span>, <span class="st">"Dec"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a factor with explicit levels</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>months_factor <span class="ot">=</span> <span class="fu">factor</span>(months_raw, <span class="at">levels =</span> month_levels)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>months_factor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 5
-  artist track                   date.entered  week  rank
-  &lt;chr&gt;  &lt;chr&gt;                   &lt;date&gt;       &lt;dbl&gt; &lt;dbl&gt;
-1 2 Pac  Baby Don't Cry (Keep... 2000-02-26       1    87
-2 2 Pac  Baby Don't Cry (Keep... 2000-02-26       2    82
-3 2 Pac  Baby Don't Cry (Keep... 2000-02-26       3    72
-4 2 Pac  Baby Don't Cry (Keep... 2000-02-26       4    77
-5 2 Pac  Baby Don't Cry (Keep... 2000-02-26       5    87
-6 2 Pac  Baby Don't Cry (Keep... 2000-02-26       6    94</code></pre>
+<pre><code>[1] Dec Apr Jan Mar
+Levels: Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec</code></pre>
 </div>
 </div>
-<p>This call transforms the 317 × 79 <code>billboard</code> tibble into a 5307 × 5 tibble with one row per song–week combination.</p>
-<p>When column names contain <strong>multiple pieces of information</strong>, you can split them into several new variables by supplying a vector of names and a separator. For example, the <code>who2</code> dataset records TB cases with column names like <code>sp_m_014</code>, which combine the method (<code>sp</code>), gender (<code>m</code>) and age range (<code>014</code>). The following call extracts those parts into separate variables:</p>
+<p>If a value does not appear in <code>levels</code>, <code>factor()</code> converts it to <code>NA</code>. The <code>forcats</code> package (loaded with the tidyverse) provides <code>fct()</code> which raises an error if you try to create a factor from values not present in <code>levels</code>, helping you catch typos earlier.</p>
+<p>You can check the current levels with <code>levels(months_factor)</code> and count the number of observations in each category using <code>count()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>who2_long <span class="ot">&lt;-</span> who2 <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">!</span>(country<span class="sc">:</span>year),</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"diagnosis"</span>, <span class="st">"gender"</span>, <span class="st">"age"</span>),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"_"</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"count"</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>who2_long <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(forcats)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(months_factor)  <span class="co"># returns the vector of valid levels</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 6
-  country      year diagnosis gender age   count
-  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;
-1 Afghanistan  1980 sp        m      014      NA
-2 Afghanistan  1980 sp        m      1524     NA
-3 Afghanistan  1980 sp        m      2534     NA
-4 Afghanistan  1980 sp        m      3544     NA
-5 Afghanistan  1980 sp        m      4554     NA
-6 Afghanistan  1980 sp        m      5564     NA</code></pre>
+<pre><code> [1] "Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov" "Dec"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example using the gss_cat dataset from forcats</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>gss_cat <span class="sc">|&gt;</span> <span class="fu">count</span>(race)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  race      n
+  &lt;fct&gt; &lt;int&gt;
+1 Other  1959
+2 Black  3129
+3 White 16395</code></pre>
 </div>
 </div>
-<p>The <strong><code>names_sep</code></strong> argument splits each original column name at the underscore and assigns the pieces to the new variables (<code>diagnosis</code>, <code>gender</code>, <code>age</code>). The <strong><code>values_to</code></strong> argument stores the counts.</p>
+<p>The <code>gss_cat</code> dataset (part of <strong>forcats</strong>) contains multiple factor variables such as <code>race</code>, <code>marital</code>, <code>rincome</code> and <code>partyid</code>【882842472130951†L220-L238】. Use it to practice summarizing and visualizing categorical data.</p>
 </section>
-<section id="widening-data-with-pivot_wider" class="level3">
-<h3 class="anchored" data-anchor-id="widening-data-with-pivot_wider">Widening data with <code>pivot_wider()</code></h3>
-<p>Sometimes a single observation is spread across multiple rows, and you need to widen the data by creating new columns. The function <strong><code>pivot_wider()</code></strong> increases the number of columns and decreases the number of rows. It is particularly useful when you have long data with a variable that identifies the type of measurement and another variable with the corresponding value.</p>
-<p>The key arguments are:</p>
-<ul>
-<li><code>names_from</code>: the column whose unique values will become new column names.</li>
-<li><code>values_from</code>: the column containing the values to fill those new columns.</li>
-<li><code>id_cols</code>: optional columns that uniquely identify each row; if you omit this, <code>pivot_wider()</code> will attempt to infer them but may produce duplicate rows.</li>
-</ul>
-<p>As an example, the <code>cms_patient_experience</code> dataset from the Centers for Medicare &amp; Medicaid Services records multiple performance measures for each healthcare organization. Each organization appears on multiple rows, one per measure. To put each organization on its own row with separate columns for each measure code, use <code>pivot_wider()</code>:</p>
+<section id="reordering-levels" class="level3">
+<h3 class="anchored" data-anchor-id="reordering-levels">Reordering levels</h3>
+<p>Sometimes the alphabetical or default order of factor levels is arbitrary. <strong>Reordering</strong> levels improves the interpretability of plots. The <code>fct_reorder()</code> function takes three arguments: the factor to reorder, a numeric vector whose values determine the order, and optionally a function to combine multiple values.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cms_wide <span class="ot">&lt;-</span> cms_patient_experience <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> <span class="fu">starts_with</span>(<span class="st">"org"</span>),</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> measure_cd,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> prf_rate</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>cms_wide <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Average TV hours by religion</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>relig_summary <span class="ot">=</span> gss_cat <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(relig) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">tvhours =</span> <span class="fu">mean</span>(tvhours, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot without reordering</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(relig_summary, <span class="fu">aes</span>(<span class="at">x =</span> tvhours, <span class="at">y =</span> relig)) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot with levels reordered by tvhours</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(relig_summary, <span class="fu">aes</span>(<span class="at">x =</span> tvhours, <span class="at">y =</span> <span class="fu">fct_reorder</span>(relig, tvhours))) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Here, reordering the <code>relig</code> factor makes it clear that people in the “Don’t know” category watch more TV than those in “Other Eastern” religions. Use <code>fct_relevel()</code> when you need to manually move one or more levels to the front—for example, to emphasize a special category:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Move "Not applicable" to the front in rincome</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>rincome_summary <span class="ot">=</span> gss_cat <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(rincome) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">age =</span> <span class="fu">mean</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rincome_summary, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> <span class="fu">fct_relevel</span>(rincome, <span class="st">"Not applicable"</span>))) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="10_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>For line plots with many categories, <code>fct_reorder2()</code> orders the legend by the y‑value at the largest x‑value, making it easier to match the lines to the legend.</p>
+<p>Finally, <code>fct_infreq()</code> orders levels by their frequency, and <code>fct_rev()</code> reverses that order. This combination is useful for bar charts where you want categories sorted from least to most common.</p>
+</section>
+<section id="modifying-levels" class="level3">
+<h3 class="anchored" data-anchor-id="modifying-levels">Modifying levels</h3>
+<p>Reordering controls the <strong>order</strong> of the levels, but sometimes you want to change the <strong>labels</strong> or combine categories. The <code>fct_recode()</code> function renames levels by providing the new name on the left and the old name on the right:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gss_cat <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">partyid =</span> <span class="fu">fct_recode</span>(partyid,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Republican, strong"</span>    <span class="ot">=</span> <span class="st">"Strong republican"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Republican, weak"</span>      <span class="ot">=</span> <span class="st">"Not str republican"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Independent, near rep"</span> <span class="ot">=</span> <span class="st">"Ind,near rep"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Independent, near dem"</span> <span class="ot">=</span> <span class="st">"Ind,near dem"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Democrat, weak"</span>        <span class="ot">=</span> <span class="st">"Not str democrat"</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Democrat, strong"</span>      <span class="ot">=</span> <span class="st">"Strong democrat"</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(partyid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 8
-  org_pac_id org_nm  CAHPS_GRP_1 CAHPS_GRP_2 CAHPS_GRP_3 CAHPS_GRP_5 CAHPS_GRP_8
-  &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
-1 0446157747 USC CA…          63          87          86          57          85
-2 0446162697 ASSOCI…          59          85          83          63          88
-3 0547164295 BEAVER…          49          NA          75          44          73
-4 0749333730 CAPE P…          67          84          85          65          82
-5 0840104360 ALLIAN…          66          87          87          64          87
-6 0840109864 REX HO…          73          87          84          67          91
-# ℹ 1 more variable: CAHPS_GRP_12 &lt;dbl&gt;</code></pre>
+<pre><code># A tibble: 10 × 2
+   partyid                   n
+   &lt;fct&gt;                 &lt;int&gt;
+ 1 No answer               154
+ 2 Don't know                1
+ 3 Other party             393
+ 4 Republican, strong     2314
+ 5 Republican, weak       3032
+ 6 Independent, near rep  1791
+ 7 Independent            4119
+ 8 Independent, near dem  2499
+ 9 Democrat, weak         3690
+10 Democrat, strong       3490</code></pre>
 </div>
 </div>
-<p>By specifying the identifier columns (<code>org_pac_id</code> and <code>org_nm</code>), <code>pivot_wider()</code> ensures that each organisation occupies a single row and creates a column for each measure code. If you omit <code>id_cols</code>, you may see duplicate rows because <code>pivot_wider()</code> cannot uniquely identify observations on its own.</p>
+<p>To <strong>collapse</strong> multiple categories into a smaller set, use <code>fct_collapse()</code>. Supply the new category names and a vector of existing levels to combine:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gss_cat <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">partyid =</span> <span class="fu">fct_collapse</span>(partyid,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">other =</span> <span class="fu">c</span>(<span class="st">"No answer"</span>, <span class="st">"Don't know"</span>, <span class="st">"Other party"</span>),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">rep   =</span> <span class="fu">c</span>(<span class="st">"Strong republican"</span>, <span class="st">"Not str republican"</span>),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">ind   =</span> <span class="fu">c</span>(<span class="st">"Ind,near rep"</span>, <span class="st">"Independent"</span>, <span class="st">"Ind,near dem"</span>),</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">dem   =</span> <span class="fu">c</span>(<span class="st">"Not str democrat"</span>, <span class="st">"Strong democrat"</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(partyid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  partyid     n
+  &lt;fct&gt;   &lt;int&gt;
+1 other     548
+2 rep      5346
+3 ind      8409
+4 dem      7180</code></pre>
+</div>
+</div>
+<p>When you need to simplify a factor with many rare categories, the <code>fct_lump_*()</code> family automatically groups the smallest categories into “Other”. For example, <code>fct_lump_n(factor, n = 10)</code> keeps the 10 most common categories and lumps the rest:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>gss_cat <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">relig =</span> <span class="fu">fct_lump_n</span>(relig, <span class="at">n =</span> <span class="dv">10</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(relig, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   relig                       n
+   &lt;fct&gt;                   &lt;int&gt;
+ 1 Protestant              10846
+ 2 Catholic                 5124
+ 3 None                     3523
+ 4 Christian                 689
+ 5 Other                     458
+ 6 Jewish                    388
+ 7 Buddhism                  147
+ 8 Inter-nondenominational   109
+ 9 Moslem/islam              104
+10 Orthodox-christian         95</code></pre>
+</div>
+</div>
+</section>
+<section id="ordered-factors" class="level3">
+<h3 class="anchored" data-anchor-id="ordered-factors">Ordered factors</h3>
+<p>Some categories have an intrinsic order (e.g., “low”, “medium”, “high” or rating scales from 1 to 5). You can create an <strong>ordered factor</strong> by setting <code>ordered = TRUE</code> in <code>factor()</code> or using <code>forcats::fct()</code> with the <code>ordered</code> argument. Ordered factors behave like numeric variables for certain operations (e.g., <code>min()</code> and <code>max()</code> work) but remain categorical. Always think carefully about whether your categories truly have a natural order before imposing one.</p>
 </section>
 <section id="key-takeaways" class="level3">
 <h3 class="anchored" data-anchor-id="key-takeaways">Key take‑aways</h3>
 <ul>
-<li><strong>Tidy data has a consistent structure:</strong> variables in columns, observations in rows and values in cells. This organization simplifies analysis and leverages R’s vectorization.</li>
-<li><strong><code>pivot_longer()</code> gathers columns into key–value pairs</strong>. Use <code>cols</code> to select columns to gather, <code>names_to</code> and <code>values_to</code> to name the new variables, and <code>values_drop_na</code> to remove structural missing values.</li>
-<li><strong>Split multiple pieces of information</strong> encoded in column names with <code>names_to</code> and <code>names_sep</code>.</li>
-<li><strong><code>pivot_wider()</code> spreads values across new columns</strong>, reversing a <code>pivot_longer()</code> when observations are spread across rows. Use <code>names_from</code>, <code>values_from</code> and (optionally) <code>id_cols</code> to control the reshaping.</li>
-<li><strong>Practice on real data.</strong> Tidy datasets are not always ready-made; most analyses require some tidying. Being proficient with pivoting functions allows you to structure your data before visualizing, transforming or modelling.</li>
+<li>Factors represent categorical variables with a fixed set of levels and control the order of categories.</li>
+<li>Creating a factor from a string requires specifying the valid levels; values not in the list become <code>NA</code> or throw an error.</li>
+<li>Inspect factor levels with <code>levels()</code> and summarise them with <code>count()</code>.</li>
+<li>Use the <strong>forcats</strong> functions <code>fct_reorder()</code>, <code>fct_relevel()</code> and <code>fct_reorder2()</code> to rearrange levels for clearer plots.</li>
+<li>Modify factor labels with <code>fct_recode()</code>, collapse levels with <code>fct_collapse()</code> and lump rare categories with <code>fct_lump_n()</code>.</li>
+<li>Ordered factors capture ordinal scales—set <code>ordered = TRUE</code> when the categories have a meaningful ranking.</li>
 </ul>
+<!-- ## In‑class activity -->
+<!-- In this session’s activity you will practise working with categorical variables using the **gapminder** dataset from the `gapminder` package (not used in *R for Data Science*).  Install the package if necessary with `install.packages("gapminder")`. -->
+<!-- 1. **Explore the data (5 min).**  Load the tidyverse and gapminder packages and inspect the dataset with `glimpse(gapminder)` and `summary()`.  Identify the categorical variables (`continent` and `country`) and think about whether any numeric variables could be binned and turned into ordered factors. -->
+<!-- 2. **Convert and inspect factors (10 min).**  Convert `continent` to a factor explicitly using `fct()` or `factor()`.  Use `levels()` to view the levels and `count()` to compute how many observations each continent has.  Draw a bar chart of the number of observations per continent and use `fct_infreq()` and `fct_rev()` to order the continents by frequency. -->
+<!--    ```{r} -->
+<!--    library(gapminder) -->
+<!--    gapminder |>  -->
+<!--      mutate(continent = fct_infreq(continent) |> fct_rev()) |> -->
+<!--      ggplot(aes(x = continent)) + -->
+<!--      geom_bar() -->
+<!--    ``` -->
+<!-- 3. **Reorder by life expectancy (15 min).**  Compute the average life expectancy per continent using `group_by()` and `summarise()`.  Use `fct_reorder()` to order the continents by life expectancy and create a bar chart or boxplot showing the distribution of life expectancy across continents.  Discuss how the order changes the interpretation. -->
+<!-- 4. **Relabel and collapse continents (15 min).**  Suppose we want to compare “Western” versus “Eastern” regions.  Use `fct_collapse()` to combine `"Europe"` and `"Americas"` into `"West"`, `"Asia"` and `"Africa"` into `"East"`, and leave `"Oceania"` unchanged.  Summarise the number of observations and the average GDP per capita for each new region.  Create a bar chart of GDP per capita by region. -->
+<!-- 5. **Lump rare countries (15 min).**  The `country` variable has many levels.  Use `fct_lump_n(country, n = 5)` to keep only the five most frequently appearing countries (those observed across the most years) and lump the rest into an `"Other"` category.  Count the number of records in each category and make a bar chart.  Reflect on whether lumping helps you focus on the major contributors or obscures important details. -->
+<!-- 6. **Create an ordered factor (10 min).**  Use `cut()` to create a new ordered factor that categorizes life expectancy into `"low"` (< 50 years), `"medium"` (50–70 years) and `"high"` (> 70 years).  Summarise how the distribution of these categories differs across continents.  Which continents tend to have high life expectancy? -->
+<!-- This activity will give you hands‑on experience creating, reordering, recoding and collapsing factors on a dataset not covered in the textbook. -->
+<!-- --- -->
+<!-- **Suggested reading for Session 11:** Chapter 17 of *R for Data Science* (2nd ed.), “Dates and times”, introduces the `lubridate` package and teaches you how to parse date‑time strings, extract components (year, month, day, hour) and handle time zones.  Familiarity with date‑time data will prepare you to work with temporal data in the next session. -->
 
 
 </section>
