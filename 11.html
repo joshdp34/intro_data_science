@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Session 3 – The layered grammar of graphics – STA 2300 Intro to Data Science</title>
+<title>11&nbsp; Session 11 – Variable types IV: dates &amp; times – STA 2300 Intro to Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -156,7 +156,7 @@ document.addEventListener('click', (event) => {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3 – The layered grammar of graphics</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11 – Variable types IV: dates &amp; times</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -208,7 +208,7 @@ document.addEventListener('click', (event) => {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03.html" class="sidebar-item-text sidebar-link active">
+  <a href="./03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3 – The layered grammar of graphics</span></span></a>
   </div>
 </li>
@@ -256,7 +256,7 @@ document.addEventListener('click', (event) => {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./11.html" class="sidebar-item-text sidebar-link">
+  <a href="./11.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11 – Variable types IV: dates &amp; times</span></span></a>
   </div>
 </li>
@@ -271,7 +271,15 @@ document.addEventListener('click', (event) => {
    
   <ul>
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
-  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
+  <ul class="collapse">
+  <li><a href="#why-dates-and-times" id="toc-why-dates-and-times" class="nav-link" data-scroll-target="#why-dates-and-times">Why dates and times?</a></li>
+  <li><a href="#creating-datetimes" id="toc-creating-datetimes" class="nav-link" data-scroll-target="#creating-datetimes">Creating date/times</a></li>
+  <li><a href="#extracting-components" id="toc-extracting-components" class="nav-link" data-scroll-target="#extracting-components">Extracting components</a></li>
+  <li><a href="#rounding-and-time-spans" id="toc-rounding-and-time-spans" class="nav-link" data-scroll-target="#rounding-and-time-spans">Rounding and time spans</a></li>
+  <li><a href="#time-zones" id="toc-time-zones" class="nav-link" data-scroll-target="#time-zones">Time zones</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key take‑aways</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -280,7 +288,7 @@ document.addEventListener('click', (event) => {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3 – The layered grammar of graphics</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11 – Variable types IV: dates &amp; times</span></h1>
 </div>
 
 
@@ -300,137 +308,191 @@ document.addEventListener('click', (event) => {
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Deepen your understanding of ggplot2.</strong> Explore the layered grammar of graphics—how aesthetic mappings, geometric objects and facets combine to build complex plots.</li>
-<li><strong>Master aesthetic mappings.</strong> Map variables to color, shape, size and alpha correctly. Avoid mapping categorical variables to size or alpha (it implies a false ordering) and note that mapping a categorical variable to shape uses only six shapes, so additional groups are dropped.</li>
-<li><strong>Layer multiple geoms.</strong> Add multiple geoms to a plot (e.g., points and smooth lines) and distinguish between global and local aesthetic mappings. Use the <code>group</code> aesthetic to draw separate curves for each category.</li>
-<li><strong>Use faceting and coordinate systems.</strong> Split data into panels using <code>facet_wrap()</code> or <code>facet_grid()</code> and adjust scales. Experiment with coordinate transforms such as <code>coord_flip()</code> and <code>coord_polar()</code>.</li>
+<li><strong>Understand different date/time types.</strong> Describe the difference between dates (<code>&lt;date&gt;</code>), times (<code>&lt;time&gt;</code>) and date‑times (<code>&lt;dttm&gt;</code>) in R. Emphasize using the simplest type that meets the analysis requirements.</li>
+<li><strong>Create date/time objects.</strong> Learn how to parse strings into dates with lubridate helpers such as <code>ymd()</code>, <code>mdy()</code>, <code>dmy()</code> etc., and how to assemble dates and date‑times from separate components with <code>make_date()</code> and <code>make_datetime()</code>.</li>
+<li><strong>Extract and modify components.</strong> Use accessor functions <code>year()</code>, <code>month()</code>, <code>mday()</code>, <code>yday()</code>, <code>wday()</code>, <code>hour()</code>, <code>minute()</code> and <code>second()</code> to pull out parts of a date‑time. Learn to change components in place or with <code>update()</code>.</li>
+<li><strong>Round dates and compute spans.</strong> Round dates to a unit (e.g., week, month) with <code>floor_date()</code>, <code>round_date()</code> and <code>ceiling_date()</code>. Understand time spans and the difference between durations (exact seconds), periods (human units like weeks and months) and intervals.</li>
+<li><strong>Recognize time‑zone issues.</strong> Appreciate that date‑time values always have an associated time zone. Learn how to specify and change the time zone when parsing date‑times.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<p><strong>Layered grammar of graphics</strong> – Every plot can be built from layers consisting of data, aesthetic mappings, geoms, optional statistical transformations, position adjustments and a coordinate system. Building plots layer by layer allows incremental refinement.</p>
-<p><strong>Aesthetic mappings</strong> – The <code>aes()</code> function connects variables to graphical attributes. Mapping a categorical variable to color is generally safe; mapping it to shape works but only six shapes are available; mapping to size or alpha is discouraged and yields warnings.</p>
+<section id="why-dates-and-times" class="level3">
+<h3 class="anchored" data-anchor-id="why-dates-and-times">Why dates and times?</h3>
+<p>Dates and times are deceptively simple. They appear ubiquitous and straightforward, but the more you work with them, the more quirks emerge. A year isn’t always 365 days, not every day has exactly 24 hours and occasionally a minute may have 61 seconds. These complexities arise because calendar units reconcile astronomical cycles (earth’s rotation and orbit) with human conventions (leap years, daylight saving time). To manage them, R doesn’t treat dates as plain strings but provides special classes and functions.</p>
+<p>In the tidyverse, <strong>lubridate</strong> simplifies working with date and time data. It isn’t loaded by default with the tidyverse, so you must call <code>library(lubridate)</code>.</p>
+</section>
+<section id="creating-datetimes" class="level3">
+<h3 class="anchored" data-anchor-id="creating-datetimes">Creating date/times</h3>
+<p>There are three common ways to create date/time objects:</p>
+<ol type="1">
+<li><strong>From strings.</strong> Use lubridate helpers to parse strings that contain dates or date‑times. Arrange the letters “y”, “m” and “d” to match the order of year, month and day in the string, and lubridate will infer the format. For example:</li>
+</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Mapping species to color and shape (safe if ≤ 6 categories)</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> body_mass_g,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> species,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">shape =</span> species)) <span class="sc">+</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(<span class="st">"2025-02-18"</span>)        <span class="co"># ISO format year-month-day</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-02-18"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">"January 31, 2025"</span>)  <span class="co"># month-day-year with month name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-01-31"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dmy</span>(<span class="st">"31-01-2025"</span>)        <span class="co"># day-month-year</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-01-31"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># parse date‑times by adding h, m and s</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd_hms</span>(<span class="st">"2025-02-18 14:30:15"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-02-18 14:30:15 UTC"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy_hm</span>(<span class="st">"2/18/2025 2:30 pm"</span>)  <span class="co"># 12‑hour clock with am/pm</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-02-18 14:30:00 UTC"</code></pre>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mapping a categorical variable to size or alpha generates warnings</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> body_mass_g,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">size =</span> species)) <span class="sc">+</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()  <span class="co"># Warning: Using size for a discrete variable is not advised</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Mappings defined in <code>ggplot()</code> apply globally, while mappings inside a geom override them for that layer.</p>
+<p>These functions also accept numeric input without quotes (e.g., <code>ymd(20250218)</code>). You can supply a <code>tz</code> argument to set the time zone.</p>
+<ol start="2" type="1">
+<li><strong>From individual components.</strong> When the year, month, day (and optionally hour, minute) live in separate columns, combine them with <code>make_date()</code> or <code>make_datetime()</code>. For example:</li>
+</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Global mapping applies color to both geoms</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">year =</span> <span class="fu">c</span>(<span class="dv">2023</span>, <span class="dv">2023</span>),</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">month =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">day =</span> <span class="fu">c</span>(<span class="dv">14</span>, <span class="dv">1</span>),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">hour =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">16</span>),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">minute =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">0</span>))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create new columns without using the pipe to avoid confusion</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>date <span class="ot">=</span> <span class="fu">make_date</span>(df<span class="sc">$</span>year, df<span class="sc">$</span>month, df<span class="sc">$</span>day)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>datetime <span class="ot">=</span> <span class="fu">make_datetime</span>(df<span class="sc">$</span>year, df<span class="sc">$</span>month, df<span class="sc">$</span>day, df<span class="sc">$</span>hour, df<span class="sc">$</span>minute)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 7
+   year month   day  hour minute date       datetime           
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;date&gt;     &lt;dttm&gt;             
+1  2023     5    14     9     30 2023-05-14 2023-05-14 09:30:00
+2  2023    10     1    16      0 2023-10-01 2023-10-01 16:00:00</code></pre>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Local mapping overrides global color for the point layer only</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Layering geoms</strong> – Different geoms (e.g., <code>geom_point</code>, <code>geom_smooth</code>, <code>geom_bar</code>) draw different types of objects. Overlaying geoms reveals multiple aspects of the data. When using geoms like <code>geom_smooth()</code>, ggplot2 automatically groups data by discrete variables; you can explicitly set <code>group</code> to control grouping.</p>
+<ol start="3" type="1">
+<li><strong>From existing date/time objects.</strong> Use functions like <code>as_datetime()</code> to coerce between date and date‑time classes or specify a time zone when converting.</li>
+</ol>
+</section>
+<section id="extracting-components" class="level3">
+<h3 class="anchored" data-anchor-id="extracting-components">Extracting components</h3>
+<p>Once you have a date/time, you can <strong>access its components</strong>. Use <code>year()</code>, <code>month()</code>, <code>mday()</code> (day of month), <code>yday()</code> (day of year), <code>wday()</code> (day of week), <code>hour()</code>, <code>minute()</code> and <code>second()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Overlay scatterplot with separate curves per species</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">group =</span> species), <span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">=</span> <span class="fu">ymd_hms</span>(<span class="st">"2025-02-18 14:30:15"</span>, <span class="at">tz =</span> <span class="st">"America/Chicago"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">year</span>(dt)         <span class="co"># 2025</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2025</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(dt)        <span class="co"># 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(dt, <span class="at">label =</span> <span class="cn">TRUE</span>)   <span class="co"># Feb</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] Feb
+12 Levels: Jan &lt; Feb &lt; Mar &lt; Apr &lt; May &lt; Jun &lt; Jul &lt; Aug &lt; Sep &lt; ... &lt; Dec</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(dt, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span>)  <span class="co"># Tuesday</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] Tuesday
+7 Levels: Sunday &lt; Monday &lt; Tuesday &lt; Wednesday &lt; Thursday &lt; ... &lt; Saturday</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hour</span>(dt)         <span class="co"># 14</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 14</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">minute</span>(dt)       <span class="co"># 30</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 30</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">second</span>(dt)       <span class="co"># 15</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 15</code></pre>
 </div>
 </div>
-</div>
-<p><strong>Facets</strong> – Use <code>facet_wrap()</code> to create a grid of subplots for one categorical variable, and <code>facet_grid()</code> for two variables. You can allow axes to vary across facets with the <code>scales</code> argument.</p>
+<p>These accessors are vectorised and return integers or ordered factors. You can also modify components by assigning (<code>year(dt) = 2026</code>) or with <code>update()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Facet by island</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>dt2 <span class="ot">=</span> <span class="fu">update</span>(dt, <span class="at">year =</span> <span class="dv">2026</span>, <span class="at">month =</span> <span class="dv">1</span>, <span class="at">mday =</span> <span class="dv">1</span>, <span class="at">hour =</span> <span class="dv">0</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>dt2  <span class="co"># "2026-01-01 00:30:15 CST"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2026-01-01 00:30:15 CST"</code></pre>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Facet by species and sex with free y‑axis</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(species <span class="sc">~</span> sex, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Coordinate systems</strong> – Transform plots using different coordinate systems to improve interpretability. For example, swap axes using <code>coord_flip()</code> or create a polar bar chart with <code>coord_polar()</code>.</p>
+<p>If values overflow the usual range (e.g., day = 30 in February), lubridate automatically rolls over to the next month.</p>
+</section>
+<section id="rounding-and-time-spans" class="level3">
+<h3 class="anchored" data-anchor-id="rounding-and-time-spans">Rounding and time spans</h3>
+<p>To simplify a continuous timeline into regular intervals, <em>round</em> dates and date‑times. <code>floor_date(x, "week")</code> rounds down to the start of the week, <code>ceiling_date(x, "month")</code> rounds up to the next month and <code>round_date(x, "day")</code> rounds to the nearest day. For example, to count weekly observations you can round each date to the start of the week and then tally the number of observations per week.</p>
+<p>Arithmetic with date‑times yields <em>time spans</em>. Subtracting two dates returns a difftime, which stores a difference in days, hours, etc. lubridate defines three classes: <em>durations</em> (exact seconds), <em>periods</em> (human units like months) and <em>intervals</em> (a start and end point). Use constructors like <code>ddays()</code>, <code>dhours()</code> and <code>dminutes()</code> to create durations.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Flip axes in a boxplot</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>age <span class="ot">=</span> <span class="fu">today</span>() <span class="sc">-</span> <span class="fu">ymd</span>(<span class="st">"19900101"</span>)  <span class="co"># difftime</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.duration</span>(age)                 <span class="co"># duration in seconds</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "1128643200s (~35.76 years)"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add one month (a period)</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>() <span class="sc">+</span> <span class="fu">months</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-11-07"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># difference between dates as period</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>period <span class="ot">=</span> <span class="fu">as.period</span>(<span class="fu">ymd</span>(<span class="st">"2025-03-01"</span>) <span class="sc">-</span> <span class="fu">ymd</span>(<span class="st">"2025-01-15"</span>))</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>period</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "45d 0H 0M 0S"</code></pre>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Polar coordinates for a bar chart</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
+</section>
+<section id="time-zones" class="level3">
+<h3 class="anchored" data-anchor-id="time-zones">Time zones</h3>
+<p>Date‑times always carry a <em>time zone</em>. If you omit the time zone, R defaults to your system’s time zone. When parsing strings, supply <code>tz</code> to ensure correct interpretation. Use <code>with_tz()</code> to change how an instant is displayed in another time zone, and <code>force_tz()</code> to change the underlying instant (rarely needed). Avoid combining date‑times with unspecified time zones.</p>
+</section>
+<section id="key-takeaways" class="level3">
+<h3 class="anchored" data-anchor-id="key-takeaways">Key take‑aways</h3>
+<ul>
+<li>Dates and date‑times are special data types; use the simplest type that serves your purpose.</li>
+<li>Use lubridate helpers (<code>ymd()</code>, <code>ymd_hms()</code> etc.) or <code>make_date()</code>/<code>make_datetime()</code> to create date/time objects.</li>
+<li>Extract components with <code>year()</code>, <code>month()</code>, <code>wday()</code> and friends, and modify them with assignment or <code>update()</code>.</li>
+<li>Round dates to meaningful units using <code>floor_date()</code>, <code>ceiling_date()</code> and <code>round_date()</code>.</li>
+<li>Distinguish between durations, periods and intervals when doing arithmetic with dates.</li>
+<li>Always be conscious of time zones; specify <code>tz</code> explicitly when parsing date‑times.</li>
+</ul>
+<!-- ## In‑class activity -->
+<!-- In this session’s activity you will work with the built‑in `airquality` dataset (available in base R) to practise creating and analysing date variables.  The data records daily ozone and meteorological measurements in New York City from May to September 1973.  Complete the following tasks using the tidyverse and lubridate: -->
+<!-- 1. **Inspect the data (5 min).**  Load the tidyverse and the `airquality` dataset.  Use `glimpse()` and `summary()` to understand its structure.  Note the variables `Month` and `Day`.  How many observations and variables does it contain?  Are there any missing values? -->
+<!--    ```{r} -->
+<!--    library(tidyverse) -->
+<!--    data(airquality) -->
+<!--    glimpse(airquality) -->
+<p>–&gt; <!--    summary(airquality) --> –&gt; <!--    ``` --></p>
+<!-- 2. **Create a date variable (10 min).**  The dataset lacks a year column, but all measurements were taken in 1973.  Use `make_date(1973, Month, Day)` or `ymd()` combined with `str_c()` to create a new `date` column.  Confirm that it has class `<date>` and explore the distribution of observations across months with `count(month(date))`.  Use `wday()` with `label = TRUE` to find which days of the week have more missing ozone values. -->
+<!-- 3. **Visualize ozone over time (15 min).**  Plot daily `Ozone` concentrations against `date` using a line plot.  Add a smooth trend line with `geom_smooth()`.  Consider mapping the day of the week to color or facet the plot by month.  What patterns do you see? -->
+<!--    ```{r} -->
+<!--    airquality |> -->
+<!--      mutate(date = make_date(1973, Month, Day)) |> -->
+<!--      ggplot(aes(x = date, y = Ozone)) + -->
+<!--      geom_line() + -->
+<!--      geom_smooth(method = "loess", na.rm = TRUE) + -->
+<!--      labs(x = "Date (1973)", y = "Ozone (ppb)", -->
+<!--           title = "Daily ozone levels in New York (May–Sep 1973)") -->
+<!--    ``` -->
+<!-- 4. **Summarise by week and month (15 min).**  Use `floor_date()` to round each `date` down to the start of the week (unit = "week") and the start of the month (unit = "month").  Group by these rounded dates and compute the mean and standard deviation of `Ozone` and `Temp` (ignoring missing values).  Create bar charts or line plots of weekly and monthly averages. -->
+<!-- 5. **Explore temperature changes (15 min).**  Compute the day‑to‑day change in temperature by arranging the data by `date` and using `lag()` (`Temp - lag(Temp)`) and `lead()`.  Plot the distribution of temperature changes.  Are temperature increases and decreases symmetric? -->
+<!-- 6. **Optional:** **Time spans** (10 min).  Choose two dates from the dataset and compute the time span between them using subtraction.  Convert the result to a duration with `as.duration()` and to a period with `as.period()`.  Interpret the difference between the duration and period. -->
+<!-- This activity will give you hands‑on experience parsing dates, extracting components, rounding to units and performing simple temporal analyses on a dataset not covered in *R for Data Science*. -->
+<!-- --- -->
+<!-- **Suggested reading for Session 12:** Chapter 18 of *R for Data Science* (2nd ed.), “Missing values”, delves into handling missing data.  It revisits the infectious nature of `NA` values, shows how to explicitly fill or replace missing values with functions like `tidyr::fill()` and `dplyr::coalesce()`, and explains how to convert implicitly missing values (absent rows) into explicit ones using pivoting and completing【487104552238734†L111-L123】.  Understanding missing values is crucial before you tackle joins and relational data in the following sessions. -->
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
