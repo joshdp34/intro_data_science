@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Session 6 – Data import: reading CSV &amp; flat files – STA 2300 Intro to Data Science</title>
+<title>12&nbsp; Session 12 – Missing values &amp; data cleaning – STA 2300 Intro to Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -156,7 +156,7 @@ document.addEventListener('click', (event) => {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6 – Data import: reading CSV &amp; flat files</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./12.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12 – Missing values &amp; data cleaning</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -226,7 +226,7 @@ document.addEventListener('click', (event) => {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06.html" class="sidebar-item-text sidebar-link active">
+  <a href="./06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6 – Data import: reading CSV &amp; flat files</span></span></a>
   </div>
 </li>
@@ -262,7 +262,7 @@ document.addEventListener('click', (event) => {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12.html" class="sidebar-item-text sidebar-link">
+  <a href="./12.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12 – Missing values &amp; data cleaning</span></span></a>
   </div>
 </li>
@@ -279,12 +279,11 @@ document.addEventListener('click', (event) => {
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#why-import-data" id="toc-why-import-data" class="nav-link" data-scroll-target="#why-import-data">Why import data?</a></li>
-  <li><a href="#reading-csv-files-with-readr" id="toc-reading-csv-files-with-readr" class="nav-link" data-scroll-target="#reading-csv-files-with-readr">Reading CSV files with <code>readr</code></a></li>
-  <li><a href="#handling-missing-values-and-nonsyntactic-names" id="toc-handling-missing-values-and-nonsyntactic-names" class="nav-link" data-scroll-target="#handling-missing-values-and-nonsyntactic-names">Handling missing values and non‑syntactic names</a></li>
-  <li><a href="#how-readr-guesses-column-types" id="toc-how-readr-guesses-column-types" class="nav-link" data-scroll-target="#how-readr-guesses-column-types">How readr guesses column types</a></li>
-  <li><a href="#reading-multiple-files-and-combining-them" id="toc-reading-multiple-files-and-combining-them" class="nav-link" data-scroll-target="#reading-multiple-files-and-combining-them">Reading multiple files and combining them</a></li>
-  <li><a href="#writing-data-back-to-disk" id="toc-writing-data-back-to-disk" class="nav-link" data-scroll-target="#writing-data-back-to-disk">Writing data back to disk</a></li>
+  <li><a href="#why-worry-about-missing-values" id="toc-why-worry-about-missing-values" class="nav-link" data-scroll-target="#why-worry-about-missing-values">Why worry about missing values?</a></li>
+  <li><a href="#tools-for-explicit-missing-values" id="toc-tools-for-explicit-missing-values" class="nav-link" data-scroll-target="#tools-for-explicit-missing-values">Tools for explicit missing values</a></li>
+  <li><a href="#implicit-missing-values-and-how-to-reveal-them" id="toc-implicit-missing-values-and-how-to-reveal-them" class="nav-link" data-scroll-target="#implicit-missing-values-and-how-to-reveal-them">Implicit missing values and how to reveal them</a></li>
+  <li><a href="#empty-groups-and-zerolength-vectors" id="toc-empty-groups-and-zerolength-vectors" class="nav-link" data-scroll-target="#empty-groups-and-zerolength-vectors">Empty groups and zero‑length vectors</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key take‑aways</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -294,7 +293,7 @@ document.addEventListener('click', (event) => {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6 – Data import: reading CSV &amp; flat files</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12 – Missing values &amp; data cleaning</span></h1>
 </div>
 
 
@@ -314,149 +313,130 @@ document.addEventListener('click', (event) => {
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Read your own data into R.</strong> Up to now we have worked with datasets that come bundled with packages. In practice you will often need to import data from your own files. This session introduces the <code>readr</code> functions for reading plain‑text rectangular data (CSV, TSV and other delimited formats). You will learn how to specify file paths and handle column names, types and missing values.</li>
-<li><strong>Control column names, missing values and types.</strong> When you run <code>read_csv()</code> it prints the number of rows and columns read and a summary of the column specification. You will learn how to rename variables, skip header lines, define which strings should be treated as missing, and override the type guessing heuristic that readr uses.</li>
-<li><strong>Read multiple files and combine them.</strong> Real projects often involve multiple data files (for example, one file per month). You can pass a vector of file paths to <code>read_csv()</code> and use the <code>id</code> argument to record the source of each observation. We will practice finding files with <code>list.files()</code>, reading them into a single tibble and combining them using <code>bind_rows()</code>.</li>
+<li><strong>Differentiate explicit and implicit missing values.</strong> Explicitly missing values appear in your data as <code>NA</code>, whereas <em>implicitly</em> missing values arise when an entire observation is absent. Recognizing the difference – “the presence of an absence” versus “the absence of a presence” – guides how you handle them.</li>
+<li><strong>Understand the infectious nature of <code>NA</code>.</strong> Missing values propagate through calculations and comparisons. The online book revisits their <em>infectious nature</em> and discusses how to check for missing values before summarizing or visualizing data.</li>
+<li><strong>Handle explicit missing values.</strong> Learn how to carry values forward with <code>tidyr::fill()</code> (last observation carried forward), replace missing values with fixed values using <code>dplyr::coalesce()</code>, and convert special codes (e.g., -99) to <code>NA</code> with <code>dplyr::na_if()</code>.</li>
+<li><strong>Reveal and fill implicit missing values.</strong> Use <code>tidyr::pivot_wider()</code> to make implicit missings explicit and <code>tidyr::complete()</code> to generate all combinations of variables so that missing combinations appear as rows. Understand when to drop structurally missing values by setting <code>values_drop_na = TRUE</code>.</li>
+<li><strong>Deal with empty groups.</strong> Recognize that groups with no observations (empty groups) are a form of missingness and preserve them by setting <code>.drop = FALSE</code> in <code>count()</code> or <code>group_by()</code>. Be aware of how summary functions behave on zero‑length vectors.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<section id="why-import-data" class="level3">
-<h3 class="anchored" data-anchor-id="why-import-data">Why import data?</h3>
-<p>Working with data included in R packages is convenient when you are learning, but eventually you need to apply the tools to your own data. <em>R for Data Science</em> notes that this chapter focuses on <strong>reading plain‑text rectangular files</strong> and provides practical advice for handling <strong>column names, types and missing data</strong>. The goal is to help you get your data into a tidy tibble so that you can immediately start transforming and visualizing it.</p>
+<section id="why-worry-about-missing-values" class="level3">
+<h3 class="anchored" data-anchor-id="why-worry-about-missing-values">Why worry about missing values?</h3>
+<p>Missing data is ubiquitous. Sometimes a value is unknown, it wasn’t recorded or it simply doesn’t exist. R represents absent values with the special marker <code>NA</code>, and these <code>NA</code>s are <em>infectious</em>: any arithmetic or logical operation involving a missing value yields a missing result. This means you must consciously handle missing values before drawing conclusions. The online book revisits missing values after we have encountered them in plotting and transformation and emphasizes their two forms—explicit and implicit. An explicit missing value is the presence of an absence (an <code>NA</code> in a cell), while an implicit missing value is the absence of a presence (a row that should exist but doesn’t).</p>
 </section>
-<section id="reading-csv-files-with-readr" class="level3">
-<h3 class="anchored" data-anchor-id="reading-csv-files-with-readr">Reading CSV files with <code>readr</code></h3>
-<p>The <code>readr</code> package is part of the tidyverse and provides fast functions for reading delimited files. The most common function is <code>read_csv()</code>, which expects a path to a comma‑separated file. When you read a file, readr prints a message showing the number of rows and columns, the delimiter used and the column specification. This message includes the guessed type for each column and can be silenced with <code>show_col_types = FALSE</code>.</p>
+<section id="tools-for-explicit-missing-values" class="level3">
+<h3 class="anchored" data-anchor-id="tools-for-explicit-missing-values">Tools for explicit missing values</h3>
+<p>When you see <code>NA</code>s in your data, decide whether to <strong>propagate</strong>, <strong>fill</strong> or <strong>replace</strong> them:</p>
+<ul>
+<li><p><strong>Carrying values forward/backward.</strong> In hand-entered data, a missing value may mean “same as the previous value”. The <code>fill()</code> function from <em>tidyr</em> takes one or more columns and fills missing values with the most recent non‑missing value (last observation carried forward, or LOCF). For example, if a dataset records a patient’s treatment at visits 1-3 but omits the patient’s name in visits 2 and 3, <code>fill()</code> will copy the name down.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: reading a simple CSV file from a URL</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>students <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"https://pos.it/r4ds-students-csv"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>students</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>treatment <span class="ot">=</span> <span class="fu">tribble</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>person,           <span class="sc">~</span>treatment, <span class="sc">~</span>response,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Derrick Whitmore"</span>, <span class="dv">1</span>,         <span class="dv">7</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="cn">NA</span>,                 <span class="dv">2</span>,         <span class="dv">10</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="cn">NA</span>,                 <span class="dv">3</span>,         <span class="cn">NA</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Katherine Burke"</span>,  <span class="dv">1</span>,         <span class="dv">4</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill missing person names forward</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>treatment <span class="sc">|&gt;</span> <span class="fu">fill</span>(person)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 5
-  `Student ID` `Full Name`      favourite.food     mealPlan            AGE  
-         &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;              &lt;chr&gt;               &lt;chr&gt;
-1            1 Sunil Huffmann   Strawberry yoghurt Lunch only          4    
-2            2 Barclay Lynn     French fries       Lunch only          5    
-3            3 Jayendra Lyne    N/A                Breakfast and lunch 7    
-4            4 Leon Rossini     Anchovies          Lunch only          &lt;NA&gt; 
-5            5 Chidiegwu Dunkel Pizza              Breakfast and lunch five 
-6            6 Güvenç Attila    Ice cream          Lunch only          6    </code></pre>
+<pre><code># A tibble: 4 × 3
+  person           treatment response
+  &lt;chr&gt;                &lt;dbl&gt;    &lt;dbl&gt;
+1 Derrick Whitmore         1        7
+2 Derrick Whitmore         2       10
+3 Derrick Whitmore         3       NA
+4 Katherine Burke          1        4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppress the column spec message</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>students_quiet <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"https://pos.it/r4ds-students-csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Use the <code>file</code> argument to read files stored locally. It is good practice to keep data in a dedicated <code>data/</code> folder within your project and refer to it using relative paths. If your file has a header row containing the names of the columns (as most CSVs do), readr uses it automatically. If not, set <code>col_names = FALSE</code> and optionally provide a vector of names via <code>col_names = c("...", ...)</code>.</p>
-</section>
-<section id="handling-missing-values-and-nonsyntactic-names" class="level3">
-<h3 class="anchored" data-anchor-id="handling-missing-values-and-nonsyntactic-names">Handling missing values and non‑syntactic names</h3>
-<p>A CSV file does not encode missing values explicitly, so readr treats <strong>empty fields</strong> as <code>NA</code>. In practice, missing values are often recorded with sentinel strings such as <code>"N/A"</code> or <code>"."</code>. You can tell <code>read_csv()</code> which strings should be considered missing using the <code>na</code> argument. For example, in the <code>students.csv</code> file the string <code>"N/A"</code> is used to mark missing foods. By specifying <code>na = c("N/A", "")</code>, readr converts those strings to <code>NA</code>.</p>
+</div></li>
+<li><p><strong>Replacing with fixed values.</strong> If missing values represent a fixed value-such as zero or “unknown”—use <code>coalesce()</code> to replace <code>NA</code> with that value. <code>coalesce()</code> returns the first non‑missing value among its arguments and is vectorised across rows. It is also handy when combining multiple columns: <code>coalesce(a, b, c)</code> picks <code>a</code> if it’s non‑missing, otherwise <code>b</code>, then <code>c</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>students2 <span class="ot">=</span> <span class="fu">read_csv</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://pos.it/r4ds-students-csv"</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"N/A"</span>, <span class="st">""</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>students2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="cn">NA</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coalesce</span>(x, <span class="dv">0</span>)        <span class="co"># replace NA with zero</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 5
-  `Student ID` `Full Name`      favourite.food     mealPlan            AGE  
-         &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;              &lt;chr&gt;               &lt;chr&gt;
-1            1 Sunil Huffmann   Strawberry yoghurt Lunch only          4    
-2            2 Barclay Lynn     French fries       Lunch only          5    
-3            3 Jayendra Lyne    &lt;NA&gt;               Breakfast and lunch 7    
-4            4 Leon Rossini     Anchovies          Lunch only          &lt;NA&gt; 
-5            5 Chidiegwu Dunkel Pizza              Breakfast and lunch five 
-6            6 Güvenç Attila    Ice cream          Lunch only          6    </code></pre>
+<pre><code>[1] 1 4 5 7 0</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combining two columns: take value from x if present, else from y</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">5</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="cn">NA</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">value =</span> <span class="fu">coalesce</span>(x, y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+      x     y value
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     2     1     2
+2    NA     3     3
+3     5    NA     5</code></pre>
 </div>
-<p>Sometimes column names contain spaces or other characters that make them <strong>non‑syntactic</strong> in R. In that case they are surrounded by backticks in the tibble, and you must use backticks to refer to them. A simple solution is to rename the columns after import using <code>rename()</code> or the <code>janitor::clean_names()</code> helper (the latter converts names to <code>snake_case</code>).</p>
-</section>
-<section id="how-readr-guesses-column-types" class="level3">
-<h3 class="anchored" data-anchor-id="how-readr-guesses-column-types">How readr guesses column types</h3>
-<p>Because a CSV file does not contain type information, readr <strong>guesses the type of each column</strong>. It samples up to 1,000 values from across the file and asks: <em>does the column contain only logical values?</em> <em>Only numbers?</em> <em>Does it match ISO8601 date format?</em> If none of those tests succeed, readr assumes the column is a string. This heuristic works well for clean datasets but can fail when there are unexpected values (e.g., a period <code>.</code> to represent a missing number).</p>
-<p>When type guessing fails you can provide your own <strong>column specification</strong> via the <code>col_types</code> argument. This argument is a named list or a <code>cols()</code> specification where each name matches a column and each value is a type function (e.g., <code>col_double()</code>, <code>col_integer()</code>, <code>col_character()</code>, <code>col_date()</code>, <code>col_datetime()</code>). For example, if a numeric ID is misread as a number but should be a character (because you never intend to sum it), specify <code>col_types = list(student_id = col_character())</code>. readr provides nine column types including</p>
-<ul>
-<li>logicals</li>
-<li>doubles</li>
-<li>integers</li>
-<li>characters</li>
-<li>factors</li>
-<li>dates</li>
-<li>date‑time</li>
-<li>permissive numbers</li>
-<li>skipped columns</li>
+</div></li>
+<li><p><strong>Converting sentinel values to <code>NA</code>.</strong> Older software sometimes encodes missing values with special numbers like 99 or -999. Use <code>na_if(x, sentinel)</code> to replace those sentinel values with <code>NA</code>. For instance, if a dataset records missing ages as -99, call <code>na_if(age, -99)</code> before analyzing.</p></li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A small CSV with a custom missing value "."</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>simple_csv <span class="ot">=</span> <span class="st">"x</span><span class="sc">\n</span><span class="st">10</span><span class="sc">\n</span><span class="st">.</span><span class="sc">\n</span><span class="st">20</span><span class="sc">\n</span><span class="st">30"</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Default guess treats the period as a string</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>df_default <span class="ot">=</span> <span class="fu">read_csv</span>(simple_csv)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>df_default</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 1
-  x    
-  &lt;chr&gt;
-1 10   
-2 .    
-3 20   
-4 30   </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Override the type to double and inspect problems</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df_num <span class="ot">=</span> <span class="fu">read_csv</span>(simple_csv, <span class="at">col_types =</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">col_double</span>()))</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">problems</span>(df_num)  <span class="co"># shows where parsing failed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 5
-    row   col expected actual file                                              
-  &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;                                             
-1     3     1 a double .      C:/Users/Joshua_Patrick/AppData/Local/Temp/Rtmpcz…</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tell readr to treat "." as NA so guessing succeeds</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_fixed <span class="ot">=</span> <span class="fu">read_csv</span>(simple_csv, <span class="at">na =</span> <span class="st">"."</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df_fixed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 1
-      x
-  &lt;dbl&gt;
-1    10
-2    NA
-3    20
-4    30</code></pre>
-</div>
-</div>
-<p>If you have many columns with the same type, you can set a <strong>default type</strong> using <code>cols(.default = col_character())</code>. To read only a subset of columns, use <code>cols_only()</code> with the columns you want.</p>
 </section>
-<section id="reading-multiple-files-and-combining-them" class="level3">
-<h3 class="anchored" data-anchor-id="reading-multiple-files-and-combining-them">Reading multiple files and combining them</h3>
-<p>In many projects you receive data split across multiple files—perhaps one file per month or per site. Instead of reading each file separately and then binding the results, you can pass a <strong>vector of file paths</strong> to <code>read_csv()</code>. readr will read all of them and stack the rows together. The optional <code>id</code> argument adds a column that records the file each row came from.</p>
+<section id="implicit-missing-values-and-how-to-reveal-them" class="level3">
+<h3 class="anchored" data-anchor-id="implicit-missing-values-and-how-to-reveal-them">Implicit missing values and how to reveal them</h3>
+<p>Implicit missing values occur when some combinations of variables are absent. For instance, suppose you record the price of a stock each quarter but forget to enter the first quarter in 2021. That observation is implicitly missing. Two tidyverse tools help reveal implicit missings:</p>
+<ul>
+<li><p><strong>Pivoting.</strong> Pivoting data wider with <code>pivot_wider()</code> can transform implicit missings into explicit ones because every combination of rows and new columns must have a value. Conversely, pivoting longer (<code>pivot_longer()</code>) can drop structural missing values when <code>values_drop_na = TRUE</code>.</p></li>
+<li><p><strong>Completing combinations.</strong> <code>complete()</code> creates all combinations of the supplied variables and inserts rows with <code>NA</code> where combinations are missing. You can specify explicit ranges for variables (e.g., years = 2019:2021) to ensure the dataset spans the desired range. If your data includes factors, use <code>.drop = FALSE</code> in <code>count()</code> or <code>group_by()</code> to preserve empty groups.</p></li>
+</ul>
+<p>For example, consider the built‑in <strong>msleep</strong> dataset from <code>ggplot2</code>, which lists characteristics of mammals. Some combinations of diet category (<code>vore</code>) and conservation status do not occur in the data. You can reveal those missing combinations using <code>complete(vore, conservation)</code> and then replace the implicit missing counts with zero:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppose you have three monthly sales files stored in data/01-sales.csv, 02-sales.csv, 03-sales.csv</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>sales_files <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"data/01-sales.csv"</span>, <span class="st">"data/02-sales.csv"</span>, <span class="st">"data/03-sales.csv"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read and combine, adding a 'file' column to identify the source</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">=</span> <span class="fu">read_csv</span>(sales_files, <span class="at">id =</span> <span class="st">"file"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute counts by vore and conservation</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">=</span> msleep <span class="sc">|&gt;</span> <span class="fu">count</span>(vore, conservation)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Make implicit missings explicit and replace NA counts with zero</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>counts_complete <span class="ot">=</span> counts <span class="sc">|&gt;</span> </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(vore, conservation) <span class="sc">|&gt;</span> </span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n =</span> <span class="fu">coalesce</span>(n, <span class="dv">0</span>))</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>counts_complete <span class="sc">|&gt;</span> <span class="fu">arrange</span>(vore, conservation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 35 × 3
+   vore  conservation     n
+   &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt;
+ 1 carni cd               1
+ 2 carni domesticated     2
+ 3 carni en               1
+ 4 carni lc               5
+ 5 carni nt               1
+ 6 carni vu               4
+ 7 carni &lt;NA&gt;             5
+ 8 herbi cd               1
+ 9 herbi domesticated     7
+10 herbi en               2
+# ℹ 25 more rows</code></pre>
 </div>
-<p>You often don’t know the names of all the files ahead of time. Use <code>list.files()</code> to find files whose names match a pattern (e.g., <code>"sales\\.csv$"</code>) and set <code>full.names = TRUE</code> so the full path is returned.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find all CSV files ending with 'sales.csv' in the data directory</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>sales_files <span class="ot">=</span> <span class="fu">list.files</span>(<span class="st">"data"</span>, <span class="at">pattern =</span> <span class="st">"sales</span><span class="sc">\\</span><span class="st">.csv$"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>sales_files</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">=</span> <span class="fu">read_csv</span>(sales_files, <span class="at">id =</span> <span class="st">"file"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Once you have imported multiple files you can combine them explicitly with <code>dplyr::bind_rows()</code> or <code>bind_cols()</code>, depending on whether you want to stack rows or columns. <code>bind_rows()</code> requires identical column names, so pay attention to names and types when reading.</p>
 </section>
-<section id="writing-data-back-to-disk" class="level3">
-<h3 class="anchored" data-anchor-id="writing-data-back-to-disk">Writing data back to disk</h3>
-<p><code>readr</code> also provides <code>write_csv()</code> and <code>write_tsv()</code> for saving tibbles to disk. Remember that when you write to CSV the column specification is lost—you must regenerate types when reading the file again. For intermediate results consider using <code>write_rds()</code> and <code>read_rds()</code>, which store R objects in a binary format preserving types.</p>
-<!-- ## In‑class activity (≈60 min) -->
-<!-- Today’s activity gives you hands‑on practice importing and combining data.  Work individually or in small groups.  A shared dataset (e.g., **nycflights13** or **palmerpenguins**) will be split into several CSV files ahead of time.  Download the files from the course site or find them in your project’s `data/` folder. -->
-<!-- 1. **Inspect the files (10 min)** – Each student chooses one of the CSV files and opens it in a text editor or uses `read_csv()` with `n_max = 5` to glimpse the first few rows.  Note the column names and any potential issues: missing values recorded as strings (e.g., `"."` or `"NA"`), inconsistent capitalization, or unexpected characters. -->
-<!-- 2. **Import with `read_csv()` (15 min)** – Use `read_csv()` to import your file.  If you see a warning about parsing problems, call `problems()` to identify the row and column causing trouble.  Adjust the `na` argument or supply a `col_types` list to fix the issue.  Discuss with your partner which types were guessed correctly and which ones needed manual specification.  Try adding `show_col_types = FALSE` to reduce clutter in your console. -->
-<!-- 3. **Combine files (20 min)** – As a group, collect the names of all the CSV files and store them in a character vector.  Use `list.files()` with a pattern if the files follow a naming convention (e.g., `*_penguins.csv`).  Read all files at once using `read_csv(file_vector, id = "source")`.  Inspect the resulting tibble—does it include a new `source` column?  Alternatively, read the files one by one and combine them using `bind_rows()`. -->
-<!-- 4. **Explore the combined data (15 min)** – Verify that the combined dataset has the expected number of rows and that the columns have consistent types.  Use `summarize()` to compute simple summaries (e.g., number of observations per file, mean of a numeric variable).  Discuss strategies for detecting import errors: inconsistent column names, mismatched types or unusual missing values.  Reflect on how the import step lays the groundwork for the tidy data work you will do in the next session. -->
-<!-- This activity will form the basis for the tidy‑data exercises in Session 7.  Save your cleaned and combined tibble to your project folder using `write_csv()` or `write_rds()` so you can use it again. -->
+<section id="empty-groups-and-zerolength-vectors" class="level3">
+<h3 class="anchored" data-anchor-id="empty-groups-and-zerolength-vectors">Empty groups and zero‑length vectors</h3>
+<p>When summarizing data by a factor, some levels may have zero observations. These <strong>empty groups</strong> behave like implicit missing values. Functions such as <code>count()</code> and <code>group_by()</code> drop empty groups by default. To keep them, set <code>.drop = FALSE</code>. Be careful: summary functions applied to empty vectors may return surprising results—for example, <code>mean()</code> of a zero‑length vector returns <code>NaN</code>. Always interpret summaries of empty groups cautiously.</p>
+</section>
+<section id="key-takeaways" class="level3">
+<h3 class="anchored" data-anchor-id="key-takeaways">Key take‑aways</h3>
+<ul>
+<li>Distinguish <strong>explicit</strong> missing values (<code>NA</code> in your data) from <strong>implicit</strong> missing values (rows that should exist but are absent).</li>
+<li>Use <code>is.na()</code> to detect missing values and remember that <code>NA</code> values propagate through computations.</li>
+<li>For explicit missings, <code>fill()</code> carries values forward or backward; <code>coalesce()</code> replaces <code>NA</code>s with a fixed value or the first non‑missing value; and <code>na_if()</code> converts sentinel codes to <code>NA</code>.</li>
+<li>For implicit missings, <code>pivot_wider()</code> and <code>complete()</code> reveal absent combinations; specify <code>.drop = FALSE</code> to preserve empty factor levels.</li>
+<li>When summarizing empty groups, interpret results carefully: functions like <code>mean()</code> may return <code>NaN</code> on zero‑length vectors.</li>
+</ul>
+<!-- ## In‑class activity -->
+<!-- In this session’s activity you will practise handling missing values using the **msleep** dataset from the `ggplot2` package (not used in *R for Data Science*).  The dataset contains sleep characteristics for 83 mammals and includes missing values in several variables.  Install the package if necessary with `install.packages("ggplot2")`. -->
+<!-- 1. **Inspect the data (5 min).**  Load the tidyverse and the `msleep` dataset.  Use `glimpse(msleep)` and `summary(msleep)` to understand its structure.  Identify which variables contain missing values and compute the proportion of missing values per variable using `summarise(across(everything(), ~mean(is.na(.x))))`.  Which variables are most affected by missingness? -->
+<!-- 2. **Visualise missingness by diet (10 min).**  Create a new binary variable `missing_rem` that is `TRUE` when `sleep_rem` is missing and `FALSE` otherwise.  Use `count(vore, missing_rem)` to tally missing REM sleep values by diet category.  Plot the counts with `ggplot(aes(x = vore, y = n, fill = missing_rem)) + geom_col(position = "dodge")`.  Discuss whether certain diets are associated with more missing `sleep_rem` data. -->
+<!-- 3. **Impute missing REM sleep (15 min).**  For each diet category (`vore`), compute the mean `sleep_rem` (ignoring missing values) and then replace missing `sleep_rem` values with the group mean.  Use `group_by(vore)` and `mutate(sleep_rem_imputed = coalesce(sleep_rem, mean(sleep_rem, na.rm = TRUE)))`.  Compare summary statistics (mean and standard deviation) of the original and imputed `sleep_rem` and comment on the effect of imputation. -->
+<!-- 4. **Reveal missing diet–conservation combinations (15 min).**  Compute the number of species by `vore` and conservation status using `count(vore, conservation)`.  Some combinations will be absent (implicit missings).  Use `complete(vore, conservation)` to generate all combinations and replace the missing counts with zero using `mutate(n = coalesce(n, 0))`.  Visualise the result with a heatmap or table and interpret any patterns. -->
+<!-- 5. **Drop or keep missing brain weights (10 min).**  The `brainwt` variable records brain weight (kg) but has many missing values.  Use `drop_na(msleep, brainwt)` to remove rows with missing brain weights and compute the correlation between `bodywt` and `brainwt`.  Compare this with a correlation computed after replacing missing brain weights with the median brain weight using `mutate(brainwt = coalesce(brainwt, median(brainwt, na.rm = TRUE)))`.  Discuss the impact of different missing-value strategies on the analysis. -->
+<!-- This activity will help you practise detecting, visualising and handling missing values.  By working through these tasks you’ll gain experience with `is.na()`, `fill()`, `coalesce()`, `complete()` and `drop_na()` on a dataset that wasn’t used in the textbook. -->
+<!-- --- -->
+<!-- **Suggested reading for Session 13:**  Chapter 19 of *R for Data Science* (2nd ed.), “Joins”, introduces the theory and practice of combining multiple data frames.  The chapter explains that data analyses rarely involve a single table and distinguishes between **mutating joins**, which add new columns from matching observations in another data frame, and **filtering joins**, which retain or discard observations based on whether a match exists【80650279806246†L120-L129】.  It emphasises the role of **primary and foreign keys**—variables that uniquely identify observations—in connecting tables【80650279806246†L146-L160】.  Familiarity with keys and join types will prepare you for the next session on relational data. -->
 
 
 </section>
