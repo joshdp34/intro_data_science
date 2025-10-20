@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>STA 2300 Intro to Data Science - 14&nbsp; Session 14 – Advanced data import I: spreadsheets</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style type="text/css">
+.sidebar .chapter-number {
+color: #FFB81c;
+}
+freeblank {
+  color: transparent;
+  cursor: pointer;
+}
+freeblank.clicked {
+  color: red;
+}
+blank {
+  display: inline-block; 
+  position: relative;
+  padding: 0 10px;
+  color: transparent;
+  cursor: pointer;
+}
+blank::before {
+  content: ''; /* Creates a custom underline */
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px; /* Thickness of the underline */
+  background-color: black; /* Color of the underline */
+}
+blank.clicked {
+  color: red;
+}
+</style>
+<script>
+document.addEventListener('click', (event) => {
+  if (event.target.tagName === 'BLANK') {
+    event.target.classList.add('clicked');
+  }
+});
+document.addEventListener('click', (event) => {
+  if (event.target.tagName === 'FREEBLANK') {
+    event.target.classList.add('clicked');
+  }
+});
+</script>
+
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./14.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14 – Advanced data import I: spreadsheets</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./"></a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Session 1 – R setup</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2 – Data visualization basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3 – The layered grammar of graphics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4 – Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5 – Data transformation (II): grouping and summarizing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6 – Data import: reading CSV &amp; flat files</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7 – Tidy data &amp; pivoting</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8 – Variable types I: logical &amp; numeric vectors</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9 – Variable types II: strings &amp; regular expressions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10 – Variable types III: factors</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11 – Variable types IV: dates &amp; times</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12 – Missing values &amp; data cleaning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13 –&nbsp;Relational data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14 – Advanced data import I: spreadsheets</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
+  <ul class="collapse">
+  <li><a href="#why-spreadsheets" id="toc-why-spreadsheets" class="nav-link" data-scroll-target="#why-spreadsheets">Why spreadsheets?</a></li>
+  <li><a href="#reading-excel-spreadsheets" id="toc-reading-excel-spreadsheets" class="nav-link" data-scroll-target="#reading-excel-spreadsheets">Reading Excel spreadsheets</a></li>
+  <li><a href="#working-with-multiple-worksheets" id="toc-working-with-multiple-worksheets" class="nav-link" data-scroll-target="#working-with-multiple-worksheets">Working with multiple worksheets</a></li>
+  <li><a href="#reading-part-of-a-sheet" id="toc-reading-part-of-a-sheet" class="nav-link" data-scroll-target="#reading-part-of-a-sheet">Reading part of a sheet</a></li>
+  <li><a href="#data-types-and-type-guessing" id="toc-data-types-and-type-guessing" class="nav-link" data-scroll-target="#data-types-and-type-guessing">Data types and type guessing</a></li>
+  <li><a href="#writing-excel-files" id="toc-writing-excel-files" class="nav-link" data-scroll-target="#writing-excel-files">Writing Excel files</a></li>
+  <li><a href="#google-sheets" id="toc-google-sheets" class="nav-link" data-scroll-target="#google-sheets">Google Sheets</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key take‑aways</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14 – Advanced data import I: spreadsheets</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<ul>
+<li><strong>Recognize why spreadsheets are common and problematic.</strong> Data often arrives as Excel or Google Sheets files. Compared to CSVs, spreadsheets can contain multiple worksheets, extraneous formatting and mixed data types. Understand why a clean import requires careful selection of sheets, ranges and column names.</li>
+<li><strong>Load Excel spreadsheets into R.</strong> Use the <code>readxl</code> package to read <code>.xls</code> and <code>.xlsx</code> files with functions such as <code>read_xls()</code>, <code>read_xlsx()</code> and the convenience wrapper <code>read_excel()</code>. Specify column names, skip rows and define custom missing‑value strings when importing.</li>
+<li><strong>Work with multiple worksheets.</strong> List the sheet names in a workbook with <code>excel_sheets()</code>, read individual sheets with <code>read_excel()</code> and combine them with <code>bind_rows()</code>.</li>
+<li><strong>Read part of a sheet.</strong> Use the <code>range</code> argument to select a specific rectangle of cells when a worksheet contains extraneous text above or below the data frame.</li>
+<li><strong>Understand type guessing and specify column types.</strong> Excel cells can contain booleans, numbers, datetimes or strings; readxl guesses column types but you can override them. Learn how to inspect and set <code>col_types</code> when necessary.</li>
+<li><strong>Write Excel files.</strong> Create spreadsheets using the <code>writexl::write_xlsx()</code> function and appreciate its limitations; learn when to use <code>openxlsx</code> for more advanced formatting.</li>
+<li><strong>Load data from Google Sheets.</strong> Use the <code>googlesheets4</code> package to read public or shared spreadsheets. <code>read_sheet()</code> works similarly to <code>read_excel()</code>: it accepts a URL or sheet ID and allows you to specify column names, missing values and column types. Understand that many tasks translate directly from Excel to Google Sheets, but minor differences may require adjustments.</li>
+</ul>
+</section>
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<section id="why-spreadsheets" class="level3">
+<h3 class="anchored" data-anchor-id="why-spreadsheets">Why spreadsheets?</h3>
+<p>Plain‑text formats like CSV are easy to version control and read into R, but many collaborators use <strong>spreadsheets</strong> to store data. A spreadsheet file can hold multiple <strong>worksheets</strong>, merge cells for visual layout and apply formatting. This flexibility makes spreadsheets convenient for humans but harder for code. When you receive a workbook, you need to identify which worksheet(s) contain the data, decide if there are header or footer rows to skip, and ensure that each column represents a single variable.</p>
+</section>
+<section id="reading-excel-spreadsheets" class="level3">
+<h3 class="anchored" data-anchor-id="reading-excel-spreadsheets">Reading Excel spreadsheets</h3>
+<p>The <code>readxl</code> package provides three functions to import Excel files: <code>read_xls()</code> for the older <code>.xls</code> format, <code>read_xlsx()</code> for the newer <code>.xlsx</code> format and <code>read_excel()</code>, which automatically detects the file type. All three functions return a tibble and have a consistent interface. The first argument is the path to the file and the optional <code>sheet</code> argument selects a worksheet by name or position. For example, to read a spreadsheet called <code>students.xlsx</code> you would call:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>students <span class="ot">=</span> <span class="fu">read_excel</span>(<span class="st">"data/students.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>When importing, you often need to adjust the <strong>column names</strong> and <strong>missing‑value strings</strong>. Provide a character vector to <code>col_names</code> to set variable names explicitly and set <code>skip</code> to ignore extraneous header rows. Use the <code>na</code> argument to tell readxl which strings should be converted to <code>NA</code>. For example, the spreadsheet in Chapter 20 of <em>R for Data Science</em> uses <code>"N/A"</code> to denote missing values, so you would write:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>students <span class="ot">=</span> <span class="fu">read_excel</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/students.xlsx"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"student_id"</span>, <span class="st">"full_name"</span>, <span class="st">"favourite_food"</span>, <span class="st">"meal_plan"</span>, <span class="st">"age"</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">1</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"N/A"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="working-with-multiple-worksheets" class="level3">
+<h3 class="anchored" data-anchor-id="working-with-multiple-worksheets">Working with multiple worksheets</h3>
+<p>Spreadsheets can contain multiple datasets in separate <strong>worksheets</strong>. Use <code>excel_sheets()</code> to list the sheet names and then supply a sheet name or index to <code>read_excel()</code>. When a workbook splits a dataset across sheets (e.g.&nbsp;one sheet per site), read each sheet into its own tibble and then combine the tibbles with <code>bind_rows()</code>. For example, suppose <code>penguins.xlsx</code> contains three sheets – Torgersen, Biscoe and Dream islands – each with the same variables:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>path <span class="ot">=</span> <span class="st">"data/penguins.xlsx"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>sheet_names <span class="ot">=</span> <span class="fu">excel_sheets</span>(path)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read each sheet and combine into one tibble</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">=</span> sheet_names <span class="sc">|&gt;</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_names</span>() <span class="sc">|&gt;</span>  <span class="co"># preserve the sheet names</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span> <span class="fu">read_excel</span>(path, <span class="at">sheet =</span> .x, <span class="at">na =</span> <span class="st">"NA"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="reading-part-of-a-sheet" class="level3">
+<h3 class="anchored" data-anchor-id="reading-part-of-a-sheet">Reading part of a sheet</h3>
+<p>Many spreadsheets mix notes and formatting with data. When the data table occupies only a portion of the worksheet, use the <code>range</code> argument to read a specific rectangle of cells. For example, the <code>deaths.xlsx</code> example in the readxl package has non‑data text above and below the table. The data starts in cell <code>A5</code> and ends in cell <code>F15</code>, so you would call:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>deaths_path <span class="ot">=</span> <span class="fu">readxl_example</span>(<span class="st">"deaths.xlsx"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>deaths <span class="ot">=</span> <span class="fu">read_excel</span>(deaths_path, <span class="at">range =</span> <span class="st">"A5:F15"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This reads only the ten rows of interest.</p>
+</section>
+<section id="data-types-and-type-guessing" class="level3">
+<h3 class="anchored" data-anchor-id="data-types-and-type-guessing">Data types and type guessing</h3>
+<p>Unlike CSV files, Excel cells can hold <strong>booleans</strong>, <strong>numbers</strong>, <strong>datetimes</strong> or <strong>text</strong>. When you import a spreadsheet, readxl guesses the column type by scanning a sample of cells. If all values look like numbers, it will treat the column as numeric; if some cells contain dates, the column becomes a datetime; otherwise it becomes a character vector. Mixed types or hidden formatting can lead to surprises. You can always inspect the inferred types and, if necessary, override them with the <code>col_types</code> argument. Recognize that Excel stores dates internally as numbers (days since 1970) and that you may need to convert them to proper date or datetime objects.</p>
+</section>
+<section id="writing-excel-files" class="level3">
+<h3 class="anchored" data-anchor-id="writing-excel-files">Writing Excel files</h3>
+<p>To share results with collaborators who use spreadsheets, write data frames back to Excel using the <code>writexl</code> package. The <code>write_xlsx()</code> function accepts a data frame and a path and writes an <code>.xlsx</code> file with simple formatting. For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(writexl)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>bake_sale <span class="ot">=</span> <span class="fu">tibble</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">item =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"brownie"</span>, <span class="st">"cupcake"</span>, <span class="st">"cookie"</span>)),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">quantity =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">8</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(bake_sale, <span class="at">path =</span> <span class="st">"bake-sale.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you need more control over formatting, writing to multiple worksheets or styling cells, consider the <code>openxlsx</code> package, which provides functions for adjusting column widths, font styles and cell colours.</p>
+</section>
+<section id="google-sheets" class="level3">
+<h3 class="anchored" data-anchor-id="google-sheets">Google Sheets</h3>
+<p>Excel files live on your computer, but many teams use <strong>Google Sheets</strong> to collaborate. The <code>googlesheets4</code> package reads and writes Google Sheets using the Sheets API. Its main function <code>read_sheet()</code> downloads data given a Google Sheets URL or file ID. The syntax parallels <code>read_excel()</code>: you can supply <code>col_names</code>, <code>skip</code>, <code>na</code> and <code>col_types</code> to clean up the import. For example, to read a publicly shared sheet by its ID:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(googlesheets4)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Deauthorize if the sheet is publicly accessible</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gs4_deauth</span>()</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>sheet_id <span class="ot">=</span> <span class="st">"1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>students <span class="ot">=</span> <span class="fu">read_sheet</span>(</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  sheet_id,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"student_id"</span>, <span class="st">"full_name"</span>, <span class="st">"favourite_food"</span>, <span class="st">"meal_plan"</span>, <span class="st">"age"</span>),</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">1</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"N/A"</span>),</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="st">"dcccc"</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Google Sheets differ from Excel in a few ways. The file is identified by a long URL; <code>read_sheet()</code> needs an internet connection; and some functions (e.g., <code>sheet_names()</code>, <code>sheet_write()</code>) behave differently. However, most tasks transfer directly by swapping <code>read_excel()</code> for <code>read_sheet()</code>. If a sheet contains multiple worksheets (tabs), you can specify the <code>sheet</code> argument to read a particular tab or call <code>sheet_names()</code> to list all tabs.</p>
+</section>
+<section id="key-takeaways" class="level3">
+<h3 class="anchored" data-anchor-id="key-takeaways">Key take‑aways</h3>
+<ul>
+<li>Spreadsheets are convenient for people but messy for code. Identify the correct worksheet and cell range before importing.</li>
+<li>Use <code>readxl::read_excel()</code> or the specialized <code>read_xls()</code>/<code>read_xlsx()</code> to load Excel files. Specify column names, skip header rows and define missing‑value strings to clean up the import.</li>
+<li>Call <code>excel_sheets()</code> to list worksheets and iterate with <code>purrr::map()</code> when you need to import multiple sheets.</li>
+<li>Use the <code>range</code> argument to read only the rectangle containing the data. Understand that Excel’s underlying data types may differ from their display and adjust <code>col_types</code> accordingly.</li>
+<li>Write data back to Excel with <code>writexl::write_xlsx()</code>; use <code>openxlsx</code> for more advanced formatting.</li>
+<li>The <code>googlesheets4</code> package brings similar functionality to Google Sheets; <code>read_sheet()</code> reads a sheet by URL or ID and accepts the same cleaning arguments.</li>
+</ul>
+<!-- ## In‑class activity -->
+<!-- In this session’s activity you will practice importing and exporting spreadsheet data using the `readxl` and `writexl` packages.  The dataset used here is **chickwts**, which records the weight of chicks fed different diets; it is available in the example Excel workbook that comes with `readxl` and has not been used in *R for Data Science*.  Start by installing or loading `readxl` and `writexl`.  Then: -->
+<!-- 1. **Explore the workbook (5 min).**  Use `readxl_example("datasets.xlsx")` to find the path to the example workbook and call `excel_sheets()` to list the worksheet names.  Which sheets are available? -->
+<!-- 2. **Import the `chickwts` sheet (10 min).**  Read the worksheet named `"chickwts"` with `read_excel()`.  Clean up the import by specifying the column names (`"feed"` and `"weight"`) and using the `skip` argument if needed.  Inspect the tibble with `glimpse()` and `summary()`.  Convert the weights from grams to kilograms (divide by 1000) and add a new `weight_kg` column. -->
+<!-- 3. **Summarise chick weights (10 min).**  Group the data by `feed` and compute the number of chicks, the mean and median weight (in kilograms) using `summarise()`.  Arrange the summary by descending mean weight.  Visualise the results in a bar chart with `ggplot2`. -->
+<!-- 4. **Read a partial range (5 min).**  Suppose you are only interested in the first 25 rows.  Use the `range` argument with `read_excel()` to read rows 1–25 and re-run the summary.  Does it differ from the full data? -->
+<!-- 5. **Write the summary to Excel (5 min).**  Use `writexl::write_xlsx()` to save your summary tibble to a new file, for example `"chickwts-summary.xlsx"`.  Open the file in a spreadsheet program to confirm that it looks correct. -->
+<!-- This activity will give you hands-on practice listing sheets, cleaning up imports with `read_excel()`, selecting a cell range, summarising data, and writing results back to Excel.  It uses an example dataset not covered in the textbook. -->
+<!-- --- -->
+
+<!-- **Suggested reading for Session 15:**  Chapter 21 of *R for Data Science* (2nd ed.), “Databases”, explains why connecting to a database directly is critical: exporting CSV snapshots creates delays, whereas DBI lets you retrieve data on demand【394627012992149†L119-L133】.  The chapter introduces DBI and dbplyr—DBI provides a low-level interface to connect and send queries, and dbplyr translates your dplyr code to SQL【394627012992149†L137-L139】.  It contrasts database tables with data frames: tables live on disk, can be arbitrarily large, and have indexes【394627012992149†L150-L159】; classical row‑oriented databases prioritise writing over analysis, while column‑oriented databases support faster analytical queries【394627012992149†L162-L166】.  You’ll learn about different database management systems (client–server, cloud and in‑process)【394627012992149†L168-L180】 and how to connect from R using `DBI::dbConnect()` with a DBMS‑specific package【394627012992149†L184-L203】.  The book uses `duckdb` as an easy in‑process database for teaching【394627012992149†L223-L249】 and shows how to load data with `dbWriteTable()` and list tables with `dbListTables()`【394627012992149†L270-L279】.  Once connected, you create lazy table objects with `tbl()` and write dplyr code; dbplyr lazily translates operations to SQL and only executes them when you call `collect()`【394627012992149†L325-L331】【394627012992149†L360-L409】.  The remainder of the chapter teaches basic SQL clauses (SELECT, FROM, WHERE, GROUP BY, ORDER BY) and encourages using `show_query()` to see the generated SQL【394627012992149†L439-L468】. -->
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
