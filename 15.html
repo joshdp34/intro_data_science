@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Session 3 – The layered grammar of graphics – STA 2300 Intro to Data Science</title>
+<title>15&nbsp; Session 15 – Advanced data import II: databases – STA 2300 Intro to Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -156,7 +156,7 @@ document.addEventListener('click', (event) => {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3 – The layered grammar of graphics</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./15.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15 – Advanced data import II: databases</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -208,7 +208,7 @@ document.addEventListener('click', (event) => {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03.html" class="sidebar-item-text sidebar-link active">
+  <a href="./03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3 – The layered grammar of graphics</span></span></a>
   </div>
 </li>
@@ -280,7 +280,7 @@ document.addEventListener('click', (event) => {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./15.html" class="sidebar-item-text sidebar-link">
+  <a href="./15.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15 – Advanced data import II: databases</span></span></a>
   </div>
 </li>
@@ -295,7 +295,15 @@ document.addEventListener('click', (event) => {
    
   <ul>
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
-  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
+  <ul class="collapse">
+  <li><a href="#why-work-with-databases" id="toc-why-work-with-databases" class="nav-link" data-scroll-target="#why-work-with-databases">Why work with databases?</a></li>
+  <li><a href="#setting-up-a-connection" id="toc-setting-up-a-connection" class="nav-link" data-scroll-target="#setting-up-a-connection">Setting up a connection</a></li>
+  <li><a href="#loading-and-inspecting-tables" id="toc-loading-and-inspecting-tables" class="nav-link" data-scroll-target="#loading-and-inspecting-tables">Loading and inspecting tables</a></li>
+  <li><a href="#running-sql-queries" id="toc-running-sql-queries" class="nav-link" data-scroll-target="#running-sql-queries">Running SQL queries</a></li>
+  <li><a href="#lazy-queries-with-dbplyr" id="toc-lazy-queries-with-dbplyr" class="nav-link" data-scroll-target="#lazy-queries-with-dbplyr">Lazy queries with dbplyr</a></li>
+  <li><a href="#basic-sql-structure" id="toc-basic-sql-structure" class="nav-link" data-scroll-target="#basic-sql-structure">Basic SQL structure</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -304,7 +312,7 @@ document.addEventListener('click', (event) => {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3 – The layered grammar of graphics</span></h1>
+<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15 – Advanced data import II: databases</span></h1>
 </div>
 
 
@@ -324,137 +332,191 @@ document.addEventListener('click', (event) => {
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Deepen your understanding of ggplot2.</strong> Explore the layered grammar of graphics—how aesthetic mappings, geometric objects and facets combine to build complex plots.</li>
-<li><strong>Master aesthetic mappings.</strong> Map variables to color, shape, size and alpha correctly. Avoid mapping categorical variables to size or alpha (it implies a false ordering) and note that mapping a categorical variable to shape uses only six shapes, so additional groups are dropped.</li>
-<li><strong>Layer multiple geoms.</strong> Add multiple geoms to a plot (e.g., points and smooth lines) and distinguish between global and local aesthetic mappings. Use the <code>group</code> aesthetic to draw separate curves for each category.</li>
-<li><strong>Use faceting and coordinate systems.</strong> Split data into panels using <code>facet_wrap()</code> or <code>facet_grid()</code> and adjust scales. Experiment with coordinate transforms such as <code>coord_flip()</code> and <code>coord_polar()</code>.</li>
+<li><strong>Motivate working directly with databases.</strong> Large volumes of data often live in databases instead of flat files, and repeatedly exporting CSV snapshots is time‑consuming. Learn why connecting directly to a database gives you immediate access to current data and avoids delays.</li>
+<li><strong>Explain how database tables differ from tibbles.</strong> Database tables live on disk, can be arbitrarily large and usually have indexes to speed up queries. Classical databases prioritize writing over analysis, whereas column‑oriented systems like duckdb are optimized for analytical queries.</li>
+<li><strong>Connect to a database with DBI.</strong> The DBI package provides a uniform interface to many DBMSs. You’ll learn to call <code>DBI::dbConnect()</code> with a driver from a package like <code>RPostgres</code>, <code>RMariaDB</code> or <code>duckdb</code> and supply host, port and credentials. We will use duckdb because it runs in process and requires no server.</li>
+<li><strong>Load and inspect tables.</strong> Use <code>dbWriteTable()</code> to copy a tibble into a database, <code>dbListTables()</code> to see what tables exist and <code>dbReadTable()</code> to read a whole table back into R.</li>
+<li><strong>Execute SQL queries via DBI.</strong> Write simple <code>SELECT … FROM … WHERE …</code> statements and run them with <code>dbGetQuery()</code>. Understand the core SQL clauses and how they map to dplyr verbs.</li>
+<li><strong>Use dbplyr for lazy pipelines.</strong> dbplyr translates dplyr code into SQL. Create a lazy table with <code>tbl()</code>, compose pipelines with verbs like <code>filter()</code> and <code>summarize()</code>, view the generated SQL with <code>show_query()</code> and retrieve results with <code>collect()</code>.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<p><strong>Layered grammar of graphics</strong> – Every plot can be built from layers consisting of data, aesthetic mappings, geoms, optional statistical transformations, position adjustments and a coordinate system. Building plots layer by layer allows incremental refinement.</p>
-<p><strong>Aesthetic mappings</strong> – The <code>aes()</code> function connects variables to graphical attributes. Mapping a categorical variable to color is generally safe; mapping it to shape works but only six shapes are available; mapping to size or alpha is discouraged and yields warnings.</p>
+<section id="why-work-with-databases" class="level3">
+<h3 class="anchored" data-anchor-id="why-work-with-databases">Why work with databases?</h3>
+<p>When colleagues give you data by exporting CSV files, you have to ask for a new file every time your questions change. The online textbook warns that this approach soon becomes painful and encourages you to connect directly to the database. A database table looks like a data frame—a collection of named columns—but there are key differences:</p>
+<ul>
+<li><strong>Storage:</strong> data frames live in memory, whereas database tables live on disk and can be arbitrarily large.</li>
+<li><strong>Indexes:</strong> most databases maintain indexes that allow them to locate rows quickly without scanning the whole table.</li>
+<li><strong>Optimization:</strong> row‑oriented databases are designed to record transactions quickly, while column‑oriented systems like duckdb are optimized for analytical queries.</li>
+</ul>
+<p>These properties make databases essential for working with large or shared datasets. Rather than extracting snapshots, you can write queries that retrieve exactly the data you need.</p>
+</section>
+<section id="setting-up-a-connection" class="level3">
+<h3 class="anchored" data-anchor-id="setting-up-a-connection">Setting up a connection</h3>
+<p>The <strong>DBI</strong> package defines a low‑level interface for connecting to many database management systems. You create a connection with <code>DBI::dbConnect()</code>, supplying a driver (from a DBMS‑specific package) and connection details. For example, to connect to a PostgreSQL server you might write:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Mapping species to color and shape (safe if ≤ 6 categories)</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> body_mass_g,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">color =</span> species,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">shape =</span> species)) <span class="sc">+</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>con <span class="ot">=</span> DBI<span class="sc">::</span><span class="fu">dbConnect</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  RPostgres<span class="sc">::</span><span class="fu">Postgres</span>(),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">host =</span> <span class="st">"db.example.com"</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">port =</span> <span class="dv">5432</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dbname =</span> <span class="st">"mydb"</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">user =</span> <span class="st">"username"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">password =</span> <span class="st">"secret"</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mapping a categorical variable to size or alpha generates warnings</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> body_mass_g,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">size =</span> species)) <span class="sc">+</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()  <span class="co"># Warning: Using size for a discrete variable is not advised</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Mappings defined in <code>ggplot()</code> apply globally, while mappings inside a geom override them for that layer.</p>
+<p>In this course we will use <strong>duckdb</strong>, an in‑process database that lives entirely within R. It is designed for data scientists and is easy to get started with:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Global mapping applies color to both geoms</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(duckdb)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a temporary duckdb database in memory</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>con <span class="ot">=</span> <span class="fu">dbConnect</span>(<span class="fu">duckdb</span>())</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Disconnect and clean up when finished</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dbDisconnect</span>(con, <span class="at">shutdown =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Local mapping overrides global color for the point layer only</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Layering geoms</strong> – Different geoms (e.g., <code>geom_point</code>, <code>geom_smooth</code>, <code>geom_bar</code>) draw different types of objects. Overlaying geoms reveals multiple aspects of the data. When using geoms like <code>geom_smooth()</code>, ggplot2 automatically groups data by discrete variables; you can explicitly set <code>group</code> to control grouping.</p>
+<p>If you want to keep data between sessions, provide the <code>dbdir</code> argument to specify a file on disk.</p>
+</section>
+<section id="loading-and-inspecting-tables" class="level3">
+<h3 class="anchored" data-anchor-id="loading-and-inspecting-tables">Loading and inspecting tables</h3>
+<p>New databases are empty, so you need to load data before you can query it. Use <code>dbWriteTable()</code> to copy a tibble into a database; the first argument is the connection, the second is a table name and the third is the data frame. For example, to load the <code>mpg</code> dataset from <strong>ggplot2</strong> into your duckdb database:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Overlay scatterplot with separate curves per species</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">group =</span> species), <span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">"mpg"</span>, mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-<p><strong>Facets</strong> – Use <code>facet_wrap()</code> to create a grid of subplots for one categorical variable, and <code>facet_grid()</code> for two variables. You can allow axes to vary across facets with the <code>scales</code> argument.</p>
+<p>You can explore your database with <code>dbListTables()</code> and read an entire table back into R with <code>dbReadTable()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Facet by island</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List tables</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "mpg"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read a table</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dbReadTable</span>(con, <span class="st">"mpg"</span>) <span class="sc">|&gt;</span> tibble<span class="sc">::</span><span class="fu">as_tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 234 × 11
+   manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
+   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 audi         a4           1.8  1999     4 auto… f        18    29 p     comp…
+ 2 audi         a4           1.8  1999     4 manu… f        21    29 p     comp…
+ 3 audi         a4           2    2008     4 manu… f        20    31 p     comp…
+ 4 audi         a4           2    2008     4 auto… f        21    30 p     comp…
+ 5 audi         a4           2.8  1999     6 auto… f        16    26 p     comp…
+ 6 audi         a4           2.8  1999     6 manu… f        18    26 p     comp…
+ 7 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…
+ 8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…
+ 9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…
+10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
+# ℹ 224 more rows</code></pre>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Facet by species and sex with free y‑axis</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(species <span class="sc">~</span> sex, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Coordinate systems</strong> – Transform plots using different coordinate systems to improve interpretability. For example, swap axes using <code>coord_flip()</code> or create a polar bar chart with <code>coord_polar()</code>.</p>
+</section>
+<section id="running-sql-queries" class="level3">
+<h3 class="anchored" data-anchor-id="running-sql-queries">Running SQL queries</h3>
+<p>If you know SQL, you can execute queries with <code>DBI::dbGetQuery()</code>. A SQL query consists of clauses such as <code>SELECT</code>, <code>FROM</code>, <code>WHERE</code>, <code>GROUP BY</code> and <code>ORDER BY</code>. For instance, to find cars with highway mileage above&nbsp;30 in the <code>mpg</code> table:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Flip axes in a boxplot</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sql <span class="ot">=</span> <span class="st">"SELECT manufacturer, model, year, hwy</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="st">        FROM mpg</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="st">        WHERE hwy &gt; 30</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="st">        ORDER BY hwy DESC"</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>fast_cars <span class="ot">=</span> <span class="fu">dbGetQuery</span>(con, sql)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(fast_cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>SQL gives you full control over the query, but writing it can be verbose. In many cases you can use dbplyr to write dplyr code instead.</p>
+</section>
+<section id="lazy-queries-with-dbplyr" class="level3">
+<h3 class="anchored" data-anchor-id="lazy-queries-with-dbplyr">Lazy queries with dbplyr</h3>
+<p>The <strong>dbplyr</strong> package translates your dplyr code into SQL for you. Start by creating a <em>lazy table</em> with <code>tbl()</code>; it represents a database table but doesn’t pull any data into R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>mpg_db <span class="ot">=</span> <span class="fu">tbl</span>(con, <span class="st">"mpg"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>mpg_db</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Source:   table&lt;mpg&gt; [?? x 11]
+# Database: DuckDB 1.4.1 [Joshua_Patrick@Windows 10 x64:R 4.5.1/:memory:]
+   manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
+   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 audi         a4           1.8  1999     4 auto… f        18    29 p     comp…
+ 2 audi         a4           1.8  1999     4 manu… f        21    29 p     comp…
+ 3 audi         a4           2    2008     4 manu… f        20    31 p     comp…
+ 4 audi         a4           2    2008     4 auto… f        21    30 p     comp…
+ 5 audi         a4           2.8  1999     6 auto… f        16    26 p     comp…
+ 6 audi         a4           2.8  1999     6 manu… f        18    26 p     comp…
+ 7 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…
+ 8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…
+ 9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…
+10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
+# ℹ more rows</code></pre>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Polar coordinates for a bar chart</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="576"></p>
-</figure>
+<p>You can now use familiar dplyr verbs to filter, group and summarize. dbplyr records the operations and only runs the query when you call <code>collect()</code>. For example, to compute the average highway mileage for cars with at least a 2.0 dipslacement:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compose a lazy query</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>summary_db <span class="ot">=</span> mpg_db <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(displ <span class="sc">&gt;=</span> <span class="fl">2.0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(manufacturer) <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_hwy =</span> <span class="fu">mean</span>(hwy), <span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_hwy))</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the generated SQL</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>summary_db <span class="sc">|&gt;</span> <span class="fu">show_query</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;SQL&gt;
+SELECT manufacturer, AVG(hwy) AS avg_hwy, COUNT(*) AS n
+FROM (
+  SELECT mpg.*
+  FROM mpg
+  WHERE (displ &gt;= 2.0)
+) q01
+GROUP BY manufacturer
+ORDER BY avg_hwy DESC</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve the results</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>summary <span class="ot">=</span> summary_db <span class="sc">|&gt;</span> <span class="fu">collect</span>()</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15 × 3
+   manufacturer avg_hwy     n
+   &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;
+ 1 honda           29       1
+ 2 volkswagen      27.4    22
+ 3 hyundai         26.9    14
+ 4 pontiac         26.4     5
+ 5 audi            26.2    14
+ 6 subaru          25.6    14
+ 7 nissan          24.6    13
+ 8 toyota          23.3    29
+ 9 chevrolet       21.9    19
+10 ford            19.4    25
+11 mercury         18       4
+12 dodge           17.9    37
+13 jeep            17.6     8
+14 lincoln         17       3
+15 land rover      16.5     4</code></pre>
 </div>
 </div>
-</div>
+<p>The <code>show_query()</code> function prints the SQL generated by dbplyr. When you call <code>collect()</code>, dbplyr sends the query to the database, retrieves the results and converts them into a tibble.</p>
+</section>
+<section id="basic-sql-structure" class="level3">
+<h3 class="anchored" data-anchor-id="basic-sql-structure">Basic SQL structure</h3>
+<p>Although dbplyr hides much of SQL, it’s useful to understand its structure. A query typically includes the following clauses:</p>
+<ol type="1">
+<li><code>SELECT</code> specifies which columns to return and can compute new columns.</li>
+<li><code>FROM</code> names the table being queried.</li>
+<li><code>WHERE</code> filters rows based on a condition.</li>
+<li><code>GROUP BY</code> summarises groups of rows.</li>
+<li><code>ORDER BY</code> sorts the output.</li>
+</ol>
+<p>SQL keywords are case‑insensitive, but it’s common to write them in uppercase. The clauses must appear in the order shown.</p>
+<!-- ## Suggested reading for Session 16 -->
+<!-- Next time we will look at big‑data formats and hierarchical data.  Read Chapter 22 of *R for Data Science* (2e), which introduces the **parquet** format and the **arrow** package.  The authors explain that CSVs are easy to read but inefficient, whereas parquet files and Arrow support fast, multi‑language access to large datasets【665400943195784†L111-L123】.  Arrow provides a dplyr backend so you can analyse larger‑than‑memory data using familiar syntax【665400943195784†L118-L123】.  The chapter also discusses when to choose parquet files versus a database【665400943195784†L125-L131】. -->
+<!-- Then read Chapter 23, “Hierarchical data”.  It introduces data **rectangling**—converting hierarchical or tree‑like structures into tidy tables—and notes that hierarchical data is common on the web【543782796618744†L120-L132】.  You’ll learn about lists as the data structure that supports nested data and how to use tidyr functions like `unnest_longer()` and `unnest_wider()` to unpack list‑columns【543782796618744†L120-L131】.  The chapter also warns that JSON is a common source of hierarchical data【543782796618744†L120-L132】.  These readings will prepare you to work with big‑data formats and nested data structures. -->
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
