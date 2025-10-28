@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>9&nbsp; Session 9 – Variable types II: strings &amp; regular expressions – STA 2300 Intro to Data Science</title>
+<title>16&nbsp; Session 16 – Big‑data formats &amp; hierarchical data – STA 2300 Intro to Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -156,7 +156,7 @@ document.addEventListener('click', (event) => {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9 – Variable types II: strings &amp; regular expressions</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./16.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16 – Big‑data formats &amp; hierarchical data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -244,7 +244,7 @@ document.addEventListener('click', (event) => {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./09.html" class="sidebar-item-text sidebar-link active">
+  <a href="./09.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9 – Variable types II: strings &amp; regular expressions</span></span></a>
   </div>
 </li>
@@ -286,7 +286,7 @@ document.addEventListener('click', (event) => {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./16.html" class="sidebar-item-text sidebar-link">
+  <a href="./16.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16 – Big‑data formats &amp; hierarchical data</span></span></a>
   </div>
 </li>
@@ -303,11 +303,11 @@ document.addEventListener('click', (event) => {
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#creating-strings-quotes-escapes-length" id="toc-creating-strings-quotes-escapes-length" class="nav-link" data-scroll-target="#creating-strings-quotes-escapes-length">Creating strings: quotes, escapes &amp; length</a></li>
-  <li><a href="#combining-and-formatting-strings" id="toc-combining-and-formatting-strings" class="nav-link" data-scroll-target="#combining-and-formatting-strings">Combining and formatting strings</a></li>
-  <li><a href="#regular-expressions-pattern-basics" id="toc-regular-expressions-pattern-basics" class="nav-link" data-scroll-target="#regular-expressions-pattern-basics">Regular expressions: pattern basics</a></li>
-  <li><a href="#detecting-counting-and-extracting-patterns" id="toc-detecting-counting-and-extracting-patterns" class="nav-link" data-scroll-target="#detecting-counting-and-extracting-patterns">Detecting, counting and extracting patterns</a></li>
-  <li><a href="#working-with-messy-strings-in-tibbles" id="toc-working-with-messy-strings-in-tibbles" class="nav-link" data-scroll-target="#working-with-messy-strings-in-tibbles">Working with messy strings in tibbles</a></li>
+  <li><a href="#why-consider-bigdata-formats" id="toc-why-consider-bigdata-formats" class="nav-link" data-scroll-target="#why-consider-bigdata-formats">Why consider big‑data formats?</a></li>
+  <li><a href="#apache-arrow-and-the-arrow-package" id="toc-apache-arrow-and-the-arrow-package" class="nav-link" data-scroll-target="#apache-arrow-and-the-arrow-package">Apache Arrow and the <code>arrow</code> package</a></li>
+  <li><a href="#lists-and-hierarchical-data" id="toc-lists-and-hierarchical-data" class="nav-link" data-scroll-target="#lists-and-hierarchical-data">Lists and hierarchical data</a></li>
+  <li><a href="#unnesting-with-unnest_longer-and-unnest_wider" id="toc-unnesting-with-unnest_longer-and-unnest_wider" class="nav-link" data-scroll-target="#unnesting-with-unnest_longer-and-unnest_wider">Unnesting with <code>unnest_longer()</code> and <code>unnest_wider()</code></a></li>
+  <li><a href="#json-and-other-hierarchical-sources" id="toc-json-and-other-hierarchical-sources" class="nav-link" data-scroll-target="#json-and-other-hierarchical-sources">JSON and other hierarchical sources</a></li>
   <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key take‑aways</a></li>
   </ul></li>
   </ul>
@@ -318,7 +318,7 @@ document.addEventListener('click', (event) => {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9 – Variable types II: strings &amp; regular expressions</span></h1>
+<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16 – Big‑data formats &amp; hierarchical data</span></h1>
 </div>
 
 
@@ -338,215 +338,159 @@ document.addEventListener('click', (event) => {
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Create and manipulate strings.</strong> Recall that strings are sequences of characters defined by quotes. In R you can use single <code>'</code> or double <code>"</code> quotes to create strings. The R4DS text recommends using double quotes by default and switching to single quotes only when the string itself contains quotes. You’ll learn how to escape special characters like backslashes and newlines, how to measure string length with <code>str_length()</code>, and how to extract or replace substrings with <code>str_sub()</code>.</li>
-<li><strong>Combine and format strings.</strong> Concatenate strings using <code>str_c()</code> (stringr’s equivalent to <code>paste0()</code>), and build templated strings with <code>str_glue()</code>. Understand how these functions handle missing values and learn to collapse vectors of strings with <code>str_flatten()</code>.</li>
-<li><strong>Understand regular expressions.</strong> A <strong>regular expression (regex)</strong> is a concise language for describing patterns within strings. You’ll learn the difference between <strong>literal</strong> characters and <strong>metacharacters</strong>, how quantifiers like <code>?</code>, <code>*</code> and <code>+</code> control repetition, and how to use character classes (<code>[...]</code>), alternation (<code>|</code>) and anchors (<code>^</code>, <code>$</code>).</li>
-<li><strong>Match, extract and replace patterns.</strong> Use <code>str_detect()</code> to test whether strings match a regex, <code>str_count()</code> to count the number of matches, <code>str_extract()</code> (and <code>str_extract_all()</code>) to pull out matching substrings, <code>str_replace()</code>/<code>str_replace_all()</code> to substitute patterns, and <code>str_split()</code> to separate strings at delimiters. Pair these functions with dplyr verbs to filter, mutate or summarize character variables.</li>
-<li><strong>Tidy multiple variables encoded in one string.</strong> Recognise when a single string stores several pieces of information and use <code>stringr</code> plus tidyr functions such as <code>str_split()</code> with <code>unnest_longer()</code> or <code>separate()</code> to unpack them. This sets the stage for the next session on factors.</li>
+<li><strong>Understand why CSVs aren’t enough.</strong> Recall that CSV files are easy to read but inefficient: you have to do a lot of work to read the data, and they don’t scale well to tens of millions of rows. Learn about the <strong>parquet</strong> format, an open, column‑oriented file format widely used by big‑data systems. Appreciate why parquet files are more efficient than CSVs and how they enable faster reads and writes.</li>
+<li><strong>Use Apache Arrow for larger‑than‑memory data.</strong> The <strong>arrow</strong> project is a multi‑language toolbox designed for efficient analysis and transport of large datasets. The <strong>arrow</strong> R package provides a <em>dplyr</em> backend so you can analyse larger‑than‑memory datasets using familiar syntax. Learn how to open datasets lazily with <code>open_dataset()</code> and work with them without reading everything into memory.</li>
+<li><strong>Describe lists and hierarchical data.</strong> Hierarchical or tree‑like data structures are common, especially when working with web APIs or JSON. A <strong>list</strong> is a vector that can store elements of different types; lists underpin hierarchical data. Understand the difference between atomic vectors and lists, and recognize <em>list‑columns</em> inside tibbles.</li>
+<li><strong>Rectangling with <code>tidyr</code>.</strong> Data rectangling converts hierarchical data into tidy rectangular tables. Learn to unnest list‑columns with <code>unnest_longer()</code> (which repeats rows) and <code>unnest_wider()</code> (which spreads components across columns). Appreciate when each is appropriate and how to handle inconsistent types.</li>
+<li><strong>Prepare for web scraping.</strong> Hierarchical data often comes from the web. Being comfortable with lists and unnesting will prepare you for the next session on scraping HTML pages.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<section id="creating-strings-quotes-escapes-length" class="level3">
-<h3 class="anchored" data-anchor-id="creating-strings-quotes-escapes-length">Creating strings: quotes, escapes &amp; length</h3>
-<p>Strings can be created with single or double quotes. Double quotes are preferred by convention—use single quotes only when the string itself contains double quotes to avoid escaping. Special characters (backslash, newline, tab) require escaping with <code>\</code>, <code>\n</code> or <code>\t</code>. For example:</p>
+<section id="why-consider-bigdata-formats" class="level3">
+<h3 class="anchored" data-anchor-id="why-consider-bigdata-formats">Why consider big‑data formats?</h3>
+<p>CSV files are <strong>simple and human‑readable</strong>: they can be read by almost every tool under the sun. However, simplicity comes at a cost. Reading a large CSV into R requires scanning every character and converting each column to the correct type. If you have a dataset with tens of millions of rows, this process is slow and memory‑hungry. In the <em>Arrow</em> chapter of R for Data Science, the authors introduce the <strong>parquet</strong> format as a powerful alternative. Parquet is a column‑oriented, compressed, open standard that is widely used by big‑data systems. Because it stores data column‑by‑column, parquet allows you to read only the columns you need and skip over the rest, leading to much faster IO and smaller file sizes. When your dataset lives in parquet files, you can analyse it directly without converting it to CSV.</p>
+</section>
+<section id="apache-arrow-and-the-arrow-package" class="level3">
+<h3 class="anchored" data-anchor-id="apache-arrow-and-the-arrow-package">Apache Arrow and the <code>arrow</code> package</h3>
+<p>Working with large datasets requires more than a good file format. <strong>Apache Arrow</strong> is a multi‑language toolkit for efficient in‑memory columnar data representation. The <strong>arrow</strong> package for R wraps this toolkit and provides a <strong>dplyr</strong> backend that looks and feels like working with a normal tibble. Instead of reading a parquet or CSV file into memory, you call <code>open_dataset()</code>. This function scans just enough of the file(s) to determine the schema (column names and types) and then <strong>lazily</strong> reads data as you request it. Arrow datasets can span multiple files on disk and handle data sets larger than your computer’s memory.</p>
+<p>Here is a small demonstration using the <code>starwars</code> dataset (from the dplyr package). While the dataset itself is small, the workflow scales to larger data. We’ll write it to a parquet file, open it with arrow, and compute a summary. Note that the <code>arrow</code> package must be installed.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arrow)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A string containing both single and double quotes</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>quote_example <span class="ot">=</span>  <span class="st">"He said, 'R is great!'"</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>quote_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the built‑in starwars dataset to a parquet file</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write_parquet</span>(starwars, <span class="st">"starwars.parquet"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Open the parquet file lazily</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>sw_ds <span class="ot">=</span> <span class="fu">open_dataset</span>(<span class="st">"starwars.parquet"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the average height by species without loading all rows into memory</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>avg_height <span class="ot">=</span> sw_ds <span class="sc">|&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">avg_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_height)) <span class="sc">|&gt;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>()</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(avg_height)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "He said, 'R is great!'"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A string with a backslash and a newline</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>path <span class="ot">=</span>  <span class="st">"C:</span><span class="sc">\\</span><span class="st">Users</span><span class="sc">\\</span><span class="st">Data</span><span class="sc">\\</span><span class="st">mydata</span><span class="sc">\n</span><span class="st">"</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "C:\\Users\\Data\\mydata\n"</code></pre>
-</div>
-</div>
-<p>The <em>length</em> of a string (number of characters) is computed with <code>str_length()</code>. Note that <code>str_length()</code> counts human‑visible characters, not bytes or graphemes—R treats each character as one unit regardless of encoding:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_length</span>(<span class="fu">c</span>(<span class="st">""</span>, <span class="st">"abc"</span>, <span class="st">"😊"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0 3 1</code></pre>
+<pre><code># A tibble: 6 × 3
+  species      n avg_height
+  &lt;chr&gt;    &lt;int&gt;      &lt;dbl&gt;
+1 Quermian     1       264 
+2 Wookiee      2       231 
+3 Kaminoan     2       221 
+4 Kaleesh      1       216 
+5 Gungan       3       209.
+6 Pau'an       1       206 </code></pre>
 </div>
 </div>
-<p>Use <code>str_sub()</code> to extract or replace substrings by position. Positive indices count from the start and negative indices count from the end. The function is vectorised, so you can operate on a vector of strings at once:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fruit <span class="ot">=</span>  <span class="fu">c</span>(<span class="st">"banana"</span>, <span class="st">"apple"</span>, <span class="st">"pear"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(fruit, <span class="dv">1</span>, <span class="dv">3</span>)      <span class="co"># first three letters</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "ban" "app" "pea"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(fruit, <span class="sc">-</span><span class="dv">3</span>, <span class="sc">-</span><span class="dv">1</span>)    <span class="co"># last three letters</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "ana" "ple" "ear"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(fruit, <span class="dv">1</span>, <span class="dv">1</span>) <span class="ot">=</span>  <span class="fu">str_to_upper</span>(<span class="fu">str_sub</span>(fruit, <span class="dv">1</span>, <span class="dv">1</span>))  <span class="co"># capitalize first letter</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fruit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Banana" "Apple"  "Pear"  </code></pre>
-</div>
-</div>
+<p>In this example, <code>open_dataset()</code> returns an object representing the on‑disk dataset. The <code>group_by()</code> and <code>summarise()</code> calls are recorded but not executed until you call <code>collect()</code>, at which point Arrow reads only the necessary columns from disk and computes the summary. This approach allows you to analyze datasets much larger than memory using the same dplyr verbs you’ve learned.</p>
 </section>
-<section id="combining-and-formatting-strings" class="level3">
-<h3 class="anchored" data-anchor-id="combining-and-formatting-strings">Combining and formatting strings</h3>
-<p><code>str_c()</code> concatenates multiple strings together and returns a character vector. It’s similar to <code>paste0()</code> but has a more consistent interface and works seamlessly with dplyr verbs. You can supply a <code>sep</code> argument to insert a separator and a <code>collapse</code> argument to collapse the result into a single string:</p>
+<section id="lists-and-hierarchical-data" class="level3">
+<h3 class="anchored" data-anchor-id="lists-and-hierarchical-data">Lists and hierarchical data</h3>
+<p>The second part of this session focuses on <strong>hierarchical data</strong>, which arises when observations are nested inside one another. Such data are common when working with web APIs, JSON files, or documents that naturally have tree structures. To work with hierarchical data in R, you need to understand <strong>lists</strong>. A list is a vector whose elements can be of different types. You create a list with <code>list()</code>, and you can name its components just like naming columns of a tibble. For example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>species <span class="ot">=</span>  <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span>  <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(n, species, <span class="at">sep =</span> <span class="st">" "</span>, <span class="at">collapse =</span> <span class="st">"; "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">=</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="st">"a string"</span>, <span class="cn">TRUE</span>)     <span class="co"># unnamed list</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "3 Adelie; 2 Chinstrap; 1 Gentoo"</code></pre>
+<pre><code>[[1]]
+[1] 1 2 3 4
+
+[[2]]
+[1] "a string"
+
+[[3]]
+[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">=</span> <span class="fu">list</span>(<span class="at">numbers =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">letters =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], <span class="at">flag =</span> <span class="cn">FALSE</span>)  <span class="co"># named list</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$numbers
+[1] 1 2 3
+
+$letters
+[1] "a" "b" "c"
+
+$flag
+[1] FALSE</code></pre>
 </div>
 </div>
-<p>When concatenating across rows in a tibble, wrap <code>str_c()</code> inside <code>mutate()</code>. If any of the components are <code>NA</code>, the result will be <code>NA</code>. Use <code>coalesce()</code> to replace missing values with an empty string before concatenation:</p>
+<p>Lists become especially interesting inside a data frame as <strong>list‑columns</strong>. The <code>starwars</code> tibble contains several list‑columns: <code>films</code>, <code>vehicles</code> and <code>starships</code> are character vectors inside each row. These columns store multiple values per observation, so they are inherently hierarchical. Inspecting <code>starwars</code> reveals the list columns:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span>  <span class="fu">tibble</span>(<span class="at">first =</span> <span class="fu">c</span>(<span class="st">"John"</span>, <span class="cn">NA</span>, <span class="st">"Jenny"</span>),</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">last  =</span> <span class="fu">c</span>(<span class="st">"Smith"</span>, <span class="st">"Nguyen"</span>, <span class="cn">NA</span>))</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">full =</span> <span class="fu">str_c</span>(<span class="fu">coalesce</span>(first, <span class="st">""</span>), <span class="fu">coalesce</span>(last, <span class="st">""</span>), <span class="at">sep =</span> <span class="st">" "</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(starwars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 3
-  first last   full        
-  &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;       
-1 John  Smith  "John Smith"
-2 &lt;NA&gt;  Nguyen " Nguyen"   
-3 Jenny &lt;NA&gt;   "Jenny "    </code></pre>
+<pre><code>Rows: 87
+Columns: 14
+$ name       &lt;chr&gt; "Luke Skywalker", "C-3PO", "R2-D2", "Darth Vader", "Leia Or…
+$ height     &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, 180, 2…
+$ mass       &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.0, 77.…
+$ hair_color &lt;chr&gt; "blond", NA, NA, "none", "brown", "brown, grey", "brown", N…
+$ skin_color &lt;chr&gt; "fair", "gold", "white, blue", "white", "light", "light", "…
+$ eye_color  &lt;chr&gt; "blue", "yellow", "red", "yellow", "brown", "blue", "blue",…
+$ birth_year &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, 57.0, …
+$ sex        &lt;chr&gt; "male", "none", "none", "male", "female", "male", "female",…
+$ gender     &lt;chr&gt; "masculine", "masculine", "masculine", "masculine", "femini…
+$ homeworld  &lt;chr&gt; "Tatooine", "Tatooine", "Naboo", "Tatooine", "Alderaan", "T…
+$ species    &lt;chr&gt; "Human", "Droid", "Droid", "Human", "Human", "Human", "Huma…
+$ films      &lt;list&gt; &lt;"A New Hope", "The Empire Strikes Back", "Return of the J…
+$ vehicles   &lt;list&gt; &lt;"Snowspeeder", "Imperial Speeder Bike"&gt;, &lt;&gt;, &lt;&gt;, &lt;&gt;, "Imp…
+$ starships  &lt;list&gt; &lt;"X-wing", "Imperial shuttle"&gt;, &lt;&gt;, &lt;&gt;, "TIE Advanced x1",…</code></pre>
 </div>
 </div>
-<p><code>str_glue()</code> from the <em>glue</em> package (loaded automatically with tidyverse) creates templated strings. Inside curly braces <code>{}</code>, you can insert arbitrary R expressions. Missing values are converted to the string “NA”:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">message =</span> <span class="fu">str_glue</span>(<span class="st">"Hello {first} {last}!"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 3
-  first last   message          
-  &lt;chr&gt; &lt;chr&gt;  &lt;glue&gt;           
-1 John  Smith  Hello John Smith!
-2 &lt;NA&gt;  Nguyen Hello NA Nguyen! 
-3 Jenny &lt;NA&gt;   Hello Jenny NA!  </code></pre>
-</div>
-</div>
-<p>If you need to combine many strings into one, use <code>str_flatten()</code> rather than repeatedly adding separators. It collapses a character vector into a single string with a given delimiter:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>letters <span class="ot">=</span>  <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_flatten</span>(letters, <span class="at">collapse =</span> <span class="st">", "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "a, b, c"</code></pre>
-</div>
-</div>
+<p>Each row represents a character, but the <code>films</code> column is itself a character vector of film titles. To analyse such data, we need to <strong>rectangulate</strong> it: convert it into a tidy data frame with one value per cell.</p>
 </section>
-<section id="regular-expressions-pattern-basics" class="level3">
-<h3 class="anchored" data-anchor-id="regular-expressions-pattern-basics">Regular expressions: pattern basics</h3>
-<p>A <strong>regular expression (regex)</strong> is a concise language for describing sets of strings. In regex, most letters and numbers match themselves (are <em>literals</em>), but certain characters have special meaning (<em>metacharacters</em>). Important metacharacters include:</p>
+<section id="unnesting-with-unnest_longer-and-unnest_wider" class="level3">
+<h3 class="anchored" data-anchor-id="unnesting-with-unnest_longer-and-unnest_wider">Unnesting with <code>unnest_longer()</code> and <code>unnest_wider()</code></h3>
+<p>The <strong>tidyr</strong> package provides two main functions for rectangling list‑columns: <code>unnest_longer()</code> and <code>unnest_wider()</code>.</p>
 <ul>
-<li><code>.</code> matches any character except a newline.</li>
-<li>Quantifiers control repetition: <code>?</code> matches zero or one occurrence; <code>*</code> matches zero or more; <code>+</code> matches one or more.</li>
-<li>Character classes like <code>[aeiou]</code> match any of the enclosed characters. A caret (<code>^</code>) at the start of a class negates it: <code>[^0-9]</code> matches any non‑digit.</li>
-<li>Alternation <code>|</code> matches one of several possibilities; for example, <code>apple|pear</code> matches either word.</li>
-<li>Anchors <code>^</code> and <code>$</code> match the start and end of a string, respectively.</li>
+<li><strong><code>unnest_longer()</code></strong> takes each element of a list‑column and puts it on its own row, repeating the other columns as needed. Use it when each element of the list is a vector of homogeneous type (e.g., a character vector of films).<br>
+</li>
+<li><strong><code>unnest_wider()</code></strong> takes a list of named objects (e.g., a list of tibbles) and spreads its components across new columns. Use it when each element of the list is itself a record with multiple fields.</li>
 </ul>
-<p>Use <code>regex()</code> to build regexes with settings such as case‑insensitive matching (<code>regex(pattern, ignore_case = TRUE)</code>). The <code>stringr</code> package provides helper functions like <code>str_view()</code> and <code>str_view_all()</code> to visualize matches, but we’ll focus on functions that return useful vectors.</p>
+<p>Let’s use <code>unnest_longer()</code> to count how many characters appear in each Star Wars film:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Unnest the films list‑column</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>characters_by_film <span class="ot">=</span> starwars <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, films) <span class="sc">|&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_longer</span>(films) <span class="sc">|&gt;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(films, <span class="at">name =</span> <span class="st">"n_characters"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n_characters))</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>characters_by_film</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 2
+  films                   n_characters
+  &lt;chr&gt;                          &lt;int&gt;
+1 Attack of the Clones              40
+2 Revenge of the Sith               34
+3 The Phantom Menace                34
+4 Return of the Jedi                20
+5 A New Hope                        18
+6 The Empire Strikes Back           16
+7 The Force Awakens                 11</code></pre>
+</div>
+</div>
+<p>Here <code>unnest_longer(films)</code> converts each character’s list of film titles into individual rows, then <code>count()</code> tallies the number of characters per film. Had the list‑column contained named lists or data frames, you could instead use <code>unnest_wider()</code> to turn the nested fields into separate columns.</p>
 </section>
-<section id="detecting-counting-and-extracting-patterns" class="level3">
-<h3 class="anchored" data-anchor-id="detecting-counting-and-extracting-patterns">Detecting, counting and extracting patterns</h3>
-<p><code>str_detect()</code> tests whether each element of a character vector matches a regex and returns a logical vector. This pairs naturally with <code>filter()</code> to select rows matching a pattern. <code>str_count()</code> counts the number of times a pattern appears within each string. <code>str_extract()</code> returns the first match, and <code>str_extract_all()</code> returns <strong>all</strong> matches as a list. <code>str_replace()</code> and <code>str_replace_all()</code> replace the first or all matches with a new string. Finally, <code>str_split()</code> splits strings at matches of a regex and returns a list of pieces.</p>
-<p>Let’s illustrate with flight numbers from the <code>nycflights13</code> dataset. Airlines in the United States identify a flight by a two‑letter <em>carrier</em> code followed by a <em>flight number</em>. We can build a flight ID string and then extract the numeric part:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>flights_small <span class="ot">=</span>  flights <span class="sc">|&gt;</span> <span class="fu">select</span>(carrier, flight) <span class="sc">|&gt;</span> <span class="fu">sample_n</span>(<span class="dv">5</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine carrier and flight into a single string</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>flights_small <span class="ot">=</span>  flights_small <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">flight_id =</span> <span class="fu">str_c</span>(carrier, flight, <span class="at">sep =</span> <span class="st">"-"</span>))</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Detect whether the flight number has exactly 3 digits</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>flights_small <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">is_three_digit =</span> <span class="fu">str_detect</span>(flight_id, <span class="st">"-</span><span class="sc">\\</span><span class="st">d{3}$"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 4
-  carrier flight flight_id is_three_digit
-  &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;     &lt;lgl&gt;         
-1 UA         497 UA-497    TRUE          
-2 EV        4326 EV-4326   FALSE         
-3 UA         255 UA-255    TRUE          
-4 9E        3395 9E-3395   FALSE         
-5 DL        2546 DL-2546   FALSE         </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the numeric part of the flight ID</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>flights_small <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">number_only =</span> <span class="fu">str_extract</span>(flight_id, <span class="st">"</span><span class="sc">\\</span><span class="st">d+"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 4
-  carrier flight flight_id number_only
-  &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;      
-1 UA         497 UA-497    497        
-2 EV        4326 EV-4326   4326       
-3 UA         255 UA-255    255        
-4 9E        3395 9E-3395   9          
-5 DL        2546 DL-2546   2546       </code></pre>
-</div>
-</div>
-<p>Notice that <code>\d</code> in a regex matches any digit (short for <code>[0-9]</code>), so <code>\d+</code> extracts one or more consecutive digits. We had to escape the backslash in the string to make sure it reached the regular‑expression engine.</p>
-<p><code>str_replace_all()</code> lets you perform substitutions. For example, you can strip all non‑digit characters from a string using the negated class <code>[^0-9]</code>:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>messy <span class="ot">=</span>  <span class="fu">c</span>(<span class="st">"(202) 555-0198"</span>, <span class="st">"+1-303-555-1212"</span>)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(messy, <span class="st">"[^0-9]"</span>, <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025550198"  "13035551212"</code></pre>
-</div>
-</div>
-<p>Finally, <code>str_split()</code> (or <code>str_split_fixed()</code>) breaks a string into pieces at matches of a pattern. If you know your delimiter, you can also use tidyr’s <code>separate()</code> or <code>separate_wider_delim()</code> to split a column into multiple variables. For example, suppose we have a vector of names in “LAST, First Middle” format:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>names <span class="ot">=</span>  <span class="fu">c</span>(<span class="st">"SMITH, John A."</span>, <span class="st">"O'NEILL, Anne"</span>, <span class="st">"Lee, Chen"</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Split at the comma and whitespace</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>df_names <span class="ot">=</span>  <span class="fu">tibble</span>(<span class="at">full =</span> names) <span class="sc">|&gt;</span> <span class="fu">separate</span>(full, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"last"</span>, <span class="st">"rest"</span>), <span class="at">sep =</span> <span class="st">",</span><span class="sc">\\</span><span class="st">s*"</span>)</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>df_names</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
-  last    rest   
-  &lt;chr&gt;   &lt;chr&gt;  
-1 SMITH   John A.
-2 O'NEILL Anne   
-3 Lee     Chen   </code></pre>
-</div>
-</div>
-</section>
-<section id="working-with-messy-strings-in-tibbles" class="level3">
-<h3 class="anchored" data-anchor-id="working-with-messy-strings-in-tibbles">Working with messy strings in tibbles</h3>
-<p>Character columns often encode multiple variables in one field. To tidy them, combine <code>stringr</code> and tidyr. As an example, consider the built‑in <code>who2</code> dataset where column names like <code>sp_m_014</code> describe the diagnosis, gender and age group. We can pivot the data longer and then separate the compound names into distinct variables:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>who2_long <span class="ot">=</span>  who2 <span class="sc">|&gt;</span> <span class="fu">pivot_longer</span>(</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">cols =</span> <span class="sc">!</span>(country<span class="sc">:</span>year),</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"diagnosis"</span>, <span class="st">"gender"</span>, <span class="st">"age"</span>),</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_sep =</span> <span class="st">"_"</span>,</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_to =</span> <span class="st">"count"</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>who2_long <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 6
-  country      year diagnosis gender age   count
-  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;
-1 Afghanistan  1980 sp        m      014      NA
-2 Afghanistan  1980 sp        m      1524     NA
-3 Afghanistan  1980 sp        m      2534     NA
-4 Afghanistan  1980 sp        m      3544     NA
-5 Afghanistan  1980 sp        m      4554     NA
-6 Afghanistan  1980 sp        m      5564     NA</code></pre>
-</div>
-</div>
+<section id="json-and-other-hierarchical-sources" class="level3">
+<h3 class="anchored" data-anchor-id="json-and-other-hierarchical-sources">JSON and other hierarchical sources</h3>
+<p>Much hierarchical data comes from the web in <strong>JSON</strong> format. JSON is a text format for representing nested objects and arrays. You can read JSON into R with the <code>jsonlite</code> package, which produces nested lists. Once in R, use the same rectangling tools (<code>unnest_longer()</code>, <code>unnest_wider()</code>) to convert nested lists into tidy tibbles. In the next session on web scraping you’ll encounter HTML, another hierarchical structure. A strong grasp of lists and unnesting will enable you to extract structured data from these sources.</p>
 </section>
 <section id="key-takeaways" class="level3">
 <h3 class="anchored" data-anchor-id="key-takeaways">Key take‑aways</h3>
 <ul>
-<li>Strings are enclosed in quotes; use double quotes by default and escape special characters like backslash (<code>\\</code>), newline (<code>\n</code>) or tab (<code>\t</code>). <code>str_length()</code> and <code>str_sub()</code> let you measure and manipulate substrings.</li>
-<li>Concatenate strings with <code>str_c()</code> and build templated strings with <code>str_glue()</code>. Use <code>coalesce()</code> to handle missing values and <code>str_flatten()</code> to collapse many strings into one.</li>
-<li>Regular expressions describe patterns. Learn the roles of metacharacters (<code>.</code>, <code>?</code>, <code>*</code>, <code>+</code>), character classes (<code>[...]</code>) and alternation (<code>|</code>), and how to anchor patterns at the start (<code>^</code>) or end (<code>$</code>) of a string.</li>
-<li>Use <code>str_detect()</code> to filter strings, <code>str_count()</code> to count occurrences, <code>str_extract()</code> to pull out matches, and <code>str_replace()</code>/<code>str_replace_all()</code> to perform substitutions. These functions are vectorised and integrate well with dplyr.</li>
-<li>Tidy multiple variables encoded in one string by combining <code>stringr</code> with tidyr’s <code>separate()</code> and <code>pivot_longer()</code>. This prepares your data for converting character vectors to factors in the next session.</li>
+<li><strong>CSV vs.&nbsp;parquet:</strong> CSVs are simple but inefficient. Parquet files store data column‑by‑column and compress it, making them faster to read and write for big data.</li>
+<li><strong>Arrow for bigger data:</strong> The <code>arrow</code> package lets you open large datasets lazily with <code>open_dataset()</code> and analyse them using dplyr syntax. The data live on disk and are only read when needed.</li>
+<li><strong>Lists underpin hierarchical data:</strong> A list can hold elements of different types. List‑columns in tibbles allow you to store multiple values per observation.</li>
+<li><strong>Rectangling tools:</strong> Use <code>tidyr::unnest_longer()</code> to repeat rows for each element of a list‑column and <code>unnest_wider()</code> to spread named components across columns.</li>
+<li><strong>Preparation for scraping:</strong> Understanding lists and rectangling prepares you to handle data from JSON and web pages, which you’ll encounter in the next session on web scraping.</li>
 </ul>
+<!-- ## In‑class activity -->
+<!-- In this session’s activity you will practise using Apache Arrow and rectangling on the **starwars** dataset from the `dplyr` package (not used in *R for Data Science*).  The dataset includes hierarchical list‑columns and provides a manageable example for big‑data workflows.  You will write the dataset to a parquet file, open it lazily with `arrow::open_dataset()`, compute summaries, and unnest list‑columns to answer questions about characters and films.  Detailed instructions are provided in the accompanying activity file. -->
+<!-- **Suggested reading for Session 17:**  Read Chapter 24 of *R for Data Science* (2nd ed.), “Web scraping”.  The authors introduce web scraping with the `rvest` package and emphasize that you should prefer APIs when available【240118378600938†L116-L124】.  They begin with a discussion of scraping ethics and legalities, noting that legality depends on factors like whether the data is public, non‑personal and factual【240118378600938†L147-L160】.  You’ll learn the basics of HTML elements and attributes, how to use CSS selectors to locate elements on a page, and how to extract text and attributes with rvest【240118378600938†L116-L133】.  These skills will enable you to scrape data from web pages when no API exists. -->
 
 
 </section>
