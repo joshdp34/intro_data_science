@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>17&nbsp; Session 17 – Web scraping – STA 2300 Intro to Data Science</title>
+<title>18&nbsp; Session 18 – Basic programming I: functions &amp; code style – STA 2300 Intro to Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -122,7 +156,7 @@ document.addEventListener('click', (event) => {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./17.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17 – Web scraping</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./18.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18 – Basic programming I: functions &amp; code style</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -258,13 +292,13 @@ document.addEventListener('click', (event) => {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./17.html" class="sidebar-item-text sidebar-link active">
+  <a href="./17.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17 – Web scraping</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./18.html" class="sidebar-item-text sidebar-link">
+  <a href="./18.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18 – Basic programming I: functions &amp; code style</span></span></a>
   </div>
 </li>
@@ -281,12 +315,12 @@ document.addEventListener('click', (event) => {
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#ethics-and-legalities" id="toc-ethics-and-legalities" class="nav-link" data-scroll-target="#ethics-and-legalities">Ethics and legalities</a></li>
-  <li><a href="#html-basics" id="toc-html-basics" class="nav-link" data-scroll-target="#html-basics">HTML basics</a></li>
-  <li><a href="#css-selectors" id="toc-css-selectors" class="nav-link" data-scroll-target="#css-selectors">CSS selectors</a></li>
-  <li><a href="#extracting-data-with-rvest" id="toc-extracting-data-with-rvest" class="nav-link" data-scroll-target="#extracting-data-with-rvest">Extracting data with rvest</a></li>
-  <li><a href="#finding-selectors" id="toc-finding-selectors" class="nav-link" data-scroll-target="#finding-selectors">Finding selectors</a></li>
-  <li><a href="#workflow-and-dynamic-sites" id="toc-workflow-and-dynamic-sites" class="nav-link" data-scroll-target="#workflow-and-dynamic-sites">Workflow and dynamic sites</a></li>
+  <li><a href="#why-write-functions" id="toc-why-write-functions" class="nav-link" data-scroll-target="#why-write-functions">Why write functions?</a></li>
+  <li><a href="#anatomy-of-a-function" id="toc-anatomy-of-a-function" class="nav-link" data-scroll-target="#anatomy-of-a-function">Anatomy of a function</a></li>
+  <li><a href="#vector-functions" id="toc-vector-functions" class="nav-link" data-scroll-target="#vector-functions">Vector functions</a></li>
+  <li><a href="#dataframe-functions-and-tidy-evaluation" id="toc-dataframe-functions-and-tidy-evaluation" class="nav-link" data-scroll-target="#dataframe-functions-and-tidy-evaluation">Data‑frame functions and tidy evaluation</a></li>
+  <li><a href="#plot-functions" id="toc-plot-functions" class="nav-link" data-scroll-target="#plot-functions">Plot functions</a></li>
+  <li><a href="#function-style" id="toc-function-style" class="nav-link" data-scroll-target="#function-style">Function style</a></li>
   <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key take‑aways</a></li>
   </ul></li>
   </ul>
@@ -297,7 +331,7 @@ document.addEventListener('click', (event) => {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17 – Web scraping</span></h1>
+<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18 – Basic programming I: functions &amp; code style</span></h1>
 </div>
 
 
@@ -317,79 +351,152 @@ document.addEventListener('click', (event) => {
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Understand the ethics and legalities of web scraping.</strong> Scraping data can raise legal and ethical questions. You’ll learn to assess whether data are public, non‑personal and factual, respect terms of service and avoid scraping sensitive personal information. Use tools like the polite package to space out your requests.</li>
-<li><strong>Understand the structure of HTML.</strong> Web pages are hierarchical documents written in HTML. Each element consists of a start tag, optional attributes and an end tag. Recognize block tags (e.g., <code>&lt;p&gt;</code>, <code>&lt;section&gt;</code>) and inline tags (e.g., <code>&lt;a&gt;</code>, <code>&lt;b&gt;</code>).</li>
-<li><strong>Learn basic CSS selectors.</strong> CSS selectors define patterns for locating HTML elements. You’ll see how simple selectors like <code>p</code>, <code>.class</code> and <code>#id</code> identify elements by tag, class or id.</li>
-<li><strong>Use rvest to extract data.</strong> The rvest package provides functions to find elements (<code>html_elements()</code> and <code>html_element()</code>), extract text (<code>html_text2()</code>), extract attributes (<code>html_attr()</code>) and convert HTML tables to tibbles (<code>html_table()</code>). Understand the difference between <code>html_elements()</code> and <code>html_element()</code> and when to use each.</li>
-<li><strong>Find the right selector.</strong> Selecting the right elements often requires trial and error. Learn to use SelectorGadget and browser developer tools to identify CSS selectors and copy them.</li>
-<li><strong>Prepare for dynamic sites.</strong> Recognize that some websites load content via JavaScript, which rvest alone cannot handle. Understand alternatives like using APIs when available.</li>
+<li><strong>Recognize why writing functions matters.</strong> Functions let you automate common tasks and greatly extend your reach as a data scientist. Writing a function has four big advantages over copy‑and‑paste: you can give your code an evocative name, you only need to update code in one place as requirements change, you avoid copy‑and‑paste mistakes, and you can easily reuse your work on future projects. A good rule of thumb is to write a function whenever you’ve copied and pasted the same block of code more than twice.</li>
+<li><strong>Differentiate types of functions.</strong> Learn the three broad categories of functions: <strong>vector functions</strong> that take one or more vectors and return a vector, <strong>data‑frame functions</strong> that take a data frame as input and return a data frame or vector, and <strong>plot functions</strong> that take a data frame and return a plot.</li>
+<li><strong>Construct functions from repeated code.</strong> Identify the parts of your code that vary and those that stay constant; choose a short, descriptive name, list the varying pieces as arguments and wrap the repeated body of code in <code>function()</code>. Test your function on simple inputs before using it in pipelines.</li>
+<li><strong>Understand tidy evaluation and embracing.</strong> When you write data‑frame functions that call dplyr verbs, you encounter the problem of <strong>indirection</strong>: passing column names as arguments doesn’t work because dplyr uses tidy evaluation. Use the embracing operator <code>{ }</code> to tell dplyr to look inside the argument for the variable to use. Recognize which arguments require embracing by checking whether the underlying verb uses data‑masking (computations like <code>filter()</code> and <code>summarize()</code>) or tidy‑selection (selectors like <code>select()</code> and <code>rename()</code>).</li>
+<li><strong>Write simple plot functions.</strong> Plot functions wrap ggplot2 code into reusable helpers. Because <code>aes()</code> is a data‑masking function you can embrace variables passed to your function so the user can specify which column to plot.</li>
+<li><strong>Adopt good naming and style conventions.</strong> Choose function names that are verbs and argument names that are nouns; clarity is more important than brevity. Put the body of your function inside curly braces with proper indentation and add spaces inside <code>{ }</code> to make embracing obvious.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<section id="ethics-and-legalities" class="level3">
-<h3 class="anchored" data-anchor-id="ethics-and-legalities">Ethics and legalities</h3>
-<p>Before you scrape a website, ask whether it’s <strong>legal and ethical</strong>. <strong>Legalities vary by jurisdiction</strong>, but a good rule of thumb is that if the data are <strong>public, non‑personal and factual</strong>, you’re usually okay. Avoid scraping proprietary or sensitive data or anything behind a login. Even when data are public, respect the website’s <strong>terms of service</strong> (often in the footer) and any <code>robots.txt</code> directives; although these terms may not always be enforceable, it’s polite to follow them. <strong>Never scrape personally identifiable information</strong> such as names, email addresses or dates of birth; scraping such data can violate privacy laws. Additionally, respect the website’s resources: spread out your requests and avoid overloading the server. The <strong>polite</strong> package automates pauses between requests and caches pages to avoid repeated downloads.</p>
+<section id="why-write-functions" class="level3">
+<h3 class="anchored" data-anchor-id="why-write-functions">Why write functions?</h3>
+<p>One of the most effective ways to <em>reduce duplication</em> and avoid errors is to move repeated code into a function. R for Data Science argues that writing a function has four important benefits: you can give the code a clear name, centralize changes in one place, eliminate copy‑and‑paste mistakes and reuse work across projects. Whenever you find yourself copying and pasting the same code more than twice, it’s time to consider writing a function.</p>
 </section>
-<section id="html-basics" class="level3">
-<h3 class="anchored" data-anchor-id="html-basics">HTML basics</h3>
-<p>Web pages are built with <strong>HyperText Markup Language (HTML)</strong>. An HTML document consists of nested <strong>elements</strong>, each with a <strong>start tag</strong>, optional <strong>attributes</strong>, an <strong>end tag</strong> and <strong>contents</strong>. The <code>&lt;html&gt;</code> element contains two main children: <code>&lt;head&gt;</code>, which holds metadata, and <code>&lt;body&gt;</code>, which holds the content you see in the browser. Elements like <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code> and <code>&lt;section&gt;</code> structure the document, while inline elements like <code>&lt;b&gt;</code> and <code>&lt;a&gt;</code> format text. HTML uses <strong>entity escapes</strong> such as <code>&amp;gt;</code> and <code>&amp;lt;</code> for <code>&lt;</code> and <code>&gt;</code>; however, rvest automatically handles these escapes. Because HTML is hierarchical, the data you want to scrape is often nested within several layers of tags.</p>
+<section id="anatomy-of-a-function" class="level3">
+<h3 class="anchored" data-anchor-id="anatomy-of-a-function">Anatomy of a function</h3>
+<p>To convert repeated code into a function, identify <strong>what changes and what stays the same</strong>. A function needs three things: a <strong>name</strong>, a set of <strong>arguments</strong> and a <strong>body</strong> that contains the repeated code. For example, suppose you need to rescale a numeric vector to lie between 0 and 1. You can encapsulate this pattern in a function called <code>rescale01()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rescale01 <span class="ot">=</span> <span class="cf">function</span>(x) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  rng <span class="ot">=</span> <span class="fu">range</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">finite =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  (x <span class="sc">-</span> rng[<span class="dv">1</span>]) <span class="sc">/</span> (rng[<span class="dv">2</span>] <span class="sc">-</span> rng[<span class="dv">1</span>])</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># test it</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale01</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0 0.5 1.0</code></pre>
+</div>
+</div>
+<p>The example illustrates the basic template <code>name = function(arguments) { body }</code>. By encapsulating the code, you only need to modify the function in one place if you decide to handle infinite values differently.</p>
 </section>
-<section id="css-selectors" class="level3">
-<h3 class="anchored" data-anchor-id="css-selectors">CSS selectors</h3>
-<p>To extract information from HTML, you need to identify <strong>which elements contain your data</strong>. <strong>CSS selectors</strong> provide a concise language for selecting elements on a page. Basic selectors include:</p>
-<ul>
-<li><code>p</code> – selects all <code>&lt;p&gt;</code> elements.</li>
-<li><code>.title</code> – selects elements whose <code>class</code> attribute is “title”.</li>
-<li><code>#title</code> – selects the element with <code>id="title"</code>.</li>
-</ul>
-<p>You can combine selectors with spaces to nest selections. For example, <code>ul li</code> selects all <code>&lt;li&gt;</code> elements inside a <code>&lt;ul&gt;</code>. CSS selectors are case‑sensitive for classes and ids.</p>
+<section id="vector-functions" class="level3">
+<h3 class="anchored" data-anchor-id="vector-functions">Vector functions</h3>
+<p>A <strong>vector function</strong> takes one or more vectors as input and returns a vector of the same length. Common examples include rescaling or transforming variables. You can use vector functions inside <code>mutate()</code> or other dplyr verbs. For instance, a z‑score function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>z_score <span class="ot">=</span> <span class="cf">function</span>(x) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  (x <span class="sc">-</span> <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">/</span> <span class="fu">sd</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Because <code>z_score()</code> returns a vector, you can apply it to multiple columns in one step using <code>across()</code> (covered in the next session).</p>
 </section>
-<section id="extracting-data-with-rvest" class="level3">
-<h3 class="anchored" data-anchor-id="extracting-data-with-rvest">Extracting data with rvest</h3>
-<p>The <strong>rvest</strong> package makes it straightforward to scrape HTML. The typical workflow is:</p>
-<ol type="1">
-<li><strong>Download the page</strong> with <code>read_html(url)</code>, which returns an XML document.</li>
-<li><strong>Find elements</strong> with <code>html_elements(doc, "selector")</code> to return all matches or <code>html_element(doc, "selector")</code> to return the first match. Use the singular form when you need exactly one element per observation.</li>
-<li><strong>Extract data</strong>:
-<ul>
-<li>Use <code>html_text2()</code> to extract the textual content of an element. The <code>html_text2()</code> function strips whitespace and handles HTML escapes.</li>
-<li>Use <code>html_attr(element, "href")</code> or another attribute name to extract the value of an attribute.</li>
-<li>To extract tables, use <code>html_table()</code> on a <code>&lt;table&gt;</code> element. It returns a list of tibbles; each tibble corresponds to one table on the page.</li>
-</ul></li>
-<li><strong>Tidy the result</strong> using dplyr and tidyr.</li>
-</ol>
-<p>Here is a minimal example that demonstrates the difference between <code>html_elements()</code> and <code>html_element()</code>. Suppose <code>html</code> is a list of <code>&lt;li&gt;</code> elements; <code>html_elements(html, ".weight")</code> returns all weight spans, which may not align with the number of <code>&lt;li&gt;</code>s, whereas <code>html_element(html, ".weight")</code> returns one match per <code>&lt;li&gt;</code>, returning <code>NA</code> if an element is missing.</p>
-<p>When extracting tables, rvest automatically converts numeric columns to numbers, but conversion isn’t perfect. You can disable automatic conversion by passing <code>convert = FALSE</code> to <code>html_table()</code> and then use readr or dplyr functions to convert columns.</p>
+<section id="dataframe-functions-and-tidy-evaluation" class="level3">
+<h3 class="anchored" data-anchor-id="dataframe-functions-and-tidy-evaluation">Data‑frame functions and tidy evaluation</h3>
+<p>Data‑frame functions take a data frame as input, perform some operation and return a new data frame or summary. The challenge is that dplyr verbs use <strong>tidy evaluation</strong>: they interpret bare variable names within the context of the data. If you write a function like:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>grouped_mean <span class="ot">=</span> <span class="cf">function</span>(df, group_var, mean_var) {</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(group_var) <span class="sc">|&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="fu">mean</span>(mean_var))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>it won’t work because <code>group_by()</code> and <code>summarize()</code> look for columns literally named <code>group_var</code> and <code>mean_var</code>. To solve this problem, <strong>embrace</strong> your arguments with <code>{ }</code>, which tells dplyr to use the <em>value</em> of the argument rather than its name:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>grouped_mean <span class="ot">=</span> <span class="cf">function</span>(df, group_var, mean_var) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>({{ group_var }}) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>({{ mean_var }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># use it</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">grouped_mean</span>(cut, carat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  cut        mean
+  &lt;ord&gt;     &lt;dbl&gt;
+1 Fair      1.05 
+2 Good      0.849
+3 Very Good 0.806
+4 Premium   0.892
+5 Ideal     0.703</code></pre>
+</div>
+</div>
+<p>Embracing works for both <strong>data‑masking</strong> arguments (e.g., in <code>filter()</code>, <code>summarize()</code> or <code>arrange()</code>) and <strong>tidy‑selection</strong> arguments (e.g., in <code>select()</code> or <code>rename()</code>). When in doubt, consult the documentation to see whether an argument uses tidy evaluation and needs embracing.</p>
+<p>Another useful pattern is to wrap up a common set of summaries into a helper function. The following <code>summary6()</code> computes the minimum, mean, median and maximum of a variable along with the number of observations and missing values:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>summary6 <span class="ot">=</span> <span class="cf">function</span>(data, var) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  data <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">min   =</span> <span class="fu">min</span>({{ var }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">mean  =</span> <span class="fu">mean</span>({{ var }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">median=</span> <span class="fu">median</span>({{ var }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">max   =</span> <span class="fu">max</span>({{ var }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">n     =</span> <span class="fu">n</span>(),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">n_miss=</span> <span class="fu">sum</span>(<span class="fu">is.na</span>({{ var }})),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Because it wraps <code>summarize()</code>, you can apply <code>summary6()</code> to grouped data or use it inside other functions. Always drop grouping (<code>.groups = "drop"</code>) inside helpers to avoid surprises.</p>
 </section>
-<section id="finding-selectors" class="level3">
-<h3 class="anchored" data-anchor-id="finding-selectors">Finding selectors</h3>
-<p>Choosing the right selector often requires <strong>trial and error</strong>. Use browser developer tools (e.g., Chrome DevTools) to inspect the HTML structure: right‑click on the element of interest and choose <strong>Inspect</strong>. You can then copy a unique selector or identify classes and ids to build your own. <strong>SelectorGadget</strong> is a bookmarklet that helps generate selectors by clicking on positive and negative examples. If the selectors are hard to understand, consult the CSS Dinner game or MDN Web Docs for a friendly introduction to CSS selectors.</p>
+<section id="plot-functions" class="level3">
+<h3 class="anchored" data-anchor-id="plot-functions">Plot functions</h3>
+<p>You can also write functions that return plots. For example, repeated calls to <code>ggplot()</code> and <code>geom_histogram()</code> can be wrapped into a <code>histogram()</code> helper:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>histogram <span class="ot">=</span> <span class="cf">function</span>(df, var, <span class="at">binwidth =</span> <span class="cn">NULL</span>) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> {{ var }})) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> binwidth)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># example</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">histogram</span>(carat, <span class="at">binwidth =</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The key is that <code>aes()</code> is a data‑masking function, so you can embrace the variable passed to the function. Users can still add layers to the returned plot with <code>+</code>. You can write other plot helpers, such as a <code>linearity_check()</code> that overlays a smooth curve and straight line to diagnose linear relationships.</p>
 </section>
-<section id="workflow-and-dynamic-sites" class="level3">
-<h3 class="anchored" data-anchor-id="workflow-and-dynamic-sites">Workflow and dynamic sites</h3>
-<p>A typical <strong>scraping workflow</strong> combines these tools:</p>
-<ol type="1">
-<li>Load the page and identify candidate elements using developer tools.</li>
-<li>Start with simple selectors and refine them until you extract the desired elements.</li>
-<li>Use <code>html_text2()</code>, <code>html_attr()</code> and <code>html_table()</code> to convert the elements into R data structures.</li>
-<li>Clean and tidy the data; convert strings to numbers, handle missing values and join tables as needed.</li>
-<li>Be respectful: add pauses (<code>Sys.sleep()</code>) between requests or use <code>polite</code>.</li>
-</ol>
-<p>Be aware that some websites render their content with <strong>JavaScript</strong>. rvest only downloads the static HTML; it cannot run JavaScript. If the data you need isn’t present in the downloaded HTML, consider looking for an API or using tools like RSelenium. Whenever possible, prefer APIs because they provide stable, structured data.</p>
+<section id="function-style" class="level3">
+<h3 class="anchored" data-anchor-id="function-style">Function style</h3>
+<p>Good naming and formatting make your functions readable for future you and others. R doesn’t care about names or white space, but humans do. Prefer <strong>verbs</strong> for function names and <strong>nouns</strong> for arguments; clarity beats brevity. For example, <code>impute_missing()</code> and <code>collapse_years()</code> are more informative than <code>f()</code> or <code>my_awesome_function()</code>. Always follow <code>function()</code> with curly braces and indent the body by two spaces. When embracing variables, put spaces inside <code>{ }</code> to make it obvious that something special is happening.</p>
 </section>
 <section id="key-takeaways" class="level3">
 <h3 class="anchored" data-anchor-id="key-takeaways">Key take‑aways</h3>
 <ul>
-<li><strong>Ethics first:</strong> only scrape public, non‑personal, factual data and obey terms of service.</li>
-<li><strong>HTML is hierarchical:</strong> understand tags, attributes and nesting to find your data.</li>
-<li><strong>CSS selectors are powerful:</strong> simple selectors like tag, class and id get you far.</li>
-<li><strong>rvest functions:</strong> use <code>html_elements()</code>/<code>html_element()</code> to find elements, <code>html_text2()</code> and <code>html_attr()</code> to extract text and attributes, and <code>html_table()</code> to read HTML tables.</li>
-<li><strong>Iterative process:</strong> expect to iterate when choosing selectors; use tools like SelectorGadget and developer tools.</li>
+<li><strong>Functions reduce duplication and errors.</strong> When you see repeated code, bundle it into a function. Functions centralize changes, reduce mistakes and make your code more readable.</li>
+<li><strong>Identify what varies.</strong> Analyse your code to determine which pieces vary and make those arguments; the rest becomes the body of the function.</li>
+<li><strong>Use embracing with dplyr verbs.</strong> Tidy evaluation means that column names inside dplyr verbs are treated differently. When writing data‑frame functions, use <code>{ }</code> around arguments that refer to column names.</li>
+<li><strong>Wrap up summaries and plots.</strong> Helper functions like <code>summary6()</code> or <code>histogram()</code> reduce copy‑and‑paste when you need the same summaries or plots repeatedly.</li>
+<li><strong>Name and style your functions thoughtfully.</strong> Use descriptive verbs, nouns for arguments, proper indentation and spaces in braces to make your code easy to read.</li>
 </ul>
-<!-- ## In‑class activity -->
-<!-- In this session’s activity you will practise web scraping and data wrangling using the built‑in **state.x77** dataset (from base R) and a Wikipedia table.  The `state.x77` matrix contains statistics about the 50 U.S. states (population, income, illiteracy, life expectancy, murder rate, high‑school graduation rate, frost days and area).  The activity guides you to convert it to a tibble, identify states with high murder rates, and join those data with the state capitals scraped from Wikipedia.  You’ll use rvest functions (`read_html()`, `html_element()`, `html_table()`, `html_text2()`, `html_attr()`) and dplyr to clean and analyze the data.  Detailed instructions are in the separate activity file. -->
-<!-- **Suggested reading for Session 18:**  For the next class on writing functions and code style, read Chapter 25 of *R for Data Science* (2nd ed.).  The authors explain why writing functions is one of the best ways to extend your reach as a data scientist: functions let you give repeated code an evocative name, centralize changes in one place, reduce copy‑and‑paste errors and promote reuse【390287695928021†L120-L135】.  A good rule of thumb is to write a function whenever you find yourself copying and pasting code more than twice【390287695928021†L137-L139】.  The chapter introduces three broad categories of functions—vector functions, data‑frame functions and plot functions—and demonstrates how to write them.  Pay particular attention to section 25.3, which discusses tidy evaluation and how to write functions that take column names as arguments. -->
+<!-- ## In‑class activity
+
+In today’s activity you will practise writing functions using the **storms** dataset from the `dplyr` package (this dataset does not appear in *R for Data Science*).  The storms data records the position, intensity and category of tropical cyclones from 1975–2022【832489152038428†L46-L112】.  You’ll:
+
+1. **Explore the data (5 min).**  Load the tidyverse and the `storms` dataset.  Use `glimpse(storms)` to understand its 13 variables (e.g., `name`, `year`, `status`, `category`, `wind`, `pressure` and storm‑force diameters)【832489152038428†L58-L112】.
+2. **Write a vector function (10 min).**  Create a function `knots_to_mph(x)` that converts wind speed from knots to miles per hour (1 knot = 1.15078 mph) and returns a numeric vector.  Add a new column `wind_mph` to `storms` with `mutate(wind_mph = knots_to_mph(wind))`.
+3. **Write a data‑frame function (15 min).**  Write a function `summarise_by(df, group_var, num_var)` that groups `df` by `group_var`, computes the mean and maximum of `num_var` and returns a summary tibble.  Embrace the grouping and numeric variables with `{{ }}`.  Use the function to compare average wind speed across storm statuses (`status`) and categories (`category`).
+4. **Write a plot function (15 min).**  Define `hist_plot(df, var, binwidth = NULL)` that takes a data frame and a numeric variable and returns a histogram of that variable.  Embrace `var` in the call to `aes()` and allow users to specify `binwidth`.  Use your function to compare the distribution of `pressure` and `wind`.
+5. **Apply your functions (10 min).**  Combine your helper functions to answer questions: *Which storm category has the highest average wind speed?*  *How does wind speed differ between tropical storms and hurricanes?*  Present your findings in a short paragraph.
+
+These exercises will help you practise writing vector, data‑frame and plot functions, using tidy evaluation and embracing, and following code style guidelines.  The storms dataset is built into dplyr, so no additional packages are needed.
+
+## Suggested reading for Session 19
+
+The next class will introduce **iteration** and **functional programming**.  Read Chapter 26 of *R for Data Science* (2nd ed.), which explains why iteration often looks different in R: many operations are vectorised, so doubling a vector is as simple as `2 * x`【522291174810979†L123-L128】.  The chapter emphasises that you’ve already used simple iteration tools such as faceting (`facet_wrap()` and `facet_grid()`), group‑wise summaries (`group_by()` + `summarize()`) and unnesting list‑columns【522291174810979†L130-L140】.  You’ll learn more general tools for three common tasks: **modifying multiple columns, reading multiple files and saving multiple outputs**【522291174810979†L143-L147】.  Pay special attention to the `across()` function: it lets you apply the same function to many columns and replaces tedious copy‑and‑paste code【522291174810979†L185-L197】.  The first argument, `.cols`, selects columns; the second argument, `.fns`, specifies the function to apply; and the `.names` argument controls the output names【522291174810979†L198-L205】.  Understanding these arguments will prepare you for functional programming with `purrr::map()` in later sections.
+
+-->
 
 
 </section>
