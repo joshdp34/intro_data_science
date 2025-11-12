@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Session 6 – Data import: reading CSV &amp; flat files – STA 2300 Intro to Data Science</title>
+<title>19&nbsp; Session 19 – Basic programming II: iteration &amp; functional programming – STA 2300 Intro to Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -156,7 +156,7 @@ document.addEventListener('click', (event) => {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6 – Data import: reading CSV &amp; flat files</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./19.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19 – Basic programming II: iteration &amp; functional programming</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -226,7 +226,7 @@ document.addEventListener('click', (event) => {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06.html" class="sidebar-item-text sidebar-link active">
+  <a href="./06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6 – Data import: reading CSV &amp; flat files</span></span></a>
   </div>
 </li>
@@ -304,7 +304,7 @@ document.addEventListener('click', (event) => {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./19.html" class="sidebar-item-text sidebar-link">
+  <a href="./19.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19 – Basic programming II: iteration &amp; functional programming</span></span></a>
   </div>
 </li>
@@ -321,12 +321,12 @@ document.addEventListener('click', (event) => {
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#why-import-data" id="toc-why-import-data" class="nav-link" data-scroll-target="#why-import-data">Why import data?</a></li>
-  <li><a href="#reading-csv-files-with-readr" id="toc-reading-csv-files-with-readr" class="nav-link" data-scroll-target="#reading-csv-files-with-readr">Reading CSV files with <code>readr</code></a></li>
-  <li><a href="#handling-missing-values-and-nonsyntactic-names" id="toc-handling-missing-values-and-nonsyntactic-names" class="nav-link" data-scroll-target="#handling-missing-values-and-nonsyntactic-names">Handling missing values and non‑syntactic names</a></li>
-  <li><a href="#how-readr-guesses-column-types" id="toc-how-readr-guesses-column-types" class="nav-link" data-scroll-target="#how-readr-guesses-column-types">How readr guesses column types</a></li>
-  <li><a href="#reading-multiple-files-and-combining-them" id="toc-reading-multiple-files-and-combining-them" class="nav-link" data-scroll-target="#reading-multiple-files-and-combining-them">Reading multiple files and combining them</a></li>
-  <li><a href="#writing-data-back-to-disk" id="toc-writing-data-back-to-disk" class="nav-link" data-scroll-target="#writing-data-back-to-disk">Writing data back to disk</a></li>
+  <li><a href="#introduction-implicit-and-explicit-iteration" id="toc-introduction-implicit-and-explicit-iteration" class="nav-link" data-scroll-target="#introduction-implicit-and-explicit-iteration">Introduction: implicit and explicit iteration</a></li>
+  <li><a href="#modifying-multiple-columns-with-across" id="toc-modifying-multiple-columns-with-across" class="nav-link" data-scroll-target="#modifying-multiple-columns-with-across">Modifying multiple columns with <code>across()</code></a></li>
+  <li><a href="#reading-multiple-files-with-purrrmap" id="toc-reading-multiple-files-with-purrrmap" class="nav-link" data-scroll-target="#reading-multiple-files-with-purrrmap">Reading multiple files with <code>purrr::map()</code></a></li>
+  <li><a href="#handling-failures" id="toc-handling-failures" class="nav-link" data-scroll-target="#handling-failures">Handling failures</a></li>
+  <li><a href="#saving-multiple-outputs" id="toc-saving-multiple-outputs" class="nav-link" data-scroll-target="#saving-multiple-outputs">Saving multiple outputs</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key take‑aways</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -336,7 +336,7 @@ document.addEventListener('click', (event) => {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6 – Data import: reading CSV &amp; flat files</span></h1>
+<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19 – Basic programming II: iteration &amp; functional programming</span></h1>
 </div>
 
 
@@ -356,149 +356,137 @@ document.addEventListener('click', (event) => {
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Read your own data into R.</strong> Up to now we have worked with datasets that come bundled with packages. In practice you will often need to import data from your own files. This session introduces the <code>readr</code> functions for reading plain‑text rectangular data (CSV, TSV and other delimited formats). You will learn how to specify file paths and handle column names, types and missing values.</li>
-<li><strong>Control column names, missing values and types.</strong> When you run <code>read_csv()</code> it prints the number of rows and columns read and a summary of the column specification. You will learn how to rename variables, skip header lines, define which strings should be treated as missing, and override the type guessing heuristic that readr uses.</li>
-<li><strong>Read multiple files and combine them.</strong> Real projects often involve multiple data files (for example, one file per month). You can pass a vector of file paths to <code>read_csv()</code> and use the <code>id</code> argument to record the source of each observation. We will practice finding files with <code>list.files()</code>, reading them into a single tibble and combining them using <code>bind_rows()</code>.</li>
+<li><strong>Recognize how iteration differs in R.</strong> In many programming languages you must explicitly loop over the elements of a vector. R is different: doubling a numeric vector is as simple as <code>2 * x</code> because the operation is <em>vectorised</em>. You’ve already encountered implicit iteration through tools like <code>facet_wrap()</code>/<code>facet_grid()</code> for faceting, <code>group_by()</code>&nbsp;+&nbsp;<code>summarize()</code> for group‑wise summaries and the <code>unnest_*()</code> functions for list‑columns. In this session you’ll learn more general tools for explicit iteration.</li>
+<li><strong>Modify multiple columns with <code>across()</code>.</strong> The <code>across()</code> function lets you apply one or more functions to a set of columns in <code>summarize()</code> or <code>mutate()</code>. You’ll learn to select columns with <code>.cols</code>, supply functions via <code>.fns</code>, customize the output names via <code>.names</code> and use variants like <code>if_any()</code>/<code>if_all()</code> for filtering.</li>
+<li><strong>Read and combine many files with purrr.</strong> <code>purrr::map()</code> iterates over a vector or list and applies a function to each element, returning a list. You’ll learn a three‑step pattern for importing a directory of files: list the file paths with <code>list.files()</code>, map a read function over those paths and then combine the results with <code>purrr::list_rbind()</code>. You’ll see how to extract data encoded in file names using <code>set_names()</code> and the <code>names_to</code> argument of <code>list_rbind()</code>.</li>
+<li><strong>Handle failures and heterogenous data.</strong> When iterating over many inputs it’s common for a few to fail. You’ll use <code>purrr::possibly()</code> to wrap a function so that failures return a default (e.g., <code>NULL</code>) instead of stopping the whole iteration. You’ll also learn strategies for dealing with lists of data frames that don’t all have the same structure.</li>
+<li><strong>Save multiple outputs.</strong> The same iteration patterns can help when exporting data. You’ll briefly see how to write multiple data frames to disk or a database and how to generate a series of plots programmatically.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<section id="why-import-data" class="level3">
-<h3 class="anchored" data-anchor-id="why-import-data">Why import data?</h3>
-<p>Working with data included in R packages is convenient when you are learning, but eventually you need to apply the tools to your own data. <em>R for Data Science</em> notes that this chapter focuses on <strong>reading plain‑text rectangular files</strong> and provides practical advice for handling <strong>column names, types and missing data</strong>. The goal is to help you get your data into a tidy tibble so that you can immediately start transforming and visualizing it.</p>
+<section id="introduction-implicit-and-explicit-iteration" class="level3">
+<h3 class="anchored" data-anchor-id="introduction-implicit-and-explicit-iteration">Introduction: implicit and explicit iteration</h3>
+<p><strong>Iteration is everywhere.</strong> In R, many iterative operations are built into the language. The introduction to the iteration chapter reminds us that doubling a vector uses a single expression (<code>2 * x</code>) instead of a loop. Earlier tools you’ve used—faceting, group‑wise summarization and unnesting list‑columns—perform the same action for many subsets or elements. These conveniences hide the loop, but sometimes you need more control. Functional programming tools take functions as inputs and allow you to express iteration concisely. We will focus on three common tasks: <strong>modifying multiple columns</strong>, <strong>reading multiple files</strong> and <strong>saving multiple outputs</strong>.</p>
 </section>
-<section id="reading-csv-files-with-readr" class="level3">
-<h3 class="anchored" data-anchor-id="reading-csv-files-with-readr">Reading CSV files with <code>readr</code></h3>
-<p>The <code>readr</code> package is part of the tidyverse and provides fast functions for reading delimited files. The most common function is <code>read_csv()</code>, which expects a path to a comma‑separated file. When you read a file, readr prints a message showing the number of rows and columns, the delimiter used and the column specification. This message includes the guessed type for each column and can be silenced with <code>show_col_types = FALSE</code>.</p>
+<section id="modifying-multiple-columns-with-across" class="level3">
+<h3 class="anchored" data-anchor-id="modifying-multiple-columns-with-across">Modifying multiple columns with <code>across()</code></h3>
+<p>Suppose you have a tibble with several numeric variables and you want to compute a summary for each. You could write the same function call repeatedly—violating the rule to never copy‑and‑paste more than twice. Instead, use <strong><code>across()</code></strong> inside <code>summarize()</code> or <code>mutate()</code> to iterate over columns. <code>across()</code> has three key arguments:</p>
+<ol type="1">
+<li><strong><code>.cols</code></strong> selects which columns to operate on. It uses the same tidy‑select syntax as <code>select()</code>, so you can use helpers such as <code>starts_with()</code>, <code>ends_with()</code>, <code>everything()</code> and <code>where()</code>. For example, <code>where(is.numeric)</code> selects all numeric columns and <code>!where(is.numeric)</code> selects everything else.</li>
+<li><strong><code>.fns</code></strong> supplies the function(s) to apply. For a single function you pass its bare name—without <code>()</code>—and <code>across()</code> will call it for each column. To provide additional arguments, wrap the function in an anonymous function <code>\(x) ...</code>. You can supply multiple functions by passing a named list; the names determine the suffixes used in the output.</li>
+<li><strong><code>.names</code></strong> controls the names of the output columns. By default, the name of each output is a glue specification <code>{.col}_{.fn}</code>; you can provide your own specification, e.g., <code>"{.fn}_{.col}"</code> to put the function name first. When using <code>across()</code> inside <code>mutate()</code>, remember that without <code>.names</code> the results will overwrite existing columns; specify new names to preserve the originals.</li>
+</ol>
+<p>Here are some common patterns using <code>across()</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: reading a simple CSV file from a URL</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>students <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"https://pos.it/r4ds-students-csv"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>students</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># summarise each numeric column and count rows</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span> </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">where</span>(is.numeric), mean),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>()</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 5
-  `Student ID` `Full Name`      favourite.food     mealPlan            AGE  
-         &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;              &lt;chr&gt;               &lt;chr&gt;
-1            1 Sunil Huffmann   Strawberry yoghurt Lunch only          4    
-2            2 Barclay Lynn     French fries       Lunch only          5    
-3            3 Jayendra Lyne    N/A                Breakfast and lunch 7    
-4            4 Leon Rossini     Anchovies          Lunch only          &lt;NA&gt; 
-5            5 Chidiegwu Dunkel Pizza              Breakfast and lunch five 
-6            6 Güvenç Attila    Ice cream          Lunch only          6    </code></pre>
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width   n
+1     5.843333    3.057333        3.758    1.199333 150</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppress the column spec message</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>students_quiet <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"https://pos.it/r4ds-students-csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute mean and standard deviation for numeric columns</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="fu">list</span>(<span class="at">mean =</span> <span class="sc">~</span><span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">sd   =</span> <span class="sc">~</span><span class="fu">sd</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">.names =</span> <span class="st">"{.fn}_{.col}"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mean_Sepal.Length sd_Sepal.Length mean_Sepal.Width sd_Sepal.Width
+1          5.843333       0.8280661         3.057333      0.4358663
+  mean_Petal.Length sd_Petal.Length mean_Petal.Width sd_Petal.Width
+1             3.758        1.765298         1.199333      0.7622377</code></pre>
 </div>
-<p>Use the <code>file</code> argument to read files stored locally. It is good practice to keep data in a dedicated <code>data/</code> folder within your project and refer to it using relative paths. If your file has a header row containing the names of the columns (as most CSVs do), readr uses it automatically. If not, set <code>col_names = FALSE</code> and optionally provide a vector of names via <code>col_names = c("...", ...)</code>.</p>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># replace missing values with zero but keep originals</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df_miss <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">a =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="dv">3</span>), <span class="at">b =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="cn">NA</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df_miss <span class="sc">|&gt;</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(a<span class="sc">:</span>b, <span class="sc">~</span><span class="fu">coalesce</span>(.x, <span class="dv">0</span>), <span class="at">.names =</span> <span class="st">"{.col}_na0"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+      a     b a_na0 b_na0
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     1     4     1     4
+2    NA     5     0     5
+3     3    NA     3     0</code></pre>
+</div>
+</div>
+<p>When filtering, <code>if_any()</code> and <code>if_all()</code> are handy variants: <code>filter(if_any(where(is.na)))</code> keeps rows with at least one missing value, whereas <code>filter(if_all(where(is.na)))</code> keeps rows where <em>all</em> selected columns are missing.</p>
+<p>The fact that <code>.cols</code> uses tidy‑select means you can write helper functions that operate on a user‑supplied set of columns. For example, the <code>summarize_means()</code> helper from the book computes the mean of selected columns and drops grouping. Use embracing (<code>{ }</code>) to allow column arguments inside your functions.</p>
 </section>
-<section id="handling-missing-values-and-nonsyntactic-names" class="level3">
-<h3 class="anchored" data-anchor-id="handling-missing-values-and-nonsyntactic-names">Handling missing values and non‑syntactic names</h3>
-<p>A CSV file does not encode missing values explicitly, so readr treats <strong>empty fields</strong> as <code>NA</code>. In practice, missing values are often recorded with sentinel strings such as <code>"N/A"</code> or <code>"."</code>. You can tell <code>read_csv()</code> which strings should be considered missing using the <code>na</code> argument. For example, in the <code>students.csv</code> file the string <code>"N/A"</code> is used to mark missing foods. By specifying <code>na = c("N/A", "")</code>, readr converts those strings to <code>NA</code>.</p>
+<section id="reading-multiple-files-with-purrrmap" class="level3">
+<h3 class="anchored" data-anchor-id="reading-multiple-files-with-purrrmap">Reading multiple files with <code>purrr::map()</code></h3>
+<p>The second iteration task is combining data stored in many files. A reliable pattern has three steps:</p>
+<ol type="1">
+<li><strong>List files.</strong> Use <code>list.files()</code> to get a character vector of file paths. Supply the directory with <code>path</code>, restrict the file types with a regular‑expression <code>pattern</code> like <code>"[.]csv$"</code> and set <code>full.names = TRUE</code> so the results include the directory.</li>
+<li><strong>Read each file.</strong> Use <code>purrr::map()</code> to apply a reading function (e.g., <code>read_csv()</code> or <code>read_excel()</code>) to each path. <code>map(x, f)</code> is shorthand for calling <code>f()</code> on each element of <code>x</code> and returning a list. If you need to pass additional arguments, supply an anonymous function <code>\(path) read_csv(path, skip = 2)</code>.</li>
+<li><strong>Combine the results.</strong> Once you have a list of data frames, use <code>purrr::list_rbind()</code> to stack them into a single tibble. When file names contain data, call <code>set_names()</code> to give the list elements informative names and use the <code>names_to</code> argument of <code>list_rbind()</code> to store those names as a column. You can extract numbers from file names with <code>readr::parse_number()</code>.</li>
+</ol>
+<p>Here is a minimal example that reads multiple CSVs from a directory, records the year from the file name and combines them:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>students2 <span class="ot">=</span> <span class="fu">read_csv</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://pos.it/r4ds-students-csv"</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"N/A"</span>, <span class="st">""</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>students2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 5
-  `Student ID` `Full Name`      favourite.food     mealPlan            AGE  
-         &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;              &lt;chr&gt;               &lt;chr&gt;
-1            1 Sunil Huffmann   Strawberry yoghurt Lunch only          4    
-2            2 Barclay Lynn     French fries       Lunch only          5    
-3            3 Jayendra Lyne    &lt;NA&gt;               Breakfast and lunch 7    
-4            4 Leon Rossini     Anchovies          Lunch only          &lt;NA&gt; 
-5            5 Chidiegwu Dunkel Pizza              Breakfast and lunch five 
-6            6 Güvenç Attila    Ice cream          Lunch only          6    </code></pre>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>paths <span class="ot">=</span> <span class="fu">list.files</span>(<span class="st">"data/gapminder"</span>, <span class="at">pattern =</span> <span class="st">"[.]csv$"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>gapminder <span class="ot">=</span> paths <span class="sc">|&gt;</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_names</span>(basename) <span class="sc">|&gt;</span>                           <span class="co"># name each element by file name</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(readr<span class="sc">::</span>read_csv) <span class="sc">|&gt;</span>                          <span class="co"># read each file into a tibble</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list_rbind</span>(<span class="at">names_to =</span> <span class="st">"file_name"</span>) <span class="sc">|&gt;</span>           <span class="co"># combine and create file_name column</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> readr<span class="sc">::</span><span class="fu">parse_number</span>(file_name))    <span class="co"># extract year from the name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>Sometimes column names contain spaces or other characters that make them <strong>non‑syntactic</strong> in R. In that case they are surrounded by backticks in the tibble, and you must use backticks to refer to them. A simple solution is to rename the columns after import using <code>rename()</code> or the <code>janitor::clean_names()</code> helper (the latter converts names to <code>snake_case</code>).</p>
+<p>When the data frames are heterogeneous (different columns or types), inspect them before binding. A helper like <code>df_types()</code> that records column names, types and missing values can be mapped over the list and the results compared.</p>
 </section>
-<section id="how-readr-guesses-column-types" class="level3">
-<h3 class="anchored" data-anchor-id="how-readr-guesses-column-types">How readr guesses column types</h3>
-<p>Because a CSV file does not contain type information, readr <strong>guesses the type of each column</strong>. It samples up to 1,000 values from across the file and asks: <em>does the column contain only logical values?</em> <em>Only numbers?</em> <em>Does it match ISO8601 date format?</em> If none of those tests succeed, readr assumes the column is a string. This heuristic works well for clean datasets but can fail when there are unexpected values (e.g., a period <code>.</code> to represent a missing number).</p>
-<p>When type guessing fails you can provide your own <strong>column specification</strong> via the <code>col_types</code> argument. This argument is a named list or a <code>cols()</code> specification where each name matches a column and each value is a type function (e.g., <code>col_double()</code>, <code>col_integer()</code>, <code>col_character()</code>, <code>col_date()</code>, <code>col_datetime()</code>). For example, if a numeric ID is misread as a number but should be a character (because you never intend to sum it), specify <code>col_types = list(student_id = col_character())</code>. readr provides nine column types including</p>
+<section id="handling-failures" class="level3">
+<h3 class="anchored" data-anchor-id="handling-failures">Handling failures</h3>
+<p><code>purrr::map()</code> stops on the first error. If any file fails to read, nothing is returned. To avoid losing all progress you can wrap the reading function with <code>purrr::possibly()</code>, which returns a specified default (e.g., <code>NULL</code>) instead of erroring. For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>safe_read <span class="ot">=</span> <span class="fu">possibly</span>(readr<span class="sc">::</span>read_csv, <span class="at">otherwise =</span> <span class="cn">NULL</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>files  <span class="ot">=</span> paths <span class="sc">|&gt;</span> <span class="fu">map</span>(safe_read)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>data   <span class="ot">=</span> files <span class="sc">|&gt;</span> <span class="fu">list_rbind</span>()    <span class="co"># list_rbind() silently drops NULLs</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>failed <span class="ot">=</span> <span class="fu">map_lgl</span>(files, is.null)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>paths[failed]  <span class="co"># investigate these files manually</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This pattern lets you process all the valid files and identify which ones need special handling.</p>
+</section>
+<section id="saving-multiple-outputs" class="level3">
+<h3 class="anchored" data-anchor-id="saving-multiple-outputs">Saving multiple outputs</h3>
+<p>The final task is the reverse of reading: you often need to save multiple data frames or plots. The iteration tools you’ve learned apply here too. For example, to save several datasets to disk you could use <code>purrr::iwalk()</code> (or <code>walk2()</code>) over a list of tibbles and corresponding file names:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>datasets <span class="ot">=</span> <span class="fu">list</span>(<span class="at">penguins =</span> palmerpenguins<span class="sc">::</span>penguins, </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">storms   =</span> dplyr<span class="sc">::</span>storms)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>paths <span class="ot">=</span> <span class="fu">paste0</span>(<span class="fu">names</span>(datasets), <span class="st">".csv"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">walk2</span>(datasets, paths, readr<span class="sc">::</span>write_csv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Similarly, to save multiple plots you can iterate over a list of ggplot objects and call <code>ggsave()</code> for each, constructing the file name from the plot’s position or a meaningful label. When writing many outputs to a database, you can create a template table and then iterate over your data frames inserting them one by one.</p>
+</section>
+<section id="key-takeaways" class="level3">
+<h3 class="anchored" data-anchor-id="key-takeaways">Key take‑aways</h3>
 <ul>
-<li>logicals</li>
-<li>doubles</li>
-<li>integers</li>
-<li>characters</li>
-<li>factors</li>
-<li>dates</li>
-<li>date‑time</li>
-<li>permissive numbers</li>
-<li>skipped columns</li>
+<li><strong>Vectorised operations hide loops.</strong> R often does the iteration for you, but when you need more control, functional programming tools help you express iteration clearly.</li>
+<li><strong><code>across()</code> loops over columns.</strong> Select variables with tidy‑select in <code>.cols</code>, supply one or more functions via <code>.fns</code> (bare names or anonymous functions), and control output names with <code>.names</code>. Use <code>where()</code> helpers to select columns by type and <code>if_any()</code>/<code>if_all()</code> to filter across multiple columns.</li>
+<li><strong>Break up complex summaries.</strong> When multiple functions are applied, name them to get informative suffixes and, if needed, customise the naming pattern.</li>
+<li><strong>Three‑step file import.</strong> Use <code>list.files()</code> to collect file names, <code>purrr::map()</code> to read each file and <code>list_rbind()</code> to combine them. Use <code>set_names()</code> and the <code>names_to</code> argument to capture metadata stored in file names.</li>
+<li><strong>Use <code>possibly()</code> to handle errors.</strong> Wrap functions with <code>purrr::possibly()</code> so that failures return a default, allowing you to process good inputs and diagnose problems later.</li>
+<li><strong>Iteration patterns are symmetrical.</strong> The same tools you use to read multiple inputs—<code>map()</code>, <code>walk()</code>, naming and combining—also help you write multiple outputs, from CSV files to plots.</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A small CSV with a custom missing value "."</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>simple_csv <span class="ot">=</span> <span class="st">"x</span><span class="sc">\n</span><span class="st">10</span><span class="sc">\n</span><span class="st">.</span><span class="sc">\n</span><span class="st">20</span><span class="sc">\n</span><span class="st">30"</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Default guess treats the period as a string</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>df_default <span class="ot">=</span> <span class="fu">read_csv</span>(simple_csv)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>df_default</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 1
-  x    
-  &lt;chr&gt;
-1 10   
-2 .    
-3 20   
-4 30   </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Override the type to double and inspect problems</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df_num <span class="ot">=</span> <span class="fu">read_csv</span>(simple_csv, <span class="at">col_types =</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">col_double</span>()))</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">problems</span>(df_num)  <span class="co"># shows where parsing failed</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 5
-    row   col expected actual file                                              
-  &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;                                             
-1     3     1 a double .      C:/Users/Joshua_Patrick/AppData/Local/Temp/Rtmp6b…</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tell readr to treat "." as NA so guessing succeeds</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_fixed <span class="ot">=</span> <span class="fu">read_csv</span>(simple_csv, <span class="at">na =</span> <span class="st">"."</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df_fixed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 1
-      x
-  &lt;dbl&gt;
-1    10
-2    NA
-3    20
-4    30</code></pre>
-</div>
-</div>
-<p>If you have many columns with the same type, you can set a <strong>default type</strong> using <code>cols(.default = col_character())</code>. To read only a subset of columns, use <code>cols_only()</code> with the columns you want.</p>
-</section>
-<section id="reading-multiple-files-and-combining-them" class="level3">
-<h3 class="anchored" data-anchor-id="reading-multiple-files-and-combining-them">Reading multiple files and combining them</h3>
-<p>In many projects you receive data split across multiple files—perhaps one file per month or per site. Instead of reading each file separately and then binding the results, you can pass a <strong>vector of file paths</strong> to <code>read_csv()</code>. readr will read all of them and stack the rows together. The optional <code>id</code> argument adds a column that records the file each row came from.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppose you have three monthly sales files stored in data/01-sales.csv, 02-sales.csv, 03-sales.csv</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>sales_files <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"data/01-sales.csv"</span>, <span class="st">"data/02-sales.csv"</span>, <span class="st">"data/03-sales.csv"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read and combine, adding a 'file' column to identify the source</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">=</span> <span class="fu">read_csv</span>(sales_files, <span class="at">id =</span> <span class="st">"file"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>You often don’t know the names of all the files ahead of time. Use <code>list.files()</code> to find files whose names match a pattern (e.g., <code>"sales\\.csv$"</code>) and set <code>full.names = TRUE</code> so the full path is returned.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find all CSV files ending with 'sales.csv' in the data directory</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>sales_files <span class="ot">=</span> <span class="fu">list.files</span>(<span class="st">"data"</span>, <span class="at">pattern =</span> <span class="st">"sales</span><span class="sc">\\</span><span class="st">.csv$"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>sales_files</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">=</span> <span class="fu">read_csv</span>(sales_files, <span class="at">id =</span> <span class="st">"file"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Once you have imported multiple files you can combine them explicitly with <code>dplyr::bind_rows()</code> or <code>bind_cols()</code>, depending on whether you want to stack rows or columns. <code>bind_rows()</code> requires identical column names, so pay attention to names and types when reading.</p>
-</section>
-<section id="writing-data-back-to-disk" class="level3">
-<h3 class="anchored" data-anchor-id="writing-data-back-to-disk">Writing data back to disk</h3>
-<p><code>readr</code> also provides <code>write_csv()</code> and <code>write_tsv()</code> for saving tibbles to disk. Remember that when you write to CSV the column specification is lost—you must regenerate types when reading the file again. For intermediate results consider using <code>write_rds()</code> and <code>read_rds()</code>, which store R objects in a binary format preserving types.</p>
-<!-- ## In‑class activity (≈60 min) -->
-<!-- Today’s activity gives you hands‑on practice importing and combining data.  Work individually or in small groups.  A shared dataset (e.g., **nycflights13** or **palmerpenguins**) will be split into several CSV files ahead of time.  Download the files from the course site or find them in your project’s `data/` folder. -->
-<!-- 1. **Inspect the files (10 min)** – Each student chooses one of the CSV files and opens it in a text editor or uses `read_csv()` with `n_max = 5` to glimpse the first few rows.  Note the column names and any potential issues: missing values recorded as strings (e.g., `"."` or `"NA"`), inconsistent capitalization, or unexpected characters. -->
-<!-- 2. **Import with `read_csv()` (15 min)** – Use `read_csv()` to import your file.  If you see a warning about parsing problems, call `problems()` to identify the row and column causing trouble.  Adjust the `na` argument or supply a `col_types` list to fix the issue.  Discuss with your partner which types were guessed correctly and which ones needed manual specification.  Try adding `show_col_types = FALSE` to reduce clutter in your console. -->
-<!-- 3. **Combine files (20 min)** – As a group, collect the names of all the CSV files and store them in a character vector.  Use `list.files()` with a pattern if the files follow a naming convention (e.g., `*_penguins.csv`).  Read all files at once using `read_csv(file_vector, id = "source")`.  Inspect the resulting tibble—does it include a new `source` column?  Alternatively, read the files one by one and combine them using `bind_rows()`. -->
-<!-- 4. **Explore the combined data (15 min)** – Verify that the combined dataset has the expected number of rows and that the columns have consistent types.  Use `summarize()` to compute simple summaries (e.g., number of observations per file, mean of a numeric variable).  Discuss strategies for detecting import errors: inconsistent column names, mismatched types or unusual missing values.  Reflect on how the import step lays the groundwork for the tidy data work you will do in the next session. -->
-<!-- This activity will form the basis for the tidy‑data exercises in Session 7.  Save your cleaned and combined tibble to your project folder using `write_csv()` or `write_rds()` so you can use it again. -->
+<!-- ## In‑class activity -->
+<!-- In today’s hands‑on activity you will practise functional programming with the **palmerpenguins::penguins** dataset.  The dataset includes measurements for three species of penguins (`Adelie`, `Gentoo`, `Chinstrap`) and provides a clean, tabular example that is *not used in the R for Data Science book*.  The goal is to apply `across()` to summarise and transform multiple variables, iterate over groups with `map()`, handle potential read failures with `possibly()`, and save multiple outputs.  Complete the following steps in an R script or notebook: -->
+<!-- 1. **Explore the data (5 min).**  Load the tidyverse and palmerpenguins packages.  Use `glimpse(penguins)` to see the structure of the dataset, and identify which variables are numeric and which are factors.  Use `summary()` to check for missing values. -->
+<!-- 2. **Summarise numeric variables by species (10 min).**  Use `group_by(species)` and `summarize()` with `across()` to compute the mean and standard deviation of every numeric column (e.g., `bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, `body_mass_g`).  Supply a named list of functions so that your output columns are named `mean_bill_length_mm`, `sd_bill_length_mm`, etc.  Remember to set `na.rm = TRUE`. -->
+<!-- 3. **Create standardized variables (10 min).**  Use `mutate()` with `across(where(is.numeric), ~ (.x - mean(.x, na.rm = TRUE)) / sd(.x, na.rm = TRUE), .names = "z_{.col}")` to add Z‑score versions of each numeric variable to the dataset.  Compare the distributions of the standardized variables across species with a boxplot. -->
+<!-- 4. **Split and save the data (10 min).**  Split the standardized penguin data by species using `split(penguins, penguins$species)`.  Use `iwalk()` (or `walk2()`) to iterate over the list and write each tibble to a CSV file named after the species, e.g., `"adelie.csv"`, `"gentoo.csv"` and `"chinstrap.csv"`.  All files should be saved in a new folder called `species_csv`. -->
+<!-- 5. **Read and combine with error handling (15 min).**  Use `list.files()` with a pattern that matches only `.csv` files in `species_csv` and `full.names = TRUE` to create a vector of file paths.  Create a safe reading function `safe_read = purrr::possibly(readr::read_csv, otherwise = NULL)` and use `map()` to read each file.  Combine the non‑NULL results with `list_rbind(names_to = "species")` to reconstruct a single tibble.  Verify that the combined data matches your original standardized dataset.  If any files fail to read (e.g., you could intentionally rename one file to simulate an error), identify which ones by checking which list elements are `NULL`. -->
+<!-- 6. **Generate and save multiple plots (10 min).**  For each species, create a scatterplot of bill length vs. flipper length using `ggplot()` and store the plots in a named list.  Then use `iwalk()` to iterate over the plots and save each to a PNG file in a `plots` folder.  Construct the file names using the species names (e.g., `"scatter-adelie.png"`).  Optionally, customise the titles and colours for each plot. -->
+<!-- This activity will reinforce your understanding of `across()`, `map()`, safe iteration with `possibly()` and iteratively saving outputs. -->
+<!-- --- -->
+<!-- **Suggested reading for Session 20:**  Before the next class on reproducible research and communication, read two chapters from *R for Data Science* (2nd edition).  **Chapter 28 “Quarto”** introduces Quarto as a unified authoring framework that combines code, its results and your prose into a single, reproducible document【992205213102681†L125-L143】.  The chapter explains that Quarto documents (`.qmd` files) are plain text files with a YAML header, code chunks and narrative text, and that Quarto supports many output formats, such as HTML, PDF and Word【992205213102681†L165-L201】.  You’ll learn that Quarto is designed for three purposes: communicating results to decision‑makers, collaborating with other data scientists, and serving as a lab notebook【992205213102681†L125-L142】.  The chapter also notes that Quarto unifies the R Markdown ecosystem and requires the command‑line interface (CLI) but is integrated into RStudio【992205213102681†L149-L160】. -->
+<!-- **Chapter 11 “Communication”** focuses on turning exploratory graphics into expository graphics that effectively communicate your insights.  The authors emphasize that your audience may lack your background knowledge, so you need to invest effort in making plots self‑explanatory【778553707203566†L124-L135】.  Start by adding good labels with `labs()`; titles should summarise the main finding rather than merely describing the plot【778553707203566†L183-L185】.  The chapter also explains how to add subtitles and captions to provide context and data sources【778553707203566†L187-L191】.  Reading these sections will prepare you to use Quarto to document your analysis and to design graphics that communicate clearly. -->
 
 
 </section>
