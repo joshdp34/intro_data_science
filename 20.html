@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Session 7 – Tidy data &amp; pivoting – STA 2300 Intro to Data Science</title>
+<title>20&nbsp; Session 20 – Reproducible research &amp; communication – STA 2300 Intro to Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -156,7 +156,7 @@ document.addEventListener('click', (event) => {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7 – Tidy data &amp; pivoting</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./20.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20 – Reproducible research &amp; communication</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -232,7 +232,7 @@ document.addEventListener('click', (event) => {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07.html" class="sidebar-item-text sidebar-link active">
+  <a href="./07.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7 – Tidy data &amp; pivoting</span></span></a>
   </div>
 </li>
@@ -310,7 +310,7 @@ document.addEventListener('click', (event) => {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./20.html" class="sidebar-item-text sidebar-link">
+  <a href="./20.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20 – Reproducible research &amp; communication</span></span></a>
   </div>
 </li>
@@ -327,9 +327,12 @@ document.addEventListener('click', (event) => {
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#what-is-tidy-data" id="toc-what-is-tidy-data" class="nav-link" data-scroll-target="#what-is-tidy-data">What is tidy data?</a></li>
-  <li><a href="#lengthening-data-with-pivot_longer" id="toc-lengthening-data-with-pivot_longer" class="nav-link" data-scroll-target="#lengthening-data-with-pivot_longer">Lengthening data with <code>pivot_longer()</code></a></li>
-  <li><a href="#widening-data-with-pivot_wider" id="toc-widening-data-with-pivot_wider" class="nav-link" data-scroll-target="#widening-data-with-pivot_wider">Widening data with <code>pivot_wider()</code></a></li>
+  <li><a href="#why-reproducible-research" id="toc-why-reproducible-research" class="nav-link" data-scroll-target="#why-reproducible-research">Why reproducible research?</a></li>
+  <li><a href="#quarto-basics-and-yaml" id="toc-quarto-basics-and-yaml" class="nav-link" data-scroll-target="#quarto-basics-and-yaml">Quarto basics and YAML</a></li>
+  <li><a href="#code-chunks-and-options" id="toc-code-chunks-and-options" class="nav-link" data-scroll-target="#code-chunks-and-options">Code chunks and options</a></li>
+  <li><a href="#rendering-to-multiple-formats" id="toc-rendering-to-multiple-formats" class="nav-link" data-scroll-target="#rendering-to-multiple-formats">Rendering to multiple formats</a></li>
+  <li><a href="#inline-code-and-narrative" id="toc-inline-code-and-narrative" class="nav-link" data-scroll-target="#inline-code-and-narrative">Inline code and narrative</a></li>
+  <li><a href="#communicating-your-findings" id="toc-communicating-your-findings" class="nav-link" data-scroll-target="#communicating-your-findings">Communicating your findings</a></li>
   <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key take‑aways</a></li>
   </ul></li>
   </ul>
@@ -340,7 +343,7 @@ document.addEventListener('click', (event) => {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7 – Tidy data &amp; pivoting</span></h1>
+<h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20 – Reproducible research &amp; communication</span></h1>
 </div>
 
 
@@ -360,124 +363,108 @@ document.addEventListener('click', (event) => {
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Define tidy data.</strong> Understand the three rules that make a dataset tidy: each <strong>variable</strong> must live in its own column, each <strong>observation</strong> must occupy its own row, and each <strong>value</strong> must appear in a single cell. Appreciate why a consistent data structure makes it easier to learn and use tidyverse tools.</li>
-<li><strong>Lengthen data with <code>pivot_longer()</code>.</strong> Use <code>pivot_longer()</code> from the <em>tidyr</em> package to reshape untidy datasets by gathering column names into a new variable and their values into another variable. Learn how to select columns to pivot, specify the names of the new variables and optionally drop missing values.</li>
-<li><strong>Handle multiple variables in column names.</strong> Recognize when column headers encode multiple pieces of information (e.g., method, gender and age) and use the <code>names_to</code>/<code>names_sep</code> arguments of <code>pivot_longer()</code> to split them into separate variables.</li>
-<li><strong>Widen data with <code>pivot_wider()</code>.</strong> Use <code>pivot_wider()</code> to spread rows into columns when each observation is represented across multiple rows. Learn how to choose the <code>names_from</code>, <code>values_from</code> and <code>id_cols</code> arguments so that each row uniquely identifies an observation.</li>
+<li><strong>Appreciate the value of reproducible research.</strong> Understand why combining your code, its results and your prose in a single document improves transparency, facilitates collaboration and serves as a lab notebook. Recognize that Quarto integrates the lessons of the R Markdown ecosystem and is designed for analysts, collaborators and decision‑makers.</li>
+<li><strong>Learn the basics of Quarto documents.</strong> Create and render a Quarto (<code>.qmd</code>) file with a YAML header and interleaved code and narrative. Understand how to specify global settings in the YAML, supply metadata like title and date, and set the default output format.</li>
+<li><strong>Use chunk options effectively.</strong> Control evaluation, display of code, warnings and messages with chunk options (<code>eval:</code>, <code>include:</code>, <code>echo:</code>, <code>message:</code> and <code>warning:</code>). Set global chunk options and learn how inline code can report dynamic values inside your prose.</li>
+<li><strong>Generate multiple output formats.</strong> Configure Quarto to render the same document to HTML, PDF and Word and learn how to customize options like the table of contents or code‑folding in the YAML. Understand the difference between persistent settings in the YAML header and transient settings supplied to <code>quarto_render()</code>.</li>
+<li><strong>Communicate your findings clearly.</strong> Apply principles from the communication chapter to turn exploratory graphics into expository graphics. Write titles that summarize the main finding rather than simply describing the plot; add subtitles and captions; label axes and legends with units and descriptive names; and use themes, annotations and layout to guide your audience.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<section id="what-is-tidy-data" class="level3">
-<h3 class="anchored" data-anchor-id="what-is-tidy-data">What is tidy data?</h3>
-<p>Tidy data is a <strong>standard way to organize your datasets</strong> so that they work naturally with the tidyverse. In tidy data:</p>
+<section id="why-reproducible-research" class="level3">
+<h3 class="anchored" data-anchor-id="why-reproducible-research">Why reproducible research?</h3>
+<p>In an exploratory notebook it’s easy to lose track of which code produced which results. Reproducible research addresses this by knitting your analysis and narrative together so that anyone—including future you—can rerun the analysis and obtain the same outputs. This approach, sometimes called <em>literate programming</em>, intersperses code with human‑readable explanations. In the tidyverse, the <strong>Quarto</strong> system is the modern successor to R Markdown. A Quarto document is a plain text file with a <code>.qmd</code> extension that contains three elements:</p>
 <ol type="1">
-<li><strong>Each variable is a column, each column is a variable.</strong> A dataset like <code>table1</code> from <em>R for Data Science</em> has one column for each variable and is easiest to work with.</li>
-<li><strong>Each observation is a row.</strong> Each row of a tidy data frame corresponds to one observation of all variables.</li>
-<li><strong>Each value is a cell.</strong> Every cell contains a single value for one variable in one observation.</li>
+<li>A <strong>YAML header</strong> delimited by triple dashes (<code>---</code>) at the top of the file. Here you set metadata such as the document title, author, date and default output format. You can also set default execution options (e.g., hide code globally) in this header.</li>
+<li><strong>Narrative text</strong> written in Markdown. Use headings to structure your document, lists for bullets and paragraphs for explanations. You can insert inline R code by enclosing it in backticks preceded by <code>r</code> (e.g., ``) to dynamically insert values into your prose.</li>
+<li><strong>Code chunks</strong> that contain R code. Each chunk begins with triple backticks and a language engine (e.g., <code>{r}</code>) and ends with triple backticks. You can assign a label and specify options immediately after the opening fences. When you render the document, Quarto executes each chunk in order and inserts the output.</li>
 </ol>
-<p>The pay‑off for tidying data is twofold. First, adopting a single consistent structure makes it easier to learn a suite of tools because they all assume the same underlying format. Second, placing variables in columns allows R’s vectorised functions to operate naturally.</p>
+<p>This structure ensures that anyone with the data and the <code>.qmd</code> file can reproduce your results. Because Quarto is language‑agnostic, you can also include chunks written in Python or Julia alongside R code, but we will focus on R.</p>
 </section>
-<section id="lengthening-data-with-pivot_longer" class="level3">
-<h3 class="anchored" data-anchor-id="lengthening-data-with-pivot_longer">Lengthening data with <code>pivot_longer()</code></h3>
-<p>Most real datasets aren’t tidy because they are organised for data entry or reporting rather than analysis. The <strong><code>pivot_longer()</code></strong> function lengthens data by gathering a set of columns into key–value pairs. Its most important arguments are:</p>
-<ul>
-<li><code>cols</code>: which columns to pivot. You can specify them explicitly (<code>bp1:bp2</code>) or using tidyselect helpers such as <code>starts_with()</code>.</li>
-<li><code>names_to</code>: the name of the new variable created from column names. For example, converting week columns (<code>wk1</code>, <code>wk2</code>, …) into a variable called <code>week</code>.</li>
-<li><code>values_to</code>: the name of the variable that will hold the values from the pivoted columns.</li>
-<li><code>values_drop_na</code>: set to <code>TRUE</code> to drop rows where all the pivoted columns contain <code>NA</code>.</li>
-</ul>
-<p>Here is a simple example using the built‑in <code>billboard</code> dataset, which records weekly Billboard chart positions. Each row is a song and each <code>wk?</code> column gives its rank in that week. To tidy this dataset, we gather the week columns into a new <code>week</code> variable and the ranks into a <code>rank</code> variable:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>billboard_long <span class="ot">&lt;-</span> billboard <span class="sc">|&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"wk"</span>),</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"week"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"rank"</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">week =</span> <span class="fu">parse_number</span>(week))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>billboard_long <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 5
-  artist track                   date.entered  week  rank
-  &lt;chr&gt;  &lt;chr&gt;                   &lt;date&gt;       &lt;dbl&gt; &lt;dbl&gt;
-1 2 Pac  Baby Don't Cry (Keep... 2000-02-26       1    87
-2 2 Pac  Baby Don't Cry (Keep... 2000-02-26       2    82
-3 2 Pac  Baby Don't Cry (Keep... 2000-02-26       3    72
-4 2 Pac  Baby Don't Cry (Keep... 2000-02-26       4    77
-5 2 Pac  Baby Don't Cry (Keep... 2000-02-26       5    87
-6 2 Pac  Baby Don't Cry (Keep... 2000-02-26       6    94</code></pre>
-</div>
-</div>
-<p>This call transforms the 317 × 79 <code>billboard</code> tibble into a 5307 × 5 tibble with one row per song–week combination.</p>
-<p>When column names contain <strong>multiple pieces of information</strong>, you can split them into several new variables by supplying a vector of names and a separator. For example, the <code>who2</code> dataset records TB cases with column names like <code>sp_m_014</code>, which combine the method (<code>sp</code>), gender (<code>m</code>) and age range (<code>014</code>). The following call extracts those parts into separate variables:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>who2_long <span class="ot">&lt;-</span> who2 <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">!</span>(country<span class="sc">:</span>year),</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"diagnosis"</span>, <span class="st">"gender"</span>, <span class="st">"age"</span>),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"_"</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"count"</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>who2_long <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 6
-  country      year diagnosis gender age   count
-  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;
-1 Afghanistan  1980 sp        m      014      NA
-2 Afghanistan  1980 sp        m      1524     NA
-3 Afghanistan  1980 sp        m      2534     NA
-4 Afghanistan  1980 sp        m      3544     NA
-5 Afghanistan  1980 sp        m      4554     NA
-6 Afghanistan  1980 sp        m      5564     NA</code></pre>
-</div>
-</div>
-<p>The <strong><code>names_sep</code></strong> argument splits each original column name at the underscore and assigns the pieces to the new variables (<code>diagnosis</code>, <code>gender</code>, <code>age</code>). The <strong><code>values_to</code></strong> argument stores the counts.</p>
+<section id="quarto-basics-and-yaml" class="level3">
+<h3 class="anchored" data-anchor-id="quarto-basics-and-yaml">Quarto basics and YAML</h3>
+<p>The YAML header sets the global context for your document. A minimal Quarto file looks like this:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Global life expectancy report"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> 2025-11-18</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>title</code> and <code>date</code> appear at the top of the rendered document. The <code>format</code> specifies the default output; common values include <code>html</code>, <code>pdf</code> and <code>docx</code>. You can supply an expanded <code>format:</code> field to customize specific options or produce multiple outputs:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">        # include a table of contents</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">  # make code blocks collapsible</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">docx</span><span class="kw">:</span><span class="at"> default</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>With this configuration Quarto will generate HTML, PDF and Word files when you render the document. If you render from RStudio the appropriate viewers open automatically. To render from the command line you can run <code>quarto render my-document.qmd</code> or use <code>quarto::quarto_render()</code> inside R; both commands support an <code>output_format</code> argument that overrides the YAML specification.</p>
 </section>
-<section id="widening-data-with-pivot_wider" class="level3">
-<h3 class="anchored" data-anchor-id="widening-data-with-pivot_wider">Widening data with <code>pivot_wider()</code></h3>
-<p>Sometimes a single observation is spread across multiple rows, and you need to widen the data by creating new columns. The function <strong><code>pivot_wider()</code></strong> increases the number of columns and decreases the number of rows. It is particularly useful when you have long data with a variable that identifies the type of measurement and another variable with the corresponding value.</p>
-<p>The key arguments are:</p>
+<section id="code-chunks-and-options" class="level3">
+<h3 class="anchored" data-anchor-id="code-chunks-and-options">Code chunks and options</h3>
+<p>Code chunks are where your analysis happens. Each chunk can be given a label so that you can reference its output (e.g., <code>#| label: setup</code>). Chunk <strong>options</strong> control whether code is executed and how results appear. Here are the most commonly used options:</p>
 <ul>
-<li><code>names_from</code>: the column whose unique values will become new column names.</li>
-<li><code>values_from</code>: the column containing the values to fill those new columns.</li>
-<li><code>id_cols</code>: optional columns that uniquely identify each row; if you omit this, <code>pivot_wider()</code> will attempt to infer them but may produce duplicate rows.</li>
+<li><code>eval: false</code> prevents the code from running. Use this to display example code without executing it.</li>
+<li><code>include: false</code> runs the code but hides both the code and its results; this is useful for setup tasks like loading packages or reading data.</li>
+<li><code>echo: false</code> hides the code but shows the results. Use this when writing reports for people who care about the conclusions but not the implementation.</li>
+<li><code>message: false</code> and <code>warning: false</code> suppress messages and warnings from appearing in the output.</li>
+<li><code>results: hide</code> hides printed output; <code>fig-show: hide</code> hides plots.</li>
 </ul>
-<p>As an example, the <code>cms_patient_experience</code> dataset from the Centers for Medicare &amp; Medicaid Services records multiple performance measures for each healthcare organization. Each organization appears on multiple rows, one per measure. To put each organization on its own row with separate columns for each measure code, use <code>pivot_wider()</code>:</p>
+<p>You can set these options on a per‑chunk basis by adding <code>#| option: value</code> lines immediately below the chunk header. For example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cms_wide <span class="ot">&lt;-</span> cms_patient_experience <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> <span class="fu">starts_with</span>(<span class="st">"org"</span>),</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> measure_cd,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> prf_rate</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>cms_wide <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 8
-  org_pac_id org_nm  CAHPS_GRP_1 CAHPS_GRP_2 CAHPS_GRP_3 CAHPS_GRP_5 CAHPS_GRP_8
-  &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
-1 0446157747 USC CA…          63          87          86          57          85
-2 0446162697 ASSOCI…          59          85          83          63          88
-3 0547164295 BEAVER…          49          NA          75          44          73
-4 0749333730 CAPE P…          67          84          85          65          82
-5 0840104360 ALLIAN…          66          87          87          64          87
-6 0840109864 REX HO…          73          87          84          67          91
-# ℹ 1 more variable: CAHPS_GRP_12 &lt;dbl&gt;</code></pre>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="20_files/figure-html/scatterplot-gapminder-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
 </div>
 </div>
-<p>By specifying the identifier columns (<code>org_pac_id</code> and <code>org_nm</code>), <code>pivot_wider()</code> ensures that each organisation occupies a single row and creates a column for each measure code. If you omit <code>id_cols</code>, you may see duplicate rows because <code>pivot_wider()</code> cannot uniquely identify observations on its own.</p>
+</div>
+<p>If many chunks share the same settings, set global chunk options in the YAML header under an <code>execute</code> field:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">message</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This hides code and suppresses messages by default; you can override these defaults in individual chunks by explicitly setting <code>echo: true</code> or similar.</p>
+</section>
+<section id="rendering-to-multiple-formats" class="level3">
+<h3 class="anchored" data-anchor-id="rendering-to-multiple-formats">Rendering to multiple formats</h3>
+<p>Quarto can produce a variety of outputs beyond static HTML. In the YAML header you can specify multiple formats under the <code>format:</code> field. Each format can have its own options. For example, to add a floating table of contents to the HTML version while keeping the PDF and Word versions default:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc_float</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">docx</span><span class="kw">:</span><span class="at"> default</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When you render the document, Quarto will create three files: <code>.html</code>, <code>.pdf</code> and <code>.docx</code>. If you only want to render one format temporarily, supply the <code>output_format</code> argument to <code>quarto_render()</code>, e.g.,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>quarto<span class="sc">::</span><span class="fu">quarto_render</span>(<span class="st">"my-report.qmd"</span>, <span class="at">output_format =</span> <span class="st">"docx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Another useful option for HTML outputs is <code>code-fold: true</code>, which hides code by default but allows readers to expand it on demand. Remember that PDF output requires a LaTeX installation; RStudio will prompt you to install TinyTeX if you don’t have it.</p>
+</section>
+<section id="inline-code-and-narrative" class="level3">
+<h3 class="anchored" data-anchor-id="inline-code-and-narrative">Inline code and narrative</h3>
+<p>One of the strengths of literate programming is the ability to embed code directly within text. Inline code is enclosed in backticks preceded by <code>r</code>, like <code>1704</code>. When the document is rendered, the expression is evaluated and its result inserted into your prose. This ensures that statements about your data remain accurate as your analysis evolves. To control the formatting of numbers you can define a helper function, such as:</p>
+<p>Then you could write, “The gapminder dataset contains <code>1,704</code> observations across <code>12</code> years.”</p>
+</section>
+<section id="communicating-your-findings" class="level3">
+<h3 class="anchored" data-anchor-id="communicating-your-findings">Communicating your findings</h3>
+<p>Once your analysis is reproducible, you need to communicate it effectively. A good graphic tells a story. Start with <em>labels</em>: use <code>labs()</code> to add clear axis titles, legend titles, a <em>main title</em> that summarizes the key finding and an optional <em>subtitle</em> and <em>caption</em>. Avoid titles that merely restate the variables (“A scatterplot of GDP vs.&nbsp;life expectancy”) and instead summarize the insight (“Life expectancy increases with wealth, but Europe leads at every income level”). Use the subtitle for additional context and the caption to cite data sources or provide notes. When labelling axes and legends, replace short variable names with descriptive phrases and include units (e.g., “GDP per capita (USD)”). Thoughtful labels help your audience understand your plots without reading your code.</p>
+<p>Beyond labels, consider <em>annotations</em>, <em>scales</em> and <em>themes</em>. Annotations (e.g., <code>geom_text()</code>, <code>geom_label()</code>) can highlight notable observations or annotate clusters. Adjust scales to control axis ticks, breaks and legends; the <code>scales</code> package provides functions like <code>label_comma()</code> for nicely formatted numbers. Themes control the non‑data elements of the plot: fonts, backgrounds and layout. The default <code>theme_minimal()</code> is a good starting point; use <code>theme()</code> to adjust specific elements such as the position of titles and captions. For multi‑plot layouts, packages like <code>patchwork</code> let you combine multiple ggplots and add common titles and captions.</p>
 </section>
 <section id="key-takeaways" class="level3">
 <h3 class="anchored" data-anchor-id="key-takeaways">Key take‑aways</h3>
 <ul>
-<li><strong>Tidy data has a consistent structure:</strong> variables in columns, observations in rows and values in cells. This organization simplifies analysis and leverages R’s vectorization.</li>
-<li><strong><code>pivot_longer()</code> gathers columns into key–value pairs</strong>. Use <code>cols</code> to select columns to gather, <code>names_to</code> and <code>values_to</code> to name the new variables, and <code>values_drop_na</code> to remove structural missing values.</li>
-<li><strong>Split multiple pieces of information</strong> encoded in column names with <code>names_to</code> and <code>names_sep</code>.</li>
-<li><strong><code>pivot_wider()</code> spreads values across new columns</strong>, reversing a <code>pivot_longer()</code> when observations are spread across rows. Use <code>names_from</code>, <code>values_from</code> and (optionally) <code>id_cols</code> to control the reshaping.</li>
-<li><strong>Practice on real data.</strong> Tidy datasets are not always ready-made; most analyses require some tidying. Being proficient with pivoting functions allows you to structure your data before visualizing, transforming or modelling.</li>
+<li><strong>Combine code and narrative.</strong> Use Quarto to weave your code and prose together so that anyone can reproduce your results and understand your reasoning.</li>
+<li><strong>Structure your document with YAML.</strong> The YAML header sets the title, date and output formats and can contain default execution options. Expand the <code>format:</code> field to customise each output and render to multiple formats.</li>
+<li><strong>Master chunk options.</strong> Use options like <code>eval</code>, <code>include</code>, <code>echo</code>, <code>message</code> and <code>warning</code> to control what is executed and displayed. Set global defaults in the YAML and override them locally when necessary.</li>
+<li><strong>Use inline code for dynamic text.</strong> Insert the results of R expressions into your prose with inline code and define helper functions to format numbers cleanly.</li>
+<li><strong>Communicate clearly.</strong> Titles should summarize the main insight; subtitles and captions provide context and sources; axis labels and legends should be descriptive and include units. Use annotations, scales and themes to guide your audience’s attention and craft expository graphics.</li>
 </ul>
+<!-- ## In‑class activity -->
+<!-- The in‑class activity for this session asks students to create a reproducible Quarto report using the **gapminder** dataset from the `gapminder` package.  They will practise setting up a Quarto document, customizing the YAML header, using chunk options to control execution and output, and designing clear graphics.  See the separate assignment description for details. -->
+<!-- --- -->
+<!-- **Suggested reading for Session 21:**  To prepare for the next class on exploratory data analysis (EDA), read **Chapter 10 “Exploratory data analysis”** from *R for Data Science* (2nd ed.).  The chapter frames EDA as an iterative cycle where you generate questions, search for answers using visualization and transformation, and refine your questions based on what you learn【728943193213359†L111-L126】.  EDA is not a rigid procedure but a creative process; ask lots of questions to uncover patterns, anomalies and relationships.  The authors highlight two overarching questions to guide your exploration: “What type of variation occurs within my variables?” and “What type of covariation occurs between my variables?”【728943193213359†L167-L176】.  Read about how to visualise variation (typical and unusual values) and covariation between variables, and consider the follow‑up questions suggested for each plot.  This reading will lay the foundation for systematically exploring datasets in the next session. -->
 
 
 </section>
