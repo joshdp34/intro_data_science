@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Session 7 – Tidy data &amp; pivoting – STA 2300 Intro to Data Science</title>
+<title>22&nbsp; Session 22 – Statistical modelling&nbsp;I: simple linear regression – STA 2300 Intro to Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -144,6 +110,35 @@ document.addEventListener('click', (event) => {
 });
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -156,7 +151,7 @@ document.addEventListener('click', (event) => {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7 – Tidy data &amp; pivoting</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./22.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22 – Statistical modelling&nbsp;I: simple linear regression</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -232,7 +227,7 @@ document.addEventListener('click', (event) => {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07.html" class="sidebar-item-text sidebar-link active">
+  <a href="./07.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7 – Tidy data &amp; pivoting</span></span></a>
   </div>
 </li>
@@ -322,7 +317,7 @@ document.addEventListener('click', (event) => {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./22.html" class="sidebar-item-text sidebar-link">
+  <a href="./22.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22 – Statistical modelling&nbsp;I: simple linear regression</span></span></a>
   </div>
 </li>
@@ -339,9 +334,11 @@ document.addEventListener('click', (event) => {
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#what-is-tidy-data" id="toc-what-is-tidy-data" class="nav-link" data-scroll-target="#what-is-tidy-data">What is tidy data?</a></li>
-  <li><a href="#lengthening-data-with-pivot_longer" id="toc-lengthening-data-with-pivot_longer" class="nav-link" data-scroll-target="#lengthening-data-with-pivot_longer">Lengthening data with <code>pivot_longer()</code></a></li>
-  <li><a href="#widening-data-with-pivot_wider" id="toc-widening-data-with-pivot_wider" class="nav-link" data-scroll-target="#widening-data-with-pivot_wider">Widening data with <code>pivot_wider()</code></a></li>
+  <li><a href="#why-do-we-model" id="toc-why-do-we-model" class="nav-link" data-scroll-target="#why-do-we-model">Why do we model?</a></li>
+  <li><a href="#model-families-and-fitting" id="toc-model-families-and-fitting" class="nav-link" data-scroll-target="#model-families-and-fitting">Model families and fitting</a></li>
+  <li><a href="#linear-models-and-formulas" id="toc-linear-models-and-formulas" class="nav-link" data-scroll-target="#linear-models-and-formulas">Linear models and formulas</a></li>
+  <li><a href="#interpreting-coefficients" id="toc-interpreting-coefficients" class="nav-link" data-scroll-target="#interpreting-coefficients">Interpreting coefficients</a></li>
+  <li><a href="#predictions-and-residuals" id="toc-predictions-and-residuals" class="nav-link" data-scroll-target="#predictions-and-residuals">Predictions and residuals</a></li>
   <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key take‑aways</a></li>
   </ul></li>
   </ul>
@@ -352,7 +349,7 @@ document.addEventListener('click', (event) => {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7 – Tidy data &amp; pivoting</span></h1>
+<h1 class="title"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22 – Statistical modelling&nbsp;I: simple linear regression</span></h1>
 </div>
 
 
@@ -372,124 +369,51 @@ document.addEventListener('click', (event) => {
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Define tidy data.</strong> Understand the three rules that make a dataset tidy: each <strong>variable</strong> must live in its own column, each <strong>observation</strong> must occupy its own row, and each <strong>value</strong> must appear in a single cell. Appreciate why a consistent data structure makes it easier to learn and use tidyverse tools.</li>
-<li><strong>Lengthen data with <code>pivot_longer()</code>.</strong> Use <code>pivot_longer()</code> from the <em>tidyr</em> package to reshape untidy datasets by gathering column names into a new variable and their values into another variable. Learn how to select columns to pivot, specify the names of the new variables and optionally drop missing values.</li>
-<li><strong>Handle multiple variables in column names.</strong> Recognize when column headers encode multiple pieces of information (e.g., method, gender and age) and use the <code>names_to</code>/<code>names_sep</code> arguments of <code>pivot_longer()</code> to split them into separate variables.</li>
-<li><strong>Widen data with <code>pivot_wider()</code>.</strong> Use <code>pivot_wider()</code> to spread rows into columns when each observation is represented across multiple rows. Learn how to choose the <code>names_from</code>, <code>values_from</code> and <code>id_cols</code> arguments so that each row uniquely identifies an observation.</li>
+<li><strong>Understand why we model data.</strong> Statistical models provide a low‑dimensional summary of a dataset by partitioning it into patterns and residuals. They are not meant to be “true” representations of the world; rather, they are useful approximations.</li>
+<li><strong>Define model families and fit a linear model.</strong> A model family is an equation that expresses a pattern (e.g., a straight line) with parameters that can vary. Fitting a model means finding the parameter values that make the model closest to the data.</li>
+<li><strong>Use formulas and <code>lm()</code> to specify models.</strong> In R, formulas like <code>y&nbsp;~&nbsp;x</code> specify linear models. The <code>lm()</code> function translates <code>y&nbsp;~&nbsp;x</code> into a straight‑line equation and finds the best‑fitting intercept and slope.</li>
+<li><strong>Interpret coefficients in simple linear regression.</strong> In a straight‑line model <span class="math inline">\(\widehat{y} = b_0 + b_1 x\)</span>, the slope <span class="math inline">\(b_1\)</span> is the change in the predicted response for a one‑unit increase in the predictor and the intercept <span class="math inline">\(b_0\)</span> is the predicted response when the predictor is zero.</li>
+<li><strong>Visualize predictions and residuals.</strong> Use <code>modelr::data_grid()</code> and <code>add_predictions()</code> to create fitted lines and <code>add_residuals()</code> to compute residuals. Plotting both helps diagnose how well the model captures the data.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<section id="what-is-tidy-data" class="level3">
-<h3 class="anchored" data-anchor-id="what-is-tidy-data">What is tidy data?</h3>
-<p>Tidy data is a <strong>standard way to organize your datasets</strong> so that they work naturally with the tidyverse. In tidy data:</p>
-<ol type="1">
-<li><strong>Each variable is a column, each column is a variable.</strong> A dataset like <code>table1</code> from <em>R for Data Science</em> has one column for each variable and is easiest to work with.</li>
-<li><strong>Each observation is a row.</strong> Each row of a tidy data frame corresponds to one observation of all variables.</li>
-<li><strong>Each value is a cell.</strong> Every cell contains a single value for one variable in one observation.</li>
-</ol>
-<p>The pay‑off for tidying data is twofold. First, adopting a single consistent structure makes it easier to learn a suite of tools because they all assume the same underlying format. Second, placing variables in columns allows R’s vectorised functions to operate naturally.</p>
+<section id="why-do-we-model" class="level3">
+<h3 class="anchored" data-anchor-id="why-do-we-model">Why do we model?</h3>
+<p>Exploratory data analysis reveals patterns, but strong patterns can obscure subtler trends. A <strong>statistical model</strong> provides a simple, low‑dimensional summary of a dataset. The model captures the dominant pattern, and the <strong>residuals</strong> are the deviations between the observed data and the model’s predictions. George&nbsp;Box reminds us that <em>all models are wrong, but some are useful</em>. Our goal is to choose a model family that captures the main trend and to use the residuals to explore what the model misses.</p>
 </section>
-<section id="lengthening-data-with-pivot_longer" class="level3">
-<h3 class="anchored" data-anchor-id="lengthening-data-with-pivot_longer">Lengthening data with <code>pivot_longer()</code></h3>
-<p>Most real datasets aren’t tidy because they are organised for data entry or reporting rather than analysis. The <strong><code>pivot_longer()</code></strong> function lengthens data by gathering a set of columns into key–value pairs. Its most important arguments are:</p>
-<ul>
-<li><code>cols</code>: which columns to pivot. You can specify them explicitly (<code>bp1:bp2</code>) or using tidyselect helpers such as <code>starts_with()</code>.</li>
-<li><code>names_to</code>: the name of the new variable created from column names. For example, converting week columns (<code>wk1</code>, <code>wk2</code>, …) into a variable called <code>week</code>.</li>
-<li><code>values_to</code>: the name of the variable that will hold the values from the pivoted columns.</li>
-<li><code>values_drop_na</code>: set to <code>TRUE</code> to drop rows where all the pivoted columns contain <code>NA</code>.</li>
-</ul>
-<p>Here is a simple example using the built‑in <code>billboard</code> dataset, which records weekly Billboard chart positions. Each row is a song and each <code>wk?</code> column gives its rank in that week. To tidy this dataset, we gather the week columns into a new <code>week</code> variable and the ranks into a <code>rank</code> variable:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>billboard_long <span class="ot">&lt;-</span> billboard <span class="sc">|&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"wk"</span>),</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"week"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"rank"</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">week =</span> <span class="fu">parse_number</span>(week))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>billboard_long <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 5
-  artist track                   date.entered  week  rank
-  &lt;chr&gt;  &lt;chr&gt;                   &lt;date&gt;       &lt;dbl&gt; &lt;dbl&gt;
-1 2 Pac  Baby Don't Cry (Keep... 2000-02-26       1    87
-2 2 Pac  Baby Don't Cry (Keep... 2000-02-26       2    82
-3 2 Pac  Baby Don't Cry (Keep... 2000-02-26       3    72
-4 2 Pac  Baby Don't Cry (Keep... 2000-02-26       4    77
-5 2 Pac  Baby Don't Cry (Keep... 2000-02-26       5    87
-6 2 Pac  Baby Don't Cry (Keep... 2000-02-26       6    94</code></pre>
-</div>
-</div>
-<p>This call transforms the 317 × 79 <code>billboard</code> tibble into a 5307 × 5 tibble with one row per song–week combination.</p>
-<p>When column names contain <strong>multiple pieces of information</strong>, you can split them into several new variables by supplying a vector of names and a separator. For example, the <code>who2</code> dataset records TB cases with column names like <code>sp_m_014</code>, which combine the method (<code>sp</code>), gender (<code>m</code>) and age range (<code>014</code>). The following call extracts those parts into separate variables:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>who2_long <span class="ot">&lt;-</span> who2 <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">!</span>(country<span class="sc">:</span>year),</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"diagnosis"</span>, <span class="st">"gender"</span>, <span class="st">"age"</span>),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"_"</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"count"</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>who2_long <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 6
-  country      year diagnosis gender age   count
-  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;
-1 Afghanistan  1980 sp        m      014      NA
-2 Afghanistan  1980 sp        m      1524     NA
-3 Afghanistan  1980 sp        m      2534     NA
-4 Afghanistan  1980 sp        m      3544     NA
-5 Afghanistan  1980 sp        m      4554     NA
-6 Afghanistan  1980 sp        m      5564     NA</code></pre>
-</div>
-</div>
-<p>The <strong><code>names_sep</code></strong> argument splits each original column name at the underscore and assigns the pieces to the new variables (<code>diagnosis</code>, <code>gender</code>, <code>age</code>). The <strong><code>values_to</code></strong> argument stores the counts.</p>
+<section id="model-families-and-fitting" class="level3">
+<h3 class="anchored" data-anchor-id="model-families-and-fitting">Model families and fitting</h3>
+<p>A <strong>model family</strong> is defined by an equation with parameters that can vary. For example, a straight‑line family has the equation <code>y&nbsp;=&nbsp;a₁&nbsp;*&nbsp;x&nbsp;+&nbsp;a₂</code>. Here <code>x</code> and <code>y</code> are variables from the data and <code>a₁</code>, <code>a₂</code> are parameters. <strong>Fitting</strong> the model involves finding the parameter values that make the model as close as possible to the data. We usually measure closeness by the root‑mean‑squared deviation between the observed and predicted values. The fitted model is the member of the family that minimizes this distance.</p>
 </section>
-<section id="widening-data-with-pivot_wider" class="level3">
-<h3 class="anchored" data-anchor-id="widening-data-with-pivot_wider">Widening data with <code>pivot_wider()</code></h3>
-<p>Sometimes a single observation is spread across multiple rows, and you need to widen the data by creating new columns. The function <strong><code>pivot_wider()</code></strong> increases the number of columns and decreases the number of rows. It is particularly useful when you have long data with a variable that identifies the type of measurement and another variable with the corresponding value.</p>
-<p>The key arguments are:</p>
-<ul>
-<li><code>names_from</code>: the column whose unique values will become new column names.</li>
-<li><code>values_from</code>: the column containing the values to fill those new columns.</li>
-<li><code>id_cols</code>: optional columns that uniquely identify each row; if you omit this, <code>pivot_wider()</code> will attempt to infer them but may produce duplicate rows.</li>
-</ul>
-<p>As an example, the <code>cms_patient_experience</code> dataset from the Centers for Medicare &amp; Medicaid Services records multiple performance measures for each healthcare organization. Each organization appears on multiple rows, one per measure. To put each organization on its own row with separate columns for each measure code, use <code>pivot_wider()</code>:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cms_wide <span class="ot">&lt;-</span> cms_patient_experience <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> <span class="fu">starts_with</span>(<span class="st">"org"</span>),</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> measure_cd,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> prf_rate</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>cms_wide <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 8
-  org_pac_id org_nm  CAHPS_GRP_1 CAHPS_GRP_2 CAHPS_GRP_3 CAHPS_GRP_5 CAHPS_GRP_8
-  &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
-1 0446157747 USC CA…          63          87          86          57          85
-2 0446162697 ASSOCI…          59          85          83          63          88
-3 0547164295 BEAVER…          49          NA          75          44          73
-4 0749333730 CAPE P…          67          84          85          65          82
-5 0840104360 ALLIAN…          66          87          87          64          87
-6 0840109864 REX HO…          73          87          84          67          91
-# ℹ 1 more variable: CAHPS_GRP_12 &lt;dbl&gt;</code></pre>
-</div>
-</div>
-<p>By specifying the identifier columns (<code>org_pac_id</code> and <code>org_nm</code>), <code>pivot_wider()</code> ensures that each organisation occupies a single row and creates a column for each measure code. If you omit <code>id_cols</code>, you may see duplicate rows because <code>pivot_wider()</code> cannot uniquely identify observations on its own.</p>
+<section id="linear-models-and-formulas" class="level3">
+<h3 class="anchored" data-anchor-id="linear-models-and-formulas">Linear models and formulas</h3>
+<p>In R, linear models are expressed using <strong>formulas</strong>. A formula like <code>y&nbsp;~&nbsp;x</code> indicates that <code>y</code> is to be modelled as a linear function of <code>x</code>. R automatically adds an intercept unless told not to. The <code>lm()</code> function fits the model: it translates <code>y&nbsp;~&nbsp;x</code> into an equation of the form <code>y&nbsp;=&nbsp;b₀&nbsp;+&nbsp;b₁&nbsp;x</code> and uses least squares to estimate <code>b₀</code> and <code>b₁</code>. Formulas can incorporate multiple predictors (e.g., <code>y&nbsp;~&nbsp;x1&nbsp;+&nbsp;x2</code>), interactions (<code>y&nbsp;~&nbsp;x1&nbsp;*&nbsp;x2</code>) and transformations. The <code>model_matrix()</code> function shows how R constructs the model matrix for a given formula.</p>
+</section>
+<section id="interpreting-coefficients" class="level3">
+<h3 class="anchored" data-anchor-id="interpreting-coefficients">Interpreting coefficients</h3>
+<p>Once you have fitted a simple linear regression, the model has the form</p>
+<p><span class="math display">\[
+\widehat{y} = b_0 + b_1 x,
+\]</span></p>
+<p>where <span class="math inline">\(b_0\)</span> is the <strong>intercept</strong> and <span class="math inline">\(b_1\)</span> is the <strong>slope</strong>. The slope tells you how the predicted response changes with the predictor: for every one‑unit increase in <span class="math inline">\(x\)</span>, the predicted value of <span class="math inline">\(y\)</span> increases (or decreases) by <span class="math inline">\(b_1\)</span>. The intercept is the predicted value of <span class="math inline">\(y\)</span> when <span class="math inline">\(x\)</span> equals zero. Sometimes the intercept lies outside the range of your data and has no meaningful interpretation; in such cases you should focus on the slope. Remember that linear regression describes associations; it does not establish causation.</p>
+</section>
+<section id="predictions-and-residuals" class="level3">
+<h3 class="anchored" data-anchor-id="predictions-and-residuals">Predictions and residuals</h3>
+<p>After fitting a model, you should examine its <strong>predictions</strong> and <strong>residuals</strong>. To visualize predictions, generate a grid of predictor values with <code>modelr::data_grid()</code> and add predicted responses with <code>add_predictions()</code>. Plotting the observed data along with the predicted line helps you see how well the model captures the pattern. To understand what the model misses, compute residuals with <code>add_residuals()</code> and explore their distribution. A histogram or frequency polygon of the residuals shows how spread out they are and whether they are centered around zero. Plotting residuals versus the predictor helps you check for systematic patterns; if the residuals look like random noise, your model has captured the main trend. Persistent patterns suggest the need for a more complex model, such as adding polynomial terms or transforming the predictor.</p>
 </section>
 <section id="key-takeaways" class="level3">
 <h3 class="anchored" data-anchor-id="key-takeaways">Key take‑aways</h3>
 <ul>
-<li><strong>Tidy data has a consistent structure:</strong> variables in columns, observations in rows and values in cells. This organization simplifies analysis and leverages R’s vectorization.</li>
-<li><strong><code>pivot_longer()</code> gathers columns into key–value pairs</strong>. Use <code>cols</code> to select columns to gather, <code>names_to</code> and <code>values_to</code> to name the new variables, and <code>values_drop_na</code> to remove structural missing values.</li>
-<li><strong>Split multiple pieces of information</strong> encoded in column names with <code>names_to</code> and <code>names_sep</code>.</li>
-<li><strong><code>pivot_wider()</code> spreads values across new columns</strong>, reversing a <code>pivot_longer()</code> when observations are spread across rows. Use <code>names_from</code>, <code>values_from</code> and (optionally) <code>id_cols</code> to control the reshaping.</li>
-<li><strong>Practice on real data.</strong> Tidy datasets are not always ready-made; most analyses require some tidying. Being proficient with pivoting functions allows you to structure your data before visualizing, transforming or modelling.</li>
+<li><strong>Models summarise patterns.</strong> A statistical model partitions data into patterns and residuals.</li>
+<li><strong>Model families are equations with parameters.</strong> We fit a model by choosing parameter values that minimise the distance between the model and the data.</li>
+<li><strong>Formulas and <code>lm()</code> specify linear models.</strong> A formula like <code>y&nbsp;~&nbsp;x</code> becomes a straight‑line equation and <code>lm()</code> finds the best‑fitting slope and intercept.</li>
+<li><strong>Interpret slopes and intercepts carefully.</strong> The slope is the change in the predicted response for a one‑unit change in the predictor; the intercept is the predicted response when the predictor is zero.</li>
+<li><strong>Always inspect predictions and residuals.</strong> Use <code>data_grid()</code> and <code>add_predictions()</code> to draw fitted lines, and <code>add_residuals()</code> to examine what the model misses.</li>
 </ul>
+<!-- ## In‑class activity and suggested reading -->
+<!-- In today’s in‑class activity you will practise simple linear regression using the built‑in **mtcars** dataset.  You will explore the relationship between a car’s weight (`wt`) and its fuel efficiency (`mpg`) by creating scatterplots, fitting a linear model with `lm()`, extracting and interpreting the coefficients, adding predicted values and residuals, and visualising residuals.  See the separate assignment file for details. -->
+<!-- **Suggested reading for Session 23:**  The next class introduces logistic regression and model evaluation.  Read **Section 9.5 “Introduction to logistic regression”** from the *OpenIntro Biostatistics* text.  Logistic regression is a type of generalised linear model used when the response variable is binary【900995470734497†L4-L20】.  Unlike linear regression, which models a continuous response with a straight line, logistic regression models the log‑odds of success as a linear function of the predictors【900995470734497†L4-L20】.  The section explains that generalised linear models first model the response variable with a probability distribution (e.g., binomial) and then model the parameters of that distribution with predictors【900995470734497†L14-L20】.  Reading this section will prepare you to interpret logistic regression coefficients and understand how classification models are fitted and evaluated. -->
 
 
 </section>

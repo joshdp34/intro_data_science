@@ -618,5 +618,35 @@
     "crumbs": [
       "<span class='chapter-number'>21</span>  <span class='chapter-title'>Session 21 – Exploratory data analysis (EDA)</span>"
     ]
+  },
+  {
+    "objectID": "22.html",
+    "href": "22.html",
+    "title": "22  Session 22 – Statistical modelling I: simple linear regression",
+    "section": "",
+    "text": "Objectives",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Session 22 – Statistical modelling I: simple linear regression</span>"
+    ]
+  },
+  {
+    "objectID": "22.html#objectives",
+    "href": "22.html#objectives",
+    "title": "22  Session 22 – Statistical modelling I: simple linear regression",
+    "section": "",
+    "text": "Understand why we model data. Statistical models provide a low‑dimensional summary of a dataset by partitioning it into patterns and residuals. They are not meant to be “true” representations of the world; rather, they are useful approximations.\nDefine model families and fit a linear model. A model family is an equation that expresses a pattern (e.g., a straight line) with parameters that can vary. Fitting a model means finding the parameter values that make the model closest to the data.\nUse formulas and lm() to specify models. In R, formulas like y ~ x specify linear models. The lm() function translates y ~ x into a straight‑line equation and finds the best‑fitting intercept and slope.\nInterpret coefficients in simple linear regression. In a straight‑line model \\(\\widehat{y} = b_0 + b_1 x\\), the slope \\(b_1\\) is the change in the predicted response for a one‑unit increase in the predictor and the intercept \\(b_0\\) is the predicted response when the predictor is zero.\nVisualize predictions and residuals. Use modelr::data_grid() and add_predictions() to create fitted lines and add_residuals() to compute residuals. Plotting both helps diagnose how well the model captures the data.",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Session 22 – Statistical modelling I: simple linear regression</span>"
+    ]
+  },
+  {
+    "objectID": "22.html#notes",
+    "href": "22.html#notes",
+    "title": "22  Session 22 – Statistical modelling I: simple linear regression",
+    "section": "Notes",
+    "text": "Notes\n\nWhy do we model?\nExploratory data analysis reveals patterns, but strong patterns can obscure subtler trends. A statistical model provides a simple, low‑dimensional summary of a dataset. The model captures the dominant pattern, and the residuals are the deviations between the observed data and the model’s predictions. George Box reminds us that all models are wrong, but some are useful. Our goal is to choose a model family that captures the main trend and to use the residuals to explore what the model misses.\n\n\nModel families and fitting\nA model family is defined by an equation with parameters that can vary. For example, a straight‑line family has the equation y = a₁ * x + a₂. Here x and y are variables from the data and a₁, a₂ are parameters. Fitting the model involves finding the parameter values that make the model as close as possible to the data. We usually measure closeness by the root‑mean‑squared deviation between the observed and predicted values. The fitted model is the member of the family that minimizes this distance.\n\n\nLinear models and formulas\nIn R, linear models are expressed using formulas. A formula like y ~ x indicates that y is to be modelled as a linear function of x. R automatically adds an intercept unless told not to. The lm() function fits the model: it translates y ~ x into an equation of the form y = b₀ + b₁ x and uses least squares to estimate b₀ and b₁. Formulas can incorporate multiple predictors (e.g., y ~ x1 + x2), interactions (y ~ x1 * x2) and transformations. The model_matrix() function shows how R constructs the model matrix for a given formula.\n\n\nInterpreting coefficients\nOnce you have fitted a simple linear regression, the model has the form\n\\[\n\\widehat{y} = b_0 + b_1 x,\n\\]\nwhere \\(b_0\\) is the intercept and \\(b_1\\) is the slope. The slope tells you how the predicted response changes with the predictor: for every one‑unit increase in \\(x\\), the predicted value of \\(y\\) increases (or decreases) by \\(b_1\\). The intercept is the predicted value of \\(y\\) when \\(x\\) equals zero. Sometimes the intercept lies outside the range of your data and has no meaningful interpretation; in such cases you should focus on the slope. Remember that linear regression describes associations; it does not establish causation.\n\n\nPredictions and residuals\nAfter fitting a model, you should examine its predictions and residuals. To visualize predictions, generate a grid of predictor values with modelr::data_grid() and add predicted responses with add_predictions(). Plotting the observed data along with the predicted line helps you see how well the model captures the pattern. To understand what the model misses, compute residuals with add_residuals() and explore their distribution. A histogram or frequency polygon of the residuals shows how spread out they are and whether they are centered around zero. Plotting residuals versus the predictor helps you check for systematic patterns; if the residuals look like random noise, your model has captured the main trend. Persistent patterns suggest the need for a more complex model, such as adding polynomial terms or transforming the predictor.\n\n\nKey take‑aways\n\nModels summarise patterns. A statistical model partitions data into patterns and residuals.\nModel families are equations with parameters. We fit a model by choosing parameter values that minimise the distance between the model and the data.\nFormulas and lm() specify linear models. A formula like y ~ x becomes a straight‑line equation and lm() finds the best‑fitting slope and intercept.\nInterpret slopes and intercepts carefully. The slope is the change in the predicted response for a one‑unit change in the predictor; the intercept is the predicted response when the predictor is zero.\nAlways inspect predictions and residuals. Use data_grid() and add_predictions() to draw fitted lines, and add_residuals() to examine what the model misses.",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Session 22 – Statistical modelling I: simple linear regression</span>"
+    ]
   }
 ]
