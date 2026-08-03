@@ -1,0 +1,153 @@
+# Session 15 – Advanced data import II: databases
+
+## Objectives
+
+* **Motivate working directly with databases.**  Large volumes of data often live in databases instead of flat files, and repeatedly exporting CSV snapshots is time‑consuming.  Learn why connecting directly to a database gives you immediate access to current data and avoids delays.
+* **Explain how database tables differ from tibbles.**  Database tables live on disk, can be arbitrarily large and usually have indexes to speed up queries.  Classical databases prioritize writing over analysis, whereas column‑oriented systems like duckdb are optimized for analytical queries.
+* **Connect to a database with DBI.**  The DBI package provides a uniform interface to many DBMSs.  You’ll learn to call `DBI::dbConnect()` with a driver from a package like `RPostgres`, `RMariaDB` or `duckdb` and supply host, port and credentials.  We will use duckdb because it runs in process and requires no server.
+* **Load and inspect tables.**  Use `dbWriteTable()` to copy a tibble into a database, `dbListTables()` to see what tables exist and `dbReadTable()` to read a whole table back into R.
+* **Execute SQL queries via DBI.**  Write simple `SELECT … FROM … WHERE …` statements and run them with `dbGetQuery()`.  Understand the core SQL clauses and how they map to dplyr verbs.
+* **Use dbplyr for lazy pipelines.**  dbplyr translates dplyr code into SQL.  Create a lazy table with `tbl()`, compose pipelines with verbs like `filter()` and `summarize()`, view the generated SQL with `show_query()` and retrieve results with `collect()`.
+
+## Notes
+
+### Why work with databases?
+
+When colleagues give you data by exporting CSV files, you have to ask for a new file every time your questions change.  The online textbook warns that this approach soon becomes painful and encourages you to connect directly to the database.  A database table looks like a data frame—a collection of named columns—but there are key differences:
+
+* **Storage:** data frames live in memory, whereas database tables live on disk and can be arbitrarily large.
+* **Indexes:** most databases maintain indexes that allow them to locate rows quickly without scanning the whole table.
+* **Optimization:** row‑oriented databases are designed to record transactions quickly, while column‑oriented systems like duckdb are optimized for analytical queries.
+
+These properties make databases essential for working with large or shared datasets.  Rather than extracting snapshots, you can write queries that retrieve exactly the data you need.
+
+### Setting up a connection
+
+The **DBI** package defines a low‑level interface for connecting to many database management systems.  You create a connection with `DBI::dbConnect()`, supplying a driver (from a DBMS‑specific package) and connection details.  For example, to connect to a PostgreSQL server you might write:
+
+```{r}
+#| eval: false
+con = DBI::dbConnect(
+  RPostgres::Postgres(),
+  host = "db.example.com",
+  port = 5432,
+  dbname = "mydb",
+  user = "username",
+  password = "secret"
+)
+```
+
+In this course we will use **duckdb**, an in‑process database that lives entirely within R.  It is designed for data scientists and is easy to get started with:
+
+```{r}
+#| eval: false
+
+
+library(DBI)
+library(duckdb)
+
+# Create a temporary duckdb database in memory
+con = dbConnect(duckdb())
+
+# Disconnect and clean up when finished
+dbDisconnect(con, shutdown = TRUE)
+```
+
+```{r}
+#| echo: false
+library(DBI)
+library(duckdb)
+
+# Create a temporary duckdb database in memory
+con = dbConnect(duckdb())
+
+```
+
+If you want to keep data between sessions, provide the `dbdir` argument to specify a file on disk.
+
+
+
+### Loading and inspecting tables
+
+New databases are empty, so you need to load data before you can query it.  Use `dbWriteTable()` to copy a tibble into a database; the first argument is the connection, the second is a table name and the third is the data frame.  For example, to load the `mpg` dataset from **ggplot2** into your duckdb database:
+
+```{r}
+library(ggplot2)
+
+dbWriteTable(con, "mpg", mpg)
+```
+
+You can explore your database with `dbListTables()` and read an entire table back into R with `dbReadTable()`:
+
+```{r}
+# List tables
+dbListTables(con)
+
+# Read a table
+dbReadTable(con, "mpg") |> tibble::as_tibble()
+```
+
+### Running SQL queries
+
+If you know SQL, you can execute queries with `DBI::dbGetQuery()`.  A SQL query consists of clauses such as `SELECT`, `FROM`, `WHERE`, `GROUP BY` and `ORDER BY`.  For instance, to find cars with highway mileage above 30 in the `mpg` table:
+
+```{r}
+#| eval: false
+sql = "SELECT manufacturer, model, year, hwy
+        FROM mpg
+        WHERE hwy > 30
+        ORDER BY hwy DESC"
+fast_cars = dbGetQuery(con, sql)
+head(fast_cars)
+```
+
+SQL gives you full control over the query, but writing it can be verbose.  In many cases you can use dbplyr to write dplyr code instead.
+
+### Lazy queries with dbplyr
+
+The **dbplyr** package translates your dplyr code into SQL for you.  Start by creating a *lazy table* with `tbl()`; it represents a database table but doesn’t pull any data into R:
+
+```{r}
+library(dplyr)
+
+mpg_db = tbl(con, "mpg")
+mpg_db
+```
+
+You can now use familiar dplyr verbs to filter, group and summarize.  dbplyr records the operations and only runs the query when you call `collect()`.  For example, to compute the average highway mileage for cars with at least a 2.0 dipslacement:
+
+```{r}
+# Compose a lazy query
+summary_db = mpg_db |>
+  filter(displ >= 2.0) |>
+  group_by(manufacturer) |>
+  summarise(avg_hwy = mean(hwy), n = n()) |>
+  arrange(desc(avg_hwy))
+
+# Show the generated SQL
+summary_db |> show_query()
+
+# Retrieve the results
+summary = summary_db |> collect()
+summary
+```
+
+The `show_query()` function prints the SQL generated by dbplyr.  When you call `collect()`, dbplyr sends the query to the database, retrieves the results and converts them into a tibble.
+
+### Basic SQL structure
+
+Although dbplyr hides much of SQL, it’s useful to understand its structure.  A query typically includes the following clauses:
+
+1. `SELECT` specifies which columns to return and can compute new columns.
+2. `FROM` names the table being queried.
+3. `WHERE` filters rows based on a condition.
+4. `GROUP BY` summarises groups of rows.
+5. `ORDER BY` sorts the output.
+
+SQL keywords are case‑insensitive, but it’s common to write them in uppercase.  The clauses must appear in the order shown.
+
+<!-- ## Suggested reading for Session 16 -->
+
+<!-- Next time we will look at big‑data formats and hierarchical data.  Read Chapter 22 of *R for Data Science* (2e), which introduces the **parquet** format and the **arrow** package.  The authors explain that CSVs are easy to read but inefficient, whereas parquet files and Arrow support fast, multi‑language access to large datasets【665400943195784†L111-L123】.  Arrow provides a dplyr backend so you can analyse larger‑than‑memory data using familiar syntax【665400943195784†L118-L123】.  The chapter also discusses when to choose parquet files versus a database【665400943195784†L125-L131】. -->
+
+<!-- Then read Chapter 23, “Hierarchical data”.  It introduces data **rectangling**—converting hierarchical or tree‑like structures into tidy tables—and notes that hierarchical data is common on the web【543782796618744†L120-L132】.  You’ll learn about lists as the data structure that supports nested data and how to use tidyr functions like `unnest_longer()` and `unnest_wider()` to unpack list‑columns【543782796618744†L120-L131】.  The chapter also warns that JSON is a common source of hierarchical data【543782796618744†L120-L132】.  These readings will prepare you to work with big‑data formats and nested data structures. -->

@@ -1,0 +1,170 @@
+# Session 10 – Variable types III: factors
+
+## Objectives
+
+* **Understand why factors exist.**  Factors represent **categorical variables** with a fixed and known set of possible values.  They prevent accidental typos and give you control over the order in which categories appear in summaries and plots.  Learn why treating categories as strings can lead to problems and how factors solve those problems.
+* **Create and inspect factors.**  Use `factor()` or `forcats::fct()` to convert character vectors to factors, specify levels and handle invalid values.  Learn to inspect and summarize factor levels with `levels()` and `count()`.
+* **Reorder factor levels for better visualization.**  Use `fct_reorder()` to order levels by the values of another variable, `fct_relevel()` to manually move levels to the front and `fct_reorder2()` when ordering line‑plot legends.  Explore `fct_infreq()` and `fct_rev()` to arrange levels by frequency.
+* **Modify and collapse levels.**  Relabel categories with `fct_recode()`, combine multiple levels with `fct_collapse()` and lump rare categories into “other” with the `fct_lump_*()` family.
+* **Work with ordered factors.**  Create ordered factors for ordinal data (e.g., satisfaction ratings) and appreciate when an intrinsic order exists.
+
+## Notes
+
+### Why factors?
+
+In data analysis, **categorical variables** often have a limited set of allowed values (e.g., months, continents, income bands).  Storing them as plain strings introduces two common issues: you can type invalid values and the default alphabetical sorting is rarely meaningful.  A **factor** solves these problems by enforcing a list of valid levels and providing explicit control over their order.  For example, the months "Jan", "Feb", … "Dec" should appear in calendar order, not alphabetical.  Converting a character vector of month names to a factor with those 12 levels ensures that invalid spellings become missing values (or an error if you use `forcats::fct()`), and sorting follows the chosen level order.
+
+Factors are also necessary for **plotting**.  When you map a factor to the y‑axis of a bar chart or to color/shape, ggplot2 displays the categories in the order given by the factor.  If you leave your categorical variable as a character, ggplot2 silently converts it to a factor using the alphabetical order.
+
+### Creating factors
+
+Base R provides a `factor()` function.  You pass a character vector and optionally a vector of **levels**:
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+
+months_raw  = c("Dec", "Apr", "Jan", "Mar")
+month_levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                 "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+
+# Create a factor with explicit levels
+months_factor = factor(months_raw, levels = month_levels)
+months_factor
+```
+
+If a value does not appear in `levels`, `factor()` converts it to `NA`.  The `forcats` package (loaded with the tidyverse) provides `fct()` which raises an error if you try to create a factor from values not present in `levels`, helping you catch typos earlier.
+
+You can check the current levels with `levels(months_factor)` and count the number of observations in each category using `count()`:
+
+```{r}
+library(forcats)
+
+levels(months_factor)  # returns the vector of valid levels
+
+# Example using the gss_cat dataset from forcats
+gss_cat |> count(race)
+```
+
+The `gss_cat` dataset (part of **forcats**) contains multiple factor variables such as `race`, `marital`, `rincome` and `partyid`.  Use it to practice summarizing and visualizing categorical data.
+
+### Reordering levels
+
+Sometimes the alphabetical or default order of factor levels is arbitrary.  **Reordering** levels improves the interpretability of plots.  The `fct_reorder()` function takes three arguments: the factor to reorder, a numeric vector whose values determine the order, and optionally a function to combine multiple values.
+
+```{r}
+# Average TV hours by religion
+relig_summary = gss_cat |>
+  group_by(relig) |>
+  summarise(tvhours = mean(tvhours, na.rm = TRUE), .groups = "drop")
+
+# Plot without reordering
+ggplot(relig_summary, aes(x = tvhours, y = relig)) +
+  geom_point()
+
+# Plot with levels reordered by tvhours
+ggplot(relig_summary, aes(x = tvhours, y = fct_reorder(relig, tvhours))) +
+  geom_point()
+```
+
+Here, reordering the `relig` factor makes it clear that people in the "Don’t know" category watch more TV than those in "Other Eastern" religions.  Use `fct_relevel()` when you need to manually move one or more levels to the front—for example, to emphasize a special category:
+
+```{r}
+# Move "Not applicable" to the front in rincome
+rincome_summary = gss_cat |>
+  group_by(rincome) |>
+  summarise(age = mean(age, na.rm = TRUE), .groups = "drop")
+
+ggplot(rincome_summary, aes(x = age, y = fct_relevel(rincome, "Not applicable"))) +
+  geom_point()
+```
+
+For line plots with many categories, `fct_reorder2()` orders the legend by the y‑value at the largest x‑value, making it easier to match the lines to the legend.
+
+Finally, `fct_infreq()` orders levels by their frequency, and `fct_rev()` reverses that order.  This combination is useful for bar charts where you want categories sorted from least to most common.
+
+### Modifying levels
+
+Reordering controls the **order** of the levels, but sometimes you want to change the **labels** or combine categories.  The `fct_recode()` function renames levels by providing the new name on the left and the old name on the right:
+
+```{r}
+gss_cat |>
+  mutate(
+    partyid = fct_recode(partyid,
+      "Republican, strong"    = "Strong republican",
+      "Republican, weak"      = "Not str republican",
+      "Independent, near rep" = "Ind,near rep",
+      "Independent, near dem" = "Ind,near dem",
+      "Democrat, weak"        = "Not str democrat",
+      "Democrat, strong"      = "Strong democrat"
+    )
+  ) |>
+  count(partyid)
+```
+
+To **collapse** multiple categories into a smaller set, use `fct_collapse()`.  Supply the new category names and a vector of existing levels to combine:
+
+```{r}
+gss_cat |>
+  mutate(
+    partyid = fct_collapse(partyid,
+      other = c("No answer", "Don't know", "Other party"),
+      rep   = c("Strong republican", "Not str republican"),
+      ind   = c("Ind,near rep", "Independent", "Ind,near dem"),
+      dem   = c("Not str democrat", "Strong democrat")
+    )
+  ) |>
+  count(partyid)
+```
+
+When you need to simplify a factor with many rare categories, the `fct_lump_*()` family automatically groups the smallest categories into "Other".  For example, `fct_lump_n(factor, n = 10)` keeps the 10 most common categories and lumps the rest:
+
+```{r}
+gss_cat |>
+  mutate(relig = fct_lump_n(relig, n = 10)) |>
+  count(relig, sort = TRUE)
+```
+
+### Ordered factors
+
+Some categories have an intrinsic order (e.g., "low", "medium", "high" or rating scales from 1 to 5).  You can create an **ordered factor** by setting `ordered = TRUE` in `factor()` or using `forcats::fct()` with the `ordered` argument.  Ordered factors behave like numeric variables for certain operations (e.g., `min()` and `max()` work) but remain categorical.  Always think carefully about whether your categories truly have a natural order before imposing one.
+
+### Key take‑aways
+
+* Factors represent categorical variables with a fixed set of levels and control the order of categories.
+* Creating a factor from a string requires specifying the valid levels; values not in the list become `NA` or throw an error.
+* Inspect factor levels with `levels()` and summarise them with `count()`.
+* Use the **forcats** functions `fct_reorder()`, `fct_relevel()` and `fct_reorder2()` to rearrange levels for clearer plots.
+* Modify factor labels with `fct_recode()`, collapse levels with `fct_collapse()` and lump rare categories with `fct_lump_n()`.
+* Ordered factors capture ordinal scales—set `ordered = TRUE` when the categories have a meaningful ranking.
+
+<!-- ## In‑class activity -->
+
+<!-- In this session’s activity you will practise working with categorical variables using the **gapminder** dataset from the `gapminder` package (not used in *R for Data Science*).  Install the package if necessary with `install.packages("gapminder")`. -->
+
+<!-- 1. **Explore the data (5 min).**  Load the tidyverse and gapminder packages and inspect the dataset with `glimpse(gapminder)` and `summary()`.  Identify the categorical variables (`continent` and `country`) and think about whether any numeric variables could be binned and turned into ordered factors. -->
+
+<!-- 2. **Convert and inspect factors (10 min).**  Convert `continent` to a factor explicitly using `fct()` or `factor()`.  Use `levels()` to view the levels and `count()` to compute how many observations each continent has.  Draw a bar chart of the number of observations per continent and use `fct_infreq()` and `fct_rev()` to order the continents by frequency. -->
+
+<!--    ```{r} -->
+<!--    library(gapminder) -->
+<!--    gapminder |>  -->
+<!--      mutate(continent = fct_infreq(continent) |> fct_rev()) |> -->
+<!--      ggplot(aes(x = continent)) + -->
+<!--      geom_bar() -->
+<!--    ``` -->
+
+<!-- 3. **Reorder by life expectancy (15 min).**  Compute the average life expectancy per continent using `group_by()` and `summarise()`.  Use `fct_reorder()` to order the continents by life expectancy and create a bar chart or boxplot showing the distribution of life expectancy across continents.  Discuss how the order changes the interpretation. -->
+
+<!-- 4. **Relabel and collapse continents (15 min).**  Suppose we want to compare “Western” versus “Eastern” regions.  Use `fct_collapse()` to combine `"Europe"` and `"Americas"` into `"West"`, `"Asia"` and `"Africa"` into `"East"`, and leave `"Oceania"` unchanged.  Summarise the number of observations and the average GDP per capita for each new region.  Create a bar chart of GDP per capita by region. -->
+
+<!-- 5. **Lump rare countries (15 min).**  The `country` variable has many levels.  Use `fct_lump_n(country, n = 5)` to keep only the five most frequently appearing countries (those observed across the most years) and lump the rest into an `"Other"` category.  Count the number of records in each category and make a bar chart.  Reflect on whether lumping helps you focus on the major contributors or obscures important details. -->
+
+<!-- 6. **Create an ordered factor (10 min).**  Use `cut()` to create a new ordered factor that categorizes life expectancy into `"low"` (< 50 years), `"medium"` (50–70 years) and `"high"` (> 70 years).  Summarise how the distribution of these categories differs across continents.  Which continents tend to have high life expectancy? -->
+
+<!-- This activity will give you hands‑on experience creating, reordering, recoding and collapsing factors on a dataset not covered in the textbook. -->
+
+<!-- --- -->
+
+<!-- **Suggested reading for Session 11:** Chapter 17 of *R for Data Science* (2nd ed.), “Dates and times”, introduces the `lubridate` package and teaches you how to parse date‑time strings, extract components (year, month, day, hour) and handle time zones.  Familiarity with date‑time data will prepare you to work with temporal data in the next session. -->

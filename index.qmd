@@ -1,0 +1,17 @@
+# Introduction {.unnumbered}
+
+These are the lecture notes for STA 2300 - Intro to Data Science
+
+**Prerequisites:** None 
+    
+#### Course Description:
+
+Principles of data science, including problem workflow, variable types, visualization, modeling, programming, data management and cleaning, reproducibility, and big data.
+
+<!-- ::: callout-note -->
+<!-- **How to use these notes** -->
+
+<!-- - Work through each *Try it* code cell in class. -->
+<!-- - Save your work in an RStudio Project and render this document to HTML with **Quarto**. -->
+<!-- - If a package is missing, install it with `install.packages("<name>")`. -->
+<!-- ::: -->

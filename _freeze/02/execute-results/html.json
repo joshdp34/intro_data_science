@@ -1,0 +1,17 @@
+{
+  "hash": "faaad74dfc4aed7f7baff9370c73f203",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Session 2 – Data visualization basics\n\n## Objectives\n\n* **Appreciate the importance of visualization.** A simple graph can convey more information than any other device. You will learn how the grammar of graphics underlies ggplot2.\n* **Create basic plots.** Use `ggplot2` to draw scatterplots, bar charts and histograms. \n* **Understand variable types.** Recognize when to use different plot types based on whether variables are categorical or numeric. \n* **Prepare for layering.** Today’s material sets the stage for Session 3 on layering, where you’ll add geoms, adjust positions and facet plots.\n\n### Notes\n\n**Why use ggplot2?**\nR has several systems for making graphs, but ggplot2 is one of the most elegant and versatile. It implements the grammar of graphics—a coherent system for describing and building graphs. Learning this grammar enables you to create a wide range of plots with consistent syntax.\n\n**Building your first plots**\nThe data-visualization chapter starts with a simple scatterplot to illustrate aesthetic mappings and geometric objects. Aesthetic mappings tie variables to graphical properties (x and y positions, colour, shape), while geoms specify the type of plot.\n\n* **Scatterplots** show the relationship between two numeric variables. For example, plotting penguin flipper length vs. body mass can reveal whether larger penguins tend to have longer flippers. Map species or island to colour or shape to uncover additional structure.\n* **Bar charts** display the distribution of a categorical variable—for example, counting penguins by species.\n* **Histograms** reveal the distribution of a numeric variable. Choose a bin width that balances detail with clarity.\n\nTo illustrate these concepts, load the tidyverse and palmerpenguins packages, then experiment with commands like:\n\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\nggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +\n  geom_point()\n```\n\n::: {.cell-output-display}\n![](02_files/figure-html/unnamed-chunk-1-1.png){width=576}\n:::\n\n```{.r .cell-code}\nggplot(penguins, aes(x = species)) +\n  geom_bar()\n```\n\n::: {.cell-output-display}\n![](02_files/figure-html/unnamed-chunk-1-2.png){width=576}\n:::\n\n```{.r .cell-code}\nggplot(penguins, aes(x = body_mass_g)) +\n  geom_histogram(binwidth = 200)\n```\n\n::: {.cell-output-display}\n![](02_files/figure-html/unnamed-chunk-1-3.png){width=576}\n:::\n:::\n\n\n\n\nBe sure to label axes and titles with `labs()`, choose appropriate scales, and consider transparency (`alpha`) to reduce overplotting.\n\n\n### Key take‑awayss\n\n* `ggplot2` implements a coherent grammar of graphics.\n* Scatterplots reveal relationships between numeric variables; bar charts and histograms show distributions.\n* Understanding your variables (categorical vs. numeric) guides your choice of plot type.\n\n",
+    "supporting": [
+      "02_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
