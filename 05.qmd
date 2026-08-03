@@ -1,0 +1,77 @@
+# Session 5 – Data transformation (II): grouping and summarizing
+
+## Objectives
+
+* **Change the unit of analysis with grouping.** Use `group_by()` to organize data into subsets (groups) so that subsequent operations operate within each group rather than on the whole data set.
+* **Compute summaries across groups.** Apply `summarize()` to compute summary statistics (counts, means, medians, etc.) for each group. Understand that `summarize()` returns one row for each combination of grouping variables.
+* **Use helper functions.** Learn to use helpers like `n()` and `n_distinct()` within `summarize()` to count observations and distinct values.
+* **Select top or bottom observations per group.** Use `slice_max()` and `slice_min()` to find the largest or smallest values within each group.
+* **Enhance pipelines.** Continue to use the pipe (`|>` or `%>%`) to link `group_by()`, `summarize()` and other verbs into clear analytical workflows.
+
+## Notes
+
+**Grouping** – `group_by()` does not change the data itself; it changes how dplyr verbs operate. After grouping, verbs like `summarize()`, `mutate()`, and `filter()` perform their operations separately on each group.
+
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+
+# Group penguins by species and island
+penguins_by <- penguins |> group_by(species, island)
+
+penguins_by
+```
+
+
+**Summarizing** – `summarize()` collapses multiple rows to a single row for each group. Without any grouping, it returns a single row summarizing the entire data frame.
+
+```{r}
+# Summarize mean body mass and count per species-island group
+penguin_summary <- penguins |>
+  group_by(species, island) |>
+  summarize(
+    count = n(),  # number of observations
+    mean_mass = mean(body_mass_g, na.rm = TRUE),
+    sd_mass = sd(body_mass_g, na.rm = TRUE),
+    distinct_years = n_distinct(year)
+  )
+  
+  penguin_summary
+```
+
+In `summarize()`, the summary functions must return a single value. Functions such as `mean()`, `median()`, `sd()` and counts like `n()` and `n_distinct()` are typical.
+
+**Ungrouping** – After summarizing, grouping remains; use `ungroup()` if you wish to remove grouping for subsequent operations. Alternatively, the `.groups` argument in `summarize()` can control the grouping structure of the result.
+
+**Finding extremes within groups** – `slice_max()` and `slice_min()` extract rows with the highest or lowest values within each group.
+
+```{r}
+# Top 3 diamonds by price for each cut
+top_diamonds <- diamonds |>
+  group_by(cut) |>
+  slice_max(order_by = price, n = 3, with_ties = FALSE)
+
+top_diamonds
+```
+
+**Pipelines** – Continue chaining operations: group, summarize, arrange, and visualize, reading the pipe as “then”. Example:
+
+```{r}
+# Relationship between diamond carat and mean price by cut
+diamond_summary <- diamonds |>
+  group_by(cut) |>
+  summarise(
+    count = n(),
+    mean_carat = mean(carat),
+    mean_price = mean(price)
+  ) |>
+  arrange(desc(mean_price))
+
+diamond_summary |> 
+  ggplot(aes(x = cut, y = mean_price)) +
+  geom_col()
+```
+
+
+

@@ -1,0 +1,94 @@
+# Session 4 – Data transformation (I): filtering, arranging, selecting and mutating
+
+## Objectives
+
+* **Understand the purpose of data transformation.** You rarely get data in exactly the form needed for analysis. Transformation involves creating new variables, reordering or selecting observations, and renaming columns.
+* **Use dplyr verbs to manipulate rows and columns.** Learn `filter()` to subset rows, `arrange()` to reorder rows, `select()` and `rename()` to choose or rename variables, and `mutate()` to create new columns.
+* **Chain operations with the pipe.** Use the pipe (`|>` in base R or `%>%` from **magrittr**) to express sequences of transformations in a readable way.
+
+### Notes
+
+**Key dplyr verbs** – This session covers four of the five core verbs of dplyr:
+
+* *Pick observations by their values:* `filter()` subsets rows based on logical conditions.
+
+  ```{r}
+  library(tidyverse)
+  library(palmerpenguins)
+  # Filter penguins to only Adelie species on Dream island
+  adelie_dream = penguins |> 
+    filter(species == "Adelie", island == "Dream")
+  
+  adelie_dream |> head()
+  ```
+
+  `filter()` takes the data frame as its first argument and any number of logical expressions as additional arguments. It returns a new data frame and does not modify the original.
+
+* *Reorder the rows:* `arrange()` sorts rows by one or more variables. Use `desc()` for descending order and remember that missing values are sorted to the end.
+
+  ```{r}
+  # Arrange penguins by body mass (descending) and flipper length (ascending)
+  penguins_sorted = penguins |> 
+    arrange(desc(body_mass_g), flipper_length_mm)
+  
+  penguins_sorted |> head()
+  ```
+
+* *Pick variables by their names:* `select()` quickly narrows a data frame to relevant columns. It supports helper functions like `starts_with()`, `ends_with()`, and `contains()`.
+
+  ```{r}
+  # Select species, island and body_mass_g columns
+  penguins_subset = penguins |> 
+    select(species, island, body_mass_g)
+  
+  penguins_subset |> head()
+  
+  # Select all columns except those from bill_length to bill_depth
+  penguins_except = penguins |> 
+    select(-(bill_length_mm:bill_depth_mm))
+  
+  penguins_except |> head()
+  ```
+
+  To rename a column without dropping others, use `rename()`.
+
+  ```{r}
+  # Rename flipper_length_mm to flipper_mm
+  penguins = penguins |> 
+    rename(flipper_mm = flipper_length_mm)
+  
+  penguins |> head()
+  ```
+
+* *Create new variables:* `mutate()` adds new columns that are functions of existing columns. You can refer to variables created earlier in the same call.
+
+  ```{r}
+  # Compute ratio of body mass to flipper length and total bill size
+  penguins = penguins |> 
+    mutate(
+      mass_per_flipper = body_mass_g / flipper_mm,
+      bill_size = bill_length_mm + bill_depth_mm
+    )
+  
+  penguins |> head()
+  ```
+
+  If you only want to keep the new variables, use `transmute()`.
+
+**Combining operations with the pipe** – Stringing multiple operations together can be awkward when saving intermediate objects. The pipe (`|>` or `%>%`) passes the result of one call to the next, making code easier to read.
+
+```{r}
+# Calculate average body mass by species in a single pipeline
+species_summary = penguins |>
+  group_by(species) |>
+  summarise(
+    count = n(),
+    mean_mass = mean(body_mass_g, na.rm = TRUE)
+  ) |>
+  arrange(desc(mean_mass))
+
+species_summary |> head()
+```
+
+The pipe should be read as “then”: group by species *then* summarise *then* arrange the result.
+

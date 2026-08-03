@@ -1,0 +1,109 @@
+# Session 12 – Missing values & data cleaning
+
+## Objectives
+
+* **Differentiate explicit and implicit missing values.**  Explicitly missing values appear in your data as `NA`, whereas *implicitly* missing values arise when an entire observation is absent.  Recognizing the difference – “the presence of an absence” versus “the absence of a presence” – guides how you handle them.
+* **Understand the infectious nature of `NA`.**  Missing values propagate through calculations and comparisons.  The online book revisits their *infectious nature* and discusses how to check for missing values before summarizing or visualizing data.
+* **Handle explicit missing values.**  Learn how to carry values forward with `tidyr::fill()` (last observation carried forward), replace missing values with fixed values using `dplyr::coalesce()`, and convert special codes (e.g., -99) to `NA` with `dplyr::na_if()`.
+* **Reveal and fill implicit missing values.**  Use `tidyr::pivot_wider()` to make implicit missings explicit and `tidyr::complete()` to generate all combinations of variables so that missing combinations appear as rows.  Understand when to drop structurally missing values by setting `values_drop_na = TRUE`.
+* **Deal with empty groups.**  Recognize that groups with no observations (empty groups) are a form of missingness and preserve them by setting `.drop = FALSE` in `count()` or `group_by()`.  Be aware of how summary functions behave on zero‑length vectors.
+
+## Notes
+
+### Why worry about missing values?
+
+Missing data is ubiquitous.  Sometimes a value is unknown, it wasn’t recorded or it simply doesn’t exist.  R represents absent values with the special marker `NA`, and these `NA`s are *infectious*: any arithmetic or logical operation involving a missing value yields a missing result.  This means you must consciously handle missing values before drawing conclusions.  The online book revisits missing values after we have encountered them in plotting and transformation and emphasizes their two forms—explicit and implicit.  An explicit missing value is the presence of an absence (an `NA` in a cell), while an implicit missing value is the absence of a presence (a row that should exist but doesn’t).
+
+### Tools for explicit missing values
+
+When you see `NA`s in your data, decide whether to **propagate**, **fill** or **replace** them:
+
+* **Carrying values forward/backward.**  In hand-entered data, a missing value may mean “same as the previous value”.  The `fill()` function from *tidyr* takes one or more columns and fills missing values with the most recent non‑missing value (last observation carried forward, or LOCF).  For example, if a dataset records a patient’s treatment at visits 1-3 but omits the patient’s name in visits 2 and 3, `fill()` will copy the name down.
+
+  ```{r}
+  #| message: false
+  #| warning: false
+  library(tidyverse)
+  
+  treatment = tribble(
+    ~person,           ~treatment, ~response,
+    "Derrick Whitmore", 1,         7,
+    NA,                 2,         10,
+    NA,                 3,         NA,
+    "Katherine Burke",  1,         4
+  )
+  # Fill missing person names forward
+  treatment |> fill(person)
+  ```
+
+* **Replacing with fixed values.**  If missing values represent a fixed value-such as zero or “unknown”—use `coalesce()` to replace `NA` with that value.  `coalesce()` returns the first non‑missing value among its arguments and is vectorised across rows.  It is also handy when combining multiple columns: `coalesce(a, b, c)` picks `a` if it’s non‑missing, otherwise `b`, then `c`.
+
+  ```{r}
+  x = c(1, 4, 5, 7, NA)
+  coalesce(x, 0)        # replace NA with zero
+  
+  # Combining two columns: take value from x if present, else from y
+  df = tibble(x = c(2, NA, 5), y = c(1, 3, NA))
+  df |> mutate(value = coalesce(x, y))
+  ```
+
+* **Converting sentinel values to `NA`.**  Older software sometimes encodes missing values with special numbers like 99 or -999.  Use `na_if(x, sentinel)` to replace those sentinel values with `NA`.  For instance, if a dataset records missing ages as -99, call `na_if(age, -99)` before analyzing.
+
+### Implicit missing values and how to reveal them
+
+Implicit missing values occur when some combinations of variables are absent.  For instance, suppose you record the price of a stock each quarter but forget to enter the first quarter in 2021.  That observation is implicitly missing.  Two tidyverse tools help reveal implicit missings:
+
+* **Pivoting.**  Pivoting data wider with `pivot_wider()` can transform implicit missings into explicit ones because every combination of rows and new columns must have a value.  Conversely, pivoting longer (`pivot_longer()`) can drop structural missing values when `values_drop_na = TRUE`.
+
+* **Completing combinations.**  `complete()` creates all combinations of the supplied variables and inserts rows with `NA` where combinations are missing.  You can specify explicit ranges for variables (e.g., years = 2019:2021) to ensure the dataset spans the desired range.  If your data includes factors, use `.drop = FALSE` in `count()` or `group_by()` to preserve empty groups.
+
+For example, consider the built‑in **msleep** dataset from `ggplot2`, which lists characteristics of mammals.  Some combinations of diet category (`vore`) and conservation status do not occur in the data.  You can reveal those missing combinations using `complete(vore, conservation)` and then replace the implicit missing counts with zero:
+
+```{r}
+#| message: false
+#| warning: false
+library(ggplot2)
+library(tidyr)
+
+# Compute counts by vore and conservation
+counts = msleep |> count(vore, conservation)
+
+# Make implicit missings explicit and replace NA counts with zero
+counts_complete = counts |> 
+  complete(vore, conservation) |> 
+  mutate(n = coalesce(n, 0))
+
+counts_complete |> arrange(vore, conservation)
+```
+
+### Empty groups and zero‑length vectors
+
+When summarizing data by a factor, some levels may have zero observations.  These **empty groups** behave like implicit missing values.  Functions such as `count()` and `group_by()` drop empty groups by default.  To keep them, set `.drop = FALSE`.  Be careful: summary functions applied to empty vectors may return surprising results—for example, `mean()` of a zero‑length vector returns `NaN`.  Always interpret summaries of empty groups cautiously.
+
+### Key take‑aways
+
+* Distinguish **explicit** missing values (`NA` in your data) from **implicit** missing values (rows that should exist but are absent).
+* Use `is.na()` to detect missing values and remember that `NA` values propagate through computations.
+* For explicit missings, `fill()` carries values forward or backward; `coalesce()` replaces `NA`s with a fixed value or the first non‑missing value; and `na_if()` converts sentinel codes to `NA`.
+* For implicit missings, `pivot_wider()` and `complete()` reveal absent combinations; specify `.drop = FALSE` to preserve empty factor levels.
+* When summarizing empty groups, interpret results carefully: functions like `mean()` may return `NaN` on zero‑length vectors.
+
+<!-- ## In‑class activity -->
+
+<!-- In this session’s activity you will practice handling missing values using the **msleep** dataset from the `ggplot2` package (not used in *R for Data Science*).  The dataset contains sleep characteristics for 83 mammals and includes missing values in several variables.  Install the package if necessary with `install.packages("ggplot2")`. -->
+
+<!-- 1. **Inspect the data (5 min).**  Load the tidyverse and the `msleep` dataset.  Use `glimpse(msleep)` and `summary(msleep)` to understand its structure.  Identify which variables contain missing values and compute the proportion of missing values per variable using `summarise(across(everything(), ~mean(is.na(.x))))`.  Which variables are most affected by missingness? -->
+
+<!-- 2. **Visualize missingness by diet (10 min).**  Create a new binary variable `missing_rem` that is `TRUE` when `sleep_rem` is missing and `FALSE` otherwise.  Use `count(vore, missing_rem)` to tally missing REM sleep values by diet category.  Plot the counts with `ggplot(aes(x = vore, y = n, fill = missing_rem)) + geom_col(position = "dodge")`.  Discuss whether certain diets are associated with more missing `sleep_rem` data. -->
+
+<!-- 3. **Impute missing REM sleep (15 min).**  For each diet category (`vore`), compute the mean `sleep_rem` (ignoring missing values) and then replace missing `sleep_rem` values with the group mean.  Use `group_by(vore)` and `mutate(sleep_rem_imputed = coalesce(sleep_rem, mean(sleep_rem, na.rm = TRUE)))`.  Compare summary statistics (mean and standard deviation) of the original and imputed `sleep_rem` and comment on the effect of imputation. -->
+
+<!-- 4. **Reveal missing diet–conservation combinations (15 min).**  Compute the number of species by `vore` and conservation status using `count(vore, conservation)`.  Some combinations will be absent (implicit missings).  Use `complete(vore, conservation)` to generate all combinations and replace the missing counts with zero using `mutate(n = coalesce(n, 0))`.  Visualise the result with a heatmap or table and interpret any patterns. -->
+
+<!-- 5. **Drop or keep missing brain weights (10 min).**  The `brainwt` variable records brain weight (kg) but has many missing values.  Use `drop_na(msleep, brainwt)` to remove rows with missing brain weights and compute the correlation between `bodywt` and `brainwt`.  Compare this with a correlation computed after replacing missing brain weights with the median brain weight using `mutate(brainwt = coalesce(brainwt, median(brainwt, na.rm = TRUE)))`.  Discuss the impact of different missing-value strategies on the analysis. -->
+
+<!-- This activity will help you practise detecting, visualising and handling missing values.  By working through these tasks you’ll gain experience with `is.na()`, `fill()`, `coalesce()`, `complete()` and `drop_na()` on a dataset that wasn’t used in the textbook. -->
+
+<!-- --- -->
+
+<!-- **Suggested reading for Session 13:**  Chapter 19 of *R for Data Science* (2nd ed.), “Joins”, introduces the theory and practice of combining multiple data frames.  The chapter explains that data analyses rarely involve a single table and distinguishes between **mutating joins**, which add new columns from matching observations in another data frame, and **filtering joins**, which retain or discard observations based on whether a match exists【80650279806246†L120-L129】.  It emphasises the role of **primary and foreign keys**—variables that uniquely identify observations—in connecting tables【80650279806246†L146-L160】.  Familiarity with keys and join types will prepare you for the next session on relational data. -->

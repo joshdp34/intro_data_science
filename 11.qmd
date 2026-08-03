@@ -1,0 +1,152 @@
+# Session 11 – Variable types IV: dates & times
+
+## Objectives
+
+* **Understand different date/time types.** Describe the difference between dates (`<date>`), times (`<time>`) and date‑times (`<dttm>`) in R. Emphasize using the simplest type that meets the analysis requirements.
+* **Create date/time objects.** Learn how to parse strings into dates with lubridate helpers such as `ymd()`, `mdy()`, `dmy()` etc., and how to assemble dates and date‑times from separate components with `make_date()` and `make_datetime()`.
+* **Extract and modify components.** Use accessor functions `year()`, `month()`, `mday()`, `yday()`, `wday()`, `hour()`, `minute()` and `second()` to pull out parts of a date‑time. Learn to change components in place or with `update()`.
+* **Round dates and compute spans.** Round dates to a unit (e.g., week, month) with `floor_date()`, `round_date()` and `ceiling_date()`. Understand time spans and the difference between durations (exact seconds), periods (human units like weeks and months) and intervals.
+* **Recognize time‑zone issues.** Appreciate that date‑time values always have an associated time zone. Learn how to specify and change the time zone when parsing date‑times.
+
+## Notes
+
+### Why dates and times?
+
+Dates and times are deceptively simple. They appear ubiquitous and straightforward, but the more you work with them, the more quirks emerge. A year isn’t always 365 days, not every day has exactly 24 hours and occasionally a minute may have 61 seconds. These complexities arise because calendar units reconcile astronomical cycles (earth’s rotation and orbit) with human conventions (leap years, daylight saving time). To manage them, R doesn’t treat dates as plain strings but provides special classes and functions.
+
+In the tidyverse, **lubridate** simplifies working with date and time data. It isn’t loaded by default with the tidyverse, so you must call `library(lubridate)`.
+
+### Creating date/times
+
+There are three common ways to create date/time objects:
+
+1. **From strings.** Use lubridate helpers to parse strings that contain dates or date‑times. Arrange the letters “y”, “m” and “d” to match the order of year, month and day in the string, and lubridate will infer the format. For example:
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(lubridate)
+
+ymd("2025-02-18")        # ISO format year-month-day
+mdy("January 31, 2025")  # month-day-year with month name
+dmy("31-01-2025")        # day-month-year
+
+# parse date‑times by adding h, m and s
+ymd_hms("2025-02-18 14:30:15")
+mdy_hm("2/18/2025 2:30 pm")  # 12‑hour clock with am/pm
+```
+
+These functions also accept numeric input without quotes (e.g., `ymd(20250218)`). You can supply a `tz` argument to set the time zone.
+
+2. **From individual components.** When the year, month, day (and optionally hour, minute) live in separate columns, combine them with `make_date()` or `make_datetime()`. For example:
+
+```{r}
+df = tibble(year = c(2023, 2023),
+            month = c(5, 10),
+            day = c(14, 1),
+            hour = c(9, 16),
+            minute = c(30, 0))
+
+# Create new columns without using the pipe to avoid confusion
+df$date = make_date(df$year, df$month, df$day)
+df$datetime = make_datetime(df$year, df$month, df$day, df$hour, df$minute)
+df
+```
+
+3. **From existing date/time objects.** Use functions like `as_datetime()` to coerce between date and date‑time classes or specify a time zone when converting.
+
+### Extracting components
+
+Once you have a date/time, you can **access its components**. Use `year()`, `month()`, `mday()` (day of month), `yday()` (day of year), `wday()` (day of week), `hour()`, `minute()` and `second()`:
+
+```{r}
+dt = ymd_hms("2025-02-18 14:30:15", tz = "America/Chicago")
+
+year(dt)         # 2025
+month(dt)        # 2
+month(dt, label = TRUE)   # Feb
+wday(dt, label = TRUE, abbr = FALSE)  # Tuesday
+hour(dt)         # 14
+minute(dt)       # 30
+second(dt)       # 15
+```
+
+These accessors are vectorised and return integers or ordered factors. You can also modify components by assigning (`year(dt) = 2026`) or with `update()`:
+
+```{r}
+dt2 = update(dt, year = 2026, month = 1, mday = 1, hour = 0)
+dt2  # "2026-01-01 00:30:15 CST"
+```
+
+If values overflow the usual range (e.g., day = 30 in February), lubridate automatically rolls over to the next month.
+
+### Rounding and time spans
+
+To simplify a continuous timeline into regular intervals, *round* dates and date‑times. `floor_date(x, "week")` rounds down to the start of the week, `ceiling_date(x, "month")` rounds up to the next month and `round_date(x, "day")` rounds to the nearest day. For example, to count weekly observations you can round each date to the start of the week and then tally the number of observations per week.
+
+Arithmetic with date‑times yields *time spans*. Subtracting two dates returns a difftime, which stores a difference in days, hours, etc. lubridate defines three classes: *durations* (exact seconds), *periods* (human units like months) and *intervals* (a start and end point). Use constructors like `ddays()`, `dhours()` and `dminutes()` to create durations.
+
+```{r}
+age = today() - ymd("19900101")  # difftime
+as.duration(age)                 # duration in seconds
+
+# add one month (a period)
+today() + months(1)
+
+# difference between dates as period
+period = as.period(ymd("2025-03-01") - ymd("2025-01-15"))
+period
+```
+
+### Time zones
+
+Date‑times always carry a *time zone*. If you omit the time zone, R defaults to your system’s time zone. When parsing strings, supply `tz` to ensure correct interpretation. Use `with_tz()` to change how an instant is displayed in another time zone, and `force_tz()` to change the underlying instant (rarely needed). Avoid combining date‑times with unspecified time zones.
+
+### Key take‑aways
+
+* Dates and date‑times are special data types; use the simplest type that serves your purpose.
+* Use lubridate helpers (`ymd()`, `ymd_hms()` etc.) or `make_date()`/`make_datetime()` to create date/time objects.
+* Extract components with `year()`, `month()`, `wday()` and friends, and modify them with assignment or `update()`.
+* Round dates to meaningful units using `floor_date()`, `ceiling_date()` and `round_date()`.
+* Distinguish between durations, periods and intervals when doing arithmetic with dates.
+* Always be conscious of time zones; specify `tz` explicitly when parsing date‑times.
+
+<!-- ## In‑class activity -->
+
+<!-- In this session’s activity you will work with the built‑in `airquality` dataset (available in base R) to practise creating and analysing date variables.  The data records daily ozone and meteorological measurements in New York City from May to September 1973.  Complete the following tasks using the tidyverse and lubridate: -->
+
+<!-- 1. **Inspect the data (5 min).**  Load the tidyverse and the `airquality` dataset.  Use `glimpse()` and `summary()` to understand its structure.  Note the variables `Month` and `Day`.  How many observations and variables does it contain?  Are there any missing values? -->
+
+<!--    ```{r} -->
+<!--    library(tidyverse) -->
+<!--    data(airquality) -->
+<!--    glimpse(airquality) --> -->
+<!--    summary(airquality) --> -->
+<!--    ``` -->
+
+<!-- 2. **Create a date variable (10 min).**  The dataset lacks a year column, but all measurements were taken in 1973.  Use `make_date(1973, Month, Day)` or `ymd()` combined with `str_c()` to create a new `date` column.  Confirm that it has class `<date>` and explore the distribution of observations across months with `count(month(date))`.  Use `wday()` with `label = TRUE` to find which days of the week have more missing ozone values. -->
+
+<!-- 3. **Visualize ozone over time (15 min).**  Plot daily `Ozone` concentrations against `date` using a line plot.  Add a smooth trend line with `geom_smooth()`.  Consider mapping the day of the week to color or facet the plot by month.  What patterns do you see? -->
+
+<!--    ```{r} -->
+<!--    airquality |> -->
+<!--      mutate(date = make_date(1973, Month, Day)) |> -->
+<!--      ggplot(aes(x = date, y = Ozone)) + -->
+<!--      geom_line() + -->
+<!--      geom_smooth(method = "loess", na.rm = TRUE) + -->
+<!--      labs(x = "Date (1973)", y = "Ozone (ppb)", -->
+<!--           title = "Daily ozone levels in New York (May–Sep 1973)") -->
+<!--    ``` -->
+
+<!-- 4. **Summarise by week and month (15 min).**  Use `floor_date()` to round each `date` down to the start of the week (unit = "week") and the start of the month (unit = "month").  Group by these rounded dates and compute the mean and standard deviation of `Ozone` and `Temp` (ignoring missing values).  Create bar charts or line plots of weekly and monthly averages. -->
+
+<!-- 5. **Explore temperature changes (15 min).**  Compute the day‑to‑day change in temperature by arranging the data by `date` and using `lag()` (`Temp - lag(Temp)`) and `lead()`.  Plot the distribution of temperature changes.  Are temperature increases and decreases symmetric? -->
+
+<!-- 6. **Optional:** **Time spans** (10 min).  Choose two dates from the dataset and compute the time span between them using subtraction.  Convert the result to a duration with `as.duration()` and to a period with `as.period()`.  Interpret the difference between the duration and period. -->
+
+<!-- This activity will give you hands‑on experience parsing dates, extracting components, rounding to units and performing simple temporal analyses on a dataset not covered in *R for Data Science*. -->
+
+<!-- --- -->
+
+<!-- **Suggested reading for Session 12:** Chapter 18 of *R for Data Science* (2nd ed.), “Missing values”, delves into handling missing data.  It revisits the infectious nature of `NA` values, shows how to explicitly fill or replace missing values with functions like `tidyr::fill()` and `dplyr::coalesce()`, and explains how to convert implicitly missing values (absent rows) into explicit ones using pivoting and completing【487104552238734†L111-L123】.  Understanding missing values is crucial before you tackle joins and relational data in the following sessions. -->

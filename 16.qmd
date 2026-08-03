@@ -1,0 +1,109 @@
+# Session 16 – Big‑data formats & hierarchical data
+
+## Objectives
+
+* **Understand why CSVs aren’t enough.**  Recall that CSV files are easy to read but inefficient: you have to do a lot of work to read the data, and they don’t scale well to tens of millions of rows.  Learn about the **parquet** format, an open, column‑oriented file format widely used by big‑data systems.  Appreciate why parquet files are more efficient than CSVs and how they enable faster reads and writes.
+* **Use Apache Arrow for larger‑than‑memory data.**  The **arrow** project is a multi‑language toolbox designed for efficient analysis and transport of large datasets.  The **arrow** R package provides a *dplyr* backend so you can analyse larger‑than‑memory datasets using familiar syntax.  Learn how to open datasets lazily with `open_dataset()` and work with them without reading everything into memory.
+* **Describe lists and hierarchical data.**  Hierarchical or tree‑like data structures are common, especially when working with web APIs or JSON.  A **list** is a vector that can store elements of different types; lists underpin hierarchical data.  Understand the difference between atomic vectors and lists, and recognize *list‑columns* inside tibbles.
+* **Rectangling with `tidyr`.**  Data rectangling converts hierarchical data into tidy rectangular tables.  Learn to unnest list‑columns with `unnest_longer()` (which repeats rows) and `unnest_wider()` (which spreads components across columns).  Appreciate when each is appropriate and how to handle inconsistent types.
+* **Prepare for web scraping.**  Hierarchical data often comes from the web.  Being comfortable with lists and unnesting will prepare you for the next session on scraping HTML pages.
+
+## Notes
+
+### Why consider big‑data formats?
+
+CSV files are **simple and human‑readable**: they can be read by almost every tool under the sun.  However, simplicity comes at a cost.  Reading a large CSV into R requires scanning every character and converting each column to the correct type.  If you have a dataset with tens of millions of rows, this process is slow and memory‑hungry.  In the *Arrow* chapter of R for Data Science, the authors introduce the **parquet** format as a powerful alternative.  Parquet is a column‑oriented, compressed, open standard that is widely used by big‑data systems.  Because it stores data column‑by‑column, parquet allows you to read only the columns you need and skip over the rest, leading to much faster IO and smaller file sizes.  When your dataset lives in parquet files, you can analyse it directly without converting it to CSV.
+
+### Apache Arrow and the `arrow` package
+
+Working with large datasets requires more than a good file format.  **Apache Arrow** is a multi‑language toolkit for efficient in‑memory columnar data representation.  The **arrow** package for R wraps this toolkit and provides a **dplyr** backend that looks and feels like working with a normal tibble.  Instead of reading a parquet or CSV file into memory, you call `open_dataset()`.  This function scans just enough of the file(s) to determine the schema (column names and types) and then **lazily** reads data as you request it.  Arrow datasets can span multiple files on disk and handle data sets larger than your computer’s memory.
+
+Here is a small demonstration using the `starwars` dataset (from the dplyr package).  While the dataset itself is small, the workflow scales to larger data.  We’ll write it to a parquet file, open it with arrow, and compute a summary.  Note that the `arrow` package must be installed.
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(arrow)
+
+# Write the built‑in starwars dataset to a parquet file
+write_parquet(starwars, "starwars.parquet")
+
+# Open the parquet file lazily
+sw_ds = open_dataset("starwars.parquet")
+
+# Compute the average height by species without loading all rows into memory
+avg_height = sw_ds |>
+  group_by(species) |>
+  summarise(n = n(), avg_height = mean(height, na.rm = TRUE), .groups = "drop") |>
+  arrange(desc(avg_height)) |>
+  collect()
+
+head(avg_height)
+```
+
+In this example, `open_dataset()` returns an object representing the on‑disk dataset.  The `group_by()` and `summarise()` calls are recorded but not executed until you call `collect()`, at which point Arrow reads only the necessary columns from disk and computes the summary.  This approach allows you to analyze datasets much larger than memory using the same dplyr verbs you’ve learned.
+
+### Lists and hierarchical data
+
+The second part of this session focuses on **hierarchical data**, which arises when observations are nested inside one another.  Such data are common when working with web APIs, JSON files, or documents that naturally have tree structures.  To work with hierarchical data in R, you need to understand **lists**.  A list is a vector whose elements can be of different types.  You create a list with `list()`, and you can name its components just like naming columns of a tibble.  For example:
+
+```{r}
+#| message: false
+x1 = list(1:4, "a string", TRUE)     # unnamed list
+x1
+x2 = list(numbers = 1:3, letters = letters[1:3], flag = FALSE)  # named list
+x2
+```
+
+Lists become especially interesting inside a data frame as **list‑columns**.  The `starwars` tibble contains several list‑columns: `films`, `vehicles` and `starships` are character vectors inside each row.  These columns store multiple values per observation, so they are inherently hierarchical.  Inspecting `starwars` reveals the list columns:
+
+```{r}
+#| message: false
+glimpse(starwars)
+```
+
+Each row represents a character, but the `films` column is itself a character vector of film titles.  To analyse such data, we need to **rectangulate** it: convert it into a tidy data frame with one value per cell.
+
+### Unnesting with `unnest_longer()` and `unnest_wider()`
+
+The **tidyr** package provides two main functions for rectangling list‑columns: `unnest_longer()` and `unnest_wider()`.  
+
+* **`unnest_longer()`** takes each element of a list‑column and puts it on its own row, repeating the other columns as needed.  Use it when each element of the list is a vector of homogeneous type (e.g., a character vector of films).  
+* **`unnest_wider()`** takes a list of named objects (e.g., a list of tibbles) and spreads its components across new columns.  Use it when each element of the list is itself a record with multiple fields.
+
+Let’s use `unnest_longer()` to count how many characters appear in each Star Wars film:
+
+```{r}
+#| message: false
+library(tidyr)
+
+# Unnest the films list‑column
+characters_by_film = starwars |>
+  select(name, films) |>
+  unnest_longer(films) |>
+  count(films, name = "n_characters") |>
+  arrange(desc(n_characters))
+
+characters_by_film
+```
+
+Here `unnest_longer(films)` converts each character’s list of film titles into individual rows, then `count()` tallies the number of characters per film.  Had the list‑column contained named lists or data frames, you could instead use `unnest_wider()` to turn the nested fields into separate columns.
+
+### JSON and other hierarchical sources
+
+Much hierarchical data comes from the web in **JSON** format.  JSON is a text format for representing nested objects and arrays.  You can read JSON into R with the `jsonlite` package, which produces nested lists.  Once in R, use the same rectangling tools (`unnest_longer()`, `unnest_wider()`) to convert nested lists into tidy tibbles.  In the next session on web scraping you’ll encounter HTML, another hierarchical structure.  A strong grasp of lists and unnesting will enable you to extract structured data from these sources.
+
+### Key take‑aways
+
+* **CSV vs. parquet:** CSVs are simple but inefficient.  Parquet files store data column‑by‑column and compress it, making them faster to read and write for big data.
+* **Arrow for bigger data:** The `arrow` package lets you open large datasets lazily with `open_dataset()` and analyse them using dplyr syntax.  The data live on disk and are only read when needed.
+* **Lists underpin hierarchical data:** A list can hold elements of different types.  List‑columns in tibbles allow you to store multiple values per observation.
+* **Rectangling tools:** Use `tidyr::unnest_longer()` to repeat rows for each element of a list‑column and `unnest_wider()` to spread named components across columns.
+* **Preparation for scraping:** Understanding lists and rectangling prepares you to handle data from JSON and web pages, which you’ll encounter in the next session on web scraping.
+
+<!-- ## In‑class activity -->
+
+<!-- In this session’s activity you will practise using Apache Arrow and rectangling on the **starwars** dataset from the `dplyr` package (not used in *R for Data Science*).  The dataset includes hierarchical list‑columns and provides a manageable example for big‑data workflows.  You will write the dataset to a parquet file, open it lazily with `arrow::open_dataset()`, compute summaries, and unnest list‑columns to answer questions about characters and films.  Detailed instructions are provided in the accompanying activity file. -->
+
+<!-- **Suggested reading for Session 17:**  Read Chapter 24 of *R for Data Science* (2nd ed.), “Web scraping”.  The authors introduce web scraping with the `rvest` package and emphasize that you should prefer APIs when available【240118378600938†L116-L124】.  They begin with a discussion of scraping ethics and legalities, noting that legality depends on factors like whether the data is public, non‑personal and factual【240118378600938†L147-L160】.  You’ll learn the basics of HTML elements and attributes, how to use CSS selectors to locate elements on a page, and how to extract text and attributes with rvest【240118378600938†L116-L133】.  These skills will enable you to scrape data from web pages when no API exists. -->
