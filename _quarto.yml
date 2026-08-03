@@ -106,4 +106,13 @@ format:
   #   keep-tex: true
   #   output-file: index.pdf
 
+custom-callout:
+  example:
+    title: "Example"
+    icon-symbol: "📈"
+    appearance: "simple"
+    color: "#008000"
+filters:
+- custom-callout
+
 editor: visual
