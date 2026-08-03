@@ -1,94 +1,261 @@
-# Session 4 – Data transformation (I): filtering, arranging, selecting and mutating
+# Session 4: Data transformation (I): filtering, arranging, selecting and mutating
 
 ## Objectives
 
-* **Understand the purpose of data transformation.** You rarely get data in exactly the form needed for analysis. Transformation involves creating new variables, reordering or selecting observations, and renaming columns.
-* **Use dplyr verbs to manipulate rows and columns.** Learn `filter()` to subset rows, `arrange()` to reorder rows, `select()` and `rename()` to choose or rename variables, and `mutate()` to create new columns.
-* **Chain operations with the pipe.** Use the pipe (`|>` in base R or `%>%` from **magrittr**) to express sequences of transformations in a readable way.
+- **Understand the purpose of data transformation.** You rarely get data in exactly the form needed for analysis. Transformation involves creating new variables, reordering or selecting observations, and renaming columns.
+- **Use dplyr verbs to manipulate rows and columns.** Learn `filter()` to subset rows, `distinct()` to remove duplicates, `arrange()` to reorder rows, `select()`, `rename()` and `relocate()` to choose, rename and reposition variables, and `mutate()` to create new columns.
+- **Chain operations with the pipe.** Use the pipe (`|>` in base R, or `%>%` from magrittr) to express sequences of transformations in a readable way.
+- **Recognize a handful of correctness traps.** dplyr is forgiving about syntax but not about logic; you will see a few specific ways a pipeline can run without error and still silently produce the wrong answer.
 
-### Notes
-
-**Key dplyr verbs** – This session covers four of the five core verbs of dplyr:
-
-* *Pick observations by their values:* `filter()` subsets rows based on logical conditions.
-
-  ```{r}
-  library(tidyverse)
-  library(palmerpenguins)
-  # Filter penguins to only Adelie species on Dream island
-  adelie_dream = penguins |> 
-    filter(species == "Adelie", island == "Dream")
-  
-  adelie_dream |> head()
-  ```
-
-  `filter()` takes the data frame as its first argument and any number of logical expressions as additional arguments. It returns a new data frame and does not modify the original.
-
-* *Reorder the rows:* `arrange()` sorts rows by one or more variables. Use `desc()` for descending order and remember that missing values are sorted to the end.
-
-  ```{r}
-  # Arrange penguins by body mass (descending) and flipper length (ascending)
-  penguins_sorted = penguins |> 
-    arrange(desc(body_mass_g), flipper_length_mm)
-  
-  penguins_sorted |> head()
-  ```
-
-* *Pick variables by their names:* `select()` quickly narrows a data frame to relevant columns. It supports helper functions like `starts_with()`, `ends_with()`, and `contains()`.
-
-  ```{r}
-  # Select species, island and body_mass_g columns
-  penguins_subset = penguins |> 
-    select(species, island, body_mass_g)
-  
-  penguins_subset |> head()
-  
-  # Select all columns except those from bill_length to bill_depth
-  penguins_except = penguins |> 
-    select(-(bill_length_mm:bill_depth_mm))
-  
-  penguins_except |> head()
-  ```
-
-  To rename a column without dropping others, use `rename()`.
-
-  ```{r}
-  # Rename flipper_length_mm to flipper_mm
-  penguins = penguins |> 
-    rename(flipper_mm = flipper_length_mm)
-  
-  penguins |> head()
-  ```
-
-* *Create new variables:* `mutate()` adds new columns that are functions of existing columns. You can refer to variables created earlier in the same call.
-
-  ```{r}
-  # Compute ratio of body mass to flipper length and total bill size
-  penguins = penguins |> 
-    mutate(
-      mass_per_flipper = body_mass_g / flipper_mm,
-      bill_size = bill_length_mm + bill_depth_mm
-    )
-  
-  penguins |> head()
-  ```
-
-  If you only want to keep the new variables, use `transmute()`.
-
-**Combining operations with the pipe** – Stringing multiple operations together can be awkward when saving intermediate objects. The pipe (`|>` or `%>%`) passes the result of one call to the next, making code easier to read.
+## Notes
 
 ```{r}
-# Calculate average body mass by species in a single pipeline
-species_summary = penguins |>
-  group_by(species) |>
-  summarise(
-    count = n(),
-    mean_mass = mean(body_mass_g, na.rm = TRUE)
-  ) |>
-  arrange(desc(mean_mass))
-
-species_summary |> head()
+#| message: false
+#| warning: false
+library(tidyverse)
+library(palmerpenguins)
 ```
 
-The pipe should be read as “then”: group by species *then* summarise *then* arrange the result.
+Every dplyr verb works the same way: the first argument is always a data frame, the rest of the arguments describe what to do using the (unquoted) column names, and the result is always a new data frame. dplyr never modifies its input in place, so `filter(penguins, ...)` leaves the original `penguins` completely untouched unless you explicitly reassign the result to a name.
 
+### Picking rows with `filter()`
+
+`filter()` keeps only the rows where a logical condition is `TRUE`.
+
+```{r}
+adelie_dream <- penguins |>
+  filter(species == "Adelie", island == "Dream")
+
+adelie_dream |> head()
+```
+
+Separating conditions with a comma (as above) means "and": both conditions must hold. You can combine conditions explicitly with `&` (and), `|` (or), and check membership in a set of values with `%in%`, which is usually clearer than a long chain of `|` comparisons against the same variable.
+
+```{r}
+# every penguin that is either an Adelie or a Chinstrap
+adelie_or_chinstrap <- penguins |>
+  filter(species %in% c("Adelie", "Chinstrap"))
+
+nrow(adelie_or_chinstrap)
+```
+
+::: {.callout-warning}
+## `=` is not `==`
+Inside `filter()`, a single `=` does not test equality; it tries to name an argument, and dplyr will stop you with an error rather than silently doing the wrong thing (see Example 4.1). Always use `==` to compare values.
+:::
+
+### Removing duplicate rows with `distinct()`
+
+`distinct()` keeps only the unique combinations of the columns you name, dropping every duplicate after the first.
+
+```{r}
+# every combination of species and island actually observed in the data
+penguins |> distinct(species, island)
+```
+
+Add `.keep_all = TRUE` if you want to keep the first full row for each unique combination, rather than just the columns you named.
+
+### Reordering rows with `arrange()`
+
+`arrange()` sorts rows by one or more columns, ascending by default; wrap a column in `desc()` to sort it in descending order instead. `arrange()` only changes the order of the rows; it never adds or removes any.
+
+```{r}
+penguins_sorted <- penguins |>
+  arrange(desc(body_mass_g), flipper_length_mm)
+
+penguins_sorted |> head()
+```
+
+::: {.callout-note}
+## Missing values always sort to the end
+Regardless of whether you sort ascending or with `desc()`, rows with `NA` in the sorting column are always placed last. `arrange(desc(x))` does not mean "biggest first, then `NA`, then smallest;" it means "biggest first, then smallest, then `NA`."
+:::
+
+### Picking, dropping and renaming columns
+
+`select()` narrows a data frame down to the columns you want, in the order you name them. It understands ranges (`bill_length_mm:bill_depth_mm`), negation (`-` or `!`), and helper functions like `starts_with()`, `ends_with()`, `contains()`, and `where()` (for selecting by a column's type or a condition, such as `where(is.numeric)`).
+
+```{r}
+penguins |> select(species, island, body_mass_g) |> head()
+
+# every column except the two bill measurements
+penguins |> select(-(bill_length_mm:bill_depth_mm)) |> head()
+```
+
+You can rename a column while selecting it, with the new name on the left of `=`:
+
+```{r}
+penguins |> select(flipper_mm = flipper_length_mm, species) |> head()
+```
+
+If you want to rename a column without dropping every other column, use `rename()` instead of `select()`:
+
+```{r}
+penguins |> rename(flipper_mm = flipper_length_mm) |> head()
+```
+
+`relocate()` moves columns to a new position without changing which columns are present, using `.before` or `.after` to say where:
+
+```{r}
+penguins |> relocate(body_mass_g, .before = species) |> head()
+```
+
+### Creating new columns with `mutate()`
+
+`mutate()` adds new columns that are computed from existing ones, and you can refer to a column created earlier in the same `mutate()` call.
+
+```{r}
+penguins |>
+  mutate(
+    bill_ratio = bill_length_mm / bill_depth_mm,
+    heavy = body_mass_g > 4500
+  ) |>
+  head()
+```
+
+New columns are added at the end by default; use `.before` or `.after` (just like `relocate()`) to control where they land, or `.keep = "used"` if you only want to keep the columns that went into computing the new one, which is handy for checking your work.
+
+```{r}
+penguins |>
+  mutate(bill_ratio = bill_length_mm / bill_depth_mm, .keep = "used") |>
+  head()
+```
+
+If you only want to keep the newly created columns (and any grouping columns) and drop everything else, `transmute()` does that in one step.
+
+### Combining steps with the pipe
+
+Stringing several verbs together by saving an intermediate object after each one is verbose, and re-using the same name for each intermediate step (as the previous version of these notes did) risks exactly the shadowing problem in Example 4.4. The pipe, `|>`, passes the result on its left into the first argument of the call on its right, so an entire sequence of transformations reads top to bottom as a single pipeline instead:
+
+```{r}
+tall_penguins <- penguins |>
+  filter(!is.na(body_mass_g)) |>
+  mutate(bill_ratio = bill_length_mm / bill_depth_mm) |>
+  select(species, island, body_mass_g, bill_ratio) |>
+  arrange(desc(body_mass_g))
+
+tall_penguins |> head()
+```
+
+Read the pipe as "then": filter, *then* mutate, *then* select, *then* arrange. Each step's output becomes the next step's input, and nothing is overwritten along the way until the very last line assigns the final result to `tall_penguins`.
+
+Here is the same pattern applied to a dataset from outside `palmerpenguins`, to get some practice on data you have not seen built into a package before:
+
+```{r}
+#| message: false
+stress <- read_csv("data/student_stress_survey.csv")
+
+stress |>
+  filter(study_hours > 10) |>
+  mutate(hours_per_stress_point = study_hours / stress_level) |>
+  select(major, study_hours, stress_level, hours_per_stress_point) |>
+  arrange(desc(hours_per_stress_point)) |>
+  head()
+```
+
+### Fringe cases and common pitfalls
+
+::: {.example title="Example 4.1"}
+**`filter(x = value)` does not silently do the wrong thing; it stops you.**
+
+```{r}
+#| error: true
+filter(penguins, species = "Adelie")
+```
+
+Modern dplyr specifically detects this mistake and refuses to guess what you meant, offering the exact fix in the error message itself. Older versions of dplyr (and many other R functions in general) are not always this forgiving, so it is worth building the habit of reading `==` for "is equal to" and `=` only for naming an argument or assigning a value.
+:::
+
+::: {.example title="Example 4.2"}
+**`!=` quietly drops missing values along with everything else.**
+
+`penguins$sex` has a handful of genuinely missing values. Suppose you want every penguin that is *not* recorded as male, expecting that to include both females and unknowns:
+
+```{r}
+sum(is.na(penguins$sex))          # how many sex values are missing?
+
+not_male <- penguins |> filter(sex != "male")
+nrow(not_male)                    # fewer rows than you might expect
+```
+
+`sex != "male"` evaluates to `NA`, not `TRUE`, for every row where `sex` is already `NA`, because R cannot know whether an unknown value is or is not equal to `"male"`. `filter()` keeps only rows where the condition is `TRUE`, so `NA` rows are silently excluded, the same way they were silently excluded from the plots in Session 2. If you want to keep the missing values too, you have to ask for them explicitly:
+
+```{r}
+not_male_or_unknown <- penguins |> filter(sex != "male" | is.na(sex))
+nrow(not_male_or_unknown)         # now includes the missing-sex penguins
+```
+
+Any time you filter with `!=`, `<`, or `>` on a column that might contain `NA`, decide on purpose whether missing values belong in your result, rather than letting `filter()` decide for you.
+:::
+
+::: {.example title="Example 4.3"}
+**Floating-point rounding error (from Session 1) can make `filter()` miss a row that looks like an exact match.**
+
+```{r}
+example_data <- tibble(y = 0.1 + 0.2)
+example_data$y                          # prints as 0.3
+
+example_data |> filter(y == 0.3)        # 0 rows: not actually equal underneath
+example_data |> filter(near(y, 0.3))    # 1 row: near() allows for tiny rounding error
+```
+
+This is the exact same floating-point issue from Session 1's `0.1 + 0.2 == 0.3`, just showing up inside a `filter()` instead of at the console. Whenever you filter on an exact match to a computed decimal value, prefer dplyr's `near()` over `==`.
+:::
+
+::: {.example title="Example 4.4"}
+**Reassigning a built-in dataset's own name hides your changes from yourself.**
+
+An earlier version of these notes did the following, one step at a time:
+
+```{r}
+#| eval: false
+penguins <- penguins |> rename(flipper_mm = flipper_length_mm)
+penguins <- penguins |> mutate(bill_size = bill_length_mm + bill_depth_mm)
+```
+
+```{r}
+penguins2 <- penguins |> rename(flipper_mm = flipper_length_mm)
+"flipper_length_mm" %in% names(penguins2)  # gone
+"flipper_mm" %in% names(penguins2)         # here instead
+```
+
+The moment you run `penguins <- penguins |> rename(...)`, the original `palmerpenguins::penguins` is shadowed by your modified version for the rest of the R session. Every chunk after that point that refers to `penguins` gets *your* renamed copy, not the original, which is easy to forget an hour (or a week) later. If you restart R (as recommended in Session 1) the shadowing disappears and old code that relied on the renamed column suddenly breaks, while code that still expects the original name works again. Assigning transformed data to a new name, such as `penguins_renamed`, avoids the problem entirely and makes it obvious at a glance which object is the original and which is derived.
+:::
+
+### Recap
+
+| **Term** | **Definition** |
+|-------------------|-------------------------------------------------------------|
+| **`filter()`** | Keeps rows where a logical condition is `TRUE`; drops rows where it is `FALSE` or `NA`. |
+| **`%in%`** | Tests membership in a set of values; clearer than chaining several `|` comparisons on one variable. |
+| **`distinct()`** | Keeps only unique combinations of the named columns. |
+| **`arrange()`** | Reorders rows by one or more columns; `NA` always sorts last regardless of direction. |
+| **`select()`** | Narrows and reorders columns; supports ranges, negation, and helpers like `starts_with()` and `where()`. |
+| **`rename()`** | Renames specific columns while keeping every other column. |
+| **`relocate()`** | Moves columns to a new position with `.before` or `.after`, without changing which columns exist. |
+| **`mutate()`** | Adds new columns computed from existing ones; `.before`, `.after`, and `.keep` control placement and what survives. |
+| **`transmute()`** | Like `mutate()`, but keeps only the newly created (and grouping) columns. |
+| **The pipe (`|>`)** | Passes the result on its left into the first argument on its right; read it as "then." |
+| **Floating-point filtering** | Use `near()` instead of `==` when filtering on a computed decimal value. |
+
+### Check your understanding
+
+::: {.callout-note collapse="false" title="Problems"}
+1. What is the difference between `filter()` and `arrange()`? Can either one change how many rows are in the result?
+2. You write `filter(df, score = 90)` and R stops with an error instead of running. What mistake did you make, and how do you fix it?
+3. A dataset has a `region` column with a few missing values. You run `filter(df, region != "West")` expecting to get everyone outside the West region, including anyone with an unknown region. Explain why the missing-region rows are excluded, and how you would include them.
+4. Why does dplyr's `near()` function exist, and when should you reach for it instead of `==`?
+5. Your classmate writes `penguins <- penguins |> mutate(mass_kg = body_mass_g / 1000)` at the top of their script, then spends twenty minutes confused about why a later chunk that expects the original `palmerpenguins::penguins` gives strange results. What happened, and what habit would prevent it?
+:::
+
+::: {.callout-tip collapse="true" title="Solutions"}
+1. `filter()` selects which rows are present in the result and can reduce the number of rows (or leave it unchanged if every row matches). `arrange()` only changes the order of the rows; it always returns the same number of rows it was given.
+
+2. Inside `filter()`, `=` names an argument rather than testing equality, so `score = 90` is not a valid comparison. dplyr detects this specific mistake and errors instead of guessing. The fix is to use `==`: `filter(df, score == 90)`.
+
+3. `region != "West"` evaluates to `NA`, not `TRUE`, for any row where `region` is already missing, because R cannot determine whether an unknown region is or is not "West." Since `filter()` only keeps rows where the condition is exactly `TRUE`, the missing-region rows are dropped along with the true non-matches. To include them, add an explicit `is.na()` check: `filter(df, region != "West" | is.na(region))`.
+
+4. `near()` compares two numbers while allowing for a small amount of floating-point rounding error, which real decimal arithmetic almost always introduces. Use it instead of `==` whenever you are filtering (or otherwise comparing) a numeric column that was computed rather than typed in directly, since two mathematically equal computed values can differ by a tiny amount at the level of their exact binary representation.
+
+5. Their line reassigns the name `penguins` to a modified copy of the data, so every subsequent chunk that refers to `penguins` sees the modified version (with the new `mass_kg` column) instead of the original `palmerpenguins::penguins`. Assigning the transformed data to a new name, such as `penguins_kg`, keeps the original available and makes it clear which object is which.
+:::
