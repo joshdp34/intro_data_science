@@ -1,4 +1,4 @@
-# Session 1 – R setup
+# Session 1: R setup
 
 ## Objectives
 
@@ -23,7 +23,7 @@ The middle three steps form their own inner loop. You rarely visualize data once
 
 ::: {.callout-note}
 ## Where we are headed this semester
-Every session in this course maps onto one or more parts of this cycle. Early sessions (like today) focus on **tooling** — the prerequisite for doing any of the above. Soon we move into **importing** and **tidying** data, then spend the bulk of the semester on **transforming** and **visualizing**, before finishing with **modelling** and **communicating** results (reports and reproducible documents like this one).
+Every session in this course maps onto one or more parts of this cycle. Early sessions (like today) focus on **tooling**, the prerequisite for doing any of the above. Soon we move into **importing** and **tidying** data, then spend the bulk of the semester on **transforming** and **visualizing**, before finishing with **modelling** and **communicating** results (reports and reproducible documents like this one).
 :::
 
 ### Tools and setup
@@ -31,7 +31,7 @@ Every session in this course maps onto one or more parts of this cycle. Early se
 You need four things to run the book's code: **R**, **RStudio**, the **tidyverse** and some additional packages.
 
 - **R** is the programming language you will use. Download the latest version from CRAN at <https://cloud.r-project.org>. A new major version of R is released once a year (typically in April), with minor/patch versions in between; updating regularly ensures compatibility with the newest packages.
-- **RStudio** is an integrated development environment (IDE) for R — R is the engine, RStudio is the car around it. Download it from <https://posit.co/download/rstudio-desktop/>. RStudio is updated a couple of times a year. When you start RStudio, you will see a console pane for typing R code and an output pane for plots.
+- **RStudio** is an integrated development environment (IDE) for R. R is the engine, and RStudio is the car around it. Download it from <https://posit.co/download/rstudio-desktop/>. RStudio is updated a couple of times a year. When you start RStudio, you will see a console pane for typing R code and an output pane for plots.
 - **The tidyverse** is a collection of packages for data manipulation, visualization and programming. To install all core tidyverse packages at once, run `install.packages("tidyverse")` in the R console. After installation, load the tidyverse with `library(tidyverse)`; this attaches packages such as *dplyr*, *ggplot2*, *tidyr*, *readr*, *stringr*, *forcats*, *lubridate*, *purrr* and *tibble*. You only need to install a package once, but you must load it (with `library()`) in each new R session.
 - **Other packages.** We will occasionally use packages outside the tidyverse (e.g., *palmerpenguins*, *nycflights13*, *arrow*, *rvest*, *duckdb*). When you encounter an error that a package is not installed, run `install.packages("package_name")` to install the package.
 
@@ -44,23 +44,23 @@ If you cannot install R/RStudio on your own machine (locked-down laptop, insuffi
 
 R4DS assumes you already know your way around the RStudio interface, but it is worth slowing down here since you will live in this window all semester. RStudio is divided into four panes:
 
-1. **Source** (top-left) — where you write and save `.R` scripts or `.qmd` documents like this one. Code here is *not* run until you tell it to.
-2. **Console** (bottom-left) — where code actually executes, one command at a time. Anything typed directly here is run immediately but is *not saved anywhere* unless you also put it in a script.
-3. **Environment / History** (top-right) — lists every object (vector, data frame, function, ...) currently loaded in memory, and a log of commands you've run.
-4. **Files / Plots / Packages / Help / Viewer** (bottom-right) — a multi-purpose pane for browsing files, viewing plots, managing installed packages, and reading documentation.
+1. **Source** (top-left): where you write and save `.R` scripts or `.qmd` documents like this one. Code here is *not* run until you tell it to.
+2. **Console** (bottom-left): where code actually executes, one command at a time. Anything typed directly here is run immediately but is *not saved anywhere* unless you also put it in a script.
+3. **Environment / History** (top-right): lists every object (vector, data frame, function, ...) currently loaded in memory, and a log of commands you've run.
+4. **Files / Plots / Packages / Help / Viewer** (bottom-right): a multi-purpose pane for browsing files, viewing plots, managing installed packages, and reading documentation.
 
 ::: {.callout-tip}
 ## Keyboard shortcuts worth learning on day one
-- `Ctrl/Cmd + Enter` — run the current line (or selection) from the Source pane.
-- `Ctrl/Cmd + Shift + M` — insert the pipe operator `|>`.
-- `Alt + -` (Windows/Linux) or `Option + -` (Mac) — insert the assignment arrow `<-`.
-- `Tab` — autocomplete object names, file paths, and function arguments as you type.
-- `F1` (with your cursor on a function name) — open that function's help page.
+- `Ctrl/Cmd + Enter`: run the current line (or selection) from the Source pane.
+- `Ctrl/Cmd + Shift + M`: insert the pipe operator `|>`.
+- `Alt + -` (Windows/Linux) or `Option + -` (Mac): insert the assignment arrow `<-`.
+- `Tab`: autocomplete object names, file paths, and function arguments as you type.
+- `F1` (with your cursor on a function name): open that function's help page.
 :::
 
 ::: {.callout-note}
 ## Always work inside an RStudio Project
-Create a **Project** (File → New Project) for this course rather than opening loose files. A Project fixes your **working directory** to a specific folder, so relative file paths (`read_csv("data/exams.csv")`) work the same way on your laptop as they do on a classmate's — and as they do when this book itself is rendered on GitHub's servers. Avoid `setwd("C:/Users/yourname/Desktop/...")` at the top of scripts; it is the single most common reason "but it worked on my computer!" homework fails to run for someone else.
+Create a **Project** (File → New Project) for this course rather than opening loose files. A Project fixes your **working directory** to a specific folder, so relative file paths (`read_csv("data/exams.csv")`) work the same way on your laptop as they do on a classmate's, and as they do when this book itself is rendered on GitHub's servers. Avoid `setwd("C:/Users/yourname/Desktop/...")` at the top of scripts; it is the single most common reason "but it worked on my computer!" homework fails to run for someone else.
 :::
 
 ### Installing and testing your environment
@@ -76,7 +76,7 @@ install.packages("tidyverse")   # installs core tidyverse packages
 library(tidyverse)
 ```
 
-3. **Confirm your setup.** Check which versions of R and your packages you actually have — this is the first thing to check when troubleshooting "it works for the professor but not for me":
+3. **Confirm your setup.** Check which versions of R and your packages you actually have. This is the first thing to check when troubleshooting "it works for the professor but not for me":
 
 ```{r}
 R.version.string          # which R version am I running?
@@ -113,7 +113,7 @@ R4DS moves quickly through basic arithmetic because it assumes some prior progra
 print(0.1 + 0.2, digits = 17)
 ```
 
-R stores decimal numbers in binary floating-point format, and numbers like 0.1 and 0.2 cannot be represented *exactly* in binary — the same way 1/3 cannot be written exactly with a finite number of decimal digits. The rounding error is tiny (about $10^{-17}$), but it is enough to make `==` return `FALSE`. This is not an R bug; every mainstream programming language (Python, Java, JavaScript, ...) does this.
+R stores decimal numbers in binary floating-point format, and numbers like 0.1 and 0.2 cannot be represented *exactly* in binary, the same way 1/3 cannot be written exactly with a finite number of decimal digits. The rounding error is tiny (about $10^{-17}$), but it is enough to make `==` return `FALSE`. This is not an R bug; every mainstream programming language (Python, Java, JavaScript, ...) does this.
 
 **The fix:** never test decimal numbers for exact equality. Use `all.equal()`, which allows for a small numerical tolerance:
 
@@ -131,14 +131,14 @@ When you combine two vectors with an arithmetic operator, R "recycles" (repeats)
 c(1, 2, 3, 4) + c(1, 2)   # recycles c(1, 2) as c(1, 2, 1, 2) -- no warning
 ```
 
-Recycling is genuinely useful (it's why `x * 2` in the earlier example works — the length-1 vector `2` is recycled to match `x`). The danger appears when the lengths *don't* divide evenly, because R still recycles, but now issues a warning that is easy to miss in a long console history:
+Recycling is genuinely useful (it's why `x * 2` in the earlier example works: the length-1 vector `2` is recycled to match `x`). The danger appears when the lengths *don't* divide evenly, because R still recycles, but now issues a warning that is easy to miss in a long console history:
 
 ```{r}
 #| warning: true
 c(1, 2, 3) + c(1, 2)      # length 3 is not a multiple of length 2
 ```
 
-If you ever see the warning *"longer object length is not a multiple of shorter object length,"* stop and check that your vectors are the length you expect — it almost always signals a bug, such as a filtering step that silently dropped a row.
+If you ever see the warning *"longer object length is not a multiple of shorter object length,"* stop and check that your vectors are the length you expect. It almost always signals a bug, such as a filtering step that silently dropped a row.
 :::
 
 ::: {.example title="Example 1.3"}
@@ -149,7 +149,7 @@ If you ever see the warning *"longer object length is not a multiple of shorter 
 (-2)^2    # explicit grouping changes the answer
 ```
 
-R evaluates `^` before unary `-`, so `-2^2` is `-4`, not `4`. When in doubt, add parentheses — it costs nothing and removes all ambiguity for the next reader (including future you).
+R evaluates `^` before unary `-`, so `-2^2` is `-4`, not `4`. When in doubt, add parentheses. It costs nothing and removes all ambiguity for the next reader (including future you).
 
 Integer division (`%/%`) and modulo (`%%`) also behave in a way that surprises people coming from other languages when negative numbers are involved: R always rounds *down* (toward negative infinity), not toward zero.
 
@@ -162,7 +162,7 @@ Integer division (`%/%`) and modulo (`%%`) also behave in a way that surprises p
 :::
 
 ::: {.example title="Example 1.4"}
-**Missing values propagate — on purpose.**
+**Missing values propagate, on purpose.**
 
 Real data almost always has gaps. R represents a missing value with `NA`, and by design, almost any calculation that touches an `NA` returns `NA` rather than silently skipping it.
 
@@ -178,7 +178,7 @@ This is a deliberate safety feature, not a bug: if R silently dropped missing va
 
 ::: {.callout-warning}
 ## `T` and `F` are not protected the way `TRUE` and `FALSE` are
-`TRUE` and `FALSE` are reserved keywords in R and can never be reassigned. `T` and `F` are only built-in **variables** that happen to be set to `TRUE`/`FALSE` — which means you (or a package, or a stray line of copy-pasted code) can silently overwrite them:
+`TRUE` and `FALSE` are reserved keywords in R and can never be reassigned. `T` and `F` are only built-in **variables** that happen to be set to `TRUE`/`FALSE`, which means you (or a package, or a stray line of copy-pasted code) can silently overwrite them:
 
 ```{r}
 T           # starts out TRUE, as expected
@@ -193,7 +193,7 @@ The habit that avoids this entire class of bug: **always spell out `TRUE` and `F
 
 ::: {.callout-note}
 ## R is case-sensitive, everywhere
-`x` and `X` are two completely different objects to R — as are `mean` and `Mean`, and `read_csv` and `Read_CSV`. "Object not found" errors are frequently just a stray capital letter. This also applies to file names when you read data from disk: `read_csv("Data.csv")` will fail on a filesystem where the file is actually named `data.csv`, even though the two look identical in print.
+`x` and `X` are two completely different objects to R, as are `mean` and `Mean`, and `read_csv` and `Read_CSV`. "Object not found" errors are frequently just a stray capital letter. This also applies to file names when you read data from disk: `read_csv("Data.csv")` will fail on a filesystem where the file is actually named `data.csv`, even though the two look identical in print.
 :::
 
 ### Recap
@@ -202,7 +202,7 @@ The habit that avoids this entire class of bug: **always spell out `TRUE` and `F
 |-------------------|-------------------------------------------------------------|
 | **R** | The open-source programming language used throughout this course; installed from CRAN. |
 | **RStudio** | An integrated development environment (IDE) that provides a friendlier interface around R. |
-| **CRAN** | The Comprehensive R Archive Network — the official repository for downloading R and R packages. |
+| **CRAN** | The Comprehensive R Archive Network, the official repository for downloading R and R packages. |
 | **Package** | A shareable bundle of R functions and/or data; installed once with `install.packages()`, loaded each session with `library()`. |
 | **tidyverse** | A collection of packages (dplyr, ggplot2, readr, tidyr, purrr, tibble, stringr, forcats, lubridate) designed to work together. |
 | **RStudio Project** | A folder-linked workspace that fixes the working directory, making relative file paths reproducible across computers. |
@@ -235,7 +235,7 @@ The habit that avoids this entire class of bug: **always spell out `TRUE` and `F
 
 3. R did exactly what it was designed to do: because one value is missing (`NA`), R refuses to compute an average without your explicit instruction on how to handle the gap, since silently ignoring it could hide a data problem. Adding `na.rm = TRUE`, i.e. `mean(c(4, 8, NA, 12), na.rm = TRUE)`, tells R to compute the mean of just the non-missing values.
 
-4. `T` is only a variable pre-loaded with the value `TRUE`, not a protected keyword — unlike `TRUE` itself. After `T <- 1`, any later code that relies on `T` meaning "true" (e.g., `if (T) ...`) will behave incorrectly, because `T` no longer holds a logical value. Always writing out `TRUE`/`FALSE` in full avoids this entirely, since those *are* protected and cannot be reassigned.
+4. `T` is only a variable pre-loaded with the value `TRUE`, not a protected keyword like `TRUE` itself. After `T <- 1`, any later code that relies on `T` meaning "true" (e.g., `if (T) ...`) will behave incorrectly, because `T` no longer holds a logical value. Always writing out `TRUE`/`FALSE` in full avoids this entirely, since those *are* protected and cannot be reassigned.
 
 5. An RStudio Project fixes the working directory to a specific folder, so relative paths like `read_csv("data/exams.csv")` resolve the same way regardless of whose computer (or which server) runs the script. Opening loose files instead means the working directory depends on wherever RStudio happened to start, which is exactly why scripts that use `setwd()` with a hard-coded path "work on my machine" but fail for everyone else.
 :::
