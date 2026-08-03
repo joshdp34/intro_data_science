@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Session 6 – Data import: reading CSV &amp; flat files – STA 2300 Intro to Data Science</title>
+<title>6&nbsp; Session 6: Data import: reading CSV and flat files – STA 2300 Intro to Data Science</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -151,6 +151,19 @@ document.addEventListener('click', (event) => {
   }
 });
 </script>
+<style>
+div.callout-example.callout {
+  border-left-color: #008000;
+}
+div.callout-example.callout-style-default > .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-example .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-example.callout-style-default .callout-icon::before, div.callout-example.callout-titled .callout-icon::before {
+  content: '📈';
+  background-image: none;
+}
+</style>
 
 
 </head>
@@ -164,7 +177,7 @@ document.addEventListener('click', (event) => {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6 – Data import: reading CSV &amp; flat files</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data import: reading CSV and flat files</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -205,37 +218,37 @@ document.addEventListener('click', (event) => {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Session 1 – R setup</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Session 1: R setup</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2 – Data visualization basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Data visualization basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3 – The layered grammar of graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: The layered grammar of graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4 – Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5 – Data transformation (II): grouping and summarizing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (II): grouping and summarizing</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6 – Data import: reading CSV &amp; flat files</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data import: reading CSV and flat files</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -349,10 +362,15 @@ document.addEventListener('click', (event) => {
   <ul class="collapse">
   <li><a href="#why-import-data" id="toc-why-import-data" class="nav-link" data-scroll-target="#why-import-data">Why import data?</a></li>
   <li><a href="#reading-csv-files-with-readr" id="toc-reading-csv-files-with-readr" class="nav-link" data-scroll-target="#reading-csv-files-with-readr">Reading CSV files with <code>readr</code></a></li>
-  <li><a href="#handling-missing-values-and-nonsyntactic-names" id="toc-handling-missing-values-and-nonsyntactic-names" class="nav-link" data-scroll-target="#handling-missing-values-and-nonsyntactic-names">Handling missing values and non‑syntactic names</a></li>
+  <li><a href="#extra-reading-options-skipping-lines-and-other-delimiters" id="toc-extra-reading-options-skipping-lines-and-other-delimiters" class="nav-link" data-scroll-target="#extra-reading-options-skipping-lines-and-other-delimiters">Extra reading options: skipping lines and other delimiters</a></li>
+  <li><a href="#handling-missing-values-and-non-syntactic-names" id="toc-handling-missing-values-and-non-syntactic-names" class="nav-link" data-scroll-target="#handling-missing-values-and-non-syntactic-names">Handling missing values and non-syntactic names</a></li>
   <li><a href="#how-readr-guesses-column-types" id="toc-how-readr-guesses-column-types" class="nav-link" data-scroll-target="#how-readr-guesses-column-types">How readr guesses column types</a></li>
   <li><a href="#reading-multiple-files-and-combining-them" id="toc-reading-multiple-files-and-combining-them" class="nav-link" data-scroll-target="#reading-multiple-files-and-combining-them">Reading multiple files and combining them</a></li>
+  <li><a href="#entering-data-by-hand" id="toc-entering-data-by-hand" class="nav-link" data-scroll-target="#entering-data-by-hand">Entering data by hand</a></li>
   <li><a href="#writing-data-back-to-disk" id="toc-writing-data-back-to-disk" class="nav-link" data-scroll-target="#writing-data-back-to-disk">Writing data back to disk</a></li>
+  <li><a href="#fringe-cases-and-common-pitfalls" id="toc-fringe-cases-and-common-pitfalls" class="nav-link" data-scroll-target="#fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -362,7 +380,7 @@ document.addEventListener('click', (event) => {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6 – Data import: reading CSV &amp; flat files</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data import: reading CSV and flat files</span></h1>
 </div>
 
 
@@ -382,26 +400,28 @@ document.addEventListener('click', (event) => {
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Read your own data into R.</strong> Up to now we have worked with datasets that come bundled with packages. In practice you will often need to import data from your own files. This session introduces the <code>readr</code> functions for reading plain‑text rectangular data (CSV, TSV and other delimited formats). You will learn how to specify file paths and handle column names, types and missing values.</li>
+<li><strong>Read your own data into R.</strong> Up to now we have worked with datasets that come bundled with packages. In practice you will often need to import data from your own files. This session introduces the <code>readr</code> functions for reading plain text rectangular data (CSV, TSV and other delimited formats). You will learn how to specify file paths and handle column names, types and missing values.</li>
 <li><strong>Control column names, missing values and types.</strong> When you run <code>read_csv()</code> it prints the number of rows and columns read and a summary of the column specification. You will learn how to rename variables, skip header lines, define which strings should be treated as missing, and override the type guessing heuristic that readr uses.</li>
 <li><strong>Read multiple files and combine them.</strong> Real projects often involve multiple data files (for example, one file per month). You can pass a vector of file paths to <code>read_csv()</code> and use the <code>id</code> argument to record the source of each observation. We will practice finding files with <code>list.files()</code>, reading them into a single tibble and combining them using <code>bind_rows()</code>.</li>
+<li><strong>Choose the right format for saving intermediate results.</strong> Compare <code>write_csv()</code>, <code>write_rds()</code>, and Parquet files, and know which one actually preserves your column types.</li>
+<li><strong>Recognize a handful of import traps.</strong> A file can read without any error at all and still hand you the wrong values, because readr made a completely reasonable guess that happened not to match your data.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <section id="why-import-data" class="level3">
 <h3 class="anchored" data-anchor-id="why-import-data">Why import data?</h3>
-<p>Working with data included in R packages is convenient when you are learning, but eventually you need to apply the tools to your own data. <em>R for Data Science</em> notes that this chapter focuses on <strong>reading plain‑text rectangular files</strong> and provides practical advice for handling <strong>column names, types and missing data</strong>. The goal is to help you get your data into a tidy tibble so that you can immediately start transforming and visualizing it.</p>
+<p>Working with data included in R packages is convenient when you are learning, but eventually you need to apply the tools to your own data. <em>R for Data Science</em> focuses this chapter on <strong>reading plain text rectangular files</strong> and gives practical advice for handling <strong>column names, types, and missing data</strong>. The goal is always the same: get your data into a tidy tibble so you can immediately start transforming and visualizing it.</p>
 </section>
 <section id="reading-csv-files-with-readr" class="level3">
 <h3 class="anchored" data-anchor-id="reading-csv-files-with-readr">Reading CSV files with <code>readr</code></h3>
-<p>The <code>readr</code> package is part of the tidyverse and provides fast functions for reading delimited files. The most common function is <code>read_csv()</code>, which expects a path to a comma‑separated file. When you read a file, readr prints a message showing the number of rows and columns, the delimiter used and the column specification. This message includes the guessed type for each column and can be silenced with <code>show_col_types = FALSE</code>.</p>
+<p>The <code>readr</code> package is part of the tidyverse and provides fast functions for reading delimited files. The most common function is <code>read_csv()</code>, which expects a path to a comma separated file. When you read a file, readr prints a message showing the number of rows and columns, the delimiter used, and the column specification, including the guessed type for each column. That message can be silenced with <code>show_col_types = FALSE</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: reading a simple CSV file from a URL</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>students <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"https://pos.it/r4ds-students-csv"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>students</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>students <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://pos.it/r4ds-students-csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>students</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 5
   `Student ID` `Full Name`      favourite.food     mealPlan            AGE  
@@ -413,20 +433,35 @@ document.addEventListener('click', (event) => {
 5            5 Chidiegwu Dunkel Pizza              Breakfast and lunch five 
 6            6 Güvenç Attila    Ice cream          Lunch only          6    </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppress the column spec message</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>students_quiet <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"https://pos.it/r4ds-students-csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Use the <code>file</code> argument to read files stored locally. It is good practice to keep data in a dedicated <code>data/</code> folder within your project and refer to it using relative paths. If your file has a header row containing the names of the columns (as most CSVs do), readr uses it automatically. If not, set <code>col_names = FALSE</code> and optionally provide a vector of names via <code>col_names = c("...", ...)</code>.</p>
+<p>Use a local file path (as in <code>data/students.csv</code>) to read files stored in your own project rather than a URL. It is good practice to keep data in a dedicated <code>data/</code> folder and refer to it with a relative path, which is exactly why every example elsewhere in this book reads from <code>"data/..."</code>. If your file has a header row containing the column names, as most CSVs do, readr uses it automatically. If not, set <code>col_names = FALSE</code>, or supply your own names with <code>col_names = c("...", ...)</code>.</p>
 </section>
-<section id="handling-missing-values-and-nonsyntactic-names" class="level3">
-<h3 class="anchored" data-anchor-id="handling-missing-values-and-nonsyntactic-names">Handling missing values and non‑syntactic names</h3>
-<p>A CSV file does not encode missing values explicitly, so readr treats <strong>empty fields</strong> as <code>NA</code>. In practice, missing values are often recorded with sentinel strings such as <code>"N/A"</code> or <code>"."</code>. You can tell <code>read_csv()</code> which strings should be considered missing using the <code>na</code> argument. For example, in the <code>students.csv</code> file the string <code>"N/A"</code> is used to mark missing foods. By specifying <code>na = c("N/A", "")</code>, readr converts those strings to <code>NA</code>.</p>
+<section id="extra-reading-options-skipping-lines-and-other-delimiters" class="level3">
+<h3 class="anchored" data-anchor-id="extra-reading-options-skipping-lines-and-other-delimiters">Extra reading options: skipping lines and other delimiters</h3>
+<p>Real files are not always clean CSVs with a header on line one. <code>skip = n</code> drops the first <code>n</code> lines before reading (handy when a file starts with a title or metadata row), and <code>comment = "#"</code> drops any line starting with that character.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>students2 <span class="ot">=</span> <span class="fu">read_csv</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://pos.it/r4ds-students-csv"</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"N/A"</span>, <span class="st">""</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>students2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>messy_csv <span class="ot">&lt;-</span> <span class="st">"This file was exported on 2026-01-01</span><span class="sc">\n</span><span class="st"># do not edit below this line</span><span class="sc">\n</span><span class="st">x,y</span><span class="sc">\n</span><span class="st">1,2</span><span class="sc">\n</span><span class="st">3,4"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(messy_csv, <span class="at">skip =</span> <span class="dv">1</span>, <span class="at">comment =</span> <span class="st">"#"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+      x     y
+  &lt;dbl&gt; &lt;dbl&gt;
+1     1     2
+2     3     4</code></pre>
+</div>
+</div>
+<p>readr also provides close relatives of <code>read_csv()</code> for other plain text formats: <code>read_csv2()</code> for semicolon delimited files (common in regions where a comma is the decimal separator; see Example 6.2), <code>read_tsv()</code> for tab delimited files, <code>read_delim()</code> when you need to specify an arbitrary delimiter yourself, and <code>read_fwf()</code> for fixed width files where columns are defined by character position rather than a delimiter at all.</p>
+</section>
+<section id="handling-missing-values-and-non-syntactic-names" class="level3">
+<h3 class="anchored" data-anchor-id="handling-missing-values-and-non-syntactic-names">Handling missing values and non-syntactic names</h3>
+<p>A CSV file does not encode missing values explicitly, so readr treats <strong>empty fields</strong> as <code>NA</code>. In practice, missing values are often recorded with sentinel strings such as <code>"N/A"</code> or <code>"."</code> instead. You can tell <code>read_csv()</code> which strings should be considered missing with the <code>na</code> argument. In the students data above, the string <code>"N/A"</code> marks a missing food preference:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>students2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://pos.it/r4ds-students-csv"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"N/A"</span>, <span class="st">""</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>students2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 5
   `Student ID` `Full Name`      favourite.food     mealPlan            AGE  
@@ -439,30 +474,17 @@ document.addEventListener('click', (event) => {
 6            6 Güvenç Attila    Ice cream          Lunch only          6    </code></pre>
 </div>
 </div>
-<p>Sometimes column names contain spaces or other characters that make them <strong>non‑syntactic</strong> in R. In that case they are surrounded by backticks in the tibble, and you must use backticks to refer to them. A simple solution is to rename the columns after import using <code>rename()</code> or the <code>janitor::clean_names()</code> helper (the latter converts names to <code>snake_case</code>).</p>
+<p>Sometimes column names contain spaces or other characters that make them non-syntactic in R, like <code>Full Name</code> above. In that case they are surrounded by backticks in the tibble, and you must use backticks (<code>`Full Name`</code>) to refer to them in code. A simple fix is to rename columns after import with <code>rename()</code>, or with the <code>janitor::clean_names()</code> helper, which converts every name to <code>snake_case</code> in one call.</p>
 </section>
 <section id="how-readr-guesses-column-types" class="level3">
 <h3 class="anchored" data-anchor-id="how-readr-guesses-column-types">How readr guesses column types</h3>
-<p>Because a CSV file does not contain type information, readr <strong>guesses the type of each column</strong>. It samples up to 1,000 values from across the file and asks: <em>does the column contain only logical values?</em> <em>Only numbers?</em> <em>Does it match ISO8601 date format?</em> If none of those tests succeed, readr assumes the column is a string. This heuristic works well for clean datasets but can fail when there are unexpected values (e.g., a period <code>.</code> to represent a missing number).</p>
-<p>When type guessing fails you can provide your own <strong>column specification</strong> via the <code>col_types</code> argument. This argument is a named list or a <code>cols()</code> specification where each name matches a column and each value is a type function (e.g., <code>col_double()</code>, <code>col_integer()</code>, <code>col_character()</code>, <code>col_date()</code>, <code>col_datetime()</code>). For example, if a numeric ID is misread as a number but should be a character (because you never intend to sum it), specify <code>col_types = list(student_id = col_character())</code>. readr provides nine column types including</p>
-<ul>
-<li>logicals</li>
-<li>doubles</li>
-<li>integers</li>
-<li>characters</li>
-<li>factors</li>
-<li>dates</li>
-<li>date‑time</li>
-<li>permissive numbers</li>
-<li>skipped columns</li>
-</ul>
+<p>Because a CSV file carries no type information, readr <strong>guesses the type of each column</strong> by sampling up to 1,000 values spread across the file and checking, in order: does the column contain only logical values? Only numbers? Does it match the ISO 8601 date or date-time format? If none of those succeed, readr falls back to treating the column as a plain character string. This heuristic works well for clean data but can fail when a column contains an unexpected value, such as a period used to mean “missing.”</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A small CSV with a custom missing value "."</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>simple_csv <span class="ot">=</span> <span class="st">"x</span><span class="sc">\n</span><span class="st">10</span><span class="sc">\n</span><span class="st">.</span><span class="sc">\n</span><span class="st">20</span><span class="sc">\n</span><span class="st">30"</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Default guess treats the period as a string</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>df_default <span class="ot">=</span> <span class="fu">read_csv</span>(simple_csv)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>df_default</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>simple_csv <span class="ot">&lt;-</span> <span class="st">"x</span><span class="sc">\n</span><span class="st">10</span><span class="sc">\n</span><span class="st">.</span><span class="sc">\n</span><span class="st">20</span><span class="sc">\n</span><span class="st">30"</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the "." makes readr's default guess treat the whole column as a string</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>df_default <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(simple_csv, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>df_default</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 1
   x    
@@ -472,18 +494,18 @@ document.addEventListener('click', (event) => {
 3 20   
 4 30   </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Override the type to double and inspect problems</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df_num <span class="ot">=</span> <span class="fu">read_csv</span>(simple_csv, <span class="at">col_types =</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">col_double</span>()))</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">problems</span>(df_num)  <span class="co"># shows where parsing failed</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># force the column to be numeric, and see exactly where that assumption breaks</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_num <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(simple_csv, <span class="at">col_types =</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">col_double</span>()), <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">problems</span>(df_num)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 5
     row   col expected actual file                                              
   &lt;int&gt; &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;                                             
-1     3     1 a double .      C:/Users/Joshua_Patrick/AppData/Local/Temp/Rtmp6b…</code></pre>
+1     3     1 a double .      C:/Users/Joshua_Patrick/AppData/Local/Temp/RtmpWG…</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tell readr to treat "." as NA so guessing succeeds</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_fixed <span class="ot">=</span> <span class="fu">read_csv</span>(simple_csv, <span class="at">na =</span> <span class="st">"."</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df_fixed</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or tell readr up front that "." means NA, and the default guess succeeds</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_fixed <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(simple_csv, <span class="at">na =</span> <span class="st">"."</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>df_fixed</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 1
       x
@@ -494,37 +516,317 @@ document.addEventListener('click', (event) => {
 4    30</code></pre>
 </div>
 </div>
-<p>If you have many columns with the same type, you can set a <strong>default type</strong> using <code>cols(.default = col_character())</code>. To read only a subset of columns, use <code>cols_only()</code> with the columns you want.</p>
+<p>When type guessing fails, you provide your own <strong>column specification</strong> through <code>col_types</code>, either a named list or a <code>cols()</code> call, pairing each column name with a type function: <code>col_logical()</code>, <code>col_double()</code>, <code>col_integer()</code>, <code>col_character()</code>, <code>col_factor()</code>, <code>col_date()</code>, <code>col_datetime()</code>, <code>col_number()</code> (a permissive numeric parser that strips things like currency symbols and commas), or <code>col_skip()</code> to drop a column entirely. <code>cols(.default = col_character())</code> sets a fallback type for every column you don’t name explicitly, and <code>cols_only()</code> reads only the columns you list.</p>
+<p><code>parse_number()</code> is the standalone version of the logic behind <code>col_number()</code>: hand it a messy character vector and it extracts just the numeric part.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">parse_number</span>(<span class="fu">c</span>(<span class="st">"$1,234.56"</span>, <span class="st">"45%"</span>, <span class="st">"12 dollars"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1234.56   45.00   12.00</code></pre>
+</div>
+</div>
 </section>
 <section id="reading-multiple-files-and-combining-them" class="level3">
 <h3 class="anchored" data-anchor-id="reading-multiple-files-and-combining-them">Reading multiple files and combining them</h3>
-<p>In many projects you receive data split across multiple files—perhaps one file per month or per site. Instead of reading each file separately and then binding the results, you can pass a <strong>vector of file paths</strong> to <code>read_csv()</code>. readr will read all of them and stack the rows together. The optional <code>id</code> argument adds a column that records the file each row came from.</p>
+<p>In many projects you receive data split across multiple files, perhaps one file per month or per site. Instead of reading each file separately and binding the results yourself, you can pass a <strong>vector of file paths</strong> straight to <code>read_csv()</code>. It reads all of them and stacks the rows together, and the optional <code>id</code> argument adds a column recording which file each row came from.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppose you have three monthly sales files stored in data/01-sales.csv, 02-sales.csv, 03-sales.csv</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>sales_files <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"data/01-sales.csv"</span>, <span class="st">"data/02-sales.csv"</span>, <span class="st">"data/03-sales.csv"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read and combine, adding a 'file' column to identify the source</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">=</span> <span class="fu">read_csv</span>(sales_files, <span class="at">id =</span> <span class="st">"file"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sales_files <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"data/01-sales.csv"</span>, <span class="st">"data/02-sales.csv"</span>, <span class="st">"data/03-sales.csv"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(sales_files, <span class="at">id =</span> <span class="st">"file"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>You often don’t know the names of all the files ahead of time. Use <code>list.files()</code> to find files whose names match a pattern (e.g., <code>"sales\\.csv$"</code>) and set <code>full.names = TRUE</code> so the full path is returned.</p>
+<p>You often don’t know every file name ahead of time. <code>list.files()</code> finds files matching a pattern (for example, <code>"sales\\.csv$"</code>), and <code>full.names = TRUE</code> returns full paths ready to hand straight to <code>read_csv()</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find all CSV files ending with 'sales.csv' in the data directory</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>sales_files <span class="ot">=</span> <span class="fu">list.files</span>(<span class="st">"data"</span>, <span class="at">pattern =</span> <span class="st">"sales</span><span class="sc">\\</span><span class="st">.csv$"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>sales_files</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">=</span> <span class="fu">read_csv</span>(sales_files, <span class="at">id =</span> <span class="st">"file"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sales_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"data"</span>, <span class="at">pattern =</span> <span class="st">"sales</span><span class="sc">\\</span><span class="st">.csv$"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(sales_files, <span class="at">id =</span> <span class="st">"file"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Once you have imported multiple files you can combine them explicitly with <code>dplyr::bind_rows()</code> or <code>bind_cols()</code>, depending on whether you want to stack rows or columns. <code>bind_rows()</code> requires identical column names, so pay attention to names and types when reading.</p>
+<p>If you ever need to combine tibbles you already read in separately, <code>dplyr::bind_rows()</code> stacks them by matching column name (the columns don’t even need to be in the same order), and <code>bind_cols()</code> glues data frames side by side by position.</p>
+</section>
+<section id="entering-data-by-hand" class="level3">
+<h3 class="anchored" data-anchor-id="entering-data-by-hand">Entering data by hand</h3>
+<p>Not every small dataset needs its own file. <code>tibble()</code> builds a data frame column by column, while <code>tribble()</code> (a “transposed tibble”) lets you lay data out row by row, which is often easier to read and check for a small, hand-typed table. A <code>~</code> marks each column name.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tribble</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>grade, <span class="sc">~</span>gpa_cutoff,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"A"</span>,    <span class="fl">3.7</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"B"</span>,    <span class="fl">2.7</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"C"</span>,    <span class="fl">1.7</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  grade gpa_cutoff
+  &lt;chr&gt;      &lt;dbl&gt;
+1 A            3.7
+2 B            2.7
+3 C            1.7</code></pre>
+</div>
+</div>
 </section>
 <section id="writing-data-back-to-disk" class="level3">
 <h3 class="anchored" data-anchor-id="writing-data-back-to-disk">Writing data back to disk</h3>
-<p><code>readr</code> also provides <code>write_csv()</code> and <code>write_tsv()</code> for saving tibbles to disk. Remember that when you write to CSV the column specification is lost—you must regenerate types when reading the file again. For intermediate results consider using <code>write_rds()</code> and <code>read_rds()</code>, which store R objects in a binary format preserving types.</p>
-<!-- ## In‑class activity (≈60 min) -->
-<!-- Today’s activity gives you hands‑on practice importing and combining data.  Work individually or in small groups.  A shared dataset (e.g., **nycflights13** or **palmerpenguins**) will be split into several CSV files ahead of time.  Download the files from the course site or find them in your project’s `data/` folder. -->
-<!-- 1. **Inspect the files (10 min)** – Each student chooses one of the CSV files and opens it in a text editor or uses `read_csv()` with `n_max = 5` to glimpse the first few rows.  Note the column names and any potential issues: missing values recorded as strings (e.g., `"."` or `"NA"`), inconsistent capitalization, or unexpected characters. -->
-<!-- 2. **Import with `read_csv()` (15 min)** – Use `read_csv()` to import your file.  If you see a warning about parsing problems, call `problems()` to identify the row and column causing trouble.  Adjust the `na` argument or supply a `col_types` list to fix the issue.  Discuss with your partner which types were guessed correctly and which ones needed manual specification.  Try adding `show_col_types = FALSE` to reduce clutter in your console. -->
-<!-- 3. **Combine files (20 min)** – As a group, collect the names of all the CSV files and store them in a character vector.  Use `list.files()` with a pattern if the files follow a naming convention (e.g., `*_penguins.csv`).  Read all files at once using `read_csv(file_vector, id = "source")`.  Inspect the resulting tibble—does it include a new `source` column?  Alternatively, read the files one by one and combine them using `bind_rows()`. -->
-<!-- 4. **Explore the combined data (15 min)** – Verify that the combined dataset has the expected number of rows and that the columns have consistent types.  Use `summarize()` to compute simple summaries (e.g., number of observations per file, mean of a numeric variable).  Discuss strategies for detecting import errors: inconsistent column names, mismatched types or unusual missing values.  Reflect on how the import step lays the groundwork for the tidy data work you will do in the next session. -->
-<!-- This activity will form the basis for the tidy‑data exercises in Session 7.  Save your cleaned and combined tibble to your project folder using `write_csv()` or `write_rds()` so you can use it again. -->
+<p><code>readr</code> also provides <code>write_csv()</code> and <code>write_tsv()</code> for saving a tibble as plain text. Remember that a CSV file has no way to record column types, so anyone (including you, later) who reads it back has to let readr re-guess every type from scratch (see Example 6.4). For intermediate results you plan to read back into R, <code>write_rds()</code> and <code>read_rds()</code> store the object in a binary format that preserves types exactly.</p>
+<p>A third option, Parquet, is a binary format built for exactly this kind of interim storage, and it works across R, Python, and other tools, not just R. This project already ships with <code>starwars.parquet</code> at the top level; read it with <code>arrow::read_parquet()</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>starwars_data <span class="ot">&lt;-</span> arrow<span class="sc">::</span><span class="fu">read_parquet</span>(<span class="st">"starwars.parquet"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(starwars_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 87 14</code></pre>
+</div>
+</div>
+</section>
+<section id="fringe-cases-and-common-pitfalls" class="level3">
+<h3 class="anchored" data-anchor-id="fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</h3>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 6.1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>readr protects leading zeros by default, but forcing a numeric type throws that protection away.</strong></p>
+<p>A ZIP code like <code>02138</code> has a meaningful leading zero. Read plainly, readr is actually careful about this:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>zip_csv <span class="ot">&lt;-</span> <span class="st">"zip</span><span class="sc">\n</span><span class="st">02138</span><span class="sc">\n</span><span class="st">02139</span><span class="sc">\n</span><span class="st">94103"</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(zip_csv, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 1
+  zip  
+  &lt;chr&gt;
+1 02138
+2 02139
+3 94103</code></pre>
+</div>
+</div>
+<p>Notice <code>zip</code> was guessed as a character column, leading zeros intact, precisely because a genuine number can never start with a zero. The trouble starts if you “fix” what looks like an annoying character column by forcing it to be numeric yourself:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(zip_csv, <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">zip =</span> <span class="fu">col_double</span>()), <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 1
+    zip
+  &lt;dbl&gt;
+1  2138
+2  2139
+3 94103</code></pre>
+</div>
+</div>
+<p><code>02138</code> silently becomes <code>2138</code>, an entirely different (and very much real) ZIP code, with no warning at all, because <code>2138</code> is a perfectly valid double. Before overriding a guessed type, ask whether the column is really a number you would ever do arithmetic on, or an identifier that just happens to look numeric (ZIP codes, phone numbers, student IDs); identifiers almost always belong in <code>col_character()</code>.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 6.2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>A semicolon delimited file, read with the wrong function, produces one column of garbage instead of an error.</strong></p>
+<p>Some regions use a comma as the decimal separator, which means a comma can no longer double as the column delimiter in a CSV, so spreadsheet software in those regions exports semicolon delimited files instead, often still with a <code>.csv</code> extension.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>euro_csv <span class="ot">&lt;-</span> <span class="st">"price;qty</span><span class="sc">\n</span><span class="st">1234,56;2</span><span class="sc">\n</span><span class="st">2000,00;5"</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># read_csv() assumes a comma delimiter, so it finds only one column per line</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(euro_csv, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 1
+  `price;qty`
+  &lt;chr&gt;      
+1 1234,56;2  
+2 2000,00;5  </code></pre>
+</div>
+</div>
+<p>Nothing errors. You simply get a single garbled column named <code>`price;qty`</code> containing whole unparsed lines like <code>"1234,56;2"</code>. The fix is <code>read_csv2()</code>, readr’s variant built for exactly this convention: semicolon as the delimiter, comma as the decimal mark.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv2</span>(euro_csv, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  price   qty
+  &lt;dbl&gt; &lt;dbl&gt;
+1 1235.     2
+2 2000      5</code></pre>
+</div>
+</div>
+<p>If a <code>.csv</code> file loads as a single suspicious looking column, check for semicolons before assuming the file itself is broken.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 6.3
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong><code>parse_number()</code> can rescue a column that looks unusably messy.</strong></p>
+<p>Suppose a spreadsheet export hands you prices as formatted text rather than plain numbers:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>raw_prices <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"$1,234.56"</span>, <span class="st">"$45.00"</span>, <span class="st">"$1,200"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">parse_number</span>(raw_prices)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1234.56   45.00 1200.00</code></pre>
+</div>
+</div>
+<p><code>parse_number()</code> strips the currency symbol, the thousands separator, and any other non-numeric text around the number, keeping just the numeric value as a double. It is far less error prone than trying to write your own <code>gsub()</code> calls to strip out <code>$</code> and <code>,</code> by hand, and it is worth reaching for any time a supposedly numeric column was guessed as character because of formatting like this.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 6.4
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Writing to CSV and reading it back can silently drop your factor levels.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>original <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">grade =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"A"</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>)),</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">test_date =</span> <span class="fu">as.Date</span>(<span class="fu">c</span>(<span class="st">"2026-01-15"</span>, <span class="st">"2026-01-16"</span>, <span class="st">"2026-01-17"</span>))</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(original, class)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       id     grade test_date 
+"integer"  "factor"    "Date" </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>csv_path <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">".csv"</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(original, csv_path)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>back_from_csv <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(csv_path, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(back_from_csv, class)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         id       grade   test_date 
+  "numeric" "character"      "Date" </code></pre>
+</div>
+</div>
+<p>The date column happens to survive, because it was written in a format readr’s guesser recognizes as ISO 8601, but <code>grade</code> comes back as a plain character column: the fact that it was a factor, and the specific order <code>"A"</code>, <code>"B"</code>, <code>"C"</code> (including the unused level <code>"C"</code>), is gone for good, because a CSV file has no way to record that information in the first place. Compare that to a round trip through RDS:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>rds_path <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">".rds"</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(original, rds_path)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>back_from_rds <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(rds_path)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">identical</span>(original, back_from_rds)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p>If you need the exact same R object back, including factor levels, dates, and everything else, save it with <code>write_rds()</code> rather than <code>write_csv()</code>. Save to CSV only when the destination is meant to be read by something other than R, or when you specifically want a plain text, human-readable file.</p>
+</div>
+</div>
+</section>
+<section id="recap" class="level3">
+<h3 class="anchored" data-anchor-id="recap">Recap</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 76%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Term</strong></th>
+<th><strong>Definition</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><code>read_csv()</code></strong></td>
+<td>Reads a comma delimited plain text file into a tibble, guessing each column’s type.</td>
+</tr>
+<tr class="even">
+<td><strong><code>show_col_types = FALSE</code></strong></td>
+<td>Silences the column specification message <code>read_csv()</code> prints by default.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>na</code> argument</strong></td>
+<td>Tells <code>read_csv()</code> which strings (besides an empty field) should become <code>NA</code>.</td>
+</tr>
+<tr class="even">
+<td><strong><code>col_types</code> / <code>cols()</code></strong></td>
+<td>Overrides readr’s guessed type for one or more columns.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>col_character()</code> for identifiers</strong></td>
+<td>The safe type for numeric-looking IDs (ZIP codes, phone numbers) that should never be treated as numbers.</td>
+</tr>
+<tr class="even">
+<td><strong><code>read_csv2()</code></strong></td>
+<td>Reads a semicolon delimited file where a comma is used as the decimal mark.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>parse_number()</code></strong></td>
+<td>Extracts the numeric value out of a messy formatted string, discarding currency symbols and separators.</td>
+</tr>
+<tr class="even">
+<td><strong><code>list.files()</code> + <code>id</code></strong></td>
+<td>Finds files matching a pattern and, when passed to <code>read_csv()</code> with <code>id</code>, records which file each row came from.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>tribble()</code></strong></td>
+<td>Builds a small tibble by typing it out row by row instead of column by column.</td>
+</tr>
+<tr class="even">
+<td><strong><code>write_rds()</code> / <code>read_rds()</code></strong></td>
+<td>Save and reload an R object in a binary format that preserves types exactly, unlike CSV.</td>
+</tr>
+<tr class="odd">
+<td><strong>Parquet</strong></td>
+<td>A binary, cross-language file format for storing tabular data with types intact; read with <code>arrow::read_parquet()</code>.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="check-your-understanding" class="level3">
+<h3 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Problems">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Problems
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Why does <code>read_csv()</code> print a message about column types by default, and how do you turn it off?</li>
+<li>A column of product codes like <code>00452</code> gets read in as a character column by default. A classmate “fixes” this by adding <code>col_types = cols(product_code = col_double())</code>. What happens to the data, and why is it a bad idea here?</li>
+<li>A <code>.csv</code> file downloaded from a European website loads into a single messy column instead of several clean ones. What is the most likely cause, and which function should you try instead of <code>read_csv()</code>?</li>
+<li>Explain what <code>parse_number()</code> does with the input <code>"€2.500,00"</code> versus what <code>read_csv()</code> alone would guess for a whole column of values formatted that way. (You do not need to know the exact output; explain the general behavior.)</li>
+<li>Your analysis produces a tibble with a factor column and a Date column. You need to hand the exact same R object to a groupmate to continue the analysis tomorrow. Should you save it with <code>write_csv()</code> or <code>write_rds()</code>? Justify your answer.</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solutions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solutions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>readr cannot know a column’s type just from a CSV file, since plain text carries no type information, so it prints its best guess for each column so you can catch a wrong guess early rather than discovering it much later in an analysis. Add <code>show_col_types = FALSE</code> to suppress the message once you trust the guesses.</p></li>
+<li><p>Forcing <code>product_code</code> to <code>col_double()</code> converts <code>"00452"</code> to the number <code>452</code>, silently dropping the leading zeros, because <code>452</code> is a perfectly valid double and readr has no way to know the leading zeros were meaningful. This is a bad idea whenever the “number” is really an identifier (product codes, ZIP codes, phone numbers) that will never be used in arithmetic; <code>col_character()</code> is the safer choice.</p></li>
+<li><p>The file most likely uses a semicolon as its delimiter (common where a comma is the decimal separator instead), which <code>read_csv()</code> does not expect, since it always assumes a comma delimiter. <code>read_csv2()</code> is built for exactly this format: semicolon delimited, comma as the decimal mark.</p></li>
+<li><p><code>parse_number()</code> strips out the currency symbol and separators and returns just the numeric value as a double, handling formatting like this directly. Left to guess on its own, <code>read_csv()</code> would very likely treat a whole column formatted like <code>"€2.500,00"</code> as a character column, since values like that do not match its numeric-guessing heuristic at all.</p></li>
+<li><p><code>write_rds()</code>, because it preserves the tibble exactly as an R object, including the factor’s levels and order and the Date column’s type. <code>write_csv()</code> would flatten the factor down to plain character text and lose the level information entirely, and would require your groupmate to correctly re-specify every column’s type by hand to get back to where you started.</p></li>
+</ol>
+</div>
+</div>
+</div>
 
 
 </section>

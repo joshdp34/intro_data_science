@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Session 4 – Data transformation (I): filtering, arranging, selecting and mutating – STA 2300 Intro to Data Science</title>
+<title>4&nbsp; Session 4: Data transformation (I): filtering, arranging, selecting and mutating – STA 2300 Intro to Data Science</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -151,6 +151,19 @@ document.addEventListener('click', (event) => {
   }
 });
 </script>
+<style>
+div.callout-example.callout {
+  border-left-color: #008000;
+}
+div.callout-example.callout-style-default > .callout-header {
+  background-color: rgba(0, 128, 0, 0.13);
+}
+div.callout-example .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-example.callout-style-default .callout-icon::before, div.callout-example.callout-titled .callout-icon::before {
+  content: '📈';
+  background-image: none;
+}
+</style>
 
 
 </head>
@@ -164,7 +177,7 @@ document.addEventListener('click', (event) => {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4 – Data transformation (I): filtering, arranging, selecting and mutating</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: Data transformation (I): filtering, arranging, selecting and mutating</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -205,37 +218,37 @@ document.addEventListener('click', (event) => {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Session 1 – R setup</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Session 1: R setup</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2 – Data visualization basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Data visualization basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3 – The layered grammar of graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: The layered grammar of graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4 – Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5 – Data transformation (II): grouping and summarizing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (II): grouping and summarizing</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6 – Data import: reading CSV &amp; flat files</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data import: reading CSV and flat files</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -344,9 +357,18 @@ document.addEventListener('click', (event) => {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a></li>
+  <li><a href="#picking-rows-with-filter" id="toc-picking-rows-with-filter" class="nav-link" data-scroll-target="#picking-rows-with-filter">Picking rows with <code>filter()</code></a></li>
+  <li><a href="#removing-duplicate-rows-with-distinct" id="toc-removing-duplicate-rows-with-distinct" class="nav-link" data-scroll-target="#removing-duplicate-rows-with-distinct">Removing duplicate rows with <code>distinct()</code></a></li>
+  <li><a href="#reordering-rows-with-arrange" id="toc-reordering-rows-with-arrange" class="nav-link" data-scroll-target="#reordering-rows-with-arrange">Reordering rows with <code>arrange()</code></a></li>
+  <li><a href="#picking-dropping-and-renaming-columns" id="toc-picking-dropping-and-renaming-columns" class="nav-link" data-scroll-target="#picking-dropping-and-renaming-columns">Picking, dropping and renaming columns</a></li>
+  <li><a href="#creating-new-columns-with-mutate" id="toc-creating-new-columns-with-mutate" class="nav-link" data-scroll-target="#creating-new-columns-with-mutate">Creating new columns with <code>mutate()</code></a></li>
+  <li><a href="#combining-steps-with-the-pipe" id="toc-combining-steps-with-the-pipe" class="nav-link" data-scroll-target="#combining-steps-with-the-pipe">Combining steps with the pipe</a></li>
+  <li><a href="#fringe-cases-and-common-pitfalls" id="toc-fringe-cases-and-common-pitfalls" class="nav-link" data-scroll-target="#fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -356,7 +378,7 @@ document.addEventListener('click', (event) => {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4 – Data transformation (I): filtering, arranging, selecting and mutating</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: Data transformation (I): filtering, arranging, selecting and mutating</span></h1>
 </div>
 
 
@@ -377,22 +399,26 @@ document.addEventListener('click', (event) => {
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
 <li><strong>Understand the purpose of data transformation.</strong> You rarely get data in exactly the form needed for analysis. Transformation involves creating new variables, reordering or selecting observations, and renaming columns.</li>
-<li><strong>Use dplyr verbs to manipulate rows and columns.</strong> Learn <code>filter()</code> to subset rows, <code>arrange()</code> to reorder rows, <code>select()</code> and <code>rename()</code> to choose or rename variables, and <code>mutate()</code> to create new columns.</li>
-<li><strong>Chain operations with the pipe.</strong> Use the pipe (<code>|&gt;</code> in base R or <code>%&gt;%</code> from <strong>magrittr</strong>) to express sequences of transformations in a readable way.</li>
+<li><strong>Use dplyr verbs to manipulate rows and columns.</strong> Learn <code>filter()</code> to subset rows, <code>distinct()</code> to remove duplicates, <code>arrange()</code> to reorder rows, <code>select()</code>, <code>rename()</code> and <code>relocate()</code> to choose, rename and reposition variables, and <code>mutate()</code> to create new columns.</li>
+<li><strong>Chain operations with the pipe.</strong> Use the pipe (<code>|&gt;</code> in base R, or <code>%&gt;%</code> from magrittr) to express sequences of transformations in a readable way.</li>
+<li><strong>Recognize a handful of correctness traps.</strong> dplyr is forgiving about syntax but not about logic; you will see a few specific ways a pipeline can run without error and still silently produce the wrong answer.</li>
 </ul>
-<section id="notes" class="level3">
-<h3 class="anchored" data-anchor-id="notes">Notes</h3>
-<p><strong>Key dplyr verbs</strong> – This session covers four of the five core verbs of dplyr:</p>
-<ul>
-<li><p><em>Pick observations by their values:</em> <code>filter()</code> subsets rows based on logical conditions.</p>
+</section>
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter penguins to only Adelie species on Dream island</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>adelie_dream <span class="ot">=</span> penguins <span class="sc">|&gt;</span> </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>, island <span class="sc">==</span> <span class="st">"Dream"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>adelie_dream <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Every dplyr verb works the same way: the first argument is always a data frame, the rest of the arguments describe what to do using the (unquoted) column names, and the result is always a new data frame. dplyr never modifies its input in place, so <code>filter(penguins, ...)</code> leaves the original <code>penguins</code> completely untouched unless you explicitly reassign the result to a name.</p>
+<section id="picking-rows-with-filter" class="level3">
+<h3 class="anchored" data-anchor-id="picking-rows-with-filter">Picking rows with <code>filter()</code></h3>
+<p><code>filter()</code> keeps only the rows where a logical condition is <code>TRUE</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>adelie_dream <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>, island <span class="sc">==</span> <span class="st">"Dream"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>adelie_dream <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 8
   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
@@ -406,14 +432,58 @@ document.addEventListener('click', (event) => {
 # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
 </div>
-<p><code>filter()</code> takes the data frame as its first argument and any number of logical expressions as additional arguments. It returns a new data frame and does not modify the original.</p></li>
-<li><p><em>Reorder the rows:</em> <code>arrange()</code> sorts rows by one or more variables. Use <code>desc()</code> for descending order and remember that missing values are sorted to the end.</p>
+<p>Separating conditions with a comma (as above) means “and”: both conditions must hold. You can combine conditions explicitly with <code>&amp;</code> (and), <code>|</code> (or), and check membership in a set of values with <code>%in%</code>, which is usually clearer than a long chain of <code>|</code> comparisons against the same variable.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Arrange penguins by body mass (descending) and flipper length (ascending)</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>penguins_sorted <span class="ot">=</span> penguins <span class="sc">|&gt;</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(body_mass_g), flipper_length_mm)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>penguins_sorted <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># every penguin that is either an Adelie or a Chinstrap</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>adelie_or_chinstrap <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>))</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(adelie_or_chinstrap)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 220</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span><code>=</code> is not <code>==</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Inside <code>filter()</code>, a single <code>=</code> does not test equality; it tries to name an argument, and dplyr will stop you with an error rather than silently doing the wrong thing (see Example 4.1). Always use <code>==</code> to compare values.</p>
+</div>
+</div>
+</section>
+<section id="removing-duplicate-rows-with-distinct" class="level3">
+<h3 class="anchored" data-anchor-id="removing-duplicate-rows-with-distinct">Removing duplicate rows with <code>distinct()</code></h3>
+<p><code>distinct()</code> keeps only the unique combinations of the columns you name, dropping every duplicate after the first.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># every combination of species and island actually observed in the data</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> <span class="fu">distinct</span>(species, island)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  species   island   
+  &lt;fct&gt;     &lt;fct&gt;    
+1 Adelie    Torgersen
+2 Adelie    Biscoe   
+3 Adelie    Dream    
+4 Gentoo    Biscoe   
+5 Chinstrap Dream    </code></pre>
+</div>
+</div>
+<p>Add <code>.keep_all = TRUE</code> if you want to keep the first full row for each unique combination, rather than just the columns you named.</p>
+</section>
+<section id="reordering-rows-with-arrange" class="level3">
+<h3 class="anchored" data-anchor-id="reordering-rows-with-arrange">Reordering rows with <code>arrange()</code></h3>
+<p><code>arrange()</code> sorts rows by one or more columns, ascending by default; wrap a column in <code>desc()</code> to sort it in descending order instead. <code>arrange()</code> only changes the order of the rows; it never adds or removes any.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>penguins_sorted <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(body_mass_g), flipper_length_mm)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>penguins_sorted <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 8
   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
@@ -426,14 +496,26 @@ document.addEventListener('click', (event) => {
 6 Gentoo  Biscoe           49.8          15.9               229        5950
 # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
-</div></li>
-<li><p><em>Pick variables by their names:</em> <code>select()</code> quickly narrows a data frame to relevant columns. It supports helper functions like <code>starts_with()</code>, <code>ends_with()</code>, and <code>contains()</code>.</p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Missing values always sort to the end
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Regardless of whether you sort ascending or with <code>desc()</code>, rows with <code>NA</code> in the sorting column are always placed last. <code>arrange(desc(x))</code> does not mean “biggest first, then <code>NA</code>, then smallest;” it means “biggest first, then smallest, then <code>NA</code>.”</p>
+</div>
+</div>
+</section>
+<section id="picking-dropping-and-renaming-columns" class="level3">
+<h3 class="anchored" data-anchor-id="picking-dropping-and-renaming-columns">Picking, dropping and renaming columns</h3>
+<p><code>select()</code> narrows a data frame down to the columns you want, in the order you name them. It understands ranges (<code>bill_length_mm:bill_depth_mm</code>), negation (<code>-</code> or <code>!</code>), and helper functions like <code>starts_with()</code>, <code>ends_with()</code>, <code>contains()</code>, and <code>where()</code> (for selecting by a column’s type or a condition, such as <code>where(is.numeric)</code>).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select species, island and body_mass_g columns</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>penguins_subset <span class="ot">=</span> penguins <span class="sc">|&gt;</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, island, body_mass_g)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>penguins_subset <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> <span class="fu">select</span>(species, island, body_mass_g) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   species island    body_mass_g
@@ -445,11 +527,8 @@ document.addEventListener('click', (event) => {
 5 Adelie  Torgersen        3450
 6 Adelie  Torgersen        3650</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select all columns except those from bill_length to bill_depth</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>penguins_except <span class="ot">=</span> penguins <span class="sc">|&gt;</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>(bill_length_mm<span class="sc">:</span>bill_depth_mm))</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>penguins_except <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># every column except the two bill measurements</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>(bill_length_mm<span class="sc">:</span>bill_depth_mm)) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 6
   species island    flipper_length_mm body_mass_g sex     year
@@ -462,13 +541,24 @@ document.addEventListener('click', (event) => {
 6 Adelie  Torgersen               190        3650 male    2007</code></pre>
 </div>
 </div>
-<p>To rename a column without dropping others, use <code>rename()</code>.</p>
+<p>You can rename a column while selecting it, with the new name on the left of <code>=</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename flipper_length_mm to flipper_mm</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">=</span> penguins <span class="sc">|&gt;</span> </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">flipper_mm =</span> flipper_length_mm)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="at">flipper_mm =</span> flipper_length_mm, species) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  flipper_mm species
+       &lt;int&gt; &lt;fct&gt;  
+1        181 Adelie 
+2        186 Adelie 
+3        195 Adelie 
+4         NA Adelie 
+5        193 Adelie 
+6        190 Adelie </code></pre>
+</div>
+</div>
+<p>If you want to rename a column without dropping every other column, use <code>rename()</code> instead of <code>select()</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">flipper_mm =</span> flipper_length_mm) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 8
   species island bill_length_mm bill_depth_mm flipper_mm body_mass_g sex    year
@@ -480,54 +570,343 @@ document.addEventListener('click', (event) => {
 5 Adelie  Torge…           36.7          19.3        193        3450 fema…  2007
 6 Adelie  Torge…           39.3          20.6        190        3650 male   2007</code></pre>
 </div>
-</div></li>
-<li><p><em>Create new variables:</em> <code>mutate()</code> adds new columns that are functions of existing columns. You can refer to variables created earlier in the same call.</p>
+</div>
+<p><code>relocate()</code> moves columns to a new position without changing which columns are present, using <code>.before</code> or <code>.after</code> to say where:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute ratio of body mass to flipper length and total bill size</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">=</span> penguins <span class="sc">|&gt;</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mass_per_flipper =</span> body_mass_g <span class="sc">/</span> flipper_mm,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">bill_size =</span> bill_length_mm <span class="sc">+</span> bill_depth_mm</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> <span class="fu">relocate</span>(body_mass_g, <span class="at">.before =</span> species) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  body_mass_g species island    bill_length_mm bill_depth_mm flipper_length_mm
+        &lt;int&gt; &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;
+1        3750 Adelie  Torgersen           39.1          18.7               181
+2        3800 Adelie  Torgersen           39.5          17.4               186
+3        3250 Adelie  Torgersen           40.3          18                 195
+4          NA Adelie  Torgersen           NA            NA                  NA
+5        3450 Adelie  Torgersen           36.7          19.3               193
+6        3650 Adelie  Torgersen           39.3          20.6               190
+# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="creating-new-columns-with-mutate" class="level3">
+<h3 class="anchored" data-anchor-id="creating-new-columns-with-mutate">Creating new columns with <code>mutate()</code></h3>
+<p><code>mutate()</code> adds new columns that are computed from existing ones, and you can refer to a column created earlier in the same <code>mutate()</code> call.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">bill_ratio =</span> bill_length_mm <span class="sc">/</span> bill_depth_mm,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">heavy =</span> body_mass_g <span class="sc">&gt;</span> <span class="dv">4500</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 10
-  species island bill_length_mm bill_depth_mm flipper_mm body_mass_g sex    year
-  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;      &lt;int&gt;       &lt;int&gt; &lt;fct&gt; &lt;int&gt;
-1 Adelie  Torge…           39.1          18.7        181        3750 male   2007
-2 Adelie  Torge…           39.5          17.4        186        3800 fema…  2007
-3 Adelie  Torge…           40.3          18          195        3250 fema…  2007
-4 Adelie  Torge…           NA            NA           NA          NA &lt;NA&gt;   2007
-5 Adelie  Torge…           36.7          19.3        193        3450 fema…  2007
-6 Adelie  Torge…           39.3          20.6        190        3650 male   2007
-# ℹ 2 more variables: mass_per_flipper &lt;dbl&gt;, bill_size &lt;dbl&gt;</code></pre>
+  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+1 Adelie  Torgersen           39.1          18.7               181        3750
+2 Adelie  Torgersen           39.5          17.4               186        3800
+3 Adelie  Torgersen           40.3          18                 195        3250
+4 Adelie  Torgersen           NA            NA                  NA          NA
+5 Adelie  Torgersen           36.7          19.3               193        3450
+6 Adelie  Torgersen           39.3          20.6               190        3650
+# ℹ 4 more variables: sex &lt;fct&gt;, year &lt;int&gt;, bill_ratio &lt;dbl&gt;, heavy &lt;lgl&gt;</code></pre>
 </div>
 </div>
-<p>If you only want to keep the new variables, use <code>transmute()</code>.</p></li>
-</ul>
-<p><strong>Combining operations with the pipe</strong> – Stringing multiple operations together can be awkward when saving intermediate objects. The pipe (<code>|&gt;</code> or <code>%&gt;%</code>) passes the result of one call to the next, making code easier to read.</p>
+<p>New columns are added at the end by default; use <code>.before</code> or <code>.after</code> (just like <code>relocate()</code>) to control where they land, or <code>.keep = "used"</code> if you only want to keep the columns that went into computing the new one, which is handy for checking your work.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate average body mass by species in a single pipeline</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>species_summary <span class="ot">=</span> penguins <span class="sc">|&gt;</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">count =</span> <span class="fu">n</span>(),</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_mass))</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>species_summary <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bill_ratio =</span> bill_length_mm <span class="sc">/</span> bill_depth_mm, <span class="at">.keep =</span> <span class="st">"used"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 3
-  species   count mean_mass
-  &lt;fct&gt;     &lt;int&gt;     &lt;dbl&gt;
-1 Gentoo      124     5076.
-2 Chinstrap    68     3733.
-3 Adelie      152     3701.</code></pre>
+<pre><code># A tibble: 6 × 3
+  bill_length_mm bill_depth_mm bill_ratio
+           &lt;dbl&gt;         &lt;dbl&gt;      &lt;dbl&gt;
+1           39.1          18.7       2.09
+2           39.5          17.4       2.27
+3           40.3          18         2.24
+4           NA            NA        NA   
+5           36.7          19.3       1.90
+6           39.3          20.6       1.91</code></pre>
 </div>
 </div>
-<p>The pipe should be read as “then”: group by species <em>then</em> summarise <em>then</em> arrange the result.</p>
+<p>If you only want to keep the newly created columns (and any grouping columns) and drop everything else, <code>transmute()</code> does that in one step.</p>
+</section>
+<section id="combining-steps-with-the-pipe" class="level3">
+<h3 class="anchored" data-anchor-id="combining-steps-with-the-pipe">Combining steps with the pipe</h3>
+<p>Stringing several verbs together by saving an intermediate object after each one is verbose, and re-using the same name for each intermediate step (as the previous version of these notes did) risks exactly the shadowing problem in Example 4.4. The pipe, <code>|&gt;</code>, passes the result on its left into the first argument of the call on its right, so an entire sequence of transformations reads top to bottom as a single pipeline instead:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>tall_penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(body_mass_g)) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bill_ratio =</span> bill_length_mm <span class="sc">/</span> bill_depth_mm) <span class="sc">|&gt;</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, island, body_mass_g, bill_ratio) <span class="sc">|&gt;</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(body_mass_g))</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>tall_penguins <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  species island body_mass_g bill_ratio
+  &lt;fct&gt;   &lt;fct&gt;        &lt;int&gt;      &lt;dbl&gt;
+1 Gentoo  Biscoe        6300       3.24
+2 Gentoo  Biscoe        6050       3.51
+3 Gentoo  Biscoe        6000       3.13
+4 Gentoo  Biscoe        6000       3.01
+5 Gentoo  Biscoe        5950       2.76
+6 Gentoo  Biscoe        5950       3.13</code></pre>
+</div>
+</div>
+<p>Read the pipe as “then”: filter, <em>then</em> mutate, <em>then</em> select, <em>then</em> arrange. Each step’s output becomes the next step’s input, and nothing is overwritten along the way until the very last line assigns the final result to <code>tall_penguins</code>.</p>
+<p>Here is the same pattern applied to a dataset from outside <code>palmerpenguins</code>, to get some practice on data you have not seen built into a package before:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>stress <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/student_stress_survey.csv"</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>stress <span class="sc">|&gt;</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(study_hours <span class="sc">&gt;</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hours_per_stress_point =</span> study_hours <span class="sc">/</span> stress_level) <span class="sc">|&gt;</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(major, study_hours, stress_level, hours_per_stress_point) <span class="sc">|&gt;</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(hours_per_stress_point)) <span class="sc">|&gt;</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  major    study_hours stress_level hours_per_stress_point
+  &lt;chr&gt;          &lt;dbl&gt;        &lt;dbl&gt;                  &lt;dbl&gt;
+1 Biology         17.4            1                   17.4
+2 Nursing         16.7            1                   16.7
+3 Business        16.7            1                   16.7
+4 Business        16.0            1                   16.0
+5 Business        15.8            1                   15.8
+6 Biology         15.0            1                   15.0</code></pre>
+</div>
+</div>
+</section>
+<section id="fringe-cases-and-common-pitfalls" class="level3">
+<h3 class="anchored" data-anchor-id="fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</h3>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 4.1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong><code>filter(x = value)</code> does not silently do the wrong thing; it stops you.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(penguins, <span class="at">species =</span> <span class="st">"Adelie"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `filter()`:
+! We detected a named input.
+ℹ This usually means that you've used `=` instead of `==`.
+ℹ Did you mean `species == "Adelie"`?</code></pre>
+</div>
+</div>
+<p>Modern dplyr specifically detects this mistake and refuses to guess what you meant, offering the exact fix in the error message itself. Older versions of dplyr (and many other R functions in general) are not always this forgiving, so it is worth building the habit of reading <code>==</code> for “is equal to” and <code>=</code> only for naming an argument or assigning a value.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 4.2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong><code>!=</code> quietly drops missing values along with everything else.</strong></p>
+<p><code>penguins$sex</code> has a handful of genuinely missing values. Suppose you want every penguin that is <em>not</em> recorded as male, expecting that to include both females and unknowns:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(penguins<span class="sc">$</span>sex))          <span class="co"># how many sex values are missing?</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>not_male <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">filter</span>(sex <span class="sc">!=</span> <span class="st">"male"</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(not_male)                    <span class="co"># fewer rows than you might expect</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 165</code></pre>
+</div>
+</div>
+<p><code>sex != "male"</code> evaluates to <code>NA</code>, not <code>TRUE</code>, for every row where <code>sex</code> is already <code>NA</code>, because R cannot know whether an unknown value is or is not equal to <code>"male"</code>. <code>filter()</code> keeps only rows where the condition is <code>TRUE</code>, so <code>NA</code> rows are silently excluded, the same way they were silently excluded from the plots in Session 2. If you want to keep the missing values too, you have to ask for them explicitly:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>not_male_or_unknown <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">filter</span>(sex <span class="sc">!=</span> <span class="st">"male"</span> <span class="sc">|</span> <span class="fu">is.na</span>(sex))</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(not_male_or_unknown)         <span class="co"># now includes the missing-sex penguins</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 176</code></pre>
+</div>
+</div>
+<p>Any time you filter with <code>!=</code>, <code>&lt;</code>, or <code>&gt;</code> on a column that might contain <code>NA</code>, decide on purpose whether missing values belong in your result, rather than letting <code>filter()</code> decide for you.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 4.3
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Floating-point rounding error (from Session 1) can make <code>filter()</code> miss a row that looks like an exact match.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>example_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">y =</span> <span class="fl">0.1</span> <span class="sc">+</span> <span class="fl">0.2</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>example_data<span class="sc">$</span>y                          <span class="co"># prints as 0.3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>example_data <span class="sc">|&gt;</span> <span class="fu">filter</span>(y <span class="sc">==</span> <span class="fl">0.3</span>)        <span class="co"># 0 rows: not actually equal underneath</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 1
+# ℹ 1 variable: y &lt;dbl&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>example_data <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">near</span>(y, <span class="fl">0.3</span>))    <span class="co"># 1 row: near() allows for tiny rounding error</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+      y
+  &lt;dbl&gt;
+1   0.3</code></pre>
+</div>
+</div>
+<p>This is the exact same floating-point issue from Session 1’s <code>0.1 + 0.2 == 0.3</code>, just showing up inside a <code>filter()</code> instead of at the console. Whenever you filter on an exact match to a computed decimal value, prefer dplyr’s <code>near()</code> over <code>==</code>.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 4.4
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Reassigning a built-in dataset’s own name hides your changes from yourself.</strong></p>
+<p>An earlier version of these notes did the following, one step at a time:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">flipper_mm =</span> flipper_length_mm)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">bill_size =</span> bill_length_mm <span class="sc">+</span> bill_depth_mm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>penguins2 <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">flipper_mm =</span> flipper_length_mm)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="st">"flipper_length_mm"</span> <span class="sc">%in%</span> <span class="fu">names</span>(penguins2)  <span class="co"># gone</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="st">"flipper_mm"</span> <span class="sc">%in%</span> <span class="fu">names</span>(penguins2)         <span class="co"># here instead</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p>The moment you run <code>penguins &lt;- penguins |&gt; rename(...)</code>, the original <code>palmerpenguins::penguins</code> is shadowed by your modified version for the rest of the R session. Every chunk after that point that refers to <code>penguins</code> gets <em>your</em> renamed copy, not the original, which is easy to forget an hour (or a week) later. If you restart R (as recommended in Session 1) the shadowing disappears and old code that relied on the renamed column suddenly breaks, while code that still expects the original name works again. Assigning transformed data to a new name, such as <code>penguins_renamed</code>, avoids the problem entirely and makes it obvious at a glance which object is the original and which is derived.</p>
+</div>
+</div>
+</section>
+<section id="recap" class="level3">
+<h3 class="anchored" data-anchor-id="recap">Recap</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 76%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Term</strong></th>
+<th><strong>Definition</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><code>filter()</code></strong></td>
+<td>Keeps rows where a logical condition is <code>TRUE</code>; drops rows where it is <code>FALSE</code> or <code>NA</code>.</td>
+</tr>
+<tr class="even">
+<td><strong><code>%in%</code></strong></td>
+<td>Tests membership in a set of values; clearer than chaining several <code>|</code> comparisons on one variable.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>distinct()</code></strong></td>
+<td>Keeps only unique combinations of the named columns.</td>
+</tr>
+<tr class="even">
+<td><strong><code>arrange()</code></strong></td>
+<td>Reorders rows by one or more columns; <code>NA</code> always sorts last regardless of direction.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>select()</code></strong></td>
+<td>Narrows and reorders columns; supports ranges, negation, and helpers like <code>starts_with()</code> and <code>where()</code>.</td>
+</tr>
+<tr class="even">
+<td><strong><code>rename()</code></strong></td>
+<td>Renames specific columns while keeping every other column.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>relocate()</code></strong></td>
+<td>Moves columns to a new position with <code>.before</code> or <code>.after</code>, without changing which columns exist.</td>
+</tr>
+<tr class="even">
+<td><strong><code>mutate()</code></strong></td>
+<td>Adds new columns computed from existing ones; <code>.before</code>, <code>.after</code>, and <code>.keep</code> control placement and what survives.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>transmute()</code></strong></td>
+<td>Like <code>mutate()</code>, but keeps only the newly created (and grouping) columns.</td>
+</tr>
+<tr class="even">
+<td><strong>The pipe (<code>|&gt;</code>)</strong></td>
+<td>Passes the result on its left into the first argument on its right; read it as “then.”</td>
+</tr>
+<tr class="odd">
+<td><strong>Floating-point filtering</strong></td>
+<td>Use <code>near()</code> instead of <code>==</code> when filtering on a computed decimal value.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="check-your-understanding" class="level3">
+<h3 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Problems">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Problems
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>What is the difference between <code>filter()</code> and <code>arrange()</code>? Can either one change how many rows are in the result?</li>
+<li>You write <code>filter(df, score = 90)</code> and R stops with an error instead of running. What mistake did you make, and how do you fix it?</li>
+<li>A dataset has a <code>region</code> column with a few missing values. You run <code>filter(df, region != "West")</code> expecting to get everyone outside the West region, including anyone with an unknown region. Explain why the missing-region rows are excluded, and how you would include them.</li>
+<li>Why does dplyr’s <code>near()</code> function exist, and when should you reach for it instead of <code>==</code>?</li>
+<li>Your classmate writes <code>penguins &lt;- penguins |&gt; mutate(mass_kg = body_mass_g / 1000)</code> at the top of their script, then spends twenty minutes confused about why a later chunk that expects the original <code>palmerpenguins::penguins</code> gives strange results. What happened, and what habit would prevent it?</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solutions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solutions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><code>filter()</code> selects which rows are present in the result and can reduce the number of rows (or leave it unchanged if every row matches). <code>arrange()</code> only changes the order of the rows; it always returns the same number of rows it was given.</p></li>
+<li><p>Inside <code>filter()</code>, <code>=</code> names an argument rather than testing equality, so <code>score = 90</code> is not a valid comparison. dplyr detects this specific mistake and errors instead of guessing. The fix is to use <code>==</code>: <code>filter(df, score == 90)</code>.</p></li>
+<li><p><code>region != "West"</code> evaluates to <code>NA</code>, not <code>TRUE</code>, for any row where <code>region</code> is already missing, because R cannot determine whether an unknown region is or is not “West.” Since <code>filter()</code> only keeps rows where the condition is exactly <code>TRUE</code>, the missing-region rows are dropped along with the true non-matches. To include them, add an explicit <code>is.na()</code> check: <code>filter(df, region != "West" | is.na(region))</code>.</p></li>
+<li><p><code>near()</code> compares two numbers while allowing for a small amount of floating-point rounding error, which real decimal arithmetic almost always introduces. Use it instead of <code>==</code> whenever you are filtering (or otherwise comparing) a numeric column that was computed rather than typed in directly, since two mathematically equal computed values can differ by a tiny amount at the level of their exact binary representation.</p></li>
+<li><p>Their line reassigns the name <code>penguins</code> to a modified copy of the data, so every subsequent chunk that refers to <code>penguins</code> sees the modified version (with the new <code>mass_kg</code> column) instead of the original <code>palmerpenguins::penguins</code>. Assigning the transformed data to a new name, such as <code>penguins_kg</code>, keeps the original available and makes it clear which object is which.</p></li>
+</ol>
+</div>
+</div>
+</div>
 
 
 </section>
