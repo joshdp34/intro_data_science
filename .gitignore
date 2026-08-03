@@ -19,6 +19,9 @@ renv/
 course outline.docx
 inclass activities suggestions.docx
 
+# Local tool config
+.claude/
+
 # OS cruft
 .DS_Store
 Thumbs.db
