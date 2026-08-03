@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>19&nbsp; Session 19 – Basic programming II: iteration &amp; functional programming – STA 2300 Intro to Data Science</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-857bcdef4beefc16121eeed362ae11ad.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style type="text/css">
+.sidebar .chapter-number {
+color: #FFB81c;
+}
+freeblank {
+  color: transparent;
+  cursor: pointer;
+}
+freeblank.clicked {
+  color: red;
+}
+blank {
+  display: inline-block; 
+  position: relative;
+  padding: 0 10px;
+  color: transparent;
+  cursor: pointer;
+}
+blank::before {
+  content: ''; /* Creates a custom underline */
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px; /* Thickness of the underline */
+  background-color: black; /* Color of the underline */
+}
+blank.clicked {
+  color: red;
+}
+</style>
+<script>
+document.addEventListener('click', (event) => {
+  if (event.target.tagName === 'BLANK') {
+    event.target.classList.add('clicked');
+  }
+});
+document.addEventListener('click', (event) => {
+  if (event.target.tagName === 'FREEBLANK') {
+    event.target.classList.add('clicked');
+  }
+});
+</script>
+
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./19.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19 – Basic programming II: iteration &amp; functional programming</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./"></a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Session 1 – R setup</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2 – Data visualization basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3 – The layered grammar of graphics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4 – Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5 – Data transformation (II): grouping and summarizing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6 – Data import: reading CSV &amp; flat files</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7 – Tidy data &amp; pivoting</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8 – Variable types I: logical &amp; numeric vectors</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9 – Variable types II: strings &amp; regular expressions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10 – Variable types III: factors</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11 – Variable types IV: dates &amp; times</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12 – Missing values &amp; data cleaning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13 –&nbsp;Relational data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14 – Advanced data import I: spreadsheets</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15 – Advanced data import II: databases</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16 – Big‑data formats &amp; hierarchical data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17 – Web scraping</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18 – Basic programming I: functions &amp; code style</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19 – Basic programming II: iteration &amp; functional programming</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20 – Reproducible research &amp; communication</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21 – Exploratory data analysis (EDA)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22 – Statistical modelling&nbsp;I: simple linear regression</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
+  <ul class="collapse">
+  <li><a href="#introduction-implicit-and-explicit-iteration" id="toc-introduction-implicit-and-explicit-iteration" class="nav-link" data-scroll-target="#introduction-implicit-and-explicit-iteration">Introduction: implicit and explicit iteration</a></li>
+  <li><a href="#modifying-multiple-columns-with-across" id="toc-modifying-multiple-columns-with-across" class="nav-link" data-scroll-target="#modifying-multiple-columns-with-across">Modifying multiple columns with <code>across()</code></a></li>
+  <li><a href="#reading-multiple-files-with-purrrmap" id="toc-reading-multiple-files-with-purrrmap" class="nav-link" data-scroll-target="#reading-multiple-files-with-purrrmap">Reading multiple files with <code>purrr::map()</code></a></li>
+  <li><a href="#handling-failures" id="toc-handling-failures" class="nav-link" data-scroll-target="#handling-failures">Handling failures</a></li>
+  <li><a href="#saving-multiple-outputs" id="toc-saving-multiple-outputs" class="nav-link" data-scroll-target="#saving-multiple-outputs">Saving multiple outputs</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key take‑aways</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19 – Basic programming II: iteration &amp; functional programming</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="objectives" class="level2">
+<h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
+<ul>
+<li><strong>Recognize how iteration differs in R.</strong> In many programming languages you must explicitly loop over the elements of a vector. R is different: doubling a numeric vector is as simple as <code>2 * x</code> because the operation is <em>vectorised</em>. You’ve already encountered implicit iteration through tools like <code>facet_wrap()</code>/<code>facet_grid()</code> for faceting, <code>group_by()</code>&nbsp;+&nbsp;<code>summarize()</code> for group‑wise summaries and the <code>unnest_*()</code> functions for list‑columns. In this session you’ll learn more general tools for explicit iteration.</li>
+<li><strong>Modify multiple columns with <code>across()</code>.</strong> The <code>across()</code> function lets you apply one or more functions to a set of columns in <code>summarize()</code> or <code>mutate()</code>. You’ll learn to select columns with <code>.cols</code>, supply functions via <code>.fns</code>, customize the output names via <code>.names</code> and use variants like <code>if_any()</code>/<code>if_all()</code> for filtering.</li>
+<li><strong>Read and combine many files with purrr.</strong> <code>purrr::map()</code> iterates over a vector or list and applies a function to each element, returning a list. You’ll learn a three‑step pattern for importing a directory of files: list the file paths with <code>list.files()</code>, map a read function over those paths and then combine the results with <code>purrr::list_rbind()</code>. You’ll see how to extract data encoded in file names using <code>set_names()</code> and the <code>names_to</code> argument of <code>list_rbind()</code>.</li>
+<li><strong>Handle failures and heterogenous data.</strong> When iterating over many inputs it’s common for a few to fail. You’ll use <code>purrr::possibly()</code> to wrap a function so that failures return a default (e.g., <code>NULL</code>) instead of stopping the whole iteration. You’ll also learn strategies for dealing with lists of data frames that don’t all have the same structure.</li>
+<li><strong>Save multiple outputs.</strong> The same iteration patterns can help when exporting data. You’ll briefly see how to write multiple data frames to disk or a database and how to generate a series of plots programmatically.</li>
+</ul>
+</section>
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<section id="introduction-implicit-and-explicit-iteration" class="level3">
+<h3 class="anchored" data-anchor-id="introduction-implicit-and-explicit-iteration">Introduction: implicit and explicit iteration</h3>
+<p><strong>Iteration is everywhere.</strong> In R, many iterative operations are built into the language. The introduction to the iteration chapter reminds us that doubling a vector uses a single expression (<code>2 * x</code>) instead of a loop. Earlier tools you’ve used—faceting, group‑wise summarization and unnesting list‑columns—perform the same action for many subsets or elements. These conveniences hide the loop, but sometimes you need more control. Functional programming tools take functions as inputs and allow you to express iteration concisely. We will focus on three common tasks: <strong>modifying multiple columns</strong>, <strong>reading multiple files</strong> and <strong>saving multiple outputs</strong>.</p>
+</section>
+<section id="modifying-multiple-columns-with-across" class="level3">
+<h3 class="anchored" data-anchor-id="modifying-multiple-columns-with-across">Modifying multiple columns with <code>across()</code></h3>
+<p>Suppose you have a tibble with several numeric variables and you want to compute a summary for each. You could write the same function call repeatedly—violating the rule to never copy‑and‑paste more than twice. Instead, use <strong><code>across()</code></strong> inside <code>summarize()</code> or <code>mutate()</code> to iterate over columns. <code>across()</code> has three key arguments:</p>
+<ol type="1">
+<li><strong><code>.cols</code></strong> selects which columns to operate on. It uses the same tidy‑select syntax as <code>select()</code>, so you can use helpers such as <code>starts_with()</code>, <code>ends_with()</code>, <code>everything()</code> and <code>where()</code>. For example, <code>where(is.numeric)</code> selects all numeric columns and <code>!where(is.numeric)</code> selects everything else.</li>
+<li><strong><code>.fns</code></strong> supplies the function(s) to apply. For a single function you pass its bare name—without <code>()</code>—and <code>across()</code> will call it for each column. To provide additional arguments, wrap the function in an anonymous function <code>\(x) ...</code>. You can supply multiple functions by passing a named list; the names determine the suffixes used in the output.</li>
+<li><strong><code>.names</code></strong> controls the names of the output columns. By default, the name of each output is a glue specification <code>{.col}_{.fn}</code>; you can provide your own specification, e.g., <code>"{.fn}_{.col}"</code> to put the function name first. When using <code>across()</code> inside <code>mutate()</code>, remember that without <code>.names</code> the results will overwrite existing columns; specify new names to preserve the originals.</li>
+</ol>
+<p>Here are some common patterns using <code>across()</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># summarise each numeric column and count rows</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span> </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">where</span>(is.numeric), mean),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>()</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width   n
+1     5.843333    3.057333        3.758    1.199333 150</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute mean and standard deviation for numeric columns</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="fu">list</span>(<span class="at">mean =</span> <span class="sc">~</span><span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">sd   =</span> <span class="sc">~</span><span class="fu">sd</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">.names =</span> <span class="st">"{.fn}_{.col}"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mean_Sepal.Length sd_Sepal.Length mean_Sepal.Width sd_Sepal.Width
+1          5.843333       0.8280661         3.057333      0.4358663
+  mean_Petal.Length sd_Petal.Length mean_Petal.Width sd_Petal.Width
+1             3.758        1.765298         1.199333      0.7622377</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># replace missing values with zero but keep originals</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df_miss <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">a =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="dv">3</span>), <span class="at">b =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="cn">NA</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df_miss <span class="sc">|&gt;</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(a<span class="sc">:</span>b, <span class="sc">~</span><span class="fu">coalesce</span>(.x, <span class="dv">0</span>), <span class="at">.names =</span> <span class="st">"{.col}_na0"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+      a     b a_na0 b_na0
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     1     4     1     4
+2    NA     5     0     5
+3     3    NA     3     0</code></pre>
+</div>
+</div>
+<p>When filtering, <code>if_any()</code> and <code>if_all()</code> are handy variants: <code>filter(if_any(where(is.na)))</code> keeps rows with at least one missing value, whereas <code>filter(if_all(where(is.na)))</code> keeps rows where <em>all</em> selected columns are missing.</p>
+<p>The fact that <code>.cols</code> uses tidy‑select means you can write helper functions that operate on a user‑supplied set of columns. For example, the <code>summarize_means()</code> helper from the book computes the mean of selected columns and drops grouping. Use embracing (<code>{ }</code>) to allow column arguments inside your functions.</p>
+</section>
+<section id="reading-multiple-files-with-purrrmap" class="level3">
+<h3 class="anchored" data-anchor-id="reading-multiple-files-with-purrrmap">Reading multiple files with <code>purrr::map()</code></h3>
+<p>The second iteration task is combining data stored in many files. A reliable pattern has three steps:</p>
+<ol type="1">
+<li><strong>List files.</strong> Use <code>list.files()</code> to get a character vector of file paths. Supply the directory with <code>path</code>, restrict the file types with a regular‑expression <code>pattern</code> like <code>"[.]csv$"</code> and set <code>full.names = TRUE</code> so the results include the directory.</li>
+<li><strong>Read each file.</strong> Use <code>purrr::map()</code> to apply a reading function (e.g., <code>read_csv()</code> or <code>read_excel()</code>) to each path. <code>map(x, f)</code> is shorthand for calling <code>f()</code> on each element of <code>x</code> and returning a list. If you need to pass additional arguments, supply an anonymous function <code>\(path) read_csv(path, skip = 2)</code>.</li>
+<li><strong>Combine the results.</strong> Once you have a list of data frames, use <code>purrr::list_rbind()</code> to stack them into a single tibble. When file names contain data, call <code>set_names()</code> to give the list elements informative names and use the <code>names_to</code> argument of <code>list_rbind()</code> to store those names as a column. You can extract numbers from file names with <code>readr::parse_number()</code>.</li>
+</ol>
+<p>Here is a minimal example that reads multiple CSVs from a directory, records the year from the file name and combines them:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>paths <span class="ot">=</span> <span class="fu">list.files</span>(<span class="st">"data/gapminder"</span>, <span class="at">pattern =</span> <span class="st">"[.]csv$"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>gapminder <span class="ot">=</span> paths <span class="sc">|&gt;</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_names</span>(basename) <span class="sc">|&gt;</span>                           <span class="co"># name each element by file name</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(readr<span class="sc">::</span>read_csv) <span class="sc">|&gt;</span>                          <span class="co"># read each file into a tibble</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list_rbind</span>(<span class="at">names_to =</span> <span class="st">"file_name"</span>) <span class="sc">|&gt;</span>           <span class="co"># combine and create file_name column</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> readr<span class="sc">::</span><span class="fu">parse_number</span>(file_name))    <span class="co"># extract year from the name</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>When the data frames are heterogeneous (different columns or types), inspect them before binding. A helper like <code>df_types()</code> that records column names, types and missing values can be mapped over the list and the results compared.</p>
+</section>
+<section id="handling-failures" class="level3">
+<h3 class="anchored" data-anchor-id="handling-failures">Handling failures</h3>
+<p><code>purrr::map()</code> stops on the first error. If any file fails to read, nothing is returned. To avoid losing all progress you can wrap the reading function with <code>purrr::possibly()</code>, which returns a specified default (e.g., <code>NULL</code>) instead of erroring. For example:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>safe_read <span class="ot">=</span> <span class="fu">possibly</span>(readr<span class="sc">::</span>read_csv, <span class="at">otherwise =</span> <span class="cn">NULL</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>files  <span class="ot">=</span> paths <span class="sc">|&gt;</span> <span class="fu">map</span>(safe_read)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>data   <span class="ot">=</span> files <span class="sc">|&gt;</span> <span class="fu">list_rbind</span>()    <span class="co"># list_rbind() silently drops NULLs</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>failed <span class="ot">=</span> <span class="fu">map_lgl</span>(files, is.null)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>paths[failed]  <span class="co"># investigate these files manually</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This pattern lets you process all the valid files and identify which ones need special handling.</p>
+</section>
+<section id="saving-multiple-outputs" class="level3">
+<h3 class="anchored" data-anchor-id="saving-multiple-outputs">Saving multiple outputs</h3>
+<p>The final task is the reverse of reading: you often need to save multiple data frames or plots. The iteration tools you’ve learned apply here too. For example, to save several datasets to disk you could use <code>purrr::iwalk()</code> (or <code>walk2()</code>) over a list of tibbles and corresponding file names:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>datasets <span class="ot">=</span> <span class="fu">list</span>(<span class="at">penguins =</span> palmerpenguins<span class="sc">::</span>penguins, </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">storms   =</span> dplyr<span class="sc">::</span>storms)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>paths <span class="ot">=</span> <span class="fu">paste0</span>(<span class="fu">names</span>(datasets), <span class="st">".csv"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">walk2</span>(datasets, paths, readr<span class="sc">::</span>write_csv)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Similarly, to save multiple plots you can iterate over a list of ggplot objects and call <code>ggsave()</code> for each, constructing the file name from the plot’s position or a meaningful label. When writing many outputs to a database, you can create a template table and then iterate over your data frames inserting them one by one.</p>
+</section>
+<section id="key-takeaways" class="level3">
+<h3 class="anchored" data-anchor-id="key-takeaways">Key take‑aways</h3>
+<ul>
+<li><strong>Vectorised operations hide loops.</strong> R often does the iteration for you, but when you need more control, functional programming tools help you express iteration clearly.</li>
+<li><strong><code>across()</code> loops over columns.</strong> Select variables with tidy‑select in <code>.cols</code>, supply one or more functions via <code>.fns</code> (bare names or anonymous functions), and control output names with <code>.names</code>. Use <code>where()</code> helpers to select columns by type and <code>if_any()</code>/<code>if_all()</code> to filter across multiple columns.</li>
+<li><strong>Break up complex summaries.</strong> When multiple functions are applied, name them to get informative suffixes and, if needed, customise the naming pattern.</li>
+<li><strong>Three‑step file import.</strong> Use <code>list.files()</code> to collect file names, <code>purrr::map()</code> to read each file and <code>list_rbind()</code> to combine them. Use <code>set_names()</code> and the <code>names_to</code> argument to capture metadata stored in file names.</li>
+<li><strong>Use <code>possibly()</code> to handle errors.</strong> Wrap functions with <code>purrr::possibly()</code> so that failures return a default, allowing you to process good inputs and diagnose problems later.</li>
+<li><strong>Iteration patterns are symmetrical.</strong> The same tools you use to read multiple inputs—<code>map()</code>, <code>walk()</code>, naming and combining—also help you write multiple outputs, from CSV files to plots.</li>
+</ul>
+<!-- ## In‑class activity -->
+<!-- In today’s hands‑on activity you will practise functional programming with the **palmerpenguins::penguins** dataset.  The dataset includes measurements for three species of penguins (`Adelie`, `Gentoo`, `Chinstrap`) and provides a clean, tabular example that is *not used in the R for Data Science book*.  The goal is to apply `across()` to summarise and transform multiple variables, iterate over groups with `map()`, handle potential read failures with `possibly()`, and save multiple outputs.  Complete the following steps in an R script or notebook: -->
+<!-- 1. **Explore the data (5 min).**  Load the tidyverse and palmerpenguins packages.  Use `glimpse(penguins)` to see the structure of the dataset, and identify which variables are numeric and which are factors.  Use `summary()` to check for missing values. -->
+<!-- 2. **Summarise numeric variables by species (10 min).**  Use `group_by(species)` and `summarize()` with `across()` to compute the mean and standard deviation of every numeric column (e.g., `bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, `body_mass_g`).  Supply a named list of functions so that your output columns are named `mean_bill_length_mm`, `sd_bill_length_mm`, etc.  Remember to set `na.rm = TRUE`. -->
+<!-- 3. **Create standardized variables (10 min).**  Use `mutate()` with `across(where(is.numeric), ~ (.x - mean(.x, na.rm = TRUE)) / sd(.x, na.rm = TRUE), .names = "z_{.col}")` to add Z‑score versions of each numeric variable to the dataset.  Compare the distributions of the standardized variables across species with a boxplot. -->
+<!-- 4. **Split and save the data (10 min).**  Split the standardized penguin data by species using `split(penguins, penguins$species)`.  Use `iwalk()` (or `walk2()`) to iterate over the list and write each tibble to a CSV file named after the species, e.g., `"adelie.csv"`, `"gentoo.csv"` and `"chinstrap.csv"`.  All files should be saved in a new folder called `species_csv`. -->
+<!-- 5. **Read and combine with error handling (15 min).**  Use `list.files()` with a pattern that matches only `.csv` files in `species_csv` and `full.names = TRUE` to create a vector of file paths.  Create a safe reading function `safe_read = purrr::possibly(readr::read_csv, otherwise = NULL)` and use `map()` to read each file.  Combine the non‑NULL results with `list_rbind(names_to = "species")` to reconstruct a single tibble.  Verify that the combined data matches your original standardized dataset.  If any files fail to read (e.g., you could intentionally rename one file to simulate an error), identify which ones by checking which list elements are `NULL`. -->
+<!-- 6. **Generate and save multiple plots (10 min).**  For each species, create a scatterplot of bill length vs. flipper length using `ggplot()` and store the plots in a named list.  Then use `iwalk()` to iterate over the plots and save each to a PNG file in a `plots` folder.  Construct the file names using the species names (e.g., `"scatter-adelie.png"`).  Optionally, customise the titles and colours for each plot. -->
+<!-- This activity will reinforce your understanding of `across()`, `map()`, safe iteration with `possibly()` and iteratively saving outputs. -->
+<!-- --- -->
+<!-- **Suggested reading for Session 20:**  Before the next class on reproducible research and communication, read two chapters from *R for Data Science* (2nd edition).  **Chapter 28 “Quarto”** introduces Quarto as a unified authoring framework that combines code, its results and your prose into a single, reproducible document【992205213102681†L125-L143】.  The chapter explains that Quarto documents (`.qmd` files) are plain text files with a YAML header, code chunks and narrative text, and that Quarto supports many output formats, such as HTML, PDF and Word【992205213102681†L165-L201】.  You’ll learn that Quarto is designed for three purposes: communicating results to decision‑makers, collaborating with other data scientists, and serving as a lab notebook【992205213102681†L125-L142】.  The chapter also notes that Quarto unifies the R Markdown ecosystem and requires the command‑line interface (CLI) but is integrated into RStudio【992205213102681†L149-L160】. -->
+<!-- **Chapter 11 “Communication”** focuses on turning exploratory graphics into expository graphics that effectively communicate your insights.  The authors emphasize that your audience may lack your background knowledge, so you need to invest effort in making plots self‑explanatory【778553707203566†L124-L135】.  Start by adding good labels with `labs()`; titles should summarise the main finding rather than merely describing the plot【778553707203566†L183-L185】.  The chapter also explains how to add subtitles and captions to provide context and data sources【778553707203566†L187-L191】.  Reading these sections will prepare you to use Quarto to document your analysis and to design graphics that communicate clearly. -->
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
