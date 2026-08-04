@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Session 7 – Tidy data &amp; pivoting – STA 2300 Intro to Data Science</title>
+<title>7&nbsp; Session 7: Tidy data and pivoting – STA 2300 Intro to Data Science</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -177,7 +177,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7 – Tidy data &amp; pivoting</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Tidy data and pivoting</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -254,7 +254,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7 – Tidy data &amp; pivoting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Tidy data and pivoting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -362,8 +362,12 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
   <ul class="collapse">
   <li><a href="#what-is-tidy-data" id="toc-what-is-tidy-data" class="nav-link" data-scroll-target="#what-is-tidy-data">What is tidy data?</a></li>
   <li><a href="#lengthening-data-with-pivot_longer" id="toc-lengthening-data-with-pivot_longer" class="nav-link" data-scroll-target="#lengthening-data-with-pivot_longer">Lengthening data with <code>pivot_longer()</code></a></li>
+  <li><a href="#splitting-multiple-pieces-of-information-out-of-column-names" id="toc-splitting-multiple-pieces-of-information-out-of-column-names" class="nav-link" data-scroll-target="#splitting-multiple-pieces-of-information-out-of-column-names">Splitting multiple pieces of information out of column names</a></li>
+  <li><a href="#extracting-a-variable-name-and-a-value-from-a-header-at-once" id="toc-extracting-a-variable-name-and-a-value-from-a-header-at-once" class="nav-link" data-scroll-target="#extracting-a-variable-name-and-a-value-from-a-header-at-once">Extracting a variable name and a value from a header at once</a></li>
   <li><a href="#widening-data-with-pivot_wider" id="toc-widening-data-with-pivot_wider" class="nav-link" data-scroll-target="#widening-data-with-pivot_wider">Widening data with <code>pivot_wider()</code></a></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key take‑aways</a></li>
+  <li><a href="#fringe-cases-and-common-pitfalls" id="toc-fringe-cases-and-common-pitfalls" class="nav-link" data-scroll-target="#fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -373,7 +377,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7 – Tidy data &amp; pivoting</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Tidy data and pivoting</span></h1>
 </div>
 
 
@@ -394,44 +398,42 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
 <li><strong>Define tidy data.</strong> Understand the three rules that make a dataset tidy: each <strong>variable</strong> must live in its own column, each <strong>observation</strong> must occupy its own row, and each <strong>value</strong> must appear in a single cell. Appreciate why a consistent data structure makes it easier to learn and use tidyverse tools.</li>
-<li><strong>Lengthen data with <code>pivot_longer()</code>.</strong> Use <code>pivot_longer()</code> from the <em>tidyr</em> package to reshape untidy datasets by gathering column names into a new variable and their values into another variable. Learn how to select columns to pivot, specify the names of the new variables and optionally drop missing values.</li>
-<li><strong>Handle multiple variables in column names.</strong> Recognize when column headers encode multiple pieces of information (e.g., method, gender and age) and use the <code>names_to</code>/<code>names_sep</code> arguments of <code>pivot_longer()</code> to split them into separate variables.</li>
-<li><strong>Widen data with <code>pivot_wider()</code>.</strong> Use <code>pivot_wider()</code> to spread rows into columns when each observation is represented across multiple rows. Learn how to choose the <code>names_from</code>, <code>values_from</code> and <code>id_cols</code> arguments so that each row uniquely identifies an observation.</li>
+<li><strong>Lengthen data with <code>pivot_longer()</code>.</strong> Use <code>pivot_longer()</code> from the tidyr package to reshape untidy datasets by gathering column names into a new variable and their values into another variable. Learn how to select columns to pivot, specify the names of the new variables, and optionally drop missing values.</li>
+<li><strong>Handle multiple variables in column names.</strong> Recognize when column headers encode multiple pieces of information (for example, method, gender, and age) and use the <code>names_to</code>/<code>names_sep</code> arguments of <code>pivot_longer()</code> to split them into separate variables, or <code>names_pattern</code> when a regular expression is a better fit than a fixed separator.</li>
+<li><strong>Extract both a variable name and a value from a column header.</strong> Recognize the special <code>.value</code> sentinel for the (surprisingly common) case where column headers mix a variable name with an identifier, such as <code>dob_child1</code> and <code>name_child1</code>.</li>
+<li><strong>Widen data with <code>pivot_wider()</code>.</strong> Use <code>pivot_wider()</code> to spread rows into columns when each observation is represented across multiple rows. Learn how to choose the <code>names_from</code>, <code>values_from</code>, and <code>id_cols</code> arguments so that each row uniquely identifies an observation, and recognize what happens when it does not.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <section id="what-is-tidy-data" class="level3">
 <h3 class="anchored" data-anchor-id="what-is-tidy-data">What is tidy data?</h3>
-<p>Tidy data is a <strong>standard way to organize your datasets</strong> so that they work naturally with the tidyverse. In tidy data:</p>
+<p>Tidy data is a standard way to organize a dataset so that it works naturally with the tidyverse. In tidy data:</p>
 <ol type="1">
-<li><strong>Each variable is a column, each column is a variable.</strong> A dataset like <code>table1</code> from <em>R for Data Science</em> has one column for each variable and is easiest to work with.</li>
-<li><strong>Each observation is a row.</strong> Each row of a tidy data frame corresponds to one observation of all variables.</li>
+<li><strong>Each variable is a column, and each column is a variable.</strong> A dataset like <code>table1</code> from <em>R for Data Science</em> has one column per variable and is the easiest shape to work with.</li>
+<li><strong>Each observation is a row.</strong> Every row corresponds to one observation of all the variables.</li>
 <li><strong>Each value is a cell.</strong> Every cell contains a single value for one variable in one observation.</li>
 </ol>
-<p>The pay‑off for tidying data is twofold. First, adopting a single consistent structure makes it easier to learn a suite of tools because they all assume the same underlying format. Second, placing variables in columns allows R’s vectorised functions to operate naturally.</p>
+<p>The payoff is twofold. A single consistent structure makes it easier to learn a whole suite of tools, since they all assume the same underlying shape, and placing variables in columns lets R’s vectorized functions operate the way they are designed to.</p>
 </section>
 <section id="lengthening-data-with-pivot_longer" class="level3">
 <h3 class="anchored" data-anchor-id="lengthening-data-with-pivot_longer">Lengthening data with <code>pivot_longer()</code></h3>
-<p>Most real datasets aren’t tidy because they are organised for data entry or reporting rather than analysis. The <strong><code>pivot_longer()</code></strong> function lengthens data by gathering a set of columns into key–value pairs. Its most important arguments are:</p>
-<ul>
-<li><code>cols</code>: which columns to pivot. You can specify them explicitly (<code>bp1:bp2</code>) or using tidyselect helpers such as <code>starts_with()</code>.</li>
-<li><code>names_to</code>: the name of the new variable created from column names. For example, converting week columns (<code>wk1</code>, <code>wk2</code>, …) into a variable called <code>week</code>.</li>
-<li><code>values_to</code>: the name of the variable that will hold the values from the pivoted columns.</li>
-<li><code>values_drop_na</code>: set to <code>TRUE</code> to drop rows where all the pivoted columns contain <code>NA</code>.</li>
-</ul>
-<p>Here is a simple example using the built‑in <code>billboard</code> dataset, which records weekly Billboard chart positions. Each row is a song and each <code>wk?</code> column gives its rank in that week. To tidy this dataset, we gather the week columns into a new <code>week</code> variable and the ranks into a <code>rank</code> variable:</p>
+<p>Most real datasets are not tidy, because they were organized for data entry or reporting rather than analysis. <code>pivot_longer()</code> lengthens data by gathering a set of columns into key-value pairs. Its most important arguments are <code>cols</code> (which columns to pivot, specified explicitly like <code>bp1:bp2</code> or with a tidyselect helper like <code>starts_with()</code>), <code>names_to</code> (the name of the new variable built from the column names), <code>values_to</code> (the name of the new variable holding the pivoted values), and <code>values_drop_na</code> (set to <code>TRUE</code> to drop rows created only because a column happened to be empty for that observation).</p>
+<p>The built-in <code>billboard</code> dataset records weekly Billboard chart positions: each row is a song, and each <code>wk?</code> column gives its rank in that week of its chart run.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>billboard_long <span class="ot">&lt;-</span> billboard <span class="sc">|&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"wk"</span>),</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"week"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"rank"</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">week =</span> <span class="fu">parse_number</span>(week))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>billboard_long <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>billboard_long <span class="ot">&lt;-</span> billboard <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"wk"</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"week"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"rank"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">week =</span> <span class="fu">parse_number</span>(week))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>billboard_long <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 5
   artist track                   date.entered  week  rank
@@ -444,17 +446,21 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 6 2 Pac  Baby Don't Cry (Keep... 2000-02-26       6    94</code></pre>
 </div>
 </div>
-<p>This call transforms the 317 × 79 <code>billboard</code> tibble into a 5307 × 5 tibble with one row per song–week combination.</p>
-<p>When column names contain <strong>multiple pieces of information</strong>, you can split them into several new variables by supplying a vector of names and a separator. For example, the <code>who2</code> dataset records TB cases with column names like <code>sp_m_014</code>, which combine the method (<code>sp</code>), gender (<code>m</code>) and age range (<code>014</code>). The following call extracts those parts into separate variables:</p>
+<p>This call transforms the 317 by 79 <code>billboard</code> tibble into a 5307 by 5 tibble with one row per song-week combination, which is exactly why <code>nrow()</code> no longer answers “how many songs are there”: it now answers “how many song-week observations are there.”</p>
+</section>
+<section id="splitting-multiple-pieces-of-information-out-of-column-names" class="level3">
+<h3 class="anchored" data-anchor-id="splitting-multiple-pieces-of-information-out-of-column-names">Splitting multiple pieces of information out of column names</h3>
+<p>Sometimes a column header packs in more than one piece of information. The <code>who2</code> dataset records tuberculosis cases with column names like <code>sp_m_014</code>, which combine the diagnosis method (<code>sp</code>), gender (<code>m</code>), and age range (<code>014</code>). Supplying a vector of names to <code>names_to</code> along with <code>names_sep</code> splits each column name at the separator into those separate variables in one step.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>who2_long <span class="ot">&lt;-</span> who2 <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">!</span>(country<span class="sc">:</span>year),</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"diagnosis"</span>, <span class="st">"gender"</span>, <span class="st">"age"</span>),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"_"</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"count"</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>who2_long <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>who2_long <span class="ot">&lt;-</span> who2 <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">!</span>(country<span class="sc">:</span>year),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"diagnosis"</span>, <span class="st">"gender"</span>, <span class="st">"age"</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"_"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"count"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>who2_long <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 6
   country      year diagnosis gender age   count
@@ -467,26 +473,62 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 6 Afghanistan  1980 sp        m      5564     NA</code></pre>
 </div>
 </div>
-<p>The <strong><code>names_sep</code></strong> argument splits each original column name at the underscore and assigns the pieces to the new variables (<code>diagnosis</code>, <code>gender</code>, <code>age</code>). The <strong><code>values_to</code></strong> argument stores the counts.</p>
+</section>
+<section id="extracting-a-variable-name-and-a-value-from-a-header-at-once" class="level3">
+<h3 class="anchored" data-anchor-id="extracting-a-variable-name-and-a-value-from-a-header-at-once">Extracting a variable name and a value from a header at once</h3>
+<p>Occasionally a column header encodes a variable name <em>and</em> an identifier together, rather than several independent pieces of information. The <code>household</code> dataset records each child’s date of birth and name in separate columns per child:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>household</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  family dob_child1 dob_child2 name_child1 name_child2
+   &lt;int&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;       &lt;chr&gt;      
+1      1 1998-11-26 2000-01-29 Susan       Jose       
+2      2 1996-06-22 NA         Mark        &lt;NA&gt;       
+3      3 2002-07-11 2004-04-05 Sam         Seth       
+4      4 2004-10-10 2009-08-27 Craig       Khai       
+5      5 2000-12-05 2005-02-28 Parker      Gracie     </code></pre>
+</div>
+</div>
+<p><code>dob_child1</code> and <code>name_child1</code> are not two unrelated categories the way <code>sp</code>, <code>m</code>, and <code>014</code> were; <code>dob</code> and <code>name</code> are themselves variable names that belong in their own columns, while <code>child1</code>/<code>child2</code> identifies which child a row describes. The special sentinel <code>".value"</code> inside <code>names_to</code> tells <code>pivot_longer()</code> to use that piece of the column name as a new column name instead of as a value:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>household <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">!</span>family,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">".value"</span>, <span class="st">"child"</span>),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"_"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 4
+  family child  dob        name  
+   &lt;int&gt; &lt;chr&gt;  &lt;date&gt;     &lt;chr&gt; 
+1      1 child1 1998-11-26 Susan 
+2      1 child2 2000-01-29 Jose  
+3      2 child1 1996-06-22 Mark  
+4      3 child1 2002-07-11 Sam   
+5      3 child2 2004-04-05 Seth  
+6      4 child1 2004-10-10 Craig 
+7      4 child2 2009-08-27 Khai  
+8      5 child1 2000-12-05 Parker
+9      5 child2 2005-02-28 Gracie</code></pre>
+</div>
+</div>
+<p>The result has genuine <code>dob</code> and <code>name</code> columns, one row per family-child combination, with families that only have one child on record contributing only one row instead of a row with an <code>NA</code> child.</p>
 </section>
 <section id="widening-data-with-pivot_wider" class="level3">
 <h3 class="anchored" data-anchor-id="widening-data-with-pivot_wider">Widening data with <code>pivot_wider()</code></h3>
-<p>Sometimes a single observation is spread across multiple rows, and you need to widen the data by creating new columns. The function <strong><code>pivot_wider()</code></strong> increases the number of columns and decreases the number of rows. It is particularly useful when you have long data with a variable that identifies the type of measurement and another variable with the corresponding value.</p>
-<p>The key arguments are:</p>
-<ul>
-<li><code>names_from</code>: the column whose unique values will become new column names.</li>
-<li><code>values_from</code>: the column containing the values to fill those new columns.</li>
-<li><code>id_cols</code>: optional columns that uniquely identify each row; if you omit this, <code>pivot_wider()</code> will attempt to infer them but may produce duplicate rows.</li>
-</ul>
-<p>As an example, the <code>cms_patient_experience</code> dataset from the Centers for Medicare &amp; Medicaid Services records multiple performance measures for each healthcare organization. Each organization appears on multiple rows, one per measure. To put each organization on its own row with separate columns for each measure code, use <code>pivot_wider()</code>:</p>
+<p>Sometimes a single observation is spread across multiple rows instead, and you need to widen the data into new columns. <code>pivot_wider()</code> increases the number of columns and decreases the number of rows; it is especially useful when a variable identifies the type of measurement and another variable holds the corresponding value. The key arguments are <code>names_from</code> (the column whose unique values become new column names), <code>values_from</code> (the column supplying the values that fill those new columns), and <code>id_cols</code> (the columns that uniquely identify each resulting row).</p>
+<p>The <code>cms_patient_experience</code> dataset from the Centers for Medicare &amp; Medicaid Services records several performance measures per healthcare organization, with each organization spread across multiple rows, one per measure.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cms_wide <span class="ot">&lt;-</span> cms_patient_experience <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> <span class="fu">starts_with</span>(<span class="st">"org"</span>),</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> measure_cd,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> prf_rate</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>cms_wide <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cms_wide <span class="ot">&lt;-</span> cms_patient_experience <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> <span class="fu">starts_with</span>(<span class="st">"org"</span>),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> measure_cd,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> prf_rate</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>cms_wide <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 8
   org_pac_id org_nm  CAHPS_GRP_1 CAHPS_GRP_2 CAHPS_GRP_3 CAHPS_GRP_5 CAHPS_GRP_8
@@ -500,17 +542,238 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 # ℹ 1 more variable: CAHPS_GRP_12 &lt;dbl&gt;</code></pre>
 </div>
 </div>
-<p>By specifying the identifier columns (<code>org_pac_id</code> and <code>org_nm</code>), <code>pivot_wider()</code> ensures that each organisation occupies a single row and creates a column for each measure code. If you omit <code>id_cols</code>, you may see duplicate rows because <code>pivot_wider()</code> cannot uniquely identify observations on its own.</p>
+<p>Naming <code>org_pac_id</code> and <code>org_nm</code> as <code>id_cols</code> tells <code>pivot_wider()</code> exactly which columns identify a unique organization, so every organization lands on a single row with one column per measure code. <code>id_cols</code> is not optional in the way it looks; leaving it out only means <code>pivot_wider()</code> guesses which remaining columns identify a row, and a wrong guess produces duplicate or list-column results with no error at all (see Example 7.3).</p>
 </section>
-<section id="key-takeaways" class="level3">
-<h3 class="anchored" data-anchor-id="key-takeaways">Key take‑aways</h3>
-<ul>
-<li><strong>Tidy data has a consistent structure:</strong> variables in columns, observations in rows and values in cells. This organization simplifies analysis and leverages R’s vectorization.</li>
-<li><strong><code>pivot_longer()</code> gathers columns into key–value pairs</strong>. Use <code>cols</code> to select columns to gather, <code>names_to</code> and <code>values_to</code> to name the new variables, and <code>values_drop_na</code> to remove structural missing values.</li>
-<li><strong>Split multiple pieces of information</strong> encoded in column names with <code>names_to</code> and <code>names_sep</code>.</li>
-<li><strong><code>pivot_wider()</code> spreads values across new columns</strong>, reversing a <code>pivot_longer()</code> when observations are spread across rows. Use <code>names_from</code>, <code>values_from</code> and (optionally) <code>id_cols</code> to control the reshaping.</li>
-<li><strong>Practice on real data.</strong> Tidy datasets are not always ready-made; most analyses require some tidying. Being proficient with pivoting functions allows you to structure your data before visualizing, transforming or modelling.</li>
-</ul>
+<section id="fringe-cases-and-common-pitfalls" class="level3">
+<h3 class="anchored" data-anchor-id="fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</h3>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 7.1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong><code>names_pattern</code> does everything <code>names_sep</code> does, with regular expressions instead of a fixed character.</strong></p>
+<p>R4DS mentions <code>names_pattern</code> as an alternative to <code>names_sep</code> for splitting column names, but never actually shows it in action. Here it is, reproducing the <code>who2</code> split from this session’s notes with a regular expression capturing the same three pieces:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>who2_pattern <span class="ot">&lt;-</span> who2 <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">!</span>(country<span class="sc">:</span>year),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"diagnosis"</span>, <span class="st">"gender"</span>, <span class="st">"age"</span>),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_pattern =</span> <span class="st">"(.*)_(.)_(.*)"</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"count"</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">identical</span>(who2_pattern, who2_long)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p>Each parenthesized group in the pattern becomes one of the names in <code>names_to</code>, in order. <code>names_sep</code> is really just a convenience wrapper for the common case where a single fixed character cleanly separates every piece; reach for <code>names_pattern</code> once a column name’s structure is too irregular for a single separator character to handle (for example, a fixed number of leading digits followed by free text).</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 7.2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>A column that looks like a unique identifier might not be.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">n_distinct</span>(billboard<span class="sc">$</span>track)         <span class="co"># fewer distinct titles than rows...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 316</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(<span class="fu">distinct</span>(billboard, artist, track))  <span class="co"># ...because artist matters too</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 317</code></pre>
+</div>
+</div>
+<p><code>billboard</code> has 317 rows but only 316 distinct track titles, because two different artists, Donell Jones and Shade Sheist, each charted a song called “Where I Wanna Be” the same year. <code>track</code> alone cannot serve as a unique identifier for a song; you need the combination of <code>artist</code> and <code>track</code> together. This is exactly the kind of column that looks safe to hand to <code>pivot_wider()</code>’s <code>id_cols</code> and is not, as the next example shows directly.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 7.3
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>When <code>id_cols</code> does not uniquely identify a row, <code>pivot_wider()</code> does not error; it silently builds list-columns.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>messy <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">measure =</span> <span class="fu">c</span>(<span class="st">"bp"</span>, <span class="st">"bp"</span>, <span class="st">"bp"</span>),</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">120</span>, <span class="dv">125</span>, <span class="dv">130</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>messy <span class="sc">|&gt;</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> measure, <span class="at">values_from =</span> value)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Values from `value` are not uniquely identified; output will contain list-cols.
+• Use `values_fn = list` to suppress this warning.
+• Use `values_fn = {summary_fun}` to summarise duplicates.
+• Use the following dplyr code to identify duplicates.
+  {data} |&gt;
+  dplyr::summarise(n = dplyr::n(), .by = c(id, measure)) |&gt;
+  dplyr::filter(n &gt; 1L)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+     id bp       
+  &lt;dbl&gt; &lt;list&gt;   
+1     1 &lt;dbl [2]&gt;
+2     2 &lt;dbl [1]&gt;</code></pre>
+</div>
+</div>
+<p>Because <code>id = 1</code> has two different <code>bp</code> readings and nothing else distinguishes those two rows, <code>pivot_wider()</code> cannot put both values in one ordinary cell. Instead of raising an error, it warns you and packs every value for that combination into a list, so the resulting <code>bp</code> column holds <code>&lt;dbl [2]&gt;</code> for <code>id = 1</code> and <code>&lt;dbl [1]&gt;</code> for <code>id = 2</code>, a fundamentally different (and much less convenient) kind of column than the plain numeric column you were probably expecting. If you ever see <em>“values are not uniquely identified; output will contain list-cols,”</em> your <code>id_cols</code> do not actually pin down one row per observation, exactly as in Example 7.2; decide whether you need an additional identifying column, or need to summarize the duplicates (with <code>values_fn</code>) before widening.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 7.4
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong><code>pivot_wider()</code> orders new columns by first appearance, not numeric order, which text sorting can quietly scramble.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>long <span class="ot">&lt;-</span> billboard <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(artist, track, wk1<span class="sc">:</span>wk12) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"wk"</span>), <span class="at">names_to =</span> <span class="st">"week"</span>, <span class="at">values_to =</span> <span class="st">"rank"</span>, <span class="at">values_drop_na =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># widening right away: columns come out in the sensible order wk1, wk2, ..., wk12</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>long <span class="sc">|&gt;</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> week, <span class="at">values_from =</span> rank) <span class="sc">|&gt;</span> <span class="fu">names</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "artist" "track"  "wk1"    "wk2"    "wk3"    "wk4"    "wk5"    "wk6"   
+ [9] "wk7"    "wk8"    "wk9"    "wk10"   "wk11"   "wk12"  </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># widening after arranging by the (character) week column first</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>long <span class="sc">|&gt;</span> <span class="fu">arrange</span>(week) <span class="sc">|&gt;</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> week, <span class="at">values_from =</span> rank) <span class="sc">|&gt;</span> <span class="fu">names</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "artist" "track"  "wk1"    "wk10"   "wk11"   "wk12"   "wk2"    "wk3"   
+ [9] "wk4"    "wk5"    "wk6"    "wk7"    "wk8"    "wk9"   </code></pre>
+</div>
+</div>
+<p>The first version looks correct purely by luck: the rows happened to still be in the order <code>pivot_longer()</code> produced them, which visits <code>wk1</code> through <code>wk12</code> in their original numeric order. Sorting the long data by the <code>week</code> column first, perhaps while cleaning it up for display, reorders those rows alphabetically as text, so <code>pivot_wider()</code> (which names columns in the order their values first appear) produces <code>wk1</code>, <code>wk10</code>, <code>wk11</code>, <code>wk12</code>, <code>wk2</code>, and so on. If you need a guaranteed column order after widening, use <code>relocate()</code> or <code>select()</code> afterward rather than relying on row order going in.</p>
+</div>
+</div>
+</section>
+<section id="recap" class="level3">
+<h3 class="anchored" data-anchor-id="recap">Recap</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 76%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Term</strong></th>
+<th><strong>Definition</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Tidy data</strong></td>
+<td>Each variable is a column, each observation is a row, each value is a cell.</td>
+</tr>
+<tr class="even">
+<td><strong><code>pivot_longer()</code></strong></td>
+<td>Gathers columns into key-value pairs, increasing the number of rows and decreasing the number of columns.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>names_to</code> / <code>values_to</code></strong></td>
+<td>Name the new variable built from column names, and the new variable holding the pivoted values.</td>
+</tr>
+<tr class="even">
+<td><strong><code>names_sep</code></strong></td>
+<td>Splits each pivoted column name into several new variables at a fixed character.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>names_pattern</code></strong></td>
+<td>Splits each pivoted column name into several new variables using a regular expression, for cases <code>names_sep</code> can’t handle.</td>
+</tr>
+<tr class="even">
+<td><strong><code>.value</code> sentinel</strong></td>
+<td>Inside <code>names_to</code>, tells <code>pivot_longer()</code> to use part of the column name as a new column name rather than as a value.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>pivot_wider()</code></strong></td>
+<td>Spreads values across new columns, increasing the number of columns and decreasing the number of rows.</td>
+</tr>
+<tr class="even">
+<td><strong><code>id_cols</code></strong></td>
+<td>The columns that must, together, uniquely identify each resulting row when widening.</td>
+</tr>
+<tr class="odd">
+<td><strong>List-column</strong></td>
+<td>A column whose cells can each hold more than one value; <code>pivot_wider()</code> produces one when <code>id_cols</code> doesn’t uniquely identify a row.</td>
+</tr>
+<tr class="even">
+<td><strong>Column order after widening</strong></td>
+<td>Determined by the order each <code>names_from</code> value first appears in the data, not by numeric or alphabetical order.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="check-your-understanding" class="level3">
+<h3 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Problems">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Problems
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>State the three rules that make a dataset tidy.</li>
+<li>After running <code>billboard |&gt; pivot_longer(cols = starts_with("wk"), names_to = "week", values_to = "rank", values_drop_na = TRUE)</code>, does <code>nrow()</code> on the result still tell you how many songs are in the dataset? Explain.</li>
+<li>A dataset has columns <code>income_2020</code>, <code>income_2021</code>, <code>expenses_2020</code>, and <code>expenses_2021</code>. What would you put in <code>names_to</code> to end up with separate <code>income</code> and <code>expenses</code> columns, plus a <code>year</code> column, in one <code>pivot_longer()</code> call?</li>
+<li>You widen a dataset with <code>pivot_wider(names_from = measure, values_from = value)</code> and one of the resulting columns comes back as a list-column instead of an ordinary numeric column. What does that tell you about your <code>id_cols</code>?</li>
+<li>Why might two <code>pivot_longer()</code> calls that use <code>names_sep</code> versus <code>names_pattern</code> produce identical results? When would you have to reach for <code>names_pattern</code> instead of <code>names_sep</code>?</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solutions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solutions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>Each variable is a column, each observation is a row, and each value occupies a single cell.</p></li>
+<li><p>No.&nbsp;Pivoting longer changes the unit of observation from one row per song to one row per song-week, so <code>nrow()</code> after pivoting tells you the number of song-week observations, not the number of distinct songs. Use <code>n_distinct()</code> on an identifying column (or combination of columns) to count the original units instead.</p></li>
+<li><p><code>names_to = c(".value", "year")</code> with <code>names_sep = "_"</code>. The <code>.value</code> sentinel picks up <code>income</code>/<code>expenses</code> as new column names, and <code>year</code> becomes an ordinary column holding <code>2020</code>/<code>2021</code>.</p></li>
+<li><p>It tells you the named <code>id_cols</code> do not uniquely identify a row: at least one combination of your identifying columns has more than one value for that measure, so <code>pivot_wider()</code> had nowhere to put them except inside a list. You either need an additional identifying column, or need to summarize the duplicate values before widening.</p></li>
+<li><p><code>names_sep</code> is really a convenience shorthand for the common case where a single fixed character cleanly divides every piece of a column name; internally, splitting on a fixed separator can be expressed as a fairly simple regular expression, which is why the two approaches can produce identical results. You need <code>names_pattern</code> once the column names have a structure too irregular for one separator character to capture, such as a fixed-width prefix followed by free-form text, or pieces that aren’t consistently separated at all.</p></li>
+</ol>
+</div>
+</div>
+</div>
 
 
 </section>
