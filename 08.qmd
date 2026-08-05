@@ -1,92 +1,125 @@
-# Session 8 – Variable types I: logical & numeric vectors
+# Session 8: Variable types I: logical and numeric vectors
 
 ## Objectives
 
-* **Distinguish logical and numeric vectors.**  Logical vectors contain only `TRUE`, `FALSE` or `NA`, whereas numeric vectors contain integers or doubles.  Learn to convert strings to numbers with `parse_double()` and `parse_number()`.
-* **Create and combine logical vectors.**  Use comparison operators (`<`, `<=`, `>`, `>=`, `!=`, `==`) to generate logical vectors and combine them with `&`, `|`, `!` and `xor()`.  Avoid short‑circuiting operators (`&&`, `||`) inside data‑masking verbs.  Understand how missing values propagate through comparisons and Boolean operations.
-* **Summarize logical vectors.**  Collapse logical vectors with `any()` and `all()` or coerce them to numeric and use `sum()`/`mean()` to count or compute the proportion of `TRUE`s.  Detect missing values with `is.na()`.
-* **Perform numeric operations and transformations.**  Recognize that R recycles shorter vectors in arithmetic.  Use `pmin()`/`pmax()` for element‑wise minima and maxima, `%/%` and `%%` for modular arithmetic, logarithms for rescaling, `round()`, `floor()` and `ceiling()` for rounding, and `cut()` to bin numeric data.
-* **Compute numeric summaries.**  Compare the mean and median—the mean is sensitive to extreme values while the median is robust.  Use quantiles to summarize tails and spread measures such as the standard deviation and interquartile range.
+- **Distinguish logical and numeric vectors.** Logical vectors contain only `TRUE`, `FALSE`, or `NA`, whereas numeric vectors contain integers or doubles. Learn to convert strings to numbers with `parse_double()` and `parse_number()`.
+- **Create and combine logical vectors.** Use comparison operators (`<`, `<=`, `>`, `>=`, `!=`, `==`) to generate logical vectors and combine them with `&`, `|`, `!`, and `xor()`. Avoid the short-circuiting operators (`&&`, `||`) inside data-masking verbs. Understand exactly how missing values propagate through comparisons and Boolean operations, since `&` and `|` do not treat `NA` the same way.
+- **Summarize logical vectors.** Collapse logical vectors with `any()` and `all()`, or coerce them to numeric and use `sum()`/`mean()` to count or compute the proportion of `TRUE`s. Detect missing values with `is.na()`.
+- **Recode values conditionally.** Use `if_else()` for a single condition and `case_when()` for several conditions evaluated in order, and understand why both require every possible output to share a compatible type.
+- **Perform numeric operations and transformations.** Recognize that R recycles shorter vectors in arithmetic. Use `pmin()`/`pmax()` for element-wise minima and maxima, `%/%` and `%%` for modular arithmetic, logarithms for rescaling, `round()`, `floor()`, and `ceiling()` for rounding, and `cut()` to bin numeric data.
+- **Rank, offset, and pick out positions.** Use `min_rank()`/`dense_rank()` to rank values, `lag()`/`lead()` to compare a value to its neighbor, and `first()`/`last()`/`nth()` to pull specific elements out of a vector.
+- **Compute numeric summaries.** Compare the mean and median (the mean is sensitive to extreme values while the median is robust), and use quantiles to summarize tails and spread measures such as the standard deviation and interquartile range.
 
 ## Notes
-
-### Logical vectors and comparisons
-
-Logical vectors are created by comparing values.  They can take on three values: `TRUE`, `FALSE` or `NA`.  Comparison operators return a logical vector with the same length as the input.  For example:
 
 ```{r}
 #| message: false
 #| warning: false
 library(tidyverse)
 library(nycflights13)
+```
 
+### Logical vectors and comparisons
+
+Logical vectors are created by comparing values and can take on three states: `TRUE`, `FALSE`, or `NA`. Comparison operators return a logical vector the same length as their input.
+
+```{r}
 flights |>
-  mutate(late_dep = dep_delay > 30,      # TRUE if departure delay > 30 min
-         early_arr = arr_delay < 0) |>   # TRUE if arrival was early
+  mutate(
+    late_dep = dep_delay > 30,     # TRUE if departure delay > 30 min
+    early_arr = arr_delay < 0      # TRUE if arrival was early
+  ) |>
   select(year:day, dep_delay, arr_delay, late_dep, early_arr) |>
   head(5)
 ```
 
-Be cautious when comparing floating‑point numbers.  Tiny rounding errors mean that equality tests may fail.  To check approximate equality use `dplyr::near()`.
+Be cautious when comparing floating-point numbers, since tiny rounding errors mean equality tests can fail even when two values are conceptually equal; use `dplyr::near()` to test approximate equality instead of `==`.
 
 ### Boolean algebra and missing values
 
-Combine logical vectors using Boolean algebra.  In R, `&` means **and**, `|` means **or**, `!` means **not**, and `xor()` is exclusive‑or.  The short‑circuiting operators `&&` and `||` return a single `TRUE`/`FALSE` and should not be used inside functions like `filter()`.
+Combine logical vectors with Boolean algebra: `&` means "and," `|` means "or," `!` means "not," and `xor()` is exclusive or. The short-circuiting operators `&&` and `||` collapse to a single `TRUE`/`FALSE` and should never be used inside `filter()` or `mutate()`, which expect one result per row.
 
-Missing values are contagious: any comparison involving `NA` yields `NA`.  In Boolean operations, `NA | TRUE` evaluates to `TRUE` but `NA | FALSE` remains `NA`.  Use `is.na()` to test for missing values:
+Missing values are contagious, but not uniformly so. `NA` in a comparison always produces `NA`, and `NA` in a Boolean expression only resolves to a definite answer when that answer is already certain regardless of what the missing piece turns out to be:
 
 ```{r}
-flights |> 
-  summarise(
-    n_missing_dep = sum(is.na(dep_time)),
-    n_missing_arr = sum(is.na(arr_time))
-  )
+c(NA | TRUE, NA | FALSE, NA & TRUE, NA & FALSE)
 ```
 
-When combining conditions, remember the order of operations.  To filter flights departing in November **or** December, write `month == 11 | month == 12` or use `%in%`; writing `month == 11 | 12` mistakenly recycles the vector `c(11, 12)`.
+`NA | TRUE` is `TRUE` because *at least one* side is already `TRUE`, no matter what the unknown side turns out to be. `NA & FALSE` is `FALSE` for the same reason in the other direction: since one side is already `FALSE`, the whole `&` expression cannot possibly be `TRUE`. The other two combinations genuinely depend on the missing value, so they stay `NA`. Use `is.na()` when you specifically want to test for missingness rather than relying on a comparison or Boolean expression to reveal it (see Example 8.1 for a related surprise with `%in%`).
 
-### Summarising logical vectors
+When combining conditions, remember the order of operations. To filter flights departing in November or December, write `month == 11 | month == 12`, or use `%in%`; writing `month == 11 | 12` does not mean what it looks like it means, because `12` on its own is treated as a non-zero (and therefore `TRUE`) value rather than as a second thing to compare `month` against.
 
-Logical summaries collapse a logical vector to a single value.  `any(x)` returns `TRUE` if **any** element of `x` is `TRUE`, while `all(x)` returns `TRUE` only if **every** element is `TRUE`.  Both functions accept `na.rm = TRUE` to ignore missing values.  For example, to check if all flights on a given day departed within an hour or if any flights arrived more than five hours late:
+### Summarizing logical vectors
+
+Logical summaries collapse a logical vector to a single value. `any(x)` is `TRUE` if *any* element of `x` is `TRUE`; `all(x)` is `TRUE` only if *every* element is. Both accept `na.rm = TRUE` to ignore missing values.
 
 ```{r}
 flights |>
   group_by(year, month, day) |>
   summarise(
     all_dep_within_hour = all(dep_delay <= 60, na.rm = TRUE),
-    any_long_arr_delay  = any(arr_delay >= 300, na.rm = TRUE),
+    any_long_arr_delay = any(arr_delay >= 300, na.rm = TRUE),
     .groups = "drop"
   )
 ```
 
-Since logical vectors coerce to numeric (`TRUE` = 1, `FALSE` = 0), `sum()` counts the number of `TRUE` values and `mean()` computes their proportion.  For instance, the proportion of flights departing within an hour and the number with very long arrival delays can be calculated by:
+Because logical vectors coerce to numeric (`TRUE` becomes 1, `FALSE` becomes 0), `sum()` counts `TRUE` values and `mean()` computes their proportion.
 
 ```{r}
 flights |>
   group_by(year, month, day) |>
   summarise(
-    prop_on_time_dep    = mean(dep_delay <= 60, na.rm = TRUE),
+    prop_on_time_dep = mean(dep_delay <= 60, na.rm = TRUE),
     count_long_arr_delay = sum(arr_delay >= 300, na.rm = TRUE),
     .groups = "drop"
   )
 ```
 
-Logical vectors also enable **inline subsetting**.  Rather than filtering the entire data frame, you can subset a single vector with a logical condition (e.g., `arr_delay[arr_delay > 0]`) to compute summaries only on values meeting a criterion.
+Logical vectors also enable inline subsetting. Rather than filtering an entire data frame, you can subset a single vector directly with a logical condition (`arr_delay[arr_delay > 0]`) to compute a summary on just the values that meet a criterion.
 
-### Numeric vectors: making numbers and parsing
+### Recoding values with `if_else()` and `case_when()`
 
-Numeric vectors may be integers or doubles.  When numbers are stored as text (e.g., `"$1,234"` or `"59%"`), use `readr::parse_double()` to convert simple numeric strings and `readr::parse_number()` to strip extraneous characters like currency symbols or percent signs.
+Comparisons and Boolean algebra tell you *which* rows meet a condition; `if_else()` and `case_when()` let you turn that into a new value. `if_else()` takes a condition and two alternatives, one for `TRUE` and one for `FALSE`:
 
-### Vectorized arithmetic and recycling
+```{r}
+flights |>
+  mutate(status = if_else(arr_delay > 0, "late", "on time or early")) |>
+  select(arr_delay, status) |>
+  head()
+```
 
-R performs arithmetic element‑wise and recycles the shorter vector to match the length of the longer one.  Recycling single numbers (e.g., `x / 5`) is convenient, but recycling longer vectors can produce warnings or silent errors.  Avoid using `==` with vectors of unequal length; instead use `%in%` when matching multiple values.
-
-Element‑wise minima and maxima are computed with `pmin()` and `pmax()`.  Modular arithmetic operators `%/%` and `%%` perform integer division and find remainders.  For example, unpacking a four‑digit departure time into hours and minutes:
+`if_else()` also accepts a fourth argument for how to handle `NA` in the condition itself, which otherwise passes through as `NA` in the result. For more than two possible outcomes, `case_when()` evaluates a series of `condition ~ value` pairs in order and uses the value from the first condition that matches:
 
 ```{r}
 flights |>
   mutate(
-    sched_hour   = sched_dep_time %/% 100,
+    delay_category = case_when(
+      is.na(arr_delay)  ~ "cancelled or diverted",
+      arr_delay <= 0    ~ "on time or early",
+      arr_delay <= 30   ~ "slightly late",
+      arr_delay <= 120  ~ "very late",
+      .default = "extremely late"
+    )
+  ) |>
+  count(delay_category)
+```
+
+`.default` supplies a value for any row that matches none of the earlier conditions; leaving it off has a real consequence covered in Example 8.4.
+
+### Numeric vectors: making numbers and parsing
+
+Numeric vectors may be integers or doubles. When numbers are stored as text (`"$1,234"`, `"59%"`), use `readr::parse_double()` to convert simple numeric strings, and `readr::parse_number()` to strip extraneous characters like currency symbols or percent signs first.
+
+### Vectorized arithmetic and recycling
+
+R performs arithmetic element-wise and recycles the shorter vector to match the length of the longer one. Recycling a single number (`x / 5`) is convenient; recycling a longer vector against one that isn't a clean multiple of its length produces a warning, and even a clean recycle can silently do something other than what you intended. Avoid comparing a vector to several values with `==`; use `%in%` instead.
+
+Element-wise minima and maxima come from `pmin()` and `pmax()`, and modular arithmetic (`%/%`, `%%`) performs integer division and finds remainders. For example, unpacking a four-digit scheduled departure time into hours and minutes:
+
+```{r}
+flights |>
+  mutate(
+    sched_hour = sched_dep_time %/% 100,
     sched_minute = sched_dep_time %% 100
   ) |>
   select(sched_dep_time, sched_hour, sched_minute) |>
@@ -95,32 +128,133 @@ flights |>
 
 ### Numeric transformations
 
-To handle wide ranges of values, apply log transformations.  `log2()` and `log10()` are easier to interpret; for example, a difference of 1 on the log2 scale corresponds to doubling or halving the original value.  Rounding functions include `round()` (which uses banker’s rounding), `floor()` and `ceiling()`.  To round to arbitrary multiples, scale the vector, round, and then scale back.  Use `cut()` to convert a continuous variable into categories by specifying break points and optional labels.
+To handle wide ranges of values, apply a log transformation. `log2()` and `log10()` are easier to interpret than the natural log `log()`: a difference of 1 on the log2 scale corresponds to exactly doubling or halving the original value. Rounding functions include `round()` (see Example 8.3 for a rounding surprise), `floor()`, and `ceiling()`; to round to an arbitrary multiple, scale the vector, round, and scale back. `cut()` converts a continuous variable into categories from break points and optional labels.
 
 ```{r}
-x = c(1, 2, 5, 10, 15, 20)
+x <- c(1, 2, 5, 10, 15, 20)
 cut(x, breaks = c(0, 5, 10, 20), labels = c("small", "medium", "large"))
 ```
 
+### Ranking, offsets, and positions
+
+A handful of dplyr functions answer questions about a value's place relative to the rest of a vector, rather than about the value on its own. `min_rank()` ranks values with ties sharing the same (lowest) rank and a gap afterward, while `dense_rank()` ranks the same way but without leaving a gap; `row_number()` breaks ties by position instead.
+
+```{r}
+scores <- c(10, 20, 20, 30)
+tibble(scores, min_rank = min_rank(scores), dense_rank = dense_rank(scores))
+```
+
+`lag()` and `lead()` shift a vector by one position (or more, with a second argument), which is exactly what you need to compare a value to the one before or after it, such as computing a change from the previous row within a group:
+
+```{r}
+flights |>
+  filter(month == 1, day == 1, origin == "EWR") |>
+  arrange(sched_dep_time) |>
+  mutate(prev_dep_delay = lag(dep_delay), delay_change = dep_delay - prev_dep_delay) |>
+  select(sched_dep_time, dep_delay, prev_dep_delay, delay_change) |>
+  head()
+```
+
+`first()`, `last()`, and `nth()` pull out a specific element of a (possibly grouped) vector, which is often clearer than indexing with `[` when the intent is "the first observation in each group" rather than "position 1."
+
 ### Numeric summaries
 
-Summarizing numeric vectors involves measures of center and spread.  The **mean** is sensitive to extreme values, while the **median** is more robust.  The median daily departure delay is always smaller than the mean because flights can be hours late but rarely leave hours early.  Quantiles generalize the median; for example, the 95th percentile ignores the most extreme 5% of values.  Measures of spread include the **standard deviation** and the **interquartile range (IQR)**, the difference between the 75th and 25th percentiles.
+Summarizing numeric vectors involves measures of center and spread. The mean is sensitive to extreme values, while the median is more robust; the median daily departure delay is always smaller than the mean, because a flight can be hours late but essentially never leaves hours early. Quantiles generalize the median: the 95th percentile, for instance, ignores the most extreme 5% of values. Measures of spread include the standard deviation and the interquartile range (IQR), the difference between the 75th and 25th percentiles.
 
 ```{r}
 flights |>
   summarise(
-    mean_arr_delay    = mean(arr_delay, na.rm = TRUE),
-    median_arr_delay  = median(arr_delay, na.rm = TRUE),
-    q95_arr_delay     = quantile(arr_delay, 0.95, na.rm = TRUE),
-    sd_arr_delay      = sd(arr_delay, na.rm = TRUE),
-    iqr_arr_delay     = IQR(arr_delay, na.rm = TRUE)
+    mean_arr_delay = mean(arr_delay, na.rm = TRUE),
+    median_arr_delay = median(arr_delay, na.rm = TRUE),
+    q95_arr_delay = quantile(arr_delay, 0.95, na.rm = TRUE),
+    sd_arr_delay = sd(arr_delay, na.rm = TRUE),
+    iqr_arr_delay = IQR(arr_delay, na.rm = TRUE)
   )
 ```
 
-### Key take‑aways
+### Fringe cases and common pitfalls
 
-* Logical vectors arise from comparisons and contain only `TRUE`, `FALSE` and `NA`.  Combine conditions with Boolean operators and handle missing values carefully.
-* Summarize logical vectors with `any()`, `all()`, `sum()` and `mean()` to answer questions like “Were all flights on time?” or “What fraction of flights left within an hour?”.
-* Be mindful of type when working with numbers.  Parse numeric strings properly and avoid unintended recycling in arithmetic and comparisons.
-* Use numeric transformations—element‑wise minima/maxima, modular arithmetic, logs, rounding and binning—to prepare variables for analysis.
-* Choose appropriate summaries: mean vs. median for center, quantiles for tails, and standard deviation or IQR for spread.
+::: {.example title="Example 8.1"}
+**`%in%` treats `NA` completely differently than `==` does.**
+
+```{r}
+NA == NA        # unknown compared to unknown: still unknown
+NA %in% NA      # TRUE: is NA "in" the set {NA}? yes, literally
+NA %in% c(1, 2, NA)
+```
+
+`==` always returns `NA` when either side is missing, because R refuses to guess whether two unknown things are equal. `%in%` is different by design: it asks whether a value appears anywhere in a set, and `NA` genuinely does appear in a set that contains `NA`, so the answer is a definite `TRUE`, not a propagated `NA`. This makes `%in%` convenient for one specific purpose (matching against a fixed list that might include `NA`), but it means `x %in% NA` is not a safe way to test whether `x` is missing; `is.na(x)` is.
+:::
+
+::: {.example title="Example 8.2"}
+**`if_else()` and `case_when()` refuse to mix incompatible output types.**
+
+```{r}
+#| error: true
+if_else(c(TRUE, FALSE, TRUE), 1, "a")
+```
+
+Every branch of `if_else()` (and every value in `case_when()`) has to produce something R can combine into one vector, so an outcome that is sometimes a number and sometimes a string throws an error immediately rather than quietly producing a vector with an unpredictable type. This is a deliberate safety feature: a column that is a number in some rows and text in others is exactly the kind of column that causes confusing errors several steps later in an analysis. Fix it by making every branch the same type, for example `if_else(x, "1", "a")` or `if_else(x, 1, NA_real_)`.
+:::
+
+::: {.example title="Example 8.3"}
+**`round()` rounds half to even, not always "up."**
+
+```{r}
+c(round(0.5), round(1.5), round(2.5), round(3.5))
+```
+
+`0.5` rounds to `0`, but `1.5` rounds to `2`, and `2.5` rounds back down to `2` while `3.5` rounds up to `4`. This is "round half to even" (also called banker's rounding): whenever a value sits exactly halfway between two integers, R rounds to whichever one is even, rather than always rounding halves up. The idea is to avoid a systematic upward bias if you round a large number of `.5` values the more familiar "always round up" way. It rarely matters for numbers with real decimal noise (an actual computed value is essentially never exactly `x.5`), but it matters immediately for hand-typed test cases and small examples, which is exactly where people first notice it.
+:::
+
+::: {.example title="Example 8.4"}
+**`case_when()` without `.default` returns `NA` for anything that falls through, with no warning.**
+
+```{r}
+severity <- c(1, 5, 10)
+case_when(
+  severity < 3 ~ "low",
+  severity > 8 ~ "high"
+)
+```
+
+`5` matches neither condition, so it silently becomes `NA` rather than raising an error or a warning telling you a case was missed. If you intend for every possible input to be covered, add `.default = ` with a sensible fallback value (or `.default = NA_character_` to make the "nothing else matched" case explicit and intentional rather than accidental), and consider double-checking with `count()` or `sum(is.na(...))` on the result that every value ended up somewhere you expected.
+:::
+
+### Recap
+
+| **Term** | **Definition** |
+|-------------------|-------------------------------------------------------------|
+| **Logical vector** | A vector containing only `TRUE`, `FALSE`, or `NA`, typically produced by a comparison. |
+| **`near()`** | Tests approximate equality for floating-point numbers, avoiding false negatives from rounding error. |
+| **`&` / `|` with `NA`** | `NA` resolves to a definite answer only when that answer is already certain regardless of the missing value (`NA | TRUE` is `TRUE`; `NA & FALSE` is `FALSE`). |
+| **`%in%`** | Tests set membership; unlike `==`, treats `NA %in% NA` as `TRUE` rather than propagating `NA`. |
+| **`any()` / `all()`** | Collapse a logical vector to a single `TRUE`/`FALSE`, answering "was any/every element `TRUE`?" |
+| **`if_else()`** | Chooses between two values based on a condition; both outputs must share a compatible type. |
+| **`case_when()`** | Evaluates several `condition ~ value` pairs in order; unmatched rows become `NA` unless `.default` is set. |
+| **`pmin()` / `pmax()`** | Element-wise minimum or maximum across vectors, as opposed to a single overall `min()`/`max()`. |
+| **`round()`** | Rounds to the nearest integer using "round half to even" for exact halfway values. |
+| **`min_rank()` / `dense_rank()`** | Rank values, with `dense_rank()` leaving no gap in the ranking after a tie. |
+| **`lag()` / `lead()`** | Shift a vector by one (or more) positions, for comparing a value to its neighbor. |
+
+### Check your understanding
+
+::: {.callout-note collapse="false" title="Problems"}
+1. Explain the difference between `NA == NA` and `NA %in% NA`. Which one should you use to test whether a value is missing, and what should you use instead?
+2. Without running R, predict each result, then check your answer: `NA | TRUE`, `NA & TRUE`, `NA | FALSE`, `NA & FALSE`.
+3. A classmate writes `if_else(temperature > 100, "hot", 0)` and gets an error. What is wrong, and how would you fix it?
+4. You write a `case_when()` with three conditions covering "low," "medium," and "high" categories, but no `.default`. A colleague later reports that some rows in your result are `NA` even though every row has a valid input value. What is the most likely explanation?
+5. `round(2.5)` returns `2`, not `3`. Is this a bug? Explain what R is actually doing.
+:::
+
+::: {.callout-tip collapse="true" title="Solutions"}
+1. `NA == NA` is `NA`, because R refuses to guess whether two unknown values are equal. `NA %in% NA` is `TRUE`, because `%in%` asks whether a value appears in a set, and `NA` does appear in a set consisting only of `NA`. Neither is the right tool for testing missingness; use `is.na(x)` instead.
+
+2. `NA | TRUE` is `TRUE` (one side is already `TRUE`, so the result can't change). `NA & TRUE` is `NA` (the result depends entirely on the unknown side). `NA | FALSE` is `NA` (still depends on the unknown side). `NA & FALSE` is `FALSE` (one side is already `FALSE`, so the whole expression can't be `TRUE` no matter what).
+
+3. The `TRUE` branch produces a character string (`"hot"`) while the `FALSE` branch produces a number (`0`); `if_else()` requires both branches to have a compatible type. The fix is to make both branches the same type, for example `if_else(temperature > 100, "hot", "not hot")` or `if_else(temperature > 100, 1, 0)`.
+
+4. The three conditions almost certainly do not cover every possible input value (for example, a boundary value, an unexpected negative number, or a genuinely missing value slipping through), and without `.default`, any row that matches none of the conditions silently becomes `NA` instead of raising a warning. Adding `.default` with an explicit fallback (even `.default = NA_character_`) makes the "nothing matched" case visible and intentional rather than a surprise.
+
+5. It is not a bug; `round()` uses "round half to even" (banker's rounding), so an input sitting exactly halfway between two integers rounds to whichever one is even, rather than always rounding up. `2.5` rounds to `2` for the same reason `1.5` rounds to `2` and `3.5` rounds to `4`: each halfway value rounds toward the nearest even number.
+:::
