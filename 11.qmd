@@ -1,152 +1,199 @@
-# Session 11 – Variable types IV: dates & times
+# Session 11: Variable types IV: dates and times
 
 ## Objectives
 
-* **Understand different date/time types.** Describe the difference between dates (`<date>`), times (`<time>`) and date‑times (`<dttm>`) in R. Emphasize using the simplest type that meets the analysis requirements.
-* **Create date/time objects.** Learn how to parse strings into dates with lubridate helpers such as `ymd()`, `mdy()`, `dmy()` etc., and how to assemble dates and date‑times from separate components with `make_date()` and `make_datetime()`.
-* **Extract and modify components.** Use accessor functions `year()`, `month()`, `mday()`, `yday()`, `wday()`, `hour()`, `minute()` and `second()` to pull out parts of a date‑time. Learn to change components in place or with `update()`.
-* **Round dates and compute spans.** Round dates to a unit (e.g., week, month) with `floor_date()`, `round_date()` and `ceiling_date()`. Understand time spans and the difference between durations (exact seconds), periods (human units like weeks and months) and intervals.
-* **Recognize time‑zone issues.** Appreciate that date‑time values always have an associated time zone. Learn how to specify and change the time zone when parsing date‑times.
+- **Understand different date/time types.** Describe the difference between dates (`<date>`), times (`<time>`), and date-times (`<dttm>`) in R, and use the simplest type that meets the analysis requirements.
+- **Create date/time objects.** Learn how to parse strings into dates with lubridate helpers such as `ymd()`, `mdy()`, `dmy()`, and so on, and how to assemble dates and date-times from separate components with `make_date()` and `make_datetime()`. Recognize when a parsing helper can silently produce the wrong date instead of an error.
+- **Extract and modify components.** Use accessor functions `year()`, `month()`, `mday()`, `yday()`, `wday()`, `hour()`, `minute()`, and `second()` to pull out parts of a date-time. Learn to change components in place, or with `update()`.
+- **Round dates and compute spans.** Round dates to a unit (week, month, and so on) with `floor_date()`, `round_date()`, and `ceiling_date()`. Understand the difference between durations (exact seconds), periods (human units like weeks and months), and intervals (a start and end point), and why the difference matters the moment daylight saving time or a short month gets involved.
+- **Recognize time zone issues.** Appreciate that a date-time value always has an associated time zone, and learn how to specify and change it.
 
 ## Notes
-
-### Why dates and times?
-
-Dates and times are deceptively simple. They appear ubiquitous and straightforward, but the more you work with them, the more quirks emerge. A year isn’t always 365 days, not every day has exactly 24 hours and occasionally a minute may have 61 seconds. These complexities arise because calendar units reconcile astronomical cycles (earth’s rotation and orbit) with human conventions (leap years, daylight saving time). To manage them, R doesn’t treat dates as plain strings but provides special classes and functions.
-
-In the tidyverse, **lubridate** simplifies working with date and time data. It isn’t loaded by default with the tidyverse, so you must call `library(lubridate)`.
-
-### Creating date/times
-
-There are three common ways to create date/time objects:
-
-1. **From strings.** Use lubridate helpers to parse strings that contain dates or date‑times. Arrange the letters “y”, “m” and “d” to match the order of year, month and day in the string, and lubridate will infer the format. For example:
 
 ```{r}
 #| message: false
 #| warning: false
 library(tidyverse)
 library(lubridate)
+```
 
+### Why dates and times?
+
+Dates and times are deceptively simple. They look ubiquitous and straightforward, but the more you work with them, the more quirks emerge: a year isn't always 365 days, not every day has exactly 24 hours, and a minute occasionally has 61 seconds. These complications exist because calendar units have to reconcile astronomical cycles (the earth's rotation and orbit) with human conventions (leap years, daylight saving time). R doesn't treat dates as plain strings for exactly this reason; it provides dedicated classes and functions built to handle these quirks correctly. In the tidyverse, lubridate does most of that work; it isn't loaded automatically with `library(tidyverse)`, so load it separately.
+
+### Creating date-times
+
+There are three common ways to create a date or date-time.
+
+**From strings.** lubridate's helper functions parse strings by matching the order of "y," "m," and "d" in the function name to the order of year, month, and day in the string.
+
+```{r}
 ymd("2025-02-18")        # ISO format year-month-day
-mdy("January 31, 2025")  # month-day-year with month name
+mdy("January 31, 2025")  # month-day-year, with a month name
 dmy("31-01-2025")        # day-month-year
 
-# parse date‑times by adding h, m and s
 ymd_hms("2025-02-18 14:30:15")
-mdy_hm("2/18/2025 2:30 pm")  # 12‑hour clock with am/pm
+mdy_hm("2/18/2025 2:30 pm")   # 12-hour clock with am/pm
 ```
 
-These functions also accept numeric input without quotes (e.g., `ymd(20250218)`). You can supply a `tz` argument to set the time zone.
+These functions also accept unquoted numeric input (`ymd(20250218)`), and take a `tz` argument to set the time zone directly at parse time. Choosing the wrong helper for an ambiguous string is a real risk covered in Example 11.3.
 
-2. **From individual components.** When the year, month, day (and optionally hour, minute) live in separate columns, combine them with `make_date()` or `make_datetime()`. For example:
+**From individual components.** When year, month, and day (and optionally hour and minute) already live in separate columns, `make_date()` and `make_datetime()` assemble them directly.
 
 ```{r}
-df = tibble(year = c(2023, 2023),
-            month = c(5, 10),
-            day = c(14, 1),
-            hour = c(9, 16),
-            minute = c(30, 0))
+df <- tibble(
+  year = c(2023, 2023),
+  month = c(5, 10),
+  day = c(14, 1),
+  hour = c(9, 16),
+  minute = c(30, 0)
+)
 
-# Create new columns without using the pipe to avoid confusion
-df$date = make_date(df$year, df$month, df$day)
-df$datetime = make_datetime(df$year, df$month, df$day, df$hour, df$minute)
-df
+df |> mutate(
+  date = make_date(year, month, day),
+  datetime = make_datetime(year, month, day, hour, minute)
+)
 ```
 
-3. **From existing date/time objects.** Use functions like `as_datetime()` to coerce between date and date‑time classes or specify a time zone when converting.
+**From other types.** `as_date()` and `as_datetime()` coerce between date and date-time classes, or convert a raw numeric offset (seconds or days since 1970-01-01) into a proper date-time.
 
-### Extracting components
+### Extracting and modifying components
 
-Once you have a date/time, you can **access its components**. Use `year()`, `month()`, `mday()` (day of month), `yday()` (day of year), `wday()` (day of week), `hour()`, `minute()` and `second()`:
+Once you have a date-time, accessor functions pull out its pieces: `year()`, `month()`, `mday()` (day of month), `yday()` (day of year), `wday()` (day of week; see Example 11.2 for a numbering surprise), `hour()`, `minute()`, and `second()`.
 
 ```{r}
-dt = ymd_hms("2025-02-18 14:30:15", tz = "America/Chicago")
+dt <- ymd_hms("2025-02-18 14:30:15", tz = "America/Chicago")
 
-year(dt)         # 2025
-month(dt)        # 2
-month(dt, label = TRUE)   # Feb
-wday(dt, label = TRUE, abbr = FALSE)  # Tuesday
-hour(dt)         # 14
-minute(dt)       # 30
-second(dt)       # 15
+year(dt)
+month(dt, label = TRUE)                # "Feb"
+wday(dt, label = TRUE, abbr = FALSE)   # "Tuesday"
+hour(dt)
 ```
 
-These accessors are vectorised and return integers or ordered factors. You can also modify components by assigning (`year(dt) = 2026`) or with `update()`:
+These accessors are vectorized, and most can also be assigned to directly, which modifies the date-time in place; `update()` changes several components at once.
 
 ```{r}
-dt2 = update(dt, year = 2026, month = 1, mday = 1, hour = 0)
-dt2  # "2026-01-01 00:30:15 CST"
+dt2 <- update(dt, year = 2026, month = 1, mday = 1, hour = 0)
+dt2
 ```
 
-If values overflow the usual range (e.g., day = 30 in February), lubridate automatically rolls over to the next month.
+If an updated value overflows its usual range (day 30 in a month that has only 28), `update()` rolls over into the following month rather than erroring, which is worth double-checking if you didn't intend it.
 
 ### Rounding and time spans
 
-To simplify a continuous timeline into regular intervals, *round* dates and date‑times. `floor_date(x, "week")` rounds down to the start of the week, `ceiling_date(x, "month")` rounds up to the next month and `round_date(x, "day")` rounds to the nearest day. For example, to count weekly observations you can round each date to the start of the week and then tally the number of observations per week.
+`floor_date(x, "week")`, `ceiling_date(x, "month")`, and `round_date(x, "day")` snap a date-time down, up, or to the nearest boundary of a chosen unit, which is a common first step before counting observations per week or per month.
 
-Arithmetic with date‑times yields *time spans*. Subtracting two dates returns a difftime, which stores a difference in days, hours, etc. lubridate defines three classes: *durations* (exact seconds), *periods* (human units like months) and *intervals* (a start and end point). Use constructors like `ddays()`, `dhours()` and `dminutes()` to create durations.
+Arithmetic on dates produces a *time span*, and lubridate distinguishes three kinds. A **duration** is an exact number of seconds (`ddays(1)` is always precisely 86,400 seconds). A **period** is a human unit like "1 day" or "1 month," which stretches or shrinks to match the calendar (or the clock) rather than staying a fixed number of seconds. The difference is invisible almost all the time, and then very visible on the one day a year it matters:
 
 ```{r}
-age = today() - ymd("19900101")  # difftime
-as.duration(age)                 # duration in seconds
+before_dst <- ymd_hms("2025-03-08 12:00:00", tz = "America/Chicago")
 
-# add one month (a period)
-today() + months(1)
+before_dst + ddays(1)   # a duration: exactly 86,400 seconds later
+before_dst + days(1)    # a period: the same clock time, the next calendar day
+```
 
-# difference between dates as period
-period = as.period(ymd("2025-03-01") - ymd("2025-01-15"))
-period
+Clocks in that time zone spring forward by an hour overnight between those two dates, so adding an exact-seconds duration lands at 1:00 PM, not noon, while adding a one-day period lands at noon as a person would expect. Reach for periods when you mean "the same time tomorrow," and durations when you mean "exactly 24 hours from now"; they are not interchangeable.
+
+An **interval** is a specific span with a fixed start and end, built with the `%--%` operator, and dividing an interval by a duration or period tells you exactly how many of those units it spans.
+
+```{r}
+this_year <- ymd("2025-01-01") %--% ymd("2026-01-01")
+this_year / days(1)     # exactly how many days are in this specific interval
 ```
 
 ### Time zones
 
-Date‑times always carry a *time zone*. If you omit the time zone, R defaults to your system’s time zone. When parsing strings, supply `tz` to ensure correct interpretation. Use `with_tz()` to change how an instant is displayed in another time zone, and `force_tz()` to change the underlying instant (rarely needed). Avoid combining date‑times with unspecified time zones.
+A date-time always carries a time zone; omit it while parsing and R falls back to your system's time zone, which is rarely what you want in a script meant to run on someone else's computer. `with_tz()` changes how an instant is *displayed*, in a different time zone, without changing the instant itself; `force_tz()` instead changes which instant a date-time refers to, keeping its printed clock time the same, and is only needed when a date-time was labeled with the wrong time zone in the first place.
 
-### Key take‑aways
+### Fringe cases and common pitfalls
 
-* Dates and date‑times are special data types; use the simplest type that serves your purpose.
-* Use lubridate helpers (`ymd()`, `ymd_hms()` etc.) or `make_date()`/`make_datetime()` to create date/time objects.
-* Extract components with `year()`, `month()`, `wday()` and friends, and modify them with assignment or `update()`.
-* Round dates to meaningful units using `floor_date()`, `ceiling_date()` and `round_date()`.
-* Distinguish between durations, periods and intervals when doing arithmetic with dates.
-* Always be conscious of time zones; specify `tz` explicitly when parsing date‑times.
+::: {.example title="Example 11.1"}
+**Stripping a `difftime` down to a plain number throws away which unit it's in.**
 
-<!-- ## In‑class activity -->
+```{r}
+start <- ymd_hms("2026-01-01 00:00:00", tz = "UTC")
+gap_short <- ymd_hms("2026-01-01 01:30:00", tz = "UTC") - start
+gap_long <- ymd_hms("2026-01-05 00:00:00", tz = "UTC") - start
 
-<!-- In this session’s activity you will work with the built‑in `airquality` dataset (available in base R) to practise creating and analysing date variables.  The data records daily ozone and meteorological measurements in New York City from May to September 1973.  Complete the following tasks using the tidyverse and lubridate: -->
+gap_short   # R picks whatever unit reads most naturally
+gap_long
 
-<!-- 1. **Inspect the data (5 min).**  Load the tidyverse and the `airquality` dataset.  Use `glimpse()` and `summary()` to understand its structure.  Note the variables `Month` and `Day`.  How many observations and variables does it contain?  Are there any missing values? -->
+as.numeric(gap_short)   # 1.5, with no indication this means hours
+as.numeric(gap_long)    # 4, with no indication this means days
+```
 
-<!--    ```{r} -->
-<!--    library(tidyverse) -->
-<!--    data(airquality) -->
-<!--    glimpse(airquality) --> -->
-<!--    summary(airquality) --> -->
-<!--    ``` -->
+Subtracting two date-times gives a `difftime` object, and R automatically picks whichever unit (seconds, minutes, hours, days, or weeks) makes the printed number easiest to read. That's convenient for a single printed value, but `as.numeric()` strips the unit away entirely, so collecting several such differences into one numeric column can silently mix hours and days in the same column if the gaps involved happen to vary in magnitude. `as.duration()` sidesteps the whole problem by always normalizing to seconds; use it (or `as.numeric(x, units = "secs")`, forcing a specific unit) before doing arithmetic across multiple time differences.
+:::
 
-<!-- 2. **Create a date variable (10 min).**  The dataset lacks a year column, but all measurements were taken in 1973.  Use `make_date(1973, Month, Day)` or `ymd()` combined with `str_c()` to create a new `date` column.  Confirm that it has class `<date>` and explore the distribution of observations across months with `count(month(date))`.  Use `wday()` with `label = TRUE` to find which days of the week have more missing ozone values. -->
+::: {.example title="Example 11.2"}
+**`wday()` numbers Sunday as day 1 by default, not Monday.**
 
-<!-- 3. **Visualize ozone over time (15 min).**  Plot daily `Ozone` concentrations against `date` using a line plot.  Add a smooth trend line with `geom_smooth()`.  Consider mapping the day of the week to color or facet the plot by month.  What patterns do you see? -->
+```{r}
+monday <- ymd("2026-08-03")   # a Monday
+wday(monday)                        # default: Sunday = 1, so Monday = 2
+wday(monday, week_start = 1)        # ISO convention: Monday = 1
+```
 
-<!--    ```{r} -->
-<!--    airquality |> -->
-<!--      mutate(date = make_date(1973, Month, Day)) |> -->
-<!--      ggplot(aes(x = date, y = Ozone)) + -->
-<!--      geom_line() + -->
-<!--      geom_smooth(method = "loess", na.rm = TRUE) + -->
-<!--      labs(x = "Date (1973)", y = "Ozone (ppb)", -->
-<!--           title = "Daily ozone levels in New York (May–Sep 1973)") -->
-<!--    ``` -->
+Plenty of contexts (the ISO 8601 standard, most of Europe, and simply "the work week") treat Monday as the first day of the week, but `wday()`'s default follows the US convention of Sunday as day 1. Code that assumes `wday() == 1` means Monday will be silently off by a day for every single observation. Set `week_start = 1` explicitly whenever your analysis cares about which day starts the week.
+:::
 
-<!-- 4. **Summarise by week and month (15 min).**  Use `floor_date()` to round each `date` down to the start of the week (unit = "week") and the start of the month (unit = "month").  Group by these rounded dates and compute the mean and standard deviation of `Ozone` and `Temp` (ignoring missing values).  Create bar charts or line plots of weekly and monthly averages. -->
+::: {.example title="Example 11.3"}
+**An ambiguous date string parses to two different, equally "valid" dates depending on which helper you use.**
 
-<!-- 5. **Explore temperature changes (15 min).**  Compute the day‑to‑day change in temperature by arranging the data by `date` and using `lag()` (`Temp - lag(Temp)`) and `lead()`.  Plot the distribution of temperature changes.  Are temperature increases and decreases symmetric? -->
+```{r}
+ambiguous <- "01/02/2025"
+mdy(ambiguous)   # January 2nd
+dmy(ambiguous)   # February 1st
+```
 
-<!-- 6. **Optional:** **Time spans** (10 min).  Choose two dates from the dataset and compute the time span between them using subtraction.  Convert the result to a duration with `as.duration()` and to a period with `as.period()`.  Interpret the difference between the duration and period. -->
+Both calls succeed without any warning or error, because `"01/02/2025"` is a perfectly well-formed date under either convention; the two answers just disagree about which number is the month and which is the day. Neither function can tell you picked the wrong one, since nothing about the string itself is invalid. Whenever a date column's format isn't explicitly documented (which is most of the time, for real data), check a handful of rows where the first two numbers are both greater than 12, since those are the only rows where `mdy()` and `dmy()` would actually give different, checkable answers.
+:::
 
-<!-- This activity will give you hands‑on experience parsing dates, extracting components, rounding to units and performing simple temporal analyses on a dataset not covered in *R for Data Science*. -->
+::: {.example title="Example 11.4"}
+**Adding a one-month period to the end of a long month can return `NA` instead of rolling over.**
 
-<!-- --- -->
+```{r}
+jan31 <- ymd("2025-01-31")
+jan31 + months(1)    # NA: February has no 31st day
+jan31 + days(31)      # a real date, but not "one month later" in the usual sense
+```
 
-<!-- **Suggested reading for Session 12:** Chapter 18 of *R for Data Science* (2nd ed.), “Missing values”, delves into handling missing data.  It revisits the infectious nature of `NA` values, shows how to explicitly fill or replace missing values with functions like `tidyr::fill()` and `dplyr::coalesce()`, and explains how to convert implicitly missing values (absent rows) into explicit ones using pivoting and completing【487104552238734†L111-L123】.  Understanding missing values is crucial before you tackle joins and relational data in the following sessions. -->
+February simply has no 31st day, so `jan31 + months(1)` cannot construct a valid result and returns `NA` rather than guessing (rolling forward to March 3, for instance, the way plain day-arithmetic would). This is a deliberate, safe design choice, but it means a pipeline that adds `months()` to a column of dates can introduce genuine `NA`s for any date that happened to fall near the end of a month, purely as a side effect of the arithmetic, not because any data was actually missing. Check `sum(is.na(...))` after this kind of date arithmetic the same way you would after any other calculation that can produce a missing value.
+:::
+
+### Recap
+
+| **Term** | **Definition** |
+|-------------------|-------------------------------------------------------------|
+| **`ymd()` / `mdy()` / `dmy()`** | Parse a string into a date by matching the letter order to the order of year/month/day in the text. |
+| **`make_date()` / `make_datetime()`** | Assemble a date or date-time from separate year/month/day(/hour/minute) columns. |
+| **Accessor functions** | `year()`, `month()`, `mday()`, `yday()`, `wday()`, `hour()`, `minute()`, `second()`; extract (or, via assignment, modify) one component of a date-time. |
+| **`floor_date()` / `ceiling_date()` / `round_date()`** | Round a date-time down, up, or to the nearest boundary of a chosen unit. |
+| **Duration** | An exact span of time in seconds (`ddays()`, `dhours()`, ...); unaffected by daylight saving time. |
+| **Period** | A human calendar unit (`days()`, `months()`, ...); tracks "the same clock time" across DST and varying month lengths. |
+| **Interval** | A span with a fixed start and end, created with `%--%`; divide by a duration or period to get its exact length. |
+| **`with_tz()` / `force_tz()`** | Change how an instant is displayed in another time zone, or change which instant a date-time refers to. |
+| **`difftime` units** | The unit (seconds/minutes/hours/days/weeks) R automatically picks when subtracting two date-times; lost if you call `as.numeric()` without normalizing first. |
+| **`wday()` default** | Sunday = 1 by default; pass `week_start = 1` for the ISO convention where Monday = 1. |
+
+### Check your understanding
+
+::: {.callout-note collapse="false" title="Problems"}
+1. What is the difference between a duration and a period, and give an example of a calculation where using the wrong one would produce a surprising answer.
+2. You compute several time differences with plain subtraction, store them with `as.numeric()`, and then average them. Why might that average be meaningless, and what would you do differently?
+3. A colleague filters a dataset for `wday(order_date) == 1`, expecting to get every Monday order. What day of the week do they actually get, and how would you fix the filter?
+4. You parse a column of date strings formatted like `"03/04/2025"` with `mdy()`. What has to be true about the data for you to be confident this was the right choice instead of `dmy()`?
+5. After running `df |> mutate(renewal_date = start_date + months(12))`, a few rows in `renewal_date` are `NA`, even though every row in `start_date` had a real date. What is the most likely explanation?
+:::
+
+::: {.callout-tip collapse="true" title="Solutions"}
+1. A duration is an exact number of seconds and never bends to fit the calendar or the clock; a period is a human unit like "1 day" that adjusts to match the same clock time or calendar position. Adding `ddays(1)` (a duration) to a time right before a daylight saving transition lands an hour off from noon the next day, while adding `days(1)` (a period) correctly lands on the same clock time the next day.
+
+2. `as.numeric()` on a `difftime` strips away its unit, and R automatically picks a different unit (seconds, minutes, hours, days, or weeks) depending on how large each individual difference is. If the differences vary enough in size, the resulting numbers can be a mix of, say, hours and days without anything indicating that, so averaging them treats incompatible units as if they were the same thing. Converting with `as.duration()` first (or specifying a single unit explicitly) avoids the problem.
+
+3. `wday()` defaults to numbering Sunday as day 1, so `wday(order_date) == 1` actually selects every Sunday, not every Monday. The fix is either `wday(order_date, week_start = 1) == 1` (ISO convention, Monday = 1), or comparing against the label directly: `wday(order_date, label = TRUE) == "Mon"`.
+
+4. You would need to know that every date in the column, or at least a representative sample, is genuinely US-style month-first, and ideally confirm it by checking rows where the first two numbers are both 12 or less (so `mdy()` and `dmy()` would disagree) against some independent source of truth, such as a known order sequence or another date column.
+
+5. `months(12)` is a period, and a period added to a date can land on a day that doesn't exist in the target month, most commonly when `start_date` falls on the 29th, 30th, or 31st and the resulting month is shorter (for example, February in a non-leap year). Rather than rolling over to a nearby valid date, lubridate returns `NA` for those rows instead. Running `sum(is.na(df$renewal_date))` alongside `sum(is.na(df$start_date))` would confirm the `NA`s were introduced by the arithmetic itself, not present in the original data.
+:::
