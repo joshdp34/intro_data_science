@@ -1,109 +1,198 @@
-# Session 12 – Missing values & data cleaning
+# Session 12: Missing values and data cleaning
 
 ## Objectives
 
-* **Differentiate explicit and implicit missing values.**  Explicitly missing values appear in your data as `NA`, whereas *implicitly* missing values arise when an entire observation is absent.  Recognizing the difference – “the presence of an absence” versus “the absence of a presence” – guides how you handle them.
-* **Understand the infectious nature of `NA`.**  Missing values propagate through calculations and comparisons.  The online book revisits their *infectious nature* and discusses how to check for missing values before summarizing or visualizing data.
-* **Handle explicit missing values.**  Learn how to carry values forward with `tidyr::fill()` (last observation carried forward), replace missing values with fixed values using `dplyr::coalesce()`, and convert special codes (e.g., -99) to `NA` with `dplyr::na_if()`.
-* **Reveal and fill implicit missing values.**  Use `tidyr::pivot_wider()` to make implicit missings explicit and `tidyr::complete()` to generate all combinations of variables so that missing combinations appear as rows.  Understand when to drop structurally missing values by setting `values_drop_na = TRUE`.
-* **Deal with empty groups.**  Recognize that groups with no observations (empty groups) are a form of missingness and preserve them by setting `.drop = FALSE` in `count()` or `group_by()`.  Be aware of how summary functions behave on zero‑length vectors.
+- **Differentiate explicit and implicit missing values.** Explicitly missing values appear in your data as `NA`, whereas implicitly missing values arise when an entire observation is absent. Recognizing the difference, "the presence of an absence" versus "the absence of a presence," guides how you handle them.
+- **Understand the infectious nature of `NA`, and its cousin `NaN`.** Missing values propagate through calculations and comparisons. Learn how `NaN` ("not a number") differs from `NA`, and why the two are easy to confuse.
+- **Handle explicit missing values.** Learn how to carry values forward (or backward) with `tidyr::fill()`, replace missing values with fixed values using `dplyr::coalesce()`, and convert special sentinel codes (such as `-99`) to `NA` with `dplyr::na_if()`. Understand why these functions insist on matching types rather than silently coercing them.
+- **Reveal and fill implicit missing values.** Use `tidyr::pivot_wider()` to make implicit missings explicit and `tidyr::complete()` to generate all combinations of variables so that missing combinations appear as rows. Understand when to drop structurally missing values by setting `values_drop_na = TRUE`.
+- **Deal with empty groups.** Recognize that groups with no observations are a form of missingness, preserve them by setting `.drop = FALSE` in `count()` or `group_by()`, and know exactly what summary functions do when handed a zero-length vector.
 
 ## Notes
-
-### Why worry about missing values?
-
-Missing data is ubiquitous.  Sometimes a value is unknown, it wasn’t recorded or it simply doesn’t exist.  R represents absent values with the special marker `NA`, and these `NA`s are *infectious*: any arithmetic or logical operation involving a missing value yields a missing result.  This means you must consciously handle missing values before drawing conclusions.  The online book revisits missing values after we have encountered them in plotting and transformation and emphasizes their two forms—explicit and implicit.  An explicit missing value is the presence of an absence (an `NA` in a cell), while an implicit missing value is the absence of a presence (a row that should exist but doesn’t).
-
-### Tools for explicit missing values
-
-When you see `NA`s in your data, decide whether to **propagate**, **fill** or **replace** them:
-
-* **Carrying values forward/backward.**  In hand-entered data, a missing value may mean “same as the previous value”.  The `fill()` function from *tidyr* takes one or more columns and fills missing values with the most recent non‑missing value (last observation carried forward, or LOCF).  For example, if a dataset records a patient’s treatment at visits 1-3 but omits the patient’s name in visits 2 and 3, `fill()` will copy the name down.
-
-  ```{r}
-  #| message: false
-  #| warning: false
-  library(tidyverse)
-  
-  treatment = tribble(
-    ~person,           ~treatment, ~response,
-    "Derrick Whitmore", 1,         7,
-    NA,                 2,         10,
-    NA,                 3,         NA,
-    "Katherine Burke",  1,         4
-  )
-  # Fill missing person names forward
-  treatment |> fill(person)
-  ```
-
-* **Replacing with fixed values.**  If missing values represent a fixed value-such as zero or “unknown”—use `coalesce()` to replace `NA` with that value.  `coalesce()` returns the first non‑missing value among its arguments and is vectorised across rows.  It is also handy when combining multiple columns: `coalesce(a, b, c)` picks `a` if it’s non‑missing, otherwise `b`, then `c`.
-
-  ```{r}
-  x = c(1, 4, 5, 7, NA)
-  coalesce(x, 0)        # replace NA with zero
-  
-  # Combining two columns: take value from x if present, else from y
-  df = tibble(x = c(2, NA, 5), y = c(1, 3, NA))
-  df |> mutate(value = coalesce(x, y))
-  ```
-
-* **Converting sentinel values to `NA`.**  Older software sometimes encodes missing values with special numbers like 99 or -999.  Use `na_if(x, sentinel)` to replace those sentinel values with `NA`.  For instance, if a dataset records missing ages as -99, call `na_if(age, -99)` before analyzing.
-
-### Implicit missing values and how to reveal them
-
-Implicit missing values occur when some combinations of variables are absent.  For instance, suppose you record the price of a stock each quarter but forget to enter the first quarter in 2021.  That observation is implicitly missing.  Two tidyverse tools help reveal implicit missings:
-
-* **Pivoting.**  Pivoting data wider with `pivot_wider()` can transform implicit missings into explicit ones because every combination of rows and new columns must have a value.  Conversely, pivoting longer (`pivot_longer()`) can drop structural missing values when `values_drop_na = TRUE`.
-
-* **Completing combinations.**  `complete()` creates all combinations of the supplied variables and inserts rows with `NA` where combinations are missing.  You can specify explicit ranges for variables (e.g., years = 2019:2021) to ensure the dataset spans the desired range.  If your data includes factors, use `.drop = FALSE` in `count()` or `group_by()` to preserve empty groups.
-
-For example, consider the built‑in **msleep** dataset from `ggplot2`, which lists characteristics of mammals.  Some combinations of diet category (`vore`) and conservation status do not occur in the data.  You can reveal those missing combinations using `complete(vore, conservation)` and then replace the implicit missing counts with zero:
 
 ```{r}
 #| message: false
 #| warning: false
-library(ggplot2)
-library(tidyr)
+library(tidyverse)
+```
 
-# Compute counts by vore and conservation
-counts = msleep |> count(vore, conservation)
+### Why worry about missing values?
 
-# Make implicit missings explicit and replace NA counts with zero
-counts_complete = counts |> 
-  complete(vore, conservation) |> 
+Missing data is ubiquitous: a value can be unknown, unrecorded, or simply not applicable to that observation. R represents an absent value with the special marker `NA`, and `NA` is infectious: almost any arithmetic or logical operation involving it produces another missing result, which forces you to consciously decide how to handle missingness before drawing any conclusion. Missing values come in two forms. An **explicit** missing value is the presence of an absence, an actual `NA` sitting in a cell. An **implicit** missing value is the absence of a presence, a row that should exist (a quarter with no recorded stock price, a species-conservation combination that never occurred) but simply isn't there at all.
+
+### Tools for explicit missing values
+
+**Carrying values forward or backward.** In hand-entered data, a blank often means "same as the previous value." `fill()` copies the most recent non-missing value forward by default; its `.direction` argument also accepts `"up"` (backward) or `"updown"`.
+
+```{r}
+treatment <- tribble(
+  ~person,            ~visit, ~response,
+  "Derrick Whitmore", 1,      7,
+  NA,                 2,      10,
+  NA,                 3,      NA,
+  "Katherine Burke",  1,      4
+)
+
+treatment |> fill(person)
+```
+
+**Replacing with fixed values.** `coalesce()` returns the first non-missing value among its arguments, and is vectorized across rows; `coalesce(a, b, c)` picks `a` where it's non-missing, otherwise `b`, and otherwise `c`.
+
+```{r}
+x <- c(1, 4, 5, 7, NA)
+coalesce(x, 0)   # replace NA with a fixed value
+
+df <- tibble(x = c(2, NA, 5), y = c(1, 3, NA))
+df |> mutate(value = coalesce(x, y))   # take x where present, else y
+```
+
+**Converting sentinel values to `NA`.** Older systems sometimes encode a missing value as a special number, like `-99` for a missing age. `na_if(x, sentinel)` converts every occurrence of that sentinel to a genuine `NA`, which matters more than it might sound like it should (see Example 12.4).
+
+```{r}
+age <- c(25, -99, 30)
+na_if(age, -99)
+```
+
+::: {.callout-note}
+## `coalesce()` and `na_if()` both insist on matching types
+Unlike base R, which will happily coerce mismatched types together, these tidyverse functions require every argument to share a compatible type and refuse to guess otherwise (see Example 12.3). This catches a real class of bugs, such as accidentally comparing a numeric column to the sentinel `"-99"` (a string) instead of `-99` (a number), before it can silently do nothing.
+:::
+
+**`NaN`, a different kind of missing.** Some calculations, like `0/0` or `Inf - Inf`, are indeterminate rather than simply unknown, and R represents that result as `NaN` ("not a number") rather than `NA`. `NaN` behaves like `NA` almost everywhere, including inside `is.na()`, but the two are not identical (see Example 12.1); `is.nan()` tests specifically for `NaN`.
+
+```{r}
+0 / 0
+Inf - Inf
+```
+
+### Implicit missing values and how to reveal them
+
+Implicit missing values occur when some combination of variables is simply absent from the data, such as forgetting to record a stock price for one quarter. Two tidyverse tools reveal them.
+
+**Pivoting.** Widening data with `pivot_wider()` can turn implicit missings into explicit ones, since every row-by-new-column combination needs a value, filled with `NA` if there isn't one. Pivoting longer with `values_drop_na = TRUE` does the reverse, turning explicit missings back into implicit ones by dropping those rows entirely.
+
+**Completing combinations.** `complete()` generates every combination of the variables you name and inserts `NA` rows for any combination not already present. You can hand it an explicit range, like `year = 2019:2021`, to make sure the result spans exactly the period you intend, even if some years never appear in the raw data at all; `full_seq()` generates such a range automatically, spaced evenly from the minimum to the maximum value actually observed.
+
+```{r}
+counts <- msleep |> count(vore, conservation)
+
+counts_complete <- counts |>
+  complete(vore, conservation) |>
   mutate(n = coalesce(n, 0))
 
 counts_complete |> arrange(vore, conservation)
 ```
 
-### Empty groups and zero‑length vectors
+A third way to reveal implicit missingness, `anti_join()`, finds rows in one table with no match in another; you'll use it for exactly that purpose once joins are introduced next session.
 
-When summarizing data by a factor, some levels may have zero observations.  These **empty groups** behave like implicit missing values.  Functions such as `count()` and `group_by()` drop empty groups by default.  To keep them, set `.drop = FALSE`.  Be careful: summary functions applied to empty vectors may return surprising results—for example, `mean()` of a zero‑length vector returns `NaN`.  Always interpret summaries of empty groups cautiously.
+### Empty groups and zero-length vectors
 
-### Key take‑aways
+When you group by a factor, some levels can end up with zero observations after filtering, and `count()` and `group_by()` both drop those empty groups by default; set `.drop = FALSE` to keep them (and `scale_x_discrete(drop = FALSE)` if you need a ggplot axis to keep showing a category with no bar at all).
 
-* Distinguish **explicit** missing values (`NA` in your data) from **implicit** missing values (rows that should exist but are absent).
-* Use `is.na()` to detect missing values and remember that `NA` values propagate through computations.
-* For explicit missings, `fill()` carries values forward or backward; `coalesce()` replaces `NA`s with a fixed value or the first non‑missing value; and `na_if()` converts sentinel codes to `NA`.
-* For implicit missings, `pivot_wider()` and `complete()` reveal absent combinations; specify `.drop = FALSE` to preserve empty factor levels.
-* When summarizing empty groups, interpret results carefully: functions like `mean()` may return `NaN` on zero‑length vectors.
+Summarizing an empty group means calling a summary function on a zero-length vector, and the result is not always `NA` the way you might guess.
 
-<!-- ## In‑class activity -->
+```{r}
+empty <- numeric(0)
+mean(empty)   # NaN: an average of nothing is undefined, not "unknown"
+sum(empty)    # 0: an empty sum is a perfectly well-defined zero
+```
 
-<!-- In this session’s activity you will practice handling missing values using the **msleep** dataset from the `ggplot2` package (not used in *R for Data Science*).  The dataset contains sleep characteristics for 83 mammals and includes missing values in several variables.  Install the package if necessary with `install.packages("ggplot2")`. -->
+```{r}
+#| warning: true
+max(empty)    # -Inf, with a warning, because "the biggest of nothing" has no answer
+```
 
-<!-- 1. **Inspect the data (5 min).**  Load the tidyverse and the `msleep` dataset.  Use `glimpse(msleep)` and `summary(msleep)` to understand its structure.  Identify which variables contain missing values and compute the proportion of missing values per variable using `summarise(across(everything(), ~mean(is.na(.x))))`.  Which variables are most affected by missingness? -->
+Three different, all internally consistent, answers to "what does a summary of nothing look like." Always check what an empty group actually produced rather than assuming it became a tidy `NA`.
 
-<!-- 2. **Visualize missingness by diet (10 min).**  Create a new binary variable `missing_rem` that is `TRUE` when `sleep_rem` is missing and `FALSE` otherwise.  Use `count(vore, missing_rem)` to tally missing REM sleep values by diet category.  Plot the counts with `ggplot(aes(x = vore, y = n, fill = missing_rem)) + geom_col(position = "dodge")`.  Discuss whether certain diets are associated with more missing `sleep_rem` data. -->
+### Fringe cases and common pitfalls
 
-<!-- 3. **Impute missing REM sleep (15 min).**  For each diet category (`vore`), compute the mean `sleep_rem` (ignoring missing values) and then replace missing `sleep_rem` values with the group mean.  Use `group_by(vore)` and `mutate(sleep_rem_imputed = coalesce(sleep_rem, mean(sleep_rem, na.rm = TRUE)))`.  Compare summary statistics (mean and standard deviation) of the original and imputed `sleep_rem` and comment on the effect of imputation. -->
+::: {.example title="Example 12.1"}
+**`is.na()` catches `NaN`, but `is.nan()` doesn't catch `NA`, and `NaN` isn't even equal to itself.**
 
-<!-- 4. **Reveal missing diet–conservation combinations (15 min).**  Compute the number of species by `vore` and conservation status using `count(vore, conservation)`.  Some combinations will be absent (implicit missings).  Use `complete(vore, conservation)` to generate all combinations and replace the missing counts with zero using `mutate(n = coalesce(n, 0))`.  Visualise the result with a heatmap or table and interpret any patterns. -->
+```{r}
+is.na(NaN)     # TRUE: is.na() treats NaN as a kind of missingness
+is.nan(NA)     # FALSE: is.nan() only ever matches NaN specifically
+NaN == NaN     # NA, not TRUE
+```
 
-<!-- 5. **Drop or keep missing brain weights (10 min).**  The `brainwt` variable records brain weight (kg) but has many missing values.  Use `drop_na(msleep, brainwt)` to remove rows with missing brain weights and compute the correlation between `bodywt` and `brainwt`.  Compare this with a correlation computed after replacing missing brain weights with the median brain weight using `mutate(brainwt = coalesce(brainwt, median(brainwt, na.rm = TRUE)))`.  Discuss the impact of different missing-value strategies on the analysis. -->
+`is.na()` is the broader check, catching both ordinary `NA` and the indeterminate `NaN`, which is exactly why it's the right default tool for "is this value missing." `is.nan()` is narrower and only reports `TRUE` for `NaN` itself. And even `NaN` compared to another `NaN` doesn't return `TRUE`: R treats "not a number" the same way it treats any other unknown quantity in a comparison, refusing to assert two indeterminate results are equal to each other. Reach for `is.nan()` only when you specifically need to distinguish "this came from an indeterminate calculation" from "this was always missing," which is rarer than it sounds.
+:::
 
-<!-- This activity will help you practise detecting, visualising and handling missing values.  By working through these tasks you’ll gain experience with `is.na()`, `fill()`, `coalesce()`, `complete()` and `drop_na()` on a dataset that wasn’t used in the textbook. -->
+::: {.example title="Example 12.2"}
+**`fill()`'s default direction cannot fill in values that come before the first known value.**
 
-<!-- --- -->
+```{r}
+leading_gap <- tribble(
+  ~person, ~visit,
+  NA,      1,
+  NA,      2,
+  "Chen",  3
+)
 
-<!-- **Suggested reading for Session 13:**  Chapter 19 of *R for Data Science* (2nd ed.), “Joins”, introduces the theory and practice of combining multiple data frames.  The chapter explains that data analyses rarely involve a single table and distinguishes between **mutating joins**, which add new columns from matching observations in another data frame, and **filtering joins**, which retain or discard observations based on whether a match exists【80650279806246†L120-L129】.  It emphasises the role of **primary and foreign keys**—variables that uniquely identify observations—in connecting tables【80650279806246†L146-L160】.  Familiarity with keys and join types will prepare you for the next session on relational data. -->
+leading_gap |> fill(person)                     # default "down": nothing above row 3 to copy
+leading_gap |> fill(person, .direction = "up")  # "up": copies Chen backward instead
+```
+
+With the default `.direction = "down"`, `fill()` only ever copies a value into the rows *after* it, so missing values at the very start of a group, with no earlier non-missing value to copy from, stay missing no matter how many rows come after them. If the value that should apply to earlier rows only appears later in the data (a form filled out once for the whole group, entered on the last row instead of the first), `.direction = "up"` is the one you actually need.
+:::
+
+::: {.example title="Example 12.3"}
+**`coalesce()` and `na_if()` reject a type mismatch instead of quietly coercing it.**
+
+```{r}
+#| error: true
+coalesce(c(1, NA, 3), c("a", "b", "c"))
+```
+
+Base R functions often coerce silently; `paste0()` turning a missing value into the text `"NA"` back in Session 9 is one example of coercion happening whether you wanted it or not. `coalesce()` and `na_if()` take the opposite approach and refuse to combine incompatible types at all, erroring immediately rather than producing a column that is sometimes a number and sometimes text. If you hit this error while trying to replace a sentinel value, the fix is almost always to check that the sentinel you supplied (`-99` versus `"-99"`) has the same type as the column itself.
+:::
+
+::: {.example title="Example 12.4"}
+**Forgetting to convert a sentinel value before summarizing corrupts the answer, silently and dramatically.**
+
+```{r}
+ages <- c(25, 31, 42, -99, 29, 37, -99, 45)
+mean(ages)                                  # includes the sentinel as if it were real data
+mean(na_if(ages, -99), na.rm = TRUE)        # correctly excludes it
+```
+
+The sentinel values don't produce an error, a warning, or an obviously nonsensical output; `1.375` looks exactly like a valid, if implausible, output for `mean()`, especially inside a longer pipeline where you might never print this particular intermediate number at all. Genuine `NA`s at least announce themselves by propagating into an `NA` result; sentinel values disguised as ordinary numbers do not, which is exactly why converting them with `na_if()` immediately after import, before any analysis touches the column, matters far more than it might seem.
+:::
+
+### Recap
+
+| **Term** | **Definition** |
+|-------------------|-------------------------------------------------------------|
+| **Explicit missing value** | A cell that actually contains `NA`; "the presence of an absence." |
+| **Implicit missing value** | A row that should exist but doesn't appear in the data at all; "the absence of a presence." |
+| **`fill()`** | Carries the most recent non-missing value forward (or, with `.direction = "up"`, backward) to fill `NA`s. |
+| **`coalesce()`** | Returns the first non-missing value among its arguments; requires all arguments to share a compatible type. |
+| **`na_if()`** | Converts a specific sentinel value to `NA`; also requires matching types. |
+| **`NaN`** | The result of an indeterminate calculation (`0/0`, `Inf - Inf`); caught by `is.na()` but not identical to itself under `==`. |
+| **`is.nan()`** | Tests specifically for `NaN`, narrower than `is.na()`. |
+| **`complete()`** | Generates every combination of the named variables, inserting `NA` rows for combinations not already present. |
+| **`full_seq()`** | Generates an evenly spaced sequence spanning the minimum to maximum of a variable, useful inside `complete()`. |
+| **`.drop = FALSE`** | Keeps empty factor levels visible in `count()`, `group_by()`, or a discrete ggplot scale, instead of silently dropping them. |
+| **Summary of an empty vector** | Not always `NA`: `mean()` gives `NaN`, `sum()` gives `0`, and `max()`/`min()` give `-Inf`/`Inf` with a warning. |
+
+### Check your understanding
+
+::: {.callout-note collapse="false" title="Problems"}
+1. Explain the difference between an explicit and an implicit missing value, and give an example of each.
+2. `is.na(NaN)` returns `TRUE`, but `is.nan(NA)` returns `FALSE`. Explain why these aren't contradictory.
+3. A dataset records one form per household, filled out on the last member's row, with `NA` for every earlier member of that household in the `household_income` column. Which `fill()` call correctly fills in the income for every member, and why would the default call not work?
+4. You try to replace a sentinel value with `coalesce(df$score, -1)` and get an error instead of a filled-in column. What is the most likely cause, given that `coalesce()` and `na_if()` behave the same way in this respect?
+5. After grouping a dataset by a factor with an unused level and summarizing with `mean()`, one row shows `NaN` instead of a number. Is this a bug? What does it actually mean, and what would `sum()` have shown for the same empty group?
+:::
+
+::: {.callout-tip collapse="true" title="Solutions"}
+1. An explicit missing value is an actual `NA` sitting in a cell you can see, such as a survey respondent who left an age field blank. An implicit missing value is a row that should exist but doesn't appear anywhere in the data at all, such as a store that recorded sales every month except one, leaving no row whatsoever for that month rather than a row with a blank value.
+
+2. `is.na()` is intentionally the broader test: it treats `NaN` as a form of missingness, alongside ordinary `NA`, because in practice you almost always want to catch both when checking "is this usable data." `is.nan()` is a narrower, more specific test that only matches the indeterminate `NaN` value and correctly does not match a plain `NA`, since a plain `NA` was never the result of an indeterminate calculation in the first place. Both functions are behaving exactly as designed; they simply answer different, more and less specific, questions.
+
+3. `fill(household_income, .direction = "up")` is the correct call, because the known value sits on the *last* row of each household and needs to be copied backward, up, into the earlier rows above it. The default `.direction = "down"` only copies a value into rows that come after it, so it would leave every earlier household member's income as `NA`, since there is no non-missing value above them to copy down in the first place.
+
+4. `coalesce()` (like `na_if()`) refuses to combine arguments of incompatible types, so this error almost always means `df$score` and `-1` don't actually share a type, most commonly because `df$score` is a character column (perhaps due to some earlier import or parsing issue) while `-1` is a plain number. Checking `class(df$score)` and fixing the underlying type mismatch (or supplying a matching-type replacement, like `"-1"`) resolves it.
+
+5. It is not a bug. `NaN` from `mean()` on an empty group means "the average of zero values is undefined," which is a different, more specific statement than "unknown" (`NA`). `sum()` on the same empty group would have shown `0`, since an empty sum is well defined even though an empty average is not; the "right" answer for a summary of nothing depends entirely on which summary you're computing.
+:::
