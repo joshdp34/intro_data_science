@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>9&nbsp; Session 9 – Variable types II: strings &amp; regular expressions – STA 2300 Intro to Data Science</title>
+<title>9&nbsp; Session 9: Variable types II: strings and regular expressions – STA 2300 Intro to Data Science</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -177,7 +177,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9 – Variable types II: strings &amp; regular expressions</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types II: strings and regular expressions</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -260,13 +260,13 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8 – Variable types I: logical &amp; numeric vectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Variable types I: logical and numeric vectors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9 – Variable types II: strings &amp; regular expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types II: strings and regular expressions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -360,12 +360,17 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#creating-strings-quotes-escapes-length" id="toc-creating-strings-quotes-escapes-length" class="nav-link" data-scroll-target="#creating-strings-quotes-escapes-length">Creating strings: quotes, escapes &amp; length</a></li>
+  <li><a href="#creating-strings-quotes-escapes-and-raw-strings" id="toc-creating-strings-quotes-escapes-and-raw-strings" class="nav-link" data-scroll-target="#creating-strings-quotes-escapes-and-raw-strings">Creating strings: quotes, escapes, and raw strings</a></li>
   <li><a href="#combining-and-formatting-strings" id="toc-combining-and-formatting-strings" class="nav-link" data-scroll-target="#combining-and-formatting-strings">Combining and formatting strings</a></li>
   <li><a href="#regular-expressions-pattern-basics" id="toc-regular-expressions-pattern-basics" class="nav-link" data-scroll-target="#regular-expressions-pattern-basics">Regular expressions: pattern basics</a></li>
-  <li><a href="#detecting-counting-and-extracting-patterns" id="toc-detecting-counting-and-extracting-patterns" class="nav-link" data-scroll-target="#detecting-counting-and-extracting-patterns">Detecting, counting and extracting patterns</a></li>
+  <li><a href="#detecting-counting-and-extracting-patterns" id="toc-detecting-counting-and-extracting-patterns" class="nav-link" data-scroll-target="#detecting-counting-and-extracting-patterns">Detecting, counting, and extracting patterns</a></li>
+  <li><a href="#capturing-groups-and-backreferences" id="toc-capturing-groups-and-backreferences" class="nav-link" data-scroll-target="#capturing-groups-and-backreferences">Capturing groups and backreferences</a></li>
+  <li><a href="#literal-matching-with-fixed" id="toc-literal-matching-with-fixed" class="nav-link" data-scroll-target="#literal-matching-with-fixed">Literal matching with <code>fixed()</code></a></li>
+  <li><a href="#splitting-a-column-into-several" id="toc-splitting-a-column-into-several" class="nav-link" data-scroll-target="#splitting-a-column-into-several">Splitting a column into several</a></li>
   <li><a href="#working-with-messy-strings-in-tibbles" id="toc-working-with-messy-strings-in-tibbles" class="nav-link" data-scroll-target="#working-with-messy-strings-in-tibbles">Working with messy strings in tibbles</a></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key take‑aways</a></li>
+  <li><a href="#fringe-cases-and-common-pitfalls" id="toc-fringe-cases-and-common-pitfalls" class="nav-link" data-scroll-target="#fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -375,7 +380,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9 – Variable types II: strings &amp; regular expressions</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types II: strings and regular expressions</span></h1>
 </div>
 
 
@@ -395,55 +400,62 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Create and manipulate strings.</strong> Recall that strings are sequences of characters defined by quotes. In R you can use single <code>'</code> or double <code>"</code> quotes to create strings. The R4DS text recommends using double quotes by default and switching to single quotes only when the string itself contains quotes. You’ll learn how to escape special characters like backslashes and newlines, how to measure string length with <code>str_length()</code>, and how to extract or replace substrings with <code>str_sub()</code>.</li>
-<li><strong>Combine and format strings.</strong> Concatenate strings using <code>str_c()</code> (stringr’s equivalent to <code>paste0()</code>), and build templated strings with <code>str_glue()</code>. Understand how these functions handle missing values and learn to collapse vectors of strings with <code>str_flatten()</code>.</li>
-<li><strong>Understand regular expressions.</strong> A <strong>regular expression (regex)</strong> is a concise language for describing patterns within strings. You’ll learn the difference between <strong>literal</strong> characters and <strong>metacharacters</strong>, how quantifiers like <code>?</code>, <code>*</code> and <code>+</code> control repetition, and how to use character classes (<code>[...]</code>), alternation (<code>|</code>) and anchors (<code>^</code>, <code>$</code>).</li>
-<li><strong>Match, extract and replace patterns.</strong> Use <code>str_detect()</code> to test whether strings match a regex, <code>str_count()</code> to count the number of matches, <code>str_extract()</code> (and <code>str_extract_all()</code>) to pull out matching substrings, <code>str_replace()</code>/<code>str_replace_all()</code> to substitute patterns, and <code>str_split()</code> to separate strings at delimiters. Pair these functions with dplyr verbs to filter, mutate or summarize character variables.</li>
-<li><strong>Tidy multiple variables encoded in one string.</strong> Recognise when a single string stores several pieces of information and use <code>stringr</code> plus tidyr functions such as <code>str_split()</code> with <code>unnest_longer()</code> or <code>separate()</code> to unpack them. This sets the stage for the next session on factors.</li>
+<li><strong>Create and manipulate strings.</strong> Recall that strings are sequences of characters defined by quotes. In R you can use single <code>'</code> or double <code>"</code> quotes to create strings; the R4DS text recommends double quotes by default, switching to single quotes only when the string itself contains double quotes, and raw strings when a string is otherwise full of backslashes. You’ll learn to escape special characters, measure length with <code>str_length()</code>, and extract or replace substrings with <code>str_sub()</code>.</li>
+<li><strong>Combine and format strings.</strong> Concatenate strings with <code>str_c()</code> (stringr’s equivalent to <code>paste0()</code>, but stricter about missing values), and build templated strings with <code>str_glue()</code>. Learn to collapse a vector of strings into one with <code>str_flatten()</code>.</li>
+<li><strong>Understand regular expressions.</strong> A regular expression (regex) is a concise language for describing patterns within strings. Learn the difference between literal characters and metacharacters, how quantifiers (<code>?</code>, <code>*</code>, <code>+</code>, <code>{n,m}</code>) control repetition, how character classes (<code>[...]</code>) and their shortcuts (<code>\d</code>, <code>\s</code>, <code>\w</code>) work, and how alternation (<code>|</code>) and anchors (<code>^</code>, <code>$</code>, <code>\b</code>) narrow a match.</li>
+<li><strong>Match, extract, and replace patterns.</strong> Use <code>str_detect()</code>, <code>str_subset()</code>, and <code>str_which()</code> to test or filter strings, <code>str_count()</code> to count matches, <code>str_extract()</code>/<code>str_extract_all()</code>/<code>str_match()</code> to pull out matches (including captured groups), and <code>str_replace()</code>/<code>str_remove()</code> (and their <code>_all()</code> variants) to edit strings in place.</li>
+<li><strong>Use capturing groups and literal matching.</strong> Recognize how parentheses create capturing groups you can reuse in a replacement, and know when to reach for <code>fixed()</code> instead of treating a search string as a regex at all.</li>
+<li><strong>Tidy multiple variables encoded in one string.</strong> Recognize when a single string stores several pieces of information and use <code>stringr</code> plus tidyr’s <code>separate_wider_delim()</code> to split it into proper columns.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<section id="creating-strings-quotes-escapes-length" class="level3">
-<h3 class="anchored" data-anchor-id="creating-strings-quotes-escapes-length">Creating strings: quotes, escapes &amp; length</h3>
-<p>Strings can be created with single or double quotes. Double quotes are preferred by convention—use single quotes only when the string itself contains double quotes to avoid escaping. Special characters (backslash, newline, tab) require escaping with <code>\</code>, <code>\n</code> or <code>\t</code>. For example:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A string containing both single and double quotes</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>quote_example <span class="ot">=</span>  <span class="st">"He said, 'R is great!'"</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>quote_example</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="creating-strings-quotes-escapes-and-raw-strings" class="level3">
+<h3 class="anchored" data-anchor-id="creating-strings-quotes-escapes-and-raw-strings">Creating strings: quotes, escapes, and raw strings</h3>
+<p>Strings can be created with single or double quotes. Double quotes are preferred by convention; use single quotes only when the string itself contains double quotes, to avoid escaping them. Special characters (backslash, newline, tab) require escaping with <code>\\</code>, <code>\n</code>, or <code>\t</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>quote_example <span class="ot">&lt;-</span> <span class="st">"He said, 'R is great!'"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>quote_example</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "He said, 'R is great!'"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A string with a backslash and a newline</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>path <span class="ot">=</span>  <span class="st">"C:</span><span class="sc">\\</span><span class="st">Users</span><span class="sc">\\</span><span class="st">Data</span><span class="sc">\\</span><span class="st">mydata</span><span class="sc">\n</span><span class="st">"</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>path</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">"C:</span><span class="sc">\\</span><span class="st">Users</span><span class="sc">\\</span><span class="st">Data</span><span class="sc">\\</span><span class="st">mydata</span><span class="sc">\n</span><span class="st">"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>path</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "C:\\Users\\Data\\mydata\n"</code></pre>
 </div>
 </div>
-<p>The <em>length</em> of a string (number of characters) is computed with <code>str_length()</code>. Note that <code>str_length()</code> counts human‑visible characters, not bytes or graphemes—R treats each character as one unit regardless of encoding:</p>
+<p>When a string needs many literal backslashes, such as a Windows path or a regex pattern you don’t want to double-escape, a <strong>raw string</strong> written as <code>r"(...)"</code> treats everything inside as literal text, with no escaping at all:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_length</span>(<span class="fu">c</span>(<span class="st">""</span>, <span class="st">"abc"</span>, <span class="st">"😊"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>raw_path <span class="ot">&lt;-</span> r<span class="st">"(C:\Users\Data\mydata)"</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>raw_path</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "C:\\Users\\Data\\mydata"</code></pre>
+</div>
+</div>
+<p>The length of a string (its number of characters) is computed with <code>str_length()</code>, which counts human-visible characters rather than bytes, so it handles multi-byte characters like emoji sensibly:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_length</span>(<span class="fu">c</span>(<span class="st">""</span>, <span class="st">"abc"</span>, <span class="st">"😊"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0 3 1</code></pre>
 </div>
 </div>
-<p>Use <code>str_sub()</code> to extract or replace substrings by position. Positive indices count from the start and negative indices count from the end. The function is vectorised, so you can operate on a vector of strings at once:</p>
+<p><code>str_sub()</code> extracts or replaces substrings by position. Positive indices count from the start and negative indices count from the end, and the function is vectorized:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fruit <span class="ot">=</span>  <span class="fu">c</span>(<span class="st">"banana"</span>, <span class="st">"apple"</span>, <span class="st">"pear"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(fruit, <span class="dv">1</span>, <span class="dv">3</span>)      <span class="co"># first three letters</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fruit <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"banana"</span>, <span class="st">"apple"</span>, <span class="st">"pear"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(fruit, <span class="dv">1</span>, <span class="dv">3</span>)      <span class="co"># first three letters</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "ban" "app" "pea"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(fruit, <span class="sc">-</span><span class="dv">3</span>, <span class="sc">-</span><span class="dv">1</span>)    <span class="co"># last three letters</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(fruit, <span class="sc">-</span><span class="dv">3</span>, <span class="sc">-</span><span class="dv">1</span>)    <span class="co"># last three letters</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "ana" "ple" "ear"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(fruit, <span class="dv">1</span>, <span class="dv">1</span>) <span class="ot">=</span>  <span class="fu">str_to_upper</span>(<span class="fu">str_sub</span>(fruit, <span class="dv">1</span>, <span class="dv">1</span>))  <span class="co"># capitalize first letter</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fruit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(fruit, <span class="dv">1</span>, <span class="dv">1</span>) <span class="ot">&lt;-</span> <span class="fu">str_to_upper</span>(<span class="fu">str_sub</span>(fruit, <span class="dv">1</span>, <span class="dv">1</span>))  <span class="co"># capitalize first letter</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>fruit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Banana" "Apple"  "Pear"  </code></pre>
 </div>
@@ -451,21 +463,19 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 </section>
 <section id="combining-and-formatting-strings" class="level3">
 <h3 class="anchored" data-anchor-id="combining-and-formatting-strings">Combining and formatting strings</h3>
-<p><code>str_c()</code> concatenates multiple strings together and returns a character vector. It’s similar to <code>paste0()</code> but has a more consistent interface and works seamlessly with dplyr verbs. You can supply a <code>sep</code> argument to insert a separator and a <code>collapse</code> argument to collapse the result into a single string:</p>
+<p><code>str_c()</code> concatenates strings and returns a character vector; it behaves like <code>paste0()</code> but integrates more predictably with dplyr and, unlike <code>paste0()</code>, does not quietly turn a missing value into the text <code>"NA"</code> (see Example 9.2). A <code>sep</code> argument inserts a separator between pieces, and <code>collapse</code> further collapses the whole result into a single string.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>species <span class="ot">=</span>  <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span>  <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(n, species, <span class="at">sep =</span> <span class="st">" "</span>, <span class="at">collapse =</span> <span class="st">"; "</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(n, species, <span class="at">sep =</span> <span class="st">" "</span>, <span class="at">collapse =</span> <span class="st">"; "</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "3 Adelie; 2 Chinstrap; 1 Gentoo"</code></pre>
 </div>
 </div>
-<p>When concatenating across rows in a tibble, wrap <code>str_c()</code> inside <code>mutate()</code>. If any of the components are <code>NA</code>, the result will be <code>NA</code>. Use <code>coalesce()</code> to replace missing values with an empty string before concatenation:</p>
+<p>Inside a <code>mutate()</code>, if any input to <code>str_c()</code> is <code>NA</code>, the whole result is <code>NA</code>; wrap a column in <code>coalesce(column, "")</code> first if you would rather treat a missing value as an empty string.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span>  <span class="fu">tibble</span>(<span class="at">first =</span> <span class="fu">c</span>(<span class="st">"John"</span>, <span class="cn">NA</span>, <span class="st">"Jenny"</span>),</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">last  =</span> <span class="fu">c</span>(<span class="st">"Smith"</span>, <span class="st">"Nguyen"</span>, <span class="cn">NA</span>))</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">full =</span> <span class="fu">str_c</span>(<span class="fu">coalesce</span>(first, <span class="st">""</span>), <span class="fu">coalesce</span>(last, <span class="st">""</span>), <span class="at">sep =</span> <span class="st">" "</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">first =</span> <span class="fu">c</span>(<span class="st">"John"</span>, <span class="cn">NA</span>, <span class="st">"Jenny"</span>), <span class="at">last =</span> <span class="fu">c</span>(<span class="st">"Smith"</span>, <span class="st">"Nguyen"</span>, <span class="cn">NA</span>))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">full =</span> <span class="fu">str_c</span>(<span class="fu">coalesce</span>(first, <span class="st">""</span>), <span class="fu">coalesce</span>(last, <span class="st">""</span>), <span class="at">sep =</span> <span class="st">" "</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   first last   full        
@@ -475,10 +485,9 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 3 Jenny &lt;NA&gt;   "Jenny "    </code></pre>
 </div>
 </div>
-<p><code>str_glue()</code> from the <em>glue</em> package (loaded automatically with tidyverse) creates templated strings. Inside curly braces <code>{}</code>, you can insert arbitrary R expressions. Missing values are converted to the string “NA”:</p>
+<p><code>str_glue()</code> builds templated strings, inserting the value of any R expression written inside <code>{}</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">message =</span> <span class="fu">str_glue</span>(<span class="st">"Hello {first} {last}!"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">message =</span> <span class="fu">str_glue</span>(<span class="st">"Hello {first} {last}!"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   first last   message          
@@ -488,10 +497,9 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 3 Jenny &lt;NA&gt;   Hello Jenny NA!  </code></pre>
 </div>
 </div>
-<p>If you need to combine many strings into one, use <code>str_flatten()</code> rather than repeatedly adding separators. It collapses a character vector into a single string with a given delimiter:</p>
+<p>To combine many strings into one, <code>str_flatten()</code> collapses a character vector with a given delimiter, which reads more clearly than building the same string up manually:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>letters <span class="ot">=</span>  <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_flatten</span>(letters, <span class="at">collapse =</span> <span class="st">", "</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_flatten</span>(<span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>), <span class="at">collapse =</span> <span class="st">", "</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "a, b, c"</code></pre>
 </div>
@@ -499,67 +507,98 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 </section>
 <section id="regular-expressions-pattern-basics" class="level3">
 <h3 class="anchored" data-anchor-id="regular-expressions-pattern-basics">Regular expressions: pattern basics</h3>
-<p>A <strong>regular expression (regex)</strong> is a concise language for describing sets of strings. In regex, most letters and numbers match themselves (are <em>literals</em>), but certain characters have special meaning (<em>metacharacters</em>). Important metacharacters include:</p>
+<p>A regular expression describes a <em>set</em> of strings rather than one specific string. Most letters and digits match themselves literally; a handful of characters are metacharacters with special meaning:</p>
 <ul>
-<li><code>.</code> matches any character except a newline.</li>
-<li>Quantifiers control repetition: <code>?</code> matches zero or one occurrence; <code>*</code> matches zero or more; <code>+</code> matches one or more.</li>
-<li>Character classes like <code>[aeiou]</code> match any of the enclosed characters. A caret (<code>^</code>) at the start of a class negates it: <code>[^0-9]</code> matches any non‑digit.</li>
-<li>Alternation <code>|</code> matches one of several possibilities; for example, <code>apple|pear</code> matches either word.</li>
-<li>Anchors <code>^</code> and <code>$</code> match the start and end of a string, respectively.</li>
+<li><code>.</code> matches any single character except a newline.</li>
+<li>Quantifiers control repetition: <code>?</code> means zero or one, <code>*</code> means zero or more, <code>+</code> means one or more, and <code>{n,m}</code> means between <code>n</code> and <code>m</code> repetitions (either bound can be omitted).</li>
+<li>Character classes like <code>[aeiou]</code> match any one of the enclosed characters, and <code>[^0-9]</code> (a caret at the start) matches any character <em>not</em> in the class. <code>\d</code>, <code>\s</code>, and <code>\w</code> are shortcuts for a digit, whitespace, and a “word” character (letter, digit, or underscore), respectively.</li>
+<li>Alternation <code>|</code> matches one of several alternatives, so <code>apple|pear</code> matches either word.</li>
+<li>Anchors pin a match to a position rather than to any characters: <code>^</code> matches the start of a string, <code>$</code> matches the end, and <code>\b</code> matches a word boundary, the (zero-width) transition between a word character and a non-word character (see Example 9.4).</li>
 </ul>
-<p>Use <code>regex()</code> to build regexes with settings such as case‑insensitive matching (<code>regex(pattern, ignore_case = TRUE)</code>). The <code>stringr</code> package provides helper functions like <code>str_view()</code> and <code>str_view_all()</code> to visualize matches, but we’ll focus on functions that return useful vectors.</p>
 </section>
 <section id="detecting-counting-and-extracting-patterns" class="level3">
-<h3 class="anchored" data-anchor-id="detecting-counting-and-extracting-patterns">Detecting, counting and extracting patterns</h3>
-<p><code>str_detect()</code> tests whether each element of a character vector matches a regex and returns a logical vector. This pairs naturally with <code>filter()</code> to select rows matching a pattern. <code>str_count()</code> counts the number of times a pattern appears within each string. <code>str_extract()</code> returns the first match, and <code>str_extract_all()</code> returns <strong>all</strong> matches as a list. <code>str_replace()</code> and <code>str_replace_all()</code> replace the first or all matches with a new string. Finally, <code>str_split()</code> splits strings at matches of a regex and returns a list of pieces.</p>
-<p>Let’s illustrate with flight numbers from the <code>nycflights13</code> dataset. Airlines in the United States identify a flight by a two‑letter <em>carrier</em> code followed by a <em>flight number</em>. We can build a flight ID string and then extract the numeric part:</p>
+<h3 class="anchored" data-anchor-id="detecting-counting-and-extracting-patterns">Detecting, counting, and extracting patterns</h3>
+<p><code>str_detect()</code> tests whether each string matches a pattern and returns a logical vector, which pairs naturally with <code>filter()</code>. <code>str_subset()</code> returns the matching strings themselves rather than a logical vector, and <code>str_which()</code> returns their positions. <code>str_count()</code> counts how many times a pattern matches within each string. <code>str_extract()</code> returns the first match (<code>str_extract_all()</code> returns every match, as a list), and <code>str_replace()</code>/<code>str_remove()</code> replace or delete the first match (<code>str_replace_all()</code>/<code>str_remove_all()</code> handle every match).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>flights_small <span class="ot">=</span>  flights <span class="sc">|&gt;</span> <span class="fu">select</span>(carrier, flight) <span class="sc">|&gt;</span> <span class="fu">sample_n</span>(<span class="dv">5</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine carrier and flight into a single string</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>flights_small <span class="ot">=</span>  flights_small <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">flight_id =</span> <span class="fu">str_c</span>(carrier, flight, <span class="at">sep =</span> <span class="st">"-"</span>))</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Detect whether the flight number has exactly 3 digits</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>flights_small <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">is_three_digit =</span> <span class="fu">str_detect</span>(flight_id, <span class="st">"-</span><span class="sc">\\</span><span class="st">d{3}$"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>flights_small <span class="ot">&lt;-</span> flights <span class="sc">|&gt;</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(carrier, flight) <span class="sc">|&gt;</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">flight_id =</span> <span class="fu">str_c</span>(carrier, flight, <span class="at">sep =</span> <span class="st">"-"</span>))</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>flights_small <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">is_three_digit =</span> <span class="fu">str_detect</span>(flight_id, <span class="st">"-</span><span class="sc">\\</span><span class="st">d{3}$"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
   carrier flight flight_id is_three_digit
   &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;     &lt;lgl&gt;         
-1 UA         497 UA-497    TRUE          
-2 EV        4326 EV-4326   FALSE         
-3 UA         255 UA-255    TRUE          
-4 9E        3395 9E-3395   FALSE         
-5 DL        2546 DL-2546   FALSE         </code></pre>
+1 WN        1716 WN-1716   FALSE         
+2 AA         178 AA-178    TRUE          
+3 DL        1585 DL-1585   FALSE         
+4 WN        3494 WN-3494   FALSE         
+5 DL        2231 DL-2231   FALSE         </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the numeric part of the flight ID</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>flights_small <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">number_only =</span> <span class="fu">str_extract</span>(flight_id, <span class="st">"</span><span class="sc">\\</span><span class="st">d+"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>flights_small <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">number_only =</span> <span class="fu">str_extract</span>(flight_id, <span class="st">"</span><span class="sc">\\</span><span class="st">d+"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
   carrier flight flight_id number_only
   &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;      
-1 UA         497 UA-497    497        
-2 EV        4326 EV-4326   4326       
-3 UA         255 UA-255    255        
-4 9E        3395 9E-3395   9          
-5 DL        2546 DL-2546   2546       </code></pre>
+1 WN        1716 WN-1716   1716       
+2 AA         178 AA-178    178        
+3 DL        1585 DL-1585   1585       
+4 WN        3494 WN-3494   3494       
+5 DL        2231 DL-2231   2231       </code></pre>
 </div>
 </div>
-<p>Notice that <code>\d</code> in a regex matches any digit (short for <code>[0-9]</code>), so <code>\d+</code> extracts one or more consecutive digits. We had to escape the backslash in the string to make sure it reached the regular‑expression engine.</p>
-<p><code>str_replace_all()</code> lets you perform substitutions. For example, you can strip all non‑digit characters from a string using the negated class <code>[^0-9]</code>:</p>
+<p><code>\d</code> matches any digit, so <code>\d+</code> extracts one or more consecutive digits; the backslash itself has to be doubled (<code>\\d</code>) so that R’s own string-escaping rules pass a single backslash through to the regex engine.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>messy <span class="ot">=</span>  <span class="fu">c</span>(<span class="st">"(202) 555-0198"</span>, <span class="st">"+1-303-555-1212"</span>)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(messy, <span class="st">"[^0-9]"</span>, <span class="st">""</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>messy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"(202) 555-0198"</span>, <span class="st">"+1-303-555-1212"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(messy, <span class="st">"[^0-9]"</span>, <span class="st">""</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2025550198"  "13035551212"</code></pre>
 </div>
 </div>
-<p>Finally, <code>str_split()</code> (or <code>str_split_fixed()</code>) breaks a string into pieces at matches of a pattern. If you know your delimiter, you can also use tidyr’s <code>separate()</code> or <code>separate_wider_delim()</code> to split a column into multiple variables. For example, suppose we have a vector of names in “LAST, First Middle” format:</p>
+</section>
+<section id="capturing-groups-and-backreferences" class="level3">
+<h3 class="anchored" data-anchor-id="capturing-groups-and-backreferences">Capturing groups and backreferences</h3>
+<p>Wrapping part of a pattern in parentheses creates a <strong>capturing group</strong>, which does two things at once: it groups that piece of the pattern together (useful with quantifiers and alternation), and it remembers exactly what matched so you can reuse it. <code>str_match()</code> returns the whole match together with the text captured by each group, as a matrix:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>names <span class="ot">=</span>  <span class="fu">c</span>(<span class="st">"SMITH, John A."</span>, <span class="st">"O'NEILL, Anne"</span>, <span class="st">"Lee, Chen"</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Split at the comma and whitespace</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>df_names <span class="ot">=</span>  <span class="fu">tibble</span>(<span class="at">full =</span> names) <span class="sc">|&gt;</span> <span class="fu">separate</span>(full, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"last"</span>, <span class="st">"rest"</span>), <span class="at">sep =</span> <span class="st">",</span><span class="sc">\\</span><span class="st">s*"</span>)</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>df_names</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2026-01-15"</span>, <span class="st">"2026-02-20"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_match</span>(dates, <span class="st">"(</span><span class="sc">\\</span><span class="st">d{4})-(</span><span class="sc">\\</span><span class="st">d{2})-(</span><span class="sc">\\</span><span class="st">d{2})"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1]         [,2]   [,3] [,4]
+[1,] "2026-01-15" "2026" "01" "15"
+[2,] "2026-02-20" "2026" "02" "20"</code></pre>
+</div>
+</div>
+<p>Inside a replacement string, <code>\1</code>, <code>\2</code>, and so on refer back to whatever each group captured, which makes it possible to rearrange a match rather than just deleting or replacing it outright:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace</span>(dates, <span class="st">"(</span><span class="sc">\\</span><span class="st">d{4})-(</span><span class="sc">\\</span><span class="st">d{2})-(</span><span class="sc">\\</span><span class="st">d{2})"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">2/</span><span class="sc">\\</span><span class="st">3/</span><span class="sc">\\</span><span class="st">1"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "01/15/2026" "02/20/2026"</code></pre>
+</div>
+</div>
+</section>
+<section id="literal-matching-with-fixed" class="level3">
+<h3 class="anchored" data-anchor-id="literal-matching-with-fixed">Literal matching with <code>fixed()</code></h3>
+<p>Sometimes the string you are searching for is not a pattern at all, just literal text that happens to contain regex metacharacters, such as a period, parenthesis, or dollar sign. Wrapping the search string in <code>fixed()</code> tells stringr to match it character for character, with no regex interpretation (see Example 9.3 for what happens if you forget to).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(<span class="fu">c</span>(<span class="st">"cat.txt"</span>, <span class="st">"cat"</span>), <span class="fu">fixed</span>(<span class="st">"."</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE</code></pre>
+</div>
+</div>
+</section>
+<section id="splitting-a-column-into-several" class="level3">
+<h3 class="anchored" data-anchor-id="splitting-a-column-into-several">Splitting a column into several</h3>
+<p>When you know the delimiter, tidyr’s <code>separate_wider_delim()</code> splits one column into several. Suppose a column stores names as <code>"LAST, First Middle"</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>people <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"SMITH, John A."</span>, <span class="st">"O'NEILL, Anne"</span>, <span class="st">"Lee, Chen"</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">full =</span> people) <span class="sc">|&gt;</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_wider_delim</span>(full, <span class="at">delim =</span> <span class="st">","</span>, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"last"</span>, <span class="st">"rest"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rest =</span> <span class="fu">str_trim</span>(rest))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   last    rest   
@@ -569,19 +608,21 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 3 Lee     Chen   </code></pre>
 </div>
 </div>
+<p><code>separate_wider_delim()</code> only consumes the literal delimiter itself, so the piece after a <code>", "</code> delimiter keeps its leading space; <code>str_trim()</code> cleans up any leading or trailing whitespace left behind by a split like this.</p>
 </section>
 <section id="working-with-messy-strings-in-tibbles" class="level3">
 <h3 class="anchored" data-anchor-id="working-with-messy-strings-in-tibbles">Working with messy strings in tibbles</h3>
-<p>Character columns often encode multiple variables in one field. To tidy them, combine <code>stringr</code> and tidyr. As an example, consider the built‑in <code>who2</code> dataset where column names like <code>sp_m_014</code> describe the diagnosis, gender and age group. We can pivot the data longer and then separate the compound names into distinct variables:</p>
+<p>Character columns often encode multiple variables in one field. The built-in <code>who2</code> dataset has column names like <code>sp_m_014</code>, packing together a diagnosis method, gender, and age group; combining <code>pivot_longer()</code> with a separator unpacks them into proper variables in one step, exactly as in Session 7.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>who2_long <span class="ot">=</span>  who2 <span class="sc">|&gt;</span> <span class="fu">pivot_longer</span>(</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">cols =</span> <span class="sc">!</span>(country<span class="sc">:</span>year),</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"diagnosis"</span>, <span class="st">"gender"</span>, <span class="st">"age"</span>),</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_sep =</span> <span class="st">"_"</span>,</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_to =</span> <span class="st">"count"</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>who2_long <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>who2_long <span class="ot">&lt;-</span> who2 <span class="sc">|&gt;</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">!</span>(country<span class="sc">:</span>year),</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"diagnosis"</span>, <span class="st">"gender"</span>, <span class="st">"age"</span>),</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"_"</span>,</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"count"</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>who2_long <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 6
   country      year diagnosis gender age   count
@@ -595,15 +636,208 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 </div>
 </div>
 </section>
-<section id="key-takeaways" class="level3">
-<h3 class="anchored" data-anchor-id="key-takeaways">Key take‑aways</h3>
-<ul>
-<li>Strings are enclosed in quotes; use double quotes by default and escape special characters like backslash (<code>\\</code>), newline (<code>\n</code>) or tab (<code>\t</code>). <code>str_length()</code> and <code>str_sub()</code> let you measure and manipulate substrings.</li>
-<li>Concatenate strings with <code>str_c()</code> and build templated strings with <code>str_glue()</code>. Use <code>coalesce()</code> to handle missing values and <code>str_flatten()</code> to collapse many strings into one.</li>
-<li>Regular expressions describe patterns. Learn the roles of metacharacters (<code>.</code>, <code>?</code>, <code>*</code>, <code>+</code>), character classes (<code>[...]</code>) and alternation (<code>|</code>), and how to anchor patterns at the start (<code>^</code>) or end (<code>$</code>) of a string.</li>
-<li>Use <code>str_detect()</code> to filter strings, <code>str_count()</code> to count occurrences, <code>str_extract()</code> to pull out matches, and <code>str_replace()</code>/<code>str_replace_all()</code> to perform substitutions. These functions are vectorised and integrate well with dplyr.</li>
-<li>Tidy multiple variables encoded in one string by combining <code>stringr</code> with tidyr’s <code>separate()</code> and <code>pivot_longer()</code>. This prepares your data for converting character vectors to factors in the next session.</li>
-</ul>
+<section id="fringe-cases-and-common-pitfalls" class="level3">
+<h3 class="anchored" data-anchor-id="fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</h3>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 9.1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Quantifiers are greedy by default, and it shows.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>html <span class="ot">&lt;-</span> <span class="st">"&lt;a&gt;&lt;b&gt;"</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(html, <span class="st">"&lt;.+&gt;"</span>)     <span class="co"># greedy: matches as much as possible</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "&lt;a&gt;&lt;b&gt;"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(html, <span class="st">"&lt;.+?&gt;"</span>)    <span class="co"># lazy: matches as little as possible</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "&lt;a&gt;"</code></pre>
+</div>
+</div>
+<p><code>+</code> (like <code>*</code> and <code>{n,m}</code>) grabs as much text as it possibly can while still letting the overall pattern match, so <code>&lt;.+&gt;</code> starts at the first <code>&lt;</code> and only stops at the <em>last</em> <code>&gt;</code> in the string, swallowing <code>&lt;a&gt;&lt;b&gt;</code> whole instead of stopping at the first <code>&gt;</code>. Adding <code>?</code> right after a quantifier (<code>+?</code>, <code>*?</code>, <code>??</code>) makes it lazy instead, matching as little as possible, which is almost always what you actually want when extracting something bounded by delimiters that might repeat.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 9.2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong><code>str_c()</code> and <code>paste0()</code> treat a missing value very differently.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="cn">NA</span>, <span class="st">"c"</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="st">"val: "</span>, x)     <span class="co"># NA stays a genuine NA</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "val: a" NA       "val: c"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">"val: "</span>, x)    <span class="co"># NA becomes the literal text "val: NA"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "val: a"  "val: NA" "val: c" </code></pre>
+</div>
+</div>
+<p><code>str_c()</code> propagates <code>NA</code> the way arithmetic does: if any input piece is missing, the whole result for that element is missing too, which is almost always the behavior you want, since it keeps <code>is.na()</code> meaningful on the result. <code>paste0()</code> instead coerces <code>NA</code> to the three-character string <code>"NA"</code> and glues it in like any other text, which can silently turn a genuinely missing value into a string that <em>looks</em> like real data (and will not be caught by a later <code>is.na()</code> check). If you’re translating old base R code that leans on <code>paste()</code>/<code>paste0()</code> into the tidyverse, this is one of the easiest behavior changes to miss.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 9.3
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Forgetting that a search string is a regex changes what “matches” means.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>words <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cat.txt"</span>, <span class="st">"cat"</span>, <span class="st">"hat"</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(words, <span class="st">"."</span>)              <span class="co"># "." means "any character," not a literal period</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE TRUE TRUE</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(words, <span class="fu">fixed</span>(<span class="st">"."</span>))       <span class="co"># fixed() treats "." as a literal period</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE FALSE</code></pre>
+</div>
+</div>
+<p>Every one of these strings contains at least one character, so the unquoted <code>.</code> pattern matches all three, which is almost certainly not what someone searching for filenames with a literal dot in them intended. The fix is either <code>fixed(".")</code>, which turns off regex interpretation entirely, or escaping the metacharacter directly in the pattern (<code>"\\."</code>). This mistake is easy to make with any of the regex metacharacters (<code>.</code>, <code>(</code>, <code>)</code>, <code>$</code>, <code>^</code>, <code>+</code>, <code>*</code>, <code>[</code>, <code>]</code>), not just the period.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 9.4
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Without a word boundary, a pattern matches inside unrelated words too.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cat"</span>, <span class="st">"category"</span>, <span class="st">"concatenate"</span>, <span class="st">"the cat sat"</span>)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(text, <span class="st">"cat"</span>)            <span class="co"># matches inside "category" and "concatenate" too</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE TRUE TRUE TRUE</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(text, <span class="st">"</span><span class="sc">\\</span><span class="st">bcat</span><span class="sc">\\</span><span class="st">b"</span>)      <span class="co"># only matches "cat" as a whole word</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE FALSE  TRUE</code></pre>
+</div>
+</div>
+<p>The plain pattern <code>"cat"</code> matches <em>any</em> occurrence of those three letters in sequence, including the middle of “con<strong>cat</strong>enate,” which has nothing to do with cats. <code>\b</code> matches the zero-width boundary between a word character and a non-word character (or the start/end of the string), so <code>\bcat\b</code> only matches “cat” when it is not glued to other letters on either side. Whenever you want to match a whole word rather than a substring, word boundaries are the fix.</p>
+</div>
+</div>
+</section>
+<section id="recap" class="level3">
+<h3 class="anchored" data-anchor-id="recap">Recap</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 76%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Term</strong></th>
+<th><strong>Definition</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Raw string (<code>r"(...)"</code>)</strong></td>
+<td>A string literal where nothing is escaped, useful for paths and regexes full of backslashes.</td>
+</tr>
+<tr class="even">
+<td><strong><code>str_length()</code> / <code>str_sub()</code></strong></td>
+<td>Measure a string’s character length, or extract/replace a substring by position.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>str_c()</code> vs.&nbsp;<code>paste0()</code></strong></td>
+<td>Both concatenate strings, but <code>str_c()</code> propagates <code>NA</code> while <code>paste0()</code> converts it to the text <code>"NA"</code>.</td>
+</tr>
+<tr class="even">
+<td><strong>Character class shortcuts</strong></td>
+<td><code>\d</code> (digit), <code>\s</code> (whitespace), <code>\w</code> (word character: letter, digit, or underscore).</td>
+</tr>
+<tr class="odd">
+<td><strong>Quantifier</strong></td>
+<td><code>?</code>, <code>*</code>, <code>+</code>, or <code>{n,m}</code>, controlling how many times the preceding piece may repeat; greedy by default, lazy with a trailing <code>?</code>.</td>
+</tr>
+<tr class="even">
+<td><strong>Word boundary (<code>\b</code>)</strong></td>
+<td>A zero-width anchor matching the edge of a word, preventing a pattern from matching inside a longer word.</td>
+</tr>
+<tr class="odd">
+<td><strong>Capturing group (<code>(...)</code>)</strong></td>
+<td>Groups part of a pattern and remembers what it matched, for reuse via <code>\1</code>, <code>\2</code>, and so on, or extraction with <code>str_match()</code>.</td>
+</tr>
+<tr class="even">
+<td><strong><code>fixed()</code></strong></td>
+<td>Tells a stringr function to treat its pattern as literal text rather than a regex.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>separate_wider_delim()</code></strong></td>
+<td>Splits one column into several at a literal delimiter.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="check-your-understanding" class="level3">
+<h3 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Problems">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Problems
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>What is the difference between <code>str_extract(x, "&lt;.+&gt;")</code> and <code>str_extract(x, "&lt;.+?&gt;")</code> on the string <code>"&lt;a&gt;&lt;b&gt;"</code>? Which one would you want if you were trying to extract just the first tag?</li>
+<li>A dataset has a column where missing values were introduced with <code>str_c()</code>. Explain why <code>is.na()</code> still works correctly on that column, and why the same code using <code>paste0()</code> instead might not have.</li>
+<li>You want to find every row where a <code>notes</code> column contains a literal question mark. <code>str_detect(notes, "?")</code> returns strange results (or an error). What went wrong, and what are two ways to fix it?</li>
+<li>Explain what <code>\bcat\b</code> matches that plain <code>cat</code> does not, and give an example string where the two patterns would disagree.</li>
+<li>In <code>str_replace(dates, "(\\d{4})-(\\d{2})-(\\d{2})", "\\2/\\3/\\1")</code>, what do <code>\\1</code>, <code>\\2</code>, and <code>\\3</code> refer to?</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solutions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solutions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><code>"&lt;.+&gt;"</code> is greedy and matches the entire string <code>"&lt;a&gt;&lt;b&gt;"</code>, since <code>+</code> grabs as much as possible while still allowing the pattern to match, stopping only at the last <code>&gt;</code>. <code>"&lt;.+?&gt;"</code> is lazy and matches just <code>"&lt;a&gt;"</code>, stopping at the first <code>&gt;</code> it can. To extract just the first tag, use the lazy version.</p></li>
+<li><p><code>str_c()</code> propagates missingness: if any piece being concatenated is <code>NA</code>, the whole result is <code>NA</code>, so <code>is.na()</code> still correctly identifies those rows afterward. <code>paste0()</code> instead converts a missing value into the literal three-character string <code>"NA"</code>, which is not a missing value at all as far as R is concerned, so <code>is.na()</code> would return <code>FALSE</code> for those rows even though the data started out missing.</p></li>
+<li><p><code>?</code> is a regex metacharacter (a quantifier meaning “zero or one of the preceding thing”), not a literal question mark, so a bare <code>"?"</code> pattern is not valid on its own without something for it to quantify (or is silently interpreted as an empty, always-matching pattern, depending on context). Fix it with <code>str_detect(notes, fixed("?"))</code>, which turns off regex interpretation entirely, or by escaping it directly: <code>str_detect(notes, "\\?")</code>.</p></li>
+<li><p><code>\b</code> anchors to a word boundary, so <code>\bcat\b</code> only matches “cat” as a complete, standalone word, not as part of a longer word. In <code>"concatenate"</code>, plain <code>cat</code> matches the “cat” hidden inside “con<strong>cat</strong>enate,” while <code>\bcat\b</code> does not match anywhere in that string at all, since “cat” there is not bounded by non-word characters on both sides.</p></li>
+<li><p><code>\1</code> refers to whatever the first parenthesized group captured (the four-digit year), <code>\2</code> refers to the second group (the two-digit month), and <code>\3</code> refers to the third group (the two-digit day). The replacement string rearranges them into <code>month/day/year</code> order using those backreferences instead of the original matched text.</p></li>
+</ol>
+</div>
+</div>
+</div>
 
 
 </section>
