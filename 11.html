@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; Session 11 – Variable types IV: dates &amp; times – STA 2300 Intro to Data Science</title>
+<title>11&nbsp; Session 11: Variable types IV: dates and times – STA 2300 Intro to Data Science</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -177,7 +177,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11 – Variable types IV: dates &amp; times</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types IV: dates and times</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -272,13 +272,13 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10 – Variable types III: factors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types III: factors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11 – Variable types IV: dates &amp; times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types IV: dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -361,11 +361,13 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
   <li><a href="#why-dates-and-times" id="toc-why-dates-and-times" class="nav-link" data-scroll-target="#why-dates-and-times">Why dates and times?</a></li>
-  <li><a href="#creating-datetimes" id="toc-creating-datetimes" class="nav-link" data-scroll-target="#creating-datetimes">Creating date/times</a></li>
-  <li><a href="#extracting-components" id="toc-extracting-components" class="nav-link" data-scroll-target="#extracting-components">Extracting components</a></li>
+  <li><a href="#creating-date-times" id="toc-creating-date-times" class="nav-link" data-scroll-target="#creating-date-times">Creating date-times</a></li>
+  <li><a href="#extracting-and-modifying-components" id="toc-extracting-and-modifying-components" class="nav-link" data-scroll-target="#extracting-and-modifying-components">Extracting and modifying components</a></li>
   <li><a href="#rounding-and-time-spans" id="toc-rounding-and-time-spans" class="nav-link" data-scroll-target="#rounding-and-time-spans">Rounding and time spans</a></li>
   <li><a href="#time-zones" id="toc-time-zones" class="nav-link" data-scroll-target="#time-zones">Time zones</a></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key take‑aways</a></li>
+  <li><a href="#fringe-cases-and-common-pitfalls" id="toc-fringe-cases-and-common-pitfalls" class="nav-link" data-scroll-target="#fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -375,7 +377,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11 – Variable types IV: dates &amp; times</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types IV: dates and times</span></h1>
 </div>
 
 
@@ -395,67 +397,64 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Understand different date/time types.</strong> Describe the difference between dates (<code>&lt;date&gt;</code>), times (<code>&lt;time&gt;</code>) and date‑times (<code>&lt;dttm&gt;</code>) in R. Emphasize using the simplest type that meets the analysis requirements.</li>
-<li><strong>Create date/time objects.</strong> Learn how to parse strings into dates with lubridate helpers such as <code>ymd()</code>, <code>mdy()</code>, <code>dmy()</code> etc., and how to assemble dates and date‑times from separate components with <code>make_date()</code> and <code>make_datetime()</code>.</li>
-<li><strong>Extract and modify components.</strong> Use accessor functions <code>year()</code>, <code>month()</code>, <code>mday()</code>, <code>yday()</code>, <code>wday()</code>, <code>hour()</code>, <code>minute()</code> and <code>second()</code> to pull out parts of a date‑time. Learn to change components in place or with <code>update()</code>.</li>
-<li><strong>Round dates and compute spans.</strong> Round dates to a unit (e.g., week, month) with <code>floor_date()</code>, <code>round_date()</code> and <code>ceiling_date()</code>. Understand time spans and the difference between durations (exact seconds), periods (human units like weeks and months) and intervals.</li>
-<li><strong>Recognize time‑zone issues.</strong> Appreciate that date‑time values always have an associated time zone. Learn how to specify and change the time zone when parsing date‑times.</li>
+<li><strong>Understand different date/time types.</strong> Describe the difference between dates (<code>&lt;date&gt;</code>), times (<code>&lt;time&gt;</code>), and date-times (<code>&lt;dttm&gt;</code>) in R, and use the simplest type that meets the analysis requirements.</li>
+<li><strong>Create date/time objects.</strong> Learn how to parse strings into dates with lubridate helpers such as <code>ymd()</code>, <code>mdy()</code>, <code>dmy()</code>, and so on, and how to assemble dates and date-times from separate components with <code>make_date()</code> and <code>make_datetime()</code>. Recognize when a parsing helper can silently produce the wrong date instead of an error.</li>
+<li><strong>Extract and modify components.</strong> Use accessor functions <code>year()</code>, <code>month()</code>, <code>mday()</code>, <code>yday()</code>, <code>wday()</code>, <code>hour()</code>, <code>minute()</code>, and <code>second()</code> to pull out parts of a date-time. Learn to change components in place, or with <code>update()</code>.</li>
+<li><strong>Round dates and compute spans.</strong> Round dates to a unit (week, month, and so on) with <code>floor_date()</code>, <code>round_date()</code>, and <code>ceiling_date()</code>. Understand the difference between durations (exact seconds), periods (human units like weeks and months), and intervals (a start and end point), and why the difference matters the moment daylight saving time or a short month gets involved.</li>
+<li><strong>Recognize time zone issues.</strong> Appreciate that a date-time value always has an associated time zone, and learn how to specify and change it.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<section id="why-dates-and-times" class="level3">
-<h3 class="anchored" data-anchor-id="why-dates-and-times">Why dates and times?</h3>
-<p>Dates and times are deceptively simple. They appear ubiquitous and straightforward, but the more you work with them, the more quirks emerge. A year isn’t always 365 days, not every day has exactly 24 hours and occasionally a minute may have 61 seconds. These complexities arise because calendar units reconcile astronomical cycles (earth’s rotation and orbit) with human conventions (leap years, daylight saving time). To manage them, R doesn’t treat dates as plain strings but provides special classes and functions.</p>
-<p>In the tidyverse, <strong>lubridate</strong> simplifies working with date and time data. It isn’t loaded by default with the tidyverse, so you must call <code>library(lubridate)</code>.</p>
-</section>
-<section id="creating-datetimes" class="level3">
-<h3 class="anchored" data-anchor-id="creating-datetimes">Creating date/times</h3>
-<p>There are three common ways to create date/time objects:</p>
-<ol type="1">
-<li><strong>From strings.</strong> Use lubridate helpers to parse strings that contain dates or date‑times. Arrange the letters “y”, “m” and “d” to match the order of year, month and day in the string, and lubridate will infer the format. For example:</li>
-</ol>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(<span class="st">"2025-02-18"</span>)        <span class="co"># ISO format year-month-day</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="why-dates-and-times" class="level3">
+<h3 class="anchored" data-anchor-id="why-dates-and-times">Why dates and times?</h3>
+<p>Dates and times are deceptively simple. They look ubiquitous and straightforward, but the more you work with them, the more quirks emerge: a year isn’t always 365 days, not every day has exactly 24 hours, and a minute occasionally has 61 seconds. These complications exist because calendar units have to reconcile astronomical cycles (the earth’s rotation and orbit) with human conventions (leap years, daylight saving time). R doesn’t treat dates as plain strings for exactly this reason; it provides dedicated classes and functions built to handle these quirks correctly. In the tidyverse, lubridate does most of that work; it isn’t loaded automatically with <code>library(tidyverse)</code>, so load it separately.</p>
+</section>
+<section id="creating-date-times" class="level3">
+<h3 class="anchored" data-anchor-id="creating-date-times">Creating date-times</h3>
+<p>There are three common ways to create a date or date-time.</p>
+<p><strong>From strings.</strong> lubridate’s helper functions parse strings by matching the order of “y,” “m,” and “d” in the function name to the order of year, month, and day in the string.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(<span class="st">"2025-02-18"</span>)        <span class="co"># ISO format year-month-day</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2025-02-18"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">"January 31, 2025"</span>)  <span class="co"># month-day-year with month name</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">"January 31, 2025"</span>)  <span class="co"># month-day-year, with a month name</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2025-01-31"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dmy</span>(<span class="st">"31-01-2025"</span>)        <span class="co"># day-month-year</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dmy</span>(<span class="st">"31-01-2025"</span>)        <span class="co"># day-month-year</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2025-01-31"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># parse date‑times by adding h, m and s</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd_hms</span>(<span class="st">"2025-02-18 14:30:15"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd_hms</span>(<span class="st">"2025-02-18 14:30:15"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2025-02-18 14:30:15 UTC"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy_hm</span>(<span class="st">"2/18/2025 2:30 pm"</span>)  <span class="co"># 12‑hour clock with am/pm</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy_hm</span>(<span class="st">"2/18/2025 2:30 pm"</span>)   <span class="co"># 12-hour clock with am/pm</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2025-02-18 14:30:00 UTC"</code></pre>
 </div>
 </div>
-<p>These functions also accept numeric input without quotes (e.g., <code>ymd(20250218)</code>). You can supply a <code>tz</code> argument to set the time zone.</p>
-<ol start="2" type="1">
-<li><strong>From individual components.</strong> When the year, month, day (and optionally hour, minute) live in separate columns, combine them with <code>make_date()</code> or <code>make_datetime()</code>. For example:</li>
-</ol>
+<p>These functions also accept unquoted numeric input (<code>ymd(20250218)</code>), and take a <code>tz</code> argument to set the time zone directly at parse time. Choosing the wrong helper for an ambiguous string is a real risk covered in Example 11.3.</p>
+<p><strong>From individual components.</strong> When year, month, and day (and optionally hour and minute) already live in separate columns, <code>make_date()</code> and <code>make_datetime()</code> assemble them directly.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">year =</span> <span class="fu">c</span>(<span class="dv">2023</span>, <span class="dv">2023</span>),</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">month =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>),</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">day =</span> <span class="fu">c</span>(<span class="dv">14</span>, <span class="dv">1</span>),</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">hour =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">16</span>),</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">minute =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">0</span>))</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create new columns without using the pipe to avoid confusion</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>date <span class="ot">=</span> <span class="fu">make_date</span>(df<span class="sc">$</span>year, df<span class="sc">$</span>month, df<span class="sc">$</span>day)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>datetime <span class="ot">=</span> <span class="fu">make_datetime</span>(df<span class="sc">$</span>year, df<span class="sc">$</span>month, df<span class="sc">$</span>day, df<span class="sc">$</span>hour, df<span class="sc">$</span>minute)</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="fu">c</span>(<span class="dv">2023</span>, <span class="dv">2023</span>),</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">month =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">day =</span> <span class="fu">c</span>(<span class="dv">14</span>, <span class="dv">1</span>),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">hour =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">16</span>),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">minute =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">0</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">date =</span> <span class="fu">make_date</span>(year, month, day),</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">datetime =</span> <span class="fu">make_datetime</span>(year, month, day, hour, minute)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 7
    year month   day  hour minute date       datetime           
@@ -464,119 +463,290 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 2  2023    10     1    16      0 2023-10-01 2023-10-01 16:00:00</code></pre>
 </div>
 </div>
-<ol start="3" type="1">
-<li><strong>From existing date/time objects.</strong> Use functions like <code>as_datetime()</code> to coerce between date and date‑time classes or specify a time zone when converting.</li>
-</ol>
+<p><strong>From other types.</strong> <code>as_date()</code> and <code>as_datetime()</code> coerce between date and date-time classes, or convert a raw numeric offset (seconds or days since 1970-01-01) into a proper date-time.</p>
 </section>
-<section id="extracting-components" class="level3">
-<h3 class="anchored" data-anchor-id="extracting-components">Extracting components</h3>
-<p>Once you have a date/time, you can <strong>access its components</strong>. Use <code>year()</code>, <code>month()</code>, <code>mday()</code> (day of month), <code>yday()</code> (day of year), <code>wday()</code> (day of week), <code>hour()</code>, <code>minute()</code> and <code>second()</code>:</p>
+<section id="extracting-and-modifying-components" class="level3">
+<h3 class="anchored" data-anchor-id="extracting-and-modifying-components">Extracting and modifying components</h3>
+<p>Once you have a date-time, accessor functions pull out its pieces: <code>year()</code>, <code>month()</code>, <code>mday()</code> (day of month), <code>yday()</code> (day of year), <code>wday()</code> (day of week; see Example 11.2 for a numbering surprise), <code>hour()</code>, <code>minute()</code>, and <code>second()</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">=</span> <span class="fu">ymd_hms</span>(<span class="st">"2025-02-18 14:30:15"</span>, <span class="at">tz =</span> <span class="st">"America/Chicago"</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">year</span>(dt)         <span class="co"># 2025</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">"2025-02-18 14:30:15"</span>, <span class="at">tz =</span> <span class="st">"America/Chicago"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">year</span>(dt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2025</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(dt)        <span class="co"># 2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(dt, <span class="at">label =</span> <span class="cn">TRUE</span>)   <span class="co"># Feb</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(dt, <span class="at">label =</span> <span class="cn">TRUE</span>)                <span class="co"># "Feb"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] Feb
 12 Levels: Jan &lt; Feb &lt; Mar &lt; Apr &lt; May &lt; Jun &lt; Jul &lt; Aug &lt; Sep &lt; ... &lt; Dec</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(dt, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span>)  <span class="co"># Tuesday</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(dt, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span>)   <span class="co"># "Tuesday"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] Tuesday
 7 Levels: Sunday &lt; Monday &lt; Tuesday &lt; Wednesday &lt; Thursday &lt; ... &lt; Saturday</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hour</span>(dt)         <span class="co"># 14</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hour</span>(dt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 14</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">minute</span>(dt)       <span class="co"># 30</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 30</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">second</span>(dt)       <span class="co"># 15</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 15</code></pre>
-</div>
-</div>
-<p>These accessors are vectorised and return integers or ordered factors. You can also modify components by assigning (<code>year(dt) = 2026</code>) or with <code>update()</code>:</p>
+<p>These accessors are vectorized, and most can also be assigned to directly, which modifies the date-time in place; <code>update()</code> changes several components at once.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>dt2 <span class="ot">=</span> <span class="fu">update</span>(dt, <span class="at">year =</span> <span class="dv">2026</span>, <span class="at">month =</span> <span class="dv">1</span>, <span class="at">mday =</span> <span class="dv">1</span>, <span class="at">hour =</span> <span class="dv">0</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>dt2  <span class="co"># "2026-01-01 00:30:15 CST"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>dt2 <span class="ot">&lt;-</span> <span class="fu">update</span>(dt, <span class="at">year =</span> <span class="dv">2026</span>, <span class="at">month =</span> <span class="dv">1</span>, <span class="at">mday =</span> <span class="dv">1</span>, <span class="at">hour =</span> <span class="dv">0</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>dt2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2026-01-01 00:30:15 CST"</code></pre>
 </div>
 </div>
-<p>If values overflow the usual range (e.g., day = 30 in February), lubridate automatically rolls over to the next month.</p>
+<p>If an updated value overflows its usual range (day 30 in a month that has only 28), <code>update()</code> rolls over into the following month rather than erroring, which is worth double-checking if you didn’t intend it.</p>
 </section>
 <section id="rounding-and-time-spans" class="level3">
 <h3 class="anchored" data-anchor-id="rounding-and-time-spans">Rounding and time spans</h3>
-<p>To simplify a continuous timeline into regular intervals, <em>round</em> dates and date‑times. <code>floor_date(x, "week")</code> rounds down to the start of the week, <code>ceiling_date(x, "month")</code> rounds up to the next month and <code>round_date(x, "day")</code> rounds to the nearest day. For example, to count weekly observations you can round each date to the start of the week and then tally the number of observations per week.</p>
-<p>Arithmetic with date‑times yields <em>time spans</em>. Subtracting two dates returns a difftime, which stores a difference in days, hours, etc. lubridate defines three classes: <em>durations</em> (exact seconds), <em>periods</em> (human units like months) and <em>intervals</em> (a start and end point). Use constructors like <code>ddays()</code>, <code>dhours()</code> and <code>dminutes()</code> to create durations.</p>
+<p><code>floor_date(x, "week")</code>, <code>ceiling_date(x, "month")</code>, and <code>round_date(x, "day")</code> snap a date-time down, up, or to the nearest boundary of a chosen unit, which is a common first step before counting observations per week or per month.</p>
+<p>Arithmetic on dates produces a <em>time span</em>, and lubridate distinguishes three kinds. A <strong>duration</strong> is an exact number of seconds (<code>ddays(1)</code> is always precisely 86,400 seconds). A <strong>period</strong> is a human unit like “1 day” or “1 month,” which stretches or shrinks to match the calendar (or the clock) rather than staying a fixed number of seconds. The difference is invisible almost all the time, and then very visible on the one day a year it matters:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>age <span class="ot">=</span> <span class="fu">today</span>() <span class="sc">-</span> <span class="fu">ymd</span>(<span class="st">"19900101"</span>)  <span class="co"># difftime</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.duration</span>(age)                 <span class="co"># duration in seconds</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>before_dst <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">"2025-03-08 12:00:00"</span>, <span class="at">tz =</span> <span class="st">"America/Chicago"</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>before_dst <span class="sc">+</span> <span class="fu">ddays</span>(<span class="dv">1</span>)   <span class="co"># a duration: exactly 86,400 seconds later</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "1130284800s (~35.82 years)"</code></pre>
+<pre><code>[1] "2025-03-09 13:00:00 CDT"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add one month (a period)</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>() <span class="sc">+</span> <span class="fu">months</span>(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>before_dst <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">1</span>)    <span class="co"># a period: the same clock time, the next calendar day</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-11-26"</code></pre>
+<pre><code>[1] "2025-03-09 12:00:00 CDT"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># difference between dates as period</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>period <span class="ot">=</span> <span class="fu">as.period</span>(<span class="fu">ymd</span>(<span class="st">"2025-03-01"</span>) <span class="sc">-</span> <span class="fu">ymd</span>(<span class="st">"2025-01-15"</span>))</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>period</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Clocks in that time zone spring forward by an hour overnight between those two dates, so adding an exact-seconds duration lands at 1:00 PM, not noon, while adding a one-day period lands at noon as a person would expect. Reach for periods when you mean “the same time tomorrow,” and durations when you mean “exactly 24 hours from now”; they are not interchangeable.</p>
+<p>An <strong>interval</strong> is a specific span with a fixed start and end, built with the <code>%--%</code> operator, and dividing an interval by a duration or period tells you exactly how many of those units it spans.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>this_year <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">"2025-01-01"</span>) <span class="sc">%--%</span> <span class="fu">ymd</span>(<span class="st">"2026-01-01"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>this_year <span class="sc">/</span> <span class="fu">days</span>(<span class="dv">1</span>)     <span class="co"># exactly how many days are in this specific interval</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "45d 0H 0M 0S"</code></pre>
+<pre><code>[1] 365</code></pre>
 </div>
 </div>
 </section>
 <section id="time-zones" class="level3">
 <h3 class="anchored" data-anchor-id="time-zones">Time zones</h3>
-<p>Date‑times always carry a <em>time zone</em>. If you omit the time zone, R defaults to your system’s time zone. When parsing strings, supply <code>tz</code> to ensure correct interpretation. Use <code>with_tz()</code> to change how an instant is displayed in another time zone, and <code>force_tz()</code> to change the underlying instant (rarely needed). Avoid combining date‑times with unspecified time zones.</p>
+<p>A date-time always carries a time zone; omit it while parsing and R falls back to your system’s time zone, which is rarely what you want in a script meant to run on someone else’s computer. <code>with_tz()</code> changes how an instant is <em>displayed</em>, in a different time zone, without changing the instant itself; <code>force_tz()</code> instead changes which instant a date-time refers to, keeping its printed clock time the same, and is only needed when a date-time was labeled with the wrong time zone in the first place.</p>
 </section>
-<section id="key-takeaways" class="level3">
-<h3 class="anchored" data-anchor-id="key-takeaways">Key take‑aways</h3>
-<ul>
-<li>Dates and date‑times are special data types; use the simplest type that serves your purpose.</li>
-<li>Use lubridate helpers (<code>ymd()</code>, <code>ymd_hms()</code> etc.) or <code>make_date()</code>/<code>make_datetime()</code> to create date/time objects.</li>
-<li>Extract components with <code>year()</code>, <code>month()</code>, <code>wday()</code> and friends, and modify them with assignment or <code>update()</code>.</li>
-<li>Round dates to meaningful units using <code>floor_date()</code>, <code>ceiling_date()</code> and <code>round_date()</code>.</li>
-<li>Distinguish between durations, periods and intervals when doing arithmetic with dates.</li>
-<li>Always be conscious of time zones; specify <code>tz</code> explicitly when parsing date‑times.</li>
-</ul>
-<!-- ## In‑class activity -->
-<!-- In this session’s activity you will work with the built‑in `airquality` dataset (available in base R) to practise creating and analysing date variables.  The data records daily ozone and meteorological measurements in New York City from May to September 1973.  Complete the following tasks using the tidyverse and lubridate: -->
-<!-- 1. **Inspect the data (5 min).**  Load the tidyverse and the `airquality` dataset.  Use `glimpse()` and `summary()` to understand its structure.  Note the variables `Month` and `Day`.  How many observations and variables does it contain?  Are there any missing values? -->
-<!--    ```{r} -->
-<!--    library(tidyverse) -->
-<!--    data(airquality) -->
-<!--    glimpse(airquality) -->
-<p>–&gt; <!--    summary(airquality) --> –&gt; <!--    ``` --></p>
-<!-- 2. **Create a date variable (10 min).**  The dataset lacks a year column, but all measurements were taken in 1973.  Use `make_date(1973, Month, Day)` or `ymd()` combined with `str_c()` to create a new `date` column.  Confirm that it has class `<date>` and explore the distribution of observations across months with `count(month(date))`.  Use `wday()` with `label = TRUE` to find which days of the week have more missing ozone values. -->
-<!-- 3. **Visualize ozone over time (15 min).**  Plot daily `Ozone` concentrations against `date` using a line plot.  Add a smooth trend line with `geom_smooth()`.  Consider mapping the day of the week to color or facet the plot by month.  What patterns do you see? -->
-<!--    ```{r} -->
-<!--    airquality |> -->
-<!--      mutate(date = make_date(1973, Month, Day)) |> -->
-<!--      ggplot(aes(x = date, y = Ozone)) + -->
-<!--      geom_line() + -->
-<!--      geom_smooth(method = "loess", na.rm = TRUE) + -->
-<!--      labs(x = "Date (1973)", y = "Ozone (ppb)", -->
-<!--           title = "Daily ozone levels in New York (May–Sep 1973)") -->
-<!--    ``` -->
-<!-- 4. **Summarise by week and month (15 min).**  Use `floor_date()` to round each `date` down to the start of the week (unit = "week") and the start of the month (unit = "month").  Group by these rounded dates and compute the mean and standard deviation of `Ozone` and `Temp` (ignoring missing values).  Create bar charts or line plots of weekly and monthly averages. -->
-<!-- 5. **Explore temperature changes (15 min).**  Compute the day‑to‑day change in temperature by arranging the data by `date` and using `lag()` (`Temp - lag(Temp)`) and `lead()`.  Plot the distribution of temperature changes.  Are temperature increases and decreases symmetric? -->
-<!-- 6. **Optional:** **Time spans** (10 min).  Choose two dates from the dataset and compute the time span between them using subtraction.  Convert the result to a duration with `as.duration()` and to a period with `as.period()`.  Interpret the difference between the duration and period. -->
-<!-- This activity will give you hands‑on experience parsing dates, extracting components, rounding to units and performing simple temporal analyses on a dataset not covered in *R for Data Science*. -->
-<!-- --- -->
-<!-- **Suggested reading for Session 12:** Chapter 18 of *R for Data Science* (2nd ed.), “Missing values”, delves into handling missing data.  It revisits the infectious nature of `NA` values, shows how to explicitly fill or replace missing values with functions like `tidyr::fill()` and `dplyr::coalesce()`, and explains how to convert implicitly missing values (absent rows) into explicit ones using pivoting and completing【487104552238734†L111-L123】.  Understanding missing values is crucial before you tackle joins and relational data in the following sessions. -->
+<section id="fringe-cases-and-common-pitfalls" class="level3">
+<h3 class="anchored" data-anchor-id="fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</h3>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 11.1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Stripping a <code>difftime</code> down to a plain number throws away which unit it’s in.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">"2026-01-01 00:00:00"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>gap_short <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">"2026-01-01 01:30:00"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>) <span class="sc">-</span> start</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>gap_long <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">"2026-01-05 00:00:00"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>) <span class="sc">-</span> start</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>gap_short   <span class="co"># R picks whatever unit reads most naturally</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time difference of 1.5 hours</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>gap_long</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time difference of 4 days</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(gap_short)   <span class="co"># 1.5, with no indication this means hours</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.5</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(gap_long)    <span class="co"># 4, with no indication this means days</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<p>Subtracting two date-times gives a <code>difftime</code> object, and R automatically picks whichever unit (seconds, minutes, hours, days, or weeks) makes the printed number easiest to read. That’s convenient for a single printed value, but <code>as.numeric()</code> strips the unit away entirely, so collecting several such differences into one numeric column can silently mix hours and days in the same column if the gaps involved happen to vary in magnitude. <code>as.duration()</code> sidesteps the whole problem by always normalizing to seconds; use it (or <code>as.numeric(x, units = "secs")</code>, forcing a specific unit) before doing arithmetic across multiple time differences.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 11.2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong><code>wday()</code> numbers Sunday as day 1 by default, not Monday.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>monday <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">"2026-08-03"</span>)   <span class="co"># a Monday</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(monday)                        <span class="co"># default: Sunday = 1, so Monday = 2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(monday, <span class="at">week_start =</span> <span class="dv">1</span>)        <span class="co"># ISO convention: Monday = 1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<p>Plenty of contexts (the ISO 8601 standard, most of Europe, and simply “the work week”) treat Monday as the first day of the week, but <code>wday()</code>’s default follows the US convention of Sunday as day 1. Code that assumes <code>wday() == 1</code> means Monday will be silently off by a day for every single observation. Set <code>week_start = 1</code> explicitly whenever your analysis cares about which day starts the week.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 11.3
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>An ambiguous date string parses to two different, equally “valid” dates depending on which helper you use.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>ambiguous <span class="ot">&lt;-</span> <span class="st">"01/02/2025"</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(ambiguous)   <span class="co"># January 2nd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-01-02"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dmy</span>(ambiguous)   <span class="co"># February 1st</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-02-01"</code></pre>
+</div>
+</div>
+<p>Both calls succeed without any warning or error, because <code>"01/02/2025"</code> is a perfectly well-formed date under either convention; the two answers just disagree about which number is the month and which is the day. Neither function can tell you picked the wrong one, since nothing about the string itself is invalid. Whenever a date column’s format isn’t explicitly documented (which is most of the time, for real data), check a handful of rows where the first two numbers are both greater than 12, since those are the only rows where <code>mdy()</code> and <code>dmy()</code> would actually give different, checkable answers.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 11.4
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Adding a one-month period to the end of a long month can return <code>NA</code> instead of rolling over.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>jan31 <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">"2025-01-31"</span>)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>jan31 <span class="sc">+</span> <span class="fu">months</span>(<span class="dv">1</span>)    <span class="co"># NA: February has no 31st day</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>jan31 <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">31</span>)      <span class="co"># a real date, but not "one month later" in the usual sense</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-03-03"</code></pre>
+</div>
+</div>
+<p>February simply has no 31st day, so <code>jan31 + months(1)</code> cannot construct a valid result and returns <code>NA</code> rather than guessing (rolling forward to March 3, for instance, the way plain day-arithmetic would). This is a deliberate, safe design choice, but it means a pipeline that adds <code>months()</code> to a column of dates can introduce genuine <code>NA</code>s for any date that happened to fall near the end of a month, purely as a side effect of the arithmetic, not because any data was actually missing. Check <code>sum(is.na(...))</code> after this kind of date arithmetic the same way you would after any other calculation that can produce a missing value.</p>
+</div>
+</div>
+</section>
+<section id="recap" class="level3">
+<h3 class="anchored" data-anchor-id="recap">Recap</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 76%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Term</strong></th>
+<th><strong>Definition</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><code>ymd()</code> / <code>mdy()</code> / <code>dmy()</code></strong></td>
+<td>Parse a string into a date by matching the letter order to the order of year/month/day in the text.</td>
+</tr>
+<tr class="even">
+<td><strong><code>make_date()</code> / <code>make_datetime()</code></strong></td>
+<td>Assemble a date or date-time from separate year/month/day(/hour/minute) columns.</td>
+</tr>
+<tr class="odd">
+<td><strong>Accessor functions</strong></td>
+<td><code>year()</code>, <code>month()</code>, <code>mday()</code>, <code>yday()</code>, <code>wday()</code>, <code>hour()</code>, <code>minute()</code>, <code>second()</code>; extract (or, via assignment, modify) one component of a date-time.</td>
+</tr>
+<tr class="even">
+<td><strong><code>floor_date()</code> / <code>ceiling_date()</code> / <code>round_date()</code></strong></td>
+<td>Round a date-time down, up, or to the nearest boundary of a chosen unit.</td>
+</tr>
+<tr class="odd">
+<td><strong>Duration</strong></td>
+<td>An exact span of time in seconds (<code>ddays()</code>, <code>dhours()</code>, …); unaffected by daylight saving time.</td>
+</tr>
+<tr class="even">
+<td><strong>Period</strong></td>
+<td>A human calendar unit (<code>days()</code>, <code>months()</code>, …); tracks “the same clock time” across DST and varying month lengths.</td>
+</tr>
+<tr class="odd">
+<td><strong>Interval</strong></td>
+<td>A span with a fixed start and end, created with <code>%--%</code>; divide by a duration or period to get its exact length.</td>
+</tr>
+<tr class="even">
+<td><strong><code>with_tz()</code> / <code>force_tz()</code></strong></td>
+<td>Change how an instant is displayed in another time zone, or change which instant a date-time refers to.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>difftime</code> units</strong></td>
+<td>The unit (seconds/minutes/hours/days/weeks) R automatically picks when subtracting two date-times; lost if you call <code>as.numeric()</code> without normalizing first.</td>
+</tr>
+<tr class="even">
+<td><strong><code>wday()</code> default</strong></td>
+<td>Sunday = 1 by default; pass <code>week_start = 1</code> for the ISO convention where Monday = 1.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="check-your-understanding" class="level3">
+<h3 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Problems">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Problems
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>What is the difference between a duration and a period, and give an example of a calculation where using the wrong one would produce a surprising answer.</li>
+<li>You compute several time differences with plain subtraction, store them with <code>as.numeric()</code>, and then average them. Why might that average be meaningless, and what would you do differently?</li>
+<li>A colleague filters a dataset for <code>wday(order_date) == 1</code>, expecting to get every Monday order. What day of the week do they actually get, and how would you fix the filter?</li>
+<li>You parse a column of date strings formatted like <code>"03/04/2025"</code> with <code>mdy()</code>. What has to be true about the data for you to be confident this was the right choice instead of <code>dmy()</code>?</li>
+<li>After running <code>df |&gt; mutate(renewal_date = start_date + months(12))</code>, a few rows in <code>renewal_date</code> are <code>NA</code>, even though every row in <code>start_date</code> had a real date. What is the most likely explanation?</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solutions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solutions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>A duration is an exact number of seconds and never bends to fit the calendar or the clock; a period is a human unit like “1 day” that adjusts to match the same clock time or calendar position. Adding <code>ddays(1)</code> (a duration) to a time right before a daylight saving transition lands an hour off from noon the next day, while adding <code>days(1)</code> (a period) correctly lands on the same clock time the next day.</p></li>
+<li><p><code>as.numeric()</code> on a <code>difftime</code> strips away its unit, and R automatically picks a different unit (seconds, minutes, hours, days, or weeks) depending on how large each individual difference is. If the differences vary enough in size, the resulting numbers can be a mix of, say, hours and days without anything indicating that, so averaging them treats incompatible units as if they were the same thing. Converting with <code>as.duration()</code> first (or specifying a single unit explicitly) avoids the problem.</p></li>
+<li><p><code>wday()</code> defaults to numbering Sunday as day 1, so <code>wday(order_date) == 1</code> actually selects every Sunday, not every Monday. The fix is either <code>wday(order_date, week_start = 1) == 1</code> (ISO convention, Monday = 1), or comparing against the label directly: <code>wday(order_date, label = TRUE) == "Mon"</code>.</p></li>
+<li><p>You would need to know that every date in the column, or at least a representative sample, is genuinely US-style month-first, and ideally confirm it by checking rows where the first two numbers are both 12 or less (so <code>mdy()</code> and <code>dmy()</code> would disagree) against some independent source of truth, such as a known order sequence or another date column.</p></li>
+<li><p><code>months(12)</code> is a period, and a period added to a date can land on a day that doesn’t exist in the target month, most commonly when <code>start_date</code> falls on the 29th, 30th, or 31st and the resulting month is shorter (for example, February in a non-leap year). Rather than rolling over to a nearby valid date, lubridate returns <code>NA</code> for those rows instead. Running <code>sum(is.na(df$renewal_date))</code> alongside <code>sum(is.na(df$start_date))</code> would confirm the <code>NA</code>s were introduced by the arithmetic itself, not present in the original data.</p></li>
+</ol>
+</div>
+</div>
+</div>
 
 
 </section>
