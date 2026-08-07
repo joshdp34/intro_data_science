@@ -1,16 +1,28 @@
-# Session 3: The layered grammar of graphics
+# Session 3: Data visualization basics
 
 ## Objectives
 
-- **Deepen your understanding of ggplot2.** Explore the layered grammar of graphics: how aesthetic mappings, geometric objects, statistical transformations, position adjustments, facets and coordinate systems combine to build complex plots.
-- **Master aesthetic mappings.** Map variables to color, shape, size and alpha correctly. Avoid mapping categorical variables to size or alpha, since it implies a false ordering, and note that mapping a categorical variable to shape uses only six shapes, so additional groups are dropped.
-- **Understand statistical transformations.** Recognize that every geom has a default stat working behind the scenes, and learn when you need to override it.
-- **Use position adjustments.** Choose between stacking, dodging, filling and jittering to keep overlapping bars and points readable.
-- **Layer multiple geoms.** Add multiple geoms to a plot (for example, points and smooth lines) and distinguish between global and local aesthetic mappings. Use the `group` aesthetic to draw separate curves for each category.
-- **Use faceting and coordinate systems.** Split data into panels using `facet_wrap()` or `facet_grid()` and adjust scales. Experiment with coordinate transforms such as `coord_flip()` and `coord_polar()`.
-- **Read layered plots critically.** Facets and stacked bars can be just as easy to misread as the plots from last session; you will learn a few specific ways they go wrong.
+- **Appreciate the importance of visualization.** A simple graph can convey more information than any other device. You will learn how the grammar of graphics underlies ggplot2.
+- **Create basic plots.** Use `ggplot2` to draw scatterplots, bar charts, histograms and boxplots.
+- **Understand variable types.** Recognize when to use different plot types based on whether variables are categorical or numeric.
+- **Recognize a few ways plots can mislead.** Sometimes this happens by accident, and sometimes it happens on purpose. Every plot you make is a claim about the data; part of learning to build plots is learning to read them critically.
+- **Prepare for layering.** Today's material sets the stage for Session 4 on layering, where you'll add geoms, adjust positions and facet plots.
 
 ## Notes
+
+### Why use ggplot2? The grammar of graphics
+
+R has several systems for making graphs, but ggplot2 is one of the most elegant and versatile. It implements the **grammar of graphics**, a coherent system for describing and building graphs out of independent building blocks, rather than memorizing one function per chart type. Learning this grammar enables you to create a wide range of plots with consistent syntax.
+
+Every ggplot2 plot needs at minimum three things:
+
+1. **Data**: a data frame (or tibble) containing the variables you want to plot.
+2. **Aesthetic mappings** (`aes()`): these describe which variable controls which visual property, such as x position, y position, color, shape, size, or transparency (`alpha`).
+3. **A geometric object** (a `geom_*()` function): the actual visual mark used to represent each observation, such as points, bars, lines, or boxes.
+
+You combine these pieces with `+`, and ggplot2 handles the (surprisingly hard) work of choosing scales, drawing axes, and building a legend.
+
+### Anatomy of a ggplot2 call
 
 ```{r}
 #| message: false
@@ -19,258 +31,302 @@ library(tidyverse)
 library(palmerpenguins)
 ```
 
-### The layered grammar, formalized
-
-Every ggplot2 plot is built from up to seven pieces, most of which have sensible defaults so you rarely have to specify all of them:
-
-```
-ggplot(data) +
-  geom_function(mapping = aes(...), stat = ..., position = ...) +
-  coordinate_function() +
-  facet_function()
-```
-
-You have already used `data`, `mapping`, and a `geom_function`. Today adds the remaining three ingredients: the **stat** (statistical transformation) each geom uses behind the scenes, the **position** adjustment that resolves overlapping marks, and the **coordinate** and **facet** functions that reshape how the whole plot is laid out. Once you can name all seven pieces of a plot, you can describe (and build) essentially any static chart.
-
-### Aesthetic mappings: what should and shouldn't be mapped
-
-The `aes()` function connects variables to graphical attributes, but not every variable and property combination is a good idea. Mapping a categorical variable to color is generally safe. Mapping it to shape works, but only six shapes are built in by default, so a seventh category has nowhere to go. Mapping a categorical variable to size or alpha is actively discouraged, since size and transparency naturally suggest an ordered, numeric scale, and ggplot2 will warn you when you try it.
-
 ```{r}
-# mapping species to color and shape is safe here (3 categories, well under the limit of 6)
-ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species, shape = species)) +
+ggplot(data = penguins, mapping = aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point()
 ```
 
+Because `data` and `mapping` are almost always the first two arguments, ggplot2 lets you drop the argument names once you're comfortable with the order:
+
 ```{r}
-#| warning: true
-# mapping a categorical variable to size implies an ordering that doesn't exist
-ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, size = species)) +
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
   geom_point()
 ```
 
-::: {.callout-warning}
-## A warning is not a suggestion
-When ggplot2 tells you *"using size for a discrete variable is not advised,"* it is not being fussy. Readers naturally interpret bigger as more, so sizing points by an unordered category (like species) invites viewers to draw a ranking that isn't in the data at all. Treat this particular warning as something to fix, not silence.
+Aesthetic mappings can live in two places, and where you put them matters:
+
+- **Global**: placed inside `ggplot(aes(...))`, it applies to every geom layer in the plot.
+- **Local**: placed inside a specific `geom_*(aes(...))`, it applies only to that layer.
+
+```{r}
+# global: every layer (here, just the points) uses species for color
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+  geom_point()
+
+# local: only this geom_point layer uses species for color;
+# a geom_smooth() added afterward would draw one line for everybody, not one per species
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species)) +
+  geom_smooth(method = "lm")
+```
+
+::: {.callout-note}
+## `+` goes at the end of the line, never the start
+ggplot2 builds plots by adding layers together, and R needs to see the `+` before it reaches the end of a line to know that more code is coming.
+
+```{r}
+#| eval: false
+# broken: R sees a complete expression on line 1 and stops there,
+# then reports a syntax error when it hits a lone "+ geom_point()" on its own line
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g))
+  + geom_point()
+```
+
+```{r}
+#| eval: false
+# fixed: the + is at the end of the first line, so R knows to keep reading
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point()
+```
+
+This is the single most common syntax error beginners hit with ggplot2. If your plot silently does nothing, or you get an "unexpected `+`" style error, check where your `+` signs are sitting first.
 :::
 
-### Global versus local mappings, and layering geoms
+### Visualizing a single categorical variable
 
-Mappings defined inside `ggplot()` apply globally to every layer; mappings placed inside a specific geom apply only to that layer and override the global mapping for that property.
-
-```{r}
-# global mapping: color applies to both the points and the smooth line
-ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
-  geom_point() +
-  geom_smooth(method = "loess", se = FALSE)
-
-# local mapping: color applies only to the point layer; one smooth line covers everybody
-ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
-  geom_point(aes(color = species)) +
-  geom_smooth(method = "loess", se = FALSE)
-```
-
-Different geoms draw different kinds of marks from the same data, and overlaying several of them in one plot can reveal aspects that no single geom shows on its own. When a geom like `geom_smooth()` sees a discrete aesthetic (such as `color`), it automatically groups the data and fits one curve per group; you can also set the `group` aesthetic explicitly if you want grouping without also changing the plot's color or shape.
+**Bar charts** display the distribution of a categorical variable. For example, they can count penguins by species. `geom_bar()` counts observations for you; you never need to compute the counts yourself first.
 
 ```{r}
-# one curve per species, drawn explicitly with the group aesthetic
-ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
-  geom_point(aes(color = species)) +
-  geom_smooth(aes(group = species), method = "loess", se = FALSE)
-```
-
-### Statistical transformations
-
-Every geom pairs with a default **stat**, an algorithm that computes the values actually plotted. `geom_point()` plots your data exactly as given (its default stat is `"identity"`), but `geom_bar()` does not plot raw rows at all: its default stat, `stat_count()`, first counts how many rows fall into each category, and only then draws bars proportional to those counts.
-
-```{r}
-# under the hood, this counts rows per species before drawing anything
 ggplot(penguins, aes(x = species)) +
   geom_bar()
 ```
 
-Because the stat and the geom are separate pieces, you can pair a geom with a different stat than its default, or reach for `stat_summary()` when you want a geom to plot a computed summary (like a mean) rather than raw counts or raw values.
+::: {.callout-tip}
+## Order your bars on purpose
+By default, `geom_bar()` orders a character or categorical x-axis alphabetically, which is rarely the most informative order. `forcats::fct_infreq()` reorders the categories by how often they occur, so the tallest bar comes first:
+
+```{r}
+ggplot(penguins, aes(x = fct_infreq(species))) +
+  geom_bar() +
+  labs(x = "species")
+```
+
+We will cover `forcats` and factor reordering in much more depth in a later session; file this away as a preview.
+:::
+
+### Visualizing a single numeric variable
+
+**Histograms** reveal the distribution of a numeric variable by cutting its range into equal width bins and counting how many observations fall in each. Choose a bin width that balances detail with clarity. Too wide, and you hide real structure; too narrow, and you're mostly looking at random noise (see Example 2.3 below).
+
+Let's bring in a dataset from outside `palmerpenguins` for practice: minutes patients waited in a (simulated) hospital emergency department.
 
 ```{r}
 #| message: false
-ggplot(penguins, aes(x = species, y = body_mass_g)) +
-  stat_summary(fun.min = min, fun.max = max, fun = mean)
+wait_times <- read_csv("data/hospital_wait_times.csv")
+
+ggplot(wait_times, aes(x = wait_minutes)) +
+  geom_histogram(binwidth = 10)
 ```
 
-::: {.callout-note}
-## Every geom has a default stat, and every stat has a default geom
-You rarely need to think about stats when you're using `geom_point()`, `geom_line()`, or `geom_boxplot()`, because their default stat is simply "use the data as given." Bar charts and histograms are the main place beginners run into stats directly, precisely because their defaults quietly count or bin your data before drawing anything.
+`geom_density()` shows the same kind of information as a smooth curve instead of discrete bars, which can make the overall shape easier to see at a glance, at the cost of hiding the exact bin counts:
+
+```{r}
+ggplot(wait_times, aes(x = wait_minutes)) +
+  geom_density()
+```
+
+### Visualizing relationships between two variables
+
+The right plot depends on the types of the two variables involved.
+
+**Numeric vs. categorical**: a **boxplot** compares the distribution of a numeric variable across levels of a categorical variable. Here we compare reported study hours across college majors, using a small simulated survey of students:
+
+```{r}
+#| message: false
+stress <- read_csv("data/student_stress_survey.csv")
+
+ggplot(stress, aes(x = major, y = study_hours)) +
+  geom_boxplot()
+```
+
+**Categorical vs. categorical**: a **stacked bar chart** (mapping the second variable to `fill`) shows how two categorical variables relate. Setting `position = "fill"` rescales every bar to the same height, turning raw counts into proportions, which is usually the more honest comparison when group sizes differ:
+
+```{r}
+#| message: false
+vaccine <- read_csv("data/vaccine_opinion_by_age.csv")
+
+ggplot(vaccine, aes(x = age_group, fill = opinion)) +
+  geom_bar()                     # raw counts per age group
+
+ggplot(vaccine, aes(x = age_group, fill = opinion)) +
+  geom_bar(position = "fill") +  # proportions within each age group
+  labs(y = "proportion")
+```
+
+**Numeric vs. numeric**: back to the scatterplot we started with. Plotting penguin flipper length vs. body mass can reveal whether larger penguins tend to have longer flippers. Map species or island to color or shape to uncover additional structure, and add `alpha` when points overlap heavily.
+
+**Three or more variables**: once you've mapped x, y, and color or shape, you can split the plot into a grid of subplots, one per category, using `facet_wrap()`:
+
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+  geom_point(alpha = 0.7) +
+  facet_wrap(~island)
+```
+
+::: {.callout-tip}
+## Fighting overplotting
+When an x-axis variable only takes a handful of distinct values (like `stress_level` on a scale from 1 to 5), a scatterplot can hide dozens of points stacked exactly on top of each other. `geom_jitter()` adds a small amount of random noise to each point's position, purely for visibility. It doesn't change the underlying data, only how it's drawn:
+
+```{r}
+ggplot(stress, aes(x = study_hours, y = stress_level)) +
+  geom_jitter(height = 0.2, alpha = 0.6)
+```
+
+Compare that to plain `geom_point()` on the same data, and count how many points seem to disappear.
 :::
 
-### Position adjustments
+Be sure to label axes and titles with `labs()`, choose appropriate scales, and consider transparency (`alpha`) to reduce overplotting.
 
-When marks would otherwise overlap, ggplot2's **position** argument controls how they are nudged apart. Bar charts default to `position = "stack"`, piling groups on top of each other; `position = "fill"` rescales stacks to a constant height so you can compare proportions; `position = "dodge"` places groups side by side instead of stacking them; and `position = "jitter"` (equivalent to `geom_jitter()`) adds small random noise to scatterplot points so overlapping observations become visible.
+### Saving your plots
 
-```{r}
-# stacked (default): totals are easy to read, but comparing groups within each bar is hard
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar()
-
-# dodged: groups sit side by side, easier to compare directly, harder to see the total
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(position = "dodge")
-```
-
-### Facets
-
-Use `facet_wrap()` to create a grid of subplots for one categorical variable, and `facet_grid()` for two variables at once (`rows ~ columns`). By default every panel shares the same x and y scales, which is usually what you want for a fair comparison; set `scales = "free_y"`, `"free_x"`, or `"free"` if you need each panel to scale independently.
+Once you're happy with a plot, save it with `ggsave()` rather than right clicking the Plots pane:
 
 ```{r}
-# facet by island
-ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
-  geom_point() +
-  facet_wrap(~island)
-
-# facet by species and sex at once, letting the y-axis vary by row
-ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
-  geom_point() +
-  facet_grid(species ~ sex, scales = "free_y")
+#| eval: false
+p <- ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point()
+ggsave("penguin-scatterplot.png", plot = p, width = 6, height = 4)
 ```
 
-### Coordinate systems
-
-Transforming the coordinate system can make a plot easier to read without changing the underlying geoms or data. `coord_flip()` swaps the x and y axes after everything else has been computed, which is handy for long category labels; `coord_polar()` bends the plotting area into a circle, turning a stacked bar chart into a pie or Coxcomb chart; `coord_fixed()` locks the ratio between one unit on x and one unit on y, which matters whenever the physical aspect ratio carries meaning (such as a map).
-
-```{r}
-# flip axes so long category labels read left to right instead of being squeezed
-ggplot(penguins, aes(x = species, y = body_mass_g)) +
-  geom_boxplot() +
-  coord_flip()
-
-# polar coordinates turn a stacked bar into a pie chart
-ggplot(penguins, aes(x = "", fill = species)) +
-  geom_bar() +
-  coord_polar(theta = "y")
-```
+::: {.callout-tip}
+## Pick your file format on purpose
+`ggsave()` infers the format from the file extension. Use a raster format (`.png`) for plots you'll paste into slides or a web page, since they're small and load fast. Use a vector format (`.pdf` or `.svg`) for anything destined for print or that you might need to zoom into, since vector graphics never get blurry no matter how much you scale them.
+:::
 
 ### Fringe cases and common pitfalls
 
-::: {.example title="Example 3.1"}
-**Mapping too many categories to shape drops data, quietly.**
+R4DS's data visualization chapter gets you plotting quickly, but a handful of ggplot2's default behaviors are easy to miss on a first read, and each one has caused a real analysis to reach the wrong conclusion at some point.
 
-The `mpg` dataset (built into ggplot2) has a `class` column with seven distinct vehicle types, one more than the six shapes ggplot2 has on hand by default:
+::: {.example title="Example 2.1"}
+**Missing values vanish quietly, with only a warning.**
+
+The `penguins` data frame has a few birds with missing measurements. Watch what happens when we plot one of the affected columns and force the usual warning back on:
 
 ```{r}
 #| warning: true
-n_distinct(mpg$class)  # how many categories are we asking ggplot2 to draw?
+sum(is.na(penguins$bill_depth_mm))  # how many rows are affected?
 
-ggplot(mpg, aes(x = displ, y = hwy, shape = class)) +
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
   geom_point()
 ```
 
-R produces two warnings above, not one. The first explains that the shape palette tops out at six discrete values, and the second reports that rows were removed for having a missing shape. Every vehicle in the seventh category is silently dropped from the plot entirely, the same way rows with a genuine `NA` were dropped in Session 2, except here the "missing" data was never actually missing. Whenever you map a categorical variable to shape, check `n_distinct()` first.
+ggplot2 does not error out. It just drops the incomplete rows and tells you so in a warning: *"Removed n rows containing missing values."* If that warning scrolls by unread (or is suppressed, as it is by default in this book's `_quarto.yml`), you can end up interpreting a plot of, say, 342 penguins as if it represented all 344, without ever realizing two were silently excluded. **Always check `sum(is.na(...))` on the variables you're about to plot before you trust the picture.**
 :::
 
-::: {.example title="Example 3.2"}
-**A stat mismatch can produce an error instead of a plot.**
+::: {.example title="Example 2.2"}
+**A number is not automatically treated as a category.**
 
-Suppose you first summarize your data yourself, the way you will learn to do properly next session:
+`stress_level` in our student survey is recorded as an integer from 1 to 5. If you map it to `color` directly, ggplot2 assumes it is a *continuous* measurement and draws a smooth color gradient with a colorbar legend, not five distinct colors:
+
+```{r}
+ggplot(stress, aes(x = study_hours, y = major, color = stress_level)) +
+  geom_jitter(height = 0.2)
+```
+
+Wrapping the variable in `factor()` tells ggplot2 to treat each integer as its own discrete category instead, which produces five distinct colors and a discrete legend:
+
+```{r}
+ggplot(stress, aes(x = study_hours, y = major, color = factor(stress_level))) +
+  geom_jitter(height = 0.2) +
+  labs(color = "stress_level")
+```
+
+The underlying data never changed; only the way ggplot2 was told to interpret it did. Whenever a legend looks like a continuous gradient but you expected discrete groups, this is the first thing to check.
+:::
+
+::: {.example title="Example 2.3"}
+**Bin width can manufacture a pattern that isn't really there.**
+
+The exact same `wait_minutes` data can look unimodal, lumpy, or almost uniform depending purely on the bin width you choose:
+
+```{r}
+ggplot(wait_times, aes(x = wait_minutes)) +
+  geom_histogram(binwidth = 30) +
+  labs(title = "binwidth = 30: looks like one smooth hump")
+
+ggplot(wait_times, aes(x = wait_minutes)) +
+  geom_histogram(binwidth = 5) +
+  labs(title = "binwidth = 5: same data, bumpier story")
+
+ggplot(wait_times, aes(x = wait_minutes)) +
+  geom_histogram(binwidth = 1) +
+  labs(title = "binwidth = 1: mostly noise now")
+```
+
+None of these three plots is "the wrong one," but none of them alone is "the truth" either. Always try a few different bin widths before drawing a conclusion about a distribution's shape, and say what bin width you used when you report a histogram to someone else.
+:::
+
+::: {.example title="Example 2.4"}
+**Truncating the y-axis can manufacture a crisis (or a triumph) out of noise.**
+
+Here is a real (simulated) two year run of monthly retail sales, in thousands of dollars:
 
 ```{r}
 #| message: false
-stress <- read_csv("data/student_stress_survey.csv")
-major_counts <- stress |> count(major)
-major_counts
+sales <- read_csv("data/retail_sales.csv")
+
+ggplot(sales, aes(x = month, y = sales_k)) +
+  geom_col(fill = "steelblue") +
+  coord_cartesian(ylim = c(75, 95)) +
+  labs(title = "Sales are swinging wildly!", y = "sales ($k)") +
+  theme(axis.text.x = element_text(angle = 90, size = 6))
 ```
 
-You now have one row per major with the count already computed in a column called `n`. It is tempting to hand this straight to `geom_bar()`:
+Starting the y-axis near the data's minimum, rather than at zero, visually exaggerates every small month to month wiggle. Compare that to the same data with the axis anchored at zero:
 
 ```{r}
-#| error: true
-ggplot(major_counts, aes(x = major, y = n)) +
-  geom_bar()
+ggplot(sales, aes(x = month, y = sales_k)) +
+  geom_col(fill = "steelblue") +
+  coord_cartesian(ylim = c(0, 100)) +
+  labs(title = "The same 18 months, honestly scaled", y = "sales ($k)") +
+  theme(axis.text.x = element_text(angle = 90, size = 6))
 ```
 
-This fails with *"stat_count() must only have an x or y aesthetic"* because `geom_bar()`'s default stat, `stat_count()`, expects to do its own counting from raw, one-row-per-observation data. It does not know what to do with a `y` aesthetic that is already a count. The fix is either `geom_col()`, which is built for exactly this situation (it defaults to `stat = "identity"`), or `geom_bar(stat = "identity")`:
-
-```{r}
-ggplot(major_counts, aes(x = major, y = n)) +
-  geom_col()
-```
-
-If you ever see *"stat_count() must only have an x or y aesthetic,"* the fix is almost always to switch from `geom_bar()` to `geom_col()`.
-:::
-
-::: {.example title="Example 3.3"}
-**`position = "identity"` can make one group hide another entirely.**
-
-`"identity"` is the position adjustment that does nothing: every group is drawn exactly where its own values say to draw it, with no stacking, filling, or dodging to keep groups apart. For bars and histograms, that means overlapping groups are drawn right on top of one another.
-
-```{r}
-#| message: false
-stress <- read_csv("data/student_stress_survey.csv")
-two_majors <- stress |> filter(major %in% c("Engineering", "Nursing"))
-
-ggplot(two_majors, aes(x = study_hours, fill = major)) +
-  geom_histogram(position = "identity", binwidth = 2)
-```
-
-Wherever the two majors' bins overlap, whichever group ggplot2 happens to draw last simply paints over the other, so you cannot tell from this plot alone how much of the shorter bar is actually hidden behind the taller one. Setting `alpha` below 1 makes both groups partially see-through, so overlapping regions blend instead of one erasing the other:
-
-```{r}
-ggplot(two_majors, aes(x = study_hours, fill = major)) +
-  geom_histogram(position = "identity", binwidth = 2, alpha = 0.5)
-```
-
-Whenever you overlay two or more groups with `position = "identity"`, whether it's bars, histograms, or density curves, add transparency, or you may be quietly hiding exactly the comparison you were trying to show.
-:::
-
-::: {.example title="Example 3.4"}
-**Free facet scales make every panel look equally important, even when the underlying numbers are wildly different.**
-
-```{r}
-# fixed scales (default): every panel uses the same y-axis, so bar heights are directly comparable
-ggplot(penguins, aes(x = sex)) +
-  geom_bar() +
-  facet_wrap(~species)
-
-# free scales: each panel gets its own y-axis, so every bar looks similarly tall
-ggplot(penguins, aes(x = sex)) +
-  geom_bar() +
-  facet_wrap(~species, scales = "free_y")
-```
-
-With `scales = "free_y"`, a species with 20 penguins and a species with 150 penguins can produce bars of roughly the same visual height, because each panel is scaled independently to fill the available space. Free scales are genuinely useful when panels measure fundamentally different quantities, but when panels represent comparable counts, free scales can erase exactly the comparison a reader most wants to make. Default to fixed scales unless you have a specific reason to free them, and say so explicitly when you do.
+Both charts are drawn from *identical* numbers. Bar charts in particular imply that height represents the full magnitude of a quantity, so a truncated y-axis on a bar chart is one of the most common (and most misleading) tricks in bad data journalism and marketing decks alike. When you see a dramatic looking bar chart, check the y-axis before you believe the drama.
 :::
 
 ### Recap
 
 | **Term** | **Definition** |
 |-------------------|-------------------------------------------------------------|
-| **Layered grammar template** | `ggplot(data) + geom_function(mapping, stat, position) + coordinate_function() + facet_function()`. |
-| **Stat (statistical transformation)** | The algorithm a geom uses to compute the values it actually plots; `geom_bar()`'s default stat counts rows per category. |
-| **`geom_col()`** | Like `geom_bar()`, but expects the bar heights to already be computed, using `stat = "identity"` by default. |
-| **Position adjustment** | How overlapping marks are resolved: `"stack"` (default for bars), `"fill"` (proportions), `"dodge"` (side by side), or `"jitter"` (random noise for points). |
-| **`group` aesthetic** | Tells ggplot2 to treat rows as separate groups (for example, one smoothing curve per group) without also mapping color or shape. |
-| **`facet_wrap()` / `facet_grid()`** | Split a plot into a grid of subplots by one variable, or by two variables at once. |
-| **Free scales** | `scales = "free_x"`, `"free_y"`, or `"free"` let each facet panel use its own axis range, which can hide real differences in magnitude between panels. |
-| **`coord_flip()`** | Swaps the x and y axes after the plot has otherwise been computed. |
-| **`coord_polar()`** | Bends the plotting area into a circle, turning a stacked bar into a pie or Coxcomb chart. |
-| **`coord_fixed()`** | Locks the ratio between one x unit and one y unit, useful whenever physical aspect ratio matters. |
+| **Grammar of graphics** | The idea that any plot can be built from independent pieces: data, aesthetic mappings, and geoms. |
+| **Aesthetic mapping (`aes()`)** | Connects a variable in your data to a visual property (x, y, color, shape, size, alpha). |
+| **Geom** | The geometric object (`geom_point()`, `geom_bar()`, `geom_histogram()`, `geom_boxplot()`, and so on) used to represent each observation. |
+| **Global vs. local mapping** | An `aes()` inside `ggplot()` applies to every layer; an `aes()` inside a specific `geom_*()` applies only to that layer. |
+| **Bar chart** | Shows the distribution (counts) of a single categorical variable. |
+| **Histogram** | Shows the distribution of a single numeric variable by counting observations in equal width bins. |
+| **Binwidth** | The width of each bin in a histogram; changing it can change the apparent shape of a distribution. |
+| **Boxplot** | Compares the distribution of a numeric variable across levels of a categorical variable. |
+| **`position = "fill"`** | Rescales stacked bars to the same height so they show proportions rather than raw counts. |
+| **`facet_wrap()`** | Splits one plot into a grid of subplots, one per level of a categorical variable. |
+| **Overplotting** | When many points are drawn on top of each other, hiding how much data is really there; mitigated with `alpha` or `geom_jitter()`. |
+| **Truncated axis** | An axis that doesn't start at a natural baseline (usually zero); can visually exaggerate small differences, especially on bar charts. |
 
 ### Check your understanding
 
 ::: {.callout-note collapse="false" title="Problems"}
-1. Name the seven pieces of the layered grammar template, and identify which ones have sensible defaults you rarely need to change.
-2. You map a variable with nine categories to `shape` in a scatterplot. What will happen to the categories beyond the sixth, and how would you find out ahead of time how many categories you are dealing with?
-3. You already have a small data frame with one row per department and a column called `total_sales`. Your first attempt, `ggplot(df, aes(x = department, y = total_sales)) + geom_bar()`, produces an error. Explain the error and give two ways to fix it.
-4. A classmate overlays two groups' histograms with `geom_histogram(position = "identity")` and no `alpha`. Explain what is happening visually, and why the plot might understate how much data is really there for one of the groups.
-5. A colleague facets a bar chart of monthly sales by store, using `scales = "free_y"`, and claims every store had "about the same" sales. What should you check before accepting that conclusion?
+1. What are the three components every ggplot2 plot needs at minimum? Give an example of each using the `penguins` scatterplot from this session.
+2. You write the following code and get a syntax error:
+
+   ```r
+   ggplot(penguins, aes(x = species))
+     + geom_bar()
+   ```
+
+   What is wrong, and how do you fix it?
+3. A classmate maps a satisfaction rating from 1 to 5 to `color` in a scatterplot and gets a smooth blue to yellow gradient legend instead of five distinct colors. What happened, and how would you fix their code?
+4. You plot a histogram of exam scores with `binwidth = 1` and it looks like noisy static. Does that mean the data has no real pattern? What should you try next?
+5. A coworker shows you a bar chart with the title "Revenue has TRIPLED this quarter!" where the y-axis runs from 240 to 250. What should you check before believing the headline?
 :::
 
 ::: {.callout-tip collapse="true" title="Solutions"}
-1. The seven pieces are data, the aesthetic mapping, the geom function, the stat, the position adjustment, the coordinate function, and the facet function. Data, mapping, and geom are the three you set explicitly on day one; stat, position, coordinate (Cartesian), and facet (none) all have sensible defaults that most plots never need to override.
+1. Every plot needs **data** (a data frame, e.g. `penguins`), an **aesthetic mapping** (`aes(x = flipper_length_mm, y = body_mass_g)`, linking variables to the x and y positions), and a **geom** (`geom_point()`, the visual mark used to draw each observation).
 
-2. The seventh, eighth, and ninth categories will have no shape to draw with, so ggplot2 issues a warning ("the shape palette can deal with a maximum of 6 discrete values") and drops those rows from the plot entirely, with a second warning about removed rows. Running `n_distinct(df$variable)` (or `length(unique(df$variable))`) before plotting tells you how many categories you are working with, so you can choose a different aesthetic (like color, or faceting) instead of shape.
+2. The `+` is at the start of the second line instead of the end of the first line. R considers `ggplot(penguins, aes(x = species))` a complete, runnable expression on its own, so it stops there and then chokes on a line that begins with `+ geom_bar()`. The fix is to move the `+` to the end of the first line: `ggplot(penguins, aes(x = species)) +` on one line, `geom_bar()` on the next.
 
-3. `geom_bar()`'s default stat, `stat_count()`, expects to count raw rows itself and does not know what to do with a `y` aesthetic that is already a precomputed total. The fix is to use `geom_col()` instead of `geom_bar()`, or to keep `geom_bar()` but add `stat = "identity"`.
+3. They mapped a *numeric* column directly to `color`, so ggplot2 assumed it was a continuous measurement and drew a gradient. Wrapping it in `factor()`, as in `aes(color = factor(rating))`, tells ggplot2 to treat each rating as a discrete category, producing five distinct colors and a discrete legend instead.
 
-4. With `position = "identity"`, ggplot2 draws each group's bars exactly where its own counts say to, without stacking or otherwise nudging groups apart, so wherever the two groups' bins overlap, whichever group is drawn last simply paints over the other. If the hidden group actually has a similar or larger count in that bin, the plot can make it look like there is little or no data there for that group. Adding `alpha` below 1 (for example, `alpha = 0.5`) makes both groups partially see-through, so overlapping regions blend together instead of one group erasing the other.
+4. No, it means the bin width is too narrow relative to the natural variability in the data, so each bin is mostly capturing random noise rather than the underlying shape. Try several wider bin widths (for example, 5, 10, or 30) and compare; the "right" bin width is often a range of reasonable choices rather than a single correct number.
 
-5. Check whether the y-axis is actually the same across panels. With `scales = "free_y"`, each facet panel is scaled independently to fill the available space, so a store with very low sales and a store with very high sales can produce visually similar-looking bars. Re-plot with the default fixed scales (or `scales = "fixed"`) and compare; only then can you fairly judge whether the stores really did have similar sales.
+5. Check where the y-axis actually starts. Since it doesn't start at zero (here, it starts at 240, not far below the smallest value being plotted), even a tiny absolute change can be stretched to fill the entire height of the chart, making a small change look dramatic. Ask to see the same chart with the y-axis starting at zero before drawing any conclusions.
 :::

@@ -1,12 +1,12 @@
-# Session 20: Reproducible research and communication
+# Session 20: Basic programming II: iteration and functional programming
 
 ## Objectives
 
-- **Appreciate the value of reproducible research.** Combining code, results, and prose in a single document improves transparency, facilitates collaboration, and serves as a lab notebook. Quarto integrates the lessons of the R Markdown ecosystem and is designed for analysts, collaborators, and decision-makers alike.
-- **Learn the basics of Quarto documents.** Create and render a `.qmd` file with a YAML header and interleaved code and narrative. Understand global settings in the YAML, chunk labels, and what actually happens when a label is reused by accident.
-- **Use chunk options effectively.** Control evaluation, code display, warnings, and messages with chunk options (`eval`, `include`, `echo`, `message`, `warning`). Learn how inline code reports dynamic values inside your prose, and what happens when that inline code itself fails.
-- **Distinguish caching from freezing.** Recognize `cache: true` (a local, per-chunk performance cache) as a different mechanism from `execute: freeze` (the project-wide, version-controlled cache this very book relies on), and know which one solves which problem.
-- **Communicate your findings clearly.** Turn exploratory graphics into expository graphics. Write titles that summarize the finding rather than describing the plot; add subtitles and captions; label axes and legends with units; and zoom into a plot honestly, without silently changing what a fitted trend line is actually fit to.
+- **Recognize how iteration differs in R.** In many languages you must explicitly loop over a vector's elements. R is different: doubling a numeric vector is as simple as `2 * x`, because the operation is vectorized. You've already used implicit iteration through `facet_wrap()`/`facet_grid()`, `group_by()` + `summarize()`, and the `unnest_*()` functions. This session covers more general tools for explicit iteration.
+- **Modify multiple columns with `across()`.** `across()` applies one or more functions to a set of columns inside `summarize()` or `mutate()`. Learn to select columns with `.cols`, supply functions via `.fns`, control output names with `.names`, and recognize the one setting that silently overwrites your original columns if you forget it.
+- **Read and combine many files with purrr.** `purrr::map()` iterates over a vector or list, applying a function to each element and returning a list. Learn the three-step pattern for importing a directory of files: list paths with `list.files()`, map a reading function over them, and combine the results with `purrr::list_rbind()`, including how it quietly handles a list with gaps in it.
+- **Handle failures and heterogeneous data.** When iterating over many inputs, some will fail. Use `purrr::possibly()` to wrap a function so failures return a default (such as `NULL`) instead of stopping the whole iteration, and know exactly what happens to those defaults once you try to recombine everything.
+- **Save multiple outputs.** The same iteration patterns apply in reverse: writing multiple data frames or plots to disk with `walk2()`/`iwalk()`.
 
 ## Notes
 
@@ -16,235 +16,184 @@
 library(tidyverse)
 ```
 
-### Why reproducible research?
+### Introduction: implicit and explicit iteration
 
-In an exploratory notebook, it's easy to lose track of which code produced which result. Reproducible research solves this by knitting analysis and narrative together, so that anyone, including future you, can rerun the whole thing and get the same output. This is sometimes called literate programming: code interspersed with human-readable explanation. Quarto, the modern successor to R Markdown, is the tool this course (and this very book) uses for it. A `.qmd` file has three parts: a YAML header (metadata and settings, delimited by `---`), narrative text in Markdown, and code chunks that Quarto actually executes when rendering.
+Iteration is everywhere in R, but much of it is invisible. Doubling a vector is a single vectorized expression, `2 * x`, not a loop, and tools you've already used, faceting, group-wise summarizing, unnesting a list-column, all repeat the same action across many subsets or elements without you ever writing an explicit loop yourself. Functional programming tools make the remaining, less automatic cases just as concise. This session covers three common ones: modifying multiple columns, reading multiple files, and saving multiple outputs.
 
-### Quarto basics and YAML
+### Modifying multiple columns with `across()`
 
-A minimal Quarto document's header looks like this:
-
-```yaml
----
-title: "Global life expectancy report"
-author: "Your Name"
-date: 2025-11-18
-format: html
----
-```
-
-`format` sets the default output; common values are `html`, `pdf`, and `docx`. An expanded `format:` field customizes options, or produces more than one output at once:
-
-```yaml
-format:
-  html:
-    toc: true            # table of contents
-    code-fold: true      # collapsible code blocks
-    embed-resources: true # bundle images/CSS into one standalone .html file
-  pdf: default
-  docx: default
-```
-
-`embed-resources` is worth knowing about specifically: without it, an HTML file's images and styling live in separate files alongside it, which breaks the moment you email just the `.html` on its own; with it, everything is bundled into one self-contained file. Rendering happens with `quarto render my-document.qmd` from the command line, or `quarto::quarto_render()` from R (both support an `output_format` argument that overrides the YAML). A `params` field in the YAML can declare inputs (accessed as `params$name` inside the document), turning a single `.qmd` file into a template you can re-render for different inputs without editing the file itself.
-
-### Code chunks and options
-
-Each code chunk can carry a label (`#| label: setup`) for cross-referencing, and options that control execution and display: `eval: false` shows code without running it, `include: false` runs code but hides both it and its output (handy for setup chunks), `echo: false` hides code but shows results, and `message: false`/`warning: false` suppress exactly what they say. Options go on `#| option: value` lines right after the opening fence.
+`across()`, used inside `summarize()` or `mutate()`, applies a function (or several) to a set of columns at once, so you never have to write out the same summary call once per column. It takes three key arguments. `.cols` selects which columns to operate on, using the same tidy-select syntax as `select()`, including helpers like `where(is.numeric)`. `.fns` supplies the function or functions to apply: a single bare function name (no parentheses; see Example 19.1 for what happens if you add them), an anonymous function (`\(x) ...`) when you need extra arguments, or a named list when you want to apply several functions at once, with the names becoming part of the output column names. `.names` controls those output names directly, using a glue specification like `"{.fn}_{.col}"`; inside `mutate()` specifically, leaving `.names` out means the results silently overwrite the original columns rather than creating new ones (see Example 19.2).
 
 ```{r}
-#| label: scatterplot-gapminder
-#| echo: false
-#| warning: false
-library(gapminder)
-
-ggplot(gapminder, aes(gdpPercap, lifeExp, color = continent)) +
-  geom_point(alpha = 0.6) +
-  scale_x_log10() +
-  labs(
-    x = "GDP per capita (log scale)",
-    y = "Life expectancy (years)",
-    color = "Continent"
+# summarize every numeric column with two functions at once, custom names
+iris |>
+  summarize(
+    across(
+      where(is.numeric),
+      list(mean = \(x) mean(x, na.rm = TRUE), sd = \(x) sd(x, na.rm = TRUE)),
+      .names = "{.fn}_{.col}"
+    )
   )
+
+# replace missing values with zero, keeping the originals alongside
+df_miss <- tibble(a = c(1, NA, 3), b = c(4, 5, NA))
+df_miss |> mutate(across(a:b, \(x) coalesce(x, 0), .names = "{.col}_na0"))
 ```
 
-Chunk labels have to be unique across the whole document; reusing one is a real, render-stopping mistake, not a cosmetic issue (see Example 20.2). Setting shared options once under `execute:` in the YAML (`echo: false`, `message: false`, `warning: false`, exactly the settings this book itself uses) saves repeating them in every chunk; an individual chunk can still override the default locally.
+`if_any()` and `if_all()` extend the same idea to filtering: `filter(if_any(where(is.na)))` keeps rows with at least one missing value among the selected columns, while `filter(if_all(where(is.na)))` keeps only rows where *every* selected column is missing. And because `.cols` is tidy-select, a helper function that embraces its column argument (as in Session 19) can accept a user-supplied set of columns and hand it straight to `across()`.
 
-### Tables with `knitr::kable()`
+### Reading multiple files with `purrr::map()`
 
-A data frame printed directly inside a chunk shows console-style output; `knitr::kable()` instead formats it as a proper Markdown (and, on render, HTML or PDF) table.
+Combining data spread across many files follows a reliable three-step pattern: list the files, read each one, then stack the results. Here it is end to end, first writing one file per species so there's something real to read back:
 
 ```{r}
-mtcars |>
-  select(mpg, cyl, disp) |>
-  head() |>
-  knitr::kable()
+#| message: false
+csv_dir <- tempfile("species_csv_")
+dir.create(csv_dir)
+
+palmerpenguins::penguins |>
+  group_by(species) |>
+  group_walk(~ write_csv(.x, file.path(csv_dir, paste0(.y$species, ".csv"))))
+
+list.files(csv_dir)
 ```
-
-For anything beyond a simple table (styling, merged cells, interactivity), packages like `gt`, `kableExtra`, and `reactable` build on the same idea with considerably more control.
-
-### Rendering to multiple formats
-
-Quarto renders one `.qmd` file into as many formats as the YAML's `format:` field lists, each with its own options:
-
-```yaml
-format:
-  html:
-    toc: true
-    toc-float: true
-  pdf: default
-  docx: default
-```
-
-Rendering this document produces `.html`, `.pdf`, and `.docx` files in one call. To render just one format on demand rather than every configured one, pass `output_format` to `quarto_render()`:
 
 ```{r}
-#| eval: false
-quarto::quarto_render("my-report.qmd", output_format = "docx")
+#| message: false
+paths <- list.files(csv_dir, pattern = "[.]csv$", full.names = TRUE)
+
+penguins_combined <- paths |>
+  set_names(\(p) str_remove(basename(p), "[.]csv$")) |>   # name each path by its file name
+  map(read_csv) |>                                         # read each file into a tibble
+  list_rbind(names_to = "species_file")                    # stack them, keeping the source
+
+penguins_combined |> count(species_file)
 ```
 
-PDF output specifically needs a LaTeX installation; RStudio offers to install a minimal one (TinyTeX) automatically the first time you render to PDF without one.
+`list.files()` collects the paths, restricting to `.csv` files with a regular-expression `pattern` and returning full, readable paths with `full.names = TRUE`. `map()` applies the reading function to each path in turn, returning a list of tibbles. `list_rbind()` stacks that list into one tibble; `names_to` turns whatever name each list element had (here, the species, extracted from the file name) into an ordinary column, which is exactly how information hiding in a file name makes it into your data. When the files aren't perfectly uniform in structure, inspecting each one's columns and types before binding (a small helper that reports each file's column names and types, mapped over the same list of paths) catches a structural mismatch before it becomes a confusing binding error.
 
-### Inline code and narrative
+### Handling failures
 
-Inline code, an R expression wrapped in a special inline-code span, evaluates that expression and inserts its result directly into your prose when the document renders, which keeps statements about your data accurate as the underlying analysis changes. A small helper function keeps inline number formatting consistent:
+`map()` stops at the first error, which means one unreadable file can prevent every other file in the batch from being read at all. `purrr::possibly()` wraps a function so that a failure returns a specified default, commonly `NULL`, instead of stopping everything:
 
 ```{r}
-#| include: false
-comma <- function(x) format(x, digits = 1, big.mark = ",")
+#| warning: true
+bad_paths <- c(paths, file.path(csv_dir, "does_not_exist.csv"))
+
+safe_read <- possibly(\(p) read_csv(p, show_col_types = FALSE), otherwise = NULL)
+results <- map(bad_paths, safe_read)
+
+failed <- map_lgl(results, is.null)
+bad_paths[failed]        # exactly the paths that failed, ready to investigate
+
+list_rbind(results) |> nrow()   # every successfully read row, recombined anyway
 ```
 
-Writing two such inline expressions in a sentence, one calling `comma(nrow(gapminder))` and the other calling `length(unique(gapminder$year))`, each wrapped in inline-code syntax, renders as: The gapminder dataset contains `r comma(nrow(gapminder))` observations across `r length(unique(gapminder$year))` years. If the expression inside an inline code span itself errors, that failure isn't quietly swallowed either; the whole render stops (see Example 20.3), the same as a code chunk failing would.
+This pattern lets a batch job process every file that *can* be read while cleanly flagging the ones that can't, rather than an all-or-nothing failure (see Example 19.3 for exactly how `list_rbind()` handles the `NULL`s left behind by the failures).
 
-### Caching versus freezing
+### Saving multiple outputs
 
-Two different mechanisms both promise "don't rerun code that hasn't changed," and they solve different problems. Chunk-level `cache: true` is a local performance optimization: knitr stores a chunk's results in a hidden `_cache` folder on your own machine, meant to save time while you iterate, not to be committed to version control. Project-wide `execute: freeze: auto`, the setting this book's own `_quarto.yml` actually uses, works differently: it stores each chapter's execution results in a `_freeze` folder that *is* committed to git, so that Continuous Integration (or a collaborator on a different machine) can render the whole book without needing every package this book uses installed, reusing the cached results for any chapter whose source hasn't changed. Confusing the two is an easy mistake (see Example 20.4).
-
-### Communicating your findings
-
-A reproducible analysis still needs to communicate clearly. `labs()` is the starting point: a title, subtitle, caption, and axis/legend labels.
+The same tools work in reverse for writing multiple outputs. `walk2()` iterates over two parallel vectors or lists purely for a side effect (here, writing a file), discarding whatever the function returns, which is exactly right for something like `write_csv()` that you call only for what it does, not what it returns:
 
 ```{r}
-lifeexp_2007 <- gapminder |> filter(year == 2007)
+out_dir <- tempfile("summaries_")
+dir.create(out_dir)
 
-ggplot(lifeexp_2007, aes(gdpPercap, lifeExp, color = continent)) +
-  geom_point(alpha = 0.6) +
-  scale_x_log10(labels = scales::label_dollar()) +
-  labs(
-    title = "Wealthier countries tend to live longer, but Europe leads at every income level",
-    subtitle = "Each point is one country in 2007",
-    x = "GDP per capita",
-    y = "Life expectancy (years)",
-    color = "Continent",
-    caption = "Source: gapminder"
-  )
+summaries <- list(
+  by_species = penguins_combined |> count(species_file),
+  by_island = palmerpenguins::penguins |> count(island)
+)
+
+out_paths <- file.path(out_dir, paste0(names(summaries), ".csv"))
+walk2(summaries, out_paths, write_csv)
+
+list.files(out_dir)
 ```
 
-A title should summarize the finding ("Wealthier countries tend to live longer...") rather than merely describe the plot ("A scatterplot of GDP vs. life expectancy"); the subtitle adds context, and the caption is a natural place for a data source. `scales::label_dollar()` and `scales::label_percent()` format axis breaks the way a reader actually expects to see money or proportions, rather than as raw numbers.
-
-Beyond labels, `annotate()` and `geom_hline()`/`geom_vline()` call out a specific value or region directly on the plot:
-
-```{r}
-ggplot(lifeexp_2007, aes(gdpPercap, lifeExp)) +
-  geom_point(alpha = 0.4) +
-  geom_hline(yintercept = mean(lifeexp_2007$lifeExp), linetype = "dashed") +
-  annotate("text", x = 500, y = mean(lifeexp_2007$lifeExp) + 2, label = "Global average", hjust = 0) +
-  scale_x_log10(labels = scales::label_dollar())
-```
-
-`theme_minimal()` (used throughout this book) is a reasonable default for reducing visual clutter; `theme()` adjusts specific elements (title position, legend placement) beyond what a built-in theme covers, and the `patchwork` package combines several separate ggplots into one figure with `+`/`|`/`/`, handy for a multi-panel figure with one shared title.
-
-Zooming into part of a plot deserves special care: `coord_cartesian(ylim = ...)` changes only what's visible, while filtering the data first (or setting a scale's `limits`) actually removes data before anything, including a fitted trend line, is computed, which can silently change the numbers a plot is telling you about (see Example 20.1).
+The same pattern extends to saving a series of plots: build a named list of ggplot objects, then `iwalk()` (or `walk2()` with matching file names) over the list, calling `ggsave()` once per plot.
 
 ### Fringe cases and common pitfalls
 
-::: {.example title="Example 20.1"}
-**Zooming with `coord_cartesian()` and zooming by filtering data are not the same operation, and a fitted line proves it.**
+::: {.example title="Example 19.1"}
+**Calling a function inside `across()` instead of naming it produces a real, specific error.**
 
 ```{r}
-set.seed(1)
-df <- tibble(x = 1:100, y = x + rnorm(100, 0, 10)) |>
-  bind_rows(tibble(x = c(5, 10), y = c(200, 250)))  # two extreme outliers
-
-full_fit <- lm(y ~ x, data = df)
-coef(full_fit)
-
-filtered_fit <- lm(y ~ x, data = df |> filter(y <= 120))
-coef(filtered_fit)
+#| error: true
+iris |> summarize(across(where(is.numeric), mean()))
 ```
 
-The slope and intercept are meaningfully different (roughly 0.79 versus 1.00) depending on whether the two outliers were included when the line was fit, even though both versions might be *displayed* zoomed into the exact same visible range. `coord_cartesian(ylim = c(0, 120))` would zoom the plot's viewport into that range while still fitting `geom_smooth()` on every point, outliers included; filtering the data down to `y <= 120` first, or setting a scale's `limits` (which drops out-of-range values the same way filtering does), actually removes the outliers before any statistic is computed. Visually, both can look like "the same zoomed-in plot"; only one of them is telling you the truth about a trend fit to the *complete* data.
+`across()` expects a function it can call once per column, so the second argument should be the bare function name, `mean`, not the result of calling it, `mean()`. Writing `mean()` calls `mean` immediately, with no arguments at all, which fails right away with *"argument 'x' is missing, with no default,"* before `across()` even gets a chance to do anything. If you see that particular error coming from inside an `across()` call, check for a stray pair of parentheses on the function you meant to pass by name.
 :::
 
-::: {.example title="Example 20.2"}
-**A duplicate chunk label doesn't just cause a cosmetic warning; it stops the whole render.**
+::: {.example title="Example 19.2"}
+**`across()` inside `mutate()`, without `.names`, silently overwrites your original columns.**
 
-Two chunks in the same document both labeled `#| label: setup` produce this real error:
+```{r}
+df <- tibble(x = c(1, 2, 3), y = c(10, 20, 30))
 
-```
-Error in parse_block(g[-1], g[1], params.src, markdown_mode) :
-  Duplicate chunk label 'setup', which has been used for the chunk:
-1 + 1
-Execution halted
+df |> mutate(across(where(is.numeric), \(v) v - mean(v)))          # x and y are gone
+df |> mutate(across(where(is.numeric), \(v) v - mean(v), .names = "{.col}_centered"))
 ```
 
-Quarto uses chunk labels for cross-references and for naming generated figure files, so it needs every label in a document to be unique, and it refuses to guess which "setup" chunk you actually meant. This is exactly the kind of error most likely to show up after copying a chunk (setup code, a common summary pattern) from an earlier session's notes into a new one without renaming its label. If a render fails with "Duplicate chunk label," search the document for that exact label; there will be at least two.
+Inside `summarize()`, `across()` always produces new, separate output columns, since `summarize()` doesn't have "original" row-level columns to collide with. Inside `mutate()`, though, a transformed column named exactly the same as the column it came from replaces that column outright, with no warning that the original values are gone. There's no error because this is a completely valid thing to want to do; the danger is only in not intending it. Supplying `.names` (as in the second call above) keeps the originals and adds the transformed versions alongside them instead.
 :::
 
-::: {.example title="Example 20.3"}
-**An error inside inline code halts the render too, the same as an error inside a full code chunk.**
+::: {.example title="Example 19.3"}
+**`list_rbind()` drops `NULL` list elements without saying a word.**
 
-Writing a sentence that references an object that doesn't exist through inline R code, such as an undefined `nonexistent_variable_xyz`, produces a real, render-halting failure the moment Quarto tries to evaluate it:
-
-```
-Error:
-! object 'nonexistent_variable_xyz' not found
-Quitting from report.qmd:42-42
-Execution halted
+```{r}
+partial_results <- list(tibble(x = 1), NULL, tibble(x = 2), NULL)
+length(partial_results)     # 4 elements went in...
+list_rbind(partial_results) # ...and only the 2 real ones come out, silently
 ```
 
-(This example describes the error rather than triggering it live, since doing so would halt the render of this very chapter, which is exactly the point being illustrated.) It can be tempting to think of inline code as "just text with a little bit of R sprinkled in," safer somehow than a full chunk, but Quarto evaluates it exactly the same way, and a failure there is exactly as fatal to the render as a failure inside a chunk. This is arguably the correct behavior (a broken inline value silently rendering as nothing, or as a stale cached number, would be far worse than a loud failure), but it does mean a single typo in a sentence can prevent an entire document, tables and plots included, from rendering at all.
+This is exactly the behavior the `possibly()` pattern from this session depends on: every failed read becomes a `NULL`, and `list_rbind()` quietly skips every `NULL` when stacking the rest into one tibble, with no message telling you how many were dropped. That silence is convenient when you already know some inputs might fail and you've separately checked which ones did (as in the `map_lgl(results, is.null)` line above), and it's a trap if you haven't: a batch job that "worked" and returned a smaller-than-expected tibble may have silently lost several inputs along the way. Always compare the length of your input list to the row count (or list length, if you're not immediately combining) of what came out.
 :::
 
-::: {.example title="Example 20.4"}
-**`cache: true` and `execute: freeze` solve similar-sounding problems in genuinely different ways, and mixing them up causes real confusion.**
+::: {.example title="Example 19.4"}
+**`across(everything())` after `group_by()` skips the grouping column on its own, without being asked to.**
 
-`cache: true` on an individual chunk tells knitr to save that chunk's results locally (in a `_cache` folder next to the document) so that re-rendering the same document on the same machine can skip recomputing it, purely as a speed optimization for you, right now, while you iterate. It is not meant to be committed to git, and by default it does not know to invalidate itself if a chunk depends on an external file that changed (you'd need `cache.extra = file.mtime("data/some_file.csv")` to teach it that).
+```{r}
+grouped <- tibble(g = c("a", "a", "b"), x = 1:3, y = 4:6) |> group_by(g)
+grouped |> summarize(across(everything(), mean))
+```
 
-This book's own `_quarto.yml` uses something different: `execute: freeze: auto`, which stores each chapter's full execution results in a `_freeze` folder that *is* committed to git. That's precisely why the GitHub Actions workflow that builds and publishes this book doesn't need to install `arrow`, `duckdb`, or every other package used somewhere in these twenty-plus chapters just to rebuild the one chapter you actually edited; unchanged chapters reuse their committed `_freeze` results, and only a chapter whose source actually changed gets re-executed. `cache: true` speeds up your own local iteration on one document; `execute: freeze` is what makes a whole multi-chapter book reproducible for anyone (or any CI system) that clones the repository.
+`g` never gets passed to `mean()` at all, even though `everything()` would ordinarily include it; dplyr automatically excludes the active grouping columns from `across(everything(), ...)`, since they're already preserved as the grouping structure of the output and averaging a character column would make no sense (and would error) anyway. This is a helpful default rather than a trap, but it's worth knowing about explicitly: if you ever *do* want to apply a function to a grouping column too, you need to name it directly rather than relying on `everything()` to reach it.
 :::
 
 ### Recap
 
 | **Term** | **Definition** |
 |-------------------|-------------------------------------------------------------|
-| **YAML header** | The `---`-delimited metadata block at the top of a `.qmd` file: title, author, format, and execution defaults. |
-| **Chunk label** | A name (`#| label: ...`) identifying a code chunk; must be unique in the document, or the render fails. |
-| **`embed-resources`** | An HTML output option that bundles images and styling into one self-contained file. |
-| **`params`** | YAML-declared inputs (accessed as `params$name`), turning a `.qmd` into a re-render-able template. |
-| **`knitr::kable()`** | Formats a data frame as a proper table in the rendered output, instead of console-style printed text. |
-| **`cache: true`** | A local, per-chunk performance cache (not meant for git); doesn't auto-invalidate on an external file change without `cache.extra`. |
-| **`execute: freeze`** | A project-wide, git-committed cache of each document's execution results, used for CI/collaborator reproducibility. |
-| **Inline code** | An R expression wrapped in inline-code syntax inside prose; evaluated at render time, and just as capable of halting the render as a full chunk. |
-| **`coord_cartesian()`** | Zooms a plot's visible range without discarding any underlying data, so fitted statistics (like `geom_smooth()`) stay computed on the full dataset. |
+| **`across(.cols, .fns, .names)`** | Applies one or more functions to a tidy-selected set of columns inside `summarize()`/`mutate()`. |
+| **Bare function name** | `across()` expects a function to call (`mean`), not the result of calling it (`mean()`). |
+| **`.names` inside `mutate()`** | Without it, `across()`'s output silently replaces the original columns instead of adding new ones. |
+| **`if_any()` / `if_all()`** | Filter helpers combining a condition across several columns with OR / AND logic. |
+| **`list.files()`** | Lists file paths in a directory, filterable by a regex `pattern`, with `full.names = TRUE` for ready-to-use paths. |
+| **`map()`** | Applies a function to every element of a vector or list, returning a list. |
+| **`list_rbind()`** | Stacks a list of data frames into one tibble; silently drops any `NULL` elements. |
+| **`possibly()`** | Wraps a function so a failure returns a default value (often `NULL`) instead of stopping the whole iteration. |
+| **`walk()` / `walk2()` / `iwalk()`** | Like `map()`, but for a function called purely for its side effect (such as writing a file), discarding the return value. |
+| **Grouping-column exclusion** | `across(everything(), ...)` automatically skips the active `group_by()` columns. |
 
 ### Check your understanding
 
 ::: {.callout-note collapse="false" title="Problems"}
-1. What are the three components of a `.qmd` file, and what is each one responsible for?
-2. A report needs to be re-generated once per region, with only the region name changing each time. Which Quarto YAML feature is built for exactly this, and how would you access the region name inside the document?
-3. Two chunks in the same document are both labeled `analysis`. What happens when you try to render it, and why does Quarto insist on unique labels in the first place?
-4. You zoom into a scatterplot with a fitted trend line by filtering out points above a threshold, rather than using `coord_cartesian()`. Explain how this could change the reported trend, not just how much of the plot is visible.
-5. A colleague says they added `cache: true` to a slow chunk that reads an external CSV, and now the chunk doesn't rerun even after they edited that CSV. What is actually going on, and how is this different from how this book's own chapters stay up to date?
+1. What is the difference between passing `mean` and `mean()` as the second argument to `across()`? What error would the second one produce?
+2. You run `df |> mutate(across(where(is.numeric), \(x) x * 2))` and notice your original numeric columns are gone, replaced by their doubled values. What caused this, and how would you keep both?
+3. You use `possibly()` to read 20 files and combine the results with `list_rbind()`, and get back a tibble built from only 17 files' worth of rows, with no error or warning. What is the most likely explanation, and how would you confirm it?
+4. Why doesn't `group_by(region) |> summarize(across(everything(), mean))` try to average the `region` column, even though `everything()` would normally include it?
+5. What is the three-step pattern for reading and combining many files, and which function in that pattern is responsible for turning a list of tibbles into one?
 :::
 
 ::: {.callout-tip collapse="true" title="Solutions"}
-1. A YAML header (metadata and default settings, such as title and output format), narrative text in Markdown (headings, paragraphs, lists), and code chunks (executable code whose output is inserted into the rendered document).
+1. `mean` (no parentheses) hands `across()` the function itself, ready to be called once per column, which is what `across()` expects. `mean()` calls `mean` immediately with no arguments and fails right away with `"argument 'x' is missing, with no default"`, before `across()` ever gets to use it.
 
-2. The `params` field in the YAML header declares an input, accessed inside the document as `params$name` (for example, `params$region`); re-rendering with a different value passed for that parameter regenerates the report for a different region without editing the `.qmd` file's actual content.
+2. Inside `mutate()`, `across()`'s output columns default to the same names as the input columns unless you specify `.names`, so the doubled values silently overwrote the originals instead of creating new columns. Adding `.names = "{.col}_doubled"` (or any other pattern that doesn't collide with the original names) keeps both versions.
 
-3. Quarto refuses to render and reports a "Duplicate chunk label" error naming the reused label, because labels are used to identify chunks for cross-referencing and to name generated figure files, and Quarto has no way to guess which of the two identically labeled chunks you actually meant in either context.
+3. `possibly()` almost certainly returned `NULL` for the 3 files that failed to read, and `list_rbind()` silently drops any `NULL` elements when combining a list, with no warning about how many (if any) were dropped. Running `map_lgl(results, is.null)` (or comparing `length(results)` to the number of rows or tibbles actually combined) would confirm exactly which files were skipped.
 
-4. Filtering the data before fitting a trend line removes those points from the calculation entirely, not just from the visible plot area, so the fitted line reflects a different (smaller) dataset than the one being discussed. `coord_cartesian()` only changes the visible viewport; every point, including ones now outside the visible range, is still included when the trend line itself is computed.
+4. dplyr automatically excludes the active grouping columns from `across(everything(), ...)`, since a grouping column is already preserved as part of the output's structure and computing something like a mean on a character grouping column wouldn't be meaningful (and would error) in the first place.
 
-5. `cache: true` is a local performance cache that does not automatically know to invalidate itself when a chunk's underlying dependency (like the CSV file) changes; it only detects changes to the chunk's own code, unless the colleague explicitly adds something like `cache.extra = file.mtime("data.csv")` to make the cache dependent on that file too. This book's own reproducibility instead relies on `execute: freeze`, a different, project-wide, git-committed mechanism, and it faces an analogous risk: a frozen chapter's cached results also won't update on their own if only a referenced data file changes and the chapter's own `.qmd` source doesn't, which is why deleting the relevant `_freeze` entry (or re-rendering explicitly) is sometimes necessary after changing shared data.
+5. List the files with `list.files()` (optionally filtering by pattern and using `full.names = TRUE`), read each one with `map()` applied to a reading function like `read_csv()`, and combine the resulting list of tibbles into one with `list_rbind()`, which is the function that actually performs the stacking.
 :::

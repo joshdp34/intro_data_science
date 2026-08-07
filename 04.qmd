@@ -1,11 +1,14 @@
-# Session 4: Data transformation (I): filtering, arranging, selecting and mutating
+# Session 4: The layered grammar of graphics
 
 ## Objectives
 
-- **Understand the purpose of data transformation.** You rarely get data in exactly the form needed for analysis. Transformation involves creating new variables, reordering or selecting observations, and renaming columns.
-- **Use dplyr verbs to manipulate rows and columns.** Learn `filter()` to subset rows, `distinct()` to remove duplicates, `arrange()` to reorder rows, `select()`, `rename()` and `relocate()` to choose, rename and reposition variables, and `mutate()` to create new columns.
-- **Chain operations with the pipe.** Use the pipe (`|>` in base R, or `%>%` from magrittr) to express sequences of transformations in a readable way.
-- **Recognize a handful of correctness traps.** dplyr is forgiving about syntax but not about logic; you will see a few specific ways a pipeline can run without error and still silently produce the wrong answer.
+- **Deepen your understanding of ggplot2.** Explore the layered grammar of graphics: how aesthetic mappings, geometric objects, statistical transformations, position adjustments, facets and coordinate systems combine to build complex plots.
+- **Master aesthetic mappings.** Map variables to color, shape, size and alpha correctly. Avoid mapping categorical variables to size or alpha, since it implies a false ordering, and note that mapping a categorical variable to shape uses only six shapes, so additional groups are dropped.
+- **Understand statistical transformations.** Recognize that every geom has a default stat working behind the scenes, and learn when you need to override it.
+- **Use position adjustments.** Choose between stacking, dodging, filling and jittering to keep overlapping bars and points readable.
+- **Layer multiple geoms.** Add multiple geoms to a plot (for example, points and smooth lines) and distinguish between global and local aesthetic mappings. Use the `group` aesthetic to draw separate curves for each category.
+- **Use faceting and coordinate systems.** Split data into panels using `facet_wrap()` or `facet_grid()` and adjust scales. Experiment with coordinate transforms such as `coord_flip()` and `coord_polar()`.
+- **Read layered plots critically.** Facets and stacked bars can be just as easy to misread as the plots from last session; you will learn a few specific ways they go wrong.
 
 ## Notes
 
@@ -16,246 +19,258 @@ library(tidyverse)
 library(palmerpenguins)
 ```
 
-Every dplyr verb works the same way: the first argument is always a data frame, the rest of the arguments describe what to do using the (unquoted) column names, and the result is always a new data frame. dplyr never modifies its input in place, so `filter(penguins, ...)` leaves the original `penguins` completely untouched unless you explicitly reassign the result to a name.
+### The layered grammar, formalized
 
-### Picking rows with `filter()`
+Every ggplot2 plot is built from up to seven pieces, most of which have sensible defaults so you rarely have to specify all of them:
 
-`filter()` keeps only the rows where a logical condition is `TRUE`.
-
-```{r}
-adelie_dream <- penguins |>
-  filter(species == "Adelie", island == "Dream")
-
-adelie_dream |> head()
+```
+ggplot(data) +
+  geom_function(mapping = aes(...), stat = ..., position = ...) +
+  coordinate_function() +
+  facet_function()
 ```
 
-Separating conditions with a comma (as above) means "and": both conditions must hold. You can combine conditions explicitly with `&` (and), `|` (or), and check membership in a set of values with `%in%`, which is usually clearer than a long chain of `|` comparisons against the same variable.
+You have already used `data`, `mapping`, and a `geom_function`. Today adds the remaining three ingredients: the **stat** (statistical transformation) each geom uses behind the scenes, the **position** adjustment that resolves overlapping marks, and the **coordinate** and **facet** functions that reshape how the whole plot is laid out. Once you can name all seven pieces of a plot, you can describe (and build) essentially any static chart.
+
+### Aesthetic mappings: what should and shouldn't be mapped
+
+The `aes()` function connects variables to graphical attributes, but not every variable and property combination is a good idea. Mapping a categorical variable to color is generally safe. Mapping it to shape works, but only six shapes are built in by default, so a seventh category has nowhere to go. Mapping a categorical variable to size or alpha is actively discouraged, since size and transparency naturally suggest an ordered, numeric scale, and ggplot2 will warn you when you try it.
 
 ```{r}
-# every penguin that is either an Adelie or a Chinstrap
-adelie_or_chinstrap <- penguins |>
-  filter(species %in% c("Adelie", "Chinstrap"))
+# mapping species to color and shape is safe here (3 categories, well under the limit of 6)
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species, shape = species)) +
+  geom_point()
+```
 
-nrow(adelie_or_chinstrap)
+```{r}
+#| warning: true
+# mapping a categorical variable to size implies an ordering that doesn't exist
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, size = species)) +
+  geom_point()
 ```
 
 ::: {.callout-warning}
-## `=` is not `==`
-Inside `filter()`, a single `=` does not test equality; it tries to name an argument, and dplyr will stop you with an error rather than silently doing the wrong thing (see Example 4.1). Always use `==` to compare values.
+## A warning is not a suggestion
+When ggplot2 tells you *"using size for a discrete variable is not advised,"* it is not being fussy. Readers naturally interpret bigger as more, so sizing points by an unordered category (like species) invites viewers to draw a ranking that isn't in the data at all. Treat this particular warning as something to fix, not silence.
 :::
 
-### Removing duplicate rows with `distinct()`
+### Global versus local mappings, and layering geoms
 
-`distinct()` keeps only the unique combinations of the columns you name, dropping every duplicate after the first.
-
-```{r}
-# every combination of species and island actually observed in the data
-penguins |> distinct(species, island)
-```
-
-Add `.keep_all = TRUE` if you want to keep the first full row for each unique combination, rather than just the columns you named.
-
-### Reordering rows with `arrange()`
-
-`arrange()` sorts rows by one or more columns, ascending by default; wrap a column in `desc()` to sort it in descending order instead. `arrange()` only changes the order of the rows; it never adds or removes any.
+Mappings defined inside `ggplot()` apply globally to every layer; mappings placed inside a specific geom apply only to that layer and override the global mapping for that property.
 
 ```{r}
-penguins_sorted <- penguins |>
-  arrange(desc(body_mass_g), flipper_length_mm)
+# global mapping: color applies to both the points and the smooth line
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+  geom_point() +
+  geom_smooth(method = "loess", se = FALSE)
 
-penguins_sorted |> head()
+# local mapping: color applies only to the point layer; one smooth line covers everybody
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species)) +
+  geom_smooth(method = "loess", se = FALSE)
 ```
 
-::: {.callout-note}
-## Missing values always sort to the end
-Regardless of whether you sort ascending or with `desc()`, rows with `NA` in the sorting column are always placed last. `arrange(desc(x))` does not mean "biggest first, then `NA`, then smallest;" it means "biggest first, then smallest, then `NA`."
-:::
-
-### Picking, dropping and renaming columns
-
-`select()` narrows a data frame down to the columns you want, in the order you name them. It understands ranges (`bill_length_mm:bill_depth_mm`), negation (`-` or `!`), and helper functions like `starts_with()`, `ends_with()`, `contains()`, and `where()` (for selecting by a column's type or a condition, such as `where(is.numeric)`).
+Different geoms draw different kinds of marks from the same data, and overlaying several of them in one plot can reveal aspects that no single geom shows on its own. When a geom like `geom_smooth()` sees a discrete aesthetic (such as `color`), it automatically groups the data and fits one curve per group; you can also set the `group` aesthetic explicitly if you want grouping without also changing the plot's color or shape.
 
 ```{r}
-penguins |> select(species, island, body_mass_g) |> head()
-
-# every column except the two bill measurements
-penguins |> select(-(bill_length_mm:bill_depth_mm)) |> head()
+# one curve per species, drawn explicitly with the group aesthetic
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species)) +
+  geom_smooth(aes(group = species), method = "loess", se = FALSE)
 ```
 
-You can rename a column while selecting it, with the new name on the left of `=`:
+### Statistical transformations
+
+Every geom pairs with a default **stat**, an algorithm that computes the values actually plotted. `geom_point()` plots your data exactly as given (its default stat is `"identity"`), but `geom_bar()` does not plot raw rows at all: its default stat, `stat_count()`, first counts how many rows fall into each category, and only then draws bars proportional to those counts.
 
 ```{r}
-penguins |> select(flipper_mm = flipper_length_mm, species) |> head()
+# under the hood, this counts rows per species before drawing anything
+ggplot(penguins, aes(x = species)) +
+  geom_bar()
 ```
 
-If you want to rename a column without dropping every other column, use `rename()` instead of `select()`:
-
-```{r}
-penguins |> rename(flipper_mm = flipper_length_mm) |> head()
-```
-
-`relocate()` moves columns to a new position without changing which columns are present, using `.before` or `.after` to say where:
-
-```{r}
-penguins |> relocate(body_mass_g, .before = species) |> head()
-```
-
-### Creating new columns with `mutate()`
-
-`mutate()` adds new columns that are computed from existing ones, and you can refer to a column created earlier in the same `mutate()` call.
-
-```{r}
-penguins |>
-  mutate(
-    bill_ratio = bill_length_mm / bill_depth_mm,
-    heavy = body_mass_g > 4500
-  ) |>
-  head()
-```
-
-New columns are added at the end by default; use `.before` or `.after` (just like `relocate()`) to control where they land, or `.keep = "used"` if you only want to keep the columns that went into computing the new one, which is handy for checking your work.
-
-```{r}
-penguins |>
-  mutate(bill_ratio = bill_length_mm / bill_depth_mm, .keep = "used") |>
-  head()
-```
-
-If you only want to keep the newly created columns (and any grouping columns) and drop everything else, `transmute()` does that in one step.
-
-### Combining steps with the pipe
-
-Stringing several verbs together by saving an intermediate object after each one is verbose, and re-using the same name for each intermediate step (as the previous version of these notes did) risks exactly the shadowing problem in Example 4.4. The pipe, `|>`, passes the result on its left into the first argument of the call on its right, so an entire sequence of transformations reads top to bottom as a single pipeline instead:
-
-```{r}
-tall_penguins <- penguins |>
-  filter(!is.na(body_mass_g)) |>
-  mutate(bill_ratio = bill_length_mm / bill_depth_mm) |>
-  select(species, island, body_mass_g, bill_ratio) |>
-  arrange(desc(body_mass_g))
-
-tall_penguins |> head()
-```
-
-Read the pipe as "then": filter, *then* mutate, *then* select, *then* arrange. Each step's output becomes the next step's input, and nothing is overwritten along the way until the very last line assigns the final result to `tall_penguins`.
-
-Here is the same pattern applied to a dataset from outside `palmerpenguins`, to get some practice on data you have not seen built into a package before:
+Because the stat and the geom are separate pieces, you can pair a geom with a different stat than its default, or reach for `stat_summary()` when you want a geom to plot a computed summary (like a mean) rather than raw counts or raw values.
 
 ```{r}
 #| message: false
-stress <- read_csv("data/student_stress_survey.csv")
+ggplot(penguins, aes(x = species, y = body_mass_g)) +
+  stat_summary(fun.min = min, fun.max = max, fun = mean)
+```
 
-stress |>
-  filter(study_hours > 10) |>
-  mutate(hours_per_stress_point = study_hours / stress_level) |>
-  select(major, study_hours, stress_level, hours_per_stress_point) |>
-  arrange(desc(hours_per_stress_point)) |>
-  head()
+::: {.callout-note}
+## Every geom has a default stat, and every stat has a default geom
+You rarely need to think about stats when you're using `geom_point()`, `geom_line()`, or `geom_boxplot()`, because their default stat is simply "use the data as given." Bar charts and histograms are the main place beginners run into stats directly, precisely because their defaults quietly count or bin your data before drawing anything.
+:::
+
+### Position adjustments
+
+When marks would otherwise overlap, ggplot2's **position** argument controls how they are nudged apart. Bar charts default to `position = "stack"`, piling groups on top of each other; `position = "fill"` rescales stacks to a constant height so you can compare proportions; `position = "dodge"` places groups side by side instead of stacking them; and `position = "jitter"` (equivalent to `geom_jitter()`) adds small random noise to scatterplot points so overlapping observations become visible.
+
+```{r}
+# stacked (default): totals are easy to read, but comparing groups within each bar is hard
+ggplot(penguins, aes(x = island, fill = species)) +
+  geom_bar()
+
+# dodged: groups sit side by side, easier to compare directly, harder to see the total
+ggplot(penguins, aes(x = island, fill = species)) +
+  geom_bar(position = "dodge")
+```
+
+### Facets
+
+Use `facet_wrap()` to create a grid of subplots for one categorical variable, and `facet_grid()` for two variables at once (`rows ~ columns`). By default every panel shares the same x and y scales, which is usually what you want for a fair comparison; set `scales = "free_y"`, `"free_x"`, or `"free"` if you need each panel to scale independently.
+
+```{r}
+# facet by island
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
+  geom_point() +
+  facet_wrap(~island)
+
+# facet by species and sex at once, letting the y-axis vary by row
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point() +
+  facet_grid(species ~ sex, scales = "free_y")
+```
+
+### Coordinate systems
+
+Transforming the coordinate system can make a plot easier to read without changing the underlying geoms or data. `coord_flip()` swaps the x and y axes after everything else has been computed, which is handy for long category labels; `coord_polar()` bends the plotting area into a circle, turning a stacked bar chart into a pie or Coxcomb chart; `coord_fixed()` locks the ratio between one unit on x and one unit on y, which matters whenever the physical aspect ratio carries meaning (such as a map).
+
+```{r}
+# flip axes so long category labels read left to right instead of being squeezed
+ggplot(penguins, aes(x = species, y = body_mass_g)) +
+  geom_boxplot() +
+  coord_flip()
+
+# polar coordinates turn a stacked bar into a pie chart
+ggplot(penguins, aes(x = "", fill = species)) +
+  geom_bar() +
+  coord_polar(theta = "y")
 ```
 
 ### Fringe cases and common pitfalls
 
-::: {.example title="Example 4.1"}
-**`filter(x = value)` does not silently do the wrong thing; it stops you.**
+::: {.example title="Example 3.1"}
+**Mapping too many categories to shape drops data, quietly.**
+
+The `mpg` dataset (built into ggplot2) has a `class` column with seven distinct vehicle types, one more than the six shapes ggplot2 has on hand by default:
+
+```{r}
+#| warning: true
+n_distinct(mpg$class)  # how many categories are we asking ggplot2 to draw?
+
+ggplot(mpg, aes(x = displ, y = hwy, shape = class)) +
+  geom_point()
+```
+
+R produces two warnings above, not one. The first explains that the shape palette tops out at six discrete values, and the second reports that rows were removed for having a missing shape. Every vehicle in the seventh category is silently dropped from the plot entirely, the same way rows with a genuine `NA` were dropped in Session 3, except here the "missing" data was never actually missing. Whenever you map a categorical variable to shape, check `n_distinct()` first.
+:::
+
+::: {.example title="Example 3.2"}
+**A stat mismatch can produce an error instead of a plot.**
+
+Suppose you first summarize your data yourself, the way you will learn to do properly in Session 6:
+
+```{r}
+#| message: false
+stress <- read_csv("data/student_stress_survey.csv")
+major_counts <- stress |> count(major)
+major_counts
+```
+
+You now have one row per major with the count already computed in a column called `n`. It is tempting to hand this straight to `geom_bar()`:
 
 ```{r}
 #| error: true
-filter(penguins, species = "Adelie")
+ggplot(major_counts, aes(x = major, y = n)) +
+  geom_bar()
 ```
 
-Modern dplyr specifically detects this mistake and refuses to guess what you meant, offering the exact fix in the error message itself. Older versions of dplyr (and many other R functions in general) are not always this forgiving, so it is worth building the habit of reading `==` for "is equal to" and `=` only for naming an argument or assigning a value.
+This fails with *"stat_count() must only have an x or y aesthetic"* because `geom_bar()`'s default stat, `stat_count()`, expects to do its own counting from raw, one-row-per-observation data. It does not know what to do with a `y` aesthetic that is already a count. The fix is either `geom_col()`, which is built for exactly this situation (it defaults to `stat = "identity"`), or `geom_bar(stat = "identity")`:
+
+```{r}
+ggplot(major_counts, aes(x = major, y = n)) +
+  geom_col()
+```
+
+If you ever see *"stat_count() must only have an x or y aesthetic,"* the fix is almost always to switch from `geom_bar()` to `geom_col()`.
 :::
 
-::: {.example title="Example 4.2"}
-**`!=` quietly drops missing values along with everything else.**
+::: {.example title="Example 3.3"}
+**`position = "identity"` can make one group hide another entirely.**
 
-`penguins$sex` has a handful of genuinely missing values. Suppose you want every penguin that is *not* recorded as male, expecting that to include both females and unknowns:
-
-```{r}
-sum(is.na(penguins$sex))          # how many sex values are missing?
-
-not_male <- penguins |> filter(sex != "male")
-nrow(not_male)                    # fewer rows than you might expect
-```
-
-`sex != "male"` evaluates to `NA`, not `TRUE`, for every row where `sex` is already `NA`, because R cannot know whether an unknown value is or is not equal to `"male"`. `filter()` keeps only rows where the condition is `TRUE`, so `NA` rows are silently excluded, the same way they were silently excluded from the plots in Session 2. If you want to keep the missing values too, you have to ask for them explicitly:
+`"identity"` is the position adjustment that does nothing: every group is drawn exactly where its own values say to draw it, with no stacking, filling, or dodging to keep groups apart. For bars and histograms, that means overlapping groups are drawn right on top of one another.
 
 ```{r}
-not_male_or_unknown <- penguins |> filter(sex != "male" | is.na(sex))
-nrow(not_male_or_unknown)         # now includes the missing-sex penguins
+#| message: false
+stress <- read_csv("data/student_stress_survey.csv")
+two_majors <- stress |> filter(major %in% c("Engineering", "Nursing"))
+
+ggplot(two_majors, aes(x = study_hours, fill = major)) +
+  geom_histogram(position = "identity", binwidth = 2)
 ```
 
-Any time you filter with `!=`, `<`, or `>` on a column that might contain `NA`, decide on purpose whether missing values belong in your result, rather than letting `filter()` decide for you.
+Wherever the two majors' bins overlap, whichever group ggplot2 happens to draw last simply paints over the other, so you cannot tell from this plot alone how much of the shorter bar is actually hidden behind the taller one. Setting `alpha` below 1 makes both groups partially see-through, so overlapping regions blend instead of one erasing the other:
+
+```{r}
+ggplot(two_majors, aes(x = study_hours, fill = major)) +
+  geom_histogram(position = "identity", binwidth = 2, alpha = 0.5)
+```
+
+Whenever you overlay two or more groups with `position = "identity"`, whether it's bars, histograms, or density curves, add transparency, or you may be quietly hiding exactly the comparison you were trying to show.
 :::
 
-::: {.example title="Example 4.3"}
-**Floating-point rounding error (from Session 1) can make `filter()` miss a row that looks like an exact match.**
+::: {.example title="Example 3.4"}
+**Free facet scales make every panel look equally important, even when the underlying numbers are wildly different.**
 
 ```{r}
-example_data <- tibble(y = 0.1 + 0.2)
-example_data$y                          # prints as 0.3
+# fixed scales (default): every panel uses the same y-axis, so bar heights are directly comparable
+ggplot(penguins, aes(x = sex)) +
+  geom_bar() +
+  facet_wrap(~species)
 
-example_data |> filter(y == 0.3)        # 0 rows: not actually equal underneath
-example_data |> filter(near(y, 0.3))    # 1 row: near() allows for tiny rounding error
+# free scales: each panel gets its own y-axis, so every bar looks similarly tall
+ggplot(penguins, aes(x = sex)) +
+  geom_bar() +
+  facet_wrap(~species, scales = "free_y")
 ```
 
-This is the exact same floating-point issue from Session 1's `0.1 + 0.2 == 0.3`, just showing up inside a `filter()` instead of at the console. Whenever you filter on an exact match to a computed decimal value, prefer dplyr's `near()` over `==`.
-:::
-
-::: {.example title="Example 4.4"}
-**Reassigning a built-in dataset's own name hides your changes from yourself.**
-
-An earlier version of these notes did the following, one step at a time:
-
-```{r}
-#| eval: false
-penguins <- penguins |> rename(flipper_mm = flipper_length_mm)
-penguins <- penguins |> mutate(bill_size = bill_length_mm + bill_depth_mm)
-```
-
-```{r}
-penguins2 <- penguins |> rename(flipper_mm = flipper_length_mm)
-"flipper_length_mm" %in% names(penguins2)  # gone
-"flipper_mm" %in% names(penguins2)         # here instead
-```
-
-The moment you run `penguins <- penguins |> rename(...)`, the original `palmerpenguins::penguins` is shadowed by your modified version for the rest of the R session. Every chunk after that point that refers to `penguins` gets *your* renamed copy, not the original, which is easy to forget an hour (or a week) later. If you restart R (as recommended in Session 1) the shadowing disappears and old code that relied on the renamed column suddenly breaks, while code that still expects the original name works again. Assigning transformed data to a new name, such as `penguins_renamed`, avoids the problem entirely and makes it obvious at a glance which object is the original and which is derived.
+With `scales = "free_y"`, a species with 20 penguins and a species with 150 penguins can produce bars of roughly the same visual height, because each panel is scaled independently to fill the available space. Free scales are genuinely useful when panels measure fundamentally different quantities, but when panels represent comparable counts, free scales can erase exactly the comparison a reader most wants to make. Default to fixed scales unless you have a specific reason to free them, and say so explicitly when you do.
 :::
 
 ### Recap
 
 | **Term** | **Definition** |
 |-------------------|-------------------------------------------------------------|
-| **`filter()`** | Keeps rows where a logical condition is `TRUE`; drops rows where it is `FALSE` or `NA`. |
-| **`%in%`** | Tests membership in a set of values; clearer than chaining several `|` comparisons on one variable. |
-| **`distinct()`** | Keeps only unique combinations of the named columns. |
-| **`arrange()`** | Reorders rows by one or more columns; `NA` always sorts last regardless of direction. |
-| **`select()`** | Narrows and reorders columns; supports ranges, negation, and helpers like `starts_with()` and `where()`. |
-| **`rename()`** | Renames specific columns while keeping every other column. |
-| **`relocate()`** | Moves columns to a new position with `.before` or `.after`, without changing which columns exist. |
-| **`mutate()`** | Adds new columns computed from existing ones; `.before`, `.after`, and `.keep` control placement and what survives. |
-| **`transmute()`** | Like `mutate()`, but keeps only the newly created (and grouping) columns. |
-| **The pipe (`|>`)** | Passes the result on its left into the first argument on its right; read it as "then." |
-| **Floating-point filtering** | Use `near()` instead of `==` when filtering on a computed decimal value. |
+| **Layered grammar template** | `ggplot(data) + geom_function(mapping, stat, position) + coordinate_function() + facet_function()`. |
+| **Stat (statistical transformation)** | The algorithm a geom uses to compute the values it actually plots; `geom_bar()`'s default stat counts rows per category. |
+| **`geom_col()`** | Like `geom_bar()`, but expects the bar heights to already be computed, using `stat = "identity"` by default. |
+| **Position adjustment** | How overlapping marks are resolved: `"stack"` (default for bars), `"fill"` (proportions), `"dodge"` (side by side), or `"jitter"` (random noise for points). |
+| **`group` aesthetic** | Tells ggplot2 to treat rows as separate groups (for example, one smoothing curve per group) without also mapping color or shape. |
+| **`facet_wrap()` / `facet_grid()`** | Split a plot into a grid of subplots by one variable, or by two variables at once. |
+| **Free scales** | `scales = "free_x"`, `"free_y"`, or `"free"` let each facet panel use its own axis range, which can hide real differences in magnitude between panels. |
+| **`coord_flip()`** | Swaps the x and y axes after the plot has otherwise been computed. |
+| **`coord_polar()`** | Bends the plotting area into a circle, turning a stacked bar into a pie or Coxcomb chart. |
+| **`coord_fixed()`** | Locks the ratio between one x unit and one y unit, useful whenever physical aspect ratio matters. |
 
 ### Check your understanding
 
 ::: {.callout-note collapse="false" title="Problems"}
-1. What is the difference between `filter()` and `arrange()`? Can either one change how many rows are in the result?
-2. You write `filter(df, score = 90)` and R stops with an error instead of running. What mistake did you make, and how do you fix it?
-3. A dataset has a `region` column with a few missing values. You run `filter(df, region != "West")` expecting to get everyone outside the West region, including anyone with an unknown region. Explain why the missing-region rows are excluded, and how you would include them.
-4. Why does dplyr's `near()` function exist, and when should you reach for it instead of `==`?
-5. Your classmate writes `penguins <- penguins |> mutate(mass_kg = body_mass_g / 1000)` at the top of their script, then spends twenty minutes confused about why a later chunk that expects the original `palmerpenguins::penguins` gives strange results. What happened, and what habit would prevent it?
+1. Name the seven pieces of the layered grammar template, and identify which ones have sensible defaults you rarely need to change.
+2. You map a variable with nine categories to `shape` in a scatterplot. What will happen to the categories beyond the sixth, and how would you find out ahead of time how many categories you are dealing with?
+3. You already have a small data frame with one row per department and a column called `total_sales`. Your first attempt, `ggplot(df, aes(x = department, y = total_sales)) + geom_bar()`, produces an error. Explain the error and give two ways to fix it.
+4. A classmate overlays two groups' histograms with `geom_histogram(position = "identity")` and no `alpha`. Explain what is happening visually, and why the plot might understate how much data is really there for one of the groups.
+5. A colleague facets a bar chart of monthly sales by store, using `scales = "free_y"`, and claims every store had "about the same" sales. What should you check before accepting that conclusion?
 :::
 
 ::: {.callout-tip collapse="true" title="Solutions"}
-1. `filter()` selects which rows are present in the result and can reduce the number of rows (or leave it unchanged if every row matches). `arrange()` only changes the order of the rows; it always returns the same number of rows it was given.
+1. The seven pieces are data, the aesthetic mapping, the geom function, the stat, the position adjustment, the coordinate function, and the facet function. Data, mapping, and geom are the three you set explicitly on day one; stat, position, coordinate (Cartesian), and facet (none) all have sensible defaults that most plots never need to override.
 
-2. Inside `filter()`, `=` names an argument rather than testing equality, so `score = 90` is not a valid comparison. dplyr detects this specific mistake and errors instead of guessing. The fix is to use `==`: `filter(df, score == 90)`.
+2. The seventh, eighth, and ninth categories will have no shape to draw with, so ggplot2 issues a warning ("the shape palette can deal with a maximum of 6 discrete values") and drops those rows from the plot entirely, with a second warning about removed rows. Running `n_distinct(df$variable)` (or `length(unique(df$variable))`) before plotting tells you how many categories you are working with, so you can choose a different aesthetic (like color, or faceting) instead of shape.
 
-3. `region != "West"` evaluates to `NA`, not `TRUE`, for any row where `region` is already missing, because R cannot determine whether an unknown region is or is not "West." Since `filter()` only keeps rows where the condition is exactly `TRUE`, the missing-region rows are dropped along with the true non-matches. To include them, add an explicit `is.na()` check: `filter(df, region != "West" | is.na(region))`.
+3. `geom_bar()`'s default stat, `stat_count()`, expects to count raw rows itself and does not know what to do with a `y` aesthetic that is already a precomputed total. The fix is to use `geom_col()` instead of `geom_bar()`, or to keep `geom_bar()` but add `stat = "identity"`.
 
-4. `near()` compares two numbers while allowing for a small amount of floating-point rounding error, which real decimal arithmetic almost always introduces. Use it instead of `==` whenever you are filtering (or otherwise comparing) a numeric column that was computed rather than typed in directly, since two mathematically equal computed values can differ by a tiny amount at the level of their exact binary representation.
+4. With `position = "identity"`, ggplot2 draws each group's bars exactly where its own counts say to, without stacking or otherwise nudging groups apart, so wherever the two groups' bins overlap, whichever group is drawn last simply paints over the other. If the hidden group actually has a similar or larger count in that bin, the plot can make it look like there is little or no data there for that group. Adding `alpha` below 1 (for example, `alpha = 0.5`) makes both groups partially see-through, so overlapping regions blend together instead of one group erasing the other.
 
-5. Their line reassigns the name `penguins` to a modified copy of the data, so every subsequent chunk that refers to `penguins` sees the modified version (with the new `mass_kg` column) instead of the original `palmerpenguins::penguins`. Assigning the transformed data to a new name, such as `penguins_kg`, keeps the original available and makes it clear which object is which.
+5. Check whether the y-axis is actually the same across panels. With `scales = "free_y"`, each facet panel is scaled independently to fill the available space, so a store with very low sales and a store with very high sales can produce visually similar-looking bars. Re-plot with the default fixed scales (or `scales = "fixed"`) and compare; only then can you fairly judge whether the stores really did have similar sales.
 :::

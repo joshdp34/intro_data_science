@@ -1,12 +1,12 @@
-# Session 7: Tidy data and pivoting
+# Session 7: Data import: reading CSV and flat files
 
 ## Objectives
 
-- **Define tidy data.** Understand the three rules that make a dataset tidy: each **variable** must live in its own column, each **observation** must occupy its own row, and each **value** must appear in a single cell. Appreciate why a consistent data structure makes it easier to learn and use tidyverse tools.
-- **Lengthen data with `pivot_longer()`.** Use `pivot_longer()` from the tidyr package to reshape untidy datasets by gathering column names into a new variable and their values into another variable. Learn how to select columns to pivot, specify the names of the new variables, and optionally drop missing values.
-- **Handle multiple variables in column names.** Recognize when column headers encode multiple pieces of information (for example, method, gender, and age) and use the `names_to`/`names_sep` arguments of `pivot_longer()` to split them into separate variables, or `names_pattern` when a regular expression is a better fit than a fixed separator.
-- **Extract both a variable name and a value from a column header.** Recognize the special `.value` sentinel for the (surprisingly common) case where column headers mix a variable name with an identifier, such as `dob_child1` and `name_child1`.
-- **Widen data with `pivot_wider()`.** Use `pivot_wider()` to spread rows into columns when each observation is represented across multiple rows. Learn how to choose the `names_from`, `values_from`, and `id_cols` arguments so that each row uniquely identifies an observation, and recognize what happens when it does not.
+- **Read your own data into R.** Up to now we have worked with datasets that come bundled with packages. In practice you will often need to import data from your own files. This session introduces the `readr` functions for reading plain text rectangular data (CSV, TSV and other delimited formats). You will learn how to specify file paths and handle column names, types and missing values.
+- **Control column names, missing values and types.** When you run `read_csv()` it prints the number of rows and columns read and a summary of the column specification. You will learn how to rename variables, skip header lines, define which strings should be treated as missing, and override the type guessing heuristic that readr uses.
+- **Read multiple files and combine them.** Real projects often involve multiple data files (for example, one file per month). You can pass a vector of file paths to `read_csv()` and use the `id` argument to record the source of each observation. We will practice finding files with `list.files()`, reading them into a single tibble and combining them using `bind_rows()`.
+- **Choose the right format for saving intermediate results.** Compare `write_csv()`, `write_rds()`, and Parquet files, and know which one actually preserves your column types.
+- **Recognize a handful of import traps.** A file can read without any error at all and still hand you the wrong values, because readr made a completely reasonable guess that happened not to match your data.
 
 ## Notes
 
@@ -16,197 +16,241 @@
 library(tidyverse)
 ```
 
-### What is tidy data?
+### Why import data?
 
-Tidy data is a standard way to organize a dataset so that it works naturally with the tidyverse. In tidy data:
+Working with data included in R packages is convenient when you are learning, but eventually you need to apply the tools to your own data. *R for Data Science* focuses this chapter on **reading plain text rectangular files** and gives practical advice for handling **column names, types, and missing data**. The goal is always the same: get your data into a tidy tibble so you can immediately start transforming and visualizing it.
 
-1. **Each variable is a column, and each column is a variable.** A dataset like `table1` from *R for Data Science* has one column per variable and is the easiest shape to work with.
-2. **Each observation is a row.** Every row corresponds to one observation of all the variables.
-3. **Each value is a cell.** Every cell contains a single value for one variable in one observation.
+### Reading CSV files with `readr`
 
-The payoff is twofold. A single consistent structure makes it easier to learn a whole suite of tools, since they all assume the same underlying shape, and placing variables in columns lets R's vectorized functions operate the way they are designed to.
-
-### Lengthening data with `pivot_longer()`
-
-Most real datasets are not tidy, because they were organized for data entry or reporting rather than analysis. `pivot_longer()` lengthens data by gathering a set of columns into key-value pairs. Its most important arguments are `cols` (which columns to pivot, specified explicitly like `bp1:bp2` or with a tidyselect helper like `starts_with()`), `names_to` (the name of the new variable built from the column names), `values_to` (the name of the new variable holding the pivoted values), and `values_drop_na` (set to `TRUE` to drop rows created only because a column happened to be empty for that observation).
-
-The built-in `billboard` dataset records weekly Billboard chart positions: each row is a song, and each `wk?` column gives its rank in that week of its chart run.
+The `readr` package is part of the tidyverse and provides fast functions for reading delimited files. The most common function is `read_csv()`, which expects a path to a comma separated file. When you read a file, readr prints a message showing the number of rows and columns, the delimiter used, and the column specification, including the guessed type for each column. That message can be silenced with `show_col_types = FALSE`.
 
 ```{r}
-billboard_long <- billboard |>
-  pivot_longer(
-    cols = starts_with("wk"),
-    names_to = "week",
-    values_to = "rank",
-    values_drop_na = TRUE
-  ) |>
-  mutate(week = parse_number(week))
-
-billboard_long |> head()
+students <- read_csv("https://pos.it/r4ds-students-csv")
+students
 ```
 
-This call transforms the 317 by 79 `billboard` tibble into a 5307 by 5 tibble with one row per song-week combination, which is exactly why `nrow()` no longer answers "how many songs are there": it now answers "how many song-week observations are there."
+Use a local file path (as in `data/students.csv`) to read files stored in your own project rather than a URL. It is good practice to keep data in a dedicated `data/` folder and refer to it with a relative path, which is exactly why every example elsewhere in this book reads from `"data/..."`. If your file has a header row containing the column names, as most CSVs do, readr uses it automatically. If not, set `col_names = FALSE`, or supply your own names with `col_names = c("...", ...)`.
 
-### Splitting multiple pieces of information out of column names
+### Extra reading options: skipping lines and other delimiters
 
-Sometimes a column header packs in more than one piece of information. The `who2` dataset records tuberculosis cases with column names like `sp_m_014`, which combine the diagnosis method (`sp`), gender (`m`), and age range (`014`). Supplying a vector of names to `names_to` along with `names_sep` splits each column name at the separator into those separate variables in one step.
+Real files are not always clean CSVs with a header on line one. `skip = n` drops the first `n` lines before reading (handy when a file starts with a title or metadata row), and `comment = "#"` drops any line starting with that character.
 
 ```{r}
-who2_long <- who2 |>
-  pivot_longer(
-    cols = !(country:year),
-    names_to = c("diagnosis", "gender", "age"),
-    names_sep = "_",
-    values_to = "count"
-  )
-
-who2_long |> head()
+messy_csv <- "This file was exported on 2026-01-01\n# do not edit below this line\nx,y\n1,2\n3,4"
+read_csv(messy_csv, skip = 1, comment = "#", show_col_types = FALSE)
 ```
 
-### Extracting a variable name and a value from a header at once
+readr also provides close relatives of `read_csv()` for other plain text formats: `read_csv2()` for semicolon delimited files (common in regions where a comma is the decimal separator; see Example 6.2), `read_tsv()` for tab delimited files, `read_delim()` when you need to specify an arbitrary delimiter yourself, and `read_fwf()` for fixed width files where columns are defined by character position rather than a delimiter at all.
 
-Occasionally a column header encodes a variable name *and* an identifier together, rather than several independent pieces of information. The `household` dataset records each child's date of birth and name in separate columns per child:
+### Handling missing values and non-syntactic names
+
+A CSV file does not encode missing values explicitly, so readr treats **empty fields** as `NA`. In practice, missing values are often recorded with sentinel strings such as `"N/A"` or `"."` instead. You can tell `read_csv()` which strings should be considered missing with the `na` argument. In the students data above, the string `"N/A"` marks a missing food preference:
 
 ```{r}
-household
+students2 <- read_csv(
+  "https://pos.it/r4ds-students-csv",
+  na = c("N/A", ""),
+  show_col_types = FALSE
+)
+students2
 ```
 
-`dob_child1` and `name_child1` are not two unrelated categories the way `sp`, `m`, and `014` were; `dob` and `name` are themselves variable names that belong in their own columns, while `child1`/`child2` identifies which child a row describes. The special sentinel `".value"` inside `names_to` tells `pivot_longer()` to use that piece of the column name as a new column name instead of as a value:
+Sometimes column names contain spaces or other characters that make them non-syntactic in R, like `Full Name` above. In that case they are surrounded by backticks in the tibble, and you must use backticks (`` `Full Name` ``) to refer to them in code. A simple fix is to rename columns after import with `rename()`, or with the `janitor::clean_names()` helper, which converts every name to `snake_case` in one call.
+
+### How readr guesses column types
+
+Because a CSV file carries no type information, readr **guesses the type of each column** by sampling up to 1,000 values spread across the file and checking, in order: does the column contain only logical values? Only numbers? Does it match the ISO 8601 date or date-time format? If none of those succeed, readr falls back to treating the column as a plain character string. This heuristic works well for clean data but can fail when a column contains an unexpected value, such as a period used to mean "missing."
 
 ```{r}
-household |>
-  pivot_longer(
-    cols = !family,
-    names_to = c(".value", "child"),
-    names_sep = "_",
-    values_drop_na = TRUE
-  )
+simple_csv <- "x\n10\n.\n20\n30"
+
+# the "." makes readr's default guess treat the whole column as a string
+df_default <- read_csv(simple_csv, show_col_types = FALSE)
+df_default
+
+# force the column to be numeric, and see exactly where that assumption breaks
+df_num <- read_csv(simple_csv, col_types = list(x = col_double()), show_col_types = FALSE)
+problems(df_num)
+
+# or tell readr up front that "." means NA, and the default guess succeeds
+df_fixed <- read_csv(simple_csv, na = ".", show_col_types = FALSE)
+df_fixed
 ```
 
-The result has genuine `dob` and `name` columns, one row per family-child combination, with families that only have one child on record contributing only one row instead of a row with an `NA` child.
+When type guessing fails, you provide your own **column specification** through `col_types`, either a named list or a `cols()` call, pairing each column name with a type function: `col_logical()`, `col_double()`, `col_integer()`, `col_character()`, `col_factor()`, `col_date()`, `col_datetime()`, `col_number()` (a permissive numeric parser that strips things like currency symbols and commas), or `col_skip()` to drop a column entirely. `cols(.default = col_character())` sets a fallback type for every column you don't name explicitly, and `cols_only()` reads only the columns you list.
 
-### Widening data with `pivot_wider()`
+`parse_number()` is the standalone version of the logic behind `col_number()`: hand it a messy character vector and it extracts just the numeric part.
 
-Sometimes a single observation is spread across multiple rows instead, and you need to widen the data into new columns. `pivot_wider()` increases the number of columns and decreases the number of rows; it is especially useful when a variable identifies the type of measurement and another variable holds the corresponding value. The key arguments are `names_from` (the column whose unique values become new column names), `values_from` (the column supplying the values that fill those new columns), and `id_cols` (the columns that uniquely identify each resulting row).
+```{r}
+parse_number(c("$1,234.56", "45%", "12 dollars"))
+```
 
-The `cms_patient_experience` dataset from the Centers for Medicare & Medicaid Services records several performance measures per healthcare organization, with each organization spread across multiple rows, one per measure.
+### Reading multiple files and combining them
+
+In many projects you receive data split across multiple files, perhaps one file per month or per site. Instead of reading each file separately and binding the results yourself, you can pass a **vector of file paths** straight to `read_csv()`. It reads all of them and stacks the rows together, and the optional `id` argument adds a column recording which file each row came from.
+
+```{r}
+#| eval: false
+sales_files <- c("data/01-sales.csv", "data/02-sales.csv", "data/03-sales.csv")
+sales <- read_csv(sales_files, id = "file")
+```
+
+You often don't know every file name ahead of time. `list.files()` finds files matching a pattern (for example, `"sales\\.csv$"`), and `full.names = TRUE` returns full paths ready to hand straight to `read_csv()`.
+
+```{r}
+#| eval: false
+sales_files <- list.files("data", pattern = "sales\\.csv$", full.names = TRUE)
+sales <- read_csv(sales_files, id = "file")
+```
+
+If you ever need to combine tibbles you already read in separately, `dplyr::bind_rows()` stacks them by matching column name (the columns don't even need to be in the same order), and `bind_cols()` glues data frames side by side by position.
+
+### Entering data by hand
+
+Not every small dataset needs its own file. `tibble()` builds a data frame column by column, while `tribble()` (a "transposed tibble") lets you lay data out row by row, which is often easier to read and check for a small, hand-typed table. A `~` marks each column name.
+
+```{r}
+tribble(
+  ~grade, ~gpa_cutoff,
+  "A",    3.7,
+  "B",    2.7,
+  "C",    1.7
+)
+```
+
+### Writing data back to disk
+
+`readr` also provides `write_csv()` and `write_tsv()` for saving a tibble as plain text. Remember that a CSV file has no way to record column types, so anyone (including you, later) who reads it back has to let readr re-guess every type from scratch (see Example 6.4). For intermediate results you plan to read back into R, `write_rds()` and `read_rds()` store the object in a binary format that preserves types exactly.
+
+A third option, Parquet, is a binary format built for exactly this kind of interim storage, and it works across R, Python, and other tools, not just R. This project already ships with `starwars.parquet` at the top level; read it with `arrow::read_parquet()`:
 
 ```{r}
 #| message: false
-#| warning: false
-cms_wide <- cms_patient_experience |>
-  pivot_wider(
-    id_cols = starts_with("org"),
-    names_from = measure_cd,
-    values_from = prf_rate
-  )
-
-cms_wide |> head()
+starwars_data <- arrow::read_parquet("starwars.parquet")
+dim(starwars_data)
 ```
-
-Naming `org_pac_id` and `org_nm` as `id_cols` tells `pivot_wider()` exactly which columns identify a unique organization, so every organization lands on a single row with one column per measure code. `id_cols` is not optional in the way it looks; leaving it out only means `pivot_wider()` guesses which remaining columns identify a row, and a wrong guess produces duplicate or list-column results with no error at all (see Example 7.3).
 
 ### Fringe cases and common pitfalls
 
-::: {.example title="Example 7.1"}
-**`names_pattern` does everything `names_sep` does, with regular expressions instead of a fixed character.**
+::: {.example title="Example 6.1"}
+**readr protects leading zeros by default, but forcing a numeric type throws that protection away.**
 
-R4DS mentions `names_pattern` as an alternative to `names_sep` for splitting column names, but never actually shows it in action. Here it is, reproducing the `who2` split from this session's notes with a regular expression capturing the same three pieces:
+A ZIP code like `02138` has a meaningful leading zero. Read plainly, readr is actually careful about this:
 
 ```{r}
-who2_pattern <- who2 |>
-  pivot_longer(
-    cols = !(country:year),
-    names_to = c("diagnosis", "gender", "age"),
-    names_pattern = "(.*)_(.)_(.*)",
-    values_to = "count"
-  )
-
-identical(who2_pattern, who2_long)
+zip_csv <- "zip\n02138\n02139\n94103"
+read_csv(zip_csv, show_col_types = FALSE)
 ```
 
-Each parenthesized group in the pattern becomes one of the names in `names_to`, in order. `names_sep` is really just a convenience wrapper for the common case where a single fixed character cleanly separates every piece; reach for `names_pattern` once a column name's structure is too irregular for a single separator character to handle (for example, a fixed number of leading digits followed by free text).
-:::
-
-::: {.example title="Example 7.2"}
-**A column that looks like a unique identifier might not be.**
+Notice `zip` was guessed as a character column, leading zeros intact, precisely because a genuine number can never start with a zero. The trouble starts if you "fix" what looks like an annoying character column by forcing it to be numeric yourself:
 
 ```{r}
-n_distinct(billboard$track)         # fewer distinct titles than rows...
-nrow(distinct(billboard, artist, track))  # ...because artist matters too
+read_csv(zip_csv, col_types = cols(zip = col_double()), show_col_types = FALSE)
 ```
 
-`billboard` has 317 rows but only 316 distinct track titles, because two different artists, Donell Jones and Shade Sheist, each charted a song called "Where I Wanna Be" the same year. `track` alone cannot serve as a unique identifier for a song; you need the combination of `artist` and `track` together. This is exactly the kind of column that looks safe to hand to `pivot_wider()`'s `id_cols` and is not, as the next example shows directly.
+`02138` silently becomes `2138`, an entirely different (and very much real) ZIP code, with no warning at all, because `2138` is a perfectly valid double. Before overriding a guessed type, ask whether the column is really a number you would ever do arithmetic on, or an identifier that just happens to look numeric (ZIP codes, phone numbers, student IDs); identifiers almost always belong in `col_character()`.
 :::
 
-::: {.example title="Example 7.3"}
-**When `id_cols` does not uniquely identify a row, `pivot_wider()` does not error; it silently builds list-columns.**
+::: {.example title="Example 6.2"}
+**A semicolon delimited file, read with the wrong function, produces one column of garbage instead of an error.**
+
+Some regions use a comma as the decimal separator, which means a comma can no longer double as the column delimiter in a CSV, so spreadsheet software in those regions exports semicolon delimited files instead, often still with a `.csv` extension.
 
 ```{r}
-#| warning: true
-messy <- tibble(
-  id = c(1, 1, 2),
-  measure = c("bp", "bp", "bp"),
-  value = c(120, 125, 130)
+euro_csv <- "price;qty\n1234,56;2\n2000,00;5"
+
+# read_csv() assumes a comma delimiter, so it finds only one column per line
+read_csv(euro_csv, show_col_types = FALSE)
+```
+
+Nothing errors. You simply get a single garbled column named `` `price;qty` `` containing whole unparsed lines like `"1234,56;2"`. The fix is `read_csv2()`, readr's variant built for exactly this convention: semicolon as the delimiter, comma as the decimal mark.
+
+```{r}
+read_csv2(euro_csv, show_col_types = FALSE)
+```
+
+If a `.csv` file loads as a single suspicious looking column, check for semicolons before assuming the file itself is broken.
+:::
+
+::: {.example title="Example 6.3"}
+**`parse_number()` can rescue a column that looks unusably messy.**
+
+Suppose a spreadsheet export hands you prices as formatted text rather than plain numbers:
+
+```{r}
+raw_prices <- c("$1,234.56", "$45.00", "$1,200")
+parse_number(raw_prices)
+```
+
+`parse_number()` strips the currency symbol, the thousands separator, and any other non-numeric text around the number, keeping just the numeric value as a double. It is far less error prone than trying to write your own `gsub()` calls to strip out `$` and `,` by hand, and it is worth reaching for any time a supposedly numeric column was guessed as character because of formatting like this.
+:::
+
+::: {.example title="Example 6.4"}
+**Writing to CSV and reading it back can silently drop your factor levels.**
+
+```{r}
+original <- tibble(
+  id = 1:3,
+  grade = factor(c("A", "B", "A"), levels = c("A", "B", "C")),
+  test_date = as.Date(c("2026-01-15", "2026-01-16", "2026-01-17"))
 )
-
-messy |> pivot_wider(names_from = measure, values_from = value)
+sapply(original, class)
 ```
-
-Because `id = 1` has two different `bp` readings and nothing else distinguishes those two rows, `pivot_wider()` cannot put both values in one ordinary cell. Instead of raising an error, it warns you and packs every value for that combination into a list, so the resulting `bp` column holds `<dbl [2]>` for `id = 1` and `<dbl [1]>` for `id = 2`, a fundamentally different (and much less convenient) kind of column than the plain numeric column you were probably expecting. If you ever see *"values are not uniquely identified; output will contain list-cols,"* your `id_cols` do not actually pin down one row per observation, exactly as in Example 7.2; decide whether you need an additional identifying column, or need to summarize the duplicates (with `values_fn`) before widening.
-:::
-
-::: {.example title="Example 7.4"}
-**`pivot_wider()` orders new columns by first appearance, not numeric order, which text sorting can quietly scramble.**
 
 ```{r}
-long <- billboard |>
-  select(artist, track, wk1:wk12) |>
-  pivot_longer(cols = starts_with("wk"), names_to = "week", values_to = "rank", values_drop_na = TRUE)
-
-# widening right away: columns come out in the sensible order wk1, wk2, ..., wk12
-long |> pivot_wider(names_from = week, values_from = rank) |> names()
-
-# widening after arranging by the (character) week column first
-long |> arrange(week) |> pivot_wider(names_from = week, values_from = rank) |> names()
+#| message: false
+csv_path <- tempfile(fileext = ".csv")
+write_csv(original, csv_path)
+back_from_csv <- read_csv(csv_path, show_col_types = FALSE)
+sapply(back_from_csv, class)
 ```
 
-The first version looks correct purely by luck: the rows happened to still be in the order `pivot_longer()` produced them, which visits `wk1` through `wk12` in their original numeric order. Sorting the long data by the `week` column first, perhaps while cleaning it up for display, reorders those rows alphabetically as text, so `pivot_wider()` (which names columns in the order their values first appear) produces `wk1`, `wk10`, `wk11`, `wk12`, `wk2`, and so on. If you need a guaranteed column order after widening, use `relocate()` or `select()` afterward rather than relying on row order going in.
+The date column happens to survive, because it was written in a format readr's guesser recognizes as ISO 8601, but `grade` comes back as a plain character column: the fact that it was a factor, and the specific order `"A"`, `"B"`, `"C"` (including the unused level `"C"`), is gone for good, because a CSV file has no way to record that information in the first place. Compare that to a round trip through RDS:
+
+```{r}
+rds_path <- tempfile(fileext = ".rds")
+write_rds(original, rds_path)
+back_from_rds <- read_rds(rds_path)
+identical(original, back_from_rds)
+```
+
+If you need the exact same R object back, including factor levels, dates, and everything else, save it with `write_rds()` rather than `write_csv()`. Save to CSV only when the destination is meant to be read by something other than R, or when you specifically want a plain text, human-readable file.
 :::
 
 ### Recap
 
 | **Term** | **Definition** |
 |-------------------|-------------------------------------------------------------|
-| **Tidy data** | Each variable is a column, each observation is a row, each value is a cell. |
-| **`pivot_longer()`** | Gathers columns into key-value pairs, increasing the number of rows and decreasing the number of columns. |
-| **`names_to` / `values_to`** | Name the new variable built from column names, and the new variable holding the pivoted values. |
-| **`names_sep`** | Splits each pivoted column name into several new variables at a fixed character. |
-| **`names_pattern`** | Splits each pivoted column name into several new variables using a regular expression, for cases `names_sep` can't handle. |
-| **`.value` sentinel** | Inside `names_to`, tells `pivot_longer()` to use part of the column name as a new column name rather than as a value. |
-| **`pivot_wider()`** | Spreads values across new columns, increasing the number of columns and decreasing the number of rows. |
-| **`id_cols`** | The columns that must, together, uniquely identify each resulting row when widening. |
-| **List-column** | A column whose cells can each hold more than one value; `pivot_wider()` produces one when `id_cols` doesn't uniquely identify a row. |
-| **Column order after widening** | Determined by the order each `names_from` value first appears in the data, not by numeric or alphabetical order. |
+| **`read_csv()`** | Reads a comma delimited plain text file into a tibble, guessing each column's type. |
+| **`show_col_types = FALSE`** | Silences the column specification message `read_csv()` prints by default. |
+| **`na` argument** | Tells `read_csv()` which strings (besides an empty field) should become `NA`. |
+| **`col_types` / `cols()`** | Overrides readr's guessed type for one or more columns. |
+| **`col_character()` for identifiers** | The safe type for numeric-looking IDs (ZIP codes, phone numbers) that should never be treated as numbers. |
+| **`read_csv2()`** | Reads a semicolon delimited file where a comma is used as the decimal mark. |
+| **`parse_number()`** | Extracts the numeric value out of a messy formatted string, discarding currency symbols and separators. |
+| **`list.files()` + `id`** | Finds files matching a pattern and, when passed to `read_csv()` with `id`, records which file each row came from. |
+| **`tribble()`** | Builds a small tibble by typing it out row by row instead of column by column. |
+| **`write_rds()` / `read_rds()`** | Save and reload an R object in a binary format that preserves types exactly, unlike CSV. |
+| **Parquet** | A binary, cross-language file format for storing tabular data with types intact; read with `arrow::read_parquet()`. |
 
 ### Check your understanding
 
 ::: {.callout-note collapse="false" title="Problems"}
-1. State the three rules that make a dataset tidy.
-2. After running `billboard |> pivot_longer(cols = starts_with("wk"), names_to = "week", values_to = "rank", values_drop_na = TRUE)`, does `nrow()` on the result still tell you how many songs are in the dataset? Explain.
-3. A dataset has columns `income_2020`, `income_2021`, `expenses_2020`, and `expenses_2021`. What would you put in `names_to` to end up with separate `income` and `expenses` columns, plus a `year` column, in one `pivot_longer()` call?
-4. You widen a dataset with `pivot_wider(names_from = measure, values_from = value)` and one of the resulting columns comes back as a list-column instead of an ordinary numeric column. What does that tell you about your `id_cols`?
-5. Why might two `pivot_longer()` calls that use `names_sep` versus `names_pattern` produce identical results? When would you have to reach for `names_pattern` instead of `names_sep`?
+1. Why does `read_csv()` print a message about column types by default, and how do you turn it off?
+2. A column of product codes like `00452` gets read in as a character column by default. A classmate "fixes" this by adding `col_types = cols(product_code = col_double())`. What happens to the data, and why is it a bad idea here?
+3. A `.csv` file downloaded from a European website loads into a single messy column instead of several clean ones. What is the most likely cause, and which function should you try instead of `read_csv()`?
+4. Explain what `parse_number()` does with the input `"€2.500,00"` versus what `read_csv()` alone would guess for a whole column of values formatted that way. (You do not need to know the exact output; explain the general behavior.)
+5. Your analysis produces a tibble with a factor column and a Date column. You need to hand the exact same R object to a groupmate to continue the analysis tomorrow. Should you save it with `write_csv()` or `write_rds()`? Justify your answer.
 :::
 
 ::: {.callout-tip collapse="true" title="Solutions"}
-1. Each variable is a column, each observation is a row, and each value occupies a single cell.
+1. readr cannot know a column's type just from a CSV file, since plain text carries no type information, so it prints its best guess for each column so you can catch a wrong guess early rather than discovering it much later in an analysis. Add `show_col_types = FALSE` to suppress the message once you trust the guesses.
 
-2. No. Pivoting longer changes the unit of observation from one row per song to one row per song-week, so `nrow()` after pivoting tells you the number of song-week observations, not the number of distinct songs. Use `n_distinct()` on an identifying column (or combination of columns) to count the original units instead.
+2. Forcing `product_code` to `col_double()` converts `"00452"` to the number `452`, silently dropping the leading zeros, because `452` is a perfectly valid double and readr has no way to know the leading zeros were meaningful. This is a bad idea whenever the "number" is really an identifier (product codes, ZIP codes, phone numbers) that will never be used in arithmetic; `col_character()` is the safer choice.
 
-3. `names_to = c(".value", "year")` with `names_sep = "_"`. The `.value` sentinel picks up `income`/`expenses` as new column names, and `year` becomes an ordinary column holding `2020`/`2021`.
+3. The file most likely uses a semicolon as its delimiter (common where a comma is the decimal separator instead), which `read_csv()` does not expect, since it always assumes a comma delimiter. `read_csv2()` is built for exactly this format: semicolon delimited, comma as the decimal mark.
 
-4. It tells you the named `id_cols` do not uniquely identify a row: at least one combination of your identifying columns has more than one value for that measure, so `pivot_wider()` had nowhere to put them except inside a list. You either need an additional identifying column, or need to summarize the duplicate values before widening.
+4. `parse_number()` strips out the currency symbol and separators and returns just the numeric value as a double, handling formatting like this directly. Left to guess on its own, `read_csv()` would very likely treat a whole column formatted like `"€2.500,00"` as a character column, since values like that do not match its numeric-guessing heuristic at all.
 
-5. `names_sep` is really a convenience shorthand for the common case where a single fixed character cleanly divides every piece of a column name; internally, splitting on a fixed separator can be expressed as a fairly simple regular expression, which is why the two approaches can produce identical results. You need `names_pattern` once the column names have a structure too irregular for one separator character to capture, such as a fixed-width prefix followed by free-form text, or pieces that aren't consistently separated at all.
+5. `write_rds()`, because it preserves the tibble exactly as an R object, including the factor's levels and order and the Date column's type. `write_csv()` would flatten the factor down to plain character text and lose the level information entirely, and would require your groupmate to correctly re-specify every column's type by hand to get back to where you started.
 :::

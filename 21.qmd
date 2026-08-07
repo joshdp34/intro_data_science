@@ -1,13 +1,12 @@
-# Session 21: Exploratory data analysis (EDA)
+# Session 21: Communication
 
 ## Objectives
 
-- **Take a question-driven approach to EDA.** Exploratory data analysis is an iterative cycle: generate questions about your data, search for answers by visualizing, transforming, and modeling, and use what you learn to ask new questions. There is no rigid procedure; investigate many ideas and follow up on interesting patterns.
-- **Recognize variation and typical values.** Variation is the tendency of a variable's values to change from one observation to the next. Visualizing variation with histograms or bar charts reveals typical values and unusual patterns.
-- **Identify and handle unusual values.** Outliers may be data entry errors or genuine discoveries. Learn to zoom in without discarding data, and know the difference between a zoom that preserves every observation and one that quietly deletes some.
-- **Explore covariation between variables.** Covariation is the tendency for two or more variables to vary together. Use boxplots, frequency polygons, heatmaps, scatterplots, and 2D binning to examine relationships between categorical and continuous variables, between two categorical variables, and between two continuous variables.
-- **Use models to isolate a relationship.** A simple model can remove a known source of variation (like size) so that its residuals reveal a relationship that a raw comparison would get backwards.
-- **Summarize data to support EDA.** Use `group_by()`, `summarise()`, `count()`, and `mutate()` to compute counts, means, and proportions that complement visual exploration.
+- **Communicate your findings clearly.** Turn exploratory graphics into expository graphics. Write titles that summarize the finding rather than describing the plot; add subtitles and captions; label axes and legends with units.
+- **Annotate a plot honestly.** Use `annotate()` and `geom_hline()`/`geom_vline()` to call out a specific value directly on a plot, and know what happens when an annotation meets `facet_wrap()`.
+- **Format scales for a real audience.** Use `scales::label_dollar()` and `scales::label_percent()` so axis breaks read the way a reader actually expects, and know the one setting that determines whether `label_percent()` multiplies your numbers by 100 or not.
+- **Zoom into a plot honestly.** Distinguish `coord_cartesian()`, which only changes what's visible, from filtering the data (or setting a scale's `limits`), which actually removes data before anything, including a fitted trend line, is computed.
+- **Combine plots with `patchwork`.** Build a multi-panel figure with `+`/`|`/`/`, and know why combined plots sometimes show a legend once and sometimes show it once per panel.
 
 ## Notes
 
@@ -15,196 +14,183 @@
 #| message: false
 #| warning: false
 library(tidyverse)
+library(gapminder)
 ```
 
-### Introduction: question-driven exploration
+### From exploratory to expository graphics
 
-Exploratory data analysis uses visualization and transformation to systematically explore data. It isn't a formal procedure but an iterative cycle: generate questions, use plots and summaries to search for answers, and use those answers to refine the next question. Asking many questions early exposes you to different aspects of the data and improves your odds of finding something worth reporting. Two broad questions organize most of what follows: what kind of variation shows up within a single variable, and what kind of covariation shows up between variables?
-
-### Variation: exploring distributions
-
-Variation is the tendency of a variable's values to change from measurement to measurement, and visualizing the distribution is the most direct way to understand it: histograms and density plots for numeric variables, bar charts for categorical ones.
+A reproducible analysis still needs to communicate clearly. `labs()` is the starting point: a title, subtitle, caption, and axis/legend labels.
 
 ```{r}
-ggplot(diamonds, aes(x = carat)) +
-  geom_histogram(binwidth = 0.1)
+lifeexp_2007 <- gapminder |> filter(year == 2007)
+
+ggplot(lifeexp_2007, aes(gdpPercap, lifeExp, color = continent)) +
+  geom_point(alpha = 0.6) +
+  scale_x_log10(labels = scales::label_dollar()) +
+  labs(
+    title = "Wealthier countries tend to live longer, but Europe leads at every income level",
+    subtitle = "Each point is one country in 2007",
+    x = "GDP per capita",
+    y = "Life expectancy (years)",
+    color = "Continent",
+    caption = "Source: gapminder"
+  )
 ```
 
-Look for the most common values (tall bars) and the rare ones (short bars), and ask why each occurs; look for clusters, which can hint at subgroups worth exploring with another variable; and try more than one bin width, since a narrow bin width reveals fine structure that a wide one smooths away, and vice versa.
+A title should summarize the finding ("Wealthier countries tend to live longer...") rather than merely describe the plot ("A scatterplot of GDP vs. life expectancy"); the subtitle adds context, and the caption is a natural place for a data source. `scales::label_dollar()` formats axis breaks the way a reader actually expects to see money, rather than as raw numbers; `scales::label_percent()` does the same for proportions, though it has a fringe case worth knowing before you rely on it (see Example 21.2).
 
-### Unusual values and outliers
+### Annotating a plot
 
-An outlier doesn't fit the pattern of the rest of the data, and it can come from a data entry error, a genuinely unusual (but valid) observation, or a discovery worth reporting on its own. `coord_cartesian()` zooms into the region where most of the data lives without discarding anything, which is essential for spotting a rare value at all (it's often invisible at the default, whole-dataset scale) without corrupting whatever else you compute from the same data (see Example 21.1 for exactly what goes wrong if you zoom the wrong way).
+Beyond labels, `annotate()` and `geom_hline()`/`geom_vline()` call out a specific value or region directly on the plot:
 
 ```{r}
-ggplot(diamonds, aes(x = y)) +
-  geom_histogram(binwidth = 0.5) +
-  coord_cartesian(ylim = c(0, 50))
+ggplot(lifeexp_2007, aes(gdpPercap, lifeExp)) +
+  geom_point(alpha = 0.4) +
+  geom_hline(yintercept = mean(lifeexp_2007$lifeExp), linetype = "dashed") +
+  annotate("text", x = 500, y = mean(lifeexp_2007$lifeExp) + 2, label = "Global average", hjust = 0) +
+  scale_x_log10(labels = scales::label_dollar())
 ```
 
-Once you've found unusual values, you have two real options: drop the entire row (rarely a good default, since it discards everything else in that row too), or recode just the unusual value as `NA` with `mutate()` and `if_else()`, which keeps the rest of the observation intact. ggplot2 drops `NA`s automatically when plotting; add `na.rm = TRUE` if you'd rather not see the warning about it.
+`annotate()` places its mark at a fixed, literal position in data space, which is exactly what you want on a single panel, and exactly what can surprise you the moment `facet_wrap()` enters the picture (see Example 21.3).
+
+### Themes and multi-panel figures
+
+`theme_minimal()` (used throughout this book) is a reasonable default for reducing visual clutter; `theme()` adjusts specific elements (title position, legend placement) beyond what a built-in theme covers, and the `patchwork` package combines several separate ggplots into one figure with `+`/`|`/`/`, handy for a multi-panel figure with one shared title.
 
 ```{r}
-diamonds2 <- diamonds |> mutate(y = if_else(y < 3 | y > 20, NA, y))
-sum(is.na(diamonds2$y))
-```
+library(patchwork)
 
-### Covariation: a categorical and a numerical variable
+p1 <- ggplot(lifeexp_2007, aes(gdpPercap, lifeExp)) +
+  geom_point(alpha = 0.4) +
+  scale_x_log10(labels = scales::label_dollar()) +
+  labs(title = "Life expectancy") +
+  theme_minimal()
 
-Comparing a numeric variable's distribution across categories works best with `geom_boxplot()` for a compact summary, or `geom_freqpoly()` when you want to see the actual shape of each group's distribution overlaid. Raw counts can be misleading when group sizes differ a lot (see Example 21.3); mapping `after_stat(density)` standardizes each group to the same total area, making shapes directly comparable regardless of how many observations are in each one.
-
-```{r}
-ggplot(diamonds, aes(x = price, y = after_stat(density), color = cut)) +
-  geom_freqpoly(binwidth = 500)
-
-ggplot(diamonds, aes(x = fct_reorder(cut, price), y = price)) +
+p2 <- ggplot(lifeexp_2007, aes(continent, pop)) +
   geom_boxplot() +
-  labs(x = "cut")
+  scale_y_log10(labels = scales::label_comma()) +
+  labs(title = "Population") +
+  theme_minimal()
+
+p1 | p2
 ```
 
-`fct_reorder()` orders the categories by a summary of another variable (here, price) instead of alphabetically or by factor definition order, which usually makes the pattern in a plot like this easier to read at a glance.
+Combining plots that each carry their own color legend raises a question `patchwork` doesn't answer for you automatically: does the combined figure need one legend or several (see Example 21.4)?
 
-### Covariation: two categorical variables
+### Zooming into a plot honestly
 
-When both variables are categorical, start by counting every combination with `count()`, then visualize with `geom_tile()` (fill mapped to the count) or `geom_count()` (point size mapped to the count).
-
-```{r}
-diamonds |>
-  count(cut, clarity) |>
-  ggplot(aes(x = cut, y = clarity, fill = n)) +
-  geom_tile()
-```
-
-### Covariation: two numerical variables
-
-A scatterplot is the starting point for two continuous variables; `alpha` fights overplotting in a large dataset, and 2D binning (`geom_bin2d()`, `geom_hex()`) replaces individual overlapping points with a count per region entirely, which scales far better to tens of thousands of points.
-
-```{r}
-ggplot(diamonds, aes(x = carat, y = price)) +
-  geom_hex()
-```
-
-Alternatively, `cut_width()` turns a continuous variable into discrete bins so you can compare its relationship to another variable with side-by-side boxplots, one per bin.
-
-```{r}
-ggplot(diamonds, aes(x = cut_width(carat, 0.5), y = price)) +
-  geom_boxplot()
-```
-
-### Patterns and models
-
-A model can remove a relationship you already understand, so its leftovers (residuals) can reveal a second relationship that would otherwise be hidden behind, or confused with, the first one. Diamond price is overwhelmingly driven by carat (size), so fitting that relationship first and looking at what's left over lets you compare diamonds of *equivalent* size to each other, rather than comparing a large Fair-cut diamond to a small Ideal-cut one.
-
-```{r}
-diamonds2 <- diamonds |>
-  filter(carat < 2.5) |>
-  mutate(log_price = log(price), log_carat = log(carat))
-
-carat_model <- lm(log_price ~ log_carat, data = diamonds2)
-
-diamonds2 <- diamonds2 |> mutate(resid = resid(carat_model))
-
-ggplot(diamonds2, aes(x = cut, y = resid)) +
-  geom_boxplot()
-```
-
-A positive residual means a diamond sold for more than its carat alone would predict; a negative one means it sold for less. Plotted this way, cut quality and price line up the way intuition suggests (see Example 21.4 for what the *raw*, uncontrolled comparison looks like, and why it looks backwards).
-
-### Summarizing with dplyr
-
-Plots suggest patterns; numeric summaries pin them down precisely. `group_by()` and `summarise()` compute means, medians, counts, and proportions per group, and `count()` is a convenient shortcut when all you need is how many observations fall into each combination of categories. Pairing a summary table with the plot that motivated it is usually more convincing than either alone.
+Zooming into part of a plot deserves special care: `coord_cartesian(ylim = ...)` changes only what's visible, while filtering the data first (or setting a scale's `limits`) actually removes data before anything, including a fitted trend line, is computed, which can silently change the numbers a plot is telling you about (see Example 21.1).
 
 ### Fringe cases and common pitfalls
 
 ::: {.example title="Example 21.1"}
-**`xlim()`/`ylim()` zoom by deleting data first; `coord_cartesian()` zooms without deleting anything, and only one of them warns you about it.**
+**Zooming with `coord_cartesian()` and zooming by filtering data are not the same operation, and a fitted line proves it.**
 
 ```{r}
-#| warning: true
-ggplot(diamonds, aes(x, y)) +
-  geom_point() +
-  xlim(4, 10) +
-  ylim(4, 10)
+set.seed(1)
+df <- tibble(x = 1:100, y = x + rnorm(100, 0, 10)) |>
+  bind_rows(tibble(x = c(5, 10), y = c(200, 250)))  # two extreme outliers
+
+full_fit <- lm(y ~ x, data = df)
+coef(full_fit)
+
+filtered_fit <- lm(y ~ x, data = df |> filter(y <= 120))
+coef(filtered_fit)
 ```
 
-```{r}
-ggplot(diamonds, aes(x, y)) +
-  geom_point() +
-  coord_cartesian(xlim = c(4, 10), ylim = c(4, 10))
-```
-
-`xlim()`/`ylim()` (and setting `limits` on an individual scale) work by treating anything outside the given range as missing, which is why the first plot prints a real warning about hundreds of removed rows; the point is genuinely gone from the computation, not just off-screen. `coord_cartesian()` instead changes only which part of the already-fully-computed plot is visible, so nothing is removed and no warning appears. For a plot that's just a scatterplot, the visual difference might be hard to spot; the moment a geom computes a statistic from the data (a `geom_smooth()` line, a `geom_boxplot()`'s quartiles, anything in Session 20's Example 20.1), the two approaches can produce genuinely different numbers, not just different amounts of visible whitespace.
+The slope and intercept are meaningfully different (roughly 0.79 versus 1.00) depending on whether the two outliers were included when the line was fit, even though both versions might be *displayed* zoomed into the exact same visible range. `coord_cartesian(ylim = c(0, 120))` would zoom the plot's viewport into that range while still fitting `geom_smooth()` on every point, outliers included; filtering the data down to `y <= 120` first, or setting a scale's `limits` (which drops out-of-range values the same way filtering does), actually removes the outliers before any statistic is computed. Visually, both can look like "the same zoomed-in plot"; only one of them is telling you the truth about a trend fit to the *complete* data.
 :::
 
 ::: {.example title="Example 21.2"}
-**A real dataset can contain physically impossible measurements, and they're invisible until you actually go looking.**
+**`scales::label_percent()` assumes its input is already a proportion between 0 and 1, and silently multiplies by 100 if it isn't.**
 
 ```{r}
-diamonds |> filter(x == 0 | y == 0 | z == 0) |> nrow()
-diamonds |> filter(y > 20) |> select(carat, x, y, z, price)
+props <- c(0.42, 0.87, 0.15)
+scales::label_percent()(props)
+
+already_pct <- c(42, 87, 15)
+scales::label_percent()(already_pct)
 ```
 
-Twenty diamonds in this dataset have a recorded length, width, or depth of exactly zero millimeters, which is not a real diamond; and at least one has a recorded width of nearly 59 millimeters (roughly the width of a golf ball) on a stone weighing only 2 carats, which is equally impossible. Both are almost certainly data entry errors, and both are essentially invisible in a plot of the whole dataset at its default scale, since a handful of extreme points among 54,000 observations barely register. This is exactly why deliberately zooming into the bulk of a distribution (Example 21.1's `coord_cartesian()`, not `xlim()`/`ylim()`) is a standard early step in EDA: the outliers you're looking for are, by definition, not where most of your attention is already drawn.
+`label_percent()` multiplies whatever you give it by 100 and appends a `%` sign, which is exactly right for a proportion (`0.42` becomes `"42%"`) and exactly wrong for a value that's already a percentage (`42` becomes `"4200%"`), a mistake that's easy to make if a column was computed as `count / total * 100` upstream rather than left as a raw proportion. `label_percent(scale = 1)` fixes it by turning off that multiplication for values already on a 0-100 scale:
+
+```{r}
+scales::label_percent(scale = 1)(already_pct)
+```
+
+Before formatting a column with `label_percent()`, check whether it already looks like a percentage or still looks like a proportion; the function has no way to tell the difference for you.
 :::
 
 ::: {.example title="Example 21.3"}
-**Comparing raw counts across groups of very different sizes compares the sample sizes, not the shapes.**
+**`annotate()` places its label at a fixed position in every facet, not just the one you had in mind.**
 
 ```{r}
-diamonds |> count(cut)
+df_facet <- tibble(
+  x = c(1, 2, 3, 4, 5, 6),
+  y = c(1, 2, 3, 10, 11, 12),
+  g = rep(c("a", "b"), each = 3)
+)
+
+ggplot(df_facet, aes(x, y)) +
+  geom_point() +
+  facet_wrap(~g) +
+  annotate("text", x = 3, y = 12, label = "note")
 ```
 
-`Fair` has 1,610 diamonds and `Ideal` has 21,551, more than a thirteen-fold difference, so a `geom_freqpoly()` of raw counts would show a tall, prominent curve for `Ideal` and a barely visible sliver for `Fair`, regardless of whether their underlying price *distributions* (as opposed to their sample sizes) actually differ much at all. Mapping `y = after_stat(density)` rescales every group's curve to the same total area, so the comparison becomes "do these two groups have similarly shaped distributions," which is almost always the more interesting EDA question, rather than "which group happened to have more rows in this dataset."
+The word "note" appears in *both* facet panels, identically positioned, even though `annotate()` was called only once. `facet_wrap()` works by repeating every layer once per panel, and `annotate()` is a single literal layer like any other, so it gets repeated too; it has no built-in concept of "only panel b." To annotate a single facet, build a small data frame with one row per panel you actually want annotated (including a column matching the faceting variable) and pass it to `geom_text()` with `data =` instead of using `annotate()`, so the annotation layer only draws for the panel whose facet value matches.
 :::
 
 ::: {.example title="Example 21.4"}
-**The raw relationship between cut and price runs backwards, until a model controls for size.**
+**Combining plots with `patchwork` keeps every legend by default, even identical, redundant ones.**
 
 ```{r}
-diamonds |> group_by(cut) |> summarize(mean_price = mean(price))
+p1 <- ggplot(mpg, aes(displ, hwy, color = class)) +
+  geom_point()
+p2 <- ggplot(mpg, aes(cty, hwy, color = class)) +
+  geom_point()
+
+p1 + p2
 ```
 
-Averaged directly, `Fair`-cut diamonds sell for *more* than `Ideal`-cut diamonds, which seems to say worse-cut diamonds are worth more, exactly backwards from what a jeweler would tell you. The missing piece is carat: `Fair`-cut diamonds in this dataset happen to be larger on average, and size drives price far more than cut quality does, so the raw comparison is really comparing "a bunch of big, poorly cut diamonds" to "a bunch of smaller, well cut ones." The residuals computed in this session's Notes, from a model that predicts price from carat alone, tell a different and more sensible story:
+Both panels map `class` to color with the exact same set of categories, so the combined figure shows the identical legend twice, once per panel, wasting space on a repeated explanation of the same colors. `plot_layout(guides = "collect")` tells `patchwork` to gather matching legends into a single shared one instead:
 
 ```{r}
-diamonds2 |> group_by(cut) |> summarize(mean_resid = mean(resid))
+p1 + p2 + plot_layout(guides = "collect")
 ```
 
-Once carat is accounted for, `Ideal`-cut diamonds sell for *more* than their size alone would predict (a positive average residual), and `Fair`-cut diamonds sell for *less* than their size alone would predict (a negative one), which matches ordinary intuition about cut quality. The raw averages weren't wrong, exactly; they were answering a different, confounded question ("which group has bigger diamonds") while looking like they answered the one you actually asked ("which cut is worth more").
+This only collapses legends that are actually identical (same aesthetic, same categories); two panels that color by genuinely different variables still each need, and each keep, their own legend.
 :::
 
 ### Recap
 
 | **Term** | **Definition** |
 |-------------------|-------------------------------------------------------------|
-| **Variation** | The tendency of a variable's values to differ from one observation to the next; visualized with a histogram, density plot, or bar chart. |
-| **Covariation** | The tendency for two or more variables to vary together. |
-| **`coord_cartesian()`** | Zooms a plot's visible range without removing any underlying data. |
-| **`xlim()` / `ylim()`** | Zoom by setting scale limits, which treats out-of-range values as missing and removes them from the computation, not just the view. |
-| **`after_stat(density)`** | Rescales a distribution to a common total area, making shape comparisons fair across groups of very different sizes. |
-| **`fct_reorder()`** | Orders a factor's levels by a summary statistic of another variable, instead of alphabetically. |
-| **`geom_bin2d()` / `geom_hex()`** | Replace individually plotted, overlapping points with a count per rectangular or hexagonal region. |
-| **`cut_width()`** | Converts a continuous variable into discrete bins, useful for side-by-side boxplots against a continuous x-variable. |
-| **Residual** | What's left of a variable after a model's prediction is subtracted out; can reveal a second relationship hidden behind a confounding one. |
+| **`labs()`** | Sets a plot's title, subtitle, caption, and axis/legend labels; a title should state the finding, not describe the plot. |
+| **`annotate()`** | Draws a single literal mark (text, a rectangle, a line) at a fixed position in data space; repeated once per panel under `facet_wrap()`. |
+| **`geom_hline()` / `geom_vline()`** | Draws a horizontal or vertical reference line at a specified value. |
+| **`scales::label_dollar()`** | Formats axis breaks as currency. |
+| **`scales::label_percent()`** | Formats axis breaks as percentages; multiplies input by 100 unless `scale = 1` is set for input already on a 0-100 scale. |
+| **`coord_cartesian()`** | Zooms a plot's visible range without discarding any underlying data, so fitted statistics (like `geom_smooth()`) stay computed on the full dataset. |
+| **`patchwork`** | Combines separate ggplots into one figure with operators like `+` and `/`; `plot_layout(guides = "collect")` merges identical legends into one. |
 
 ### Check your understanding
 
 ::: {.callout-note collapse="false" title="Problems"}
-1. State the two broad questions that organize exploratory data analysis, and explain what each one focuses your attention on.
-2. You zoom into a scatterplot using `xlim()` and `ylim()` and get a warning about removed rows; a colleague zooms into the same plot using `coord_cartesian()` and gets no warning at all. Are the two plots showing the same thing? Explain.
-3. A dataset has a `weight_kg` column with a recorded value of `0`. Is this necessarily a data entry error? What would you check before deciding, and what are your two basic options once you're confident it's not a real measurement?
-4. Why can comparing raw counts (rather than densities) across two groups of very different sizes give a misleading impression of how their distributions compare?
-5. A raw comparison shows that neighborhood A has a higher average home price than neighborhood B, but a model controlling for square footage shows the opposite: B's homes sell for more per square foot. Explain how both statements can be true at once.
+1. Why should a plot title state the finding rather than describe the plot, and what belongs in the caption instead?
+2. You zoom into a scatterplot with a fitted trend line by filtering out points above a threshold, rather than using `coord_cartesian()`. Explain how this could change the reported trend, not just how much of the plot is visible.
+3. A column of percentages was computed as `count / total * 100`, so its values already range from 0 to 100. What happens if you format it with the default `scales::label_percent()`, and how do you fix it?
+4. You call `annotate("text", ...)` once on a plot that uses `facet_wrap()` with four panels, intending the note to appear only in the first panel. What actually happens, and how would you annotate just that one panel instead?
+5. Two ggplots, each colored by the same categorical variable with the same categories, are combined with `patchwork`'s `+`. What shows up twice by default, and what one addition removes the duplication?
 :::
 
 ::: {.callout-tip collapse="true" title="Solutions"}
-1. "What type of variation occurs within my variables?" focuses attention on one variable at a time (its typical values, rare values, and overall shape). "What type of covariation occurs between my variables?" focuses attention on relationships between two or more variables (whether they tend to move together, and how).
+1. A title that describes the plot ("A scatterplot of X vs. Y") makes the reader do the work of finding the pattern themselves; a title that states the finding ("Wealthier countries tend to live longer") tells them what to look for before they even study the axes. The caption is the natural place for supporting detail that isn't the headline, most often the data source.
 
-2. No. `xlim()`/`ylim()` treat any point outside the given range as missing and remove it from the plot's computation entirely, which is why removing rows triggers a warning; `coord_cartesian()` only changes which part of the fully computed plot is visible, without deleting anything. For a plain scatterplot, the visible result might look similar, but any statistic computed from the data (a trend line, a boxplot's quartiles) can come out differently between the two.
+2. Filtering the data before fitting a trend line removes those points from the calculation entirely, not just from the visible plot area, so the fitted line reflects a different (smaller) dataset than the one being discussed. `coord_cartesian()` only changes the visible viewport; every point, including ones now outside the visible range, is still included when the trend line itself is computed.
 
-3. Not necessarily; a weight of exactly zero could be a genuine data entry error, a placeholder for "not measured," or (rarely) a legitimate value depending on what's being weighed. Check whether zero is even a physically plausible value for whatever `weight_kg` represents, and look at whether other columns in that same row look normal or also suspicious. Once you're confident it's not real, your two options are dropping the entire row (losing the rest of that observation too) or recoding just that value to `NA` with `mutate()` and `if_else()`, which is usually the better default.
+3. `label_percent()` assumes its input is a proportion between 0 and 1 and multiplies by 100 before appending `%`, so a value like `42` (already a percentage) becomes `"4200%"` instead of `"42%"`. Passing `scale = 1` to `label_percent()` turns off that multiplication for values already on a 0-100 scale.
 
-4. A group with far more observations will have taller bars or a taller frequency polygon purely because it has more data, regardless of whether its underlying distribution's shape (where the data is concentrated, how spread out it is) actually differs from the smaller group's. Rescaling to density (`after_stat(density)`) puts every group's curve on the same total-area footing, so differences in the plot reflect differences in shape rather than differences in sample size.
+4. `annotate()` draws its literal mark once per facet panel, since `facet_wrap()` repeats every layer for every panel and has no way to know the annotation was meant for only one of them; the note appears identically in all four panels. To annotate only one panel, build a small data frame with one row per panel that should get the annotation, including a column that matches the faceting variable's values, and pass it to `geom_text(data = ...)` instead of `annotate()`, so the layer only draws for the matching panel.
 
-5. This is exactly the diamonds cut-versus-price situation from this session: the raw comparison is confounded by a third variable, square footage, that's correlated with both neighborhood and price. If neighborhood A's homes tend to be larger, they can have a higher average price overall while actually being a worse value per square foot than neighborhood B's smaller, more efficiently priced homes. A model that controls for square footage isolates the price-per-neighborhood effect from the size effect, which is precisely what the raw, uncontrolled average could not do.
+5. The color legend appears twice, once per panel, even though both legends show the exact same categories and colors. Adding `plot_layout(guides = "collect")` merges matching legends into a single shared one for the whole combined figure.
 :::

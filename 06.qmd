@@ -1,12 +1,14 @@
-# Session 6: Data import: reading CSV and flat files
+# Session 6: Data transformation (II): grouping and summarizing
 
 ## Objectives
 
-- **Read your own data into R.** Up to now we have worked with datasets that come bundled with packages. In practice you will often need to import data from your own files. This session introduces the `readr` functions for reading plain text rectangular data (CSV, TSV and other delimited formats). You will learn how to specify file paths and handle column names, types and missing values.
-- **Control column names, missing values and types.** When you run `read_csv()` it prints the number of rows and columns read and a summary of the column specification. You will learn how to rename variables, skip header lines, define which strings should be treated as missing, and override the type guessing heuristic that readr uses.
-- **Read multiple files and combine them.** Real projects often involve multiple data files (for example, one file per month). You can pass a vector of file paths to `read_csv()` and use the `id` argument to record the source of each observation. We will practice finding files with `list.files()`, reading them into a single tibble and combining them using `bind_rows()`.
-- **Choose the right format for saving intermediate results.** Compare `write_csv()`, `write_rds()`, and Parquet files, and know which one actually preserves your column types.
-- **Recognize a handful of import traps.** A file can read without any error at all and still hand you the wrong values, because readr made a completely reasonable guess that happened not to match your data.
+- **Change the unit of analysis with grouping.** Use `group_by()` to organize data into subsets (groups) so that subsequent operations operate within each group rather than on the whole data set.
+- **Compute summaries across groups.** Apply `summarize()` to compute summary statistics (counts, means, medians, and so on) for each group. Understand that `summarize()` returns one row for each combination of grouping variables.
+- **Use helper functions.** Learn to use helpers like `n()` and `n_distinct()` within `summarize()` to count observations and distinct values.
+- **Select top, bottom, or sampled observations per group.** Use the `slice_*()` family (`slice_max()`, `slice_min()`, `slice_head()`, `slice_tail()`, `slice_sample()`) to pull specific rows out of each group.
+- **Know when grouping ends.** Understand exactly how much grouping `summarize()` removes by default, and how `ungroup()` and the `.by` argument give you explicit control.
+- **Enhance pipelines.** Continue to use the pipe (`|>` or `%>%`) to link `group_by()`, `summarize()` and other verbs into clear analytical workflows.
+- **Avoid the single most common grouping bug.** Recognize when leftover grouping from an earlier step silently changes what a later `filter()` or `mutate()` computes.
 
 ## Notes
 
@@ -14,243 +16,205 @@
 #| message: false
 #| warning: false
 library(tidyverse)
+library(palmerpenguins)
 ```
 
-### Why import data?
+### Grouping with `group_by()`
 
-Working with data included in R packages is convenient when you are learning, but eventually you need to apply the tools to your own data. *R for Data Science* focuses this chapter on **reading plain text rectangular files** and gives practical advice for handling **column names, types, and missing data**. The goal is always the same: get your data into a tidy tibble so you can immediately start transforming and visualizing it.
-
-### Reading CSV files with `readr`
-
-The `readr` package is part of the tidyverse and provides fast functions for reading delimited files. The most common function is `read_csv()`, which expects a path to a comma separated file. When you read a file, readr prints a message showing the number of rows and columns, the delimiter used, and the column specification, including the guessed type for each column. That message can be silenced with `show_col_types = FALSE`.
+`group_by()` does not change the data itself or reorder any rows; it only adds metadata that tells later dplyr verbs to operate separately on each group instead of on the whole data frame at once. You can see this metadata in how a grouped tibble prints.
 
 ```{r}
-students <- read_csv("https://pos.it/r4ds-students-csv")
-students
+penguins_by <- penguins |> group_by(species, island)
+penguins_by
 ```
 
-Use a local file path (as in `data/students.csv`) to read files stored in your own project rather than a URL. It is good practice to keep data in a dedicated `data/` folder and refer to it with a relative path, which is exactly why every example elsewhere in this book reads from `"data/..."`. If your file has a header row containing the column names, as most CSVs do, readr uses it automatically. If not, set `col_names = FALSE`, or supply your own names with `col_names = c("...", ...)`.
+Notice the `# Groups: species, island [5]` line: the data itself looks identical to `penguins`, but dplyr now knows there are five distinct species-island combinations, and every subsequent verb in the pipeline will respect that grouping until something removes it.
 
-### Extra reading options: skipping lines and other delimiters
+### Summarizing with `summarize()`
 
-Real files are not always clean CSVs with a header on line one. `skip = n` drops the first `n` lines before reading (handy when a file starts with a title or metadata row), and `comment = "#"` drops any line starting with that character.
+`summarize()` collapses each group down to a single row. Without any prior grouping, it collapses the entire data frame to one row. The expressions inside `summarize()` must each return a single value per group, which is why functions like `mean()`, `median()`, `sd()`, `n()` (count of rows), and `n_distinct()` (count of distinct values) show up here constantly.
 
 ```{r}
-messy_csv <- "This file was exported on 2026-01-01\n# do not edit below this line\nx,y\n1,2\n3,4"
-read_csv(messy_csv, skip = 1, comment = "#", show_col_types = FALSE)
+penguin_summary <- penguins |>
+  group_by(species, island) |>
+  summarize(
+    count = n(),
+    mean_mass = mean(body_mass_g, na.rm = TRUE),
+    sd_mass = sd(body_mass_g, na.rm = TRUE),
+    distinct_years = n_distinct(year)
+  )
+
+penguin_summary
 ```
 
-readr also provides close relatives of `read_csv()` for other plain text formats: `read_csv2()` for semicolon delimited files (common in regions where a comma is the decimal separator; see Example 6.2), `read_tsv()` for tab delimited files, `read_delim()` when you need to specify an arbitrary delimiter yourself, and `read_fwf()` for fixed width files where columns are defined by character position rather than a delimiter at all.
+::: {.callout-note}
+## Read the message dplyr prints above your output
+That line reading *"summarise() has grouped output by 'species'. You can override using the .groups argument"* is not a warning to ignore; it is telling you exactly how much grouping survived the summary (see Example 5.2 for what happens when that surprises you).
+:::
 
-### Handling missing values and non-syntactic names
+### Ungrouping, and the `.by` alternative
 
-A CSV file does not encode missing values explicitly, so readr treats **empty fields** as `NA`. In practice, missing values are often recorded with sentinel strings such as `"N/A"` or `"."` instead. You can tell `read_csv()` which strings should be considered missing with the `na` argument. In the students data above, the string `"N/A"` marks a missing food preference:
+Grouping set with `group_by()` sticks around on the result until you explicitly remove it with `ungroup()`, even after a `summarize()` (see Example 5.2). If you only need grouping for a single operation, dplyr's `.by` argument lets you group and summarize (or mutate, or filter) in one step, with no lingering grouping to remember to undo afterward:
 
 ```{r}
-students2 <- read_csv(
-  "https://pos.it/r4ds-students-csv",
-  na = c("N/A", ""),
-  show_col_types = FALSE
-)
-students2
+penguins |> summarize(mean_mass = mean(body_mass_g, na.rm = TRUE), .by = species)
 ```
 
-Sometimes column names contain spaces or other characters that make them non-syntactic in R, like `Full Name` above. In that case they are surrounded by backticks in the tibble, and you must use backticks (`` `Full Name` ``) to refer to them in code. A simple fix is to rename columns after import with `rename()`, or with the `janitor::clean_names()` helper, which converts every name to `snake_case` in one call.
+The `.by` result above has no `# Groups:` line at all, because the grouping only ever applied to that one call. This is a newer addition to dplyr (version 1.1 and later); you will see both styles, `group_by()` followed later by `ungroup()`, and one-off `.by`, in real code, and it is worth being comfortable reading either one.
 
-### How readr guesses column types
+### Extracting rows within groups: the `slice_*()` family
 
-Because a CSV file carries no type information, readr **guesses the type of each column** by sampling up to 1,000 values spread across the file and checking, in order: does the column contain only logical values? Only numbers? Does it match the ISO 8601 date or date-time format? If none of those succeed, readr falls back to treating the column as a plain character string. This heuristic works well for clean data but can fail when a column contains an unexpected value, such as a period used to mean "missing."
+Five `slice_*()` functions pull specific rows out of each group: `slice_head()` and `slice_tail()` take the first or last `n` rows of each group as they currently appear, `slice_min()` and `slice_max()` take the rows with the smallest or largest value of some variable, and `slice_sample()` takes a random sample. All of them accept `n` for a fixed count or `prop` for a proportion of each group's rows.
 
 ```{r}
-simple_csv <- "x\n10\n.\n20\n30"
+top_diamonds <- diamonds |>
+  group_by(cut) |>
+  slice_max(order_by = price, n = 3, with_ties = FALSE)
 
-# the "." makes readr's default guess treat the whole column as a string
-df_default <- read_csv(simple_csv, show_col_types = FALSE)
-df_default
-
-# force the column to be numeric, and see exactly where that assumption breaks
-df_num <- read_csv(simple_csv, col_types = list(x = col_double()), show_col_types = FALSE)
-problems(df_num)
-
-# or tell readr up front that "." means NA, and the default guess succeeds
-df_fixed <- read_csv(simple_csv, na = ".", show_col_types = FALSE)
-df_fixed
+top_diamonds
 ```
 
-When type guessing fails, you provide your own **column specification** through `col_types`, either a named list or a `cols()` call, pairing each column name with a type function: `col_logical()`, `col_double()`, `col_integer()`, `col_character()`, `col_factor()`, `col_date()`, `col_datetime()`, `col_number()` (a permissive numeric parser that strips things like currency symbols and commas), or `col_skip()` to drop a column entirely. `cols(.default = col_character())` sets a fallback type for every column you don't name explicitly, and `cols_only()` reads only the columns you list.
+::: {.callout-warning}
+## `with_ties = FALSE` is not just a style preference
+Without it, `slice_max()` and `slice_min()` keep *every* row tied for the cutoff position, so asking for the top 3 can hand you back 4, 5, or more rows in a group with ties. See Example 5.4 for exactly how this plays out.
+:::
 
-`parse_number()` is the standalone version of the logic behind `col_number()`: hand it a messy character vector and it extracts just the numeric part.
+### Putting it together: grouped summaries in a real pipeline
 
-```{r}
-parse_number(c("$1,234.56", "45%", "12 dollars"))
-```
-
-### Reading multiple files and combining them
-
-In many projects you receive data split across multiple files, perhaps one file per month or per site. Instead of reading each file separately and binding the results yourself, you can pass a **vector of file paths** straight to `read_csv()`. It reads all of them and stacks the rows together, and the optional `id` argument adds a column recording which file each row came from.
-
-```{r}
-#| eval: false
-sales_files <- c("data/01-sales.csv", "data/02-sales.csv", "data/03-sales.csv")
-sales <- read_csv(sales_files, id = "file")
-```
-
-You often don't know every file name ahead of time. `list.files()` finds files matching a pattern (for example, `"sales\\.csv$"`), and `full.names = TRUE` returns full paths ready to hand straight to `read_csv()`.
-
-```{r}
-#| eval: false
-sales_files <- list.files("data", pattern = "sales\\.csv$", full.names = TRUE)
-sales <- read_csv(sales_files, id = "file")
-```
-
-If you ever need to combine tibbles you already read in separately, `dplyr::bind_rows()` stacks them by matching column name (the columns don't even need to be in the same order), and `bind_cols()` glues data frames side by side by position.
-
-### Entering data by hand
-
-Not every small dataset needs its own file. `tibble()` builds a data frame column by column, while `tribble()` (a "transposed tibble") lets you lay data out row by row, which is often easier to read and check for a small, hand-typed table. A `~` marks each column name.
-
-```{r}
-tribble(
-  ~grade, ~gpa_cutoff,
-  "A",    3.7,
-  "B",    2.7,
-  "C",    1.7
-)
-```
-
-### Writing data back to disk
-
-`readr` also provides `write_csv()` and `write_tsv()` for saving a tibble as plain text. Remember that a CSV file has no way to record column types, so anyone (including you, later) who reads it back has to let readr re-guess every type from scratch (see Example 6.4). For intermediate results you plan to read back into R, `write_rds()` and `read_rds()` store the object in a binary format that preserves types exactly.
-
-A third option, Parquet, is a binary format built for exactly this kind of interim storage, and it works across R, Python, and other tools, not just R. This project already ships with `starwars.parquet` at the top level; read it with `arrow::read_parquet()`:
+Here is a small (simulated) A/B test: half of a set of website visitors saw variant A of a page, half saw variant B, and `clicked` records whether each visitor clicked a button.
 
 ```{r}
 #| message: false
-starwars_data <- arrow::read_parquet("starwars.parquet")
-dim(starwars_data)
+ab <- read_csv("data/ab_marketing.csv")
+
+click_rates <- ab |>
+  group_by(variant) |>
+  summarize(
+    visitors = n(),
+    clicks = sum(clicked),
+    click_rate = mean(clicked)
+  ) |>
+  arrange(desc(click_rate))
+
+click_rates
 ```
+
+```{r}
+click_rates |>
+  ggplot(aes(x = variant, y = click_rate)) +
+  geom_col()
+```
+
+Grouping, then summarizing, then arranging, then plotting is one of the most common shapes a real analysis takes: reduce the raw data down to the handful of numbers you actually care about, then let a plot or a sorted table communicate the result.
 
 ### Fringe cases and common pitfalls
 
-::: {.example title="Example 6.1"}
-**readr protects leading zeros by default, but forcing a numeric type throws that protection away.**
+::: {.example title="Example 5.1"}
+**Leftover grouping from an earlier step can silently change what a later step computes.**
 
-A ZIP code like `02138` has a meaningful leading zero. Read plainly, readr is actually careful about this:
-
-```{r}
-zip_csv <- "zip\n02138\n02139\n94103"
-read_csv(zip_csv, show_col_types = FALSE)
-```
-
-Notice `zip` was guessed as a character column, leading zeros intact, precisely because a genuine number can never start with a zero. The trouble starts if you "fix" what looks like an annoying character column by forcing it to be numeric yourself:
+Suppose you group by species early in a pipeline for one reason, then later try to find the single heaviest penguin in the entire dataset:
 
 ```{r}
-read_csv(zip_csv, col_types = cols(zip = col_double()), show_col_types = FALSE)
+# what you probably meant: the one heaviest penguin overall
+penguins |> filter(body_mass_g == max(body_mass_g, na.rm = TRUE))
 ```
 
-`02138` silently becomes `2138`, an entirely different (and very much real) ZIP code, with no warning at all, because `2138` is a perfectly valid double. Before overriding a guessed type, ask whether the column is really a number you would ever do arithmetic on, or an identifier that just happens to look numeric (ZIP codes, phone numbers, student IDs); identifiers almost always belong in `col_character()`.
+```{r}
+# what you get if the data is still grouped by species from an earlier step
+penguins |>
+  group_by(species) |>
+  select(species, island, body_mass_g) |>
+  filter(body_mass_g == max(body_mass_g, na.rm = TRUE))
+```
+
+The second version returns three rows, one heaviest penguin *per species*, not the single heaviest penguin overall, because `group_by()` is still in effect and `max()` inside `filter()` is computed separately within each group. Nothing here errors or warns; the code runs perfectly and produces a perfectly reasonable-looking, wrong answer if you forgot the grouping was still active. Whenever a `filter()` or `mutate()` gives a surprising number of rows, check whether the data is still grouped from several steps earlier.
 :::
 
-::: {.example title="Example 6.2"}
-**A semicolon delimited file, read with the wrong function, produces one column of garbage instead of an error.**
-
-Some regions use a comma as the decimal separator, which means a comma can no longer double as the column delimiter in a CSV, so spreadsheet software in those regions exports semicolon delimited files instead, often still with a `.csv` extension.
+::: {.example title="Example 5.2"}
+**`summarize()` only removes the last level of grouping, not all of it.**
 
 ```{r}
-euro_csv <- "price;qty\n1234,56;2\n2000,00;5"
-
-# read_csv() assumes a comma delimiter, so it finds only one column per line
-read_csv(euro_csv, show_col_types = FALSE)
+by_species_island <- penguins |>
+  group_by(species, island) |>
+  summarize(n = n())
 ```
 
-Nothing errors. You simply get a single garbled column named `` `price;qty` `` containing whole unparsed lines like `"1234,56;2"`. The fix is `read_csv2()`, readr's variant built for exactly this convention: semicolon as the delimiter, comma as the decimal mark.
+Grouping by two variables and then summarizing does not return an ungrouped result. It peels off only the last grouping variable (`island`) and leaves the result still grouped by the first one (`species`), which is exactly what that printed message was telling you:
 
 ```{r}
-read_csv2(euro_csv, show_col_types = FALSE)
+dplyr::group_vars(by_species_island)
 ```
 
-If a `.csv` file loads as a single suspicious looking column, check for semicolons before assuming the file itself is broken.
+If you chain another `summarize()` immediately afterward expecting it to operate on the whole table, it will instead operate per species, one more time. Setting `.groups = "drop"` inside the first `summarize()` removes all grouping in one step, which is often what you actually want at the end of a pipeline:
+
+```{r}
+penguins |>
+  group_by(species, island) |>
+  summarize(n = n(), .groups = "drop") |>
+  dplyr::group_vars()
+```
 :::
 
-::: {.example title="Example 6.3"}
-**`parse_number()` can rescue a column that looks unusably messy.**
-
-Suppose a spreadsheet export hands you prices as formatted text rather than plain numbers:
+::: {.example title="Example 5.3"}
+**`n()` only works inside a dplyr verb, not on its own.**
 
 ```{r}
-raw_prices <- c("$1,234.56", "$45.00", "$1,200")
-parse_number(raw_prices)
+#| error: true
+n()
 ```
 
-`parse_number()` strips the currency symbol, the thousands separator, and any other non-numeric text around the number, keeping just the numeric value as a double. It is far less error prone than trying to write your own `gsub()` calls to strip out `$` and `,` by hand, and it is worth reaching for any time a supposedly numeric column was guessed as character because of formatting like this.
+`n()` (and `n_distinct()`, `cur_group()`, and a few other dplyr helpers) rely on context that only exists while dplyr is actively evaluating `mutate()`, `filter()`, `summarize()`, or `group_by()`; they have no meaning called by themselves at the console. If you see this error, you have usually copied a line out of a pipeline without its surrounding `summarize()` or `mutate()` call.
 :::
 
-::: {.example title="Example 6.4"}
-**Writing to CSV and reading it back can silently drop your factor levels.**
+::: {.example title="Example 5.4"}
+**Asking for the top `n` rows per group can return more than `n` rows.**
 
 ```{r}
-original <- tibble(
-  id = 1:3,
-  grade = factor(c("A", "B", "A"), levels = c("A", "B", "C")),
-  test_date = as.Date(c("2026-01-15", "2026-01-16", "2026-01-17"))
-)
-sapply(original, class)
+ties_example <- tibble(group = c("a", "a", "a"), value = c(5, 5, 3))
+
+# asked for 1 row per group, got 2, because both 5s are tied for first place
+ties_example |> group_by(group) |> slice_max(value, n = 1)
+
+# with_ties = FALSE breaks the tie arbitrarily and returns exactly n rows
+ties_example |> group_by(group) |> slice_max(value, n = 1, with_ties = FALSE)
 ```
 
-```{r}
-#| message: false
-csv_path <- tempfile(fileext = ".csv")
-write_csv(original, csv_path)
-back_from_csv <- read_csv(csv_path, show_col_types = FALSE)
-sapply(back_from_csv, class)
-```
-
-The date column happens to survive, because it was written in a format readr's guesser recognizes as ISO 8601, but `grade` comes back as a plain character column: the fact that it was a factor, and the specific order `"A"`, `"B"`, `"C"` (including the unused level `"C"`), is gone for good, because a CSV file has no way to record that information in the first place. Compare that to a round trip through RDS:
-
-```{r}
-rds_path <- tempfile(fileext = ".rds")
-write_rds(original, rds_path)
-back_from_rds <- read_rds(rds_path)
-identical(original, back_from_rds)
-```
-
-If you need the exact same R object back, including factor levels, dates, and everything else, save it with `write_rds()` rather than `write_csv()`. Save to CSV only when the destination is meant to be read by something other than R, or when you specifically want a plain text, human-readable file.
+If your code assumes `slice_max(..., n = 3)` always returns exactly three rows per group (for example, because you plan to immediately compute `n() == 3` or bind several groups' results into a fixed-size table), a tie will break that assumption. Decide explicitly whether ties should be kept or broken, rather than discovering the answer when a later step chokes on an unexpectedly large group.
 :::
 
 ### Recap
 
 | **Term** | **Definition** |
 |-------------------|-------------------------------------------------------------|
-| **`read_csv()`** | Reads a comma delimited plain text file into a tibble, guessing each column's type. |
-| **`show_col_types = FALSE`** | Silences the column specification message `read_csv()` prints by default. |
-| **`na` argument** | Tells `read_csv()` which strings (besides an empty field) should become `NA`. |
-| **`col_types` / `cols()`** | Overrides readr's guessed type for one or more columns. |
-| **`col_character()` for identifiers** | The safe type for numeric-looking IDs (ZIP codes, phone numbers) that should never be treated as numbers. |
-| **`read_csv2()`** | Reads a semicolon delimited file where a comma is used as the decimal mark. |
-| **`parse_number()`** | Extracts the numeric value out of a messy formatted string, discarding currency symbols and separators. |
-| **`list.files()` + `id`** | Finds files matching a pattern and, when passed to `read_csv()` with `id`, records which file each row came from. |
-| **`tribble()`** | Builds a small tibble by typing it out row by row instead of column by column. |
-| **`write_rds()` / `read_rds()`** | Save and reload an R object in a binary format that preserves types exactly, unlike CSV. |
-| **Parquet** | A binary, cross-language file format for storing tabular data with types intact; read with `arrow::read_parquet()`. |
+| **`group_by()`** | Adds grouping metadata to a data frame without changing or reordering the data itself. |
+| **`summarize()`** | Collapses each group to a single row using functions that return one value per group. |
+| **`n()` / `n_distinct()`** | Count rows, or count distinct values, within the current group; only valid inside a dplyr verb. |
+| **`.groups` argument** | Controls how much grouping `summarize()` leaves on its result: `"drop_last"` (default), `"drop"`, or `"keep"`. |
+| **`ungroup()`** | Removes all grouping from a data frame explicitly. |
+| **`.by`** | A per-call alternative to `group_by()` that applies only to that one verb, leaving no grouping behind afterward. |
+| **`slice_max()` / `slice_min()`** | Return the rows with the largest or smallest value of a variable, within each group. |
+| **`slice_head()` / `slice_tail()` / `slice_sample()`** | Return the first, last, or a random sample of rows within each group. |
+| **`with_ties`** | Controls whether `slice_max()`/`slice_min()` keep every row tied for the cutoff position (default) or return exactly `n` rows. |
+| **Leftover grouping** | Grouping from an earlier pipeline step that silently changes what a later `filter()` or `mutate()` computes. |
 
 ### Check your understanding
 
 ::: {.callout-note collapse="false" title="Problems"}
-1. Why does `read_csv()` print a message about column types by default, and how do you turn it off?
-2. A column of product codes like `00452` gets read in as a character column by default. A classmate "fixes" this by adding `col_types = cols(product_code = col_double())`. What happens to the data, and why is it a bad idea here?
-3. A `.csv` file downloaded from a European website loads into a single messy column instead of several clean ones. What is the most likely cause, and which function should you try instead of `read_csv()`?
-4. Explain what `parse_number()` does with the input `"€2.500,00"` versus what `read_csv()` alone would guess for a whole column of values formatted that way. (You do not need to know the exact output; explain the general behavior.)
-5. Your analysis produces a tibble with a factor column and a Date column. You need to hand the exact same R object to a groupmate to continue the analysis tomorrow. Should you save it with `write_csv()` or `write_rds()`? Justify your answer.
+1. What does `group_by()` actually change about a data frame? What does it leave unchanged?
+2. You run `df |> group_by(a, b) |> summarize(total = sum(x))` and then immediately run `|> summarize(grand_total = sum(total))` on the result, expecting one grand total. You get several rows instead. Explain why, and give two different fixes.
+3. Why does `slice_max(x, n = 5)` sometimes return more than 5 rows for a group? How would you force it to return exactly 5?
+4. What is the difference between `group_by(x) |> summarize(...)` and `summarize(..., .by = x)`? When might you prefer one over the other?
+5. A pipeline groups by `region` early on for one calculation, then later in the same pipeline tries to `filter()` for the single row with the maximum `sales` across the entire dataset, but gets one row per region instead. What went wrong, and how would you fix it?
 :::
 
 ::: {.callout-tip collapse="true" title="Solutions"}
-1. readr cannot know a column's type just from a CSV file, since plain text carries no type information, so it prints its best guess for each column so you can catch a wrong guess early rather than discovering it much later in an analysis. Add `show_col_types = FALSE` to suppress the message once you trust the guesses.
+1. `group_by()` adds grouping metadata that tells later dplyr verbs (`summarize()`, `mutate()`, `filter()`, and others) to operate separately within each group. It does not change any of the actual values in the data frame, add or remove rows, or reorder anything by itself.
 
-2. Forcing `product_code` to `col_double()` converts `"00452"` to the number `452`, silently dropping the leading zeros, because `452` is a perfectly valid double and readr has no way to know the leading zeros were meaningful. This is a bad idea whenever the "number" is really an identifier (product codes, ZIP codes, phone numbers) that will never be used in arithmetic; `col_character()` is the safer choice.
+2. By default, `summarize()` only removes the last grouping variable (`b`), leaving the result still grouped by `a`. The second `summarize()` therefore computes `sum(total)` separately within each value of `a`, producing one row per `a` instead of a single grand total. Fixing it means either adding `.groups = "drop"` to the first `summarize()`, or calling `ungroup()` on its result before summarizing again.
 
-3. The file most likely uses a semicolon as its delimiter (common where a comma is the decimal separator instead), which `read_csv()` does not expect, since it always assumes a comma delimiter. `read_csv2()` is built for exactly this format: semicolon delimited, comma as the decimal mark.
+3. `slice_max()` keeps every row tied for the cutoff position by default, so if there is a tie at the 5th-largest value, you can get 6 or more rows back for that group. Adding `with_ties = FALSE` forces it to return exactly `n` rows by breaking ties arbitrarily.
 
-4. `parse_number()` strips out the currency symbol and separators and returns just the numeric value as a double, handling formatting like this directly. Left to guess on its own, `read_csv()` would very likely treat a whole column formatted like `"€2.500,00"` as a character column, since values like that do not match its numeric-guessing heuristic at all.
+4. `group_by(x) |> summarize(...)` leaves the grouping (minus one level) attached to the result, so it persists into whatever comes next in the pipeline unless you remove it. `summarize(..., .by = x)` groups only for that single call and leaves no grouping behind afterward. `.by` is convenient exactly when you want grouped behavior for one step without having to remember to `ungroup()` later.
 
-5. `write_rds()`, because it preserves the tibble exactly as an R object, including the factor's levels and order and the Date column's type. `write_csv()` would flatten the factor down to plain character text and lose the level information entirely, and would require your groupmate to correctly re-specify every column's type by hand to get back to where you started.
+5. The `group_by(region)` from earlier in the pipeline was never removed (with `ungroup()`, `.groups = "drop"`, or by switching to `.by`), so the later `filter(sales == max(sales))` computed the maximum separately within each region instead of across the whole dataset. Removing the grouping before that `filter()` (or restructuring the earlier step to use `.by` instead of `group_by()`) fixes it.
 :::

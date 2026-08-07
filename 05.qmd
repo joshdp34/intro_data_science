@@ -1,14 +1,11 @@
-# Session 5: Data transformation (II): grouping and summarizing
+# Session 5: Data transformation (I): filtering, arranging, selecting and mutating
 
 ## Objectives
 
-- **Change the unit of analysis with grouping.** Use `group_by()` to organize data into subsets (groups) so that subsequent operations operate within each group rather than on the whole data set.
-- **Compute summaries across groups.** Apply `summarize()` to compute summary statistics (counts, means, medians, and so on) for each group. Understand that `summarize()` returns one row for each combination of grouping variables.
-- **Use helper functions.** Learn to use helpers like `n()` and `n_distinct()` within `summarize()` to count observations and distinct values.
-- **Select top, bottom, or sampled observations per group.** Use the `slice_*()` family (`slice_max()`, `slice_min()`, `slice_head()`, `slice_tail()`, `slice_sample()`) to pull specific rows out of each group.
-- **Know when grouping ends.** Understand exactly how much grouping `summarize()` removes by default, and how `ungroup()` and the `.by` argument give you explicit control.
-- **Enhance pipelines.** Continue to use the pipe (`|>` or `%>%`) to link `group_by()`, `summarize()` and other verbs into clear analytical workflows.
-- **Avoid the single most common grouping bug.** Recognize when leftover grouping from an earlier step silently changes what a later `filter()` or `mutate()` computes.
+- **Understand the purpose of data transformation.** You rarely get data in exactly the form needed for analysis. Transformation involves creating new variables, reordering or selecting observations, and renaming columns.
+- **Use dplyr verbs to manipulate rows and columns.** Learn `filter()` to subset rows, `distinct()` to remove duplicates, `arrange()` to reorder rows, `select()`, `rename()` and `relocate()` to choose, rename and reposition variables, and `mutate()` to create new columns.
+- **Chain operations with the pipe.** Use the pipe (`|>` in base R, or `%>%` from magrittr) to express sequences of transformations in a readable way.
+- **Recognize a handful of correctness traps.** dplyr is forgiving about syntax but not about logic; you will see a few specific ways a pipeline can run without error and still silently produce the wrong answer.
 
 ## Notes
 
@@ -19,202 +16,246 @@ library(tidyverse)
 library(palmerpenguins)
 ```
 
-### Grouping with `group_by()`
+Every dplyr verb works the same way: the first argument is always a data frame, the rest of the arguments describe what to do using the (unquoted) column names, and the result is always a new data frame. dplyr never modifies its input in place, so `filter(penguins, ...)` leaves the original `penguins` completely untouched unless you explicitly reassign the result to a name.
 
-`group_by()` does not change the data itself or reorder any rows; it only adds metadata that tells later dplyr verbs to operate separately on each group instead of on the whole data frame at once. You can see this metadata in how a grouped tibble prints.
+### Picking rows with `filter()`
+
+`filter()` keeps only the rows where a logical condition is `TRUE`.
 
 ```{r}
-penguins_by <- penguins |> group_by(species, island)
-penguins_by
+adelie_dream <- penguins |>
+  filter(species == "Adelie", island == "Dream")
+
+adelie_dream |> head()
 ```
 
-Notice the `# Groups: species, island [5]` line: the data itself looks identical to `penguins`, but dplyr now knows there are five distinct species-island combinations, and every subsequent verb in the pipeline will respect that grouping until something removes it.
-
-### Summarizing with `summarize()`
-
-`summarize()` collapses each group down to a single row. Without any prior grouping, it collapses the entire data frame to one row. The expressions inside `summarize()` must each return a single value per group, which is why functions like `mean()`, `median()`, `sd()`, `n()` (count of rows), and `n_distinct()` (count of distinct values) show up here constantly.
+Separating conditions with a comma (as above) means "and": both conditions must hold. You can combine conditions explicitly with `&` (and), `|` (or), and check membership in a set of values with `%in%`, which is usually clearer than a long chain of `|` comparisons against the same variable.
 
 ```{r}
-penguin_summary <- penguins |>
-  group_by(species, island) |>
-  summarize(
-    count = n(),
-    mean_mass = mean(body_mass_g, na.rm = TRUE),
-    sd_mass = sd(body_mass_g, na.rm = TRUE),
-    distinct_years = n_distinct(year)
-  )
+# every penguin that is either an Adelie or a Chinstrap
+adelie_or_chinstrap <- penguins |>
+  filter(species %in% c("Adelie", "Chinstrap"))
 
-penguin_summary
-```
-
-::: {.callout-note}
-## Read the message dplyr prints above your output
-That line reading *"summarise() has grouped output by 'species'. You can override using the .groups argument"* is not a warning to ignore; it is telling you exactly how much grouping survived the summary (see Example 5.2 for what happens when that surprises you).
-:::
-
-### Ungrouping, and the `.by` alternative
-
-Grouping set with `group_by()` sticks around on the result until you explicitly remove it with `ungroup()`, even after a `summarize()` (see Example 5.2). If you only need grouping for a single operation, dplyr's `.by` argument lets you group and summarize (or mutate, or filter) in one step, with no lingering grouping to remember to undo afterward:
-
-```{r}
-penguins |> summarize(mean_mass = mean(body_mass_g, na.rm = TRUE), .by = species)
-```
-
-The `.by` result above has no `# Groups:` line at all, because the grouping only ever applied to that one call. This is a newer addition to dplyr (version 1.1 and later); you will see both styles, `group_by()` followed later by `ungroup()`, and one-off `.by`, in real code, and it is worth being comfortable reading either one.
-
-### Extracting rows within groups: the `slice_*()` family
-
-Five `slice_*()` functions pull specific rows out of each group: `slice_head()` and `slice_tail()` take the first or last `n` rows of each group as they currently appear, `slice_min()` and `slice_max()` take the rows with the smallest or largest value of some variable, and `slice_sample()` takes a random sample. All of them accept `n` for a fixed count or `prop` for a proportion of each group's rows.
-
-```{r}
-top_diamonds <- diamonds |>
-  group_by(cut) |>
-  slice_max(order_by = price, n = 3, with_ties = FALSE)
-
-top_diamonds
+nrow(adelie_or_chinstrap)
 ```
 
 ::: {.callout-warning}
-## `with_ties = FALSE` is not just a style preference
-Without it, `slice_max()` and `slice_min()` keep *every* row tied for the cutoff position, so asking for the top 3 can hand you back 4, 5, or more rows in a group with ties. See Example 5.4 for exactly how this plays out.
+## `=` is not `==`
+Inside `filter()`, a single `=` does not test equality; it tries to name an argument, and dplyr will stop you with an error rather than silently doing the wrong thing (see Example 4.1). Always use `==` to compare values.
 :::
 
-### Putting it together: grouped summaries in a real pipeline
+### Removing duplicate rows with `distinct()`
 
-Here is a small (simulated) A/B test: half of a set of website visitors saw variant A of a page, half saw variant B, and `clicked` records whether each visitor clicked a button.
+`distinct()` keeps only the unique combinations of the columns you name, dropping every duplicate after the first.
+
+```{r}
+# every combination of species and island actually observed in the data
+penguins |> distinct(species, island)
+```
+
+Add `.keep_all = TRUE` if you want to keep the first full row for each unique combination, rather than just the columns you named.
+
+### Reordering rows with `arrange()`
+
+`arrange()` sorts rows by one or more columns, ascending by default; wrap a column in `desc()` to sort it in descending order instead. `arrange()` only changes the order of the rows; it never adds or removes any.
+
+```{r}
+penguins_sorted <- penguins |>
+  arrange(desc(body_mass_g), flipper_length_mm)
+
+penguins_sorted |> head()
+```
+
+::: {.callout-note}
+## Missing values always sort to the end
+Regardless of whether you sort ascending or with `desc()`, rows with `NA` in the sorting column are always placed last. `arrange(desc(x))` does not mean "biggest first, then `NA`, then smallest;" it means "biggest first, then smallest, then `NA`."
+:::
+
+### Picking, dropping and renaming columns
+
+`select()` narrows a data frame down to the columns you want, in the order you name them. It understands ranges (`bill_length_mm:bill_depth_mm`), negation (`-` or `!`), and helper functions like `starts_with()`, `ends_with()`, `contains()`, and `where()` (for selecting by a column's type or a condition, such as `where(is.numeric)`).
+
+```{r}
+penguins |> select(species, island, body_mass_g) |> head()
+
+# every column except the two bill measurements
+penguins |> select(-(bill_length_mm:bill_depth_mm)) |> head()
+```
+
+You can rename a column while selecting it, with the new name on the left of `=`:
+
+```{r}
+penguins |> select(flipper_mm = flipper_length_mm, species) |> head()
+```
+
+If you want to rename a column without dropping every other column, use `rename()` instead of `select()`:
+
+```{r}
+penguins |> rename(flipper_mm = flipper_length_mm) |> head()
+```
+
+`relocate()` moves columns to a new position without changing which columns are present, using `.before` or `.after` to say where:
+
+```{r}
+penguins |> relocate(body_mass_g, .before = species) |> head()
+```
+
+### Creating new columns with `mutate()`
+
+`mutate()` adds new columns that are computed from existing ones, and you can refer to a column created earlier in the same `mutate()` call.
+
+```{r}
+penguins |>
+  mutate(
+    bill_ratio = bill_length_mm / bill_depth_mm,
+    heavy = body_mass_g > 4500
+  ) |>
+  head()
+```
+
+New columns are added at the end by default; use `.before` or `.after` (just like `relocate()`) to control where they land, or `.keep = "used"` if you only want to keep the columns that went into computing the new one, which is handy for checking your work.
+
+```{r}
+penguins |>
+  mutate(bill_ratio = bill_length_mm / bill_depth_mm, .keep = "used") |>
+  head()
+```
+
+If you only want to keep the newly created columns (and any grouping columns) and drop everything else, `transmute()` does that in one step.
+
+### Combining steps with the pipe
+
+Stringing several verbs together by saving an intermediate object after each one is verbose, and re-using the same name for each intermediate step (as the previous version of these notes did) risks exactly the shadowing problem in Example 4.4. The pipe, `|>`, passes the result on its left into the first argument of the call on its right, so an entire sequence of transformations reads top to bottom as a single pipeline instead:
+
+```{r}
+tall_penguins <- penguins |>
+  filter(!is.na(body_mass_g)) |>
+  mutate(bill_ratio = bill_length_mm / bill_depth_mm) |>
+  select(species, island, body_mass_g, bill_ratio) |>
+  arrange(desc(body_mass_g))
+
+tall_penguins |> head()
+```
+
+Read the pipe as "then": filter, *then* mutate, *then* select, *then* arrange. Each step's output becomes the next step's input, and nothing is overwritten along the way until the very last line assigns the final result to `tall_penguins`.
+
+Here is the same pattern applied to a dataset from outside `palmerpenguins`, to get some practice on data you have not seen built into a package before:
 
 ```{r}
 #| message: false
-ab <- read_csv("data/ab_marketing.csv")
+stress <- read_csv("data/student_stress_survey.csv")
 
-click_rates <- ab |>
-  group_by(variant) |>
-  summarize(
-    visitors = n(),
-    clicks = sum(clicked),
-    click_rate = mean(clicked)
-  ) |>
-  arrange(desc(click_rate))
-
-click_rates
+stress |>
+  filter(study_hours > 10) |>
+  mutate(hours_per_stress_point = study_hours / stress_level) |>
+  select(major, study_hours, stress_level, hours_per_stress_point) |>
+  arrange(desc(hours_per_stress_point)) |>
+  head()
 ```
-
-```{r}
-click_rates |>
-  ggplot(aes(x = variant, y = click_rate)) +
-  geom_col()
-```
-
-Grouping, then summarizing, then arranging, then plotting is one of the most common shapes a real analysis takes: reduce the raw data down to the handful of numbers you actually care about, then let a plot or a sorted table communicate the result.
 
 ### Fringe cases and common pitfalls
 
-::: {.example title="Example 5.1"}
-**Leftover grouping from an earlier step can silently change what a later step computes.**
-
-Suppose you group by species early in a pipeline for one reason, then later try to find the single heaviest penguin in the entire dataset:
-
-```{r}
-# what you probably meant: the one heaviest penguin overall
-penguins |> filter(body_mass_g == max(body_mass_g, na.rm = TRUE))
-```
-
-```{r}
-# what you get if the data is still grouped by species from an earlier step
-penguins |>
-  group_by(species) |>
-  select(species, island, body_mass_g) |>
-  filter(body_mass_g == max(body_mass_g, na.rm = TRUE))
-```
-
-The second version returns three rows, one heaviest penguin *per species*, not the single heaviest penguin overall, because `group_by()` is still in effect and `max()` inside `filter()` is computed separately within each group. Nothing here errors or warns; the code runs perfectly and produces a perfectly reasonable-looking, wrong answer if you forgot the grouping was still active. Whenever a `filter()` or `mutate()` gives a surprising number of rows, check whether the data is still grouped from several steps earlier.
-:::
-
-::: {.example title="Example 5.2"}
-**`summarize()` only removes the last level of grouping, not all of it.**
-
-```{r}
-by_species_island <- penguins |>
-  group_by(species, island) |>
-  summarize(n = n())
-```
-
-Grouping by two variables and then summarizing does not return an ungrouped result. It peels off only the last grouping variable (`island`) and leaves the result still grouped by the first one (`species`), which is exactly what that printed message was telling you:
-
-```{r}
-dplyr::group_vars(by_species_island)
-```
-
-If you chain another `summarize()` immediately afterward expecting it to operate on the whole table, it will instead operate per species, one more time. Setting `.groups = "drop"` inside the first `summarize()` removes all grouping in one step, which is often what you actually want at the end of a pipeline:
-
-```{r}
-penguins |>
-  group_by(species, island) |>
-  summarize(n = n(), .groups = "drop") |>
-  dplyr::group_vars()
-```
-:::
-
-::: {.example title="Example 5.3"}
-**`n()` only works inside a dplyr verb, not on its own.**
+::: {.example title="Example 4.1"}
+**`filter(x = value)` does not silently do the wrong thing; it stops you.**
 
 ```{r}
 #| error: true
-n()
+filter(penguins, species = "Adelie")
 ```
 
-`n()` (and `n_distinct()`, `cur_group()`, and a few other dplyr helpers) rely on context that only exists while dplyr is actively evaluating `mutate()`, `filter()`, `summarize()`, or `group_by()`; they have no meaning called by themselves at the console. If you see this error, you have usually copied a line out of a pipeline without its surrounding `summarize()` or `mutate()` call.
+Modern dplyr specifically detects this mistake and refuses to guess what you meant, offering the exact fix in the error message itself. Older versions of dplyr (and many other R functions in general) are not always this forgiving, so it is worth building the habit of reading `==` for "is equal to" and `=` only for naming an argument or assigning a value.
 :::
 
-::: {.example title="Example 5.4"}
-**Asking for the top `n` rows per group can return more than `n` rows.**
+::: {.example title="Example 4.2"}
+**`!=` quietly drops missing values along with everything else.**
+
+`penguins$sex` has a handful of genuinely missing values. Suppose you want every penguin that is *not* recorded as male, expecting that to include both females and unknowns:
 
 ```{r}
-ties_example <- tibble(group = c("a", "a", "a"), value = c(5, 5, 3))
+sum(is.na(penguins$sex))          # how many sex values are missing?
 
-# asked for 1 row per group, got 2, because both 5s are tied for first place
-ties_example |> group_by(group) |> slice_max(value, n = 1)
-
-# with_ties = FALSE breaks the tie arbitrarily and returns exactly n rows
-ties_example |> group_by(group) |> slice_max(value, n = 1, with_ties = FALSE)
+not_male <- penguins |> filter(sex != "male")
+nrow(not_male)                    # fewer rows than you might expect
 ```
 
-If your code assumes `slice_max(..., n = 3)` always returns exactly three rows per group (for example, because you plan to immediately compute `n() == 3` or bind several groups' results into a fixed-size table), a tie will break that assumption. Decide explicitly whether ties should be kept or broken, rather than discovering the answer when a later step chokes on an unexpectedly large group.
+`sex != "male"` evaluates to `NA`, not `TRUE`, for every row where `sex` is already `NA`, because R cannot know whether an unknown value is or is not equal to `"male"`. `filter()` keeps only rows where the condition is `TRUE`, so `NA` rows are silently excluded, the same way they were silently excluded from the plots in Session 3. If you want to keep the missing values too, you have to ask for them explicitly:
+
+```{r}
+not_male_or_unknown <- penguins |> filter(sex != "male" | is.na(sex))
+nrow(not_male_or_unknown)         # now includes the missing-sex penguins
+```
+
+Any time you filter with `!=`, `<`, or `>` on a column that might contain `NA`, decide on purpose whether missing values belong in your result, rather than letting `filter()` decide for you.
+:::
+
+::: {.example title="Example 4.3"}
+**Floating-point rounding error (from Session 1) can make `filter()` miss a row that looks like an exact match.**
+
+```{r}
+example_data <- tibble(y = 0.1 + 0.2)
+example_data$y                          # prints as 0.3
+
+example_data |> filter(y == 0.3)        # 0 rows: not actually equal underneath
+example_data |> filter(near(y, 0.3))    # 1 row: near() allows for tiny rounding error
+```
+
+This is the exact same floating-point issue from Session 1's `0.1 + 0.2 == 0.3`, just showing up inside a `filter()` instead of at the console. Whenever you filter on an exact match to a computed decimal value, prefer dplyr's `near()` over `==`.
+:::
+
+::: {.example title="Example 4.4"}
+**Reassigning a built-in dataset's own name hides your changes from yourself.**
+
+An earlier version of these notes did the following, one step at a time:
+
+```{r}
+#| eval: false
+penguins <- penguins |> rename(flipper_mm = flipper_length_mm)
+penguins <- penguins |> mutate(bill_size = bill_length_mm + bill_depth_mm)
+```
+
+```{r}
+penguins2 <- penguins |> rename(flipper_mm = flipper_length_mm)
+"flipper_length_mm" %in% names(penguins2)  # gone
+"flipper_mm" %in% names(penguins2)         # here instead
+```
+
+The moment you run `penguins <- penguins |> rename(...)`, the original `palmerpenguins::penguins` is shadowed by your modified version for the rest of the R session. Every chunk after that point that refers to `penguins` gets *your* renamed copy, not the original, which is easy to forget an hour (or a week) later. If you restart R (as recommended in Session 1) the shadowing disappears and old code that relied on the renamed column suddenly breaks, while code that still expects the original name works again. Assigning transformed data to a new name, such as `penguins_renamed`, avoids the problem entirely and makes it obvious at a glance which object is the original and which is derived.
 :::
 
 ### Recap
 
 | **Term** | **Definition** |
 |-------------------|-------------------------------------------------------------|
-| **`group_by()`** | Adds grouping metadata to a data frame without changing or reordering the data itself. |
-| **`summarize()`** | Collapses each group to a single row using functions that return one value per group. |
-| **`n()` / `n_distinct()`** | Count rows, or count distinct values, within the current group; only valid inside a dplyr verb. |
-| **`.groups` argument** | Controls how much grouping `summarize()` leaves on its result: `"drop_last"` (default), `"drop"`, or `"keep"`. |
-| **`ungroup()`** | Removes all grouping from a data frame explicitly. |
-| **`.by`** | A per-call alternative to `group_by()` that applies only to that one verb, leaving no grouping behind afterward. |
-| **`slice_max()` / `slice_min()`** | Return the rows with the largest or smallest value of a variable, within each group. |
-| **`slice_head()` / `slice_tail()` / `slice_sample()`** | Return the first, last, or a random sample of rows within each group. |
-| **`with_ties`** | Controls whether `slice_max()`/`slice_min()` keep every row tied for the cutoff position (default) or return exactly `n` rows. |
-| **Leftover grouping** | Grouping from an earlier pipeline step that silently changes what a later `filter()` or `mutate()` computes. |
+| **`filter()`** | Keeps rows where a logical condition is `TRUE`; drops rows where it is `FALSE` or `NA`. |
+| **`%in%`** | Tests membership in a set of values; clearer than chaining several `|` comparisons on one variable. |
+| **`distinct()`** | Keeps only unique combinations of the named columns. |
+| **`arrange()`** | Reorders rows by one or more columns; `NA` always sorts last regardless of direction. |
+| **`select()`** | Narrows and reorders columns; supports ranges, negation, and helpers like `starts_with()` and `where()`. |
+| **`rename()`** | Renames specific columns while keeping every other column. |
+| **`relocate()`** | Moves columns to a new position with `.before` or `.after`, without changing which columns exist. |
+| **`mutate()`** | Adds new columns computed from existing ones; `.before`, `.after`, and `.keep` control placement and what survives. |
+| **`transmute()`** | Like `mutate()`, but keeps only the newly created (and grouping) columns. |
+| **The pipe (`|>`)** | Passes the result on its left into the first argument on its right; read it as "then." |
+| **Floating-point filtering** | Use `near()` instead of `==` when filtering on a computed decimal value. |
 
 ### Check your understanding
 
 ::: {.callout-note collapse="false" title="Problems"}
-1. What does `group_by()` actually change about a data frame? What does it leave unchanged?
-2. You run `df |> group_by(a, b) |> summarize(total = sum(x))` and then immediately run `|> summarize(grand_total = sum(total))` on the result, expecting one grand total. You get several rows instead. Explain why, and give two different fixes.
-3. Why does `slice_max(x, n = 5)` sometimes return more than 5 rows for a group? How would you force it to return exactly 5?
-4. What is the difference between `group_by(x) |> summarize(...)` and `summarize(..., .by = x)`? When might you prefer one over the other?
-5. A pipeline groups by `region` early on for one calculation, then later in the same pipeline tries to `filter()` for the single row with the maximum `sales` across the entire dataset, but gets one row per region instead. What went wrong, and how would you fix it?
+1. What is the difference between `filter()` and `arrange()`? Can either one change how many rows are in the result?
+2. You write `filter(df, score = 90)` and R stops with an error instead of running. What mistake did you make, and how do you fix it?
+3. A dataset has a `region` column with a few missing values. You run `filter(df, region != "West")` expecting to get everyone outside the West region, including anyone with an unknown region. Explain why the missing-region rows are excluded, and how you would include them.
+4. Why does dplyr's `near()` function exist, and when should you reach for it instead of `==`?
+5. Your classmate writes `penguins <- penguins |> mutate(mass_kg = body_mass_g / 1000)` at the top of their script, then spends twenty minutes confused about why a later chunk that expects the original `palmerpenguins::penguins` gives strange results. What happened, and what habit would prevent it?
 :::
 
 ::: {.callout-tip collapse="true" title="Solutions"}
-1. `group_by()` adds grouping metadata that tells later dplyr verbs (`summarize()`, `mutate()`, `filter()`, and others) to operate separately within each group. It does not change any of the actual values in the data frame, add or remove rows, or reorder anything by itself.
+1. `filter()` selects which rows are present in the result and can reduce the number of rows (or leave it unchanged if every row matches). `arrange()` only changes the order of the rows; it always returns the same number of rows it was given.
 
-2. By default, `summarize()` only removes the last grouping variable (`b`), leaving the result still grouped by `a`. The second `summarize()` therefore computes `sum(total)` separately within each value of `a`, producing one row per `a` instead of a single grand total. Fixing it means either adding `.groups = "drop"` to the first `summarize()`, or calling `ungroup()` on its result before summarizing again.
+2. Inside `filter()`, `=` names an argument rather than testing equality, so `score = 90` is not a valid comparison. dplyr detects this specific mistake and errors instead of guessing. The fix is to use `==`: `filter(df, score == 90)`.
 
-3. `slice_max()` keeps every row tied for the cutoff position by default, so if there is a tie at the 5th-largest value, you can get 6 or more rows back for that group. Adding `with_ties = FALSE` forces it to return exactly `n` rows by breaking ties arbitrarily.
+3. `region != "West"` evaluates to `NA`, not `TRUE`, for any row where `region` is already missing, because R cannot determine whether an unknown region is or is not "West." Since `filter()` only keeps rows where the condition is exactly `TRUE`, the missing-region rows are dropped along with the true non-matches. To include them, add an explicit `is.na()` check: `filter(df, region != "West" | is.na(region))`.
 
-4. `group_by(x) |> summarize(...)` leaves the grouping (minus one level) attached to the result, so it persists into whatever comes next in the pipeline unless you remove it. `summarize(..., .by = x)` groups only for that single call and leaves no grouping behind afterward. `.by` is convenient exactly when you want grouped behavior for one step without having to remember to `ungroup()` later.
+4. `near()` compares two numbers while allowing for a small amount of floating-point rounding error, which real decimal arithmetic almost always introduces. Use it instead of `==` whenever you are filtering (or otherwise comparing) a numeric column that was computed rather than typed in directly, since two mathematically equal computed values can differ by a tiny amount at the level of their exact binary representation.
 
-5. The `group_by(region)` from earlier in the pipeline was never removed (with `ungroup()`, `.groups = "drop"`, or by switching to `.by`), so the later `filter(sales == max(sales))` computed the maximum separately within each region instead of across the whole dataset. Removing the grouping before that `filter()` (or restructuring the earlier step to use `.by` instead of `group_by()`) fixes it.
+5. Their line reassigns the name `penguins` to a modified copy of the data, so every subsequent chunk that refers to `penguins` sees the modified version (with the new `mass_kg` column) instead of the original `palmerpenguins::penguins`. Assigning the transformed data to a new name, such as `penguins_kg`, keeps the original available and makes it clear which object is which.
 :::
