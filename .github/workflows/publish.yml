@@ -36,6 +36,7 @@ jobs:
             any::duckdb
             any::arrow
             any::jsonlite
+            any::modelr
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2

@@ -1,51 +1,179 @@
-# Session 22 – Statistical modelling I: simple linear regression
+# Session 22: Statistical modeling I: simple linear regression
 
 ## Objectives
 
-* **Understand why we model data.**  Statistical models provide a low‑dimensional summary of a dataset by partitioning it into patterns and residuals.  They are not meant to be “true” representations of the world; rather, they are useful approximations.
-* **Define model families and fit a linear model.**  A model family is an equation that expresses a pattern (e.g., a straight line) with parameters that can vary.  Fitting a model means finding the parameter values that make the model closest to the data.
-* **Use formulas and `lm()` to specify models.**  In R, formulas like `y ~ x` specify linear models.  The `lm()` function translates `y ~ x` into a straight‑line equation and finds the best‑fitting intercept and slope.
-* **Interpret coefficients in simple linear regression.**  In a straight‑line model $\widehat{y} = b_0 + b_1 x$, the slope $b_1$ is the change in the predicted response for a one‑unit increase in the predictor and the intercept $b_0$ is the predicted response when the predictor is zero.
-* **Visualize predictions and residuals.**  Use `modelr::data_grid()` and `add_predictions()` to create fitted lines and `add_residuals()` to compute residuals.  Plotting both helps diagnose how well the model captures the data.
+- **Understand why we model data.** Statistical models provide a low-dimensional summary of a dataset by partitioning it into patterns and residuals. They are not meant to be "true" representations of the world; they are useful approximations, and part of using one well is knowing where it stops being useful.
+- **Define model families and fit a linear model.** A model family is an equation expressing a pattern (such as a straight line) with parameters that can vary. Fitting a model means finding the parameter values that make the model closest to the data.
+- **Use formulas and `lm()` to specify models.** In R, formulas like `y ~ x` specify linear models; `lm()` finds the best-fitting intercept and slope, and `model.matrix()` shows exactly how a formula gets translated into numbers, including for a categorical predictor.
+- **Interpret coefficients in simple linear regression.** In $\widehat{y} = b_0 + b_1 x$, the slope $b_1$ is the change in the predicted response for a one-unit increase in the predictor, and the intercept $b_0$ is the predicted response when the predictor is zero. Recognize that swapping which variable is predicted and which is the predictor does not just flip the sign or invert the slope.
+- **Visualize predictions and residuals.** Use `modelr::data_grid()` and `add_predictions()` to draw a fitted line, and `add_residuals()` to compute residuals. Recognize that a good-looking summary statistic (like $R^2$) is not a substitute for actually looking at the data and the residuals.
 
 ## Notes
 
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(modelr)
+```
+
 ### Why do we model?
 
-Exploratory data analysis reveals patterns, but strong patterns can obscure subtler trends.  A **statistical model** provides a simple, low‑dimensional summary of a dataset.  The model captures the dominant pattern, and the **residuals** are the deviations between the observed data and the model’s predictions.  George Box reminds us that *all models are wrong, but some are useful*.  Our goal is to choose a model family that captures the main trend and to use the residuals to explore what the model misses.
+Exploratory data analysis reveals patterns, but a strong pattern can obscure a subtler one hiding underneath it, exactly as Session 21's diamonds example showed. A statistical model provides a simple, low-dimensional summary of a dataset: it captures a dominant pattern, and the residuals are whatever is left over, the deviation between the observed data and the model's predictions. George Box's famous line applies directly here: all models are wrong, but some are useful. The goal isn't to find the "true" model (there usually isn't one), but to choose a model family that captures the main trend well enough to be worth using, and to use the residuals to see what it misses.
 
 ### Model families and fitting
 
-A **model family** is defined by an equation with parameters that can vary.  For example, a straight‑line family has the equation `y = a₁ * x + a₂`.  Here `x` and `y` are variables from the data and `a₁`, `a₂` are parameters.  **Fitting** the model involves finding the parameter values that make the model as close as possible to the data.  We usually measure closeness by the root‑mean‑squared deviation between the observed and predicted values.  The fitted model is the member of the family that minimizes this distance.
+A model family is an equation with parameters that can vary; a straight-line family is $y = a_1 x + a_2$, where $x$ and $y$ are variables from the data and $a_1, a_2$ are parameters to be determined. Fitting the model means finding the specific parameter values that make this particular member of the family as close as possible to the data, typically by minimizing the root-mean-squared distance between observed and predicted values. The fitted model is whichever member of the family comes closest by that measure.
 
 ### Linear models and formulas
 
-In R, linear models are expressed using **formulas**.  A formula like `y ~ x` indicates that `y` is to be modelled as a linear function of `x`.  R automatically adds an intercept unless told not to.  The `lm()` function fits the model: it translates `y ~ x` into an equation of the form `y = b₀ + b₁ x` and uses least squares to estimate `b₀` and `b₁`.  Formulas can incorporate multiple predictors (e.g., `y ~ x1 + x2`), interactions (`y ~ x1 * x2`) and transformations.  The `model_matrix()` function shows how R constructs the model matrix for a given formula.
+R expresses a linear model as a formula: `y ~ x` means "model `y` as a linear function of `x`," and R adds an intercept automatically unless told not to. `lm()` fits the model, translating the formula into $y = b_0 + b_1 x$ and finding $b_0$ and $b_1$ by least squares.
+
+```{r}
+#| message: false
+ads <- read_csv("data/advertising.csv")
+
+sales_model <- lm(sales ~ tv, data = ads)
+coef(sales_model)
+```
+
+Formulas extend naturally to more than one predictor (`y ~ x1 + x2`), interactions (`y ~ x1 * x2`), and transformations; `model.matrix()` shows exactly how R turns a formula into the actual numeric matrix used for fitting, which matters more than it sounds like it should the moment a predictor is categorical rather than numeric (see Example 22.4).
 
 ### Interpreting coefficients
 
-Once you have fitted a simple linear regression, the model has the form
+A fitted simple linear model has the form $\widehat{y} = b_0 + b_1 x$. The slope $b_1$ says how much the predicted response changes for a one-unit increase in the predictor; the intercept $b_0$ is the predicted response when the predictor equals zero, which is sometimes meaningless (a predictor that's never actually zero in real data, like an ad budget) and sometimes exactly the quantity you care about.
 
-$$
-\widehat{y} = b_0 + b_1 x,
-$$
+```{r}
+coef(sales_model)
+```
 
-where $b_0$ is the **intercept** and $b_1$ is the **slope**.  The slope tells you how the predicted response changes with the predictor: for every one‑unit increase in $x$, the predicted value of $y$ increases (or decreases) by $b_1$.  The intercept is the predicted value of $y$ when $x$ equals zero.  Sometimes the intercept lies outside the range of your data and has no meaningful interpretation; in such cases you should focus on the slope.  Remember that linear regression describes associations; it does not establish causation.
+Here, each additional $1,000 spent on TV advertising is associated with about `r round(coef(sales_model)[["tv"]] * 1000, 0)` dollars more in sales, and a campaign with no TV spending at all is predicted to sell around `r round(coef(sales_model)[["(Intercept)"]], 1)` units already, presumably from other channels not in this particular model. That's an association, not a guarantee of causation: this model alone can't rule out some other factor (overall marketing budget, seasonality, a competitor's price change) driving both TV spending and sales together.
 
 ### Predictions and residuals
 
-After fitting a model, you should examine its **predictions** and **residuals**.  To visualize predictions, generate a grid of predictor values with `modelr::data_grid()` and add predicted responses with `add_predictions()`.  Plotting the observed data along with the predicted line helps you see how well the model captures the pattern.  To understand what the model misses, compute residuals with `add_residuals()` and explore their distribution.  A histogram or frequency polygon of the residuals shows how spread out they are and whether they are centered around zero.  Plotting residuals versus the predictor helps you check for systematic patterns; if the residuals look like random noise, your model has captured the main trend.  Persistent patterns suggest the need for a more complex model, such as adding polynomial terms or transforming the predictor.
+After fitting a model, look at both its predictions and its residuals, not just its coefficients. `data_grid()` builds an evenly spaced grid of predictor values, and `add_predictions()` computes the fitted line across that grid, which is what you actually plot alongside the real data.
 
-### Key take‑aways
+```{r}
+grid <- ads |> data_grid(tv = seq_range(tv, 50)) |> add_predictions(sales_model)
 
-* **Models summarise patterns.**  A statistical model partitions data into patterns and residuals.
-* **Model families are equations with parameters.**  We fit a model by choosing parameter values that minimise the distance between the model and the data.
-* **Formulas and `lm()` specify linear models.**  A formula like `y ~ x` becomes a straight‑line equation and `lm()` finds the best‑fitting slope and intercept.
-* **Interpret slopes and intercepts carefully.**  The slope is the change in the predicted response for a one‑unit change in the predictor; the intercept is the predicted response when the predictor is zero.
-* **Always inspect predictions and residuals.**  Use `data_grid()` and `add_predictions()` to draw fitted lines, and `add_residuals()` to examine what the model misses.
+ggplot(ads, aes(x = tv, y = sales)) +
+  geom_point(alpha = 0.5) +
+  geom_line(data = grid, aes(y = pred), color = "steelblue", linewidth = 1)
+```
 
-<!-- ## In‑class activity and suggested reading -->
+`add_residuals()` attaches each observation's residual (observed minus predicted) directly to the original data, ready to plot.
 
-<!-- In today’s in‑class activity you will practise simple linear regression using the built‑in **mtcars** dataset.  You will explore the relationship between a car’s weight (`wt`) and its fuel efficiency (`mpg`) by creating scatterplots, fitting a linear model with `lm()`, extracting and interpreting the coefficients, adding predicted values and residuals, and visualising residuals.  See the separate assignment file for details. -->
+```{r}
+ads <- ads |> add_residuals(sales_model)
 
-<!-- **Suggested reading for Session 23:**  The next class introduces logistic regression and model evaluation.  Read **Section 9.5 “Introduction to logistic regression”** from the *OpenIntro Biostatistics* text.  Logistic regression is a type of generalised linear model used when the response variable is binary【900995470734497†L4-L20】.  Unlike linear regression, which models a continuous response with a straight line, logistic regression models the log‑odds of success as a linear function of the predictors【900995470734497†L4-L20】.  The section explains that generalised linear models first model the response variable with a probability distribution (e.g., binomial) and then model the parameters of that distribution with predictors【900995470734497†L14-L20】.  Reading this section will prepare you to interpret logistic regression coefficients and understand how classification models are fitted and evaluated. -->
+ggplot(ads, aes(x = tv, y = resid)) +
+  geom_point(alpha = 0.5) +
+  geom_hline(yintercept = 0, linetype = "dashed")
+```
+
+Residuals scattered randomly around zero, with no obvious remaining pattern, are a sign the model has captured the main trend; a residual plot with its own visible shape (a curve, a funnel, a cluster) is telling you the straight-line family missed something systematic, which no amount of staring at the coefficients alone would reveal (see Example 22.1).
+
+### Fringe cases and common pitfalls
+
+::: {.example title="Example 22.1"}
+**Four datasets can share nearly identical regression coefficients and $R^2$, and look nothing alike.**
+
+```{r}
+data(anscombe)
+
+for (i in 1:4) {
+  x <- anscombe[[paste0("x", i)]]
+  y <- anscombe[[paste0("y", i)]]
+  m <- lm(y ~ x)
+  cat("Dataset", i, "- slope:", round(coef(m)[[2]], 2),
+      " intercept:", round(coef(m)[[1]], 2),
+      " R-squared:", round(summary(m)$r.squared, 3), "\n")
+}
+```
+
+All four of Francis Anscombe's famous constructed datasets fit a line with essentially the same slope (about 0.5), the same intercept (about 3), and the same $R^2$ (about 0.67), and yet the four scatterplots behind these numbers look completely different: one is a clean linear relationship, one is a clear curve that a straight line badly misrepresents, one is a perfect line thrown off by a single outlier, and one is a vertical cluster of identical x-values plus one point far to the side, entirely driving the whole fit. Every one of the numeric summaries this session teaches you to compute agrees across all four; only actually plotting the data (and the residuals) reveals that three of the four have no business being described by a straight line at all. Never trust a regression's summary statistics without also looking at the data.
+:::
+
+::: {.example title="Example 22.2"}
+**Predicting outside the range of your data is still just arithmetic, and arithmetic doesn't know when to stop.**
+
+```{r}
+range(ads$tv)     # the actual range of TV budgets observed
+max(ads$sales)    # the largest sales figure actually observed
+
+predict(sales_model, tibble(tv = 5000))
+```
+
+No advertiser in this dataset spent anywhere near $5,000,000 on TV (the real values are recorded in thousands, and the largest is under $300,000), and no observed campaign ever sold close to 274 units, yet the model happily returns a specific-looking number anyway, because a straight line is defined for every real number, not just the range where you actually have data to justify it. Nothing stops `predict()` from extrapolating; it's up to you to notice you've walked off the edge of what the model was actually fit to describe. A prediction is only as trustworthy as the data that produced it, and that trust doesn't extend past the data's own range without a much stronger argument than "the line kept going."
+:::
+
+::: {.example title="Example 22.3"}
+**Regressing `y` on `x` and regressing `x` on `y` are not inverse operations of each other.**
+
+```{r}
+model_yx <- lm(sales ~ tv, data = ads)
+model_xy <- lm(tv ~ sales, data = ads)
+
+coef(model_yx)[["tv"]]        # slope predicting sales from tv
+coef(model_xy)[["sales"]]     # slope predicting tv from sales
+1 / coef(model_yx)[["tv"]]    # what the second slope would be if it were just "the inverse"
+```
+
+It's tempting to assume that if a $1,000 increase in TV spending predicts a certain increase in sales, then reversing the question ("how much TV spending predicts a one-unit increase in sales?") should just be the reciprocal of the first slope. It isn't: least squares regression minimizes vertical distance to the line in whichever direction you're predicting, so fitting `sales ~ tv` and fitting `tv ~ sales` genuinely optimize two different quantities and land on two different lines, not the same line viewed from two directions. Always be explicit about which variable you're actually trying to predict from which; the two directions are different models, not the same one written two ways.
+:::
+
+::: {.example title="Example 22.4"}
+**An ordered categorical predictor gets polynomial contrasts by default, which can make coefficients nearly unreadable.**
+
+```{r}
+class(diamonds$cut)   # cut is stored as an ORDERED factor
+
+model.matrix(price ~ cut, data = diamonds) |> head(2)
+```
+
+Because `cut` is an ordered factor, R defaults to polynomial contrasts (labeled `.L`, `.Q`, `.C`, and so on, for linear, quadratic, cubic trends across the ordered levels) rather than a simple "compared to the reference level" encoding, and the resulting coefficients answer a genuinely different, harder-to-explain-out-loud question than "how much more does an Ideal-cut diamond cost than a Fair one." Converting to a plain (unordered) factor first restores the more intuitive encoding:
+
+```{r}
+diamonds_plain <- diamonds |> mutate(cut = factor(cut, ordered = FALSE))
+model.matrix(price ~ cut, data = diamonds_plain) |> head(2)
+```
+
+Now each column is a simple 0/1 indicator for one specific cut, compared against the reference level (`Fair`, the level R drops), and a coefficient like "Ideal" directly answers "how much more, on average, does an Ideal-cut diamond cost than a Fair-cut one." Before fitting a model with a categorical predictor, check `class()` on that column; whether it's an ordered or a plain factor changes what the coefficients actually mean, not just how they're labeled.
+:::
+
+### Recap
+
+| **Term** | **Definition** |
+|-------------------|-------------------------------------------------------------|
+| **Model family** | An equation with parameters that can vary, such as $y = a_1 x + a_2$ for all possible lines. |
+| **Fitting** | Finding the specific parameter values that make a model family as close as possible to the data. |
+| **`lm(y ~ x)`** | Fits a straight-line model predicting `y` from `x` by least squares. |
+| **Slope / intercept** | The predicted change in `y` per one-unit increase in `x`, and the predicted `y` when `x` is zero. |
+| **Residual** | The difference between an observed value and the model's prediction for it. |
+| **`data_grid()` / `add_predictions()`** | Build an evenly spaced grid of predictor values and compute the model's predictions across it, ready to plot as a fitted line. |
+| **`add_residuals()`** | Attaches each observation's residual to the original data. |
+| **Extrapolation** | Predicting for input values outside the range the model was actually fit on; always computable, not always meaningful. |
+| **`model.matrix()`** | Shows exactly how a formula (including a categorical predictor's contrasts) is translated into the numeric matrix `lm()` actually fits. |
+| **Ordered vs. unordered factor** | Changes a categorical predictor's default contrast coding from polynomial (`.L`/`.Q`/`.C`) to simple reference-level comparisons. |
+
+### Check your understanding
+
+::: {.callout-note collapse="false" title="Problems"}
+1. What does it mean to "fit" a model, and what quantity does `lm()` minimize when fitting a straight line?
+2. Two models report the same $R^2$ and nearly the same slope and intercept. Does that guarantee both were fit to data with a similar shape? Explain, using this session's example as evidence.
+3. A model trained on houses between 800 and 3,500 square feet is used to predict the price of a 10,000 square foot house. Is this prediction necessarily wrong? Is it necessarily trustworthy? Explain the distinction.
+4. You fit `lm(y ~ x)` and separately `lm(x ~ y)` on the same two columns. A classmate expects the second model's slope to be the reciprocal of the first. Explain why that expectation is wrong.
+5. You fit a model with an ordered factor as a predictor and get coefficients labeled `.L`, `.Q`, and `.C` instead of one coefficient per category. What are your two options if you want coefficients that directly compare each category to a reference level?
+:::
+
+::: {.callout-tip collapse="true" title="Solutions"}
+1. Fitting a model means searching within a model family (such as "all possible straight lines") for the specific parameter values that make that model as close as possible to the observed data. `lm()` minimizes the sum of squared residuals, the squared vertical distances between the observed `y` values and the line's predicted values.
+
+2. No. Anscombe's quartet is the standard counterexample: four datasets with essentially identical slopes, intercepts, and $R^2$ values look completely different when actually plotted, ranging from a clean linear relationship to a curve to a fit dominated entirely by a single outlier. Matching summary statistics describe how well a line was fit by one particular numeric criterion; they say nothing about whether a line was the right kind of model to fit in the first place.
+
+3. It is not necessarily wrong in the sense that the arithmetic is perfectly valid; `predict()` will happily return a number. It is also not trustworthy, because the model was never fit on any data anywhere near 10,000 square feet, so there is no evidence the relationship it learned even continues to hold at that scale. The distinction is between "a number came out" and "there is a basis for believing that number."
+
+4. Least squares regression minimizes the vertical distance to the fitted line in whichever direction is currently being predicted, so `lm(y ~ x)` and `lm(x ~ y)` are optimizing two different objectives and generally produce two different lines, not the same line described from two different directions. Reversing which variable is the predictor and which is the response changes what is actually being modeled, not just how the answer is reported.
+
+5. Explicitly convert the predictor to an unordered factor before fitting, for example with `factor(x, ordered = FALSE)`, which switches R's default contrasts from polynomial to simple reference-level comparisons; alternatively, set the `contrasts` option for that variable directly (`contrasts(x) <- "contr.treatment"`) to the same effect without changing the factor's ordered status.
+:::
