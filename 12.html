@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>12&nbsp; Session 12 – Missing values &amp; data cleaning – STA 2300 Intro to Data Science</title>
+<title>12&nbsp; Session 12: Variable types IV: dates and times – STA 2300 Intro to Data Science</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -177,7 +177,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./12.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12 – Missing values &amp; data cleaning</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./12.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12: Variable types IV: dates and times</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -224,127 +224,133 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Data visualization basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Quarto basics for reproducible assignments</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: The layered grammar of graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: Data visualization basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: The layered grammar of graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (II): grouping and summarizing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data import: reading CSV and flat files</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data transformation (II): grouping and summarizing</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Tidy data and pivoting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Data import: reading CSV and flat files</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Variable types I: logical and numeric vectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Tidy data and pivoting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types II: strings and regular expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types I: logical and numeric vectors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types III: factors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types II: strings and regular expressions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types IV: dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types III: factors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12 – Missing values &amp; data cleaning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12: Variable types IV: dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13 –&nbsp;Relational data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13: Missing values and data cleaning</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14 – Advanced data import I: spreadsheets</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14: Relational data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15 – Advanced data import II: databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15: Advanced data import I: spreadsheets</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./16.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16 – Big‑data formats &amp; hierarchical data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16: Advanced data import II: databases</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17 – Web scraping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17: Big data formats and hierarchical data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./18.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18 – Basic programming I: functions &amp; code style</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18: Web scraping</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./19.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19 – Basic programming II: iteration &amp; functional programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19: Basic programming I: functions and code style</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./20.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20 – Reproducible research &amp; communication</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20: Basic programming II: iteration and functional programming</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./21.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21 – Exploratory data analysis (EDA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21: Communication</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./22.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22 – Statistical modelling&nbsp;I: simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22: Exploratory data analysis (EDA)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Session 23: Statistical modeling I: simple linear regression</span></span></a>
   </div>
 </li>
     </ul>
@@ -360,11 +366,14 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#why-worry-about-missing-values" id="toc-why-worry-about-missing-values" class="nav-link" data-scroll-target="#why-worry-about-missing-values">Why worry about missing values?</a></li>
-  <li><a href="#tools-for-explicit-missing-values" id="toc-tools-for-explicit-missing-values" class="nav-link" data-scroll-target="#tools-for-explicit-missing-values">Tools for explicit missing values</a></li>
-  <li><a href="#implicit-missing-values-and-how-to-reveal-them" id="toc-implicit-missing-values-and-how-to-reveal-them" class="nav-link" data-scroll-target="#implicit-missing-values-and-how-to-reveal-them">Implicit missing values and how to reveal them</a></li>
-  <li><a href="#empty-groups-and-zerolength-vectors" id="toc-empty-groups-and-zerolength-vectors" class="nav-link" data-scroll-target="#empty-groups-and-zerolength-vectors">Empty groups and zero‑length vectors</a></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key take‑aways</a></li>
+  <li><a href="#why-dates-and-times" id="toc-why-dates-and-times" class="nav-link" data-scroll-target="#why-dates-and-times">Why dates and times?</a></li>
+  <li><a href="#creating-date-times" id="toc-creating-date-times" class="nav-link" data-scroll-target="#creating-date-times">Creating date-times</a></li>
+  <li><a href="#extracting-and-modifying-components" id="toc-extracting-and-modifying-components" class="nav-link" data-scroll-target="#extracting-and-modifying-components">Extracting and modifying components</a></li>
+  <li><a href="#rounding-and-time-spans" id="toc-rounding-and-time-spans" class="nav-link" data-scroll-target="#rounding-and-time-spans">Rounding and time spans</a></li>
+  <li><a href="#time-zones" id="toc-time-zones" class="nav-link" data-scroll-target="#time-zones">Time zones</a></li>
+  <li><a href="#fringe-cases-and-common-pitfalls" id="toc-fringe-cases-and-common-pitfalls" class="nav-link" data-scroll-target="#fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -374,7 +383,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12 – Missing values &amp; data cleaning</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12: Variable types IV: dates and times</span></h1>
 </div>
 
 
@@ -394,130 +403,356 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Differentiate explicit and implicit missing values.</strong> Explicitly missing values appear in your data as <code>NA</code>, whereas <em>implicitly</em> missing values arise when an entire observation is absent. Recognizing the difference – “the presence of an absence” versus “the absence of a presence” – guides how you handle them.</li>
-<li><strong>Understand the infectious nature of <code>NA</code>.</strong> Missing values propagate through calculations and comparisons. The online book revisits their <em>infectious nature</em> and discusses how to check for missing values before summarizing or visualizing data.</li>
-<li><strong>Handle explicit missing values.</strong> Learn how to carry values forward with <code>tidyr::fill()</code> (last observation carried forward), replace missing values with fixed values using <code>dplyr::coalesce()</code>, and convert special codes (e.g., -99) to <code>NA</code> with <code>dplyr::na_if()</code>.</li>
-<li><strong>Reveal and fill implicit missing values.</strong> Use <code>tidyr::pivot_wider()</code> to make implicit missings explicit and <code>tidyr::complete()</code> to generate all combinations of variables so that missing combinations appear as rows. Understand when to drop structurally missing values by setting <code>values_drop_na = TRUE</code>.</li>
-<li><strong>Deal with empty groups.</strong> Recognize that groups with no observations (empty groups) are a form of missingness and preserve them by setting <code>.drop = FALSE</code> in <code>count()</code> or <code>group_by()</code>. Be aware of how summary functions behave on zero‑length vectors.</li>
+<li><strong>Understand different date/time types.</strong> Describe the difference between dates (<code>&lt;date&gt;</code>), times (<code>&lt;time&gt;</code>), and date-times (<code>&lt;dttm&gt;</code>) in R, and use the simplest type that meets the analysis requirements.</li>
+<li><strong>Create date/time objects.</strong> Learn how to parse strings into dates with lubridate helpers such as <code>ymd()</code>, <code>mdy()</code>, <code>dmy()</code>, and so on, and how to assemble dates and date-times from separate components with <code>make_date()</code> and <code>make_datetime()</code>. Recognize when a parsing helper can silently produce the wrong date instead of an error.</li>
+<li><strong>Extract and modify components.</strong> Use accessor functions <code>year()</code>, <code>month()</code>, <code>mday()</code>, <code>yday()</code>, <code>wday()</code>, <code>hour()</code>, <code>minute()</code>, and <code>second()</code> to pull out parts of a date-time. Learn to change components in place, or with <code>update()</code>.</li>
+<li><strong>Round dates and compute spans.</strong> Round dates to a unit (week, month, and so on) with <code>floor_date()</code>, <code>round_date()</code>, and <code>ceiling_date()</code>. Understand the difference between durations (exact seconds), periods (human units like weeks and months), and intervals (a start and end point), and why the difference matters the moment daylight saving time or a short month gets involved.</li>
+<li><strong>Recognize time zone issues.</strong> Appreciate that a date-time value always has an associated time zone, and learn how to specify and change it.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<section id="why-worry-about-missing-values" class="level3">
-<h3 class="anchored" data-anchor-id="why-worry-about-missing-values">Why worry about missing values?</h3>
-<p>Missing data is ubiquitous. Sometimes a value is unknown, it wasn’t recorded or it simply doesn’t exist. R represents absent values with the special marker <code>NA</code>, and these <code>NA</code>s are <em>infectious</em>: any arithmetic or logical operation involving a missing value yields a missing result. This means you must consciously handle missing values before drawing conclusions. The online book revisits missing values after we have encountered them in plotting and transformation and emphasizes their two forms—explicit and implicit. An explicit missing value is the presence of an absence (an <code>NA</code> in a cell), while an implicit missing value is the absence of a presence (a row that should exist but doesn’t).</p>
-</section>
-<section id="tools-for-explicit-missing-values" class="level3">
-<h3 class="anchored" data-anchor-id="tools-for-explicit-missing-values">Tools for explicit missing values</h3>
-<p>When you see <code>NA</code>s in your data, decide whether to <strong>propagate</strong>, <strong>fill</strong> or <strong>replace</strong> them:</p>
-<ul>
-<li><p><strong>Carrying values forward/backward.</strong> In hand-entered data, a missing value may mean “same as the previous value”. The <code>fill()</code> function from <em>tidyr</em> takes one or more columns and fills missing values with the most recent non‑missing value (last observation carried forward, or LOCF). For example, if a dataset records a patient’s treatment at visits 1-3 but omits the patient’s name in visits 2 and 3, <code>fill()</code> will copy the name down.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>treatment <span class="ot">=</span> <span class="fu">tribble</span>(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>person,           <span class="sc">~</span>treatment, <span class="sc">~</span>response,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Derrick Whitmore"</span>, <span class="dv">1</span>,         <span class="dv">7</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="cn">NA</span>,                 <span class="dv">2</span>,         <span class="dv">10</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="cn">NA</span>,                 <span class="dv">3</span>,         <span class="cn">NA</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Katherine Burke"</span>,  <span class="dv">1</span>,         <span class="dv">4</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill missing person names forward</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>treatment <span class="sc">|&gt;</span> <span class="fu">fill</span>(person)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 3
-  person           treatment response
-  &lt;chr&gt;                &lt;dbl&gt;    &lt;dbl&gt;
-1 Derrick Whitmore         1        7
-2 Derrick Whitmore         2       10
-3 Derrick Whitmore         3       NA
-4 Katherine Burke          1        4</code></pre>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div></li>
-<li><p><strong>Replacing with fixed values.</strong> If missing values represent a fixed value-such as zero or “unknown”—use <code>coalesce()</code> to replace <code>NA</code> with that value. <code>coalesce()</code> returns the first non‑missing value among its arguments and is vectorised across rows. It is also handy when combining multiple columns: <code>coalesce(a, b, c)</code> picks <code>a</code> if it’s non‑missing, otherwise <code>b</code>, then <code>c</code>.</p>
+<section id="why-dates-and-times" class="level3">
+<h3 class="anchored" data-anchor-id="why-dates-and-times">Why dates and times?</h3>
+<p>Dates and times are deceptively simple. They look ubiquitous and straightforward, but the more you work with them, the more quirks emerge: a year isn’t always 365 days, not every day has exactly 24 hours, and a minute occasionally has 61 seconds. These complications exist because calendar units have to reconcile astronomical cycles (the earth’s rotation and orbit) with human conventions (leap years, daylight saving time). R doesn’t treat dates as plain strings for exactly this reason; it provides dedicated classes and functions built to handle these quirks correctly. In the tidyverse, lubridate does most of that work; it isn’t loaded automatically with <code>library(tidyverse)</code>, so load it separately.</p>
+</section>
+<section id="creating-date-times" class="level3">
+<h3 class="anchored" data-anchor-id="creating-date-times">Creating date-times</h3>
+<p>There are three common ways to create a date or date-time.</p>
+<p><strong>From strings.</strong> lubridate’s helper functions parse strings by matching the order of “y,” “m,” and “d” in the function name to the order of year, month, and day in the string.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="cn">NA</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coalesce</span>(x, <span class="dv">0</span>)        <span class="co"># replace NA with zero</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(<span class="st">"2025-02-18"</span>)        <span class="co"># ISO format year-month-day</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1 4 5 7 0</code></pre>
+<pre><code>[1] "2025-02-18"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combining two columns: take value from x if present, else from y</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">5</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="cn">NA</span>))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">value =</span> <span class="fu">coalesce</span>(x, y))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">"January 31, 2025"</span>)  <span class="co"># month-day-year, with a month name</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 3
-      x     y value
-  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1     2     1     2
-2    NA     3     3
-3     5    NA     5</code></pre>
+<pre><code>[1] "2025-01-31"</code></pre>
 </div>
-</div></li>
-<li><p><strong>Converting sentinel values to <code>NA</code>.</strong> Older software sometimes encodes missing values with special numbers like 99 or -999. Use <code>na_if(x, sentinel)</code> to replace those sentinel values with <code>NA</code>. For instance, if a dataset records missing ages as -99, call <code>na_if(age, -99)</code> before analyzing.</p></li>
-</ul>
-</section>
-<section id="implicit-missing-values-and-how-to-reveal-them" class="level3">
-<h3 class="anchored" data-anchor-id="implicit-missing-values-and-how-to-reveal-them">Implicit missing values and how to reveal them</h3>
-<p>Implicit missing values occur when some combinations of variables are absent. For instance, suppose you record the price of a stock each quarter but forget to enter the first quarter in 2021. That observation is implicitly missing. Two tidyverse tools help reveal implicit missings:</p>
-<ul>
-<li><p><strong>Pivoting.</strong> Pivoting data wider with <code>pivot_wider()</code> can transform implicit missings into explicit ones because every combination of rows and new columns must have a value. Conversely, pivoting longer (<code>pivot_longer()</code>) can drop structural missing values when <code>values_drop_na = TRUE</code>.</p></li>
-<li><p><strong>Completing combinations.</strong> <code>complete()</code> creates all combinations of the supplied variables and inserts rows with <code>NA</code> where combinations are missing. You can specify explicit ranges for variables (e.g., years = 2019:2021) to ensure the dataset spans the desired range. If your data includes factors, use <code>.drop = FALSE</code> in <code>count()</code> or <code>group_by()</code> to preserve empty groups.</p></li>
-</ul>
-<p>For example, consider the built‑in <strong>msleep</strong> dataset from <code>ggplot2</code>, which lists characteristics of mammals. Some combinations of diet category (<code>vore</code>) and conservation status do not occur in the data. You can reveal those missing combinations using <code>complete(vore, conservation)</code> and then replace the implicit missing counts with zero:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dmy</span>(<span class="st">"31-01-2025"</span>)        <span class="co"># day-month-year</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-01-31"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd_hms</span>(<span class="st">"2025-02-18 14:30:15"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-02-18 14:30:15 UTC"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy_hm</span>(<span class="st">"2/18/2025 2:30 pm"</span>)   <span class="co"># 12-hour clock with am/pm</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-02-18 14:30:00 UTC"</code></pre>
+</div>
+</div>
+<p>These functions also accept unquoted numeric input (<code>ymd(20250218)</code>), and take a <code>tz</code> argument to set the time zone directly at parse time. Choosing the wrong helper for an ambiguous string is a real risk covered in Example 11.3.</p>
+<p><strong>From individual components.</strong> When year, month, and day (and optionally hour and minute) already live in separate columns, <code>make_date()</code> and <code>make_datetime()</code> assemble them directly.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute counts by vore and conservation</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">=</span> msleep <span class="sc">|&gt;</span> <span class="fu">count</span>(vore, conservation)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Make implicit missings explicit and replace NA counts with zero</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>counts_complete <span class="ot">=</span> counts <span class="sc">|&gt;</span> </span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(vore, conservation) <span class="sc">|&gt;</span> </span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">n =</span> <span class="fu">coalesce</span>(n, <span class="dv">0</span>))</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>counts_complete <span class="sc">|&gt;</span> <span class="fu">arrange</span>(vore, conservation)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="fu">c</span>(<span class="dv">2023</span>, <span class="dv">2023</span>),</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">month =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">day =</span> <span class="fu">c</span>(<span class="dv">14</span>, <span class="dv">1</span>),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">hour =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">16</span>),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">minute =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">0</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">date =</span> <span class="fu">make_date</span>(year, month, day),</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">datetime =</span> <span class="fu">make_datetime</span>(year, month, day, hour, minute)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 35 × 3
-   vore  conservation     n
-   &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt;
- 1 carni cd               1
- 2 carni domesticated     2
- 3 carni en               1
- 4 carni lc               5
- 5 carni nt               1
- 6 carni vu               4
- 7 carni &lt;NA&gt;             5
- 8 herbi cd               1
- 9 herbi domesticated     7
-10 herbi en               2
-# ℹ 25 more rows</code></pre>
+<pre><code># A tibble: 2 × 7
+   year month   day  hour minute date       datetime           
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;date&gt;     &lt;dttm&gt;             
+1  2023     5    14     9     30 2023-05-14 2023-05-14 09:30:00
+2  2023    10     1    16      0 2023-10-01 2023-10-01 16:00:00</code></pre>
+</div>
+</div>
+<p><strong>From other types.</strong> <code>as_date()</code> and <code>as_datetime()</code> coerce between date and date-time classes, or convert a raw numeric offset (seconds or days since 1970-01-01) into a proper date-time.</p>
+</section>
+<section id="extracting-and-modifying-components" class="level3">
+<h3 class="anchored" data-anchor-id="extracting-and-modifying-components">Extracting and modifying components</h3>
+<p>Once you have a date-time, accessor functions pull out its pieces: <code>year()</code>, <code>month()</code>, <code>mday()</code> (day of month), <code>yday()</code> (day of year), <code>wday()</code> (day of week; see Example 11.2 for a numbering surprise), <code>hour()</code>, <code>minute()</code>, and <code>second()</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">"2025-02-18 14:30:15"</span>, <span class="at">tz =</span> <span class="st">"America/Chicago"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">year</span>(dt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2025</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(dt, <span class="at">label =</span> <span class="cn">TRUE</span>)                <span class="co"># "Feb"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] Feb
+12 Levels: Jan &lt; Feb &lt; Mar &lt; Apr &lt; May &lt; Jun &lt; Jul &lt; Aug &lt; Sep &lt; ... &lt; Dec</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(dt, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span>)   <span class="co"># "Tuesday"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] Tuesday
+7 Levels: Sunday &lt; Monday &lt; Tuesday &lt; Wednesday &lt; Thursday &lt; ... &lt; Saturday</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hour</span>(dt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 14</code></pre>
+</div>
+</div>
+<p>These accessors are vectorized, and most can also be assigned to directly, which modifies the date-time in place; <code>update()</code> changes several components at once.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>dt2 <span class="ot">&lt;-</span> <span class="fu">update</span>(dt, <span class="at">year =</span> <span class="dv">2026</span>, <span class="at">month =</span> <span class="dv">1</span>, <span class="at">mday =</span> <span class="dv">1</span>, <span class="at">hour =</span> <span class="dv">0</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>dt2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2026-01-01 00:30:15 CST"</code></pre>
+</div>
+</div>
+<p>If an updated value overflows its usual range (day 30 in a month that has only 28), <code>update()</code> rolls over into the following month rather than erroring, which is worth double-checking if you didn’t intend it.</p>
+</section>
+<section id="rounding-and-time-spans" class="level3">
+<h3 class="anchored" data-anchor-id="rounding-and-time-spans">Rounding and time spans</h3>
+<p><code>floor_date(x, "week")</code>, <code>ceiling_date(x, "month")</code>, and <code>round_date(x, "day")</code> snap a date-time down, up, or to the nearest boundary of a chosen unit, which is a common first step before counting observations per week or per month.</p>
+<p>Arithmetic on dates produces a <em>time span</em>, and lubridate distinguishes three kinds. A <strong>duration</strong> is an exact number of seconds (<code>ddays(1)</code> is always precisely 86,400 seconds). A <strong>period</strong> is a human unit like “1 day” or “1 month,” which stretches or shrinks to match the calendar (or the clock) rather than staying a fixed number of seconds. The difference is invisible almost all the time, and then very visible on the one day a year it matters:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>before_dst <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">"2025-03-08 12:00:00"</span>, <span class="at">tz =</span> <span class="st">"America/Chicago"</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>before_dst <span class="sc">+</span> <span class="fu">ddays</span>(<span class="dv">1</span>)   <span class="co"># a duration: exactly 86,400 seconds later</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-03-09 13:00:00 CDT"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>before_dst <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">1</span>)    <span class="co"># a period: the same clock time, the next calendar day</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-03-09 12:00:00 CDT"</code></pre>
+</div>
+</div>
+<p>Clocks in that time zone spring forward by an hour overnight between those two dates, so adding an exact-seconds duration lands at 1:00 PM, not noon, while adding a one-day period lands at noon as a person would expect. Reach for periods when you mean “the same time tomorrow,” and durations when you mean “exactly 24 hours from now”; they are not interchangeable.</p>
+<p>An <strong>interval</strong> is a specific span with a fixed start and end, built with the <code>%--%</code> operator, and dividing an interval by a duration or period tells you exactly how many of those units it spans.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>this_year <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">"2025-01-01"</span>) <span class="sc">%--%</span> <span class="fu">ymd</span>(<span class="st">"2026-01-01"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>this_year <span class="sc">/</span> <span class="fu">days</span>(<span class="dv">1</span>)     <span class="co"># exactly how many days are in this specific interval</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 365</code></pre>
 </div>
 </div>
 </section>
-<section id="empty-groups-and-zerolength-vectors" class="level3">
-<h3 class="anchored" data-anchor-id="empty-groups-and-zerolength-vectors">Empty groups and zero‑length vectors</h3>
-<p>When summarizing data by a factor, some levels may have zero observations. These <strong>empty groups</strong> behave like implicit missing values. Functions such as <code>count()</code> and <code>group_by()</code> drop empty groups by default. To keep them, set <code>.drop = FALSE</code>. Be careful: summary functions applied to empty vectors may return surprising results—for example, <code>mean()</code> of a zero‑length vector returns <code>NaN</code>. Always interpret summaries of empty groups cautiously.</p>
+<section id="time-zones" class="level3">
+<h3 class="anchored" data-anchor-id="time-zones">Time zones</h3>
+<p>A date-time always carries a time zone; omit it while parsing and R falls back to your system’s time zone, which is rarely what you want in a script meant to run on someone else’s computer. <code>with_tz()</code> changes how an instant is <em>displayed</em>, in a different time zone, without changing the instant itself; <code>force_tz()</code> instead changes which instant a date-time refers to, keeping its printed clock time the same, and is only needed when a date-time was labeled with the wrong time zone in the first place.</p>
 </section>
-<section id="key-takeaways" class="level3">
-<h3 class="anchored" data-anchor-id="key-takeaways">Key take‑aways</h3>
-<ul>
-<li>Distinguish <strong>explicit</strong> missing values (<code>NA</code> in your data) from <strong>implicit</strong> missing values (rows that should exist but are absent).</li>
-<li>Use <code>is.na()</code> to detect missing values and remember that <code>NA</code> values propagate through computations.</li>
-<li>For explicit missings, <code>fill()</code> carries values forward or backward; <code>coalesce()</code> replaces <code>NA</code>s with a fixed value or the first non‑missing value; and <code>na_if()</code> converts sentinel codes to <code>NA</code>.</li>
-<li>For implicit missings, <code>pivot_wider()</code> and <code>complete()</code> reveal absent combinations; specify <code>.drop = FALSE</code> to preserve empty factor levels.</li>
-<li>When summarizing empty groups, interpret results carefully: functions like <code>mean()</code> may return <code>NaN</code> on zero‑length vectors.</li>
-</ul>
-<!-- ## In‑class activity -->
-<!-- In this session’s activity you will practice handling missing values using the **msleep** dataset from the `ggplot2` package (not used in *R for Data Science*).  The dataset contains sleep characteristics for 83 mammals and includes missing values in several variables.  Install the package if necessary with `install.packages("ggplot2")`. -->
-<!-- 1. **Inspect the data (5 min).**  Load the tidyverse and the `msleep` dataset.  Use `glimpse(msleep)` and `summary(msleep)` to understand its structure.  Identify which variables contain missing values and compute the proportion of missing values per variable using `summarise(across(everything(), ~mean(is.na(.x))))`.  Which variables are most affected by missingness? -->
-<!-- 2. **Visualize missingness by diet (10 min).**  Create a new binary variable `missing_rem` that is `TRUE` when `sleep_rem` is missing and `FALSE` otherwise.  Use `count(vore, missing_rem)` to tally missing REM sleep values by diet category.  Plot the counts with `ggplot(aes(x = vore, y = n, fill = missing_rem)) + geom_col(position = "dodge")`.  Discuss whether certain diets are associated with more missing `sleep_rem` data. -->
-<!-- 3. **Impute missing REM sleep (15 min).**  For each diet category (`vore`), compute the mean `sleep_rem` (ignoring missing values) and then replace missing `sleep_rem` values with the group mean.  Use `group_by(vore)` and `mutate(sleep_rem_imputed = coalesce(sleep_rem, mean(sleep_rem, na.rm = TRUE)))`.  Compare summary statistics (mean and standard deviation) of the original and imputed `sleep_rem` and comment on the effect of imputation. -->
-<!-- 4. **Reveal missing diet–conservation combinations (15 min).**  Compute the number of species by `vore` and conservation status using `count(vore, conservation)`.  Some combinations will be absent (implicit missings).  Use `complete(vore, conservation)` to generate all combinations and replace the missing counts with zero using `mutate(n = coalesce(n, 0))`.  Visualise the result with a heatmap or table and interpret any patterns. -->
-<!-- 5. **Drop or keep missing brain weights (10 min).**  The `brainwt` variable records brain weight (kg) but has many missing values.  Use `drop_na(msleep, brainwt)` to remove rows with missing brain weights and compute the correlation between `bodywt` and `brainwt`.  Compare this with a correlation computed after replacing missing brain weights with the median brain weight using `mutate(brainwt = coalesce(brainwt, median(brainwt, na.rm = TRUE)))`.  Discuss the impact of different missing-value strategies on the analysis. -->
-<!-- This activity will help you practise detecting, visualising and handling missing values.  By working through these tasks you’ll gain experience with `is.na()`, `fill()`, `coalesce()`, `complete()` and `drop_na()` on a dataset that wasn’t used in the textbook. -->
-<!-- --- -->
-<!-- **Suggested reading for Session 13:**  Chapter 19 of *R for Data Science* (2nd ed.), “Joins”, introduces the theory and practice of combining multiple data frames.  The chapter explains that data analyses rarely involve a single table and distinguishes between **mutating joins**, which add new columns from matching observations in another data frame, and **filtering joins**, which retain or discard observations based on whether a match exists【80650279806246†L120-L129】.  It emphasises the role of **primary and foreign keys**—variables that uniquely identify observations—in connecting tables【80650279806246†L146-L160】.  Familiarity with keys and join types will prepare you for the next session on relational data. -->
+<section id="fringe-cases-and-common-pitfalls" class="level3">
+<h3 class="anchored" data-anchor-id="fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</h3>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 11.1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Stripping a <code>difftime</code> down to a plain number throws away which unit it’s in.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">"2026-01-01 00:00:00"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>gap_short <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">"2026-01-01 01:30:00"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>) <span class="sc">-</span> start</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>gap_long <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">"2026-01-05 00:00:00"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>) <span class="sc">-</span> start</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>gap_short   <span class="co"># R picks whatever unit reads most naturally</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time difference of 1.5 hours</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>gap_long</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time difference of 4 days</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(gap_short)   <span class="co"># 1.5, with no indication this means hours</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.5</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(gap_long)    <span class="co"># 4, with no indication this means days</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<p>Subtracting two date-times gives a <code>difftime</code> object, and R automatically picks whichever unit (seconds, minutes, hours, days, or weeks) makes the printed number easiest to read. That’s convenient for a single printed value, but <code>as.numeric()</code> strips the unit away entirely, so collecting several such differences into one numeric column can silently mix hours and days in the same column if the gaps involved happen to vary in magnitude. <code>as.duration()</code> sidesteps the whole problem by always normalizing to seconds; use it (or <code>as.numeric(x, units = "secs")</code>, forcing a specific unit) before doing arithmetic across multiple time differences.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 11.2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong><code>wday()</code> numbers Sunday as day 1 by default, not Monday.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>monday <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">"2026-08-03"</span>)   <span class="co"># a Monday</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(monday)                        <span class="co"># default: Sunday = 1, so Monday = 2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(monday, <span class="at">week_start =</span> <span class="dv">1</span>)        <span class="co"># ISO convention: Monday = 1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<p>Plenty of contexts (the ISO 8601 standard, most of Europe, and simply “the work week”) treat Monday as the first day of the week, but <code>wday()</code>’s default follows the US convention of Sunday as day 1. Code that assumes <code>wday() == 1</code> means Monday will be silently off by a day for every single observation. Set <code>week_start = 1</code> explicitly whenever your analysis cares about which day starts the week.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 11.3
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>An ambiguous date string parses to two different, equally “valid” dates depending on which helper you use.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>ambiguous <span class="ot">&lt;-</span> <span class="st">"01/02/2025"</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(ambiguous)   <span class="co"># January 2nd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-01-02"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dmy</span>(ambiguous)   <span class="co"># February 1st</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-02-01"</code></pre>
+</div>
+</div>
+<p>Both calls succeed without any warning or error, because <code>"01/02/2025"</code> is a perfectly well-formed date under either convention; the two answers just disagree about which number is the month and which is the day. Neither function can tell you picked the wrong one, since nothing about the string itself is invalid. Whenever a date column’s format isn’t explicitly documented (which is most of the time, for real data), check a handful of rows where the first two numbers are both greater than 12, since those are the only rows where <code>mdy()</code> and <code>dmy()</code> would actually give different, checkable answers.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 11.4
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Adding a one-month period to the end of a long month can return <code>NA</code> instead of rolling over.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>jan31 <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">"2025-01-31"</span>)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>jan31 <span class="sc">+</span> <span class="fu">months</span>(<span class="dv">1</span>)    <span class="co"># NA: February has no 31st day</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>jan31 <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">31</span>)      <span class="co"># a real date, but not "one month later" in the usual sense</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-03-03"</code></pre>
+</div>
+</div>
+<p>February simply has no 31st day, so <code>jan31 + months(1)</code> cannot construct a valid result and returns <code>NA</code> rather than guessing (rolling forward to March 3, for instance, the way plain day-arithmetic would). This is a deliberate, safe design choice, but it means a pipeline that adds <code>months()</code> to a column of dates can introduce genuine <code>NA</code>s for any date that happened to fall near the end of a month, purely as a side effect of the arithmetic, not because any data was actually missing. Check <code>sum(is.na(...))</code> after this kind of date arithmetic the same way you would after any other calculation that can produce a missing value.</p>
+</div>
+</div>
+</section>
+<section id="recap" class="level3">
+<h3 class="anchored" data-anchor-id="recap">Recap</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 76%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Term</strong></th>
+<th><strong>Definition</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><code>ymd()</code> / <code>mdy()</code> / <code>dmy()</code></strong></td>
+<td>Parse a string into a date by matching the letter order to the order of year/month/day in the text.</td>
+</tr>
+<tr class="even">
+<td><strong><code>make_date()</code> / <code>make_datetime()</code></strong></td>
+<td>Assemble a date or date-time from separate year/month/day(/hour/minute) columns.</td>
+</tr>
+<tr class="odd">
+<td><strong>Accessor functions</strong></td>
+<td><code>year()</code>, <code>month()</code>, <code>mday()</code>, <code>yday()</code>, <code>wday()</code>, <code>hour()</code>, <code>minute()</code>, <code>second()</code>; extract (or, via assignment, modify) one component of a date-time.</td>
+</tr>
+<tr class="even">
+<td><strong><code>floor_date()</code> / <code>ceiling_date()</code> / <code>round_date()</code></strong></td>
+<td>Round a date-time down, up, or to the nearest boundary of a chosen unit.</td>
+</tr>
+<tr class="odd">
+<td><strong>Duration</strong></td>
+<td>An exact span of time in seconds (<code>ddays()</code>, <code>dhours()</code>, …); unaffected by daylight saving time.</td>
+</tr>
+<tr class="even">
+<td><strong>Period</strong></td>
+<td>A human calendar unit (<code>days()</code>, <code>months()</code>, …); tracks “the same clock time” across DST and varying month lengths.</td>
+</tr>
+<tr class="odd">
+<td><strong>Interval</strong></td>
+<td>A span with a fixed start and end, created with <code>%--%</code>; divide by a duration or period to get its exact length.</td>
+</tr>
+<tr class="even">
+<td><strong><code>with_tz()</code> / <code>force_tz()</code></strong></td>
+<td>Change how an instant is displayed in another time zone, or change which instant a date-time refers to.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>difftime</code> units</strong></td>
+<td>The unit (seconds/minutes/hours/days/weeks) R automatically picks when subtracting two date-times; lost if you call <code>as.numeric()</code> without normalizing first.</td>
+</tr>
+<tr class="even">
+<td><strong><code>wday()</code> default</strong></td>
+<td>Sunday = 1 by default; pass <code>week_start = 1</code> for the ISO convention where Monday = 1.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="check-your-understanding" class="level3">
+<h3 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Problems">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Problems
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>What is the difference between a duration and a period, and give an example of a calculation where using the wrong one would produce a surprising answer.</li>
+<li>You compute several time differences with plain subtraction, store them with <code>as.numeric()</code>, and then average them. Why might that average be meaningless, and what would you do differently?</li>
+<li>A colleague filters a dataset for <code>wday(order_date) == 1</code>, expecting to get every Monday order. What day of the week do they actually get, and how would you fix the filter?</li>
+<li>You parse a column of date strings formatted like <code>"03/04/2025"</code> with <code>mdy()</code>. What has to be true about the data for you to be confident this was the right choice instead of <code>dmy()</code>?</li>
+<li>After running <code>df |&gt; mutate(renewal_date = start_date + months(12))</code>, a few rows in <code>renewal_date</code> are <code>NA</code>, even though every row in <code>start_date</code> had a real date. What is the most likely explanation?</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solutions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solutions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>A duration is an exact number of seconds and never bends to fit the calendar or the clock; a period is a human unit like “1 day” that adjusts to match the same clock time or calendar position. Adding <code>ddays(1)</code> (a duration) to a time right before a daylight saving transition lands an hour off from noon the next day, while adding <code>days(1)</code> (a period) correctly lands on the same clock time the next day.</p></li>
+<li><p><code>as.numeric()</code> on a <code>difftime</code> strips away its unit, and R automatically picks a different unit (seconds, minutes, hours, days, or weeks) depending on how large each individual difference is. If the differences vary enough in size, the resulting numbers can be a mix of, say, hours and days without anything indicating that, so averaging them treats incompatible units as if they were the same thing. Converting with <code>as.duration()</code> first (or specifying a single unit explicitly) avoids the problem.</p></li>
+<li><p><code>wday()</code> defaults to numbering Sunday as day 1, so <code>wday(order_date) == 1</code> actually selects every Sunday, not every Monday. The fix is either <code>wday(order_date, week_start = 1) == 1</code> (ISO convention, Monday = 1), or comparing against the label directly: <code>wday(order_date, label = TRUE) == "Mon"</code>.</p></li>
+<li><p>You would need to know that every date in the column, or at least a representative sample, is genuinely US-style month-first, and ideally confirm it by checking rows where the first two numbers are both 12 or less (so <code>mdy()</code> and <code>dmy()</code> would disagree) against some independent source of truth, such as a known order sequence or another date column.</p></li>
+<li><p><code>months(12)</code> is a period, and a period added to a date can land on a day that doesn’t exist in the target month, most commonly when <code>start_date</code> falls on the 29th, 30th, or 31st and the resulting month is shorter (for example, February in a non-leap year). Rather than rolling over to a nearby valid date, lubridate returns <code>NA</code> for those rows instead. Running <code>sum(is.na(df$renewal_date))</code> alongside <code>sum(is.na(df$start_date))</code> would confirm the <code>NA</code>s were introduced by the arithmetic itself, not present in the original data.</p></li>
+</ol>
+</div>
+</div>
+</div>
 
 
 </section>

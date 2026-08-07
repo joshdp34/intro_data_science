@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Session 8: Variable types I: logical and numeric vectors – STA 2300 Intro to Data Science</title>
+<title>8&nbsp; Session 8: Tidy data and pivoting – STA 2300 Intro to Data Science</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -177,7 +177,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Variable types I: logical and numeric vectors</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Tidy data and pivoting</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -224,127 +224,133 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Data visualization basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Quarto basics for reproducible assignments</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: The layered grammar of graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: Data visualization basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: The layered grammar of graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (II): grouping and summarizing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data import: reading CSV and flat files</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data transformation (II): grouping and summarizing</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Tidy data and pivoting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Data import: reading CSV and flat files</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Variable types I: logical and numeric vectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Tidy data and pivoting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types II: strings and regular expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types I: logical and numeric vectors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types III: factors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types II: strings and regular expressions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types IV: dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types III: factors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12 – Missing values &amp; data cleaning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12: Variable types IV: dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13 –&nbsp;Relational data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13: Missing values and data cleaning</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14 – Advanced data import I: spreadsheets</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14: Relational data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15 – Advanced data import II: databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15: Advanced data import I: spreadsheets</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./16.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16 – Big‑data formats &amp; hierarchical data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16: Advanced data import II: databases</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17 – Web scraping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17: Big data formats and hierarchical data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./18.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18 – Basic programming I: functions &amp; code style</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18: Web scraping</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./19.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19 – Basic programming II: iteration &amp; functional programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19: Basic programming I: functions and code style</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./20.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20 – Reproducible research &amp; communication</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20: Basic programming II: iteration and functional programming</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./21.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21 – Exploratory data analysis (EDA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21: Communication</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./22.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22 – Statistical modelling&nbsp;I: simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22: Exploratory data analysis (EDA)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Session 23: Statistical modeling I: simple linear regression</span></span></a>
   </div>
 </li>
     </ul>
@@ -360,15 +366,11 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#logical-vectors-and-comparisons" id="toc-logical-vectors-and-comparisons" class="nav-link" data-scroll-target="#logical-vectors-and-comparisons">Logical vectors and comparisons</a></li>
-  <li><a href="#boolean-algebra-and-missing-values" id="toc-boolean-algebra-and-missing-values" class="nav-link" data-scroll-target="#boolean-algebra-and-missing-values">Boolean algebra and missing values</a></li>
-  <li><a href="#summarizing-logical-vectors" id="toc-summarizing-logical-vectors" class="nav-link" data-scroll-target="#summarizing-logical-vectors">Summarizing logical vectors</a></li>
-  <li><a href="#recoding-values-with-if_else-and-case_when" id="toc-recoding-values-with-if_else-and-case_when" class="nav-link" data-scroll-target="#recoding-values-with-if_else-and-case_when">Recoding values with <code>if_else()</code> and <code>case_when()</code></a></li>
-  <li><a href="#numeric-vectors-making-numbers-and-parsing" id="toc-numeric-vectors-making-numbers-and-parsing" class="nav-link" data-scroll-target="#numeric-vectors-making-numbers-and-parsing">Numeric vectors: making numbers and parsing</a></li>
-  <li><a href="#vectorized-arithmetic-and-recycling" id="toc-vectorized-arithmetic-and-recycling" class="nav-link" data-scroll-target="#vectorized-arithmetic-and-recycling">Vectorized arithmetic and recycling</a></li>
-  <li><a href="#numeric-transformations" id="toc-numeric-transformations" class="nav-link" data-scroll-target="#numeric-transformations">Numeric transformations</a></li>
-  <li><a href="#ranking-offsets-and-positions" id="toc-ranking-offsets-and-positions" class="nav-link" data-scroll-target="#ranking-offsets-and-positions">Ranking, offsets, and positions</a></li>
-  <li><a href="#numeric-summaries" id="toc-numeric-summaries" class="nav-link" data-scroll-target="#numeric-summaries">Numeric summaries</a></li>
+  <li><a href="#what-is-tidy-data" id="toc-what-is-tidy-data" class="nav-link" data-scroll-target="#what-is-tidy-data">What is tidy data?</a></li>
+  <li><a href="#lengthening-data-with-pivot_longer" id="toc-lengthening-data-with-pivot_longer" class="nav-link" data-scroll-target="#lengthening-data-with-pivot_longer">Lengthening data with <code>pivot_longer()</code></a></li>
+  <li><a href="#splitting-multiple-pieces-of-information-out-of-column-names" id="toc-splitting-multiple-pieces-of-information-out-of-column-names" class="nav-link" data-scroll-target="#splitting-multiple-pieces-of-information-out-of-column-names">Splitting multiple pieces of information out of column names</a></li>
+  <li><a href="#extracting-a-variable-name-and-a-value-from-a-header-at-once" id="toc-extracting-a-variable-name-and-a-value-from-a-header-at-once" class="nav-link" data-scroll-target="#extracting-a-variable-name-and-a-value-from-a-header-at-once">Extracting a variable name and a value from a header at once</a></li>
+  <li><a href="#widening-data-with-pivot_wider" id="toc-widening-data-with-pivot_wider" class="nav-link" data-scroll-target="#widening-data-with-pivot_wider">Widening data with <code>pivot_wider()</code></a></li>
   <li><a href="#fringe-cases-and-common-pitfalls" id="toc-fringe-cases-and-common-pitfalls" class="nav-link" data-scroll-target="#fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</a></li>
   <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
   <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
@@ -381,7 +383,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Variable types I: logical and numeric vectors</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Tidy data and pivoting</span></h1>
 </div>
 
 
@@ -401,258 +403,152 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Distinguish logical and numeric vectors.</strong> Logical vectors contain only <code>TRUE</code>, <code>FALSE</code>, or <code>NA</code>, whereas numeric vectors contain integers or doubles. Learn to convert strings to numbers with <code>parse_double()</code> and <code>parse_number()</code>.</li>
-<li><strong>Create and combine logical vectors.</strong> Use comparison operators (<code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>!=</code>, <code>==</code>) to generate logical vectors and combine them with <code>&amp;</code>, <code>|</code>, <code>!</code>, and <code>xor()</code>. Avoid the short-circuiting operators (<code>&amp;&amp;</code>, <code>||</code>) inside data-masking verbs. Understand exactly how missing values propagate through comparisons and Boolean operations, since <code>&amp;</code> and <code>|</code> do not treat <code>NA</code> the same way.</li>
-<li><strong>Summarize logical vectors.</strong> Collapse logical vectors with <code>any()</code> and <code>all()</code>, or coerce them to numeric and use <code>sum()</code>/<code>mean()</code> to count or compute the proportion of <code>TRUE</code>s. Detect missing values with <code>is.na()</code>.</li>
-<li><strong>Recode values conditionally.</strong> Use <code>if_else()</code> for a single condition and <code>case_when()</code> for several conditions evaluated in order, and understand why both require every possible output to share a compatible type.</li>
-<li><strong>Perform numeric operations and transformations.</strong> Recognize that R recycles shorter vectors in arithmetic. Use <code>pmin()</code>/<code>pmax()</code> for element-wise minima and maxima, <code>%/%</code> and <code>%%</code> for modular arithmetic, logarithms for rescaling, <code>round()</code>, <code>floor()</code>, and <code>ceiling()</code> for rounding, and <code>cut()</code> to bin numeric data.</li>
-<li><strong>Rank, offset, and pick out positions.</strong> Use <code>min_rank()</code>/<code>dense_rank()</code> to rank values, <code>lag()</code>/<code>lead()</code> to compare a value to its neighbor, and <code>first()</code>/<code>last()</code>/<code>nth()</code> to pull specific elements out of a vector.</li>
-<li><strong>Compute numeric summaries.</strong> Compare the mean and median (the mean is sensitive to extreme values while the median is robust), and use quantiles to summarize tails and spread measures such as the standard deviation and interquartile range.</li>
+<li><strong>Define tidy data.</strong> Understand the three rules that make a dataset tidy: each <strong>variable</strong> must live in its own column, each <strong>observation</strong> must occupy its own row, and each <strong>value</strong> must appear in a single cell. Appreciate why a consistent data structure makes it easier to learn and use tidyverse tools.</li>
+<li><strong>Lengthen data with <code>pivot_longer()</code>.</strong> Use <code>pivot_longer()</code> from the tidyr package to reshape untidy datasets by gathering column names into a new variable and their values into another variable. Learn how to select columns to pivot, specify the names of the new variables, and optionally drop missing values.</li>
+<li><strong>Handle multiple variables in column names.</strong> Recognize when column headers encode multiple pieces of information (for example, method, gender, and age) and use the <code>names_to</code>/<code>names_sep</code> arguments of <code>pivot_longer()</code> to split them into separate variables, or <code>names_pattern</code> when a regular expression is a better fit than a fixed separator.</li>
+<li><strong>Extract both a variable name and a value from a column header.</strong> Recognize the special <code>.value</code> sentinel for the (surprisingly common) case where column headers mix a variable name with an identifier, such as <code>dob_child1</code> and <code>name_child1</code>.</li>
+<li><strong>Widen data with <code>pivot_wider()</code>.</strong> Use <code>pivot_wider()</code> to spread rows into columns when each observation is represented across multiple rows. Learn how to choose the <code>names_from</code>, <code>values_from</code>, and <code>id_cols</code> arguments so that each row uniquely identifies an observation, and recognize what happens when it does not.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="logical-vectors-and-comparisons" class="level3">
-<h3 class="anchored" data-anchor-id="logical-vectors-and-comparisons">Logical vectors and comparisons</h3>
-<p>Logical vectors are created by comparing values and can take on three states: <code>TRUE</code>, <code>FALSE</code>, or <code>NA</code>. Comparison operators return a logical vector the same length as their input.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">late_dep =</span> dep_delay <span class="sc">&gt;</span> <span class="dv">30</span>,     <span class="co"># TRUE if departure delay &gt; 30 min</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">early_arr =</span> arr_delay <span class="sc">&lt;</span> <span class="dv">0</span>      <span class="co"># TRUE if arrival was early</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year<span class="sc">:</span>day, dep_delay, arr_delay, late_dep, early_arr) <span class="sc">|&gt;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 7
-   year month   day dep_delay arr_delay late_dep early_arr
-  &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;lgl&gt;    &lt;lgl&gt;    
-1  2013     1     1         2        11 FALSE    FALSE    
-2  2013     1     1         4        20 FALSE    FALSE    
-3  2013     1     1         2        33 FALSE    FALSE    
-4  2013     1     1        -1       -18 FALSE    TRUE     
-5  2013     1     1        -6       -25 FALSE    TRUE     </code></pre>
-</div>
-</div>
-<p>Be cautious when comparing floating-point numbers, since tiny rounding errors mean equality tests can fail even when two values are conceptually equal; use <code>dplyr::near()</code> to test approximate equality instead of <code>==</code>.</p>
+<section id="what-is-tidy-data" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-tidy-data">What is tidy data?</h3>
+<p>Tidy data is a standard way to organize a dataset so that it works naturally with the tidyverse. In tidy data:</p>
+<ol type="1">
+<li><strong>Each variable is a column, and each column is a variable.</strong> A dataset like <code>table1</code> from <em>R for Data Science</em> has one column per variable and is the easiest shape to work with.</li>
+<li><strong>Each observation is a row.</strong> Every row corresponds to one observation of all the variables.</li>
+<li><strong>Each value is a cell.</strong> Every cell contains a single value for one variable in one observation.</li>
+</ol>
+<p>The payoff is twofold. A single consistent structure makes it easier to learn a whole suite of tools, since they all assume the same underlying shape, and placing variables in columns lets R’s vectorized functions operate the way they are designed to.</p>
 </section>
-<section id="boolean-algebra-and-missing-values" class="level3">
-<h3 class="anchored" data-anchor-id="boolean-algebra-and-missing-values">Boolean algebra and missing values</h3>
-<p>Combine logical vectors with Boolean algebra: <code>&amp;</code> means “and,” <code>|</code> means “or,” <code>!</code> means “not,” and <code>xor()</code> is exclusive or. The short-circuiting operators <code>&amp;&amp;</code> and <code>||</code> collapse to a single <code>TRUE</code>/<code>FALSE</code> and should never be used inside <code>filter()</code> or <code>mutate()</code>, which expect one result per row.</p>
-<p>Missing values are contagious, but not uniformly so. <code>NA</code> in a comparison always produces <code>NA</code>, and <code>NA</code> in a Boolean expression only resolves to a definite answer when that answer is already certain regardless of what the missing piece turns out to be:</p>
+<section id="lengthening-data-with-pivot_longer" class="level3">
+<h3 class="anchored" data-anchor-id="lengthening-data-with-pivot_longer">Lengthening data with <code>pivot_longer()</code></h3>
+<p>Most real datasets are not tidy, because they were organized for data entry or reporting rather than analysis. <code>pivot_longer()</code> lengthens data by gathering a set of columns into key-value pairs. Its most important arguments are <code>cols</code> (which columns to pivot, specified explicitly like <code>bp1:bp2</code> or with a tidyselect helper like <code>starts_with()</code>), <code>names_to</code> (the name of the new variable built from the column names), <code>values_to</code> (the name of the new variable holding the pivoted values), and <code>values_drop_na</code> (set to <code>TRUE</code> to drop rows created only because a column happened to be empty for that observation).</p>
+<p>The built-in <code>billboard</code> dataset records weekly Billboard chart positions: each row is a song, and each <code>wk?</code> column gives its rank in that week of its chart run.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="cn">NA</span> <span class="sc">|</span> <span class="cn">TRUE</span>, <span class="cn">NA</span> <span class="sc">|</span> <span class="cn">FALSE</span>, <span class="cn">NA</span> <span class="sc">&amp;</span> <span class="cn">TRUE</span>, <span class="cn">NA</span> <span class="sc">&amp;</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>billboard_long <span class="ot">&lt;-</span> billboard <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"wk"</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"week"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"rank"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">week =</span> <span class="fu">parse_number</span>(week))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>billboard_long <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  TRUE    NA    NA FALSE</code></pre>
+<pre><code># A tibble: 6 × 5
+  artist track                   date.entered  week  rank
+  &lt;chr&gt;  &lt;chr&gt;                   &lt;date&gt;       &lt;dbl&gt; &lt;dbl&gt;
+1 2 Pac  Baby Don't Cry (Keep... 2000-02-26       1    87
+2 2 Pac  Baby Don't Cry (Keep... 2000-02-26       2    82
+3 2 Pac  Baby Don't Cry (Keep... 2000-02-26       3    72
+4 2 Pac  Baby Don't Cry (Keep... 2000-02-26       4    77
+5 2 Pac  Baby Don't Cry (Keep... 2000-02-26       5    87
+6 2 Pac  Baby Don't Cry (Keep... 2000-02-26       6    94</code></pre>
 </div>
 </div>
-<p><code>NA | TRUE</code> is <code>TRUE</code> because <em>at least one</em> side is already <code>TRUE</code>, no matter what the unknown side turns out to be. <code>NA &amp; FALSE</code> is <code>FALSE</code> for the same reason in the other direction: since one side is already <code>FALSE</code>, the whole <code>&amp;</code> expression cannot possibly be <code>TRUE</code>. The other two combinations genuinely depend on the missing value, so they stay <code>NA</code>. Use <code>is.na()</code> when you specifically want to test for missingness rather than relying on a comparison or Boolean expression to reveal it (see Example 8.1 for a related surprise with <code>%in%</code>).</p>
-<p>When combining conditions, remember the order of operations. To filter flights departing in November or December, write <code>month == 11 | month == 12</code>, or use <code>%in%</code>; writing <code>month == 11 | 12</code> does not mean what it looks like it means, because <code>12</code> on its own is treated as a non-zero (and therefore <code>TRUE</code>) value rather than as a second thing to compare <code>month</code> against.</p>
+<p>This call transforms the 317 by 79 <code>billboard</code> tibble into a 5307 by 5 tibble with one row per song-week combination, which is exactly why <code>nrow()</code> no longer answers “how many songs are there”: it now answers “how many song-week observations are there.”</p>
 </section>
-<section id="summarizing-logical-vectors" class="level3">
-<h3 class="anchored" data-anchor-id="summarizing-logical-vectors">Summarizing logical vectors</h3>
-<p>Logical summaries collapse a logical vector to a single value. <code>any(x)</code> is <code>TRUE</code> if <em>any</em> element of <code>x</code> is <code>TRUE</code>; <code>all(x)</code> is <code>TRUE</code> only if <em>every</em> element is. Both accept <code>na.rm = TRUE</code> to ignore missing values.</p>
+<section id="splitting-multiple-pieces-of-information-out-of-column-names" class="level3">
+<h3 class="anchored" data-anchor-id="splitting-multiple-pieces-of-information-out-of-column-names">Splitting multiple pieces of information out of column names</h3>
+<p>Sometimes a column header packs in more than one piece of information. The <code>who2</code> dataset records tuberculosis cases with column names like <code>sp_m_014</code>, which combine the diagnosis method (<code>sp</code>), gender (<code>m</code>), and age range (<code>014</code>). Supplying a vector of names to <code>names_to</code> along with <code>names_sep</code> splits each column name at the separator into those separate variables in one step.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">all_dep_within_hour =</span> <span class="fu">all</span>(dep_delay <span class="sc">&lt;=</span> <span class="dv">60</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">any_long_arr_delay =</span> <span class="fu">any</span>(arr_delay <span class="sc">&gt;=</span> <span class="dv">300</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>who2_long <span class="ot">&lt;-</span> who2 <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">!</span>(country<span class="sc">:</span>year),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"diagnosis"</span>, <span class="st">"gender"</span>, <span class="st">"age"</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"_"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"count"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>who2_long <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 365 × 5
-    year month   day all_dep_within_hour any_long_arr_delay
-   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;lgl&gt;               &lt;lgl&gt;             
- 1  2013     1     1 FALSE               TRUE              
- 2  2013     1     2 FALSE               TRUE              
- 3  2013     1     3 FALSE               FALSE             
- 4  2013     1     4 FALSE               FALSE             
- 5  2013     1     5 FALSE               TRUE              
- 6  2013     1     6 FALSE               FALSE             
- 7  2013     1     7 FALSE               TRUE              
- 8  2013     1     8 FALSE               FALSE             
- 9  2013     1     9 FALSE               TRUE              
-10  2013     1    10 FALSE               TRUE              
-# ℹ 355 more rows</code></pre>
+<pre><code># A tibble: 6 × 6
+  country      year diagnosis gender age   count
+  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;
+1 Afghanistan  1980 sp        m      014      NA
+2 Afghanistan  1980 sp        m      1524     NA
+3 Afghanistan  1980 sp        m      2534     NA
+4 Afghanistan  1980 sp        m      3544     NA
+5 Afghanistan  1980 sp        m      4554     NA
+6 Afghanistan  1980 sp        m      5564     NA</code></pre>
 </div>
 </div>
-<p>Because logical vectors coerce to numeric (<code>TRUE</code> becomes 1, <code>FALSE</code> becomes 0), <code>sum()</code> counts <code>TRUE</code> values and <code>mean()</code> computes their proportion.</p>
+</section>
+<section id="extracting-a-variable-name-and-a-value-from-a-header-at-once" class="level3">
+<h3 class="anchored" data-anchor-id="extracting-a-variable-name-and-a-value-from-a-header-at-once">Extracting a variable name and a value from a header at once</h3>
+<p>Occasionally a column header encodes a variable name <em>and</em> an identifier together, rather than several independent pieces of information. The <code>household</code> dataset records each child’s date of birth and name in separate columns per child:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">prop_on_time_dep =</span> <span class="fu">mean</span>(dep_delay <span class="sc">&lt;=</span> <span class="dv">60</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">count_long_arr_delay =</span> <span class="fu">sum</span>(arr_delay <span class="sc">&gt;=</span> <span class="dv">300</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>household</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 5
+  family dob_child1 dob_child2 name_child1 name_child2
+   &lt;int&gt; &lt;date&gt;     &lt;date&gt;     &lt;chr&gt;       &lt;chr&gt;      
+1      1 1998-11-26 2000-01-29 Susan       Jose       
+2      2 1996-06-22 NA         Mark        &lt;NA&gt;       
+3      3 2002-07-11 2004-04-05 Sam         Seth       
+4      4 2004-10-10 2009-08-27 Craig       Khai       
+5      5 2000-12-05 2005-02-28 Parker      Gracie     </code></pre>
+</div>
+</div>
+<p><code>dob_child1</code> and <code>name_child1</code> are not two unrelated categories the way <code>sp</code>, <code>m</code>, and <code>014</code> were; <code>dob</code> and <code>name</code> are themselves variable names that belong in their own columns, while <code>child1</code>/<code>child2</code> identifies which child a row describes. The special sentinel <code>".value"</code> inside <code>names_to</code> tells <code>pivot_longer()</code> to use that piece of the column name as a new column name instead of as a value:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>household <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">!</span>family,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">".value"</span>, <span class="st">"child"</span>),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"_"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span></span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 365 × 5
-    year month   day prop_on_time_dep count_long_arr_delay
-   &lt;int&gt; &lt;int&gt; &lt;int&gt;            &lt;dbl&gt;                &lt;int&gt;
- 1  2013     1     1            0.939                    3
- 2  2013     1     2            0.914                    3
- 3  2013     1     3            0.941                    0
- 4  2013     1     4            0.953                    0
- 5  2013     1     5            0.964                    1
- 6  2013     1     6            0.959                    0
- 7  2013     1     7            0.956                    1
- 8  2013     1     8            0.975                    0
- 9  2013     1     9            0.986                    1
-10  2013     1    10            0.977                    2
-# ℹ 355 more rows</code></pre>
+<pre><code># A tibble: 9 × 4
+  family child  dob        name  
+   &lt;int&gt; &lt;chr&gt;  &lt;date&gt;     &lt;chr&gt; 
+1      1 child1 1998-11-26 Susan 
+2      1 child2 2000-01-29 Jose  
+3      2 child1 1996-06-22 Mark  
+4      3 child1 2002-07-11 Sam   
+5      3 child2 2004-04-05 Seth  
+6      4 child1 2004-10-10 Craig 
+7      4 child2 2009-08-27 Khai  
+8      5 child1 2000-12-05 Parker
+9      5 child2 2005-02-28 Gracie</code></pre>
 </div>
 </div>
-<p>Logical vectors also enable inline subsetting. Rather than filtering an entire data frame, you can subset a single vector directly with a logical condition (<code>arr_delay[arr_delay &gt; 0]</code>) to compute a summary on just the values that meet a criterion.</p>
+<p>The result has genuine <code>dob</code> and <code>name</code> columns, one row per family-child combination, with families that only have one child on record contributing only one row instead of a row with an <code>NA</code> child.</p>
 </section>
-<section id="recoding-values-with-if_else-and-case_when" class="level3">
-<h3 class="anchored" data-anchor-id="recoding-values-with-if_else-and-case_when">Recoding values with <code>if_else()</code> and <code>case_when()</code></h3>
-<p>Comparisons and Boolean algebra tell you <em>which</em> rows meet a condition; <code>if_else()</code> and <code>case_when()</code> let you turn that into a new value. <code>if_else()</code> takes a condition and two alternatives, one for <code>TRUE</code> and one for <code>FALSE</code>:</p>
+<section id="widening-data-with-pivot_wider" class="level3">
+<h3 class="anchored" data-anchor-id="widening-data-with-pivot_wider">Widening data with <code>pivot_wider()</code></h3>
+<p>Sometimes a single observation is spread across multiple rows instead, and you need to widen the data into new columns. <code>pivot_wider()</code> increases the number of columns and decreases the number of rows; it is especially useful when a variable identifies the type of measurement and another variable holds the corresponding value. The key arguments are <code>names_from</code> (the column whose unique values become new column names), <code>values_from</code> (the column supplying the values that fill those new columns), and <code>id_cols</code> (the columns that uniquely identify each resulting row).</p>
+<p>The <code>cms_patient_experience</code> dataset from the Centers for Medicare &amp; Medicaid Services records several performance measures per healthcare organization, with each organization spread across multiple rows, one per measure.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">status =</span> <span class="fu">if_else</span>(arr_delay <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="st">"late"</span>, <span class="st">"on time or early"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(arr_delay, status) <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cms_wide <span class="ot">&lt;-</span> cms_patient_experience <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> <span class="fu">starts_with</span>(<span class="st">"org"</span>),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> measure_cd,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> prf_rate</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>cms_wide <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 2
-  arr_delay status          
-      &lt;dbl&gt; &lt;chr&gt;           
-1        11 late            
-2        20 late            
-3        33 late            
-4       -18 on time or early
-5       -25 on time or early
-6        12 late            </code></pre>
+<pre><code># A tibble: 6 × 8
+  org_pac_id org_nm  CAHPS_GRP_1 CAHPS_GRP_2 CAHPS_GRP_3 CAHPS_GRP_5 CAHPS_GRP_8
+  &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+1 0446157747 USC CA…          63          87          86          57          85
+2 0446162697 ASSOCI…          59          85          83          63          88
+3 0547164295 BEAVER…          49          NA          75          44          73
+4 0749333730 CAPE P…          67          84          85          65          82
+5 0840104360 ALLIAN…          66          87          87          64          87
+6 0840109864 REX HO…          73          87          84          67          91
+# ℹ 1 more variable: CAHPS_GRP_12 &lt;dbl&gt;</code></pre>
 </div>
 </div>
-<p><code>if_else()</code> also accepts a fourth argument for how to handle <code>NA</code> in the condition itself, which otherwise passes through as <code>NA</code> in the result. For more than two possible outcomes, <code>case_when()</code> evaluates a series of <code>condition ~ value</code> pairs in order and uses the value from the first condition that matches:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">delay_category =</span> <span class="fu">case_when</span>(</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">is.na</span>(arr_delay)  <span class="sc">~</span> <span class="st">"cancelled or diverted"</span>,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>      arr_delay <span class="sc">&lt;=</span> <span class="dv">0</span>    <span class="sc">~</span> <span class="st">"on time or early"</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>      arr_delay <span class="sc">&lt;=</span> <span class="dv">30</span>   <span class="sc">~</span> <span class="st">"slightly late"</span>,</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>      arr_delay <span class="sc">&lt;=</span> <span class="dv">120</span>  <span class="sc">~</span> <span class="st">"very late"</span>,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">.default =</span> <span class="st">"extremely late"</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(delay_category)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 2
-  delay_category             n
-  &lt;chr&gt;                  &lt;int&gt;
-1 cancelled or diverted   9430
-2 extremely late         10034
-3 on time or early      194342
-4 slightly late          81505
-5 very late              41465</code></pre>
-</div>
-</div>
-<p><code>.default</code> supplies a value for any row that matches none of the earlier conditions; leaving it off has a real consequence covered in Example 8.4.</p>
-</section>
-<section id="numeric-vectors-making-numbers-and-parsing" class="level3">
-<h3 class="anchored" data-anchor-id="numeric-vectors-making-numbers-and-parsing">Numeric vectors: making numbers and parsing</h3>
-<p>Numeric vectors may be integers or doubles. When numbers are stored as text (<code>"$1,234"</code>, <code>"59%"</code>), use <code>readr::parse_double()</code> to convert simple numeric strings, and <code>readr::parse_number()</code> to strip extraneous characters like currency symbols or percent signs first.</p>
-</section>
-<section id="vectorized-arithmetic-and-recycling" class="level3">
-<h3 class="anchored" data-anchor-id="vectorized-arithmetic-and-recycling">Vectorized arithmetic and recycling</h3>
-<p>R performs arithmetic element-wise and recycles the shorter vector to match the length of the longer one. Recycling a single number (<code>x / 5</code>) is convenient; recycling a longer vector against one that isn’t a clean multiple of its length produces a warning, and even a clean recycle can silently do something other than what you intended. Avoid comparing a vector to several values with <code>==</code>; use <code>%in%</code> instead.</p>
-<p>Element-wise minima and maxima come from <code>pmin()</code> and <code>pmax()</code>, and modular arithmetic (<code>%/%</code>, <code>%%</code>) performs integer division and finds remainders. For example, unpacking a four-digit scheduled departure time into hours and minutes:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">sched_hour =</span> sched_dep_time <span class="sc">%/%</span> <span class="dv">100</span>,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sched_minute =</span> sched_dep_time <span class="sc">%%</span> <span class="dv">100</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sched_dep_time, sched_hour, sched_minute) <span class="sc">|&gt;</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-  sched_dep_time sched_hour sched_minute
-           &lt;int&gt;      &lt;dbl&gt;        &lt;dbl&gt;
-1            515          5           15
-2            529          5           29
-3            540          5           40
-4            545          5           45
-5            600          6            0
-6            558          5           58</code></pre>
-</div>
-</div>
-</section>
-<section id="numeric-transformations" class="level3">
-<h3 class="anchored" data-anchor-id="numeric-transformations">Numeric transformations</h3>
-<p>To handle wide ranges of values, apply a log transformation. <code>log2()</code> and <code>log10()</code> are easier to interpret than the natural log <code>log()</code>: a difference of 1 on the log2 scale corresponds to exactly doubling or halving the original value. Rounding functions include <code>round()</code> (see Example 8.3 for a rounding surprise), <code>floor()</code>, and <code>ceiling()</code>; to round to an arbitrary multiple, scale the vector, round, and scale back. <code>cut()</code> converts a continuous variable into categories from break points and optional labels.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span>(x, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"small"</span>, <span class="st">"medium"</span>, <span class="st">"large"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] small  small  small  medium large  large 
-Levels: small medium large</code></pre>
-</div>
-</div>
-</section>
-<section id="ranking-offsets-and-positions" class="level3">
-<h3 class="anchored" data-anchor-id="ranking-offsets-and-positions">Ranking, offsets, and positions</h3>
-<p>A handful of dplyr functions answer questions about a value’s place relative to the rest of a vector, rather than about the value on its own. <code>min_rank()</code> ranks values with ties sharing the same (lowest) rank and a gap afterward, while <code>dense_rank()</code> ranks the same way but without leaving a gap; <code>row_number()</code> breaks ties by position instead.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">30</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(scores, <span class="at">min_rank =</span> <span class="fu">min_rank</span>(scores), <span class="at">dense_rank =</span> <span class="fu">dense_rank</span>(scores))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 3
-  scores min_rank dense_rank
-   &lt;dbl&gt;    &lt;int&gt;      &lt;int&gt;
-1     10        1          1
-2     20        2          2
-3     20        2          2
-4     30        4          3</code></pre>
-</div>
-</div>
-<p><code>lag()</code> and <code>lead()</code> shift a vector by one position (or more, with a second argument), which is exactly what you need to compare a value to the one before or after it, such as computing a change from the previous row within a group:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(month <span class="sc">==</span> <span class="dv">1</span>, day <span class="sc">==</span> <span class="dv">1</span>, origin <span class="sc">==</span> <span class="st">"EWR"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(sched_dep_time) <span class="sc">|&gt;</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prev_dep_delay =</span> <span class="fu">lag</span>(dep_delay), <span class="at">delay_change =</span> dep_delay <span class="sc">-</span> prev_dep_delay) <span class="sc">|&gt;</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sched_dep_time, dep_delay, prev_dep_delay, delay_change) <span class="sc">|&gt;</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 4
-  sched_dep_time dep_delay prev_dep_delay delay_change
-           &lt;int&gt;     &lt;dbl&gt;          &lt;dbl&gt;        &lt;dbl&gt;
-1            515         2             NA           NA
-2            558        -4              2           -6
-3            600        -5             -4           -1
-4            600        -2             -5            3
-5            600        -1             -2            1
-6            600         1             -1            2</code></pre>
-</div>
-</div>
-<p><code>first()</code>, <code>last()</code>, and <code>nth()</code> pull out a specific element of a (possibly grouped) vector, which is often clearer than indexing with <code>[</code> when the intent is “the first observation in each group” rather than “position 1.”</p>
-</section>
-<section id="numeric-summaries" class="level3">
-<h3 class="anchored" data-anchor-id="numeric-summaries">Numeric summaries</h3>
-<p>Summarizing numeric vectors involves measures of center and spread. The mean is sensitive to extreme values, while the median is more robust; the median daily departure delay is always smaller than the mean, because a flight can be hours late but essentially never leaves hours early. Quantiles generalize the median: the 95th percentile, for instance, ignores the most extreme 5% of values. Measures of spread include the standard deviation and the interquartile range (IQR), the difference between the 75th and 25th percentiles.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_arr_delay =</span> <span class="fu">mean</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_arr_delay =</span> <span class="fu">median</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">q95_arr_delay =</span> <span class="fu">quantile</span>(arr_delay, <span class="fl">0.95</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_arr_delay =</span> <span class="fu">sd</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">iqr_arr_delay =</span> <span class="fu">IQR</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 5
-  mean_arr_delay median_arr_delay q95_arr_delay sd_arr_delay iqr_arr_delay
-           &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;
-1           6.90               -5            91         44.6            31</code></pre>
-</div>
-</div>
+<p>Naming <code>org_pac_id</code> and <code>org_nm</code> as <code>id_cols</code> tells <code>pivot_wider()</code> exactly which columns identify a unique organization, so every organization lands on a single row with one column per measure code. <code>id_cols</code> is not optional in the way it looks; leaving it out only means <code>pivot_wider()</code> guesses which remaining columns identify a row, and a wrong guess produces duplicate or list-column results with no error at all (see Example 7.3).</p>
 </section>
 <section id="fringe-cases-and-common-pitfalls" class="level3">
 <h3 class="anchored" data-anchor-id="fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</h3>
@@ -662,26 +558,27 @@ Levels: small medium large</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Example</span>Example 8.1
+<span class="screen-reader-only">Example</span>Example 7.1
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong><code>%in%</code> treats <code>NA</code> completely differently than <code>==</code> does.</strong></p>
+<p><strong><code>names_pattern</code> does everything <code>names_sep</code> does, with regular expressions instead of a fixed character.</strong></p>
+<p>R4DS mentions <code>names_pattern</code> as an alternative to <code>names_sep</code> for splitting column names, but never actually shows it in action. Here it is, reproducing the <code>who2</code> split from this session’s notes with a regular expression capturing the same three pieces:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cn">NA</span> <span class="sc">==</span> <span class="cn">NA</span>        <span class="co"># unknown compared to unknown: still unknown</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] NA</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="cn">NA</span> <span class="sc">%in%</span> <span class="cn">NA</span>      <span class="co"># TRUE: is NA "in" the set {NA}? yes, literally</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>who2_pattern <span class="ot">&lt;-</span> who2 <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">!</span>(country<span class="sc">:</span>year),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"diagnosis"</span>, <span class="st">"gender"</span>, <span class="st">"age"</span>),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_pattern =</span> <span class="st">"(.*)_(.)_(.*)"</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"count"</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">identical</span>(who2_pattern, who2_long)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="cn">NA</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
 </div>
-</div>
-<p><code>==</code> always returns <code>NA</code> when either side is missing, because R refuses to guess whether two unknown things are equal. <code>%in%</code> is different by design: it asks whether a value appears anywhere in a set, and <code>NA</code> genuinely does appear in a set that contains <code>NA</code>, so the answer is a definite <code>TRUE</code>, not a propagated <code>NA</code>. This makes <code>%in%</code> convenient for one specific purpose (matching against a fixed list that might include <code>NA</code>), but it means <code>x %in% NA</code> is not a safe way to test whether <code>x</code> is missing; <code>is.na(x)</code> is.</p>
+<p>Each parenthesized group in the pattern becomes one of the names in <code>names_to</code>, in order. <code>names_sep</code> is really just a convenience wrapper for the common case where a single fixed character cleanly separates every piece; reach for <code>names_pattern</code> once a column name’s structure is too irregular for a single separator character to handle (for example, a fixed number of leading digits followed by free text).</p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-example callout-titled">
@@ -690,19 +587,22 @@ Levels: small medium large</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Example</span>Example 8.2
+<span class="screen-reader-only">Example</span>Example 7.2
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong><code>if_else()</code> and <code>case_when()</code> refuse to mix incompatible output types.</strong></p>
+<p><strong>A column that looks like a unique identifier might not be.</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">if_else</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>), <span class="dv">1</span>, <span class="st">"a"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in `if_else()`:
-! Can't combine `true` &lt;double&gt; and `false` &lt;character&gt;.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">n_distinct</span>(billboard<span class="sc">$</span>track)         <span class="co"># fewer distinct titles than rows...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 316</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(<span class="fu">distinct</span>(billboard, artist, track))  <span class="co"># ...because artist matters too</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 317</code></pre>
 </div>
 </div>
-<p>Every branch of <code>if_else()</code> (and every value in <code>case_when()</code>) has to produce something R can combine into one vector, so an outcome that is sometimes a number and sometimes a string throws an error immediately rather than quietly producing a vector with an unpredictable type. This is a deliberate safety feature: a column that is a number in some rows and text in others is exactly the kind of column that causes confusing errors several steps later in an analysis. Fix it by making every branch the same type, for example <code>if_else(x, "1", "a")</code> or <code>if_else(x, 1, NA_real_)</code>.</p>
+<p><code>billboard</code> has 317 rows but only 316 distinct track titles, because two different artists, Donell Jones and Shade Sheist, each charted a song called “Where I Wanna Be” the same year. <code>track</code> alone cannot serve as a unique identifier for a song; you need the combination of <code>artist</code> and <code>track</code> together. This is exactly the kind of column that looks safe to hand to <code>pivot_wider()</code>’s <code>id_cols</code> and is not, as the next example shows directly.</p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-example callout-titled">
@@ -711,18 +611,37 @@ Levels: small medium large</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Example</span>Example 8.3
+<span class="screen-reader-only">Example</span>Example 7.3
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong><code>round()</code> rounds half to even, not always “up.”</strong></p>
+<p><strong>When <code>id_cols</code> does not uniquely identify a row, <code>pivot_wider()</code> does not error; it silently builds list-columns.</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">round</span>(<span class="fl">0.5</span>), <span class="fu">round</span>(<span class="fl">1.5</span>), <span class="fu">round</span>(<span class="fl">2.5</span>), <span class="fu">round</span>(<span class="fl">3.5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>messy <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">measure =</span> <span class="fu">c</span>(<span class="st">"bp"</span>, <span class="st">"bp"</span>, <span class="st">"bp"</span>),</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">120</span>, <span class="dv">125</span>, <span class="dv">130</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>messy <span class="sc">|&gt;</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> measure, <span class="at">values_from =</span> value)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Values from `value` are not uniquely identified; output will contain list-cols.
+• Use `values_fn = list` to suppress this warning.
+• Use `values_fn = {summary_fun}` to summarise duplicates.
+• Use the following dplyr code to identify duplicates.
+  {data} |&gt;
+  dplyr::summarise(n = dplyr::n(), .by = c(id, measure)) |&gt;
+  dplyr::filter(n &gt; 1L)</code></pre>
+</div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0 2 2 4</code></pre>
+<pre><code># A tibble: 2 × 2
+     id bp       
+  &lt;dbl&gt; &lt;list&gt;   
+1     1 &lt;dbl [2]&gt;
+2     2 &lt;dbl [1]&gt;</code></pre>
 </div>
 </div>
-<p><code>0.5</code> rounds to <code>0</code>, but <code>1.5</code> rounds to <code>2</code>, and <code>2.5</code> rounds back down to <code>2</code> while <code>3.5</code> rounds up to <code>4</code>. This is “round half to even” (also called banker’s rounding): whenever a value sits exactly halfway between two integers, R rounds to whichever one is even, rather than always rounding halves up. The idea is to avoid a systematic upward bias if you round a large number of <code>.5</code> values the more familiar “always round up” way. It rarely matters for numbers with real decimal noise (an actual computed value is essentially never exactly <code>x.5</code>), but it matters immediately for hand-typed test cases and small examples, which is exactly where people first notice it.</p>
+<p>Because <code>id = 1</code> has two different <code>bp</code> readings and nothing else distinguishes those two rows, <code>pivot_wider()</code> cannot put both values in one ordinary cell. Instead of raising an error, it warns you and packs every value for that combination into a list, so the resulting <code>bp</code> column holds <code>&lt;dbl [2]&gt;</code> for <code>id = 1</code> and <code>&lt;dbl [1]&gt;</code> for <code>id = 2</code>, a fundamentally different (and much less convenient) kind of column than the plain numeric column you were probably expecting. If you ever see <em>“values are not uniquely identified; output will contain list-cols,”</em> your <code>id_cols</code> do not actually pin down one row per observation, exactly as in Example 7.2; decide whether you need an additional identifying column, or need to summarize the duplicates (with <code>values_fn</code>) before widening.</p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-example callout-titled">
@@ -731,22 +650,30 @@ Levels: small medium large</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Example</span>Example 8.4
+<span class="screen-reader-only">Example</span>Example 7.4
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong><code>case_when()</code> without <code>.default</code> returns <code>NA</code> for anything that falls through, with no warning.</strong></p>
+<p><strong><code>pivot_wider()</code> orders new columns by first appearance, not numeric order, which text sorting can quietly scramble.</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>severity <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">case_when</span>(</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  severity <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"low"</span>,</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  severity <span class="sc">&gt;</span> <span class="dv">8</span> <span class="sc">~</span> <span class="st">"high"</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>long <span class="ot">&lt;-</span> billboard <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(artist, track, wk1<span class="sc">:</span>wk12) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"wk"</span>), <span class="at">names_to =</span> <span class="st">"week"</span>, <span class="at">values_to =</span> <span class="st">"rank"</span>, <span class="at">values_drop_na =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># widening right away: columns come out in the sensible order wk1, wk2, ..., wk12</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>long <span class="sc">|&gt;</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> week, <span class="at">values_from =</span> rank) <span class="sc">|&gt;</span> <span class="fu">names</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "low"  NA     "high"</code></pre>
+<pre><code> [1] "artist" "track"  "wk1"    "wk2"    "wk3"    "wk4"    "wk5"    "wk6"   
+ [9] "wk7"    "wk8"    "wk9"    "wk10"   "wk11"   "wk12"  </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># widening after arranging by the (character) week column first</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>long <span class="sc">|&gt;</span> <span class="fu">arrange</span>(week) <span class="sc">|&gt;</span> <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> week, <span class="at">values_from =</span> rank) <span class="sc">|&gt;</span> <span class="fu">names</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "artist" "track"  "wk1"    "wk10"   "wk11"   "wk12"   "wk2"    "wk3"   
+ [9] "wk4"    "wk5"    "wk6"    "wk7"    "wk8"    "wk9"   </code></pre>
 </div>
 </div>
-<p><code>5</code> matches neither condition, so it silently becomes <code>NA</code> rather than raising an error or a warning telling you a case was missed. If you intend for every possible input to be covered, add <code>.default =</code> with a sensible fallback value (or <code>.default = NA_character_</code> to make the “nothing else matched” case explicit and intentional rather than accidental), and consider double-checking with <code>count()</code> or <code>sum(is.na(...))</code> on the result that every value ended up somewhere you expected.</p>
+<p>The first version looks correct purely by luck: the rows happened to still be in the order <code>pivot_longer()</code> produced them, which visits <code>wk1</code> through <code>wk12</code> in their original numeric order. Sorting the long data by the <code>week</code> column first, perhaps while cleaning it up for display, reorders those rows alphabetically as text, so <code>pivot_wider()</code> (which names columns in the order their values first appear) produces <code>wk1</code>, <code>wk10</code>, <code>wk11</code>, <code>wk12</code>, <code>wk2</code>, and so on. If you need a guaranteed column order after widening, use <code>relocate()</code> or <code>select()</code> afterward rather than relying on row order going in.</p>
 </div>
 </div>
 </section>
@@ -765,48 +692,44 @@ Levels: small medium large</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Logical vector</strong></td>
-<td>A vector containing only <code>TRUE</code>, <code>FALSE</code>, or <code>NA</code>, typically produced by a comparison.</td>
+<td><strong>Tidy data</strong></td>
+<td>Each variable is a column, each observation is a row, each value is a cell.</td>
 </tr>
 <tr class="even">
-<td><strong><code>near()</code></strong></td>
-<td>Tests approximate equality for floating-point numbers, avoiding false negatives from rounding error.</td>
+<td><strong><code>pivot_longer()</code></strong></td>
+<td>Gathers columns into key-value pairs, increasing the number of rows and decreasing the number of columns.</td>
 </tr>
 <tr class="odd">
-<td><strong><code>&amp;</code> / <code>|</code> with <code>NA</code></strong></td>
-<td><code>NA</code> resolves to a definite answer only when that answer is already certain regardless of the missing value (<code>NA | TRUE</code> is <code>TRUE</code>; <code>NA &amp; FALSE</code> is <code>FALSE</code>).</td>
+<td><strong><code>names_to</code> / <code>values_to</code></strong></td>
+<td>Name the new variable built from column names, and the new variable holding the pivoted values.</td>
 </tr>
 <tr class="even">
-<td><strong><code>%in%</code></strong></td>
-<td>Tests set membership; unlike <code>==</code>, treats <code>NA %in% NA</code> as <code>TRUE</code> rather than propagating <code>NA</code>.</td>
+<td><strong><code>names_sep</code></strong></td>
+<td>Splits each pivoted column name into several new variables at a fixed character.</td>
 </tr>
 <tr class="odd">
-<td><strong><code>any()</code> / <code>all()</code></strong></td>
-<td>Collapse a logical vector to a single <code>TRUE</code>/<code>FALSE</code>, answering “was any/every element <code>TRUE</code>?”</td>
+<td><strong><code>names_pattern</code></strong></td>
+<td>Splits each pivoted column name into several new variables using a regular expression, for cases <code>names_sep</code> can’t handle.</td>
 </tr>
 <tr class="even">
-<td><strong><code>if_else()</code></strong></td>
-<td>Chooses between two values based on a condition; both outputs must share a compatible type.</td>
+<td><strong><code>.value</code> sentinel</strong></td>
+<td>Inside <code>names_to</code>, tells <code>pivot_longer()</code> to use part of the column name as a new column name rather than as a value.</td>
 </tr>
 <tr class="odd">
-<td><strong><code>case_when()</code></strong></td>
-<td>Evaluates several <code>condition ~ value</code> pairs in order; unmatched rows become <code>NA</code> unless <code>.default</code> is set.</td>
+<td><strong><code>pivot_wider()</code></strong></td>
+<td>Spreads values across new columns, increasing the number of columns and decreasing the number of rows.</td>
 </tr>
 <tr class="even">
-<td><strong><code>pmin()</code> / <code>pmax()</code></strong></td>
-<td>Element-wise minimum or maximum across vectors, as opposed to a single overall <code>min()</code>/<code>max()</code>.</td>
+<td><strong><code>id_cols</code></strong></td>
+<td>The columns that must, together, uniquely identify each resulting row when widening.</td>
 </tr>
 <tr class="odd">
-<td><strong><code>round()</code></strong></td>
-<td>Rounds to the nearest integer using “round half to even” for exact halfway values.</td>
+<td><strong>List-column</strong></td>
+<td>A column whose cells can each hold more than one value; <code>pivot_wider()</code> produces one when <code>id_cols</code> doesn’t uniquely identify a row.</td>
 </tr>
 <tr class="even">
-<td><strong><code>min_rank()</code> / <code>dense_rank()</code></strong></td>
-<td>Rank values, with <code>dense_rank()</code> leaving no gap in the ranking after a tie.</td>
-</tr>
-<tr class="odd">
-<td><strong><code>lag()</code> / <code>lead()</code></strong></td>
-<td>Shift a vector by one (or more) positions, for comparing a value to its neighbor.</td>
+<td><strong>Column order after widening</strong></td>
+<td>Determined by the order each <code>names_from</code> value first appears in the data, not by numeric or alphabetical order.</td>
 </tr>
 </tbody>
 </table>
@@ -826,11 +749,11 @@ Levels: small medium large</code></pre>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>Explain the difference between <code>NA == NA</code> and <code>NA %in% NA</code>. Which one should you use to test whether a value is missing, and what should you use instead?</li>
-<li>Without running R, predict each result, then check your answer: <code>NA | TRUE</code>, <code>NA &amp; TRUE</code>, <code>NA | FALSE</code>, <code>NA &amp; FALSE</code>.</li>
-<li>A classmate writes <code>if_else(temperature &gt; 100, "hot", 0)</code> and gets an error. What is wrong, and how would you fix it?</li>
-<li>You write a <code>case_when()</code> with three conditions covering “low,” “medium,” and “high” categories, but no <code>.default</code>. A colleague later reports that some rows in your result are <code>NA</code> even though every row has a valid input value. What is the most likely explanation?</li>
-<li><code>round(2.5)</code> returns <code>2</code>, not <code>3</code>. Is this a bug? Explain what R is actually doing.</li>
+<li>State the three rules that make a dataset tidy.</li>
+<li>After running <code>billboard |&gt; pivot_longer(cols = starts_with("wk"), names_to = "week", values_to = "rank", values_drop_na = TRUE)</code>, does <code>nrow()</code> on the result still tell you how many songs are in the dataset? Explain.</li>
+<li>A dataset has columns <code>income_2020</code>, <code>income_2021</code>, <code>expenses_2020</code>, and <code>expenses_2021</code>. What would you put in <code>names_to</code> to end up with separate <code>income</code> and <code>expenses</code> columns, plus a <code>year</code> column, in one <code>pivot_longer()</code> call?</li>
+<li>You widen a dataset with <code>pivot_wider(names_from = measure, values_from = value)</code> and one of the resulting columns comes back as a list-column instead of an ordinary numeric column. What does that tell you about your <code>id_cols</code>?</li>
+<li>Why might two <code>pivot_longer()</code> calls that use <code>names_sep</code> versus <code>names_pattern</code> produce identical results? When would you have to reach for <code>names_pattern</code> instead of <code>names_sep</code>?</li>
 </ol>
 </div>
 </div>
@@ -848,11 +771,11 @@ Levels: small medium large</code></pre>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><p><code>NA == NA</code> is <code>NA</code>, because R refuses to guess whether two unknown values are equal. <code>NA %in% NA</code> is <code>TRUE</code>, because <code>%in%</code> asks whether a value appears in a set, and <code>NA</code> does appear in a set consisting only of <code>NA</code>. Neither is the right tool for testing missingness; use <code>is.na(x)</code> instead.</p></li>
-<li><p><code>NA | TRUE</code> is <code>TRUE</code> (one side is already <code>TRUE</code>, so the result can’t change). <code>NA &amp; TRUE</code> is <code>NA</code> (the result depends entirely on the unknown side). <code>NA | FALSE</code> is <code>NA</code> (still depends on the unknown side). <code>NA &amp; FALSE</code> is <code>FALSE</code> (one side is already <code>FALSE</code>, so the whole expression can’t be <code>TRUE</code> no matter what).</p></li>
-<li><p>The <code>TRUE</code> branch produces a character string (<code>"hot"</code>) while the <code>FALSE</code> branch produces a number (<code>0</code>); <code>if_else()</code> requires both branches to have a compatible type. The fix is to make both branches the same type, for example <code>if_else(temperature &gt; 100, "hot", "not hot")</code> or <code>if_else(temperature &gt; 100, 1, 0)</code>.</p></li>
-<li><p>The three conditions almost certainly do not cover every possible input value (for example, a boundary value, an unexpected negative number, or a genuinely missing value slipping through), and without <code>.default</code>, any row that matches none of the conditions silently becomes <code>NA</code> instead of raising a warning. Adding <code>.default</code> with an explicit fallback (even <code>.default = NA_character_</code>) makes the “nothing matched” case visible and intentional rather than a surprise.</p></li>
-<li><p>It is not a bug; <code>round()</code> uses “round half to even” (banker’s rounding), so an input sitting exactly halfway between two integers rounds to whichever one is even, rather than always rounding up. <code>2.5</code> rounds to <code>2</code> for the same reason <code>1.5</code> rounds to <code>2</code> and <code>3.5</code> rounds to <code>4</code>: each halfway value rounds toward the nearest even number.</p></li>
+<li><p>Each variable is a column, each observation is a row, and each value occupies a single cell.</p></li>
+<li><p>No.&nbsp;Pivoting longer changes the unit of observation from one row per song to one row per song-week, so <code>nrow()</code> after pivoting tells you the number of song-week observations, not the number of distinct songs. Use <code>n_distinct()</code> on an identifying column (or combination of columns) to count the original units instead.</p></li>
+<li><p><code>names_to = c(".value", "year")</code> with <code>names_sep = "_"</code>. The <code>.value</code> sentinel picks up <code>income</code>/<code>expenses</code> as new column names, and <code>year</code> becomes an ordinary column holding <code>2020</code>/<code>2021</code>.</p></li>
+<li><p>It tells you the named <code>id_cols</code> do not uniquely identify a row: at least one combination of your identifying columns has more than one value for that measure, so <code>pivot_wider()</code> had nowhere to put them except inside a list. You either need an additional identifying column, or need to summarize the duplicate values before widening.</p></li>
+<li><p><code>names_sep</code> is really a convenience shorthand for the common case where a single fixed character cleanly divides every piece of a column name; internally, splitting on a fixed separator can be expressed as a fairly simple regular expression, which is why the two approaches can produce identical results. You need <code>names_pattern</code> once the column names have a structure too irregular for one separator character to capture, such as a fixed-width prefix followed by free-form text, or pieces that aren’t consistently separated at all.</p></li>
 </ol>
 </div>
 </div>

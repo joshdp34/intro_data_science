@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>19&nbsp; Session 19 – Basic programming II: iteration &amp; functional programming – STA 2300 Intro to Data Science</title>
+<title>19&nbsp; Session 19: Basic programming I: functions and code style – STA 2300 Intro to Data Science</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -177,7 +177,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./19.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19 – Basic programming II: iteration &amp; functional programming</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./19.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19: Basic programming I: functions and code style</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -224,127 +224,133 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Data visualization basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Quarto basics for reproducible assignments</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: The layered grammar of graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: Data visualization basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: The layered grammar of graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (II): grouping and summarizing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data import: reading CSV and flat files</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data transformation (II): grouping and summarizing</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Tidy data and pivoting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Data import: reading CSV and flat files</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Variable types I: logical and numeric vectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Tidy data and pivoting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types II: strings and regular expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types I: logical and numeric vectors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types III: factors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types II: strings and regular expressions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types IV: dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types III: factors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12 – Missing values &amp; data cleaning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12: Variable types IV: dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13 –&nbsp;Relational data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13: Missing values and data cleaning</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14 – Advanced data import I: spreadsheets</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14: Relational data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15 – Advanced data import II: databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15: Advanced data import I: spreadsheets</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./16.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16 – Big‑data formats &amp; hierarchical data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16: Advanced data import II: databases</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17 – Web scraping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17: Big data formats and hierarchical data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./18.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18 – Basic programming I: functions &amp; code style</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18: Web scraping</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./19.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19 – Basic programming II: iteration &amp; functional programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19: Basic programming I: functions and code style</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./20.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20 – Reproducible research &amp; communication</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20: Basic programming II: iteration and functional programming</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./21.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21 – Exploratory data analysis (EDA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21: Communication</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./22.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22 – Statistical modelling&nbsp;I: simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22: Exploratory data analysis (EDA)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Session 23: Statistical modeling I: simple linear regression</span></span></a>
   </div>
 </li>
     </ul>
@@ -360,12 +366,17 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#introduction-implicit-and-explicit-iteration" id="toc-introduction-implicit-and-explicit-iteration" class="nav-link" data-scroll-target="#introduction-implicit-and-explicit-iteration">Introduction: implicit and explicit iteration</a></li>
-  <li><a href="#modifying-multiple-columns-with-across" id="toc-modifying-multiple-columns-with-across" class="nav-link" data-scroll-target="#modifying-multiple-columns-with-across">Modifying multiple columns with <code>across()</code></a></li>
-  <li><a href="#reading-multiple-files-with-purrrmap" id="toc-reading-multiple-files-with-purrrmap" class="nav-link" data-scroll-target="#reading-multiple-files-with-purrrmap">Reading multiple files with <code>purrr::map()</code></a></li>
-  <li><a href="#handling-failures" id="toc-handling-failures" class="nav-link" data-scroll-target="#handling-failures">Handling failures</a></li>
-  <li><a href="#saving-multiple-outputs" id="toc-saving-multiple-outputs" class="nav-link" data-scroll-target="#saving-multiple-outputs">Saving multiple outputs</a></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key take‑aways</a></li>
+  <li><a href="#why-write-functions" id="toc-why-write-functions" class="nav-link" data-scroll-target="#why-write-functions">Why write functions?</a></li>
+  <li><a href="#anatomy-of-a-function" id="toc-anatomy-of-a-function" class="nav-link" data-scroll-target="#anatomy-of-a-function">Anatomy of a function</a></li>
+  <li><a href="#vector-functions" id="toc-vector-functions" class="nav-link" data-scroll-target="#vector-functions">Vector functions</a></li>
+  <li><a href="#data-frame-functions-and-tidy-evaluation" id="toc-data-frame-functions-and-tidy-evaluation" class="nav-link" data-scroll-target="#data-frame-functions-and-tidy-evaluation">Data-frame functions and tidy evaluation</a></li>
+  <li><a href="#accepting-more-than-one-column-pick" id="toc-accepting-more-than-one-column-pick" class="nav-link" data-scroll-target="#accepting-more-than-one-column-pick">Accepting more than one column: <code>pick()</code></a></li>
+  <li><a href="#plot-functions" id="toc-plot-functions" class="nav-link" data-scroll-target="#plot-functions">Plot functions</a></li>
+  <li><a href="#naming-a-column-dynamically" id="toc-naming-a-column-dynamically" class="nav-link" data-scroll-target="#naming-a-column-dynamically">Naming a column dynamically</a></li>
+  <li><a href="#function-style" id="toc-function-style" class="nav-link" data-scroll-target="#function-style">Function style</a></li>
+  <li><a href="#fringe-cases-and-common-pitfalls" id="toc-fringe-cases-and-common-pitfalls" class="nav-link" data-scroll-target="#fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -375,7 +386,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19 – Basic programming II: iteration &amp; functional programming</span></h1>
+<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19: Basic programming I: functions and code style</span></h1>
 </div>
 
 
@@ -395,137 +406,397 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Recognize how iteration differs in R.</strong> In many programming languages you must explicitly loop over the elements of a vector. R is different: doubling a numeric vector is as simple as <code>2 * x</code> because the operation is <em>vectorised</em>. You’ve already encountered implicit iteration through tools like <code>facet_wrap()</code>/<code>facet_grid()</code> for faceting, <code>group_by()</code>&nbsp;+&nbsp;<code>summarize()</code> for group‑wise summaries and the <code>unnest_*()</code> functions for list‑columns. In this session you’ll learn more general tools for explicit iteration.</li>
-<li><strong>Modify multiple columns with <code>across()</code>.</strong> The <code>across()</code> function lets you apply one or more functions to a set of columns in <code>summarize()</code> or <code>mutate()</code>. You’ll learn to select columns with <code>.cols</code>, supply functions via <code>.fns</code>, customize the output names via <code>.names</code> and use variants like <code>if_any()</code>/<code>if_all()</code> for filtering.</li>
-<li><strong>Read and combine many files with purrr.</strong> <code>purrr::map()</code> iterates over a vector or list and applies a function to each element, returning a list. You’ll learn a three‑step pattern for importing a directory of files: list the file paths with <code>list.files()</code>, map a read function over those paths and then combine the results with <code>purrr::list_rbind()</code>. You’ll see how to extract data encoded in file names using <code>set_names()</code> and the <code>names_to</code> argument of <code>list_rbind()</code>.</li>
-<li><strong>Handle failures and heterogenous data.</strong> When iterating over many inputs it’s common for a few to fail. You’ll use <code>purrr::possibly()</code> to wrap a function so that failures return a default (e.g., <code>NULL</code>) instead of stopping the whole iteration. You’ll also learn strategies for dealing with lists of data frames that don’t all have the same structure.</li>
-<li><strong>Save multiple outputs.</strong> The same iteration patterns can help when exporting data. You’ll briefly see how to write multiple data frames to disk or a database and how to generate a series of plots programmatically.</li>
+<li><strong>Recognize why writing functions matters.</strong> Functions let you automate common tasks and extend your reach as a data scientist. Writing a function has four advantages over copy-and-paste: an evocative name, one place to update as requirements change, no copy-paste mistakes, and easy reuse on future projects. A good rule of thumb: write a function once you’ve copied and pasted the same code more than twice.</li>
+<li><strong>Differentiate types of functions.</strong> Learn the three broad categories: vector functions (take one or more vectors, return a vector), data-frame functions (take a data frame, return a data frame or a summary), and plot functions (take a data frame, return a plot).</li>
+<li><strong>Construct functions from repeated code.</strong> Identify what varies and what stays constant; choose a short, descriptive name, list the varying pieces as arguments, and wrap the repeated body in <code>function()</code>. Test on simple inputs before using a function in a real pipeline.</li>
+<li><strong>Understand tidy evaluation and embracing.</strong> Writing a data-frame function that calls dplyr verbs runs into indirection: a bare argument name doesn’t work, because dplyr’s tidy evaluation looks for a column with that literal name. Use <code>{ }</code> to tell dplyr to use the argument’s value instead, and <code>pick()</code> when the argument represents more than one column at once.</li>
+<li><strong>Write simple plot functions.</strong> Plot functions wrap ggplot2 code into reusable helpers; since <code>aes()</code> is data-masking, you embrace variables passed into it exactly the same way. <code>rlang::englue()</code> can build a plot title that names the variable automatically.</li>
+<li><strong>Adopt good naming and style conventions.</strong> Choose function names that are verbs and argument names that are nouns; clarity beats brevity. Indent the body inside curly braces, and add spaces inside <code>{ }</code> to make embracing visually obvious.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<section id="introduction-implicit-and-explicit-iteration" class="level3">
-<h3 class="anchored" data-anchor-id="introduction-implicit-and-explicit-iteration">Introduction: implicit and explicit iteration</h3>
-<p><strong>Iteration is everywhere.</strong> In R, many iterative operations are built into the language. The introduction to the iteration chapter reminds us that doubling a vector uses a single expression (<code>2 * x</code>) instead of a loop. Earlier tools you’ve used—faceting, group‑wise summarization and unnesting list‑columns—perform the same action for many subsets or elements. These conveniences hide the loop, but sometimes you need more control. Functional programming tools take functions as inputs and allow you to express iteration concisely. We will focus on three common tasks: <strong>modifying multiple columns</strong>, <strong>reading multiple files</strong> and <strong>saving multiple outputs</strong>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="why-write-functions" class="level3">
+<h3 class="anchored" data-anchor-id="why-write-functions">Why write functions?</h3>
+<p>Moving repeated code into a function is one of the most effective ways to reduce duplication and avoid errors. Writing a function gives the code a clear name, centralizes future changes in one place, eliminates copy-paste mistakes, and makes the logic reusable across projects. Whenever you find yourself copying and pasting the same code more than twice, that’s the signal to write a function instead.</p>
 </section>
-<section id="modifying-multiple-columns-with-across" class="level3">
-<h3 class="anchored" data-anchor-id="modifying-multiple-columns-with-across">Modifying multiple columns with <code>across()</code></h3>
-<p>Suppose you have a tibble with several numeric variables and you want to compute a summary for each. You could write the same function call repeatedly—violating the rule to never copy‑and‑paste more than twice. Instead, use <strong><code>across()</code></strong> inside <code>summarize()</code> or <code>mutate()</code> to iterate over columns. <code>across()</code> has three key arguments:</p>
+<section id="anatomy-of-a-function" class="level3">
+<h3 class="anchored" data-anchor-id="anatomy-of-a-function">Anatomy of a function</h3>
+<p>Turning repeated code into a function starts with identifying what changes and what stays the same. Every function needs a name, a set of arguments, and a body containing the repeated code. Rescaling a numeric vector to lie between 0 and 1 is a good first example:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>rescale01 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  rng <span class="ot">&lt;-</span> <span class="fu">range</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">finite =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  (x <span class="sc">-</span> rng[<span class="dv">1</span>]) <span class="sc">/</span> (rng[<span class="dv">2</span>] <span class="sc">-</span> rng[<span class="dv">1</span>])</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale01</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0 0.5 1.0</code></pre>
+</div>
+</div>
+<p>This is the basic template: <code>name &lt;- function(arguments) { body }</code>. <code>finite = TRUE</code> inside <code>range()</code> is doing real work here, not just tidying up; leaving it out changes the answer the moment an infinite value shows up (see Example 18.2).</p>
+</section>
+<section id="vector-functions" class="level3">
+<h3 class="anchored" data-anchor-id="vector-functions">Vector functions</h3>
+<p>A vector function takes one or more vectors and returns a vector of the same length, which is exactly the shape <code>mutate()</code> expects. A z-score function is a common example:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>z_score <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  (x <span class="sc">-</span> <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">/</span> <span class="fu">sd</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Because <code>z_score()</code> returns a vector rather than a data frame, it drops directly into <code>mutate()</code> on one column at a time, or across several columns at once with <code>across()</code> (covered next session).</p>
+</section>
+<section id="data-frame-functions-and-tidy-evaluation" class="level3">
+<h3 class="anchored" data-anchor-id="data-frame-functions-and-tidy-evaluation">Data-frame functions and tidy evaluation</h3>
+<p>A data-frame function takes a data frame, does something to it, and returns a new data frame or summary. The obstacle is that dplyr verbs use tidy evaluation: they interpret a bare name like <code>group_var</code> as a literal column name, not as “whatever column the caller passed in.” Writing the function the naive way fails as soon as you call it (see Example 18.1):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>grouped_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(df, group_var, mean_var) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(group_var) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="fu">mean</span>(mean_var))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Embracing</strong> an argument with <code>{ }</code> tells dplyr to substitute the argument’s <em>value</em> wherever it appears, rather than treating its name literally:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>grouped_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(df, group_var, mean_var) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>({{ group_var }}) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>({{ mean_var }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> <span class="fu">grouped_mean</span>(cut, carat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  cut        mean
+  &lt;ord&gt;     &lt;dbl&gt;
+1 Fair      1.05 
+2 Good      0.849
+3 Very Good 0.806
+4 Premium   0.892
+5 Ideal     0.703</code></pre>
+</div>
+</div>
+<p>Embracing works the same way whether the underlying verb is data-masking (<code>filter()</code>, <code>summarize()</code>, <code>arrange()</code>) or tidy-selection (<code>select()</code>, <code>rename()</code>); when you’re not sure which kind an argument needs, the function’s documentation will say.</p>
+<p>Bundling a common set of summaries into one helper is a natural extension of the same idea:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>summary6 <span class="ot">&lt;-</span> <span class="cf">function</span>(data, var) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  data <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">min =</span> <span class="fu">min</span>({{ var }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">mean =</span> <span class="fu">mean</span>({{ var }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">median =</span> <span class="fu">median</span>({{ var }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">max =</span> <span class="fu">max</span>({{ var }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">n_miss =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>({{ var }})),</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Because <code>summary6()</code> just wraps <code>summarize()</code>, it works equally well on grouped data or ungrouped data, and it’s worth always adding <code>.groups = "drop"</code> inside a helper like this so it doesn’t leave surprise grouping behind for whatever code runs next.</p>
+</section>
+<section id="accepting-more-than-one-column-pick" class="level3">
+<h3 class="anchored" data-anchor-id="accepting-more-than-one-column-pick">Accepting more than one column: <code>pick()</code></h3>
+<p>Embracing works cleanly for a single column, but passing several columns at once into a data-masking argument needs one more piece: <code>pick()</code>. Without it, a multi-column tidy-selection like <code>c(cut, clarity)</code> gets misinterpreted as a data-masking computation instead of a set of columns to group by (see Example 18.3 for exactly how that goes wrong).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>count_missing <span class="ot">&lt;-</span> <span class="cf">function</span>(df, group_vars, x) {</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(<span class="fu">pick</span>({{ group_vars }})) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">n_miss =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>({{ x }})), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> <span class="fu">count_missing</span>(<span class="fu">c</span>(cut, clarity), carat) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  cut   clarity n_miss
+  &lt;ord&gt; &lt;ord&gt;    &lt;int&gt;
+1 Fair  I1           0
+2 Fair  SI2          0
+3 Fair  SI1          0
+4 Fair  VS2          0
+5 Fair  VS1          0
+6 Fair  VVS2         0</code></pre>
+</div>
+</div>
+<p><code>pick()</code> tells dplyr “treat this embraced argument as a tidy-selection of columns,” which is exactly what <code>group_by()</code> needs when the caller might hand it more than one grouping column at once.</p>
+</section>
+<section id="plot-functions" class="level3">
+<h3 class="anchored" data-anchor-id="plot-functions">Plot functions</h3>
+<p>Plot functions wrap repeated <code>ggplot()</code> calls the same way data-frame functions wrap repeated dplyr pipelines:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>histogram <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var, <span class="at">binwidth =</span> <span class="cn">NULL</span>) {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> {{ var }})) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> binwidth)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> <span class="fu">histogram</span>(carat, <span class="at">binwidth =</span> <span class="fl">0.1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="19_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><code>aes()</code> is data-masking, so embracing <code>var</code> works exactly the way it did inside <code>summarize()</code>. The plot this returns is an ordinary ggplot object, so a caller can still add more layers with <code>+</code> afterward. <code>rlang::englue()</code> goes one step further and builds a label that names the embraced variable automatically, which is a nice touch for a helper other people (including future you) will reuse:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>histogram <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var, <span class="at">binwidth =</span> <span class="cn">NULL</span>) {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  label <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">englue</span>(<span class="st">"Histogram of {{ var }}"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> {{ var }})) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> binwidth) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> label)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> <span class="fu">histogram</span>(carat, <span class="at">binwidth =</span> <span class="fl">0.1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="19_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="naming-a-column-dynamically" class="level3">
+<h3 class="anchored" data-anchor-id="naming-a-column-dynamically">Naming a column dynamically</h3>
+<p>Sometimes you want the <em>name</em> of a new column, not just its value, to depend on an argument, such as labeling a computed average <code>avg_carat</code> when the caller passes in <code>carat</code>. A plain <code>=</code> can’t do this (see Example 18.4); dplyr’s <code>:=</code> (“walrus”) operator, combined with unquoting (<code>!!</code>), can:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>my_summary <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var) {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  var_name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"avg_"</span>, rlang<span class="sc">::</span><span class="fu">as_label</span>(<span class="fu">enquo</span>(var)))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="sc">!!</span><span class="at">var_name :=</span> <span class="fu">mean</span>({{ var }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> <span class="fu">my_summary</span>(carat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  avg_carat
+      &lt;dbl&gt;
+1     0.798</code></pre>
+</div>
+</div>
+<p><code>enquo()</code> captures the argument as an expression, <code>rlang::as_label()</code> turns that expression into a plain string, and <code>!!</code> unquotes <code>var_name</code> on the left of <code>:=</code> so dplyr uses its <em>value</em> (<code>"avg_carat"</code>) as the new column’s name, rather than the six literal characters <code>v</code>, <code>a</code>, <code>r</code>, <code>_</code>, <code>n</code>, <code>a</code>… which is what a plain <code>=</code> would do instead.</p>
+</section>
+<section id="function-style" class="level3">
+<h3 class="anchored" data-anchor-id="function-style">Function style</h3>
+<p>Good naming and formatting make a function readable for whoever reads it next, including you. R doesn’t care about names or whitespace; people do. Prefer verbs for function names and nouns for arguments, since <code>impute_missing()</code> and <code>collapse_years()</code> communicate far more than <code>f()</code> or <code>my_awesome_function()</code>. Always follow <code>function()</code> with curly braces, indent the body consistently, and add spaces inside <code>{ }</code> so embracing is visually obvious at a glance rather than easy to miss.</p>
+</section>
+<section id="fringe-cases-and-common-pitfalls" class="level3">
+<h3 class="anchored" data-anchor-id="fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</h3>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 18.1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Forgetting to embrace produces a specific, informative error, not a silently wrong answer.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>grouped_mean_bad <span class="ot">&lt;-</span> <span class="cf">function</span>(df, group_var, mean_var) {</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(group_var) <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(mean_var), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> <span class="fu">grouped_mean_bad</span>(cut, carat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `group_by()`:
+! Must group by variables found in `.data`.
+✖ Column `group_var` is not found.</code></pre>
+</div>
+</div>
+<p>dplyr looks for a column literally named <code>group_var</code>, finds none, and says so directly: <em>“Column <code>group_var</code> is not found.”</em> This is a comparatively friendly failure, as function bugs go, precisely because it fails loudly right at the point of the mistake rather than quietly grouping by the wrong thing or returning a nonsensical summary. If you ever see an unexpected column name from inside your own function show up in an error message like this, forgetting to embrace an argument is the first thing to check.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 18.2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong><code>finite = TRUE</code> in <code>rescale01()</code> isn’t decoration; leaving it out breaks the function the moment an <code>Inf</code> shows up.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>rescale01_no_finite <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  rng <span class="ot">&lt;-</span> <span class="fu">range</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  (x <span class="sc">-</span> rng[<span class="dv">1</span>]) <span class="sc">/</span> (rng[<span class="dv">2</span>] <span class="sc">-</span> rng[<span class="dv">1</span>])</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="cn">Inf</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale01_no_finite</span>(x)      <span class="co"># every finite value collapses to 0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]   0   0   0 NaN</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale01</span>(x)                 <span class="co"># finite = TRUE keeps the finite values properly scaled</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0 0.5 1.0 Inf</code></pre>
+</div>
+</div>
+<p>Without <code>finite = TRUE</code>, <code>range()</code> includes <code>Inf</code> as the maximum, so every ordinary value gets divided by a gap that’s effectively infinite, collapsing every one of them to <code>0</code>, and <code>Inf</code> itself becomes <code>Inf / Inf</code>, which is <code>NaN</code>. With <code>finite = TRUE</code>, <code>range()</code> ignores the infinite value when computing the scale, so the three ordinary values rescale sensibly (<code>0</code>, <code>0.5</code>, <code>1</code>) and only the genuinely infinite input stays <code>Inf</code>. A single argument buried inside a helper function can be the difference between a function that degrades gracefully and one that quietly returns all zeros.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 18.3
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Embracing more than one column directly, without <code>pick()</code>, fails with a confusing size-mismatch error.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>count_missing_bad <span class="ot">&lt;-</span> <span class="cf">function</span>(df, group_vars, x) {</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>({{ group_vars }}) <span class="sc">|&gt;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">n_miss =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>({{ x }})), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> <span class="fu">count_missing_bad</span>(<span class="fu">c</span>(cut, clarity), carat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `group_by()`:
+ℹ In argument: `c(cut, clarity)`.
+Caused by error:
+! `c(cut, clarity)` must be size 53940 or 1, not 107880.</code></pre>
+</div>
+</div>
+<p><code>{ group_vars }</code> embraces <code>c(cut, clarity)</code> as a single data-masking expression, the same as it would for one column, but a data-masking expression is supposed to produce one computed vector, not “please group by these two separate columns.” The result is an internal length mismatch that has nothing obviously to do with the real problem. Wrapping the embraced argument in <code>pick()</code>, as in the working <code>count_missing()</code> earlier in this session, tells dplyr to treat it as a tidy-selection of columns instead, which is what actually fixes it.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 18.4
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>A plain <code>=</code> can’t compute a column name from an argument; it just uses your variable’s literal name as the column name.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>my_summary_wrong <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var) {</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  var_name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"avg_"</span>, rlang<span class="sc">::</span><span class="fu">as_label</span>(<span class="fu">enquo</span>(var)))</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">var_name =</span> <span class="fu">mean</span>({{ var }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> <span class="fu">my_summary_wrong</span>(carat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  var_name
+     &lt;dbl&gt;
+1    0.798</code></pre>
+</div>
+</div>
+<p>The resulting column is named <code>var_name</code>, the literal name of the R variable on the left of <code>=</code>, not <code>avg_carat</code>, the string that variable actually holds. <code>=</code> inside a dplyr verb always takes the text written on its left as the new column’s name; it never looks at what a variable with that name currently contains. <code>:=</code> behaves the same way <em>unless</em> you explicitly unquote the left-hand side with <code>!!</code>, which is precisely what tells dplyr “use the value of this variable as the name,” rather than the variable’s own name.</p>
+</div>
+</div>
+</section>
+<section id="recap" class="level3">
+<h3 class="anchored" data-anchor-id="recap">Recap</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 76%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Term</strong></th>
+<th><strong>Definition</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Vector function</strong></td>
+<td>Takes one or more vectors, returns a vector of the same length; drops into <code>mutate()</code>.</td>
+</tr>
+<tr class="even">
+<td><strong>Data-frame function</strong></td>
+<td>Takes a data frame, returns a data frame or summary; needs embracing to accept column names as arguments.</td>
+</tr>
+<tr class="odd">
+<td><strong>Plot function</strong></td>
+<td>Takes a data frame, returns a ggplot object; embraces variables the same way inside <code>aes()</code>.</td>
+</tr>
+<tr class="even">
+<td><strong>Embracing (<code>{ }</code>)</strong></td>
+<td>Tells a tidy-eval-aware verb to use an argument’s value, rather than treating its name literally.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>pick()</code></strong></td>
+<td>Lets an embraced argument represent a tidy-selection of several columns inside a data-masking verb like <code>group_by()</code>.</td>
+</tr>
+<tr class="even">
+<td><strong><code>rlang::englue()</code></strong></td>
+<td>Builds a string (such as a plot title) that automatically names an embraced variable.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>:=</code> (walrus operator)</strong></td>
+<td>Like <code>=</code> inside a dplyr verb, but its left side can be unquoted with <code>!!</code> to use a computed name instead of a literal one.</td>
+</tr>
+<tr class="even">
+<td><strong><code>finite = TRUE</code></strong></td>
+<td>A <code>range()</code> argument that excludes <code>Inf</code>/<code>-Inf</code> from the computed range; leaving it out lets one infinite value distort an entire calculation.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="check-your-understanding" class="level3">
+<h3 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Problems">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Problems
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
 <ol type="1">
-<li><strong><code>.cols</code></strong> selects which columns to operate on. It uses the same tidy‑select syntax as <code>select()</code>, so you can use helpers such as <code>starts_with()</code>, <code>ends_with()</code>, <code>everything()</code> and <code>where()</code>. For example, <code>where(is.numeric)</code> selects all numeric columns and <code>!where(is.numeric)</code> selects everything else.</li>
-<li><strong><code>.fns</code></strong> supplies the function(s) to apply. For a single function you pass its bare name—without <code>()</code>—and <code>across()</code> will call it for each column. To provide additional arguments, wrap the function in an anonymous function <code>\(x) ...</code>. You can supply multiple functions by passing a named list; the names determine the suffixes used in the output.</li>
-<li><strong><code>.names</code></strong> controls the names of the output columns. By default, the name of each output is a glue specification <code>{.col}_{.fn}</code>; you can provide your own specification, e.g., <code>"{.fn}_{.col}"</code> to put the function name first. When using <code>across()</code> inside <code>mutate()</code>, remember that without <code>.names</code> the results will overwrite existing columns; specify new names to preserve the originals.</li>
+<li>What are the three broad categories of functions covered in this session, and what does each one take as input and return as output?</li>
+<li>You write <code>filter_by(df, col, val) { df |&gt; filter(col == val) }</code> (without embracing) and call <code>filter_by(diamonds, cut, "Ideal")</code>. What happens, and how would embracing fix it?</li>
+<li>Why does <code>rescale01(c(1, 2, Inf))</code> behave differently depending on whether <code>range()</code> was called with <code>finite = TRUE</code>?</li>
+<li>A function accepts a <code>group_vars</code> argument meant to represent one or more grouping columns, and calls <code>group_by({{ group_vars }})</code>. What goes wrong when a caller passes <code>c(cut, clarity)</code>, and what one change fixes it?</li>
+<li>Inside a function, you write <code>summarize(col_name = mean(x))</code> hoping the new column will be named whatever string <code>col_name</code> currently holds. What actually happens, and what would you write instead?</li>
 </ol>
-<p>Here are some common patterns using <code>across()</code>:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># summarise each numeric column and count rows</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span> </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">where</span>(is.numeric), mean),</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>()</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width   n
-1     5.843333    3.057333        3.758    1.199333 150</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute mean and standard deviation for numeric columns</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="fu">list</span>(<span class="at">mean =</span> <span class="sc">~</span><span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">sd   =</span> <span class="sc">~</span><span class="fu">sd</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">.names =</span> <span class="st">"{.fn}_{.col}"</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  mean_Sepal.Length sd_Sepal.Length mean_Sepal.Width sd_Sepal.Width
-1          5.843333       0.8280661         3.057333      0.4358663
-  mean_Petal.Length sd_Petal.Length mean_Petal.Width sd_Petal.Width
-1             3.758        1.765298         1.199333      0.7622377</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># replace missing values with zero but keep originals</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df_miss <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">a =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="dv">3</span>), <span class="at">b =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="cn">NA</span>))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df_miss <span class="sc">|&gt;</span> </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(a<span class="sc">:</span>b, <span class="sc">~</span><span class="fu">coalesce</span>(.x, <span class="dv">0</span>), <span class="at">.names =</span> <span class="st">"{.col}_na0"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 4
-      a     b a_na0 b_na0
-  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1     1     4     1     4
-2    NA     5     0     5
-3     3    NA     3     0</code></pre>
 </div>
 </div>
-<p>When filtering, <code>if_any()</code> and <code>if_all()</code> are handy variants: <code>filter(if_any(where(is.na)))</code> keeps rows with at least one missing value, whereas <code>filter(if_all(where(is.na)))</code> keeps rows where <em>all</em> selected columns are missing.</p>
-<p>The fact that <code>.cols</code> uses tidy‑select means you can write helper functions that operate on a user‑supplied set of columns. For example, the <code>summarize_means()</code> helper from the book computes the mean of selected columns and drops grouping. Use embracing (<code>{ }</code>) to allow column arguments inside your functions.</p>
-</section>
-<section id="reading-multiple-files-with-purrrmap" class="level3">
-<h3 class="anchored" data-anchor-id="reading-multiple-files-with-purrrmap">Reading multiple files with <code>purrr::map()</code></h3>
-<p>The second iteration task is combining data stored in many files. A reliable pattern has three steps:</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solutions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solutions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <ol type="1">
-<li><strong>List files.</strong> Use <code>list.files()</code> to get a character vector of file paths. Supply the directory with <code>path</code>, restrict the file types with a regular‑expression <code>pattern</code> like <code>"[.]csv$"</code> and set <code>full.names = TRUE</code> so the results include the directory.</li>
-<li><strong>Read each file.</strong> Use <code>purrr::map()</code> to apply a reading function (e.g., <code>read_csv()</code> or <code>read_excel()</code>) to each path. <code>map(x, f)</code> is shorthand for calling <code>f()</code> on each element of <code>x</code> and returning a list. If you need to pass additional arguments, supply an anonymous function <code>\(path) read_csv(path, skip = 2)</code>.</li>
-<li><strong>Combine the results.</strong> Once you have a list of data frames, use <code>purrr::list_rbind()</code> to stack them into a single tibble. When file names contain data, call <code>set_names()</code> to give the list elements informative names and use the <code>names_to</code> argument of <code>list_rbind()</code> to store those names as a column. You can extract numbers from file names with <code>readr::parse_number()</code>.</li>
+<li><p>Vector functions take one or more vectors and return a vector of the same length, for use inside <code>mutate()</code> or <code>filter()</code>. Data-frame functions take a data frame and return a data frame or a summary, typically by wrapping a dplyr pipeline. Plot functions take a data frame and return a ggplot object, typically by wrapping a <code>ggplot()</code> call.</p></li>
+<li><p><code>filter(col == val)</code> looks for a column literally named <code>col</code>, which almost certainly doesn’t exist in <code>diamonds</code>, so it either errors immediately or, if a column happens to be named <code>col</code>, silently filters on the wrong thing. Embracing (<code>filter({{ col }} == val)</code>) tells <code>filter()</code> to use the actual column the caller passed in, <code>cut</code>, instead of the literal word <code>col</code>.</p></li>
+<li><p>Without <code>finite = TRUE</code>, <code>range()</code> includes <code>Inf</code> as the maximum, so the denominator becomes effectively infinite and every finite input collapses to <code>0</code> while <code>Inf</code> itself becomes <code>NaN</code>. With <code>finite = TRUE</code>, <code>range()</code> ignores infinite values entirely, so the finite inputs are scaled using only the finite range, and only the truly infinite input stays <code>Inf</code>.</p></li>
+<li><p><code>{ group_vars }</code> treats <code>c(cut, clarity)</code> as a single data-masking expression rather than a selection of two separate columns, producing an internal length mismatch rather than grouping by both columns. Wrapping it as <code>group_by(pick({{ group_vars }}))</code> tells dplyr to treat the embraced argument as a tidy-selection instead, which correctly groups by every column named in it.</p></li>
+<li><p>The new column is named <code>col_name</code>, the literal text of the variable’s name, because <code>=</code> inside a dplyr verb always uses the text on its left as the column name and never evaluates it. To use the actual string stored in <code>col_name</code> as the new column’s name, use <code>!!col_name := mean(x)</code> instead, which unquotes <code>col_name</code> so dplyr uses its value.</p></li>
 </ol>
-<p>Here is a minimal example that reads multiple CSVs from a directory, records the year from the file name and combines them:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>paths <span class="ot">=</span> <span class="fu">list.files</span>(<span class="st">"data/gapminder"</span>, <span class="at">pattern =</span> <span class="st">"[.]csv$"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>gapminder <span class="ot">=</span> paths <span class="sc">|&gt;</span> </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_names</span>(basename) <span class="sc">|&gt;</span>                           <span class="co"># name each element by file name</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(readr<span class="sc">::</span>read_csv) <span class="sc">|&gt;</span>                          <span class="co"># read each file into a tibble</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list_rbind</span>(<span class="at">names_to =</span> <span class="st">"file_name"</span>) <span class="sc">|&gt;</span>           <span class="co"># combine and create file_name column</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> readr<span class="sc">::</span><span class="fu">parse_number</span>(file_name))    <span class="co"># extract year from the name</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>When the data frames are heterogeneous (different columns or types), inspect them before binding. A helper like <code>df_types()</code> that records column names, types and missing values can be mapped over the list and the results compared.</p>
-</section>
-<section id="handling-failures" class="level3">
-<h3 class="anchored" data-anchor-id="handling-failures">Handling failures</h3>
-<p><code>purrr::map()</code> stops on the first error. If any file fails to read, nothing is returned. To avoid losing all progress you can wrap the reading function with <code>purrr::possibly()</code>, which returns a specified default (e.g., <code>NULL</code>) instead of erroring. For example:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>safe_read <span class="ot">=</span> <span class="fu">possibly</span>(readr<span class="sc">::</span>read_csv, <span class="at">otherwise =</span> <span class="cn">NULL</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>files  <span class="ot">=</span> paths <span class="sc">|&gt;</span> <span class="fu">map</span>(safe_read)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>data   <span class="ot">=</span> files <span class="sc">|&gt;</span> <span class="fu">list_rbind</span>()    <span class="co"># list_rbind() silently drops NULLs</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>failed <span class="ot">=</span> <span class="fu">map_lgl</span>(files, is.null)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>paths[failed]  <span class="co"># investigate these files manually</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>This pattern lets you process all the valid files and identify which ones need special handling.</p>
-</section>
-<section id="saving-multiple-outputs" class="level3">
-<h3 class="anchored" data-anchor-id="saving-multiple-outputs">Saving multiple outputs</h3>
-<p>The final task is the reverse of reading: you often need to save multiple data frames or plots. The iteration tools you’ve learned apply here too. For example, to save several datasets to disk you could use <code>purrr::iwalk()</code> (or <code>walk2()</code>) over a list of tibbles and corresponding file names:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>datasets <span class="ot">=</span> <span class="fu">list</span>(<span class="at">penguins =</span> palmerpenguins<span class="sc">::</span>penguins, </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">storms   =</span> dplyr<span class="sc">::</span>storms)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>paths <span class="ot">=</span> <span class="fu">paste0</span>(<span class="fu">names</span>(datasets), <span class="st">".csv"</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">walk2</span>(datasets, paths, readr<span class="sc">::</span>write_csv)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Similarly, to save multiple plots you can iterate over a list of ggplot objects and call <code>ggsave()</code> for each, constructing the file name from the plot’s position or a meaningful label. When writing many outputs to a database, you can create a template table and then iterate over your data frames inserting them one by one.</p>
-</section>
-<section id="key-takeaways" class="level3">
-<h3 class="anchored" data-anchor-id="key-takeaways">Key take‑aways</h3>
-<ul>
-<li><strong>Vectorised operations hide loops.</strong> R often does the iteration for you, but when you need more control, functional programming tools help you express iteration clearly.</li>
-<li><strong><code>across()</code> loops over columns.</strong> Select variables with tidy‑select in <code>.cols</code>, supply one or more functions via <code>.fns</code> (bare names or anonymous functions), and control output names with <code>.names</code>. Use <code>where()</code> helpers to select columns by type and <code>if_any()</code>/<code>if_all()</code> to filter across multiple columns.</li>
-<li><strong>Break up complex summaries.</strong> When multiple functions are applied, name them to get informative suffixes and, if needed, customise the naming pattern.</li>
-<li><strong>Three‑step file import.</strong> Use <code>list.files()</code> to collect file names, <code>purrr::map()</code> to read each file and <code>list_rbind()</code> to combine them. Use <code>set_names()</code> and the <code>names_to</code> argument to capture metadata stored in file names.</li>
-<li><strong>Use <code>possibly()</code> to handle errors.</strong> Wrap functions with <code>purrr::possibly()</code> so that failures return a default, allowing you to process good inputs and diagnose problems later.</li>
-<li><strong>Iteration patterns are symmetrical.</strong> The same tools you use to read multiple inputs—<code>map()</code>, <code>walk()</code>, naming and combining—also help you write multiple outputs, from CSV files to plots.</li>
-</ul>
-<!-- ## In‑class activity -->
-<!-- In today’s hands‑on activity you will practise functional programming with the **palmerpenguins::penguins** dataset.  The dataset includes measurements for three species of penguins (`Adelie`, `Gentoo`, `Chinstrap`) and provides a clean, tabular example that is *not used in the R for Data Science book*.  The goal is to apply `across()` to summarise and transform multiple variables, iterate over groups with `map()`, handle potential read failures with `possibly()`, and save multiple outputs.  Complete the following steps in an R script or notebook: -->
-<!-- 1. **Explore the data (5 min).**  Load the tidyverse and palmerpenguins packages.  Use `glimpse(penguins)` to see the structure of the dataset, and identify which variables are numeric and which are factors.  Use `summary()` to check for missing values. -->
-<!-- 2. **Summarise numeric variables by species (10 min).**  Use `group_by(species)` and `summarize()` with `across()` to compute the mean and standard deviation of every numeric column (e.g., `bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, `body_mass_g`).  Supply a named list of functions so that your output columns are named `mean_bill_length_mm`, `sd_bill_length_mm`, etc.  Remember to set `na.rm = TRUE`. -->
-<!-- 3. **Create standardized variables (10 min).**  Use `mutate()` with `across(where(is.numeric), ~ (.x - mean(.x, na.rm = TRUE)) / sd(.x, na.rm = TRUE), .names = "z_{.col}")` to add Z‑score versions of each numeric variable to the dataset.  Compare the distributions of the standardized variables across species with a boxplot. -->
-<!-- 4. **Split and save the data (10 min).**  Split the standardized penguin data by species using `split(penguins, penguins$species)`.  Use `iwalk()` (or `walk2()`) to iterate over the list and write each tibble to a CSV file named after the species, e.g., `"adelie.csv"`, `"gentoo.csv"` and `"chinstrap.csv"`.  All files should be saved in a new folder called `species_csv`. -->
-<!-- 5. **Read and combine with error handling (15 min).**  Use `list.files()` with a pattern that matches only `.csv` files in `species_csv` and `full.names = TRUE` to create a vector of file paths.  Create a safe reading function `safe_read = purrr::possibly(readr::read_csv, otherwise = NULL)` and use `map()` to read each file.  Combine the non‑NULL results with `list_rbind(names_to = "species")` to reconstruct a single tibble.  Verify that the combined data matches your original standardized dataset.  If any files fail to read (e.g., you could intentionally rename one file to simulate an error), identify which ones by checking which list elements are `NULL`. -->
-<!-- 6. **Generate and save multiple plots (10 min).**  For each species, create a scatterplot of bill length vs. flipper length using `ggplot()` and store the plots in a named list.  Then use `iwalk()` to iterate over the plots and save each to a PNG file in a `plots` folder.  Construct the file names using the species names (e.g., `"scatter-adelie.png"`).  Optionally, customise the titles and colours for each plot. -->
-<!-- This activity will reinforce your understanding of `across()`, `map()`, safe iteration with `possibly()` and iteratively saving outputs. -->
-<!-- --- -->
-<!-- **Suggested reading for Session 20:**  Before the next class on reproducible research and communication, read two chapters from *R for Data Science* (2nd edition).  **Chapter 28 “Quarto”** introduces Quarto as a unified authoring framework that combines code, its results and your prose into a single, reproducible document【992205213102681†L125-L143】.  The chapter explains that Quarto documents (`.qmd` files) are plain text files with a YAML header, code chunks and narrative text, and that Quarto supports many output formats, such as HTML, PDF and Word【992205213102681†L165-L201】.  You’ll learn that Quarto is designed for three purposes: communicating results to decision‑makers, collaborating with other data scientists, and serving as a lab notebook【992205213102681†L125-L142】.  The chapter also notes that Quarto unifies the R Markdown ecosystem and requires the command‑line interface (CLI) but is integrated into RStudio【992205213102681†L149-L160】. -->
-<!-- **Chapter 11 “Communication”** focuses on turning exploratory graphics into expository graphics that effectively communicate your insights.  The authors emphasize that your audience may lack your background knowledge, so you need to invest effort in making plots self‑explanatory【778553707203566†L124-L135】.  Start by adding good labels with `labs()`; titles should summarise the main finding rather than merely describing the plot【778553707203566†L183-L185】.  The chapter also explains how to add subtitles and captions to provide context and data sources【778553707203566†L187-L191】.  Reading these sections will prepare you to use Quarto to document your analysis and to design graphics that communicate clearly. -->
 
 
 </section>

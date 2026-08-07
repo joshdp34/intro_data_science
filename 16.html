@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>16&nbsp; Session 16 – Big‑data formats &amp; hierarchical data – STA 2300 Intro to Data Science</title>
+<title>16&nbsp; Session 16: Advanced data import II: databases – STA 2300 Intro to Data Science</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -177,7 +177,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./16.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16 – Big‑data formats &amp; hierarchical data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./16.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16: Advanced data import II: databases</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -224,127 +224,133 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Data visualization basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Quarto basics for reproducible assignments</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: The layered grammar of graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: Data visualization basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: The layered grammar of graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (II): grouping and summarizing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data import: reading CSV and flat files</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data transformation (II): grouping and summarizing</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Tidy data and pivoting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Data import: reading CSV and flat files</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Variable types I: logical and numeric vectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Tidy data and pivoting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types II: strings and regular expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types I: logical and numeric vectors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types III: factors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types II: strings and regular expressions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types IV: dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types III: factors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12 – Missing values &amp; data cleaning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12: Variable types IV: dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13 –&nbsp;Relational data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13: Missing values and data cleaning</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14 – Advanced data import I: spreadsheets</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14: Relational data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15 – Advanced data import II: databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15: Advanced data import I: spreadsheets</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./16.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16 – Big‑data formats &amp; hierarchical data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16: Advanced data import II: databases</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17 – Web scraping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17: Big data formats and hierarchical data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./18.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18 – Basic programming I: functions &amp; code style</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18: Web scraping</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./19.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19 – Basic programming II: iteration &amp; functional programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19: Basic programming I: functions and code style</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./20.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20 – Reproducible research &amp; communication</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20: Basic programming II: iteration and functional programming</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./21.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21 – Exploratory data analysis (EDA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21: Communication</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./22.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22 – Statistical modelling&nbsp;I: simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22: Exploratory data analysis (EDA)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Session 23: Statistical modeling I: simple linear regression</span></span></a>
   </div>
 </li>
     </ul>
@@ -360,12 +366,15 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#why-consider-bigdata-formats" id="toc-why-consider-bigdata-formats" class="nav-link" data-scroll-target="#why-consider-bigdata-formats">Why consider big‑data formats?</a></li>
-  <li><a href="#apache-arrow-and-the-arrow-package" id="toc-apache-arrow-and-the-arrow-package" class="nav-link" data-scroll-target="#apache-arrow-and-the-arrow-package">Apache Arrow and the <code>arrow</code> package</a></li>
-  <li><a href="#lists-and-hierarchical-data" id="toc-lists-and-hierarchical-data" class="nav-link" data-scroll-target="#lists-and-hierarchical-data">Lists and hierarchical data</a></li>
-  <li><a href="#unnesting-with-unnest_longer-and-unnest_wider" id="toc-unnesting-with-unnest_longer-and-unnest_wider" class="nav-link" data-scroll-target="#unnesting-with-unnest_longer-and-unnest_wider">Unnesting with <code>unnest_longer()</code> and <code>unnest_wider()</code></a></li>
-  <li><a href="#json-and-other-hierarchical-sources" id="toc-json-and-other-hierarchical-sources" class="nav-link" data-scroll-target="#json-and-other-hierarchical-sources">JSON and other hierarchical sources</a></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key take‑aways</a></li>
+  <li><a href="#why-work-with-databases" id="toc-why-work-with-databases" class="nav-link" data-scroll-target="#why-work-with-databases">Why work with databases?</a></li>
+  <li><a href="#setting-up-a-connection" id="toc-setting-up-a-connection" class="nav-link" data-scroll-target="#setting-up-a-connection">Setting up a connection</a></li>
+  <li><a href="#loading-and-inspecting-tables" id="toc-loading-and-inspecting-tables" class="nav-link" data-scroll-target="#loading-and-inspecting-tables">Loading and inspecting tables</a></li>
+  <li><a href="#running-sql-queries" id="toc-running-sql-queries" class="nav-link" data-scroll-target="#running-sql-queries">Running SQL queries</a></li>
+  <li><a href="#lazy-queries-with-dbplyr" id="toc-lazy-queries-with-dbplyr" class="nav-link" data-scroll-target="#lazy-queries-with-dbplyr">Lazy queries with dbplyr</a></li>
+  <li><a href="#basic-sql-structure" id="toc-basic-sql-structure" class="nav-link" data-scroll-target="#basic-sql-structure">Basic SQL structure</a></li>
+  <li><a href="#fringe-cases-and-common-pitfalls" id="toc-fringe-cases-and-common-pitfalls" class="nav-link" data-scroll-target="#fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -375,7 +384,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16 – Big‑data formats &amp; hierarchical data</span></h1>
+<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16: Advanced data import II: databases</span></h1>
 </div>
 
 
@@ -395,159 +404,416 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Understand why CSVs aren’t enough.</strong> Recall that CSV files are easy to read but inefficient: you have to do a lot of work to read the data, and they don’t scale well to tens of millions of rows. Learn about the <strong>parquet</strong> format, an open, column‑oriented file format widely used by big‑data systems. Appreciate why parquet files are more efficient than CSVs and how they enable faster reads and writes.</li>
-<li><strong>Use Apache Arrow for larger‑than‑memory data.</strong> The <strong>arrow</strong> project is a multi‑language toolbox designed for efficient analysis and transport of large datasets. The <strong>arrow</strong> R package provides a <em>dplyr</em> backend so you can analyse larger‑than‑memory datasets using familiar syntax. Learn how to open datasets lazily with <code>open_dataset()</code> and work with them without reading everything into memory.</li>
-<li><strong>Describe lists and hierarchical data.</strong> Hierarchical or tree‑like data structures are common, especially when working with web APIs or JSON. A <strong>list</strong> is a vector that can store elements of different types; lists underpin hierarchical data. Understand the difference between atomic vectors and lists, and recognize <em>list‑columns</em> inside tibbles.</li>
-<li><strong>Rectangling with <code>tidyr</code>.</strong> Data rectangling converts hierarchical data into tidy rectangular tables. Learn to unnest list‑columns with <code>unnest_longer()</code> (which repeats rows) and <code>unnest_wider()</code> (which spreads components across columns). Appreciate when each is appropriate and how to handle inconsistent types.</li>
-<li><strong>Prepare for web scraping.</strong> Hierarchical data often comes from the web. Being comfortable with lists and unnesting will prepare you for the next session on scraping HTML pages.</li>
+<li><strong>Motivate working directly with databases.</strong> Large volumes of data often live in databases instead of flat files, and repeatedly exporting CSV snapshots is time-consuming. Learn why connecting directly to a database gives you immediate access to current data and avoids that delay.</li>
+<li><strong>Explain how database tables differ from tibbles.</strong> Database tables live on disk, can be arbitrarily large, and usually have indexes to speed up queries. Classical databases prioritize writing over analysis, whereas column-oriented systems like duckdb are optimized for analytical queries.</li>
+<li><strong>Connect to a database with DBI.</strong> The DBI package provides a uniform interface to many database systems. Learn to call <code>DBI::dbConnect()</code> with a driver from a package like <code>RPostgres</code>, <code>RMariaDB</code>, or <code>duckdb</code>, supplying host, port, and credentials. We will use duckdb, since it runs in-process and needs no server.</li>
+<li><strong>Load and inspect tables.</strong> Use <code>dbWriteTable()</code> to copy a tibble into a database, <code>dbListTables()</code> to see what tables exist, and <code>dbReadTable()</code> to read a whole table back into R.</li>
+<li><strong>Execute SQL queries via DBI.</strong> Write simple <code>SELECT ... FROM ... WHERE ...</code> statements and run them with <code>dbGetQuery()</code>. Understand the core SQL clauses and how they map to dplyr verbs.</li>
+<li><strong>Use dbplyr for lazy pipelines.</strong> dbplyr translates dplyr code into SQL. Create a lazy table with <code>tbl()</code>, compose pipelines with verbs like <code>filter()</code> and <code>summarize()</code>, view the generated SQL with <code>show_query()</code>, and retrieve results with <code>collect()</code>. Recognize that a lazy query and an actual data frame are not interchangeable until you <code>collect()</code>.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<section id="why-consider-bigdata-formats" class="level3">
-<h3 class="anchored" data-anchor-id="why-consider-bigdata-formats">Why consider big‑data formats?</h3>
-<p>CSV files are <strong>simple and human‑readable</strong>: they can be read by almost every tool under the sun. However, simplicity comes at a cost. Reading a large CSV into R requires scanning every character and converting each column to the correct type. If you have a dataset with tens of millions of rows, this process is slow and memory‑hungry. In the <em>Arrow</em> chapter of R for Data Science, the authors introduce the <strong>parquet</strong> format as a powerful alternative. Parquet is a column‑oriented, compressed, open standard that is widely used by big‑data systems. Because it stores data column‑by‑column, parquet allows you to read only the columns you need and skip over the rest, leading to much faster IO and smaller file sizes. When your dataset lives in parquet files, you can analyse it directly without converting it to CSV.</p>
+<section id="why-work-with-databases" class="level3">
+<h3 class="anchored" data-anchor-id="why-work-with-databases">Why work with databases?</h3>
+<p>When a colleague hands you data by exporting a CSV, you have to go back and ask for a new export every time your question changes. Connecting directly to a database avoids that entirely: rather than working from a snapshot, you write a query that retrieves exactly the current data you need. A database table looks like a data frame, a collection of named columns, but differs in a few important ways. Data frames live in memory; database tables live on disk and can be arbitrarily larger than your computer’s RAM. Most databases maintain indexes that let them locate rows quickly without scanning the whole table. And row-oriented databases are built to record individual transactions quickly, while column-oriented systems like duckdb are built for exactly the kind of broad analytical query this course focuses on.</p>
 </section>
-<section id="apache-arrow-and-the-arrow-package" class="level3">
-<h3 class="anchored" data-anchor-id="apache-arrow-and-the-arrow-package">Apache Arrow and the <code>arrow</code> package</h3>
-<p>Working with large datasets requires more than a good file format. <strong>Apache Arrow</strong> is a multi‑language toolkit for efficient in‑memory columnar data representation. The <strong>arrow</strong> package for R wraps this toolkit and provides a <strong>dplyr</strong> backend that looks and feels like working with a normal tibble. Instead of reading a parquet or CSV file into memory, you call <code>open_dataset()</code>. This function scans just enough of the file(s) to determine the schema (column names and types) and then <strong>lazily</strong> reads data as you request it. Arrow datasets can span multiple files on disk and handle data sets larger than your computer’s memory.</p>
-<p>Here is a small demonstration using the <code>starwars</code> dataset (from the dplyr package). While the dataset itself is small, the workflow scales to larger data. We’ll write it to a parquet file, open it with arrow, and compute a summary. Note that the <code>arrow</code> package must be installed.</p>
+<section id="setting-up-a-connection" class="level3">
+<h3 class="anchored" data-anchor-id="setting-up-a-connection">Setting up a connection</h3>
+<p>DBI defines a low-level interface for connecting to many different database systems. You create a connection with <code>DBI::dbConnect()</code>, supplying a driver from a DBMS-specific package along with connection details. Connecting to a real PostgreSQL server, for example, looks like this (not run here, since it needs an actual server to connect to):</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arrow)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the built‑in starwars dataset to a parquet file</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write_parquet</span>(starwars, <span class="st">"starwars.parquet"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Open the parquet file lazily</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>sw_ds <span class="ot">=</span> <span class="fu">open_dataset</span>(<span class="st">"starwars.parquet"</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the average height by species without loading all rows into memory</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>avg_height <span class="ot">=</span> sw_ds <span class="sc">|&gt;</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">avg_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_height)) <span class="sc">|&gt;</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>()</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(avg_height)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-  species      n avg_height
-  &lt;chr&gt;    &lt;int&gt;      &lt;dbl&gt;
-1 Quermian     1       264 
-2 Wookiee      2       231 
-3 Kaminoan     2       221 
-4 Kaleesh      1       216 
-5 Gungan       3       209.
-6 Pau'an       1       206 </code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> DBI<span class="sc">::</span><span class="fu">dbConnect</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  RPostgres<span class="sc">::</span><span class="fu">Postgres</span>(),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">host =</span> <span class="st">"db.example.com"</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">port =</span> <span class="dv">5432</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">dbname =</span> <span class="st">"mydb"</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">user =</span> <span class="st">"username"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">password =</span> <span class="st">"secret"</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-<p>In this example, <code>open_dataset()</code> returns an object representing the on‑disk dataset. The <code>group_by()</code> and <code>summarise()</code> calls are recorded but not executed until you call <code>collect()</code>, at which point Arrow reads only the necessary columns from disk and computes the summary. This approach allows you to analyze datasets much larger than memory using the same dplyr verbs you’ve learned.</p>
-</section>
-<section id="lists-and-hierarchical-data" class="level3">
-<h3 class="anchored" data-anchor-id="lists-and-hierarchical-data">Lists and hierarchical data</h3>
-<p>The second part of this session focuses on <strong>hierarchical data</strong>, which arises when observations are nested inside one another. Such data are common when working with web APIs, JSON files, or documents that naturally have tree structures. To work with hierarchical data in R, you need to understand <strong>lists</strong>. A list is a vector whose elements can be of different types. You create a list with <code>list()</code>, and you can name its components just like naming columns of a tibble. For example:</p>
+<p>This course uses duckdb instead, an in-process database that lives entirely within R and needs no server or credentials at all, which makes it ideal for learning:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">=</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="st">"a string"</span>, <span class="cn">TRUE</span>)     <span class="co"># unnamed list</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[[1]]
-[1] 1 2 3 4
-
-[[2]]
-[1] "a string"
-
-[[3]]
-[1] TRUE</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(duckdb)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(<span class="fu">duckdb</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">=</span> <span class="fu">list</span>(<span class="at">numbers =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">letters =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], <span class="at">flag =</span> <span class="cn">FALSE</span>)  <span class="co"># named list</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$numbers
-[1] 1 2 3
-
-$letters
-[1] "a" "b" "c"
-
-$flag
-[1] FALSE</code></pre>
-</div>
-</div>
-<p>Lists become especially interesting inside a data frame as <strong>list‑columns</strong>. The <code>starwars</code> tibble contains several list‑columns: <code>films</code>, <code>vehicles</code> and <code>starships</code> are character vectors inside each row. These columns store multiple values per observation, so they are inherently hierarchical. Inspecting <code>starwars</code> reveals the list columns:</p>
+<p>Passing a <code>dbdir</code> argument to <code>duckdb()</code> points the database at a file on disk instead, so its contents persist between R sessions rather than disappearing (as an in-memory database does) the moment you disconnect.</p>
+</section>
+<section id="loading-and-inspecting-tables" class="level3">
+<h3 class="anchored" data-anchor-id="loading-and-inspecting-tables">Loading and inspecting tables</h3>
+<p>A brand-new database is empty, so you need to load data into it before you can query anything. <code>dbWriteTable()</code> copies a tibble into the database: the connection first, then a table name, then the data frame itself.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(starwars)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 87
-Columns: 14
-$ name       &lt;chr&gt; "Luke Skywalker", "C-3PO", "R2-D2", "Darth Vader", "Leia Or…
-$ height     &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, 180, 2…
-$ mass       &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.0, 77.…
-$ hair_color &lt;chr&gt; "blond", NA, NA, "none", "brown", "brown, grey", "brown", N…
-$ skin_color &lt;chr&gt; "fair", "gold", "white, blue", "white", "light", "light", "…
-$ eye_color  &lt;chr&gt; "blue", "yellow", "red", "yellow", "brown", "blue", "blue",…
-$ birth_year &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, 57.0, …
-$ sex        &lt;chr&gt; "male", "none", "none", "male", "female", "male", "female",…
-$ gender     &lt;chr&gt; "masculine", "masculine", "masculine", "masculine", "femini…
-$ homeworld  &lt;chr&gt; "Tatooine", "Tatooine", "Naboo", "Tatooine", "Alderaan", "T…
-$ species    &lt;chr&gt; "Human", "Droid", "Droid", "Human", "Human", "Human", "Huma…
-$ films      &lt;list&gt; &lt;"A New Hope", "The Empire Strikes Back", "Return of the J…
-$ vehicles   &lt;list&gt; &lt;"Snowspeeder", "Imperial Speeder Bike"&gt;, &lt;&gt;, &lt;&gt;, &lt;&gt;, "Imp…
-$ starships  &lt;list&gt; &lt;"X-wing", "Imperial shuttle"&gt;, &lt;&gt;, &lt;&gt;, "TIE Advanced x1",…</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">"mpg"</span>, ggplot2<span class="sc">::</span>mpg)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-<p>Each row represents a character, but the <code>films</code> column is itself a character vector of film titles. To analyse such data, we need to <strong>rectangulate</strong> it: convert it into a tidy data frame with one value per cell.</p>
-</section>
-<section id="unnesting-with-unnest_longer-and-unnest_wider" class="level3">
-<h3 class="anchored" data-anchor-id="unnesting-with-unnest_longer-and-unnest_wider">Unnesting with <code>unnest_longer()</code> and <code>unnest_wider()</code></h3>
-<p>The <strong>tidyr</strong> package provides two main functions for rectangling list‑columns: <code>unnest_longer()</code> and <code>unnest_wider()</code>.</p>
-<ul>
-<li><strong><code>unnest_longer()</code></strong> takes each element of a list‑column and puts it on its own row, repeating the other columns as needed. Use it when each element of the list is a vector of homogeneous type (e.g., a character vector of films).<br>
-</li>
-<li><strong><code>unnest_wider()</code></strong> takes a list of named objects (e.g., a list of tibbles) and spreads its components across new columns. Use it when each element of the list is itself a record with multiple fields.</li>
-</ul>
-<p>Let’s use <code>unnest_longer()</code> to count how many characters appear in each Star Wars film:</p>
+<p><code>dbListTables()</code> lists what’s actually in the database, and <code>dbReadTable()</code> reads an entire table back into R as an ordinary data frame.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Unnest the films list‑column</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>characters_by_film <span class="ot">=</span> starwars <span class="sc">|&gt;</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, films) <span class="sc">|&gt;</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_longer</span>(films) <span class="sc">|&gt;</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(films, <span class="at">name =</span> <span class="st">"n_characters"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n_characters))</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>characters_by_film</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbListTables</span>(con)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 2
-  films                   n_characters
-  &lt;chr&gt;                          &lt;int&gt;
-1 Attack of the Clones              40
-2 Revenge of the Sith               34
-3 The Phantom Menace                34
-4 Return of the Jedi                20
-5 A New Hope                        18
-6 The Empire Strikes Back           16
-7 The Force Awakens                 11</code></pre>
+<pre><code>[1] "mpg"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbReadTable</span>(con, <span class="st">"mpg"</span>) <span class="sc">|&gt;</span> <span class="fu">as_tibble</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 234 × 11
+   manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
+   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 audi         a4           1.8  1999     4 auto… f        18    29 p     comp…
+ 2 audi         a4           1.8  1999     4 manu… f        21    29 p     comp…
+ 3 audi         a4           2    2008     4 manu… f        20    31 p     comp…
+ 4 audi         a4           2    2008     4 auto… f        21    30 p     comp…
+ 5 audi         a4           2.8  1999     6 auto… f        16    26 p     comp…
+ 6 audi         a4           2.8  1999     6 manu… f        18    26 p     comp…
+ 7 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…
+ 8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…
+ 9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…
+10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
+# ℹ 224 more rows</code></pre>
 </div>
 </div>
-<p>Here <code>unnest_longer(films)</code> converts each character’s list of film titles into individual rows, then <code>count()</code> tallies the number of characters per film. Had the list‑column contained named lists or data frames, you could instead use <code>unnest_wider()</code> to turn the nested fields into separate columns.</p>
 </section>
-<section id="json-and-other-hierarchical-sources" class="level3">
-<h3 class="anchored" data-anchor-id="json-and-other-hierarchical-sources">JSON and other hierarchical sources</h3>
-<p>Much hierarchical data comes from the web in <strong>JSON</strong> format. JSON is a text format for representing nested objects and arrays. You can read JSON into R with the <code>jsonlite</code> package, which produces nested lists. Once in R, use the same rectangling tools (<code>unnest_longer()</code>, <code>unnest_wider()</code>) to convert nested lists into tidy tibbles. In the next session on web scraping you’ll encounter HTML, another hierarchical structure. A strong grasp of lists and unnesting will enable you to extract structured data from these sources.</p>
+<section id="running-sql-queries" class="level3">
+<h3 class="anchored" data-anchor-id="running-sql-queries">Running SQL queries</h3>
+<p>If you already know SQL, <code>DBI::dbGetQuery()</code> runs a query string directly and returns the result as a data frame. A query is built from clauses like <code>SELECT</code>, <code>FROM</code>, <code>WHERE</code>, <code>GROUP BY</code>, and <code>ORDER BY</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sql <span class="ot">&lt;-</span> <span class="st">"SELECT manufacturer, model, year, hwy</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="st">        FROM mpg</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="st">        WHERE hwy &gt; 30</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="st">        ORDER BY hwy DESC"</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dbGetQuery</span>(con, sql) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  manufacturer      model year hwy
+1   volkswagen      jetta 1999  44
+2   volkswagen new beetle 1999  44
+3   volkswagen new beetle 1999  41
+4       toyota    corolla 2008  37
+5        honda      civic 2008  36
+6        honda      civic 2008  36</code></pre>
+</div>
+</div>
+<p>SQL gives you complete control, but writing it by hand is verbose for anything beyond a simple query. dbplyr lets you write the dplyr code you already know instead.</p>
 </section>
-<section id="key-takeaways" class="level3">
-<h3 class="anchored" data-anchor-id="key-takeaways">Key take‑aways</h3>
-<ul>
-<li><strong>CSV vs.&nbsp;parquet:</strong> CSVs are simple but inefficient. Parquet files store data column‑by‑column and compress it, making them faster to read and write for big data.</li>
-<li><strong>Arrow for bigger data:</strong> The <code>arrow</code> package lets you open large datasets lazily with <code>open_dataset()</code> and analyse them using dplyr syntax. The data live on disk and are only read when needed.</li>
-<li><strong>Lists underpin hierarchical data:</strong> A list can hold elements of different types. List‑columns in tibbles allow you to store multiple values per observation.</li>
-<li><strong>Rectangling tools:</strong> Use <code>tidyr::unnest_longer()</code> to repeat rows for each element of a list‑column and <code>unnest_wider()</code> to spread named components across columns.</li>
-<li><strong>Preparation for scraping:</strong> Understanding lists and rectangling prepares you to handle data from JSON and web pages, which you’ll encounter in the next session on web scraping.</li>
-</ul>
-<!-- ## In‑class activity -->
-<!-- In this session’s activity you will practise using Apache Arrow and rectangling on the **starwars** dataset from the `dplyr` package (not used in *R for Data Science*).  The dataset includes hierarchical list‑columns and provides a manageable example for big‑data workflows.  You will write the dataset to a parquet file, open it lazily with `arrow::open_dataset()`, compute summaries, and unnest list‑columns to answer questions about characters and films.  Detailed instructions are provided in the accompanying activity file. -->
-<!-- **Suggested reading for Session 17:**  Read Chapter 24 of *R for Data Science* (2nd ed.), “Web scraping”.  The authors introduce web scraping with the `rvest` package and emphasize that you should prefer APIs when available【240118378600938†L116-L124】.  They begin with a discussion of scraping ethics and legalities, noting that legality depends on factors like whether the data is public, non‑personal and factual【240118378600938†L147-L160】.  You’ll learn the basics of HTML elements and attributes, how to use CSS selectors to locate elements on a page, and how to extract text and attributes with rvest【240118378600938†L116-L133】.  These skills will enable you to scrape data from web pages when no API exists. -->
+<section id="lazy-queries-with-dbplyr" class="level3">
+<h3 class="anchored" data-anchor-id="lazy-queries-with-dbplyr">Lazy queries with dbplyr</h3>
+<p><code>tbl()</code> creates a <em>lazy table</em>: something that represents a database table and behaves like one for the purpose of writing dplyr code, without actually pulling any data into R yet.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mpg_db <span class="ot">&lt;-</span> <span class="fu">tbl</span>(con, <span class="st">"mpg"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mpg_db</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Source:   table&lt;mpg&gt; [?? x 11]
+# Database: DuckDB 1.4.1 [Joshua_Patrick@Windows 10 x64:R 4.5.1/:memory:]
+   manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class
+   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+ 1 audi         a4           1.8  1999     4 auto… f        18    29 p     comp…
+ 2 audi         a4           1.8  1999     4 manu… f        21    29 p     comp…
+ 3 audi         a4           2    2008     4 manu… f        20    31 p     comp…
+ 4 audi         a4           2    2008     4 auto… f        21    30 p     comp…
+ 5 audi         a4           2.8  1999     6 auto… f        16    26 p     comp…
+ 6 audi         a4           2.8  1999     6 manu… f        18    26 p     comp…
+ 7 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…
+ 8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…
+ 9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…
+10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…
+# ℹ more rows</code></pre>
+</div>
+</div>
+<p>You compose a query with ordinary dplyr verbs, and dbplyr silently translates each one into SQL behind the scenes, only actually running anything once you call <code>collect()</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>summary_db <span class="ot">&lt;-</span> mpg_db <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(displ <span class="sc">&gt;=</span> <span class="fl">2.0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(manufacturer) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_hwy =</span> <span class="fu">mean</span>(hwy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_hwy))</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>summary_db <span class="sc">|&gt;</span> <span class="fu">show_query</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;SQL&gt;
+SELECT manufacturer, AVG(hwy) AS avg_hwy, COUNT(*) AS n
+FROM (
+  SELECT mpg.*
+  FROM mpg
+  WHERE (displ &gt;= 2.0)
+) q01
+GROUP BY manufacturer
+ORDER BY avg_hwy DESC</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>summary_db <span class="sc">|&gt;</span> <span class="fu">collect</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15 × 3
+   manufacturer avg_hwy     n
+   &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;
+ 1 honda           29       1
+ 2 volkswagen      27.4    22
+ 3 hyundai         26.9    14
+ 4 pontiac         26.4     5
+ 5 audi            26.2    14
+ 6 subaru          25.6    14
+ 7 nissan          24.6    13
+ 8 toyota          23.3    29
+ 9 chevrolet       21.9    19
+10 ford            19.4    25
+11 mercury         18       4
+12 dodge           17.9    37
+13 jeep            17.6     8
+14 lincoln         17       3
+15 land rover      16.5     4</code></pre>
+</div>
+</div>
+<p><code>show_query()</code> prints the SQL dbplyr generated, without running it; <code>collect()</code> actually sends that SQL to the database, retrieves the result, and hands it back as a genuine tibble. Until you call <code>collect()</code>, you’re working with a description of a query, not with data (see Example 15.4).</p>
+</section>
+<section id="basic-sql-structure" class="level3">
+<h3 class="anchored" data-anchor-id="basic-sql-structure">Basic SQL structure</h3>
+<p>Even though dbplyr hides most of SQL from you, it helps to recognize its shape. A query is built from, at minimum, these clauses, always in this order: <code>SELECT</code> (which columns, and any computed expressions), <code>FROM</code> (which table), <code>WHERE</code> (which rows), <code>GROUP BY</code> (how to collapse rows into groups), and <code>ORDER BY</code> (how to sort the result). SQL keywords are case-insensitive, but convention writes them in uppercase to stand out from table and column names.</p>
+</section>
+<section id="fringe-cases-and-common-pitfalls" class="level3">
+<h3 class="anchored" data-anchor-id="fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</h3>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 15.1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>A lazy query’s <code>mean()</code> quietly matches SQL’s behavior, not R’s.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con, <span class="st">"nas"</span>, <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">4</span>)))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>nas_db <span class="ot">&lt;-</span> <span class="fu">tbl</span>(con, <span class="st">"nas"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>nas_db <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">avg =</span> <span class="fu">mean</span>(x)) <span class="sc">|&gt;</span> <span class="fu">collect</span>()   <span class="co"># no na.rm at all</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Missing values are always removed in SQL aggregation functions.
+Use `na.rm = TRUE` to silence this warning
+This warning is displayed once every 8 hours.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+    avg
+  &lt;dbl&gt;
+1  2.33</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">4</span>))                              <span class="co"># the equivalent plain R calculation</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+</div>
+<p>In plain R, <code>mean()</code> propagates <code>NA</code> unless you explicitly add <code>na.rm = TRUE</code>. In a dbplyr query, <code>mean()</code> gets translated to SQL’s <code>AVG()</code>, which silently ignores <code>NULL</code> values by design, so the lazy query above returns the same answer as <code>mean(x, na.rm = TRUE)</code> would, without you ever asking for that behavior. dbplyr does warn about this the first time you hit it in a session, but the warning is easy to miss, and the two functions named <code>mean()</code> (R’s and SQL’s, standing behind it) genuinely disagree about what to do with a missing value. Get in the habit of writing <code>na.rm = TRUE</code> explicitly in a lazy query, the same as you would anywhere else, so the behavior doesn’t depend on which engine happens to be running the calculation.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 15.2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Filtering on a column you just created can force dbplyr to build a nested subquery.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>mpg_db <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">kpl =</span> hwy <span class="sc">*</span> <span class="fl">0.425</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(kpl <span class="sc">&gt;</span> <span class="dv">12</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">show_query</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;SQL&gt;
+SELECT q01.*
+FROM (
+  SELECT mpg.*, hwy * 0.425 AS kpl
+  FROM mpg
+) q01
+WHERE (kpl &gt; 12.0)</code></pre>
+</div>
+</div>
+<p>In dplyr, you can create <code>kpl</code> with <code>mutate()</code> and immediately <code>filter()</code> on it in the very next line, because each step runs in order. SQL’s <code>WHERE</code> clause, though, is evaluated <em>before</em> its <code>SELECT</code> clause, so a plain, single-level query has no way to filter on an alias defined in that same <code>SELECT</code>. dbplyr works around this automatically by wrapping the first query as a subquery and filtering the <em>outer</em> query instead, which is exactly the nested <code>SELECT ... FROM (SELECT ...)</code> structure you see above. This is a good reason to actually read <code>show_query()</code>’s output occasionally: a pipeline that looks simple in dplyr can compile into something considerably less simple in SQL, for reasons that have nothing to do with your code being wrong.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 15.3
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong><code>show_query()</code> can print syntactically plausible SQL for a function that doesn’t actually exist in the database.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>my_custom_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x <span class="sc">*</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>weird <span class="ot">&lt;-</span> mpg_db <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">x =</span> <span class="fu">my_custom_fun</span>(hwy))</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>weird <span class="sc">|&gt;</span> <span class="fu">show_query</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;SQL&gt;
+SELECT mpg.*, my_custom_fun(hwy) AS x
+FROM mpg</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>weird <span class="sc">|&gt;</span> <span class="fu">collect</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `collect()`:
+! Failed to collect lazy table.
+Caused by error in `dbSendQuery()`:
+! Catalog Error: Scalar Function with name my_custom_fun does not exist!
+Did you mean "array_push_front"?
+
+LINE 1: SELECT mpg.*, my_custom_fun(hwy) AS x
+                      ^
+ℹ Context: rapi_prepare
+ℹ Error type: CATALOG
+ℹ Raw message: Scalar Function with name my_custom_fun does not exist!
+Did you mean "array_push_front"?
+
+LINE 1: SELECT mpg.*, my_custom_fun(hwy) AS x
+                      ^</code></pre>
+</div>
+</div>
+<p>dbplyr doesn’t know what <code>my_custom_fun()</code> is, so it does the only thing it can: it writes the function call into the generated SQL literally, exactly as written, and hopes the database recognizes it. <code>show_query()</code> happily shows you that SQL, since generating it doesn’t require running anything. Only <code>collect()</code> (or printing the lazy table, which collects a preview behind the scenes) actually sends the query to the database, which is the point at which it fails with a real “function does not exist” error. A lazy query that <em>looks</em> fine when you inspect its SQL is not the same guarantee as a lazy query that will actually run.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 15.4
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>A lazy table doesn’t know its own row count until you collect it.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>lazy <span class="ot">&lt;-</span> mpg_db <span class="sc">|&gt;</span> <span class="fu">filter</span>(hwy <span class="sc">&gt;</span> <span class="dv">30</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(lazy)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "tbl_duckdb_connection" "tbl_dbi"               "tbl_sql"              
+[4] "tbl_lazy"              "tbl"                  </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(lazy)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>collected <span class="ot">&lt;-</span> <span class="fu">collect</span>(lazy)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(collected)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "tbl_df"     "tbl"        "data.frame"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(collected)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 22</code></pre>
+</div>
+</div>
+<p><code>nrow()</code> on a lazy table returns <code>NA</code>, not an error and not a real count, because dbplyr has only recorded what query <em>would</em> count the matching rows, not actually run it. Counting the rows would mean executing the query, which is exactly the work <code>collect()</code> is for. Code that assumes a lazy table behaves identically to a real data frame (checking <code>nrow()</code> to decide whether to proceed, for instance) needs a <code>collect()</code> first, or an explicit <code>tally()</code>/<code>count()</code> query, to get an actual number back.</p>
+</div>
+</div>
+</section>
+<section id="recap" class="level3">
+<h3 class="anchored" data-anchor-id="recap">Recap</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 76%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Term</strong></th>
+<th><strong>Definition</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><code>dbConnect()</code></strong></td>
+<td>Opens a connection to a database, given a driver and connection details.</td>
+</tr>
+<tr class="even">
+<td><strong><code>dbWriteTable()</code> / <code>dbReadTable()</code></strong></td>
+<td>Copy a tibble into a database table, or read an entire table back into R.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>dbGetQuery()</code></strong></td>
+<td>Runs a raw SQL query string and returns the result as a data frame.</td>
+</tr>
+<tr class="even">
+<td><strong><code>tbl()</code></strong></td>
+<td>Creates a lazy table representing a database table, without pulling any data into R.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>show_query()</code></strong></td>
+<td>Prints the SQL a lazy dplyr pipeline would run, without running it.</td>
+</tr>
+<tr class="even">
+<td><strong><code>collect()</code></strong></td>
+<td>Actually sends a lazy query to the database and returns the result as a tibble.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>AVG()</code> vs.&nbsp;<code>mean()</code></strong></td>
+<td>SQL’s <code>AVG()</code> silently ignores <code>NULL</code>s, unlike R’s <code>mean()</code>, which propagates <code>NA</code> unless told <code>na.rm = TRUE</code>.</td>
+</tr>
+<tr class="even">
+<td><strong>Subquery</strong></td>
+<td>A nested <code>SELECT</code> dbplyr generates automatically when SQL’s clause order can’t otherwise express a dplyr pipeline (such as filtering on a just-created column).</td>
+</tr>
+<tr class="odd">
+<td><strong>Untranslated function</strong></td>
+<td>A function dbplyr doesn’t recognize is passed through into the generated SQL literally, and only fails once the database actually tries to run it.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="check-your-understanding" class="level3">
+<h3 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Problems">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Problems
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>What is the practical difference between calling <code>show_query()</code> and calling <code>collect()</code> on the same lazy dplyr pipeline?</li>
+<li>A teammate computes <code>tbl(con, "sales") |&gt; summarise(avg_price = mean(price)) |&gt; collect()</code> on a column with some missing prices, and gets a number back rather than <code>NA</code>. Explain why, given that the equivalent plain-R calculation on a vector with a missing value would return <code>NA</code>.</li>
+<li><code>mpg_db |&gt; mutate(kpl = hwy * 0.425) |&gt; filter(kpl &gt; 12) |&gt; show_query()</code> produces a query with a nested <code>SELECT</code> inside another <code>SELECT</code>, even though the dplyr code has no explicit nesting. Why does dbplyr generate a subquery here?</li>
+<li>You write <code>mpg_db |&gt; mutate(z = my_function(hwy))</code> using a function that doesn’t exist in SQL. At what point does this actually fail, and why not sooner?</li>
+<li>Why does <code>nrow()</code> return <code>NA</code> on a lazy table instead of the actual number of matching rows?</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solutions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solutions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><code>show_query()</code> only displays the SQL a pipeline <em>would</em> run, without contacting the database at all. <code>collect()</code> actually sends that SQL to the database, executes it, and returns the result as a real tibble in R’s memory. You can call <code>show_query()</code> as many times as you like with no cost; <code>collect()</code> is the step that does the actual work.</p></li>
+<li><p><code>mean()</code> inside a dbplyr pipeline gets translated to SQL’s <code>AVG()</code> function, which silently ignores <code>NULL</code> (missing) values as part of its standard behavior, unlike R’s own <code>mean()</code>, which propagates <code>NA</code> unless you add <code>na.rm = TRUE</code>. The teammate’s query is quietly behaving like <code>mean(price, na.rm = TRUE)</code> even though nothing in the code asked for that.</p></li>
+<li><p>SQL evaluates a query’s <code>WHERE</code> clause before its <code>SELECT</code> clause, so a single-level query has no way to filter on <code>kpl</code>, an alias that’s only defined in the <code>SELECT</code>. dbplyr works around this by generating an inner query that computes <code>kpl</code>, wrapping it as a subquery, and filtering that outer result instead, since by then <code>kpl</code> is an ordinary column of the subquery’s output.</p></li>
+<li><p>It fails when the query is actually executed against the database, which happens at <code>collect()</code> (or when printing the lazy table, since that collects a preview). <code>show_query()</code> alone doesn’t fail, because generating the SQL text doesn’t require the database to check whether every function mentioned in it actually exists; dbplyr just writes an unrecognized function call into the SQL literally and lets the database be the one to reject it.</p></li>
+<li><p><code>nrow()</code> would need to actually count the matching rows, which means running the query, and a lazy table hasn’t been run yet; it’s only a description of a query. <code>NA</code> signals “unknown until you execute this,” rather than dbplyr guessing or silently running the query just to answer <code>nrow()</code>. Calling <code>collect()</code> first (or running an explicit counting query) gives you a real number.</p></li>
+</ol>
+</div>
+</div>
+</div>
 
 
 </section>

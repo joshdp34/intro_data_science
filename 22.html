@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>22&nbsp; Session 22 – Statistical modelling&nbsp;I: simple linear regression – STA 2300 Intro to Data Science</title>
+<title>22&nbsp; Session 22: Exploratory data analysis (EDA) – STA 2300 Intro to Data Science</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,6 +25,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -130,35 +165,6 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 }
 </style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -171,7 +177,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./22.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22 – Statistical modelling&nbsp;I: simple linear regression</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./22.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22: Exploratory data analysis (EDA)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -218,127 +224,133 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Data visualization basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Quarto basics for reproducible assignments</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: The layered grammar of graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: Data visualization basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: The layered grammar of graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (II): grouping and summarizing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data import: reading CSV and flat files</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data transformation (II): grouping and summarizing</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Tidy data and pivoting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Data import: reading CSV and flat files</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Variable types I: logical and numeric vectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Tidy data and pivoting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types II: strings and regular expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types I: logical and numeric vectors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types III: factors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types II: strings and regular expressions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types IV: dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types III: factors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12 – Missing values &amp; data cleaning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12: Variable types IV: dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13 –&nbsp;Relational data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13: Missing values and data cleaning</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14 – Advanced data import I: spreadsheets</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14: Relational data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15 – Advanced data import II: databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15: Advanced data import I: spreadsheets</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./16.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16 – Big‑data formats &amp; hierarchical data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16: Advanced data import II: databases</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17 – Web scraping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17: Big data formats and hierarchical data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./18.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18 – Basic programming I: functions &amp; code style</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18: Web scraping</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./19.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19 – Basic programming II: iteration &amp; functional programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19: Basic programming I: functions and code style</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./20.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20 – Reproducible research &amp; communication</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20: Basic programming II: iteration and functional programming</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./21.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21 – Exploratory data analysis (EDA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21: Communication</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./22.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22 – Statistical modelling&nbsp;I: simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22: Exploratory data analysis (EDA)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Session 23: Statistical modeling I: simple linear regression</span></span></a>
   </div>
 </li>
     </ul>
@@ -354,12 +366,17 @@ window.Quarto = {
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#why-do-we-model" id="toc-why-do-we-model" class="nav-link" data-scroll-target="#why-do-we-model">Why do we model?</a></li>
-  <li><a href="#model-families-and-fitting" id="toc-model-families-and-fitting" class="nav-link" data-scroll-target="#model-families-and-fitting">Model families and fitting</a></li>
-  <li><a href="#linear-models-and-formulas" id="toc-linear-models-and-formulas" class="nav-link" data-scroll-target="#linear-models-and-formulas">Linear models and formulas</a></li>
-  <li><a href="#interpreting-coefficients" id="toc-interpreting-coefficients" class="nav-link" data-scroll-target="#interpreting-coefficients">Interpreting coefficients</a></li>
-  <li><a href="#predictions-and-residuals" id="toc-predictions-and-residuals" class="nav-link" data-scroll-target="#predictions-and-residuals">Predictions and residuals</a></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key take‑aways</a></li>
+  <li><a href="#introduction-question-driven-exploration" id="toc-introduction-question-driven-exploration" class="nav-link" data-scroll-target="#introduction-question-driven-exploration">Introduction: question-driven exploration</a></li>
+  <li><a href="#variation-exploring-distributions" id="toc-variation-exploring-distributions" class="nav-link" data-scroll-target="#variation-exploring-distributions">Variation: exploring distributions</a></li>
+  <li><a href="#unusual-values-and-outliers" id="toc-unusual-values-and-outliers" class="nav-link" data-scroll-target="#unusual-values-and-outliers">Unusual values and outliers</a></li>
+  <li><a href="#covariation-a-categorical-and-a-numerical-variable" id="toc-covariation-a-categorical-and-a-numerical-variable" class="nav-link" data-scroll-target="#covariation-a-categorical-and-a-numerical-variable">Covariation: a categorical and a numerical variable</a></li>
+  <li><a href="#covariation-two-categorical-variables" id="toc-covariation-two-categorical-variables" class="nav-link" data-scroll-target="#covariation-two-categorical-variables">Covariation: two categorical variables</a></li>
+  <li><a href="#covariation-two-numerical-variables" id="toc-covariation-two-numerical-variables" class="nav-link" data-scroll-target="#covariation-two-numerical-variables">Covariation: two numerical variables</a></li>
+  <li><a href="#patterns-and-models" id="toc-patterns-and-models" class="nav-link" data-scroll-target="#patterns-and-models">Patterns and models</a></li>
+  <li><a href="#summarizing-with-dplyr" id="toc-summarizing-with-dplyr" class="nav-link" data-scroll-target="#summarizing-with-dplyr">Summarizing with dplyr</a></li>
+  <li><a href="#fringe-cases-and-common-pitfalls" id="toc-fringe-cases-and-common-pitfalls" class="nav-link" data-scroll-target="#fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -369,7 +386,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22 – Statistical modelling&nbsp;I: simple linear regression</span></h1>
+<h1 class="title"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22: Exploratory data analysis (EDA)</span></h1>
 </div>
 
 
@@ -389,51 +406,402 @@ window.Quarto = {
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Understand why we model data.</strong> Statistical models provide a low‑dimensional summary of a dataset by partitioning it into patterns and residuals. They are not meant to be “true” representations of the world; rather, they are useful approximations.</li>
-<li><strong>Define model families and fit a linear model.</strong> A model family is an equation that expresses a pattern (e.g., a straight line) with parameters that can vary. Fitting a model means finding the parameter values that make the model closest to the data.</li>
-<li><strong>Use formulas and <code>lm()</code> to specify models.</strong> In R, formulas like <code>y&nbsp;~&nbsp;x</code> specify linear models. The <code>lm()</code> function translates <code>y&nbsp;~&nbsp;x</code> into a straight‑line equation and finds the best‑fitting intercept and slope.</li>
-<li><strong>Interpret coefficients in simple linear regression.</strong> In a straight‑line model <span class="math inline">\(\widehat{y} = b_0 + b_1 x\)</span>, the slope <span class="math inline">\(b_1\)</span> is the change in the predicted response for a one‑unit increase in the predictor and the intercept <span class="math inline">\(b_0\)</span> is the predicted response when the predictor is zero.</li>
-<li><strong>Visualize predictions and residuals.</strong> Use <code>modelr::data_grid()</code> and <code>add_predictions()</code> to create fitted lines and <code>add_residuals()</code> to compute residuals. Plotting both helps diagnose how well the model captures the data.</li>
+<li><strong>Take a question-driven approach to EDA.</strong> Exploratory data analysis is an iterative cycle: generate questions about your data, search for answers by visualizing, transforming, and modeling, and use what you learn to ask new questions. There is no rigid procedure; investigate many ideas and follow up on interesting patterns.</li>
+<li><strong>Recognize variation and typical values.</strong> Variation is the tendency of a variable’s values to change from one observation to the next. Visualizing variation with histograms or bar charts reveals typical values and unusual patterns.</li>
+<li><strong>Identify and handle unusual values.</strong> Outliers may be data entry errors or genuine discoveries. Learn to zoom in without discarding data, and know the difference between a zoom that preserves every observation and one that quietly deletes some.</li>
+<li><strong>Explore covariation between variables.</strong> Covariation is the tendency for two or more variables to vary together. Use boxplots, frequency polygons, heatmaps, scatterplots, and 2D binning to examine relationships between categorical and continuous variables, between two categorical variables, and between two continuous variables.</li>
+<li><strong>Use models to isolate a relationship.</strong> A simple model can remove a known source of variation (like size) so that its residuals reveal a relationship that a raw comparison would get backwards.</li>
+<li><strong>Summarize data to support EDA.</strong> Use <code>group_by()</code>, <code>summarise()</code>, <code>count()</code>, and <code>mutate()</code> to compute counts, means, and proportions that complement visual exploration.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<section id="why-do-we-model" class="level3">
-<h3 class="anchored" data-anchor-id="why-do-we-model">Why do we model?</h3>
-<p>Exploratory data analysis reveals patterns, but strong patterns can obscure subtler trends. A <strong>statistical model</strong> provides a simple, low‑dimensional summary of a dataset. The model captures the dominant pattern, and the <strong>residuals</strong> are the deviations between the observed data and the model’s predictions. George&nbsp;Box reminds us that <em>all models are wrong, but some are useful</em>. Our goal is to choose a model family that captures the main trend and to use the residuals to explore what the model misses.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="introduction-question-driven-exploration" class="level3">
+<h3 class="anchored" data-anchor-id="introduction-question-driven-exploration">Introduction: question-driven exploration</h3>
+<p>Exploratory data analysis uses visualization and transformation to systematically explore data. It isn’t a formal procedure but an iterative cycle: generate questions, use plots and summaries to search for answers, and use those answers to refine the next question. Asking many questions early exposes you to different aspects of the data and improves your odds of finding something worth reporting. Two broad questions organize most of what follows: what kind of variation shows up within a single variable, and what kind of covariation shows up between variables?</p>
 </section>
-<section id="model-families-and-fitting" class="level3">
-<h3 class="anchored" data-anchor-id="model-families-and-fitting">Model families and fitting</h3>
-<p>A <strong>model family</strong> is defined by an equation with parameters that can vary. For example, a straight‑line family has the equation <code>y&nbsp;=&nbsp;a₁&nbsp;*&nbsp;x&nbsp;+&nbsp;a₂</code>. Here <code>x</code> and <code>y</code> are variables from the data and <code>a₁</code>, <code>a₂</code> are parameters. <strong>Fitting</strong> the model involves finding the parameter values that make the model as close as possible to the data. We usually measure closeness by the root‑mean‑squared deviation between the observed and predicted values. The fitted model is the member of the family that minimizes this distance.</p>
+<section id="variation-exploring-distributions" class="level3">
+<h3 class="anchored" data-anchor-id="variation-exploring-distributions">Variation: exploring distributions</h3>
+<p>Variation is the tendency of a variable’s values to change from measurement to measurement, and visualizing the distribution is the most direct way to understand it: histograms and density plots for numeric variables, bar charts for categorical ones.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat)) <span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="22_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Look for the most common values (tall bars) and the rare ones (short bars), and ask why each occurs; look for clusters, which can hint at subgroups worth exploring with another variable; and try more than one bin width, since a narrow bin width reveals fine structure that a wide one smooths away, and vice versa.</p>
 </section>
-<section id="linear-models-and-formulas" class="level3">
-<h3 class="anchored" data-anchor-id="linear-models-and-formulas">Linear models and formulas</h3>
-<p>In R, linear models are expressed using <strong>formulas</strong>. A formula like <code>y&nbsp;~&nbsp;x</code> indicates that <code>y</code> is to be modelled as a linear function of <code>x</code>. R automatically adds an intercept unless told not to. The <code>lm()</code> function fits the model: it translates <code>y&nbsp;~&nbsp;x</code> into an equation of the form <code>y&nbsp;=&nbsp;b₀&nbsp;+&nbsp;b₁&nbsp;x</code> and uses least squares to estimate <code>b₀</code> and <code>b₁</code>. Formulas can incorporate multiple predictors (e.g., <code>y&nbsp;~&nbsp;x1&nbsp;+&nbsp;x2</code>), interactions (<code>y&nbsp;~&nbsp;x1&nbsp;*&nbsp;x2</code>) and transformations. The <code>model_matrix()</code> function shows how R constructs the model matrix for a given formula.</p>
+<section id="unusual-values-and-outliers" class="level3">
+<h3 class="anchored" data-anchor-id="unusual-values-and-outliers">Unusual values and outliers</h3>
+<p>An outlier doesn’t fit the pattern of the rest of the data, and it can come from a data entry error, a genuinely unusual (but valid) observation, or a discovery worth reporting on its own. <code>coord_cartesian()</code> zooms into the region where most of the data lives without discarding anything, which is essential for spotting a rare value at all (it’s often invisible at the default, whole-dataset scale) without corrupting whatever else you compute from the same data (see Example 21.1 for exactly what goes wrong if you zoom the wrong way).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> y)) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">50</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="22_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Once you’ve found unusual values, you have two real options: drop the entire row (rarely a good default, since it discards everything else in that row too), or recode just the unusual value as <code>NA</code> with <code>mutate()</code> and <code>if_else()</code>, which keeps the rest of the observation intact. ggplot2 drops <code>NA</code>s automatically when plotting; add <code>na.rm = TRUE</code> if you’d rather not see the warning about it.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>diamonds2 <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">if_else</span>(y <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">|</span> y <span class="sc">&gt;</span> <span class="dv">20</span>, <span class="cn">NA</span>, y))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(diamonds2<span class="sc">$</span>y))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9</code></pre>
+</div>
+</div>
 </section>
-<section id="interpreting-coefficients" class="level3">
-<h3 class="anchored" data-anchor-id="interpreting-coefficients">Interpreting coefficients</h3>
-<p>Once you have fitted a simple linear regression, the model has the form</p>
-<p><span class="math display">\[
-\widehat{y} = b_0 + b_1 x,
-\]</span></p>
-<p>where <span class="math inline">\(b_0\)</span> is the <strong>intercept</strong> and <span class="math inline">\(b_1\)</span> is the <strong>slope</strong>. The slope tells you how the predicted response changes with the predictor: for every one‑unit increase in <span class="math inline">\(x\)</span>, the predicted value of <span class="math inline">\(y\)</span> increases (or decreases) by <span class="math inline">\(b_1\)</span>. The intercept is the predicted value of <span class="math inline">\(y\)</span> when <span class="math inline">\(x\)</span> equals zero. Sometimes the intercept lies outside the range of your data and has no meaningful interpretation; in such cases you should focus on the slope. Remember that linear regression describes associations; it does not establish causation.</p>
+<section id="covariation-a-categorical-and-a-numerical-variable" class="level3">
+<h3 class="anchored" data-anchor-id="covariation-a-categorical-and-a-numerical-variable">Covariation: a categorical and a numerical variable</h3>
+<p>Comparing a numeric variable’s distribution across categories works best with <code>geom_boxplot()</code> for a compact summary, or <code>geom_freqpoly()</code> when you want to see the actual shape of each group’s distribution overlaid. Raw counts can be misleading when group sizes differ a lot (see Example 21.3); mapping <code>after_stat(density)</code> standardizes each group to the same total area, making shapes directly comparable regardless of how many observations are in each one.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> price, <span class="at">y =</span> <span class="fu">after_stat</span>(density), <span class="at">color =</span> cut)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">binwidth =</span> <span class="dv">500</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="22_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(cut, price), <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"cut"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="22_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><code>fct_reorder()</code> orders the categories by a summary of another variable (here, price) instead of alphabetically or by factor definition order, which usually makes the pattern in a plot like this easier to read at a glance.</p>
 </section>
-<section id="predictions-and-residuals" class="level3">
-<h3 class="anchored" data-anchor-id="predictions-and-residuals">Predictions and residuals</h3>
-<p>After fitting a model, you should examine its <strong>predictions</strong> and <strong>residuals</strong>. To visualize predictions, generate a grid of predictor values with <code>modelr::data_grid()</code> and add predicted responses with <code>add_predictions()</code>. Plotting the observed data along with the predicted line helps you see how well the model captures the pattern. To understand what the model misses, compute residuals with <code>add_residuals()</code> and explore their distribution. A histogram or frequency polygon of the residuals shows how spread out they are and whether they are centered around zero. Plotting residuals versus the predictor helps you check for systematic patterns; if the residuals look like random noise, your model has captured the main trend. Persistent patterns suggest the need for a more complex model, such as adding polynomial terms or transforming the predictor.</p>
+<section id="covariation-two-categorical-variables" class="level3">
+<h3 class="anchored" data-anchor-id="covariation-two-categorical-variables">Covariation: two categorical variables</h3>
+<p>When both variables are categorical, start by counting every combination with <code>count()</code>, then visualize with <code>geom_tile()</code> (fill mapped to the count) or <code>geom_count()</code> (point size mapped to the count).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(cut, clarity) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> clarity, <span class="at">fill =</span> n)) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="22_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="key-takeaways" class="level3">
-<h3 class="anchored" data-anchor-id="key-takeaways">Key take‑aways</h3>
-<ul>
-<li><strong>Models summarise patterns.</strong> A statistical model partitions data into patterns and residuals.</li>
-<li><strong>Model families are equations with parameters.</strong> We fit a model by choosing parameter values that minimise the distance between the model and the data.</li>
-<li><strong>Formulas and <code>lm()</code> specify linear models.</strong> A formula like <code>y&nbsp;~&nbsp;x</code> becomes a straight‑line equation and <code>lm()</code> finds the best‑fitting slope and intercept.</li>
-<li><strong>Interpret slopes and intercepts carefully.</strong> The slope is the change in the predicted response for a one‑unit change in the predictor; the intercept is the predicted response when the predictor is zero.</li>
-<li><strong>Always inspect predictions and residuals.</strong> Use <code>data_grid()</code> and <code>add_predictions()</code> to draw fitted lines, and <code>add_residuals()</code> to examine what the model misses.</li>
-</ul>
-<!-- ## In‑class activity and suggested reading -->
-<!-- In today’s in‑class activity you will practise simple linear regression using the built‑in **mtcars** dataset.  You will explore the relationship between a car’s weight (`wt`) and its fuel efficiency (`mpg`) by creating scatterplots, fitting a linear model with `lm()`, extracting and interpreting the coefficients, adding predicted values and residuals, and visualising residuals.  See the separate assignment file for details. -->
-<!-- **Suggested reading for Session 23:**  The next class introduces logistic regression and model evaluation.  Read **Section 9.5 “Introduction to logistic regression”** from the *OpenIntro Biostatistics* text.  Logistic regression is a type of generalised linear model used when the response variable is binary【900995470734497†L4-L20】.  Unlike linear regression, which models a continuous response with a straight line, logistic regression models the log‑odds of success as a linear function of the predictors【900995470734497†L4-L20】.  The section explains that generalised linear models first model the response variable with a probability distribution (e.g., binomial) and then model the parameters of that distribution with predictors【900995470734497†L14-L20】.  Reading this section will prepare you to interpret logistic regression coefficients and understand how classification models are fitted and evaluated. -->
+<section id="covariation-two-numerical-variables" class="level3">
+<h3 class="anchored" data-anchor-id="covariation-two-numerical-variables">Covariation: two numerical variables</h3>
+<p>A scatterplot is the starting point for two continuous variables; <code>alpha</code> fights overplotting in a large dataset, and 2D binning (<code>geom_bin2d()</code>, <code>geom_hex()</code>) replaces individual overlapping points with a count per region entirely, which scales far better to tens of thousands of points.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hex</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="22_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Alternatively, <code>cut_width()</code> turns a continuous variable into discrete bins so you can compare its relationship to another variable with side-by-side boxplots, one per bin.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">cut_width</span>(carat, <span class="fl">0.5</span>), <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="22_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="patterns-and-models" class="level3">
+<h3 class="anchored" data-anchor-id="patterns-and-models">Patterns and models</h3>
+<p>A model can remove a relationship you already understand, so its leftovers (residuals) can reveal a second relationship that would otherwise be hidden behind, or confused with, the first one. Diamond price is overwhelmingly driven by carat (size), so fitting that relationship first and looking at what’s left over lets you compare diamonds of <em>equivalent</em> size to each other, rather than comparing a large Fair-cut diamond to a small Ideal-cut one.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>diamonds2 <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(carat <span class="sc">&lt;</span> <span class="fl">2.5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log_price =</span> <span class="fu">log</span>(price), <span class="at">log_carat =</span> <span class="fu">log</span>(carat))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>carat_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(log_price <span class="sc">~</span> log_carat, <span class="at">data =</span> diamonds2)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>diamonds2 <span class="ot">&lt;-</span> diamonds2 <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">resid =</span> <span class="fu">resid</span>(carat_model))</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds2, <span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> resid)) <span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="22_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A positive residual means a diamond sold for more than its carat alone would predict; a negative one means it sold for less. Plotted this way, cut quality and price line up the way intuition suggests (see Example 21.4 for what the <em>raw</em>, uncontrolled comparison looks like, and why it looks backwards).</p>
+</section>
+<section id="summarizing-with-dplyr" class="level3">
+<h3 class="anchored" data-anchor-id="summarizing-with-dplyr">Summarizing with dplyr</h3>
+<p>Plots suggest patterns; numeric summaries pin them down precisely. <code>group_by()</code> and <code>summarise()</code> compute means, medians, counts, and proportions per group, and <code>count()</code> is a convenient shortcut when all you need is how many observations fall into each combination of categories. Pairing a summary table with the plot that motivated it is usually more convincing than either alone.</p>
+</section>
+<section id="fringe-cases-and-common-pitfalls" class="level3">
+<h3 class="anchored" data-anchor-id="fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</h3>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 21.1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong><code>xlim()</code>/<code>ylim()</code> zoom by deleting data first; <code>coord_cartesian()</code> zooms without deleting anything, and only one of them warns you about it.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">4</span>, <span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">4</span>, <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 478 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="22_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">10</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="22_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><code>xlim()</code>/<code>ylim()</code> (and setting <code>limits</code> on an individual scale) work by treating anything outside the given range as missing, which is why the first plot prints a real warning about hundreds of removed rows; the point is genuinely gone from the computation, not just off-screen. <code>coord_cartesian()</code> instead changes only which part of the already-fully-computed plot is visible, so nothing is removed and no warning appears. For a plot that’s just a scatterplot, the visual difference might be hard to spot; the moment a geom computes a statistic from the data (a <code>geom_smooth()</code> line, a <code>geom_boxplot()</code>’s quartiles, anything in Session 21’s Example 21.1), the two approaches can produce genuinely different numbers, not just different amounts of visible whitespace.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 21.2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>A real dataset can contain physically impossible measurements, and they’re invisible until you actually go looking.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> <span class="fu">filter</span>(x <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span> y <span class="sc">==</span> <span class="dv">0</span> <span class="sc">|</span> z <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">|&gt;</span> <span class="fu">nrow</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> <span class="fu">filter</span>(y <span class="sc">&gt;</span> <span class="dv">20</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(carat, x, y, z, price)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  carat     x     y     z price
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+1  2     8.09  58.9  8.06 12210
+2  0.51  5.15  31.8  5.12  2075</code></pre>
+</div>
+</div>
+<p>Twenty diamonds in this dataset have a recorded length, width, or depth of exactly zero millimeters, which is not a real diamond; and at least one has a recorded width of nearly 59 millimeters (roughly the width of a golf ball) on a stone weighing only 2 carats, which is equally impossible. Both are almost certainly data entry errors, and both are essentially invisible in a plot of the whole dataset at its default scale, since a handful of extreme points among 54,000 observations barely register. This is exactly why deliberately zooming into the bulk of a distribution (Example 21.1’s <code>coord_cartesian()</code>, not <code>xlim()</code>/<code>ylim()</code>) is a standard early step in EDA: the outliers you’re looking for are, by definition, not where most of your attention is already drawn.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 21.3
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Comparing raw counts across groups of very different sizes compares the sample sizes, not the shapes.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> <span class="fu">count</span>(cut)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  cut           n
+  &lt;ord&gt;     &lt;int&gt;
+1 Fair       1610
+2 Good       4906
+3 Very Good 12082
+4 Premium   13791
+5 Ideal     21551</code></pre>
+</div>
+</div>
+<p><code>Fair</code> has 1,610 diamonds and <code>Ideal</code> has 21,551, more than a thirteen-fold difference, so a <code>geom_freqpoly()</code> of raw counts would show a tall, prominent curve for <code>Ideal</code> and a barely visible sliver for <code>Fair</code>, regardless of whether their underlying price <em>distributions</em> (as opposed to their sample sizes) actually differ much at all. Mapping <code>y = after_stat(density)</code> rescales every group’s curve to the same total area, so the comparison becomes “do these two groups have similarly shaped distributions,” which is almost always the more interesting EDA question, rather than “which group happened to have more rows in this dataset.”</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 21.4
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>The raw relationship between cut and price runs backwards, until a model controls for size.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> <span class="fu">group_by</span>(cut) <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">mean_price =</span> <span class="fu">mean</span>(price))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  cut       mean_price
+  &lt;ord&gt;          &lt;dbl&gt;
+1 Fair           4359.
+2 Good           3929.
+3 Very Good      3982.
+4 Premium        4584.
+5 Ideal          3458.</code></pre>
+</div>
+</div>
+<p>Averaged directly, <code>Fair</code>-cut diamonds sell for <em>more</em> than <code>Ideal</code>-cut diamonds, which seems to say worse-cut diamonds are worth more, exactly backwards from what a jeweler would tell you. The missing piece is carat: <code>Fair</code>-cut diamonds in this dataset happen to be larger on average, and size drives price far more than cut quality does, so the raw comparison is really comparing “a bunch of big, poorly cut diamonds” to “a bunch of smaller, well cut ones.” The residuals computed in this session’s Notes, from a model that predicts price from carat alone, tell a different and more sensible story:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>diamonds2 <span class="sc">|&gt;</span> <span class="fu">group_by</span>(cut) <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">mean_resid =</span> <span class="fu">mean</span>(resid))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  cut       mean_resid
+  &lt;ord&gt;          &lt;dbl&gt;
+1 Fair         -0.244 
+2 Good         -0.0920
+3 Very Good    -0.0161
+4 Premium      -0.0163
+5 Ideal         0.0583</code></pre>
+</div>
+</div>
+<p>Once carat is accounted for, <code>Ideal</code>-cut diamonds sell for <em>more</em> than their size alone would predict (a positive average residual), and <code>Fair</code>-cut diamonds sell for <em>less</em> than their size alone would predict (a negative one), which matches ordinary intuition about cut quality. The raw averages weren’t wrong, exactly; they were answering a different, confounded question (“which group has bigger diamonds”) while looking like they answered the one you actually asked (“which cut is worth more”).</p>
+</div>
+</div>
+</section>
+<section id="recap" class="level3">
+<h3 class="anchored" data-anchor-id="recap">Recap</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 76%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Term</strong></th>
+<th><strong>Definition</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Variation</strong></td>
+<td>The tendency of a variable’s values to differ from one observation to the next; visualized with a histogram, density plot, or bar chart.</td>
+</tr>
+<tr class="even">
+<td><strong>Covariation</strong></td>
+<td>The tendency for two or more variables to vary together.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>coord_cartesian()</code></strong></td>
+<td>Zooms a plot’s visible range without removing any underlying data.</td>
+</tr>
+<tr class="even">
+<td><strong><code>xlim()</code> / <code>ylim()</code></strong></td>
+<td>Zoom by setting scale limits, which treats out-of-range values as missing and removes them from the computation, not just the view.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>after_stat(density)</code></strong></td>
+<td>Rescales a distribution to a common total area, making shape comparisons fair across groups of very different sizes.</td>
+</tr>
+<tr class="even">
+<td><strong><code>fct_reorder()</code></strong></td>
+<td>Orders a factor’s levels by a summary statistic of another variable, instead of alphabetically.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>geom_bin2d()</code> / <code>geom_hex()</code></strong></td>
+<td>Replace individually plotted, overlapping points with a count per rectangular or hexagonal region.</td>
+</tr>
+<tr class="even">
+<td><strong><code>cut_width()</code></strong></td>
+<td>Converts a continuous variable into discrete bins, useful for side-by-side boxplots against a continuous x-variable.</td>
+</tr>
+<tr class="odd">
+<td><strong>Residual</strong></td>
+<td>What’s left of a variable after a model’s prediction is subtracted out; can reveal a second relationship hidden behind a confounding one.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="check-your-understanding" class="level3">
+<h3 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Problems">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Problems
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>State the two broad questions that organize exploratory data analysis, and explain what each one focuses your attention on.</li>
+<li>You zoom into a scatterplot using <code>xlim()</code> and <code>ylim()</code> and get a warning about removed rows; a colleague zooms into the same plot using <code>coord_cartesian()</code> and gets no warning at all. Are the two plots showing the same thing? Explain.</li>
+<li>A dataset has a <code>weight_kg</code> column with a recorded value of <code>0</code>. Is this necessarily a data entry error? What would you check before deciding, and what are your two basic options once you’re confident it’s not a real measurement?</li>
+<li>Why can comparing raw counts (rather than densities) across two groups of very different sizes give a misleading impression of how their distributions compare?</li>
+<li>A raw comparison shows that neighborhood A has a higher average home price than neighborhood B, but a model controlling for square footage shows the opposite: B’s homes sell for more per square foot. Explain how both statements can be true at once.</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solutions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solutions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>“What type of variation occurs within my variables?” focuses attention on one variable at a time (its typical values, rare values, and overall shape). “What type of covariation occurs between my variables?” focuses attention on relationships between two or more variables (whether they tend to move together, and how).</p></li>
+<li><p>No.&nbsp;<code>xlim()</code>/<code>ylim()</code> treat any point outside the given range as missing and remove it from the plot’s computation entirely, which is why removing rows triggers a warning; <code>coord_cartesian()</code> only changes which part of the fully computed plot is visible, without deleting anything. For a plain scatterplot, the visible result might look similar, but any statistic computed from the data (a trend line, a boxplot’s quartiles) can come out differently between the two.</p></li>
+<li><p>Not necessarily; a weight of exactly zero could be a genuine data entry error, a placeholder for “not measured,” or (rarely) a legitimate value depending on what’s being weighed. Check whether zero is even a physically plausible value for whatever <code>weight_kg</code> represents, and look at whether other columns in that same row look normal or also suspicious. Once you’re confident it’s not real, your two options are dropping the entire row (losing the rest of that observation too) or recoding just that value to <code>NA</code> with <code>mutate()</code> and <code>if_else()</code>, which is usually the better default.</p></li>
+<li><p>A group with far more observations will have taller bars or a taller frequency polygon purely because it has more data, regardless of whether its underlying distribution’s shape (where the data is concentrated, how spread out it is) actually differs from the smaller group’s. Rescaling to density (<code>after_stat(density)</code>) puts every group’s curve on the same total-area footing, so differences in the plot reflect differences in shape rather than differences in sample size.</p></li>
+<li><p>This is exactly the diamonds cut-versus-price situation from this session: the raw comparison is confounded by a third variable, square footage, that’s correlated with both neighborhood and price. If neighborhood A’s homes tend to be larger, they can have a higher average price overall while actually being a worse value per square foot than neighborhood B’s smaller, more efficiently priced homes. A model that controls for square footage isolates the price-per-neighborhood effect from the size effect, which is precisely what the raw, uncontrolled average could not do.</p></li>
+</ol>
+</div>
+</div>
+</div>
 
 
 </section>

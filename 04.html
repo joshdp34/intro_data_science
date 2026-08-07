@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Session 4: Data transformation (I): filtering, arranging, selecting and mutating – STA 2300 Intro to Data Science</title>
+<title>4&nbsp; Session 4: The layered grammar of graphics – STA 2300 Intro to Data Science</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -177,7 +177,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: Data transformation (I): filtering, arranging, selecting and mutating</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: The layered grammar of graphics</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -224,127 +224,133 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Data visualization basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Quarto basics for reproducible assignments</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: The layered grammar of graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: Data visualization basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: The layered grammar of graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (II): grouping and summarizing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data import: reading CSV and flat files</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data transformation (II): grouping and summarizing</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Tidy data and pivoting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Data import: reading CSV and flat files</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Variable types I: logical and numeric vectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Tidy data and pivoting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types II: strings and regular expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types I: logical and numeric vectors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types III: factors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types II: strings and regular expressions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types IV: dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types III: factors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12 – Missing values &amp; data cleaning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12: Variable types IV: dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13 –&nbsp;Relational data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13: Missing values and data cleaning</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14 – Advanced data import I: spreadsheets</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14: Relational data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15 – Advanced data import II: databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15: Advanced data import I: spreadsheets</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./16.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16 – Big‑data formats &amp; hierarchical data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16: Advanced data import II: databases</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17 – Web scraping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17: Big data formats and hierarchical data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./18.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18 – Basic programming I: functions &amp; code style</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18: Web scraping</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./19.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19 – Basic programming II: iteration &amp; functional programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19: Basic programming I: functions and code style</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./20.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20 – Reproducible research &amp; communication</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20: Basic programming II: iteration and functional programming</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./21.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21 – Exploratory data analysis (EDA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21: Communication</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./22.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22 – Statistical modelling&nbsp;I: simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22: Exploratory data analysis (EDA)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Session 23: Statistical modeling I: simple linear regression</span></span></a>
   </div>
 </li>
     </ul>
@@ -360,12 +366,13 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#picking-rows-with-filter" id="toc-picking-rows-with-filter" class="nav-link" data-scroll-target="#picking-rows-with-filter">Picking rows with <code>filter()</code></a></li>
-  <li><a href="#removing-duplicate-rows-with-distinct" id="toc-removing-duplicate-rows-with-distinct" class="nav-link" data-scroll-target="#removing-duplicate-rows-with-distinct">Removing duplicate rows with <code>distinct()</code></a></li>
-  <li><a href="#reordering-rows-with-arrange" id="toc-reordering-rows-with-arrange" class="nav-link" data-scroll-target="#reordering-rows-with-arrange">Reordering rows with <code>arrange()</code></a></li>
-  <li><a href="#picking-dropping-and-renaming-columns" id="toc-picking-dropping-and-renaming-columns" class="nav-link" data-scroll-target="#picking-dropping-and-renaming-columns">Picking, dropping and renaming columns</a></li>
-  <li><a href="#creating-new-columns-with-mutate" id="toc-creating-new-columns-with-mutate" class="nav-link" data-scroll-target="#creating-new-columns-with-mutate">Creating new columns with <code>mutate()</code></a></li>
-  <li><a href="#combining-steps-with-the-pipe" id="toc-combining-steps-with-the-pipe" class="nav-link" data-scroll-target="#combining-steps-with-the-pipe">Combining steps with the pipe</a></li>
+  <li><a href="#the-layered-grammar-formalized" id="toc-the-layered-grammar-formalized" class="nav-link" data-scroll-target="#the-layered-grammar-formalized">The layered grammar, formalized</a></li>
+  <li><a href="#aesthetic-mappings-what-should-and-shouldnt-be-mapped" id="toc-aesthetic-mappings-what-should-and-shouldnt-be-mapped" class="nav-link" data-scroll-target="#aesthetic-mappings-what-should-and-shouldnt-be-mapped">Aesthetic mappings: what should and shouldn’t be mapped</a></li>
+  <li><a href="#global-versus-local-mappings-and-layering-geoms" id="toc-global-versus-local-mappings-and-layering-geoms" class="nav-link" data-scroll-target="#global-versus-local-mappings-and-layering-geoms">Global versus local mappings, and layering geoms</a></li>
+  <li><a href="#statistical-transformations" id="toc-statistical-transformations" class="nav-link" data-scroll-target="#statistical-transformations">Statistical transformations</a></li>
+  <li><a href="#position-adjustments" id="toc-position-adjustments" class="nav-link" data-scroll-target="#position-adjustments">Position adjustments</a></li>
+  <li><a href="#facets" id="toc-facets" class="nav-link" data-scroll-target="#facets">Facets</a></li>
+  <li><a href="#coordinate-systems" id="toc-coordinate-systems" class="nav-link" data-scroll-target="#coordinate-systems">Coordinate systems</a></li>
   <li><a href="#fringe-cases-and-common-pitfalls" id="toc-fringe-cases-and-common-pitfalls" class="nav-link" data-scroll-target="#fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</a></li>
   <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
   <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
@@ -378,7 +385,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: Data transformation (I): filtering, arranging, selecting and mutating</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: The layered grammar of graphics</span></h1>
 </div>
 
 
@@ -398,10 +405,13 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Understand the purpose of data transformation.</strong> You rarely get data in exactly the form needed for analysis. Transformation involves creating new variables, reordering or selecting observations, and renaming columns.</li>
-<li><strong>Use dplyr verbs to manipulate rows and columns.</strong> Learn <code>filter()</code> to subset rows, <code>distinct()</code> to remove duplicates, <code>arrange()</code> to reorder rows, <code>select()</code>, <code>rename()</code> and <code>relocate()</code> to choose, rename and reposition variables, and <code>mutate()</code> to create new columns.</li>
-<li><strong>Chain operations with the pipe.</strong> Use the pipe (<code>|&gt;</code> in base R, or <code>%&gt;%</code> from magrittr) to express sequences of transformations in a readable way.</li>
-<li><strong>Recognize a handful of correctness traps.</strong> dplyr is forgiving about syntax but not about logic; you will see a few specific ways a pipeline can run without error and still silently produce the wrong answer.</li>
+<li><strong>Deepen your understanding of ggplot2.</strong> Explore the layered grammar of graphics: how aesthetic mappings, geometric objects, statistical transformations, position adjustments, facets and coordinate systems combine to build complex plots.</li>
+<li><strong>Master aesthetic mappings.</strong> Map variables to color, shape, size and alpha correctly. Avoid mapping categorical variables to size or alpha, since it implies a false ordering, and note that mapping a categorical variable to shape uses only six shapes, so additional groups are dropped.</li>
+<li><strong>Understand statistical transformations.</strong> Recognize that every geom has a default stat working behind the scenes, and learn when you need to override it.</li>
+<li><strong>Use position adjustments.</strong> Choose between stacking, dodging, filling and jittering to keep overlapping bars and points readable.</li>
+<li><strong>Layer multiple geoms.</strong> Add multiple geoms to a plot (for example, points and smooth lines) and distinguish between global and local aesthetic mappings. Use the <code>group</code> aesthetic to draw separate curves for each category.</li>
+<li><strong>Use faceting and coordinate systems.</strong> Split data into panels using <code>facet_wrap()</code> or <code>facet_grid()</code> and adjust scales. Experiment with coordinate transforms such as <code>coord_flip()</code> and <code>coord_polar()</code>.</li>
+<li><strong>Read layered plots critically.</strong> Facets and stacked bars can be just as easy to misread as the plots from last session; you will learn a few specific ways they go wrong.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
@@ -410,37 +420,47 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Every dplyr verb works the same way: the first argument is always a data frame, the rest of the arguments describe what to do using the (unquoted) column names, and the result is always a new data frame. dplyr never modifies its input in place, so <code>filter(penguins, ...)</code> leaves the original <code>penguins</code> completely untouched unless you explicitly reassign the result to a name.</p>
-<section id="picking-rows-with-filter" class="level3">
-<h3 class="anchored" data-anchor-id="picking-rows-with-filter">Picking rows with <code>filter()</code></h3>
-<p><code>filter()</code> keeps only the rows where a logical condition is <code>TRUE</code>.</p>
+<section id="the-layered-grammar-formalized" class="level3">
+<h3 class="anchored" data-anchor-id="the-layered-grammar-formalized">The layered grammar, formalized</h3>
+<p>Every ggplot2 plot is built from up to seven pieces, most of which have sensible defaults so you rarely have to specify all of them:</p>
+<pre><code>ggplot(data) +
+  geom_function(mapping = aes(...), stat = ..., position = ...) +
+  coordinate_function() +
+  facet_function()</code></pre>
+<p>You have already used <code>data</code>, <code>mapping</code>, and a <code>geom_function</code>. Today adds the remaining three ingredients: the <strong>stat</strong> (statistical transformation) each geom uses behind the scenes, the <strong>position</strong> adjustment that resolves overlapping marks, and the <strong>coordinate</strong> and <strong>facet</strong> functions that reshape how the whole plot is laid out. Once you can name all seven pieces of a plot, you can describe (and build) essentially any static chart.</p>
+</section>
+<section id="aesthetic-mappings-what-should-and-shouldnt-be-mapped" class="level3">
+<h3 class="anchored" data-anchor-id="aesthetic-mappings-what-should-and-shouldnt-be-mapped">Aesthetic mappings: what should and shouldn’t be mapped</h3>
+<p>The <code>aes()</code> function connects variables to graphical attributes, but not every variable and property combination is a good idea. Mapping a categorical variable to color is generally safe. Mapping it to shape works, but only six shapes are built in by default, so a seventh category has nowhere to go. Mapping a categorical variable to size or alpha is actively discouraged, since size and transparency naturally suggest an ordered, numeric scale, and ggplot2 will warn you when you try it.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>adelie_dream <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Adelie"</span>, island <span class="sc">==</span> <span class="st">"Dream"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>adelie_dream <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 8
-  species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
-1 Adelie  Dream            39.5          16.7               178        3250
-2 Adelie  Dream            37.2          18.1               178        3900
-3 Adelie  Dream            39.5          17.8               188        3300
-4 Adelie  Dream            40.9          18.9               184        3900
-5 Adelie  Dream            36.4          17                 195        3325
-6 Adelie  Dream            39.2          21.1               196        4150
-# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mapping species to color and shape is safe here (3 categories, well under the limit of 6)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
 </div>
 </div>
-<p>Separating conditions with a comma (as above) means “and”: both conditions must hold. You can combine conditions explicitly with <code>&amp;</code> (and), <code>|</code> (or), and check membership in a set of values with <code>%in%</code>, which is usually clearer than a long chain of <code>|</code> comparisons against the same variable.</p>
+</div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># every penguin that is either an Adelie or a Chinstrap</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>adelie_or_chinstrap <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>))</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(adelie_or_chinstrap)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 220</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mapping a categorical variable to size implies an ordering that doesn't exist</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">size =</span> species)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using size for a discrete variable is not advised.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -449,52 +469,81 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span><code>=</code> is not <code>==</code>
+<span class="screen-reader-only">Warning</span>A warning is not a suggestion
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Inside <code>filter()</code>, a single <code>=</code> does not test equality; it tries to name an argument, and dplyr will stop you with an error rather than silently doing the wrong thing (see Example 4.1). Always use <code>==</code> to compare values.</p>
+<p>When ggplot2 tells you <em>“using size for a discrete variable is not advised,”</em> it is not being fussy. Readers naturally interpret bigger as more, so sizing points by an unordered category (like species) invites viewers to draw a ranking that isn’t in the data at all. Treat this particular warning as something to fix, not silence.</p>
 </div>
 </div>
 </section>
-<section id="removing-duplicate-rows-with-distinct" class="level3">
-<h3 class="anchored" data-anchor-id="removing-duplicate-rows-with-distinct">Removing duplicate rows with <code>distinct()</code></h3>
-<p><code>distinct()</code> keeps only the unique combinations of the columns you name, dropping every duplicate after the first.</p>
+<section id="global-versus-local-mappings-and-layering-geoms" class="level3">
+<h3 class="anchored" data-anchor-id="global-versus-local-mappings-and-layering-geoms">Global versus local mappings, and layering geoms</h3>
+<p>Mappings defined inside <code>ggplot()</code> apply globally to every layer; mappings placed inside a specific geom apply only to that layer and override the global mapping for that property.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># every combination of species and island actually observed in the data</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> <span class="fu">distinct</span>(species, island)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 2
-  species   island   
-  &lt;fct&gt;     &lt;fct&gt;    
-1 Adelie    Torgersen
-2 Adelie    Biscoe   
-3 Adelie    Dream    
-4 Gentoo    Biscoe   
-5 Chinstrap Dream    </code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># global mapping: color applies to both the points and the smooth line</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
 </div>
 </div>
-<p>Add <code>.keep_all = TRUE</code> if you want to keep the first full row for each unique combination, rather than just the columns you named.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># local mapping: color applies only to the point layer; one smooth line covers everybody</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Different geoms draw different kinds of marks from the same data, and overlaying several of them in one plot can reveal aspects that no single geom shows on its own. When a geom like <code>geom_smooth()</code> sees a discrete aesthetic (such as <code>color</code>), it automatically groups the data and fits one curve per group; you can also set the <code>group</code> aesthetic explicitly if you want grouping without also changing the plot’s color or shape.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># one curve per species, drawn explicitly with the group aesthetic</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">group =</span> species), <span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="reordering-rows-with-arrange" class="level3">
-<h3 class="anchored" data-anchor-id="reordering-rows-with-arrange">Reordering rows with <code>arrange()</code></h3>
-<p><code>arrange()</code> sorts rows by one or more columns, ascending by default; wrap a column in <code>desc()</code> to sort it in descending order instead. <code>arrange()</code> only changes the order of the rows; it never adds or removes any.</p>
+<section id="statistical-transformations" class="level3">
+<h3 class="anchored" data-anchor-id="statistical-transformations">Statistical transformations</h3>
+<p>Every geom pairs with a default <strong>stat</strong>, an algorithm that computes the values actually plotted. <code>geom_point()</code> plots your data exactly as given (its default stat is <code>"identity"</code>), but <code>geom_bar()</code> does not plot raw rows at all: its default stat, <code>stat_count()</code>, first counts how many rows fall into each category, and only then draws bars proportional to those counts.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>penguins_sorted <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(body_mass_g), flipper_length_mm)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>penguins_sorted <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 8
-  species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
-1 Gentoo  Biscoe           49.2          15.2               221        6300
-2 Gentoo  Biscoe           59.6          17                 230        6050
-3 Gentoo  Biscoe           51.1          16.3               220        6000
-4 Gentoo  Biscoe           48.8          16.2               222        6000
-5 Gentoo  Biscoe           45.2          16.4               223        5950
-6 Gentoo  Biscoe           49.8          15.9               229        5950
-# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># under the hood, this counts rows per species before drawing anything</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species)) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Because the stat and the geom are separate pieces, you can pair a geom with a different stat than its default, or reach for <code>stat_summary()</code> when you want a geom to plot a computed summary (like a mean) rather than raw counts or raw values.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.min =</span> min, <span class="at">fun.max =</span> max, <span class="at">fun =</span> mean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -503,177 +552,93 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Missing values always sort to the end
+<span class="screen-reader-only">Note</span>Every geom has a default stat, and every stat has a default geom
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Regardless of whether you sort ascending or with <code>desc()</code>, rows with <code>NA</code> in the sorting column are always placed last. <code>arrange(desc(x))</code> does not mean “biggest first, then <code>NA</code>, then smallest;” it means “biggest first, then smallest, then <code>NA</code>.”</p>
+<p>You rarely need to think about stats when you’re using <code>geom_point()</code>, <code>geom_line()</code>, or <code>geom_boxplot()</code>, because their default stat is simply “use the data as given.” Bar charts and histograms are the main place beginners run into stats directly, precisely because their defaults quietly count or bin your data before drawing anything.</p>
 </div>
 </div>
 </section>
-<section id="picking-dropping-and-renaming-columns" class="level3">
-<h3 class="anchored" data-anchor-id="picking-dropping-and-renaming-columns">Picking, dropping and renaming columns</h3>
-<p><code>select()</code> narrows a data frame down to the columns you want, in the order you name them. It understands ranges (<code>bill_length_mm:bill_depth_mm</code>), negation (<code>-</code> or <code>!</code>), and helper functions like <code>starts_with()</code>, <code>ends_with()</code>, <code>contains()</code>, and <code>where()</code> (for selecting by a column’s type or a condition, such as <code>where(is.numeric)</code>).</p>
+<section id="position-adjustments" class="level3">
+<h3 class="anchored" data-anchor-id="position-adjustments">Position adjustments</h3>
+<p>When marks would otherwise overlap, ggplot2’s <strong>position</strong> argument controls how they are nudged apart. Bar charts default to <code>position = "stack"</code>, piling groups on top of each other; <code>position = "fill"</code> rescales stacks to a constant height so you can compare proportions; <code>position = "dodge"</code> places groups side by side instead of stacking them; and <code>position = "jitter"</code> (equivalent to <code>geom_jitter()</code>) adds small random noise to scatterplot points so overlapping observations become visible.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> <span class="fu">select</span>(species, island, body_mass_g) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-  species island    body_mass_g
-  &lt;fct&gt;   &lt;fct&gt;           &lt;int&gt;
-1 Adelie  Torgersen        3750
-2 Adelie  Torgersen        3800
-3 Adelie  Torgersen        3250
-4 Adelie  Torgersen          NA
-5 Adelie  Torgersen        3450
-6 Adelie  Torgersen        3650</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># every column except the two bill measurements</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>(bill_length_mm<span class="sc">:</span>bill_depth_mm)) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 6
-  species island    flipper_length_mm body_mass_g sex     year
-  &lt;fct&gt;   &lt;fct&gt;                 &lt;int&gt;       &lt;int&gt; &lt;fct&gt;  &lt;int&gt;
-1 Adelie  Torgersen               181        3750 male    2007
-2 Adelie  Torgersen               186        3800 female  2007
-3 Adelie  Torgersen               195        3250 female  2007
-4 Adelie  Torgersen                NA          NA &lt;NA&gt;    2007
-5 Adelie  Torgersen               193        3450 female  2007
-6 Adelie  Torgersen               190        3650 male    2007</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># stacked (default): totals are easy to read, but comparing groups within each bar is hard</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> island, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
 </div>
 </div>
-<p>You can rename a column while selecting it, with the new name on the left of <code>=</code>:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="at">flipper_mm =</span> flipper_length_mm, species) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 2
-  flipper_mm species
-       &lt;int&gt; &lt;fct&gt;  
-1        181 Adelie 
-2        186 Adelie 
-3        195 Adelie 
-4         NA Adelie 
-5        193 Adelie 
-6        190 Adelie </code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dodged: groups sit side by side, easier to compare directly, harder to see the total</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> island, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" width="576"></p>
+</figure>
 </div>
-</div>
-<p>If you want to rename a column without dropping every other column, use <code>rename()</code> instead of <code>select()</code>:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">flipper_mm =</span> flipper_length_mm) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 8
-  species island bill_length_mm bill_depth_mm flipper_mm body_mass_g sex    year
-  &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;      &lt;int&gt;       &lt;int&gt; &lt;fct&gt; &lt;int&gt;
-1 Adelie  Torge…           39.1          18.7        181        3750 male   2007
-2 Adelie  Torge…           39.5          17.4        186        3800 fema…  2007
-3 Adelie  Torge…           40.3          18          195        3250 fema…  2007
-4 Adelie  Torge…           NA            NA           NA          NA &lt;NA&gt;   2007
-5 Adelie  Torge…           36.7          19.3        193        3450 fema…  2007
-6 Adelie  Torge…           39.3          20.6        190        3650 male   2007</code></pre>
-</div>
-</div>
-<p><code>relocate()</code> moves columns to a new position without changing which columns are present, using <code>.before</code> or <code>.after</code> to say where:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> <span class="fu">relocate</span>(body_mass_g, <span class="at">.before =</span> species) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 8
-  body_mass_g species island    bill_length_mm bill_depth_mm flipper_length_mm
-        &lt;int&gt; &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;
-1        3750 Adelie  Torgersen           39.1          18.7               181
-2        3800 Adelie  Torgersen           39.5          17.4               186
-3        3250 Adelie  Torgersen           40.3          18                 195
-4          NA Adelie  Torgersen           NA            NA                  NA
-5        3450 Adelie  Torgersen           36.7          19.3               193
-6        3650 Adelie  Torgersen           39.3          20.6               190
-# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
 </div>
 </section>
-<section id="creating-new-columns-with-mutate" class="level3">
-<h3 class="anchored" data-anchor-id="creating-new-columns-with-mutate">Creating new columns with <code>mutate()</code></h3>
-<p><code>mutate()</code> adds new columns that are computed from existing ones, and you can refer to a column created earlier in the same <code>mutate()</code> call.</p>
+<section id="facets" class="level3">
+<h3 class="anchored" data-anchor-id="facets">Facets</h3>
+<p>Use <code>facet_wrap()</code> to create a grid of subplots for one categorical variable, and <code>facet_grid()</code> for two variables at once (<code>rows ~ columns</code>). By default every panel shares the same x and y scales, which is usually what you want for a fair comparison; set <code>scales = "free_y"</code>, <code>"free_x"</code>, or <code>"free"</code> if you need each panel to scale independently.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">bill_ratio =</span> bill_length_mm <span class="sc">/</span> bill_depth_mm,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">heavy =</span> body_mass_g <span class="sc">&gt;</span> <span class="dv">4500</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 10
-  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
-1 Adelie  Torgersen           39.1          18.7               181        3750
-2 Adelie  Torgersen           39.5          17.4               186        3800
-3 Adelie  Torgersen           40.3          18                 195        3250
-4 Adelie  Torgersen           NA            NA                  NA          NA
-5 Adelie  Torgersen           36.7          19.3               193        3450
-6 Adelie  Torgersen           39.3          20.6               190        3650
-# ℹ 4 more variables: sex &lt;fct&gt;, year &lt;int&gt;, bill_ratio &lt;dbl&gt;, heavy &lt;lgl&gt;</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># facet by island</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>island)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
 </div>
 </div>
-<p>New columns are added at the end by default; use <code>.before</code> or <code>.after</code> (just like <code>relocate()</code>) to control where they land, or <code>.keep = "used"</code> if you only want to keep the columns that went into computing the new one, which is handy for checking your work.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bill_ratio =</span> bill_length_mm <span class="sc">/</span> bill_depth_mm, <span class="at">.keep =</span> <span class="st">"used"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-  bill_length_mm bill_depth_mm bill_ratio
-           &lt;dbl&gt;         &lt;dbl&gt;      &lt;dbl&gt;
-1           39.1          18.7       2.09
-2           39.5          17.4       2.27
-3           40.3          18         2.24
-4           NA            NA        NA   
-5           36.7          19.3       1.90
-6           39.3          20.6       1.91</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># facet by species and sex at once, letting the y-axis vary by row</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(species <span class="sc">~</span> sex, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid figure-img" width="576"></p>
+</figure>
 </div>
 </div>
-<p>If you only want to keep the newly created columns (and any grouping columns) and drop everything else, <code>transmute()</code> does that in one step.</p>
+</div>
 </section>
-<section id="combining-steps-with-the-pipe" class="level3">
-<h3 class="anchored" data-anchor-id="combining-steps-with-the-pipe">Combining steps with the pipe</h3>
-<p>Stringing several verbs together by saving an intermediate object after each one is verbose, and re-using the same name for each intermediate step (as the previous version of these notes did) risks exactly the shadowing problem in Example 4.4. The pipe, <code>|&gt;</code>, passes the result on its left into the first argument of the call on its right, so an entire sequence of transformations reads top to bottom as a single pipeline instead:</p>
+<section id="coordinate-systems" class="level3">
+<h3 class="anchored" data-anchor-id="coordinate-systems">Coordinate systems</h3>
+<p>Transforming the coordinate system can make a plot easier to read without changing the underlying geoms or data. <code>coord_flip()</code> swaps the x and y axes after everything else has been computed, which is handy for long category labels; <code>coord_polar()</code> bends the plotting area into a circle, turning a stacked bar chart into a pie or Coxcomb chart; <code>coord_fixed()</code> locks the ratio between one unit on x and one unit on y, which matters whenever the physical aspect ratio carries meaning (such as a map).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>tall_penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(body_mass_g)) <span class="sc">|&gt;</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">bill_ratio =</span> bill_length_mm <span class="sc">/</span> bill_depth_mm) <span class="sc">|&gt;</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, island, body_mass_g, bill_ratio) <span class="sc">|&gt;</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(body_mass_g))</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>tall_penguins <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 4
-  species island body_mass_g bill_ratio
-  &lt;fct&gt;   &lt;fct&gt;        &lt;int&gt;      &lt;dbl&gt;
-1 Gentoo  Biscoe        6300       3.24
-2 Gentoo  Biscoe        6050       3.51
-3 Gentoo  Biscoe        6000       3.13
-4 Gentoo  Biscoe        6000       3.01
-5 Gentoo  Biscoe        5950       2.76
-6 Gentoo  Biscoe        5950       3.13</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># flip axes so long category labels read left to right instead of being squeezed</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
 </div>
 </div>
-<p>Read the pipe as “then”: filter, <em>then</em> mutate, <em>then</em> select, <em>then</em> arrange. Each step’s output becomes the next step’s input, and nothing is overwritten along the way until the very last line assigns the final result to <code>tall_penguins</code>.</p>
-<p>Here is the same pattern applied to a dataset from outside <code>palmerpenguins</code>, to get some practice on data you have not seen built into a package before:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>stress <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/student_stress_survey.csv"</span>)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>stress <span class="sc">|&gt;</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(study_hours <span class="sc">&gt;</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hours_per_stress_point =</span> study_hours <span class="sc">/</span> stress_level) <span class="sc">|&gt;</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(major, study_hours, stress_level, hours_per_stress_point) <span class="sc">|&gt;</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(hours_per_stress_point)) <span class="sc">|&gt;</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 4
-  major    study_hours stress_level hours_per_stress_point
-  &lt;chr&gt;          &lt;dbl&gt;        &lt;dbl&gt;                  &lt;dbl&gt;
-1 Biology         17.4            1                   17.4
-2 Nursing         16.7            1                   16.7
-3 Business        16.7            1                   16.7
-4 Business        16.0            1                   16.0
-5 Business        15.8            1                   15.8
-6 Biology         15.0            1                   15.0</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># polar coordinates turn a stacked bar into a pie chart</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -685,21 +650,92 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Example</span>Example 4.1
+<span class="screen-reader-only">Example</span>Example 3.1
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong><code>filter(x = value)</code> does not silently do the wrong thing; it stops you.</strong></p>
+<p><strong>Mapping too many categories to shape drops data, quietly.</strong></p>
+<p>The <code>mpg</code> dataset (built into ggplot2) has a <code>class</code> column with seven distinct vehicle types, one more than the six shapes ggplot2 has on hand by default:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(penguins, <span class="at">species =</span> <span class="st">"Adelie"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">n_distinct</span>(mpg<span class="sc">$</span>class)  <span class="co"># how many categories are we asking ggplot2 to draw?</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">shape =</span> class)) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The shape palette can deal with a maximum of 6 discrete values because more
+than 6 becomes difficult to discriminate
+ℹ you have requested 7 values. Consider specifying shapes manually if you need
+  that many of them.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 62 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>R produces two warnings above, not one. The first explains that the shape palette tops out at six discrete values, and the second reports that rows were removed for having a missing shape. Every vehicle in the seventh category is silently dropped from the plot entirely, the same way rows with a genuine <code>NA</code> were dropped in Session 3, except here the “missing” data was never actually missing. Whenever you map a categorical variable to shape, check <code>n_distinct()</code> first.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 3.2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>A stat mismatch can produce an error instead of a plot.</strong></p>
+<p>Suppose you first summarize your data yourself, the way you will learn to do properly in Session 6:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>stress <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/student_stress_survey.csv"</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>major_counts <span class="ot">&lt;-</span> stress <span class="sc">|&gt;</span> <span class="fu">count</span>(major)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>major_counts</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  major           n
+  &lt;chr&gt;       &lt;int&gt;
+1 Biology        43
+2 Business       44
+3 Engineering    56
+4 Nursing        50
+5 Psychology     57</code></pre>
+</div>
+</div>
+<p>You now have one row per major with the count already computed in a column called <code>n</code>. It is tempting to hand this straight to <code>geom_bar()</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(major_counts, <span class="fu">aes</span>(<span class="at">x =</span> major, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in `filter()`:
-! We detected a named input.
-ℹ This usually means that you've used `=` instead of `==`.
-ℹ Did you mean `species == "Adelie"`?</code></pre>
+<pre><code>Error in `geom_bar()`:
+! Problem while computing stat.
+ℹ Error occurred in the 1st layer.
+Caused by error in `setup_params()`:
+! `stat_count()` must only have an x or y aesthetic.</code></pre>
 </div>
 </div>
-<p>Modern dplyr specifically detects this mistake and refuses to guess what you meant, offering the exact fix in the error message itself. Older versions of dplyr (and many other R functions in general) are not always this forgiving, so it is worth building the habit of reading <code>==</code> for “is equal to” and <code>=</code> only for naming an argument or assigning a value.</p>
+<p>This fails with <em>“stat_count() must only have an x or y aesthetic”</em> because <code>geom_bar()</code>’s default stat, <code>stat_count()</code>, expects to do its own counting from raw, one-row-per-observation data. It does not know what to do with a <code>y</code> aesthetic that is already a count. The fix is either <code>geom_col()</code>, which is built for exactly this situation (it defaults to <code>stat = "identity"</code>), or <code>geom_bar(stat = "identity")</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(major_counts, <span class="fu">aes</span>(<span class="at">x =</span> major, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If you ever see <em>“stat_count() must only have an x or y aesthetic,”</em> the fix is almost always to switch from <code>geom_bar()</code> to <code>geom_col()</code>.</p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-example callout-titled">
@@ -708,32 +744,39 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Example</span>Example 4.2
+<span class="screen-reader-only">Example</span>Example 3.3
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong><code>!=</code> quietly drops missing values along with everything else.</strong></p>
-<p><code>penguins$sex</code> has a handful of genuinely missing values. Suppose you want every penguin that is <em>not</em> recorded as male, expecting that to include both females and unknowns:</p>
+<p><strong><code>position = "identity"</code> can make one group hide another entirely.</strong></p>
+<p><code>"identity"</code> is the position adjustment that does nothing: every group is drawn exactly where its own values say to draw it, with no stacking, filling, or dodging to keep groups apart. For bars and histograms, that means overlapping groups are drawn right on top of one another.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(penguins<span class="sc">$</span>sex))          <span class="co"># how many sex values are missing?</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 11</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>stress <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/student_stress_survey.csv"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>two_majors <span class="ot">&lt;-</span> stress <span class="sc">|&gt;</span> <span class="fu">filter</span>(major <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Engineering"</span>, <span class="st">"Nursing"</span>))</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(two_majors, <span class="fu">aes</span>(<span class="at">x =</span> study_hours, <span class="at">fill =</span> major)) <span class="sc">+</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">position =</span> <span class="st">"identity"</span>, <span class="at">binwidth =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>not_male <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">filter</span>(sex <span class="sc">!=</span> <span class="st">"male"</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(not_male)                    <span class="co"># fewer rows than you might expect</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 165</code></pre>
 </div>
 </div>
-<p><code>sex != "male"</code> evaluates to <code>NA</code>, not <code>TRUE</code>, for every row where <code>sex</code> is already <code>NA</code>, because R cannot know whether an unknown value is or is not equal to <code>"male"</code>. <code>filter()</code> keeps only rows where the condition is <code>TRUE</code>, so <code>NA</code> rows are silently excluded, the same way they were silently excluded from the plots in Session 2. If you want to keep the missing values too, you have to ask for them explicitly:</p>
+<p>Wherever the two majors’ bins overlap, whichever group ggplot2 happens to draw last simply paints over the other, so you cannot tell from this plot alone how much of the shorter bar is actually hidden behind the taller one. Setting <code>alpha</code> below 1 makes both groups partially see-through, so overlapping regions blend instead of one erasing the other:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>not_male_or_unknown <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">filter</span>(sex <span class="sc">!=</span> <span class="st">"male"</span> <span class="sc">|</span> <span class="fu">is.na</span>(sex))</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(not_male_or_unknown)         <span class="co"># now includes the missing-sex penguins</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 176</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(two_majors, <span class="fu">aes</span>(<span class="at">x =</span> study_hours, <span class="at">fill =</span> major)) <span class="sc">+</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">position =</span> <span class="st">"identity"</span>, <span class="at">binwidth =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
 </div>
 </div>
-<p>Any time you filter with <code>!=</code>, <code>&lt;</code>, or <code>&gt;</code> on a column that might contain <code>NA</code>, decide on purpose whether missing values belong in your result, rather than letting <code>filter()</code> decide for you.</p>
+</div>
+<p>Whenever you overlay two or more groups with <code>position = "identity"</code>, whether it’s bars, histograms, or density curves, add transparency, or you may be quietly hiding exactly the comparison you were trying to show.</p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-example callout-titled">
@@ -742,61 +785,36 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Example</span>Example 4.3
+<span class="screen-reader-only">Example</span>Example 3.4
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Floating-point rounding error (from Session 1) can make <code>filter()</code> miss a row that looks like an exact match.</strong></p>
+<p><strong>Free facet scales make every panel look equally important, even when the underlying numbers are wildly different.</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>example_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">y =</span> <span class="fl">0.1</span> <span class="sc">+</span> <span class="fl">0.2</span>)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>example_data<span class="sc">$</span>y                          <span class="co"># prints as 0.3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>example_data <span class="sc">|&gt;</span> <span class="fu">filter</span>(y <span class="sc">==</span> <span class="fl">0.3</span>)        <span class="co"># 0 rows: not actually equal underneath</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 0 × 1
-# ℹ 1 variable: y &lt;dbl&gt;</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>example_data <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">near</span>(y, <span class="fl">0.3</span>))    <span class="co"># 1 row: near() allows for tiny rounding error</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-      y
-  &lt;dbl&gt;
-1   0.3</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fixed scales (default): every panel uses the same y-axis, so bar heights are directly comparable</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> sex)) <span class="sc">+</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
 </div>
 </div>
-<p>This is the exact same floating-point issue from Session 1’s <code>0.1 + 0.2 == 0.3</code>, just showing up inside a <code>filter()</code> instead of at the console. Whenever you filter on an exact match to a computed decimal value, prefer dplyr’s <code>near()</code> over <code>==</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># free scales: each panel gets its own y-axis, so every bar looks similarly tall</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> sex)) <span class="sc">+</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_files/figure-html/unnamed-chunk-17-2.png" class="img-fluid figure-img" width="576"></p>
+</figure>
 </div>
 </div>
-<div class="callout callout-style-simple callout-example callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Example</span>Example 4.4
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Reassigning a built-in dataset’s own name hides your changes from yourself.</strong></p>
-<p>An earlier version of these notes did the following, one step at a time:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">flipper_mm =</span> flipper_length_mm)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">bill_size =</span> bill_length_mm <span class="sc">+</span> bill_depth_mm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>penguins2 <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">flipper_mm =</span> flipper_length_mm)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="st">"flipper_length_mm"</span> <span class="sc">%in%</span> <span class="fu">names</span>(penguins2)  <span class="co"># gone</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] FALSE</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="st">"flipper_mm"</span> <span class="sc">%in%</span> <span class="fu">names</span>(penguins2)         <span class="co"># here instead</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
-</div>
-</div>
-<p>The moment you run <code>penguins &lt;- penguins |&gt; rename(...)</code>, the original <code>palmerpenguins::penguins</code> is shadowed by your modified version for the rest of the R session. Every chunk after that point that refers to <code>penguins</code> gets <em>your</em> renamed copy, not the original, which is easy to forget an hour (or a week) later. If you restart R (as recommended in Session 1) the shadowing disappears and old code that relied on the renamed column suddenly breaks, while code that still expects the original name works again. Assigning transformed data to a new name, such as <code>penguins_renamed</code>, avoids the problem entirely and makes it obvious at a glance which object is the original and which is derived.</p>
+<p>With <code>scales = "free_y"</code>, a species with 20 penguins and a species with 150 penguins can produce bars of roughly the same visual height, because each panel is scaled independently to fill the available space. Free scales are genuinely useful when panels measure fundamentally different quantities, but when panels represent comparable counts, free scales can erase exactly the comparison a reader most wants to make. Default to fixed scales unless you have a specific reason to free them, and say so explicitly when you do.</p>
 </div>
 </div>
 </section>
@@ -815,48 +833,44 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong><code>filter()</code></strong></td>
-<td>Keeps rows where a logical condition is <code>TRUE</code>; drops rows where it is <code>FALSE</code> or <code>NA</code>.</td>
+<td><strong>Layered grammar template</strong></td>
+<td><code>ggplot(data) + geom_function(mapping, stat, position) + coordinate_function() + facet_function()</code>.</td>
 </tr>
 <tr class="even">
-<td><strong><code>%in%</code></strong></td>
-<td>Tests membership in a set of values; clearer than chaining several <code>|</code> comparisons on one variable.</td>
+<td><strong>Stat (statistical transformation)</strong></td>
+<td>The algorithm a geom uses to compute the values it actually plots; <code>geom_bar()</code>’s default stat counts rows per category.</td>
 </tr>
 <tr class="odd">
-<td><strong><code>distinct()</code></strong></td>
-<td>Keeps only unique combinations of the named columns.</td>
+<td><strong><code>geom_col()</code></strong></td>
+<td>Like <code>geom_bar()</code>, but expects the bar heights to already be computed, using <code>stat = "identity"</code> by default.</td>
 </tr>
 <tr class="even">
-<td><strong><code>arrange()</code></strong></td>
-<td>Reorders rows by one or more columns; <code>NA</code> always sorts last regardless of direction.</td>
+<td><strong>Position adjustment</strong></td>
+<td>How overlapping marks are resolved: <code>"stack"</code> (default for bars), <code>"fill"</code> (proportions), <code>"dodge"</code> (side by side), or <code>"jitter"</code> (random noise for points).</td>
 </tr>
 <tr class="odd">
-<td><strong><code>select()</code></strong></td>
-<td>Narrows and reorders columns; supports ranges, negation, and helpers like <code>starts_with()</code> and <code>where()</code>.</td>
+<td><strong><code>group</code> aesthetic</strong></td>
+<td>Tells ggplot2 to treat rows as separate groups (for example, one smoothing curve per group) without also mapping color or shape.</td>
 </tr>
 <tr class="even">
-<td><strong><code>rename()</code></strong></td>
-<td>Renames specific columns while keeping every other column.</td>
+<td><strong><code>facet_wrap()</code> / <code>facet_grid()</code></strong></td>
+<td>Split a plot into a grid of subplots by one variable, or by two variables at once.</td>
 </tr>
 <tr class="odd">
-<td><strong><code>relocate()</code></strong></td>
-<td>Moves columns to a new position with <code>.before</code> or <code>.after</code>, without changing which columns exist.</td>
+<td><strong>Free scales</strong></td>
+<td><code>scales = "free_x"</code>, <code>"free_y"</code>, or <code>"free"</code> let each facet panel use its own axis range, which can hide real differences in magnitude between panels.</td>
 </tr>
 <tr class="even">
-<td><strong><code>mutate()</code></strong></td>
-<td>Adds new columns computed from existing ones; <code>.before</code>, <code>.after</code>, and <code>.keep</code> control placement and what survives.</td>
+<td><strong><code>coord_flip()</code></strong></td>
+<td>Swaps the x and y axes after the plot has otherwise been computed.</td>
 </tr>
 <tr class="odd">
-<td><strong><code>transmute()</code></strong></td>
-<td>Like <code>mutate()</code>, but keeps only the newly created (and grouping) columns.</td>
+<td><strong><code>coord_polar()</code></strong></td>
+<td>Bends the plotting area into a circle, turning a stacked bar into a pie or Coxcomb chart.</td>
 </tr>
 <tr class="even">
-<td><strong>The pipe (<code>|&gt;</code>)</strong></td>
-<td>Passes the result on its left into the first argument on its right; read it as “then.”</td>
-</tr>
-<tr class="odd">
-<td><strong>Floating-point filtering</strong></td>
-<td>Use <code>near()</code> instead of <code>==</code> when filtering on a computed decimal value.</td>
+<td><strong><code>coord_fixed()</code></strong></td>
+<td>Locks the ratio between one x unit and one y unit, useful whenever physical aspect ratio matters.</td>
 </tr>
 </tbody>
 </table>
@@ -876,11 +890,11 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <div id="callout-7" class="callout-7-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>What is the difference between <code>filter()</code> and <code>arrange()</code>? Can either one change how many rows are in the result?</li>
-<li>You write <code>filter(df, score = 90)</code> and R stops with an error instead of running. What mistake did you make, and how do you fix it?</li>
-<li>A dataset has a <code>region</code> column with a few missing values. You run <code>filter(df, region != "West")</code> expecting to get everyone outside the West region, including anyone with an unknown region. Explain why the missing-region rows are excluded, and how you would include them.</li>
-<li>Why does dplyr’s <code>near()</code> function exist, and when should you reach for it instead of <code>==</code>?</li>
-<li>Your classmate writes <code>penguins &lt;- penguins |&gt; mutate(mass_kg = body_mass_g / 1000)</code> at the top of their script, then spends twenty minutes confused about why a later chunk that expects the original <code>palmerpenguins::penguins</code> gives strange results. What happened, and what habit would prevent it?</li>
+<li>Name the seven pieces of the layered grammar template, and identify which ones have sensible defaults you rarely need to change.</li>
+<li>You map a variable with nine categories to <code>shape</code> in a scatterplot. What will happen to the categories beyond the sixth, and how would you find out ahead of time how many categories you are dealing with?</li>
+<li>You already have a small data frame with one row per department and a column called <code>total_sales</code>. Your first attempt, <code>ggplot(df, aes(x = department, y = total_sales)) + geom_bar()</code>, produces an error. Explain the error and give two ways to fix it.</li>
+<li>A classmate overlays two groups’ histograms with <code>geom_histogram(position = "identity")</code> and no <code>alpha</code>. Explain what is happening visually, and why the plot might understate how much data is really there for one of the groups.</li>
+<li>A colleague facets a bar chart of monthly sales by store, using <code>scales = "free_y"</code>, and claims every store had “about the same” sales. What should you check before accepting that conclusion?</li>
 </ol>
 </div>
 </div>
@@ -898,11 +912,11 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><p><code>filter()</code> selects which rows are present in the result and can reduce the number of rows (or leave it unchanged if every row matches). <code>arrange()</code> only changes the order of the rows; it always returns the same number of rows it was given.</p></li>
-<li><p>Inside <code>filter()</code>, <code>=</code> names an argument rather than testing equality, so <code>score = 90</code> is not a valid comparison. dplyr detects this specific mistake and errors instead of guessing. The fix is to use <code>==</code>: <code>filter(df, score == 90)</code>.</p></li>
-<li><p><code>region != "West"</code> evaluates to <code>NA</code>, not <code>TRUE</code>, for any row where <code>region</code> is already missing, because R cannot determine whether an unknown region is or is not “West.” Since <code>filter()</code> only keeps rows where the condition is exactly <code>TRUE</code>, the missing-region rows are dropped along with the true non-matches. To include them, add an explicit <code>is.na()</code> check: <code>filter(df, region != "West" | is.na(region))</code>.</p></li>
-<li><p><code>near()</code> compares two numbers while allowing for a small amount of floating-point rounding error, which real decimal arithmetic almost always introduces. Use it instead of <code>==</code> whenever you are filtering (or otherwise comparing) a numeric column that was computed rather than typed in directly, since two mathematically equal computed values can differ by a tiny amount at the level of their exact binary representation.</p></li>
-<li><p>Their line reassigns the name <code>penguins</code> to a modified copy of the data, so every subsequent chunk that refers to <code>penguins</code> sees the modified version (with the new <code>mass_kg</code> column) instead of the original <code>palmerpenguins::penguins</code>. Assigning the transformed data to a new name, such as <code>penguins_kg</code>, keeps the original available and makes it clear which object is which.</p></li>
+<li><p>The seven pieces are data, the aesthetic mapping, the geom function, the stat, the position adjustment, the coordinate function, and the facet function. Data, mapping, and geom are the three you set explicitly on day one; stat, position, coordinate (Cartesian), and facet (none) all have sensible defaults that most plots never need to override.</p></li>
+<li><p>The seventh, eighth, and ninth categories will have no shape to draw with, so ggplot2 issues a warning (“the shape palette can deal with a maximum of 6 discrete values”) and drops those rows from the plot entirely, with a second warning about removed rows. Running <code>n_distinct(df$variable)</code> (or <code>length(unique(df$variable))</code>) before plotting tells you how many categories you are working with, so you can choose a different aesthetic (like color, or faceting) instead of shape.</p></li>
+<li><p><code>geom_bar()</code>’s default stat, <code>stat_count()</code>, expects to count raw rows itself and does not know what to do with a <code>y</code> aesthetic that is already a precomputed total. The fix is to use <code>geom_col()</code> instead of <code>geom_bar()</code>, or to keep <code>geom_bar()</code> but add <code>stat = "identity"</code>.</p></li>
+<li><p>With <code>position = "identity"</code>, ggplot2 draws each group’s bars exactly where its own counts say to, without stacking or otherwise nudging groups apart, so wherever the two groups’ bins overlap, whichever group is drawn last simply paints over the other. If the hidden group actually has a similar or larger count in that bin, the plot can make it look like there is little or no data there for that group. Adding <code>alpha</code> below 1 (for example, <code>alpha = 0.5</code>) makes both groups partially see-through, so overlapping regions blend together instead of one group erasing the other.</p></li>
+<li><p>Check whether the y-axis is actually the same across panels. With <code>scales = "free_y"</code>, each facet panel is scaled independently to fill the available space, so a store with very low sales and a store with very high sales can produce visually similar-looking bars. Re-plot with the default fixed scales (or <code>scales = "fixed"</code>) and compare; only then can you fairly judge whether the stores really did have similar sales.</p></li>
 </ol>
 </div>
 </div>

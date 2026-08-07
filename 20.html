@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>20&nbsp; Session 20 – Reproducible research &amp; communication – STA 2300 Intro to Data Science</title>
+<title>20&nbsp; Session 20: Basic programming II: iteration and functional programming – STA 2300 Intro to Data Science</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -177,7 +177,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./20.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20 – Reproducible research &amp; communication</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./20.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20: Basic programming II: iteration and functional programming</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -224,127 +224,133 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Data visualization basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Quarto basics for reproducible assignments</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: The layered grammar of graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: Data visualization basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: The layered grammar of graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (II): grouping and summarizing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data import: reading CSV and flat files</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data transformation (II): grouping and summarizing</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Tidy data and pivoting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Data import: reading CSV and flat files</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Variable types I: logical and numeric vectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Tidy data and pivoting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types II: strings and regular expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types I: logical and numeric vectors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types III: factors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types II: strings and regular expressions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types IV: dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types III: factors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12 – Missing values &amp; data cleaning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12: Variable types IV: dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13 –&nbsp;Relational data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13: Missing values and data cleaning</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14 – Advanced data import I: spreadsheets</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14: Relational data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15 – Advanced data import II: databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15: Advanced data import I: spreadsheets</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./16.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16 – Big‑data formats &amp; hierarchical data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16: Advanced data import II: databases</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17 – Web scraping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17: Big data formats and hierarchical data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./18.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18 – Basic programming I: functions &amp; code style</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18: Web scraping</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./19.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19 – Basic programming II: iteration &amp; functional programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19: Basic programming I: functions and code style</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./20.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20 – Reproducible research &amp; communication</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20: Basic programming II: iteration and functional programming</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./21.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21 – Exploratory data analysis (EDA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21: Communication</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./22.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22 – Statistical modelling&nbsp;I: simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22: Exploratory data analysis (EDA)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Session 23: Statistical modeling I: simple linear regression</span></span></a>
   </div>
 </li>
     </ul>
@@ -360,13 +366,14 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#why-reproducible-research" id="toc-why-reproducible-research" class="nav-link" data-scroll-target="#why-reproducible-research">Why reproducible research?</a></li>
-  <li><a href="#quarto-basics-and-yaml" id="toc-quarto-basics-and-yaml" class="nav-link" data-scroll-target="#quarto-basics-and-yaml">Quarto basics and YAML</a></li>
-  <li><a href="#code-chunks-and-options" id="toc-code-chunks-and-options" class="nav-link" data-scroll-target="#code-chunks-and-options">Code chunks and options</a></li>
-  <li><a href="#rendering-to-multiple-formats" id="toc-rendering-to-multiple-formats" class="nav-link" data-scroll-target="#rendering-to-multiple-formats">Rendering to multiple formats</a></li>
-  <li><a href="#inline-code-and-narrative" id="toc-inline-code-and-narrative" class="nav-link" data-scroll-target="#inline-code-and-narrative">Inline code and narrative</a></li>
-  <li><a href="#communicating-your-findings" id="toc-communicating-your-findings" class="nav-link" data-scroll-target="#communicating-your-findings">Communicating your findings</a></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key take‑aways</a></li>
+  <li><a href="#introduction-implicit-and-explicit-iteration" id="toc-introduction-implicit-and-explicit-iteration" class="nav-link" data-scroll-target="#introduction-implicit-and-explicit-iteration">Introduction: implicit and explicit iteration</a></li>
+  <li><a href="#modifying-multiple-columns-with-across" id="toc-modifying-multiple-columns-with-across" class="nav-link" data-scroll-target="#modifying-multiple-columns-with-across">Modifying multiple columns with <code>across()</code></a></li>
+  <li><a href="#reading-multiple-files-with-purrrmap" id="toc-reading-multiple-files-with-purrrmap" class="nav-link" data-scroll-target="#reading-multiple-files-with-purrrmap">Reading multiple files with <code>purrr::map()</code></a></li>
+  <li><a href="#handling-failures" id="toc-handling-failures" class="nav-link" data-scroll-target="#handling-failures">Handling failures</a></li>
+  <li><a href="#saving-multiple-outputs" id="toc-saving-multiple-outputs" class="nav-link" data-scroll-target="#saving-multiple-outputs">Saving multiple outputs</a></li>
+  <li><a href="#fringe-cases-and-common-pitfalls" id="toc-fringe-cases-and-common-pitfalls" class="nav-link" data-scroll-target="#fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -376,7 +383,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20 – Reproducible research &amp; communication</span></h1>
+<h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20: Basic programming II: iteration and functional programming</span></h1>
 </div>
 
 
@@ -396,108 +403,353 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Appreciate the value of reproducible research.</strong> Understand why combining your code, its results and your prose in a single document improves transparency, facilitates collaboration and serves as a lab notebook. Recognize that Quarto integrates the lessons of the R Markdown ecosystem and is designed for analysts, collaborators and decision‑makers.</li>
-<li><strong>Learn the basics of Quarto documents.</strong> Create and render a Quarto (<code>.qmd</code>) file with a YAML header and interleaved code and narrative. Understand how to specify global settings in the YAML, supply metadata like title and date, and set the default output format.</li>
-<li><strong>Use chunk options effectively.</strong> Control evaluation, display of code, warnings and messages with chunk options (<code>eval:</code>, <code>include:</code>, <code>echo:</code>, <code>message:</code> and <code>warning:</code>). Set global chunk options and learn how inline code can report dynamic values inside your prose.</li>
-<li><strong>Generate multiple output formats.</strong> Configure Quarto to render the same document to HTML, PDF and Word and learn how to customize options like the table of contents or code‑folding in the YAML. Understand the difference between persistent settings in the YAML header and transient settings supplied to <code>quarto_render()</code>.</li>
-<li><strong>Communicate your findings clearly.</strong> Apply principles from the communication chapter to turn exploratory graphics into expository graphics. Write titles that summarize the main finding rather than simply describing the plot; add subtitles and captions; label axes and legends with units and descriptive names; and use themes, annotations and layout to guide your audience.</li>
+<li><strong>Recognize how iteration differs in R.</strong> In many languages you must explicitly loop over a vector’s elements. R is different: doubling a numeric vector is as simple as <code>2 * x</code>, because the operation is vectorized. You’ve already used implicit iteration through <code>facet_wrap()</code>/<code>facet_grid()</code>, <code>group_by()</code> + <code>summarize()</code>, and the <code>unnest_*()</code> functions. This session covers more general tools for explicit iteration.</li>
+<li><strong>Modify multiple columns with <code>across()</code>.</strong> <code>across()</code> applies one or more functions to a set of columns inside <code>summarize()</code> or <code>mutate()</code>. Learn to select columns with <code>.cols</code>, supply functions via <code>.fns</code>, control output names with <code>.names</code>, and recognize the one setting that silently overwrites your original columns if you forget it.</li>
+<li><strong>Read and combine many files with purrr.</strong> <code>purrr::map()</code> iterates over a vector or list, applying a function to each element and returning a list. Learn the three-step pattern for importing a directory of files: list paths with <code>list.files()</code>, map a reading function over them, and combine the results with <code>purrr::list_rbind()</code>, including how it quietly handles a list with gaps in it.</li>
+<li><strong>Handle failures and heterogeneous data.</strong> When iterating over many inputs, some will fail. Use <code>purrr::possibly()</code> to wrap a function so failures return a default (such as <code>NULL</code>) instead of stopping the whole iteration, and know exactly what happens to those defaults once you try to recombine everything.</li>
+<li><strong>Save multiple outputs.</strong> The same iteration patterns apply in reverse: writing multiple data frames or plots to disk with <code>walk2()</code>/<code>iwalk()</code>.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<section id="why-reproducible-research" class="level3">
-<h3 class="anchored" data-anchor-id="why-reproducible-research">Why reproducible research?</h3>
-<p>In an exploratory notebook it’s easy to lose track of which code produced which results. Reproducible research addresses this by knitting your analysis and narrative together so that anyone—including future you—can rerun the analysis and obtain the same outputs. This approach, sometimes called <em>literate programming</em>, intersperses code with human‑readable explanations. In the tidyverse, the <strong>Quarto</strong> system is the modern successor to R Markdown. A Quarto document is a plain text file with a <code>.qmd</code> extension that contains three elements:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="introduction-implicit-and-explicit-iteration" class="level3">
+<h3 class="anchored" data-anchor-id="introduction-implicit-and-explicit-iteration">Introduction: implicit and explicit iteration</h3>
+<p>Iteration is everywhere in R, but much of it is invisible. Doubling a vector is a single vectorized expression, <code>2 * x</code>, not a loop, and tools you’ve already used, faceting, group-wise summarizing, unnesting a list-column, all repeat the same action across many subsets or elements without you ever writing an explicit loop yourself. Functional programming tools make the remaining, less automatic cases just as concise. This session covers three common ones: modifying multiple columns, reading multiple files, and saving multiple outputs.</p>
+</section>
+<section id="modifying-multiple-columns-with-across" class="level3">
+<h3 class="anchored" data-anchor-id="modifying-multiple-columns-with-across">Modifying multiple columns with <code>across()</code></h3>
+<p><code>across()</code>, used inside <code>summarize()</code> or <code>mutate()</code>, applies a function (or several) to a set of columns at once, so you never have to write out the same summary call once per column. It takes three key arguments. <code>.cols</code> selects which columns to operate on, using the same tidy-select syntax as <code>select()</code>, including helpers like <code>where(is.numeric)</code>. <code>.fns</code> supplies the function or functions to apply: a single bare function name (no parentheses; see Example 19.1 for what happens if you add them), an anonymous function (<code>\(x) ...</code>) when you need extra arguments, or a named list when you want to apply several functions at once, with the names becoming part of the output column names. <code>.names</code> controls those output names directly, using a glue specification like <code>"{.fn}_{.col}"</code>; inside <code>mutate()</code> specifically, leaving <code>.names</code> out means the results silently overwrite the original columns rather than creating new ones (see Example 19.2).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summarize every numeric column with two functions at once, custom names</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">where</span>(is.numeric),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="at">mean =</span> \(x) <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">sd =</span> \(x) <span class="fu">sd</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">.names =</span> <span class="st">"{.fn}_{.col}"</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mean_Sepal.Length sd_Sepal.Length mean_Sepal.Width sd_Sepal.Width
+1          5.843333       0.8280661         3.057333      0.4358663
+  mean_Petal.Length sd_Petal.Length mean_Petal.Width sd_Petal.Width
+1             3.758        1.765298         1.199333      0.7622377</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># replace missing values with zero, keeping the originals alongside</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df_miss <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">a =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="dv">3</span>), <span class="at">b =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="cn">NA</span>))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df_miss <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="fu">across</span>(a<span class="sc">:</span>b, \(x) <span class="fu">coalesce</span>(x, <span class="dv">0</span>), <span class="at">.names =</span> <span class="st">"{.col}_na0"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+      a     b a_na0 b_na0
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     1     4     1     4
+2    NA     5     0     5
+3     3    NA     3     0</code></pre>
+</div>
+</div>
+<p><code>if_any()</code> and <code>if_all()</code> extend the same idea to filtering: <code>filter(if_any(where(is.na)))</code> keeps rows with at least one missing value among the selected columns, while <code>filter(if_all(where(is.na)))</code> keeps only rows where <em>every</em> selected column is missing. And because <code>.cols</code> is tidy-select, a helper function that embraces its column argument (as in Session 19) can accept a user-supplied set of columns and hand it straight to <code>across()</code>.</p>
+</section>
+<section id="reading-multiple-files-with-purrrmap" class="level3">
+<h3 class="anchored" data-anchor-id="reading-multiple-files-with-purrrmap">Reading multiple files with <code>purrr::map()</code></h3>
+<p>Combining data spread across many files follows a reliable three-step pattern: list the files, read each one, then stack the results. Here it is end to end, first writing one file per species so there’s something real to read back:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>csv_dir <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="st">"species_csv_"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(csv_dir)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>palmerpenguins<span class="sc">::</span>penguins <span class="sc">|&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_walk</span>(<span class="sc">~</span> <span class="fu">write_csv</span>(.x, <span class="fu">file.path</span>(csv_dir, <span class="fu">paste0</span>(.y<span class="sc">$</span>species, <span class="st">".csv"</span>))))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">list.files</span>(csv_dir)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Adelie.csv"    "Chinstrap.csv" "Gentoo.csv"   </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>paths <span class="ot">&lt;-</span> <span class="fu">list.files</span>(csv_dir, <span class="at">pattern =</span> <span class="st">"[.]csv$"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>penguins_combined <span class="ot">&lt;-</span> paths <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_names</span>(\(p) <span class="fu">str_remove</span>(<span class="fu">basename</span>(p), <span class="st">"[.]csv$"</span>)) <span class="sc">|&gt;</span>   <span class="co"># name each path by its file name</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(read_csv) <span class="sc">|&gt;</span>                                         <span class="co"># read each file into a tibble</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list_rbind</span>(<span class="at">names_to =</span> <span class="st">"species_file"</span>)                    <span class="co"># stack them, keeping the source</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>penguins_combined <span class="sc">|&gt;</span> <span class="fu">count</span>(species_file)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  species_file     n
+  &lt;chr&gt;        &lt;int&gt;
+1 Adelie         152
+2 Chinstrap       68
+3 Gentoo         124</code></pre>
+</div>
+</div>
+<p><code>list.files()</code> collects the paths, restricting to <code>.csv</code> files with a regular-expression <code>pattern</code> and returning full, readable paths with <code>full.names = TRUE</code>. <code>map()</code> applies the reading function to each path in turn, returning a list of tibbles. <code>list_rbind()</code> stacks that list into one tibble; <code>names_to</code> turns whatever name each list element had (here, the species, extracted from the file name) into an ordinary column, which is exactly how information hiding in a file name makes it into your data. When the files aren’t perfectly uniform in structure, inspecting each one’s columns and types before binding (a small helper that reports each file’s column names and types, mapped over the same list of paths) catches a structural mismatch before it becomes a confusing binding error.</p>
+</section>
+<section id="handling-failures" class="level3">
+<h3 class="anchored" data-anchor-id="handling-failures">Handling failures</h3>
+<p><code>map()</code> stops at the first error, which means one unreadable file can prevent every other file in the batch from being read at all. <code>purrr::possibly()</code> wraps a function so that a failure returns a specified default, commonly <code>NULL</code>, instead of stopping everything:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>bad_paths <span class="ot">&lt;-</span> <span class="fu">c</span>(paths, <span class="fu">file.path</span>(csv_dir, <span class="st">"does_not_exist.csv"</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>safe_read <span class="ot">&lt;-</span> <span class="fu">possibly</span>(\(p) <span class="fu">read_csv</span>(p, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>), <span class="at">otherwise =</span> <span class="cn">NULL</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">map</span>(bad_paths, safe_read)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>failed <span class="ot">&lt;-</span> <span class="fu">map_lgl</span>(results, is.null)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>bad_paths[failed]        <span class="co"># exactly the paths that failed, ready to investigate</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "C:\\Users\\JOSHUA~1\\AppData\\Local\\Temp\\RtmpQNZDym\\species_csv_410067d67ae8/does_not_exist.csv"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list_rbind</span>(results) <span class="sc">|&gt;</span> <span class="fu">nrow</span>()   <span class="co"># every successfully read row, recombined anyway</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 344</code></pre>
+</div>
+</div>
+<p>This pattern lets a batch job process every file that <em>can</em> be read while cleanly flagging the ones that can’t, rather than an all-or-nothing failure (see Example 19.3 for exactly how <code>list_rbind()</code> handles the <code>NULL</code>s left behind by the failures).</p>
+</section>
+<section id="saving-multiple-outputs" class="level3">
+<h3 class="anchored" data-anchor-id="saving-multiple-outputs">Saving multiple outputs</h3>
+<p>The same tools work in reverse for writing multiple outputs. <code>walk2()</code> iterates over two parallel vectors or lists purely for a side effect (here, writing a file), discarding whatever the function returns, which is exactly right for something like <code>write_csv()</code> that you call only for what it does, not what it returns:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>out_dir <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="st">"summaries_"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(out_dir)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>summaries <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">by_species =</span> penguins_combined <span class="sc">|&gt;</span> <span class="fu">count</span>(species_file),</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">by_island =</span> palmerpenguins<span class="sc">::</span>penguins <span class="sc">|&gt;</span> <span class="fu">count</span>(island)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>out_paths <span class="ot">&lt;-</span> <span class="fu">file.path</span>(out_dir, <span class="fu">paste0</span>(<span class="fu">names</span>(summaries), <span class="st">".csv"</span>))</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="fu">walk2</span>(summaries, out_paths, write_csv)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">list.files</span>(out_dir)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "by_island.csv"  "by_species.csv"</code></pre>
+</div>
+</div>
+<p>The same pattern extends to saving a series of plots: build a named list of ggplot objects, then <code>iwalk()</code> (or <code>walk2()</code> with matching file names) over the list, calling <code>ggsave()</code> once per plot.</p>
+</section>
+<section id="fringe-cases-and-common-pitfalls" class="level3">
+<h3 class="anchored" data-anchor-id="fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</h3>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 19.1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Calling a function inside <code>across()</code> instead of naming it produces a real, specific error.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="fu">mean</span>()))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `summarize()`:
+ℹ In argument: `across(where(is.numeric), mean())`.
+Caused by error in `mean.default()`:
+! argument "x" is missing, with no default</code></pre>
+</div>
+</div>
+<p><code>across()</code> expects a function it can call once per column, so the second argument should be the bare function name, <code>mean</code>, not the result of calling it, <code>mean()</code>. Writing <code>mean()</code> calls <code>mean</code> immediately, with no arguments at all, which fails right away with <em>“argument ‘x’ is missing, with no default,”</em> before <code>across()</code> even gets a chance to do anything. If you see that particular error coming from inside an <code>across()</code> call, check for a stray pair of parentheses on the function you meant to pass by name.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 19.2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong><code>across()</code> inside <code>mutate()</code>, without <code>.names</code>, silently overwrites your original columns.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), \(v) v <span class="sc">-</span> <span class="fu">mean</span>(v)))          <span class="co"># x and y are gone</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+      x     y
+  &lt;dbl&gt; &lt;dbl&gt;
+1    -1   -10
+2     0     0
+3     1    10</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), \(v) v <span class="sc">-</span> <span class="fu">mean</span>(v), <span class="at">.names =</span> <span class="st">"{.col}_centered"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+      x     y x_centered y_centered
+  &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+1     1    10         -1        -10
+2     2    20          0          0
+3     3    30          1         10</code></pre>
+</div>
+</div>
+<p>Inside <code>summarize()</code>, <code>across()</code> always produces new, separate output columns, since <code>summarize()</code> doesn’t have “original” row-level columns to collide with. Inside <code>mutate()</code>, though, a transformed column named exactly the same as the column it came from replaces that column outright, with no warning that the original values are gone. There’s no error because this is a completely valid thing to want to do; the danger is only in not intending it. Supplying <code>.names</code> (as in the second call above) keeps the originals and adds the transformed versions alongside them instead.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 19.3
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong><code>list_rbind()</code> drops <code>NULL</code> list elements without saying a word.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>partial_results <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">1</span>), <span class="cn">NULL</span>, <span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">2</span>), <span class="cn">NULL</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(partial_results)     <span class="co"># 4 elements went in...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list_rbind</span>(partial_results) <span class="co"># ...and only the 2 real ones come out, silently</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 1
+      x
+  &lt;dbl&gt;
+1     1
+2     2</code></pre>
+</div>
+</div>
+<p>This is exactly the behavior the <code>possibly()</code> pattern from this session depends on: every failed read becomes a <code>NULL</code>, and <code>list_rbind()</code> quietly skips every <code>NULL</code> when stacking the rest into one tibble, with no message telling you how many were dropped. That silence is convenient when you already know some inputs might fail and you’ve separately checked which ones did (as in the <code>map_lgl(results, is.null)</code> line above), and it’s a trap if you haven’t: a batch job that “worked” and returned a smaller-than-expected tibble may have silently lost several inputs along the way. Always compare the length of your input list to the row count (or list length, if you’re not immediately combining) of what came out.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 19.4
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong><code>across(everything())</code> after <code>group_by()</code> skips the grouping column on its own, without being asked to.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>grouped <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">g =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>), <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">y =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>) <span class="sc">|&gt;</span> <span class="fu">group_by</span>(g)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>grouped <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), mean))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  g         x     y
+  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 a       1.5   4.5
+2 b       3     6  </code></pre>
+</div>
+</div>
+<p><code>g</code> never gets passed to <code>mean()</code> at all, even though <code>everything()</code> would ordinarily include it; dplyr automatically excludes the active grouping columns from <code>across(everything(), ...)</code>, since they’re already preserved as the grouping structure of the output and averaging a character column would make no sense (and would error) anyway. This is a helpful default rather than a trap, but it’s worth knowing about explicitly: if you ever <em>do</em> want to apply a function to a grouping column too, you need to name it directly rather than relying on <code>everything()</code> to reach it.</p>
+</div>
+</div>
+</section>
+<section id="recap" class="level3">
+<h3 class="anchored" data-anchor-id="recap">Recap</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 76%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Term</strong></th>
+<th><strong>Definition</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><code>across(.cols, .fns, .names)</code></strong></td>
+<td>Applies one or more functions to a tidy-selected set of columns inside <code>summarize()</code>/<code>mutate()</code>.</td>
+</tr>
+<tr class="even">
+<td><strong>Bare function name</strong></td>
+<td><code>across()</code> expects a function to call (<code>mean</code>), not the result of calling it (<code>mean()</code>).</td>
+</tr>
+<tr class="odd">
+<td><strong><code>.names</code> inside <code>mutate()</code></strong></td>
+<td>Without it, <code>across()</code>’s output silently replaces the original columns instead of adding new ones.</td>
+</tr>
+<tr class="even">
+<td><strong><code>if_any()</code> / <code>if_all()</code></strong></td>
+<td>Filter helpers combining a condition across several columns with OR / AND logic.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>list.files()</code></strong></td>
+<td>Lists file paths in a directory, filterable by a regex <code>pattern</code>, with <code>full.names = TRUE</code> for ready-to-use paths.</td>
+</tr>
+<tr class="even">
+<td><strong><code>map()</code></strong></td>
+<td>Applies a function to every element of a vector or list, returning a list.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>list_rbind()</code></strong></td>
+<td>Stacks a list of data frames into one tibble; silently drops any <code>NULL</code> elements.</td>
+</tr>
+<tr class="even">
+<td><strong><code>possibly()</code></strong></td>
+<td>Wraps a function so a failure returns a default value (often <code>NULL</code>) instead of stopping the whole iteration.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>walk()</code> / <code>walk2()</code> / <code>iwalk()</code></strong></td>
+<td>Like <code>map()</code>, but for a function called purely for its side effect (such as writing a file), discarding the return value.</td>
+</tr>
+<tr class="even">
+<td><strong>Grouping-column exclusion</strong></td>
+<td><code>across(everything(), ...)</code> automatically skips the active <code>group_by()</code> columns.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="check-your-understanding" class="level3">
+<h3 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Problems">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Problems
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
 <ol type="1">
-<li>A <strong>YAML header</strong> delimited by triple dashes (<code>---</code>) at the top of the file. Here you set metadata such as the document title, author, date and default output format. You can also set default execution options (e.g., hide code globally) in this header.</li>
-<li><strong>Narrative text</strong> written in Markdown. Use headings to structure your document, lists for bullets and paragraphs for explanations. You can insert inline R code by enclosing it in backticks preceded by <code>r</code> (e.g., ``) to dynamically insert values into your prose.</li>
-<li><strong>Code chunks</strong> that contain R code. Each chunk begins with triple backticks and a language engine (e.g., <code>{r}</code>) and ends with triple backticks. You can assign a label and specify options immediately after the opening fences. When you render the document, Quarto executes each chunk in order and inserts the output.</li>
+<li>What is the difference between passing <code>mean</code> and <code>mean()</code> as the second argument to <code>across()</code>? What error would the second one produce?</li>
+<li>You run <code>df |&gt; mutate(across(where(is.numeric), \(x) x * 2))</code> and notice your original numeric columns are gone, replaced by their doubled values. What caused this, and how would you keep both?</li>
+<li>You use <code>possibly()</code> to read 20 files and combine the results with <code>list_rbind()</code>, and get back a tibble built from only 17 files’ worth of rows, with no error or warning. What is the most likely explanation, and how would you confirm it?</li>
+<li>Why doesn’t <code>group_by(region) |&gt; summarize(across(everything(), mean))</code> try to average the <code>region</code> column, even though <code>everything()</code> would normally include it?</li>
+<li>What is the three-step pattern for reading and combining many files, and which function in that pattern is responsible for turning a list of tibbles into one?</li>
 </ol>
-<p>This structure ensures that anyone with the data and the <code>.qmd</code> file can reproduce your results. Because Quarto is language‑agnostic, you can also include chunks written in Python or Julia alongside R code, but we will focus on R.</p>
-</section>
-<section id="quarto-basics-and-yaml" class="level3">
-<h3 class="anchored" data-anchor-id="quarto-basics-and-yaml">Quarto basics and YAML</h3>
-<p>The YAML header sets the global context for your document. A minimal Quarto file looks like this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Global life expectancy report"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> 2025-11-18</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The <code>title</code> and <code>date</code> appear at the top of the rendered document. The <code>format</code> specifies the default output; common values include <code>html</code>, <code>pdf</code> and <code>docx</code>. You can supply an expanded <code>format:</code> field to customize specific options or produce multiple outputs:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">        # include a table of contents</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">  # make code blocks collapsible</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span><span class="at"> default</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">docx</span><span class="kw">:</span><span class="at"> default</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>With this configuration Quarto will generate HTML, PDF and Word files when you render the document. If you render from RStudio the appropriate viewers open automatically. To render from the command line you can run <code>quarto render my-document.qmd</code> or use <code>quarto::quarto_render()</code> inside R; both commands support an <code>output_format</code> argument that overrides the YAML specification.</p>
-</section>
-<section id="code-chunks-and-options" class="level3">
-<h3 class="anchored" data-anchor-id="code-chunks-and-options">Code chunks and options</h3>
-<p>Code chunks are where your analysis happens. Each chunk can be given a label so that you can reference its output (e.g., <code>#| label: setup</code>). Chunk <strong>options</strong> control whether code is executed and how results appear. Here are the most commonly used options:</p>
-<ul>
-<li><code>eval: false</code> prevents the code from running. Use this to display example code without executing it.</li>
-<li><code>include: false</code> runs the code but hides both the code and its results; this is useful for setup tasks like loading packages or reading data.</li>
-<li><code>echo: false</code> hides the code but shows the results. Use this when writing reports for people who care about the conclusions but not the implementation.</li>
-<li><code>message: false</code> and <code>warning: false</code> suppress messages and warnings from appearing in the output.</li>
-<li><code>results: hide</code> hides printed output; <code>fig-show: hide</code> hides plots.</li>
-</ul>
-<p>You can set these options on a per‑chunk basis by adding <code>#| option: value</code> lines immediately below the chunk header. For example:</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="20_files/figure-html/scatterplot-gapminder-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
 </div>
 </div>
 </div>
-<p>If many chunks share the same settings, set global chunk options in the YAML header under an <code>execute</code> field:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">message</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This hides code and suppresses messages by default; you can override these defaults in individual chunks by explicitly setting <code>echo: true</code> or similar.</p>
-</section>
-<section id="rendering-to-multiple-formats" class="level3">
-<h3 class="anchored" data-anchor-id="rendering-to-multiple-formats">Rendering to multiple formats</h3>
-<p>Quarto can produce a variety of outputs beyond static HTML. In the YAML header you can specify multiple formats under the <code>format:</code> field. Each format can have its own options. For example, to add a floating table of contents to the HTML version while keeping the PDF and Word versions default:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc_float</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span><span class="at"> default</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">docx</span><span class="kw">:</span><span class="at"> default</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>When you render the document, Quarto will create three files: <code>.html</code>, <code>.pdf</code> and <code>.docx</code>. If you only want to render one format temporarily, supply the <code>output_format</code> argument to <code>quarto_render()</code>, e.g.,</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>quarto<span class="sc">::</span><span class="fu">quarto_render</span>(<span class="st">"my-report.qmd"</span>, <span class="at">output_format =</span> <span class="st">"docx"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solutions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>Another useful option for HTML outputs is <code>code-fold: true</code>, which hides code by default but allows readers to expand it on demand. Remember that PDF output requires a LaTeX installation; RStudio will prompt you to install TinyTeX if you don’t have it.</p>
-</section>
-<section id="inline-code-and-narrative" class="level3">
-<h3 class="anchored" data-anchor-id="inline-code-and-narrative">Inline code and narrative</h3>
-<p>One of the strengths of literate programming is the ability to embed code directly within text. Inline code is enclosed in backticks preceded by <code>r</code>, like <code>1704</code>. When the document is rendered, the expression is evaluated and its result inserted into your prose. This ensures that statements about your data remain accurate as your analysis evolves. To control the formatting of numbers you can define a helper function, such as:</p>
-<p>Then you could write, “The gapminder dataset contains <code>1,704</code> observations across <code>12</code> years.”</p>
-</section>
-<section id="communicating-your-findings" class="level3">
-<h3 class="anchored" data-anchor-id="communicating-your-findings">Communicating your findings</h3>
-<p>Once your analysis is reproducible, you need to communicate it effectively. A good graphic tells a story. Start with <em>labels</em>: use <code>labs()</code> to add clear axis titles, legend titles, a <em>main title</em> that summarizes the key finding and an optional <em>subtitle</em> and <em>caption</em>. Avoid titles that merely restate the variables (“A scatterplot of GDP vs.&nbsp;life expectancy”) and instead summarize the insight (“Life expectancy increases with wealth, but Europe leads at every income level”). Use the subtitle for additional context and the caption to cite data sources or provide notes. When labelling axes and legends, replace short variable names with descriptive phrases and include units (e.g., “GDP per capita (USD)”). Thoughtful labels help your audience understand your plots without reading your code.</p>
-<p>Beyond labels, consider <em>annotations</em>, <em>scales</em> and <em>themes</em>. Annotations (e.g., <code>geom_text()</code>, <code>geom_label()</code>) can highlight notable observations or annotate clusters. Adjust scales to control axis ticks, breaks and legends; the <code>scales</code> package provides functions like <code>label_comma()</code> for nicely formatted numbers. Themes control the non‑data elements of the plot: fonts, backgrounds and layout. The default <code>theme_minimal()</code> is a good starting point; use <code>theme()</code> to adjust specific elements such as the position of titles and captions. For multi‑plot layouts, packages like <code>patchwork</code> let you combine multiple ggplots and add common titles and captions.</p>
-</section>
-<section id="key-takeaways" class="level3">
-<h3 class="anchored" data-anchor-id="key-takeaways">Key take‑aways</h3>
-<ul>
-<li><strong>Combine code and narrative.</strong> Use Quarto to weave your code and prose together so that anyone can reproduce your results and understand your reasoning.</li>
-<li><strong>Structure your document with YAML.</strong> The YAML header sets the title, date and output formats and can contain default execution options. Expand the <code>format:</code> field to customise each output and render to multiple formats.</li>
-<li><strong>Master chunk options.</strong> Use options like <code>eval</code>, <code>include</code>, <code>echo</code>, <code>message</code> and <code>warning</code> to control what is executed and displayed. Set global defaults in the YAML and override them locally when necessary.</li>
-<li><strong>Use inline code for dynamic text.</strong> Insert the results of R expressions into your prose with inline code and define helper functions to format numbers cleanly.</li>
-<li><strong>Communicate clearly.</strong> Titles should summarize the main insight; subtitles and captions provide context and sources; axis labels and legends should be descriptive and include units. Use annotations, scales and themes to guide your audience’s attention and craft expository graphics.</li>
-</ul>
-<!-- ## In‑class activity -->
-<!-- The in‑class activity for this session asks students to create a reproducible Quarto report using the **gapminder** dataset from the `gapminder` package.  They will practise setting up a Quarto document, customizing the YAML header, using chunk options to control execution and output, and designing clear graphics.  See the separate assignment description for details. -->
-<!-- --- -->
-<!-- **Suggested reading for Session 21:**  To prepare for the next class on exploratory data analysis (EDA), read **Chapter 10 “Exploratory data analysis”** from *R for Data Science* (2nd ed.).  The chapter frames EDA as an iterative cycle where you generate questions, search for answers using visualization and transformation, and refine your questions based on what you learn【728943193213359†L111-L126】.  EDA is not a rigid procedure but a creative process; ask lots of questions to uncover patterns, anomalies and relationships.  The authors highlight two overarching questions to guide your exploration: “What type of variation occurs within my variables?” and “What type of covariation occurs between my variables?”【728943193213359†L167-L176】.  Read about how to visualise variation (typical and unusual values) and covariation between variables, and consider the follow‑up questions suggested for each plot.  This reading will lay the foundation for systematically exploring datasets in the next session. -->
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solutions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><code>mean</code> (no parentheses) hands <code>across()</code> the function itself, ready to be called once per column, which is what <code>across()</code> expects. <code>mean()</code> calls <code>mean</code> immediately with no arguments and fails right away with <code>"argument 'x' is missing, with no default"</code>, before <code>across()</code> ever gets to use it.</p></li>
+<li><p>Inside <code>mutate()</code>, <code>across()</code>’s output columns default to the same names as the input columns unless you specify <code>.names</code>, so the doubled values silently overwrote the originals instead of creating new columns. Adding <code>.names = "{.col}_doubled"</code> (or any other pattern that doesn’t collide with the original names) keeps both versions.</p></li>
+<li><p><code>possibly()</code> almost certainly returned <code>NULL</code> for the 3 files that failed to read, and <code>list_rbind()</code> silently drops any <code>NULL</code> elements when combining a list, with no warning about how many (if any) were dropped. Running <code>map_lgl(results, is.null)</code> (or comparing <code>length(results)</code> to the number of rows or tibbles actually combined) would confirm exactly which files were skipped.</p></li>
+<li><p>dplyr automatically excludes the active grouping columns from <code>across(everything(), ...)</code>, since a grouping column is already preserved as part of the output’s structure and computing something like a mean on a character grouping column wouldn’t be meaningful (and would error) in the first place.</p></li>
+<li><p>List the files with <code>list.files()</code> (optionally filtering by pattern and using <code>full.names = TRUE</code>), read each one with <code>map()</code> applied to a reading function like <code>read_csv()</code>, and combine the resulting list of tibbles into one with <code>list_rbind()</code>, which is the function that actually performs the stacking.</p></li>
+</ol>
+</div>
+</div>
+</div>
 
 
 </section>

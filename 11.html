@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; Session 11: Variable types IV: dates and times – STA 2300 Intro to Data Science</title>
+<title>11&nbsp; Session 11: Variable types III: factors – STA 2300 Intro to Data Science</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -177,7 +177,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types IV: dates and times</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types III: factors</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -224,127 +224,133 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Data visualization basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Quarto basics for reproducible assignments</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: The layered grammar of graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: Data visualization basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: The layered grammar of graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (II): grouping and summarizing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data import: reading CSV and flat files</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data transformation (II): grouping and summarizing</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Tidy data and pivoting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Data import: reading CSV and flat files</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Variable types I: logical and numeric vectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Tidy data and pivoting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types II: strings and regular expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types I: logical and numeric vectors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types III: factors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types II: strings and regular expressions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types IV: dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types III: factors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12 – Missing values &amp; data cleaning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12: Variable types IV: dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13 –&nbsp;Relational data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13: Missing values and data cleaning</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14 – Advanced data import I: spreadsheets</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14: Relational data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15 – Advanced data import II: databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15: Advanced data import I: spreadsheets</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./16.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16 – Big‑data formats &amp; hierarchical data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16: Advanced data import II: databases</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17 – Web scraping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17: Big data formats and hierarchical data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./18.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18 – Basic programming I: functions &amp; code style</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18: Web scraping</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./19.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19 – Basic programming II: iteration &amp; functional programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19: Basic programming I: functions and code style</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./20.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20 – Reproducible research &amp; communication</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20: Basic programming II: iteration and functional programming</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./21.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21 – Exploratory data analysis (EDA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21: Communication</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./22.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22 – Statistical modelling&nbsp;I: simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22: Exploratory data analysis (EDA)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Session 23: Statistical modeling I: simple linear regression</span></span></a>
   </div>
 </li>
     </ul>
@@ -360,11 +366,11 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#why-dates-and-times" id="toc-why-dates-and-times" class="nav-link" data-scroll-target="#why-dates-and-times">Why dates and times?</a></li>
-  <li><a href="#creating-date-times" id="toc-creating-date-times" class="nav-link" data-scroll-target="#creating-date-times">Creating date-times</a></li>
-  <li><a href="#extracting-and-modifying-components" id="toc-extracting-and-modifying-components" class="nav-link" data-scroll-target="#extracting-and-modifying-components">Extracting and modifying components</a></li>
-  <li><a href="#rounding-and-time-spans" id="toc-rounding-and-time-spans" class="nav-link" data-scroll-target="#rounding-and-time-spans">Rounding and time spans</a></li>
-  <li><a href="#time-zones" id="toc-time-zones" class="nav-link" data-scroll-target="#time-zones">Time zones</a></li>
+  <li><a href="#why-factors" id="toc-why-factors" class="nav-link" data-scroll-target="#why-factors">Why factors?</a></li>
+  <li><a href="#creating-factors" id="toc-creating-factors" class="nav-link" data-scroll-target="#creating-factors">Creating factors</a></li>
+  <li><a href="#reordering-levels" id="toc-reordering-levels" class="nav-link" data-scroll-target="#reordering-levels">Reordering levels</a></li>
+  <li><a href="#modifying-levels" id="toc-modifying-levels" class="nav-link" data-scroll-target="#modifying-levels">Modifying levels</a></li>
+  <li><a href="#ordered-factors" id="toc-ordered-factors" class="nav-link" data-scroll-target="#ordered-factors">Ordered factors</a></li>
   <li><a href="#fringe-cases-and-common-pitfalls" id="toc-fringe-cases-and-common-pitfalls" class="nav-link" data-scroll-target="#fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</a></li>
   <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
   <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
@@ -377,7 +383,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types IV: dates and times</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types III: factors</span></h1>
 </div>
 
 
@@ -397,138 +403,213 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Understand different date/time types.</strong> Describe the difference between dates (<code>&lt;date&gt;</code>), times (<code>&lt;time&gt;</code>), and date-times (<code>&lt;dttm&gt;</code>) in R, and use the simplest type that meets the analysis requirements.</li>
-<li><strong>Create date/time objects.</strong> Learn how to parse strings into dates with lubridate helpers such as <code>ymd()</code>, <code>mdy()</code>, <code>dmy()</code>, and so on, and how to assemble dates and date-times from separate components with <code>make_date()</code> and <code>make_datetime()</code>. Recognize when a parsing helper can silently produce the wrong date instead of an error.</li>
-<li><strong>Extract and modify components.</strong> Use accessor functions <code>year()</code>, <code>month()</code>, <code>mday()</code>, <code>yday()</code>, <code>wday()</code>, <code>hour()</code>, <code>minute()</code>, and <code>second()</code> to pull out parts of a date-time. Learn to change components in place, or with <code>update()</code>.</li>
-<li><strong>Round dates and compute spans.</strong> Round dates to a unit (week, month, and so on) with <code>floor_date()</code>, <code>round_date()</code>, and <code>ceiling_date()</code>. Understand the difference between durations (exact seconds), periods (human units like weeks and months), and intervals (a start and end point), and why the difference matters the moment daylight saving time or a short month gets involved.</li>
-<li><strong>Recognize time zone issues.</strong> Appreciate that a date-time value always has an associated time zone, and learn how to specify and change it.</li>
+<li><strong>Understand why factors exist.</strong> Factors represent categorical variables with a fixed and known set of possible values. They prevent accidental typos and give you control over the order in which categories appear in summaries and plots. Learn why treating categories as plain strings can lead to problems, and how factors solve those problems.</li>
+<li><strong>Create and inspect factors.</strong> Use <code>factor()</code> or <code>forcats::fct()</code> to convert character vectors to factors, specify levels, and handle invalid values. Learn to inspect and summarize factor levels with <code>levels()</code> and <code>count()</code>.</li>
+<li><strong>Reorder factor levels for better visualization.</strong> Use <code>fct_reorder()</code> to order levels by the values of another variable, <code>fct_relevel()</code> to manually move levels to the front, and <code>fct_reorder2()</code> when ordering line-plot legends. Explore <code>fct_infreq()</code> and <code>fct_rev()</code> to arrange levels by frequency.</li>
+<li><strong>Modify and collapse levels.</strong> Relabel categories with <code>fct_recode()</code>, combine multiple levels with <code>fct_collapse()</code>, and lump rare categories into “Other” with the <code>fct_lump_*()</code> family, understanding what happens when categories are tied at the cutoff.</li>
+<li><strong>Work with ordered factors.</strong> Create ordered factors for ordinal data (such as satisfaction ratings), appreciate when an intrinsic order genuinely exists, and know why two ordered factors aren’t always comparable to each other.</li>
+<li><strong>Avoid the classic factor-to-number trap.</strong> Recognize why converting a factor straight to a number almost never does what you expect.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="why-dates-and-times" class="level3">
-<h3 class="anchored" data-anchor-id="why-dates-and-times">Why dates and times?</h3>
-<p>Dates and times are deceptively simple. They look ubiquitous and straightforward, but the more you work with them, the more quirks emerge: a year isn’t always 365 days, not every day has exactly 24 hours, and a minute occasionally has 61 seconds. These complications exist because calendar units have to reconcile astronomical cycles (the earth’s rotation and orbit) with human conventions (leap years, daylight saving time). R doesn’t treat dates as plain strings for exactly this reason; it provides dedicated classes and functions built to handle these quirks correctly. In the tidyverse, lubridate does most of that work; it isn’t loaded automatically with <code>library(tidyverse)</code>, so load it separately.</p>
+<section id="why-factors" class="level3">
+<h3 class="anchored" data-anchor-id="why-factors">Why factors?</h3>
+<p>Categorical variables often have a limited set of allowed values, such as months, continents, or income bands. Storing them as plain strings introduces two problems: you can type an invalid value with nothing to catch it, and the default alphabetical sorting is rarely meaningful. A factor solves both problems by enforcing a list of valid levels and giving you explicit control over their order. The months “Jan,” “Feb,” … “Dec” should appear in calendar order, not alphabetical order; converting a character vector of month names to a factor with those 12 levels, in that order, makes calendar order the default everywhere that factor is used.</p>
+<p>Factors also matter for plotting. When you map a factor to an axis, or to color or shape, ggplot2 displays the categories in the factor’s level order. Leave a categorical variable as plain character text, and ggplot2 silently converts it to a factor using alphabetical order anyway, just without giving you any say in the matter.</p>
 </section>
-<section id="creating-date-times" class="level3">
-<h3 class="anchored" data-anchor-id="creating-date-times">Creating date-times</h3>
-<p>There are three common ways to create a date or date-time.</p>
-<p><strong>From strings.</strong> lubridate’s helper functions parse strings by matching the order of “y,” “m,” and “d” in the function name to the order of year, month, and day in the string.</p>
+<section id="creating-factors" class="level3">
+<h3 class="anchored" data-anchor-id="creating-factors">Creating factors</h3>
+<p>Base R’s <code>factor()</code> takes a character vector and, optionally, a vector of <code>levels</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(<span class="st">"2025-02-18"</span>)        <span class="co"># ISO format year-month-day</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>months_raw <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Dec"</span>, <span class="st">"Apr"</span>, <span class="st">"Jan"</span>, <span class="st">"Mar"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>month_levels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Jan"</span>, <span class="st">"Feb"</span>, <span class="st">"Mar"</span>, <span class="st">"Apr"</span>, <span class="st">"May"</span>, <span class="st">"Jun"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Jul"</span>, <span class="st">"Aug"</span>, <span class="st">"Sep"</span>, <span class="st">"Oct"</span>, <span class="st">"Nov"</span>, <span class="st">"Dec"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>months_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(months_raw, <span class="at">levels =</span> month_levels)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>months_factor</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-02-18"</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">"January 31, 2025"</span>)  <span class="co"># month-day-year, with a month name</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-01-31"</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dmy</span>(<span class="st">"31-01-2025"</span>)        <span class="co"># day-month-year</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-01-31"</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd_hms</span>(<span class="st">"2025-02-18 14:30:15"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-02-18 14:30:15 UTC"</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy_hm</span>(<span class="st">"2/18/2025 2:30 pm"</span>)   <span class="co"># 12-hour clock with am/pm</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-02-18 14:30:00 UTC"</code></pre>
+<pre><code>[1] Dec Apr Jan Mar
+Levels: Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec</code></pre>
 </div>
 </div>
-<p>These functions also accept unquoted numeric input (<code>ymd(20250218)</code>), and take a <code>tz</code> argument to set the time zone directly at parse time. Choosing the wrong helper for an ambiguous string is a real risk covered in Example 11.3.</p>
-<p><strong>From individual components.</strong> When year, month, and day (and optionally hour and minute) already live in separate columns, <code>make_date()</code> and <code>make_datetime()</code> assemble them directly.</p>
+<p>If a value doesn’t appear in <code>levels</code>, <code>factor()</code> quietly converts it to <code>NA</code>. The forcats package’s <code>fct()</code> is a stricter alternative that raises an error instead, which catches a typo immediately rather than letting it become a silent missing value.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="fu">c</span>(<span class="dv">2023</span>, <span class="dv">2023</span>),</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">month =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>),</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">day =</span> <span class="fu">c</span>(<span class="dv">14</span>, <span class="dv">1</span>),</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">hour =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">16</span>),</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">minute =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">0</span>)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">date =</span> <span class="fu">make_date</span>(year, month, day),</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">datetime =</span> <span class="fu">make_datetime</span>(year, month, day, hour, minute)</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(months_factor)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 7
-   year month   day  hour minute date       datetime           
-  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;date&gt;     &lt;dttm&gt;             
-1  2023     5    14     9     30 2023-05-14 2023-05-14 09:30:00
-2  2023    10     1    16      0 2023-10-01 2023-10-01 16:00:00</code></pre>
+<pre><code> [1] "Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov" "Dec"</code></pre>
 </div>
 </div>
-<p><strong>From other types.</strong> <code>as_date()</code> and <code>as_datetime()</code> coerce between date and date-time classes, or convert a raw numeric offset (seconds or days since 1970-01-01) into a proper date-time.</p>
-</section>
-<section id="extracting-and-modifying-components" class="level3">
-<h3 class="anchored" data-anchor-id="extracting-and-modifying-components">Extracting and modifying components</h3>
-<p>Once you have a date-time, accessor functions pull out its pieces: <code>year()</code>, <code>month()</code>, <code>mday()</code> (day of month), <code>yday()</code> (day of year), <code>wday()</code> (day of week; see Example 11.2 for a numbering surprise), <code>hour()</code>, <code>minute()</code>, and <code>second()</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><code>col_factor()</code> only knows the levels it has actually seen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Reading a column with <code>col_factor(levels = NULL)</code> builds the level list from whatever values happen to appear in that particular file. If a valid category exists but simply never shows up in this file (a product that had zero sales this month, a survey response nobody picked), it will not become a level at all, which can cause trouble later if you combine several such files and expect a consistent, complete set of levels across all of them. Specify <code>levels</code> explicitly whenever you know the full set of valid categories ahead of time.</p>
+</div>
+</div>
+<p>The <code>gss_cat</code> dataset, bundled with forcats, contains survey responses with several factor columns such as <code>race</code>, <code>marital</code>, <code>rincome</code>, and <code>partyid</code>, and is a convenient way to practice summarizing and visualizing real categorical data.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">"2025-02-18 14:30:15"</span>, <span class="at">tz =</span> <span class="st">"America/Chicago"</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">year</span>(dt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>gss_cat <span class="sc">|&gt;</span> <span class="fu">count</span>(race)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2025</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(dt, <span class="at">label =</span> <span class="cn">TRUE</span>)                <span class="co"># "Feb"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] Feb
-12 Levels: Jan &lt; Feb &lt; Mar &lt; Apr &lt; May &lt; Jun &lt; Jul &lt; Aug &lt; Sep &lt; ... &lt; Dec</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(dt, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span>)   <span class="co"># "Tuesday"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] Tuesday
-7 Levels: Sunday &lt; Monday &lt; Tuesday &lt; Wednesday &lt; Thursday &lt; ... &lt; Saturday</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hour</span>(dt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 14</code></pre>
-</div>
-</div>
-<p>These accessors are vectorized, and most can also be assigned to directly, which modifies the date-time in place; <code>update()</code> changes several components at once.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>dt2 <span class="ot">&lt;-</span> <span class="fu">update</span>(dt, <span class="at">year =</span> <span class="dv">2026</span>, <span class="at">month =</span> <span class="dv">1</span>, <span class="at">mday =</span> <span class="dv">1</span>, <span class="at">hour =</span> <span class="dv">0</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>dt2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "2026-01-01 00:30:15 CST"</code></pre>
-</div>
-</div>
-<p>If an updated value overflows its usual range (day 30 in a month that has only 28), <code>update()</code> rolls over into the following month rather than erroring, which is worth double-checking if you didn’t intend it.</p>
-</section>
-<section id="rounding-and-time-spans" class="level3">
-<h3 class="anchored" data-anchor-id="rounding-and-time-spans">Rounding and time spans</h3>
-<p><code>floor_date(x, "week")</code>, <code>ceiling_date(x, "month")</code>, and <code>round_date(x, "day")</code> snap a date-time down, up, or to the nearest boundary of a chosen unit, which is a common first step before counting observations per week or per month.</p>
-<p>Arithmetic on dates produces a <em>time span</em>, and lubridate distinguishes three kinds. A <strong>duration</strong> is an exact number of seconds (<code>ddays(1)</code> is always precisely 86,400 seconds). A <strong>period</strong> is a human unit like “1 day” or “1 month,” which stretches or shrinks to match the calendar (or the clock) rather than staying a fixed number of seconds. The difference is invisible almost all the time, and then very visible on the one day a year it matters:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>before_dst <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">"2025-03-08 12:00:00"</span>, <span class="at">tz =</span> <span class="st">"America/Chicago"</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>before_dst <span class="sc">+</span> <span class="fu">ddays</span>(<span class="dv">1</span>)   <span class="co"># a duration: exactly 86,400 seconds later</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-03-09 13:00:00 CDT"</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>before_dst <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">1</span>)    <span class="co"># a period: the same clock time, the next calendar day</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-03-09 12:00:00 CDT"</code></pre>
-</div>
-</div>
-<p>Clocks in that time zone spring forward by an hour overnight between those two dates, so adding an exact-seconds duration lands at 1:00 PM, not noon, while adding a one-day period lands at noon as a person would expect. Reach for periods when you mean “the same time tomorrow,” and durations when you mean “exactly 24 hours from now”; they are not interchangeable.</p>
-<p>An <strong>interval</strong> is a specific span with a fixed start and end, built with the <code>%--%</code> operator, and dividing an interval by a duration or period tells you exactly how many of those units it spans.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>this_year <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">"2025-01-01"</span>) <span class="sc">%--%</span> <span class="fu">ymd</span>(<span class="st">"2026-01-01"</span>)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>this_year <span class="sc">/</span> <span class="fu">days</span>(<span class="dv">1</span>)     <span class="co"># exactly how many days are in this specific interval</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 365</code></pre>
+<pre><code># A tibble: 3 × 2
+  race      n
+  &lt;fct&gt; &lt;int&gt;
+1 Other  1959
+2 Black  3129
+3 White 16395</code></pre>
 </div>
 </div>
 </section>
-<section id="time-zones" class="level3">
-<h3 class="anchored" data-anchor-id="time-zones">Time zones</h3>
-<p>A date-time always carries a time zone; omit it while parsing and R falls back to your system’s time zone, which is rarely what you want in a script meant to run on someone else’s computer. <code>with_tz()</code> changes how an instant is <em>displayed</em>, in a different time zone, without changing the instant itself; <code>force_tz()</code> instead changes which instant a date-time refers to, keeping its printed clock time the same, and is only needed when a date-time was labeled with the wrong time zone in the first place.</p>
+<section id="reordering-levels" class="level3">
+<h3 class="anchored" data-anchor-id="reordering-levels">Reordering levels</h3>
+<p>The alphabetical or import-order default for factor levels is often arbitrary, and reordering can make a plot far easier to read. <code>fct_reorder()</code> takes the factor to reorder and a numeric vector whose values determine the new order.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>relig_summary <span class="ot">&lt;-</span> gss_cat <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(relig) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">tvhours =</span> <span class="fu">mean</span>(tvhours, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># without reordering, the default level order controls the y-axis</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(relig_summary, <span class="fu">aes</span>(<span class="at">x =</span> tvhours, <span class="at">y =</span> relig)) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reordered by tvhours, the pattern jumps out immediately</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(relig_summary, <span class="fu">aes</span>(<span class="at">x =</span> tvhours, <span class="at">y =</span> <span class="fu">fct_reorder</span>(relig, tvhours))) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Use <code>fct_relevel()</code> to manually move one or more levels to the front, for example to keep a special category like “Not applicable” visually separate from the rest regardless of its value:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rincome_summary <span class="ot">&lt;-</span> gss_cat <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(rincome) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">age =</span> <span class="fu">mean</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rincome_summary, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> <span class="fu">fct_relevel</span>(rincome, <span class="st">"Not applicable"</span>))) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>For line plots with several categories, <code>fct_reorder2()</code> orders the legend to match the y-value at the largest x-value, so the legend order matches the visual order of the lines where they end. <code>fct_infreq()</code> orders levels by frequency, and <code>fct_rev()</code> reverses whatever order is currently in place; combining them is a quick way to sort a bar chart from most to least (or least to most) common category.</p>
+</section>
+<section id="modifying-levels" class="level3">
+<h3 class="anchored" data-anchor-id="modifying-levels">Modifying levels</h3>
+<p>Reordering changes the order of levels; sometimes you need to change the labels themselves, or combine several levels into one. <code>fct_recode()</code> renames levels, with the new name on the left and the existing name on the right.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gss_cat <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">partyid =</span> <span class="fu">fct_recode</span>(partyid,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Republican, strong"</span>    <span class="ot">=</span> <span class="st">"Strong republican"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Republican, weak"</span>      <span class="ot">=</span> <span class="st">"Not str republican"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Independent, near rep"</span> <span class="ot">=</span> <span class="st">"Ind,near rep"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Independent, near dem"</span> <span class="ot">=</span> <span class="st">"Ind,near dem"</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Democrat, weak"</span>        <span class="ot">=</span> <span class="st">"Not str democrat"</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Democrat, strong"</span>      <span class="ot">=</span> <span class="st">"Strong democrat"</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(partyid)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   partyid                   n
+   &lt;fct&gt;                 &lt;int&gt;
+ 1 No answer               154
+ 2 Don't know                1
+ 3 Other party             393
+ 4 Republican, strong     2314
+ 5 Republican, weak       3032
+ 6 Independent, near rep  1791
+ 7 Independent            4119
+ 8 Independent, near dem  2499
+ 9 Democrat, weak         3690
+10 Democrat, strong       3490</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span><code>fct_recode()</code> warns, but only warns, about a typo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If the name on the right of a <code>fct_recode()</code> pair doesn’t match an existing level exactly, forcats issues a warning like <em>“Unknown levels in <code>f</code>: …”</em> rather than an error. The recoding for that one pair silently does nothing (that level keeps its original name), while everything else in the call still runs. Read the warning; it is easy to miss in a long script and easy to mistake for harmless noise.</p>
+</div>
+</div>
+<p>To collapse multiple categories into a smaller set, <code>fct_collapse()</code> takes new category names paired with a vector of existing levels to combine into each one.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>gss_cat <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">partyid =</span> <span class="fu">fct_collapse</span>(partyid,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">other =</span> <span class="fu">c</span>(<span class="st">"No answer"</span>, <span class="st">"Don't know"</span>, <span class="st">"Other party"</span>),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">rep   =</span> <span class="fu">c</span>(<span class="st">"Strong republican"</span>, <span class="st">"Not str republican"</span>),</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">ind   =</span> <span class="fu">c</span>(<span class="st">"Ind,near rep"</span>, <span class="st">"Independent"</span>, <span class="st">"Ind,near dem"</span>),</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">dem   =</span> <span class="fu">c</span>(<span class="st">"Not str democrat"</span>, <span class="st">"Strong democrat"</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(partyid)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  partyid     n
+  &lt;fct&gt;   &lt;int&gt;
+1 other     548
+2 rep      5346
+3 ind      8409
+4 dem      7180</code></pre>
+</div>
+</div>
+<p>When a factor has many rare categories, the <code>fct_lump_*()</code> family groups the smallest ones into “Other” automatically. <code>fct_lump_n(x, n)</code> keeps the <code>n</code> most common categories; related variants <code>fct_lump_min()</code> and <code>fct_lump_prop()</code> lump based on a minimum count or a minimum proportion instead of a fixed number of categories to keep.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>gss_cat <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">relig =</span> <span class="fu">fct_lump_n</span>(relig, <span class="at">n =</span> <span class="dv">10</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(relig, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   relig                       n
+   &lt;fct&gt;                   &lt;int&gt;
+ 1 Protestant              10846
+ 2 Catholic                 5124
+ 3 None                     3523
+ 4 Christian                 689
+ 5 Other                     458
+ 6 Jewish                    388
+ 7 Buddhism                  147
+ 8 Inter-nondenominational   109
+ 9 Moslem/islam              104
+10 Orthodox-christian         95</code></pre>
+</div>
+</div>
+</section>
+<section id="ordered-factors" class="level3">
+<h3 class="anchored" data-anchor-id="ordered-factors">Ordered factors</h3>
+<p>Some categories have an intrinsic order, such as “low,” “medium,” “high,” or a 1 to 5 rating scale. Create an ordered factor with <code>ordered = TRUE</code> in <code>factor()</code>, or with <code>forcats::fct()</code>’s <code>ordered</code> argument. Ordered factors print with <code>&lt;</code> between levels to make the order visible, and support <code>&lt;</code>/<code>&gt;</code> comparisons the way numbers do (with an important caveat covered in Example 10.4). Think carefully before imposing an order: a variable like <code>region</code> has categories, but no natural ranking, and forcing an arbitrary order onto it is misleading rather than helpful.</p>
 </section>
 <section id="fringe-cases-and-common-pitfalls" class="level3">
 <h3 class="anchored" data-anchor-id="fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</h3>
@@ -538,34 +619,23 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Example</span>Example 11.1
+<span class="screen-reader-only">Example</span>Example 10.1
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Stripping a <code>difftime</code> down to a plain number throws away which unit it’s in.</strong></p>
+<p><strong>Converting a factor straight to a number gives you the level’s position, not the label’s value.</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">"2026-01-01 00:00:00"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>gap_short <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">"2026-01-01 01:30:00"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>) <span class="sc">-</span> start</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>gap_long <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">"2026-01-05 00:00:00"</span>, <span class="at">tz =</span> <span class="st">"UTC"</span>) <span class="sc">-</span> start</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>gap_short   <span class="co"># R picks whatever unit reads most naturally</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"10"</span>, <span class="st">"20"</span>, <span class="st">"5"</span>))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(f)          <span class="co"># sorted alphabetically as text: "10", "20", "5"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 1.5 hours</code></pre>
+<pre><code>[1] "10" "20" "5" </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>gap_long</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(f)       <span class="co"># the *position* of each value within that level order</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 4 days</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(gap_short)   <span class="co"># 1.5, with no indication this means hours</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.5</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(gap_long)    <span class="co"># 4, with no indication this means days</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
+<pre><code>[1] 1 2 3</code></pre>
 </div>
 </div>
-<p>Subtracting two date-times gives a <code>difftime</code> object, and R automatically picks whichever unit (seconds, minutes, hours, days, or weeks) makes the printed number easiest to read. That’s convenient for a single printed value, but <code>as.numeric()</code> strips the unit away entirely, so collecting several such differences into one numeric column can silently mix hours and days in the same column if the gaps involved happen to vary in magnitude. <code>as.duration()</code> sidesteps the whole problem by always normalizing to seconds; use it (or <code>as.numeric(x, units = "secs")</code>, forcing a specific unit) before doing arithmetic across multiple time differences.</p>
+<p><code>as.numeric()</code> on a factor never looks at the text of the label at all; it returns the integer code R uses internally to store that level. Here the levels happen to sort as <code>"10"</code>, <code>"20"</code>, <code>"5"</code> (ordinary alphabetical string order, not numeric order), so <code>as.numeric()</code> returns <code>1</code>, <code>2</code>, <code>3</code>, three numbers that have nothing to do with the original <code>10</code>, <code>20</code>, <code>5</code>. The fix is to go through the label’s text first: <code>as.numeric(as.character(f))</code>, or <code>readr::parse_number(as.character(f))</code> if the labels have extra formatting to strip. This single line, <code>as.numeric(some_factor)</code>, is probably the most common way real R analyses get silently corrupted numbers.</p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-example callout-titled">
@@ -574,23 +644,44 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Example</span>Example 11.2
+<span class="screen-reader-only">Example</span>Example 10.2
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong><code>wday()</code> numbers Sunday as day 1 by default, not Monday.</strong></p>
+<p><strong>Filtering out every row of a level doesn’t remove that level from the factor.</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>monday <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">"2026-08-03"</span>)   <span class="co"># a Monday</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(monday)                        <span class="co"># default: Sunday = 1, so Monday = 2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">grp =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"a"</span>)))</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>filtered <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span> <span class="fu">filter</span>(grp <span class="sc">!=</span> <span class="st">"c"</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(filtered<span class="sc">$</span>grp)         <span class="co"># "c" is still listed as a valid level</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<pre><code>[1] "a" "b" "c"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(monday, <span class="at">week_start =</span> <span class="dv">1</span>)        <span class="co"># ISO convention: Monday = 1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(filtered<span class="sc">$</span>grp)          <span class="co"># base R's table() shows it, with a count of 0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1</code></pre>
+<pre><code>
+a b c 
+2 1 0 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(filtered, grp)         <span class="co"># dplyr's count() quietly hides empty levels by default</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  grp       n
+  &lt;fct&gt; &lt;int&gt;
+1 a         2
+2 b         1</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(filtered, grp, <span class="at">.drop =</span> <span class="cn">FALSE</span>)   <span class="co"># ask explicitly, and the phantom level reappears</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  grp       n
+  &lt;fct&gt; &lt;int&gt;
+1 a         2
+2 b         1
+3 c         0</code></pre>
 </div>
 </div>
-<p>Plenty of contexts (the ISO 8601 standard, most of Europe, and simply “the work week”) treat Monday as the first day of the week, but <code>wday()</code>’s default follows the US convention of Sunday as day 1. Code that assumes <code>wday() == 1</code> means Monday will be silently off by a day for every single observation. Set <code>week_start = 1</code> explicitly whenever your analysis cares about which day starts the week.</p>
+<p>A factor’s levels are metadata about what values are <em>allowed</em>, separate from which rows happen to be present, so removing every row with <code>grp == "c"</code> does not update <code>levels()</code>. Depending which tool you reach for next, that phantom level either quietly disappears (<code>count()</code>‘s default) or quietly reappears (<code>table()</code>, or <code>count(..., .drop = FALSE)</code>), which can make two summaries of the exact same filtered data look inconsistent with each other. <code>droplevels()</code> (or forcats’ <code>fct_drop()</code>) removes any level with zero remaining observations, and is worth calling right after a <code>filter()</code> if you plan to rely on <code>levels()</code> downstream.</p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-example callout-titled">
@@ -599,23 +690,27 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Example</span>Example 11.3
+<span class="screen-reader-only">Example</span>Example 10.3
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>An ambiguous date string parses to two different, equally “valid” dates depending on which helper you use.</strong></p>
+<p><strong><code>fct_lump_n()</code> can hand back more categories than you asked for.</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>ambiguous <span class="ot">&lt;-</span> <span class="st">"01/02/2025"</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(ambiguous)   <span class="co"># January 2nd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"a"</span>, <span class="dv">3</span>), <span class="fu">rep</span>(<span class="st">"b"</span>, <span class="dv">3</span>), <span class="fu">rep</span>(<span class="st">"c"</span>, <span class="dv">2</span>), <span class="fu">rep</span>(<span class="st">"d"</span>, <span class="dv">2</span>), <span class="fu">rep</span>(<span class="st">"e"</span>, <span class="dv">1</span>)))</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-01-02"</code></pre>
+<pre><code>x
+a b c d e 
+3 3 2 2 1 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dmy</span>(ambiguous)   <span class="co"># February 1st</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">fct_lump_n</span>(x, <span class="at">n =</span> <span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-02-01"</code></pre>
+<pre><code>
+    a     b     c     d Other 
+    3     3     2     2     1 </code></pre>
 </div>
 </div>
-<p>Both calls succeed without any warning or error, because <code>"01/02/2025"</code> is a perfectly well-formed date under either convention; the two answers just disagree about which number is the month and which is the day. Neither function can tell you picked the wrong one, since nothing about the string itself is invalid. Whenever a date column’s format isn’t explicitly documented (which is most of the time, for real data), check a handful of rows where the first two numbers are both greater than 12, since those are the only rows where <code>mdy()</code> and <code>dmy()</code> would actually give different, checkable answers.</p>
+<p>Categories <code>c</code> and <code>d</code> are tied for third place with 2 observations each, so asking for the top 3 categories returns 4 non-“Other” categories, not 3, because <code>fct_lump_n()</code> keeps every category tied at the cutoff rather than arbitrarily breaking the tie for you. This is the same kind of tie behavior you saw with <code>slice_max()</code> back in Session 6: whenever a function’s job is to keep “the top <code>n</code>,” check whether ties are possible in your data before assuming the output has exactly <code>n</code> rows or categories.</p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-example callout-titled">
@@ -624,23 +719,21 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Example</span>Example 11.4
+<span class="screen-reader-only">Example</span>Example 10.4
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Adding a one-month period to the end of a long month can return <code>NA</code> instead of rolling over.</strong></p>
+<p><strong>Two ordered factors that look compatible can still refuse to compare.</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>jan31 <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">"2025-01-31"</span>)</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>jan31 <span class="sc">+</span> <span class="fu">months</span>(<span class="dv">1</span>)    <span class="co"># NA: February has no 31st day</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] NA</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>jan31 <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">31</span>)      <span class="co"># a real date, but not "one month later" in the usual sense</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025-03-03"</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>o1 <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"low"</span>, <span class="st">"high"</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"low"</span>, <span class="st">"medium"</span>, <span class="st">"high"</span>), <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>o2 <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"low"</span>, <span class="st">"high"</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"high"</span>, <span class="st">"low"</span>), <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>o1 <span class="sc">&lt;</span> o2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in Ops.ordered(o1, o2): level sets of factors are different</code></pre>
 </div>
 </div>
-<p>February simply has no 31st day, so <code>jan31 + months(1)</code> cannot construct a valid result and returns <code>NA</code> rather than guessing (rolling forward to March 3, for instance, the way plain day-arithmetic would). This is a deliberate, safe design choice, but it means a pipeline that adds <code>months()</code> to a column of dates can introduce genuine <code>NA</code>s for any date that happened to fall near the end of a month, purely as a side effect of the arithmetic, not because any data was actually missing. Check <code>sum(is.na(...))</code> after this kind of date arithmetic the same way you would after any other calculation that can produce a missing value.</p>
+<p>Both <code>o1</code> and <code>o2</code> are ordered factors built from sensible-looking level sets, but R refuses to compare them at all, because their level sets are not identical (<code>o2</code> is missing <code>"medium"</code>, and even the shared levels are listed in a different order). Ordered comparisons are only meaningful when both sides agree on the complete, ordered list of possible categories; if you need to compare ordered factors that came from different sources, make sure both are built from the exact same <code>levels</code> vector, in the exact same order, before comparing them.</p>
 </div>
 </div>
 </section>
@@ -659,44 +752,44 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong><code>ymd()</code> / <code>mdy()</code> / <code>dmy()</code></strong></td>
-<td>Parse a string into a date by matching the letter order to the order of year/month/day in the text.</td>
+<td><strong>Factor</strong></td>
+<td>A variable with a fixed, known set of valid values (levels), stored internally as integer codes paired with level labels.</td>
 </tr>
 <tr class="even">
-<td><strong><code>make_date()</code> / <code>make_datetime()</code></strong></td>
-<td>Assemble a date or date-time from separate year/month/day(/hour/minute) columns.</td>
+<td><strong><code>fct()</code></strong></td>
+<td>Like <code>factor()</code>, but errors on a value not in <code>levels</code> instead of silently producing <code>NA</code>.</td>
 </tr>
 <tr class="odd">
-<td><strong>Accessor functions</strong></td>
-<td><code>year()</code>, <code>month()</code>, <code>mday()</code>, <code>yday()</code>, <code>wday()</code>, <code>hour()</code>, <code>minute()</code>, <code>second()</code>; extract (or, via assignment, modify) one component of a date-time.</td>
+<td><strong><code>fct_reorder()</code> / <code>fct_relevel()</code></strong></td>
+<td>Reorder a factor’s levels by another variable’s values, or manually move specific levels to the front.</td>
 </tr>
 <tr class="even">
-<td><strong><code>floor_date()</code> / <code>ceiling_date()</code> / <code>round_date()</code></strong></td>
-<td>Round a date-time down, up, or to the nearest boundary of a chosen unit.</td>
+<td><strong><code>fct_infreq()</code> / <code>fct_rev()</code></strong></td>
+<td>Order levels by frequency, or reverse the current level order.</td>
 </tr>
 <tr class="odd">
-<td><strong>Duration</strong></td>
-<td>An exact span of time in seconds (<code>ddays()</code>, <code>dhours()</code>, …); unaffected by daylight saving time.</td>
+<td><strong><code>fct_recode()</code></strong></td>
+<td>Renames specific levels; silently no-ops (with only a warning) on a level name that doesn’t exist.</td>
 </tr>
 <tr class="even">
-<td><strong>Period</strong></td>
-<td>A human calendar unit (<code>days()</code>, <code>months()</code>, …); tracks “the same clock time” across DST and varying month lengths.</td>
+<td><strong><code>fct_collapse()</code></strong></td>
+<td>Combines several existing levels into one new level.</td>
 </tr>
 <tr class="odd">
-<td><strong>Interval</strong></td>
-<td>A span with a fixed start and end, created with <code>%--%</code>; divide by a duration or period to get its exact length.</td>
+<td><strong><code>fct_lump_n()</code></strong></td>
+<td>Keeps the <code>n</code> most common levels and lumps the rest into “Other”; can keep more than <code>n</code> if there’s a tie at the cutoff.</td>
 </tr>
 <tr class="even">
-<td><strong><code>with_tz()</code> / <code>force_tz()</code></strong></td>
-<td>Change how an instant is displayed in another time zone, or change which instant a date-time refers to.</td>
+<td><strong><code>droplevels()</code> / <code>fct_drop()</code></strong></td>
+<td>Removes any level with zero remaining observations, typically used after filtering.</td>
 </tr>
 <tr class="odd">
-<td><strong><code>difftime</code> units</strong></td>
-<td>The unit (seconds/minutes/hours/days/weeks) R automatically picks when subtracting two date-times; lost if you call <code>as.numeric()</code> without normalizing first.</td>
+<td><strong><code>as.numeric()</code> on a factor</strong></td>
+<td>Returns the integer position of each value’s level, not the numeric value of its label; use <code>as.numeric(as.character(x))</code> instead.</td>
 </tr>
 <tr class="even">
-<td><strong><code>wday()</code> default</strong></td>
-<td>Sunday = 1 by default; pass <code>week_start = 1</code> for the ISO convention where Monday = 1.</td>
+<td><strong>Ordered factor</strong></td>
+<td>A factor with a meaningful ranking between levels; comparable to another ordered factor only if both share identical levels in identical order.</td>
 </tr>
 </tbody>
 </table>
@@ -704,7 +797,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <section id="check-your-understanding" class="level3">
 <h3 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h3>
 <div class="callout callout-style-default callout-note callout-titled" title="Problems">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -713,20 +806,20 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>What is the difference between a duration and a period, and give an example of a calculation where using the wrong one would produce a surprising answer.</li>
-<li>You compute several time differences with plain subtraction, store them with <code>as.numeric()</code>, and then average them. Why might that average be meaningless, and what would you do differently?</li>
-<li>A colleague filters a dataset for <code>wday(order_date) == 1</code>, expecting to get every Monday order. What day of the week do they actually get, and how would you fix the filter?</li>
-<li>You parse a column of date strings formatted like <code>"03/04/2025"</code> with <code>mdy()</code>. What has to be true about the data for you to be confident this was the right choice instead of <code>dmy()</code>?</li>
-<li>After running <code>df |&gt; mutate(renewal_date = start_date + months(12))</code>, a few rows in <code>renewal_date</code> are <code>NA</code>, even though every row in <code>start_date</code> had a real date. What is the most likely explanation?</li>
+<li>Why is storing a categorical variable as a factor usually better than storing it as a plain character vector?</li>
+<li>A colleague runs <code>as.numeric()</code> on a factor column of survey years (like <code>"2019"</code>, <code>"2020"</code>, <code>"2021"</code>) and gets <code>1</code>, <code>2</code>, <code>3</code> instead of the actual years. What went wrong, and how do they get the real years back?</li>
+<li>You filter a factor column down to just two of its five original levels. <code>count()</code> shows only two rows, but <code>table()</code> on the same column shows all five. Explain why these two summaries disagree, and how you would make <code>levels()</code> match what you actually have left.</li>
+<li>What does <code>fct_lump_n(x, n = 5)</code> guarantee, and what does it not guarantee, about the number of categories in its result?</li>
+<li>Two ordered factors both look like a “low/medium/high” scale, but comparing them with <code>&lt;</code> throws an error. What is the most likely cause?</li>
 </ol>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Solutions">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -735,14 +828,14 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><p>A duration is an exact number of seconds and never bends to fit the calendar or the clock; a period is a human unit like “1 day” that adjusts to match the same clock time or calendar position. Adding <code>ddays(1)</code> (a duration) to a time right before a daylight saving transition lands an hour off from noon the next day, while adding <code>days(1)</code> (a period) correctly lands on the same clock time the next day.</p></li>
-<li><p><code>as.numeric()</code> on a <code>difftime</code> strips away its unit, and R automatically picks a different unit (seconds, minutes, hours, days, or weeks) depending on how large each individual difference is. If the differences vary enough in size, the resulting numbers can be a mix of, say, hours and days without anything indicating that, so averaging them treats incompatible units as if they were the same thing. Converting with <code>as.duration()</code> first (or specifying a single unit explicitly) avoids the problem.</p></li>
-<li><p><code>wday()</code> defaults to numbering Sunday as day 1, so <code>wday(order_date) == 1</code> actually selects every Sunday, not every Monday. The fix is either <code>wday(order_date, week_start = 1) == 1</code> (ISO convention, Monday = 1), or comparing against the label directly: <code>wday(order_date, label = TRUE) == "Mon"</code>.</p></li>
-<li><p>You would need to know that every date in the column, or at least a representative sample, is genuinely US-style month-first, and ideally confirm it by checking rows where the first two numbers are both 12 or less (so <code>mdy()</code> and <code>dmy()</code> would disagree) against some independent source of truth, such as a known order sequence or another date column.</p></li>
-<li><p><code>months(12)</code> is a period, and a period added to a date can land on a day that doesn’t exist in the target month, most commonly when <code>start_date</code> falls on the 29th, 30th, or 31st and the resulting month is shorter (for example, February in a non-leap year). Rather than rolling over to a nearby valid date, lubridate returns <code>NA</code> for those rows instead. Running <code>sum(is.na(df$renewal_date))</code> alongside <code>sum(is.na(df$start_date))</code> would confirm the <code>NA</code>s were introduced by the arithmetic itself, not present in the original data.</p></li>
+<li><p>A factor enforces a fixed list of valid values, so a typo becomes an immediately visible problem (a stray <code>NA</code>, or an outright error with <code>fct()</code>) instead of silently creating a new, subtly misspelled category. A factor also carries an explicit level order, which controls sorting and how the variable appears in plots, instead of relying on default alphabetical order.</p></li>
+<li><p><code>as.numeric()</code> on a factor returns the integer code behind each level (its position in the level order), not the number represented by the label’s text. The fix is to convert through the character representation first: <code>as.numeric(as.character(year_factor))</code>, or <code>parse_number(as.character(year_factor))</code> if the labels have any extra formatting.</p></li>
+<li><p>A factor’s <code>levels()</code> lists every value that is <em>allowed</em>, independent of which rows are actually present, so filtering out three levels’ worth of rows does not remove those levels from the factor’s metadata. <code>count()</code> quietly drops levels with zero remaining rows by default, while <code>table()</code> still shows them (with a count of 0), which is why the two disagree. <code>droplevels()</code> (or forcats’ <code>fct_drop()</code>) updates <code>levels()</code> to match what is actually left in the data.</p></li>
+<li><p><code>fct_lump_n(x, n = 5)</code> guarantees that the result keeps at most the 5 most common categories as their own named levels, with everything else grouped into “Other.” It does not guarantee exactly 5 non-“Other” categories: if there is a tie in count at the 5th-place cutoff, every tied category is kept, so the result can have more than 5.</p></li>
+<li><p>The two ordered factors almost certainly don’t share the exact same set of levels in the exact same order. R only allows <code>&lt;</code>/<code>&gt;</code> comparisons between ordered factors whose level sets match exactly, including the order of levels not directly involved in that particular comparison, so even a small difference (an extra level, a missing level, or the same levels listed in a different order) causes the comparison to fail with an error.</p></li>
 </ol>
 </div>
 </div>

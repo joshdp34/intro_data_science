@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>18&nbsp; Session 18 – Basic programming I: functions &amp; code style – STA 2300 Intro to Data Science</title>
+<title>18&nbsp; Session 18: Web scraping – STA 2300 Intro to Data Science</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -177,7 +177,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./18.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18 – Basic programming I: functions &amp; code style</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./18.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18: Web scraping</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -224,127 +224,133 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Data visualization basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Quarto basics for reproducible assignments</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: The layered grammar of graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: Data visualization basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: The layered grammar of graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (II): grouping and summarizing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data import: reading CSV and flat files</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data transformation (II): grouping and summarizing</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Tidy data and pivoting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Data import: reading CSV and flat files</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Variable types I: logical and numeric vectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Tidy data and pivoting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types II: strings and regular expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types I: logical and numeric vectors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types III: factors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types II: strings and regular expressions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types IV: dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types III: factors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12 – Missing values &amp; data cleaning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12: Variable types IV: dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13 –&nbsp;Relational data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13: Missing values and data cleaning</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14 – Advanced data import I: spreadsheets</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14: Relational data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15 – Advanced data import II: databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15: Advanced data import I: spreadsheets</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./16.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16 – Big‑data formats &amp; hierarchical data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16: Advanced data import II: databases</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17 – Web scraping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17: Big data formats and hierarchical data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./18.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18 – Basic programming I: functions &amp; code style</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18: Web scraping</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./19.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19 – Basic programming II: iteration &amp; functional programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19: Basic programming I: functions and code style</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./20.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20 – Reproducible research &amp; communication</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20: Basic programming II: iteration and functional programming</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./21.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21 – Exploratory data analysis (EDA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21: Communication</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./22.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22 – Statistical modelling&nbsp;I: simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22: Exploratory data analysis (EDA)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Session 23: Statistical modeling I: simple linear regression</span></span></a>
   </div>
 </li>
     </ul>
@@ -360,13 +366,15 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#why-write-functions" id="toc-why-write-functions" class="nav-link" data-scroll-target="#why-write-functions">Why write functions?</a></li>
-  <li><a href="#anatomy-of-a-function" id="toc-anatomy-of-a-function" class="nav-link" data-scroll-target="#anatomy-of-a-function">Anatomy of a function</a></li>
-  <li><a href="#vector-functions" id="toc-vector-functions" class="nav-link" data-scroll-target="#vector-functions">Vector functions</a></li>
-  <li><a href="#dataframe-functions-and-tidy-evaluation" id="toc-dataframe-functions-and-tidy-evaluation" class="nav-link" data-scroll-target="#dataframe-functions-and-tidy-evaluation">Data‑frame functions and tidy evaluation</a></li>
-  <li><a href="#plot-functions" id="toc-plot-functions" class="nav-link" data-scroll-target="#plot-functions">Plot functions</a></li>
-  <li><a href="#function-style" id="toc-function-style" class="nav-link" data-scroll-target="#function-style">Function style</a></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key take‑aways</a></li>
+  <li><a href="#ethics-and-legalities" id="toc-ethics-and-legalities" class="nav-link" data-scroll-target="#ethics-and-legalities">Ethics and legalities</a></li>
+  <li><a href="#html-basics" id="toc-html-basics" class="nav-link" data-scroll-target="#html-basics">HTML basics</a></li>
+  <li><a href="#css-selectors" id="toc-css-selectors" class="nav-link" data-scroll-target="#css-selectors">CSS selectors</a></li>
+  <li><a href="#extracting-data-with-rvest" id="toc-extracting-data-with-rvest" class="nav-link" data-scroll-target="#extracting-data-with-rvest">Extracting data with rvest</a></li>
+  <li><a href="#finding-selectors" id="toc-finding-selectors" class="nav-link" data-scroll-target="#finding-selectors">Finding selectors</a></li>
+  <li><a href="#workflow-and-dynamic-sites" id="toc-workflow-and-dynamic-sites" class="nav-link" data-scroll-target="#workflow-and-dynamic-sites">Workflow and dynamic sites</a></li>
+  <li><a href="#fringe-cases-and-common-pitfalls" id="toc-fringe-cases-and-common-pitfalls" class="nav-link" data-scroll-target="#fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -376,7 +384,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18 – Basic programming I: functions &amp; code style</span></h1>
+<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18: Web scraping</span></h1>
 </div>
 
 
@@ -396,152 +404,307 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Recognize why writing functions matters.</strong> Functions let you automate common tasks and greatly extend your reach as a data scientist. Writing a function has four big advantages over copy‑and‑paste: you can give your code an evocative name, you only need to update code in one place as requirements change, you avoid copy‑and‑paste mistakes, and you can easily reuse your work on future projects. A good rule of thumb is to write a function whenever you’ve copied and pasted the same block of code more than twice.</li>
-<li><strong>Differentiate types of functions.</strong> Learn the three broad categories of functions: <strong>vector functions</strong> that take one or more vectors and return a vector, <strong>data‑frame functions</strong> that take a data frame as input and return a data frame or vector, and <strong>plot functions</strong> that take a data frame and return a plot.</li>
-<li><strong>Construct functions from repeated code.</strong> Identify the parts of your code that vary and those that stay constant; choose a short, descriptive name, list the varying pieces as arguments and wrap the repeated body of code in <code>function()</code>. Test your function on simple inputs before using it in pipelines.</li>
-<li><strong>Understand tidy evaluation and embracing.</strong> When you write data‑frame functions that call dplyr verbs, you encounter the problem of <strong>indirection</strong>: passing column names as arguments doesn’t work because dplyr uses tidy evaluation. Use the embracing operator <code>{ }</code> to tell dplyr to look inside the argument for the variable to use. Recognize which arguments require embracing by checking whether the underlying verb uses data‑masking (computations like <code>filter()</code> and <code>summarize()</code>) or tidy‑selection (selectors like <code>select()</code> and <code>rename()</code>).</li>
-<li><strong>Write simple plot functions.</strong> Plot functions wrap ggplot2 code into reusable helpers. Because <code>aes()</code> is a data‑masking function you can embrace variables passed to your function so the user can specify which column to plot.</li>
-<li><strong>Adopt good naming and style conventions.</strong> Choose function names that are verbs and argument names that are nouns; clarity is more important than brevity. Put the body of your function inside curly braces with proper indentation and add spaces inside <code>{ }</code> to make embracing obvious.</li>
+<li><strong>Understand the ethics and legalities of web scraping.</strong> Scraping can raise legal and ethical questions. Learn to assess whether data are public, non-personal, and factual, to respect terms of service, and to avoid scraping sensitive personal information. Use tools like the <code>polite</code> package to space out requests.</li>
+<li><strong>Understand the structure of HTML.</strong> Web pages are hierarchical documents written in HTML. Each element consists of a start tag, optional attributes, and an end tag. Recognize block tags (<code>&lt;p&gt;</code>, <code>&lt;section&gt;</code>) and inline tags (<code>&lt;a&gt;</code>, <code>&lt;b&gt;</code>).</li>
+<li><strong>Learn basic CSS selectors.</strong> CSS selectors define patterns for locating HTML elements: simple selectors like <code>p</code>, <code>.class</code>, and <code>#id</code> identify elements by tag, class, or id, and a selector can match more elements than you expect once nesting is involved.</li>
+<li><strong>Use rvest to extract data.</strong> <code>rvest</code> provides functions to find elements (<code>html_elements()</code> and <code>html_element()</code>), extract text (<code>html_text2()</code>), extract attributes (<code>html_attr()</code>), and convert HTML tables to tibbles (<code>html_table()</code>). Understand the difference between <code>html_elements()</code> and <code>html_element()</code>, and why picking the wrong one can silently misalign your results.</li>
+<li><strong>Find the right selector.</strong> Selecting the right elements often requires trial and error. Learn to use SelectorGadget and browser developer tools to identify CSS selectors.</li>
+<li><strong>Prepare for dynamic sites.</strong> Recognize that some websites load content via JavaScript, which rvest alone cannot handle. Understand alternatives, such as using an API when one is available.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<section id="why-write-functions" class="level3">
-<h3 class="anchored" data-anchor-id="why-write-functions">Why write functions?</h3>
-<p>One of the most effective ways to <em>reduce duplication</em> and avoid errors is to move repeated code into a function. R for Data Science argues that writing a function has four important benefits: you can give the code a clear name, centralize changes in one place, eliminate copy‑and‑paste mistakes and reuse work across projects. Whenever you find yourself copying and pasting the same code more than twice, it’s time to consider writing a function.</p>
-</section>
-<section id="anatomy-of-a-function" class="level3">
-<h3 class="anchored" data-anchor-id="anatomy-of-a-function">Anatomy of a function</h3>
-<p>To convert repeated code into a function, identify <strong>what changes and what stays the same</strong>. A function needs three things: a <strong>name</strong>, a set of <strong>arguments</strong> and a <strong>body</strong> that contains the repeated code. For example, suppose you need to rescale a numeric vector to lie between 0 and 1. You can encapsulate this pattern in a function called <code>rescale01()</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rescale01 <span class="ot">=</span> <span class="cf">function</span>(x) {</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  rng <span class="ot">=</span> <span class="fu">range</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">finite =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  (x <span class="sc">-</span> rng[<span class="dv">1</span>]) <span class="sc">/</span> (rng[<span class="dv">2</span>] <span class="sc">-</span> rng[<span class="dv">1</span>])</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># test it</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale01</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="ethics-and-legalities" class="level3">
+<h3 class="anchored" data-anchor-id="ethics-and-legalities">Ethics and legalities</h3>
+<p>Before scraping a website, ask whether it’s legal and ethical. Legalities vary by jurisdiction, but a reasonable rule of thumb is that data which are public, non-personal, and factual are usually safe to collect. Avoid scraping proprietary or sensitive data, or anything behind a login. Even for public data, respect a site’s terms of service (often in the footer) and its <code>robots.txt</code> directives; these may not always be legally enforceable, but following them is the polite (and often the wise) choice. Never scrape personally identifiable information, such as names, email addresses, or dates of birth; doing so can violate privacy laws even when the underlying page is public. Also respect the site’s resources: spread out your requests rather than hammering a server, which is exactly what the <code>polite</code> package automates, alongside caching pages so you don’t re-download the same content repeatedly.</p>
+</section>
+<section id="html-basics" class="level3">
+<h3 class="anchored" data-anchor-id="html-basics">HTML basics</h3>
+<p>A web page is built from HyperText Markup Language (HTML): a document of nested elements, each with a start tag, optional attributes, an end tag, and contents in between. The <code>&lt;html&gt;</code> element holds two main children: <code>&lt;head&gt;</code> (metadata) and <code>&lt;body&gt;</code> (the visible content). Block elements like <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>, and <code>&lt;section&gt;</code> structure the document; inline elements like <code>&lt;b&gt;</code> and <code>&lt;a&gt;</code> format or link text within it. HTML escapes characters like <code>&lt;</code> and <code>&gt;</code> as <code>&amp;lt;</code> and <code>&amp;gt;</code>, but rvest handles that automatically. Because HTML is hierarchical, the data you want is often nested several layers deep inside other elements.</p>
+</section>
+<section id="css-selectors" class="level3">
+<h3 class="anchored" data-anchor-id="css-selectors">CSS selectors</h3>
+<p>A CSS selector is a concise pattern for finding elements on a page. The basics: <code>p</code> selects every <code>&lt;p&gt;</code> element; <code>.title</code> selects every element whose <code>class</code> attribute includes <code>title</code>; <code>#title</code> selects the one element with <code>id="title"</code> (an id is supposed to be unique on a page). Combining selectors with a space nests them, so <code>ul li</code> selects every <code>&lt;li&gt;</code> inside a <code>&lt;ul&gt;</code>. Selectors are case-sensitive for classes and ids, and, importantly, a selector matches an element wherever it appears in the document, including inside another element that also matches (see Example 17.2).</p>
+</section>
+<section id="extracting-data-with-rvest" class="level3">
+<h3 class="anchored" data-anchor-id="extracting-data-with-rvest">Extracting data with rvest</h3>
+<p>The typical rvest workflow: download a page with <code>read_html()</code>, which returns a parsed document; find elements with <code>html_elements()</code> (every match) or <code>html_element()</code> (the first match relative to each thing you’re calling it on, filled with <code>NA</code> where there isn’t one); then pull out data with <code>html_text2()</code> (visible text, whitespace normalized), <code>html_attr()</code> (a named attribute, like <code>href</code>), or <code>html_table()</code> (an entire <code>&lt;table&gt;</code>, as a tibble).</p>
+<p>Here’s the whole workflow end to end, on a small self-contained page (small enough to write out inline; a real scrape would start from <code>read_html("https://...")</code> instead):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>catalog_html <span class="ot">&lt;-</span> <span class="st">'</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;html&gt;&lt;body&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;ul id="catalog"&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">  &lt;li class="book"&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;span class="title"&gt;R for Data Science&lt;/span&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;span class="price"&gt;$0&lt;/span&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;a href="https://r4ds.hadley.nz"&gt;details&lt;/a&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">  &lt;/li&gt;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="st">  &lt;li class="book"&gt;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;span class="title"&gt;Advanced R&lt;/span&gt;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;a href="https://adv-r.hadley.nz"&gt;details&lt;/a&gt;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="st">  &lt;/li&gt;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;/ul&gt;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;/body&gt;&lt;/html&gt;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>page <span class="ot">&lt;-</span> <span class="fu">read_html</span>(catalog_html)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>books <span class="ot">&lt;-</span> page <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">".book"</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> books <span class="sc">|&gt;</span> <span class="fu">html_element</span>(<span class="st">".title"</span>) <span class="sc">|&gt;</span> <span class="fu">html_text2</span>(),</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">price =</span> books <span class="sc">|&gt;</span> <span class="fu">html_element</span>(<span class="st">".price"</span>) <span class="sc">|&gt;</span> <span class="fu">html_text2</span>(),</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">url   =</span> books <span class="sc">|&gt;</span> <span class="fu">html_element</span>(<span class="st">"a"</span>) <span class="sc">|&gt;</span> <span class="fu">html_attr</span>(<span class="st">"href"</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.0 0.5 1.0</code></pre>
+<pre><code># A tibble: 2 × 3
+  title              price url                    
+  &lt;chr&gt;              &lt;chr&gt; &lt;chr&gt;                  
+1 R for Data Science $0    https://r4ds.hadley.nz 
+2 Advanced R         &lt;NA&gt;  https://adv-r.hadley.nz</code></pre>
 </div>
 </div>
-<p>The example illustrates the basic template <code>name = function(arguments) { body }</code>. By encapsulating the code, you only need to modify the function in one place if you decide to handle infinite values differently.</p>
+<p>Notice <code>price</code> comes back <code>NA</code> for <em>Advanced R</em>, which has no <code>.price</code> element at all; <code>html_element()</code> (singular) reliably returns exactly one result per input, <code>NA</code> or not, which keeps <code>title</code>, <code>price</code>, and <code>url</code> aligned row for row. <code>html_table()</code> converts an entire HTML table into a tibble in one call, guessing column types the same way <code>read_csv()</code> does, with the same kind of guessing failures possible (see Example 17.3); pass <code>convert = FALSE</code> to keep every column as character text and convert it yourself when the automatic guess gets something wrong.</p>
 </section>
-<section id="vector-functions" class="level3">
-<h3 class="anchored" data-anchor-id="vector-functions">Vector functions</h3>
-<p>A <strong>vector function</strong> takes one or more vectors as input and returns a vector of the same length. Common examples include rescaling or transforming variables. You can use vector functions inside <code>mutate()</code> or other dplyr verbs. For instance, a z‑score function:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>z_score <span class="ot">=</span> <span class="cf">function</span>(x) {</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  (x <span class="sc">-</span> <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">/</span> <span class="fu">sd</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Because <code>z_score()</code> returns a vector, you can apply it to multiple columns in one step using <code>across()</code> (covered in the next session).</p>
+<section id="finding-selectors" class="level3">
+<h3 class="anchored" data-anchor-id="finding-selectors">Finding selectors</h3>
+<p>Choosing the right selector is usually trial and error. Browser developer tools (right-click an element, choose “Inspect”) show you the underlying HTML and let you test a selector interactively before writing any R code. SelectorGadget is a bookmarklet that helps build a selector by clicking positive and negative examples on the live page. If CSS selector syntax itself is unfamiliar, resources like the CSS Diner game or MDN’s documentation are a gentler introduction than jumping straight into a real scrape.</p>
 </section>
-<section id="dataframe-functions-and-tidy-evaluation" class="level3">
-<h3 class="anchored" data-anchor-id="dataframe-functions-and-tidy-evaluation">Data‑frame functions and tidy evaluation</h3>
-<p>Data‑frame functions take a data frame as input, perform some operation and return a new data frame or summary. The challenge is that dplyr verbs use <strong>tidy evaluation</strong>: they interpret bare variable names within the context of the data. If you write a function like:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>grouped_mean <span class="ot">=</span> <span class="cf">function</span>(df, group_var, mean_var) {</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(group_var) <span class="sc">|&gt;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="fu">mean</span>(mean_var))</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="workflow-and-dynamic-sites" class="level3">
+<h3 class="anchored" data-anchor-id="workflow-and-dynamic-sites">Workflow and dynamic sites</h3>
+<p>A typical scraping session: identify candidate elements with developer tools, write and refine a selector against the real page, extract the elements with <code>html_text2()</code>/<code>html_attr()</code>/<code>html_table()</code>, clean and tidy the result the same way you would any other messy import, and add pauses between requests (<code>Sys.sleep()</code>, or let <code>polite</code> do it for you) so you aren’t hammering someone else’s server.</p>
+<p>Some sites render their real content with JavaScript after the initial page loads, and <code>read_html()</code> only ever sees the static HTML that arrives before any JavaScript runs, so content that JavaScript builds later is often simply absent from what rvest can see. If the data you need isn’t in the downloaded HTML at all, look for an API before reaching for a heavier tool like a headless browser; an API gives you stable, structured data without needing to reverse-engineer a page’s rendering at all.</p>
+</section>
+<section id="fringe-cases-and-common-pitfalls" class="level3">
+<h3 class="anchored" data-anchor-id="fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</h3>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>it won’t work because <code>group_by()</code> and <code>summarize()</code> look for columns literally named <code>group_var</code> and <code>mean_var</code>. To solve this problem, <strong>embrace</strong> your arguments with <code>{ }</code>, which tells dplyr to use the <em>value</em> of the argument rather than its name:</p>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 17.1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong><code>html_elements()</code> and <code>html_element()</code> disagree the moment an element is missing somewhere, and only one of them keeps your data aligned.</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>grouped_mean <span class="ot">=</span> <span class="cf">function</span>(df, group_var, mean_var) {</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>({{ group_var }}) <span class="sc">|&gt;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>({{ mean_var }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># use it</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">grouped_mean</span>(cut, carat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>products_html <span class="ot">&lt;-</span> <span class="st">'</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;div id="products"&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">  &lt;div class="product"&gt;&lt;h2 class="name"&gt;Widget A&lt;/h2&gt;&lt;span class="price"&gt;$10&lt;/span&gt;&lt;/div&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">  &lt;div class="product"&gt;&lt;h2 class="name"&gt;Widget B&lt;/h2&gt;&lt;/div&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="st">  &lt;div class="product"&gt;&lt;h2 class="name"&gt;Widget C&lt;/h2&gt;&lt;span class="price"&gt;$30&lt;/span&gt;&lt;/div&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;/div&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>products <span class="ot">&lt;-</span> <span class="fu">read_html</span>(products_html) <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">".product"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># wrong: flattens across all three products, silently dropping the missing price</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>products <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">".price"</span>) <span class="sc">|&gt;</span> <span class="fu">html_text2</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 2
-  cut        mean
-  &lt;ord&gt;     &lt;dbl&gt;
-1 Fair      1.05 
-2 Good      0.849
-3 Very Good 0.806
-4 Premium   0.892
-5 Ideal     0.703</code></pre>
+<pre><code>[1] "$10" "$30"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># right: one result per product, NA where a product has no price</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>products <span class="sc">|&gt;</span> <span class="fu">html_element</span>(<span class="st">".price"</span>) <span class="sc">|&gt;</span> <span class="fu">html_text2</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "$10" NA    "$30"</code></pre>
 </div>
 </div>
-<p>Embracing works for both <strong>data‑masking</strong> arguments (e.g., in <code>filter()</code>, <code>summarize()</code> or <code>arrange()</code>) and <strong>tidy‑selection</strong> arguments (e.g., in <code>select()</code> or <code>rename()</code>). When in doubt, consult the documentation to see whether an argument uses tidy evaluation and needs embracing.</p>
-<p>Another useful pattern is to wrap up a common set of summaries into a helper function. The following <code>summary6()</code> computes the minimum, mean, median and maximum of a variable along with the number of observations and missing values:</p>
+<p>Widget B has no <code>.price</code> element at all. <code>html_elements()</code> (plural), called on the whole set of products, simply returns however many <code>.price</code> elements it actually finds, two, with no indication of which product each one belongs to; pairing that two-element result back up with three product names would silently misalign Widget B’s row with Widget C’s price. <code>html_element()</code> (singular) is the one built for exactly this situation: it always returns one result per input element, using <code>NA</code> to mark “no match here,” which is what keeps a <code>tibble()</code> built from several such calls aligned row for row (as in the worked example above).</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 17.2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>A selector matches an element wherever it appears, including inside another element that also matches, so nested content shows up more than once.</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>summary6 <span class="ot">=</span> <span class="cf">function</span>(data, var) {</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  data <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">min   =</span> <span class="fu">min</span>({{ var }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">mean  =</span> <span class="fu">mean</span>({{ var }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">median=</span> <span class="fu">median</span>({{ var }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">max   =</span> <span class="fu">max</span>({{ var }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">n     =</span> <span class="fu">n</span>(),</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">n_miss=</span> <span class="fu">sum</span>(<span class="fu">is.na</span>({{ var }})),</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nested_html <span class="ot">&lt;-</span> <span class="st">'&lt;div class="outer"&gt;outer text &lt;div class="inner"&gt;inner text&lt;/div&gt;&lt;/div&gt;'</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>divs <span class="ot">&lt;-</span> <span class="fu">read_html</span>(nested_html) <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">"div"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(divs)         <span class="co"># 2, not 1: the selector matches the parent AND the child</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
 </div>
-<p>Because it wraps <code>summarize()</code>, you can apply <code>summary6()</code> to grouped data or use it inside other functions. Always drop grouping (<code>.groups = "drop"</code>) inside helpers to avoid surprises.</p>
-</section>
-<section id="plot-functions" class="level3">
-<h3 class="anchored" data-anchor-id="plot-functions">Plot functions</h3>
-<p>You can also write functions that return plots. For example, repeated calls to <code>ggplot()</code> and <code>geom_histogram()</code> can be wrapped into a <code>histogram()</code> helper:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">html_text2</span>(divs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "outer text\ninner text" "inner text"            </code></pre>
+</div>
+</div>
+<p>The selector <code>div</code> matches every <code>div</code> in the document, and the inner <code>div</code> is still a <code>div</code> even though it’s nested inside another one, so it counts twice: once as its own element, and again as part of the outer <code>div</code>’s text content, which includes everything inside it, child elements included. If you only wanted the outermost containers, you need a more specific selector (a class or id on just the outer elements) rather than a bare tag name; if you only wanted leaf-level content, filtering out elements that themselves contain further matches is one way to avoid the double count.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 17.3
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong><code>html_table()</code>’s automatic type conversion can quietly destroy a code that only looks numeric.</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>histogram <span class="ot">=</span> <span class="cf">function</span>(df, var, <span class="at">binwidth =</span> <span class="cn">NULL</span>) {</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> {{ var }})) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> binwidth)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># example</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">histogram</span>(carat, <span class="at">binwidth =</span> <span class="fl">0.1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="18_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>codes_html <span class="ot">&lt;-</span> <span class="st">'&lt;table&gt;&lt;tr&gt;&lt;th&gt;code&lt;/th&gt;&lt;th&gt;qty&lt;/th&gt;&lt;/tr&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;tr&gt;&lt;td&gt;007&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;042&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;'</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>tbl <span class="ot">&lt;-</span> <span class="fu">read_html</span>(codes_html) <span class="sc">|&gt;</span> <span class="fu">html_element</span>(<span class="st">"table"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>tbl <span class="sc">|&gt;</span> <span class="fu">html_table</span>()                    <span class="co"># default: guesses types automatically</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+   code   qty
+  &lt;int&gt; &lt;int&gt;
+1     7     5
+2    42     3</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>tbl <span class="sc">|&gt;</span> <span class="fu">html_table</span>(<span class="at">convert =</span> <span class="cn">FALSE</span>)     <span class="co"># every column kept as character text</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  code  qty  
+  &lt;chr&gt; &lt;chr&gt;
+1 007   5    
+2 042   3    </code></pre>
 </div>
 </div>
+<p><code>"007"</code> becomes the integer <code>7</code>, exactly the leading-zero problem you first saw with <code>read_csv()</code> back in Session 7, and for the same underlying reason: something that looks like a number gets guessed as one, and a leading zero has no meaning in a plain integer. Product codes, ID numbers, and ZIP codes scraped out of an HTML table are exactly the kind of column to import with <code>convert = FALSE</code> and convert deliberately yourself, rather than trusting the automatic guess.</p>
 </div>
-<p>The key is that <code>aes()</code> is a data‑masking function, so you can embrace the variable passed to the function. Users can still add layers to the returned plot with <code>+</code>. You can write other plot helpers, such as a <code>linearity_check()</code> that overlays a smooth curve and straight line to diagnose linear relationships.</p>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 17.4
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong><code>html_text()</code> and <code>html_text2()</code> disagree about whitespace, and the difference matters more than it looks.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>spaced_html <span class="ot">&lt;-</span> <span class="st">'&lt;p&gt;  Hello    &lt;b&gt;world&lt;/b&gt;  </span><span class="sc">\n</span><span class="st">  this   is   spaced  &lt;/p&gt;'</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">read_html</span>(spaced_html) <span class="sc">|&gt;</span> <span class="fu">html_element</span>(<span class="st">"p"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">html_text</span>(p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "  Hello    world  \n  this   is   spaced  "</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">html_text2</span>(p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Hello world this is spaced"</code></pre>
+</div>
+</div>
+<p><code>html_text()</code> returns the text exactly as it’s laid out in the HTML source, extra spaces, line breaks, and all, because that’s genuinely what’s between the tags. <code>html_text2()</code> normalizes whitespace the way a browser actually displays it: runs of spaces and newlines collapse to single spaces, matching what a person reading the rendered page would actually see. Browsers do this collapsing for display purposes, which is exactly why HTML source is so often full of extra whitespace that was never meant to be meaningful; <code>html_text2()</code> is almost always the one you want, and it’s a reasonable default to reach for <code>html_text2()</code> first and only fall back to <code>html_text()</code> if you specifically need the raw, unnormalized text.</p>
+</div>
+</div>
 </section>
-<section id="function-style" class="level3">
-<h3 class="anchored" data-anchor-id="function-style">Function style</h3>
-<p>Good naming and formatting make your functions readable for future you and others. R doesn’t care about names or white space, but humans do. Prefer <strong>verbs</strong> for function names and <strong>nouns</strong> for arguments; clarity beats brevity. For example, <code>impute_missing()</code> and <code>collapse_years()</code> are more informative than <code>f()</code> or <code>my_awesome_function()</code>. Always follow <code>function()</code> with curly braces and indent the body by two spaces. When embracing variables, put spaces inside <code>{ }</code> to make it obvious that something special is happening.</p>
+<section id="recap" class="level3">
+<h3 class="anchored" data-anchor-id="recap">Recap</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 76%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Term</strong></th>
+<th><strong>Definition</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><code>read_html()</code></strong></td>
+<td>Downloads and parses an HTML page (or string) into a document rvest can query.</td>
+</tr>
+<tr class="even">
+<td><strong>CSS selector</strong></td>
+<td>A pattern (<code>p</code>, <code>.class</code>, <code>#id</code>, or a combination) for locating elements; matches an element wherever it appears, nested or not.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>html_elements()</code></strong></td>
+<td>Returns every element matching a selector; the count may not align with any other set of elements on the page.</td>
+</tr>
+<tr class="even">
+<td><strong><code>html_element()</code></strong></td>
+<td>Returns exactly one result per input (using <code>NA</code> for “no match”), which is what keeps several extracted columns aligned row for row.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>html_text2()</code></strong></td>
+<td>Extracts an element’s visible text with whitespace normalized, the way a browser would display it.</td>
+</tr>
+<tr class="even">
+<td><strong><code>html_text()</code></strong></td>
+<td>Extracts an element’s text exactly as laid out in the HTML source, whitespace included.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>html_attr()</code></strong></td>
+<td>Extracts the value of a named attribute (such as <code>href</code>) from an element.</td>
+</tr>
+<tr class="even">
+<td><strong><code>html_table()</code></strong></td>
+<td>Converts an HTML <code>&lt;table&gt;</code> into a tibble, guessing column types the same way <code>read_csv()</code> does; <code>convert = FALSE</code> keeps everything as text.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>polite</code></strong></td>
+<td>Automates pauses between requests and caching, so scraping doesn’t overload someone else’s server.</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="key-takeaways" class="level3">
-<h3 class="anchored" data-anchor-id="key-takeaways">Key take‑aways</h3>
-<ul>
-<li><strong>Functions reduce duplication and errors.</strong> When you see repeated code, bundle it into a function. Functions centralize changes, reduce mistakes and make your code more readable.</li>
-<li><strong>Identify what varies.</strong> Analyse your code to determine which pieces vary and make those arguments; the rest becomes the body of the function.</li>
-<li><strong>Use embracing with dplyr verbs.</strong> Tidy evaluation means that column names inside dplyr verbs are treated differently. When writing data‑frame functions, use <code>{ }</code> around arguments that refer to column names.</li>
-<li><strong>Wrap up summaries and plots.</strong> Helper functions like <code>summary6()</code> or <code>histogram()</code> reduce copy‑and‑paste when you need the same summaries or plots repeatedly.</li>
-<li><strong>Name and style your functions thoughtfully.</strong> Use descriptive verbs, nouns for arguments, proper indentation and spaces in braces to make your code easy to read.</li>
-</ul>
-<!-- ## In‑class activity
-
-In today’s activity you will practise writing functions using the **storms** dataset from the `dplyr` package (this dataset does not appear in *R for Data Science*).  The storms data records the position, intensity and category of tropical cyclones from 1975–2022【832489152038428†L46-L112】.  You’ll:
-
-1. **Explore the data (5 min).**  Load the tidyverse and the `storms` dataset.  Use `glimpse(storms)` to understand its 13 variables (e.g., `name`, `year`, `status`, `category`, `wind`, `pressure` and storm‑force diameters)【832489152038428†L58-L112】.
-2. **Write a vector function (10 min).**  Create a function `knots_to_mph(x)` that converts wind speed from knots to miles per hour (1 knot = 1.15078 mph) and returns a numeric vector.  Add a new column `wind_mph` to `storms` with `mutate(wind_mph = knots_to_mph(wind))`.
-3. **Write a data‑frame function (15 min).**  Write a function `summarise_by(df, group_var, num_var)` that groups `df` by `group_var`, computes the mean and maximum of `num_var` and returns a summary tibble.  Embrace the grouping and numeric variables with `{{ }}`.  Use the function to compare average wind speed across storm statuses (`status`) and categories (`category`).
-4. **Write a plot function (15 min).**  Define `hist_plot(df, var, binwidth = NULL)` that takes a data frame and a numeric variable and returns a histogram of that variable.  Embrace `var` in the call to `aes()` and allow users to specify `binwidth`.  Use your function to compare the distribution of `pressure` and `wind`.
-5. **Apply your functions (10 min).**  Combine your helper functions to answer questions: *Which storm category has the highest average wind speed?*  *How does wind speed differ between tropical storms and hurricanes?*  Present your findings in a short paragraph.
-
-These exercises will help you practise writing vector, data‑frame and plot functions, using tidy evaluation and embracing, and following code style guidelines.  The storms dataset is built into dplyr, so no additional packages are needed.
-
-## Suggested reading for Session 19
-
-The next class will introduce **iteration** and **functional programming**.  Read Chapter 26 of *R for Data Science* (2nd ed.), which explains why iteration often looks different in R: many operations are vectorised, so doubling a vector is as simple as `2 * x`【522291174810979†L123-L128】.  The chapter emphasises that you’ve already used simple iteration tools such as faceting (`facet_wrap()` and `facet_grid()`), group‑wise summaries (`group_by()` + `summarize()`) and unnesting list‑columns【522291174810979†L130-L140】.  You’ll learn more general tools for three common tasks: **modifying multiple columns, reading multiple files and saving multiple outputs**【522291174810979†L143-L147】.  Pay special attention to the `across()` function: it lets you apply the same function to many columns and replaces tedious copy‑and‑paste code【522291174810979†L185-L197】.  The first argument, `.cols`, selects columns; the second argument, `.fns`, specifies the function to apply; and the `.names` argument controls the output names【522291174810979†L198-L205】.  Understanding these arguments will prepare you for functional programming with `purrr::map()` in later sections.
-
--->
+<section id="check-your-understanding" class="level3">
+<h3 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Problems">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Problems
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Give two conditions that make scraped data more likely to be ethical and legal to collect, and one thing you should never scrape regardless of those conditions.</li>
+<li>You scrape a list of ten products, but only seven of them have a listed price. Which rvest function, <code>html_elements()</code> or <code>html_element()</code>, keeps your prices aligned with the correct products, and why?</li>
+<li>A page has <code>&lt;div class="section"&gt;</code> elements, and some of those sections contain other <code>&lt;div class="section"&gt;</code> elements nested inside them. What happens if you select every <code>.section</code> and count them, expecting one count per top-level section?</li>
+<li>You scrape a table of employee ID numbers like <code>"00458"</code> and get back the number <code>458</code>. What happened, and how would you prevent it?</li>
+<li>Why does <code>html_text2()</code> usually give you cleaner-looking output than <code>html_text()</code>, even though both are reading the exact same HTML?</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solutions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solutions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>Data that are public (not behind a login), non-personal (not identifying an individual), and factual are generally safer to scrape; respecting a site’s terms of service and <code>robots.txt</code> also matters. Regardless of those conditions, you should never scrape personally identifiable information, such as names, email addresses, or dates of birth, since doing so can violate privacy laws even when the page itself is public.</p></li>
+<li><p><code>html_element()</code> (singular), because it always returns exactly one result per input, filling in <code>NA</code> for any product without a price. <code>html_elements()</code> (plural) would only return the seven prices that actually exist, with no indication of which three products they belong to, silently misaligning the result if you tried to combine it with all ten product names.</p></li>
+<li><p>The count would be higher than the number of top-level sections, because a CSS selector matches an element wherever it occurs in the document, including a <code>.section</code> nested inside another <code>.section</code>. Each nested section gets counted once on its own and again as part of its parent’s contents, so “count of <code>.section</code> elements” does not mean “count of top-level sections.”</p></li>
+<li><p><code>html_table()</code>’s automatic type guessing treated <code>"00458"</code> as a number and converted it to <code>458</code>, dropping the leading zeros the same way <code>read_csv()</code> would. Passing <code>convert = FALSE</code> to <code>html_table()</code> keeps every column as character text, letting you decide explicitly (and correctly) how an ID-like column should be handled.</p></li>
+<li><p><code>html_text2()</code> normalizes whitespace the way a browser renders it, collapsing the extra spaces, indentation, and line breaks that are usually present in HTML source purely for the file’s own readability and were never meant to be visually meaningful. <code>html_text()</code> returns that whitespace exactly as written, which is accurate to the source but rarely what you actually want for further analysis.</p></li>
+</ol>
+</div>
+</div>
+</div>
 
 
 </section>

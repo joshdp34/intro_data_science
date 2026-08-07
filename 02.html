@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Session 2: Data visualization basics – STA 2300 Intro to Data Science</title>
+<title>2&nbsp; Session 2: Quarto basics for reproducible assignments – STA 2300 Intro to Data Science</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -177,7 +177,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Data visualization basics</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Quarto basics for reproducible assignments</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -224,127 +224,133 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Data visualization basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Quarto basics for reproducible assignments</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: The layered grammar of graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: Data visualization basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: The layered grammar of graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (II): grouping and summarizing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data import: reading CSV and flat files</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data transformation (II): grouping and summarizing</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Tidy data and pivoting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Data import: reading CSV and flat files</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Variable types I: logical and numeric vectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Tidy data and pivoting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types II: strings and regular expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types I: logical and numeric vectors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types III: factors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types II: strings and regular expressions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types IV: dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types III: factors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12 – Missing values &amp; data cleaning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12: Variable types IV: dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13 –&nbsp;Relational data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13: Missing values and data cleaning</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14 – Advanced data import I: spreadsheets</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14: Relational data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15 – Advanced data import II: databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15: Advanced data import I: spreadsheets</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./16.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16 – Big‑data formats &amp; hierarchical data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16: Advanced data import II: databases</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17 – Web scraping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17: Big data formats and hierarchical data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./18.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18 – Basic programming I: functions &amp; code style</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18: Web scraping</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./19.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19 – Basic programming II: iteration &amp; functional programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19: Basic programming I: functions and code style</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./20.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20 – Reproducible research &amp; communication</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20: Basic programming II: iteration and functional programming</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./21.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21 – Exploratory data analysis (EDA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21: Communication</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./22.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22 – Statistical modelling&nbsp;I: simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22: Exploratory data analysis (EDA)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Session 23: Statistical modeling I: simple linear regression</span></span></a>
   </div>
 </li>
     </ul>
@@ -360,12 +366,13 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#why-use-ggplot2-the-grammar-of-graphics" id="toc-why-use-ggplot2-the-grammar-of-graphics" class="nav-link" data-scroll-target="#why-use-ggplot2-the-grammar-of-graphics">Why use ggplot2? The grammar of graphics</a></li>
-  <li><a href="#anatomy-of-a-ggplot2-call" id="toc-anatomy-of-a-ggplot2-call" class="nav-link" data-scroll-target="#anatomy-of-a-ggplot2-call">Anatomy of a ggplot2 call</a></li>
-  <li><a href="#visualizing-a-single-categorical-variable" id="toc-visualizing-a-single-categorical-variable" class="nav-link" data-scroll-target="#visualizing-a-single-categorical-variable">Visualizing a single categorical variable</a></li>
-  <li><a href="#visualizing-a-single-numeric-variable" id="toc-visualizing-a-single-numeric-variable" class="nav-link" data-scroll-target="#visualizing-a-single-numeric-variable">Visualizing a single numeric variable</a></li>
-  <li><a href="#visualizing-relationships-between-two-variables" id="toc-visualizing-relationships-between-two-variables" class="nav-link" data-scroll-target="#visualizing-relationships-between-two-variables">Visualizing relationships between two variables</a></li>
-  <li><a href="#saving-your-plots" id="toc-saving-your-plots" class="nav-link" data-scroll-target="#saving-your-plots">Saving your plots</a></li>
+  <li><a href="#why-reproducible-research" id="toc-why-reproducible-research" class="nav-link" data-scroll-target="#why-reproducible-research">Why reproducible research?</a></li>
+  <li><a href="#quarto-basics-and-yaml" id="toc-quarto-basics-and-yaml" class="nav-link" data-scroll-target="#quarto-basics-and-yaml">Quarto basics and YAML</a></li>
+  <li><a href="#code-chunks-and-options" id="toc-code-chunks-and-options" class="nav-link" data-scroll-target="#code-chunks-and-options">Code chunks and options</a></li>
+  <li><a href="#tables-with-knitrkable" id="toc-tables-with-knitrkable" class="nav-link" data-scroll-target="#tables-with-knitrkable">Tables with <code>knitr::kable()</code></a></li>
+  <li><a href="#rendering-to-multiple-formats" id="toc-rendering-to-multiple-formats" class="nav-link" data-scroll-target="#rendering-to-multiple-formats">Rendering to multiple formats</a></li>
+  <li><a href="#inline-code-and-narrative" id="toc-inline-code-and-narrative" class="nav-link" data-scroll-target="#inline-code-and-narrative">Inline code and narrative</a></li>
+  <li><a href="#caching-versus-freezing" id="toc-caching-versus-freezing" class="nav-link" data-scroll-target="#caching-versus-freezing">Caching versus freezing</a></li>
   <li><a href="#fringe-cases-and-common-pitfalls" id="toc-fringe-cases-and-common-pitfalls" class="nav-link" data-scroll-target="#fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</a></li>
   <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
   <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
@@ -378,7 +385,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Data visualization basics</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Quarto basics for reproducible assignments</span></h1>
 </div>
 
 
@@ -398,288 +405,143 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Appreciate the importance of visualization.</strong> A simple graph can convey more information than any other device. You will learn how the grammar of graphics underlies ggplot2.</li>
-<li><strong>Create basic plots.</strong> Use <code>ggplot2</code> to draw scatterplots, bar charts, histograms and boxplots.</li>
-<li><strong>Understand variable types.</strong> Recognize when to use different plot types based on whether variables are categorical or numeric.</li>
-<li><strong>Recognize a few ways plots can mislead.</strong> Sometimes this happens by accident, and sometimes it happens on purpose. Every plot you make is a claim about the data; part of learning to build plots is learning to read them critically.</li>
-<li><strong>Prepare for layering.</strong> Today’s material sets the stage for Session 3 on layering, where you’ll add geoms, adjust positions and facet plots.</li>
+<li><strong>Appreciate the value of reproducible research.</strong> Combining code, results, and prose in a single document improves transparency, facilitates collaboration, and serves as a lab notebook. Quarto integrates the lessons of the R Markdown ecosystem and is designed for analysts, collaborators, and decision-makers alike.</li>
+<li><strong>Learn the basics of Quarto documents.</strong> Create and render a <code>.qmd</code> file with a YAML header and interleaved code and narrative. Understand global settings in the YAML, chunk labels, and what actually happens when a label is reused by accident.</li>
+<li><strong>Use chunk options effectively.</strong> Control evaluation, code display, warnings, and messages with chunk options (<code>eval</code>, <code>include</code>, <code>echo</code>, <code>message</code>, <code>warning</code>). Learn how inline code reports dynamic values inside your prose, and what happens when that inline code itself fails.</li>
+<li><strong>Produce a table with <code>knitr::kable()</code>.</strong> Know its default formatting choices (how many decimal places it shows, and how it displays missing values) well enough not to be surprised by them.</li>
+<li><strong>Distinguish caching from freezing.</strong> Recognize <code>cache: true</code> (a local, per-chunk performance cache) as a different mechanism from <code>execute: freeze</code> (the project-wide, version-controlled cache this very book relies on), and know which one solves which problem.</li>
+<li><strong>Render and submit a Quarto document.</strong> By the end of this session you should be able to write, render, and hand in a <code>.qmd</code> file, since every assignment for the rest of this course is submitted this way.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<section id="why-use-ggplot2-the-grammar-of-graphics" class="level3">
-<h3 class="anchored" data-anchor-id="why-use-ggplot2-the-grammar-of-graphics">Why use ggplot2? The grammar of graphics</h3>
-<p>R has several systems for making graphs, but ggplot2 is one of the most elegant and versatile. It implements the <strong>grammar of graphics</strong>, a coherent system for describing and building graphs out of independent building blocks, rather than memorizing one function per chart type. Learning this grammar enables you to create a wide range of plots with consistent syntax.</p>
-<p>Every ggplot2 plot needs at minimum three things:</p>
-<ol type="1">
-<li><strong>Data</strong>: a data frame (or tibble) containing the variables you want to plot.</li>
-<li><strong>Aesthetic mappings</strong> (<code>aes()</code>): these describe which variable controls which visual property, such as x position, y position, color, shape, size, or transparency (<code>alpha</code>).</li>
-<li><strong>A geometric object</strong> (a <code>geom_*()</code> function): the actual visual mark used to represent each observation, such as points, bars, lines, or boxes.</li>
-</ol>
-<p>You combine these pieces with <code>+</code>, and ggplot2 handles the (surprisingly hard) work of choosing scales, drawing axes, and building a legend.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="why-reproducible-research" class="level3">
+<h3 class="anchored" data-anchor-id="why-reproducible-research">Why reproducible research?</h3>
+<p>In an exploratory notebook, it’s easy to lose track of which code produced which result. Reproducible research solves this by knitting analysis and narrative together, so that anyone, including future you, can rerun the whole thing and get the same output. This is sometimes called literate programming: code interspersed with human-readable explanation. Quarto, the modern successor to R Markdown, is the tool this course (and this very book) uses for it. A <code>.qmd</code> file has three parts: a YAML header (metadata and settings, delimited by <code>---</code>), narrative text in Markdown, and code chunks that Quarto actually executes when rendering. Every assignment in this course is a <code>.qmd</code> file that you render and submit, so getting comfortable with these three parts now pays off immediately.</p>
 </section>
-<section id="anatomy-of-a-ggplot2-call" class="level3">
-<h3 class="anchored" data-anchor-id="anatomy-of-a-ggplot2-call">Anatomy of a ggplot2 call</h3>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Because <code>data</code> and <code>mapping</code> are almost always the first two arguments, ggplot2 lets you drop the argument names once you’re comfortable with the order:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Aesthetic mappings can live in two places, and where you put them matters:</p>
-<ul>
-<li><strong>Global</strong>: placed inside <code>ggplot(aes(...))</code>, it applies to every geom layer in the plot.</li>
-<li><strong>Local</strong>: placed inside a specific <code>geom_*(aes(...))</code>, it applies only to that layer.</li>
-</ul>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># global: every layer (here, just the points) uses species for color</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># local: only this geom_point layer uses species for color;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># a geom_smooth() added afterward would draw one line for everybody, not one per species</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span><code>+</code> goes at the end of the line, never the start
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>ggplot2 builds plots by adding layers together, and R needs to see the <code>+</code> before it reaches the end of a line to know that more code is coming.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># broken: R sees a complete expression on line 1 and stops there,</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># then reports a syntax error when it hits a lone "+ geom_point()" on its own line</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g))</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fixed: the + is at the end of the first line, so R knows to keep reading</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>This is the single most common syntax error beginners hit with ggplot2. If your plot silently does nothing, or you get an “unexpected <code>+</code>” style error, check where your <code>+</code> signs are sitting first.</p>
-</div>
-</div>
+<section id="quarto-basics-and-yaml" class="level3">
+<h3 class="anchored" data-anchor-id="quarto-basics-and-yaml">Quarto basics and YAML</h3>
+<p>A minimal Quarto document’s header looks like this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Global life expectancy report"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> 2025-11-18</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>format</code> sets the default output; common values are <code>html</code>, <code>pdf</code>, and <code>docx</code>. An expanded <code>format:</code> field customizes options, or produces more than one output at once:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">            # table of contents</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">      # collapsible code blocks</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">embed-resources</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co"> # bundle images/CSS into one standalone .html file</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">docx</span><span class="kw">:</span><span class="at"> default</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>embed-resources</code> is worth knowing about specifically: without it, an HTML file’s images and styling live in separate files alongside it, which breaks the moment you email just the <code>.html</code> on its own, or upload only that one file to a course dropbox; with it, everything is bundled into one self-contained file, which is exactly what you want when submitting an assignment. Rendering happens with <code>quarto render my-document.qmd</code> from the command line, or <code>quarto::quarto_render()</code> from R (both support an <code>output_format</code> argument that overrides the YAML). A <code>params</code> field in the YAML can declare inputs (accessed as <code>params$name</code> inside the document), turning a single <code>.qmd</code> file into a template you can re-render for different inputs without editing the file itself.</p>
 </section>
-<section id="visualizing-a-single-categorical-variable" class="level3">
-<h3 class="anchored" data-anchor-id="visualizing-a-single-categorical-variable">Visualizing a single categorical variable</h3>
-<p><strong>Bar charts</strong> display the distribution of a categorical variable. For example, they can count penguins by species. <code>geom_bar()</code> counts observations for you; you never need to compute the counts yourself first.</p>
+<section id="code-chunks-and-options" class="level3">
+<h3 class="anchored" data-anchor-id="code-chunks-and-options">Code chunks and options</h3>
+<p>Each code chunk can carry a label (<code>#| label: setup</code>) for cross-referencing, and options that control execution and display: <code>eval: false</code> shows code without running it, <code>include: false</code> runs code but hides both it and its output (handy for setup chunks), <code>echo: false</code> hides code but shows results, and <code>message: false</code>/<code>warning: false</code> suppress exactly what they say. Options go on <code>#| option: value</code> lines right after the opening fence.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species)) <span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="576"></p>
+<p><img src="02_files/figure-html/scatterplot-gapminder-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Order your bars on purpose
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>By default, <code>geom_bar()</code> orders a character or categorical x-axis alphabetically, which is rarely the most informative order. <code>forcats::fct_infreq()</code> reorders the categories by how often they occur, so the tallest bar comes first:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_infreq</span>(species))) <span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"species"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>We will cover <code>forcats</code> and factor reordering in much more depth in a later session; file this away as a preview.</p>
-</div>
-</div>
+<p>Chunk labels have to be unique across the whole document; reusing one is a real, render-stopping mistake, not a cosmetic issue (see Example 2.1). Setting shared options once under <code>execute:</code> in the YAML (<code>echo: false</code>, <code>message: false</code>, <code>warning: false</code>, exactly the settings this book itself uses) saves repeating them in every chunk; an individual chunk can still override the default locally.</p>
 </section>
-<section id="visualizing-a-single-numeric-variable" class="level3">
-<h3 class="anchored" data-anchor-id="visualizing-a-single-numeric-variable">Visualizing a single numeric variable</h3>
-<p><strong>Histograms</strong> reveal the distribution of a numeric variable by cutting its range into equal width bins and counting how many observations fall in each. Choose a bin width that balances detail with clarity. Too wide, and you hide real structure; too narrow, and you’re mostly looking at random noise (see Example 2.3 below).</p>
-<p>Let’s bring in a dataset from outside <code>palmerpenguins</code> for practice: minutes patients waited in a (simulated) hospital emergency department.</p>
+<section id="tables-with-knitrkable" class="level3">
+<h3 class="anchored" data-anchor-id="tables-with-knitrkable">Tables with <code>knitr::kable()</code></h3>
+<p>A data frame printed directly inside a chunk shows console-style output; <code>knitr::kable()</code> instead formats it as a proper Markdown (and, on render, HTML or PDF) table.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>wait_times <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/hospital_wait_times.csv"</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wait_times, <span class="fu">aes</span>(<span class="at">x =</span> wait_minutes)) <span class="sc">+</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mpg, cyl, disp) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">mpg</th>
+<th style="text-align: right;">cyl</th>
+<th style="text-align: right;">disp</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mazda RX4</td>
+<td style="text-align: right;">21.0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">160</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mazda RX4 Wag</td>
+<td style="text-align: right;">21.0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">160</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Datsun 710</td>
+<td style="text-align: right;">22.8</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">108</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hornet 4 Drive</td>
+<td style="text-align: right;">21.4</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">258</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hornet Sportabout</td>
+<td style="text-align: right;">18.7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">360</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Valiant</td>
+<td style="text-align: right;">18.1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">225</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-</div>
-<p><code>geom_density()</code> shows the same kind of information as a smooth curve instead of discrete bars, which can make the overall shape easier to see at a glance, at the cost of hiding the exact bin counts:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wait_times, <span class="fu">aes</span>(<span class="at">x =</span> wait_minutes)) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
+<p>For anything beyond a simple table (styling, merged cells, interactivity), packages like <code>gt</code>, <code>kableExtra</code>, and <code>reactable</code> build on the same idea with considerably more control. <code>kable()</code>’s own default formatting choices are worth knowing before you rely on them for an assignment (see Example 2.4).</p>
 </section>
-<section id="visualizing-relationships-between-two-variables" class="level3">
-<h3 class="anchored" data-anchor-id="visualizing-relationships-between-two-variables">Visualizing relationships between two variables</h3>
-<p>The right plot depends on the types of the two variables involved.</p>
-<p><strong>Numeric vs.&nbsp;categorical</strong>: a <strong>boxplot</strong> compares the distribution of a numeric variable across levels of a categorical variable. Here we compare reported study hours across college majors, using a small simulated survey of students:</p>
+<section id="rendering-to-multiple-formats" class="level3">
+<h3 class="anchored" data-anchor-id="rendering-to-multiple-formats">Rendering to multiple formats</h3>
+<p>Quarto renders one <code>.qmd</code> file into as many formats as the YAML’s <code>format:</code> field lists, each with its own options:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc-float</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">docx</span><span class="kw">:</span><span class="at"> default</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Rendering this document produces <code>.html</code>, <code>.pdf</code>, and <code>.docx</code> files in one call. To render just one format on demand rather than every configured one, pass <code>output_format</code> to <code>quarto_render()</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>stress <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/student_stress_survey.csv"</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stress, <span class="fu">aes</span>(<span class="at">x =</span> major, <span class="at">y =</span> study_hours)) <span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>quarto<span class="sc">::</span><span class="fu">quarto_render</span>(<span class="st">"my-report.qmd"</span>, <span class="at">output_format =</span> <span class="st">"docx"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-</div>
-<p><strong>Categorical vs.&nbsp;categorical</strong>: a <strong>stacked bar chart</strong> (mapping the second variable to <code>fill</code>) shows how two categorical variables relate. Setting <code>position = "fill"</code> rescales every bar to the same height, turning raw counts into proportions, which is usually the more honest comparison when group sizes differ:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>vaccine <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/vaccine_opinion_by_age.csv"</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(vaccine, <span class="fu">aes</span>(<span class="at">x =</span> age_group, <span class="at">fill =</span> opinion)) <span class="sc">+</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()                     <span class="co"># raw counts per age group</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(vaccine, <span class="fu">aes</span>(<span class="at">x =</span> age_group, <span class="at">fill =</span> opinion)) <span class="sc">+</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span>  <span class="co"># proportions within each age group</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"proportion"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02_files/figure-html/unnamed-chunk-12-2.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Numeric vs.&nbsp;numeric</strong>: back to the scatterplot we started with. Plotting penguin flipper length vs.&nbsp;body mass can reveal whether larger penguins tend to have longer flippers. Map species or island to color or shape to uncover additional structure, and add <code>alpha</code> when points overlap heavily.</p>
-<p><strong>Three or more variables</strong>: once you’ve mapped x, y, and color or shape, you can split the plot into a grid of subplots, one per category, using <code>facet_wrap()</code>:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>island)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Fighting overplotting
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>When an x-axis variable only takes a handful of distinct values (like <code>stress_level</code> on a scale from 1 to 5), a scatterplot can hide dozens of points stacked exactly on top of each other. <code>geom_jitter()</code> adds a small amount of random noise to each point’s position, purely for visibility. It doesn’t change the underlying data, only how it’s drawn:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stress, <span class="fu">aes</span>(<span class="at">x =</span> study_hours, <span class="at">y =</span> stress_level)) <span class="sc">+</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Compare that to plain <code>geom_point()</code> on the same data, and count how many points seem to disappear.</p>
-</div>
-</div>
-<p>Be sure to label axes and titles with <code>labs()</code>, choose appropriate scales, and consider transparency (<code>alpha</code>) to reduce overplotting.</p>
+<p>PDF output specifically needs a LaTeX installation; RStudio offers to install a minimal one (TinyTeX) automatically the first time you render to PDF without one. If an assignment asks for a PDF and rendering fails with a message about <code>pdflatex</code> or <code>tinytex</code>, that missing LaTeX installation, not a mistake in your code, is almost always the cause.</p>
 </section>
-<section id="saving-your-plots" class="level3">
-<h3 class="anchored" data-anchor-id="saving-your-plots">Saving your plots</h3>
-<p>Once you’re happy with a plot, save it with <code>ggsave()</code> rather than right clicking the Plots pane:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"penguin-scatterplot.png"</span>, <span class="at">plot =</span> p, <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Pick your file format on purpose
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><code>ggsave()</code> infers the format from the file extension. Use a raster format (<code>.png</code>) for plots you’ll paste into slides or a web page, since they’re small and load fast. Use a vector format (<code>.pdf</code> or <code>.svg</code>) for anything destined for print or that you might need to zoom into, since vector graphics never get blurry no matter how much you scale them.</p>
-</div>
-</div>
+<section id="inline-code-and-narrative" class="level3">
+<h3 class="anchored" data-anchor-id="inline-code-and-narrative">Inline code and narrative</h3>
+<p>Inline code, an R expression wrapped in a special inline-code span, evaluates that expression and inserts its result directly into your prose when the document renders, which keeps statements about your data accurate as the underlying analysis changes. A small helper function keeps inline number formatting consistent:</p>
+<p>Writing two such inline expressions in a sentence, one calling <code>comma(nrow(gapminder))</code> and the other calling <code>length(unique(gapminder$year))</code>, each wrapped in inline-code syntax, renders as: The gapminder dataset contains 1,704 observations across 12 years. If the expression inside an inline code span itself errors, that failure isn’t quietly swallowed either; the whole render stops (see Example 2.2), the same as a code chunk failing would.</p>
+</section>
+<section id="caching-versus-freezing" class="level3">
+<h3 class="anchored" data-anchor-id="caching-versus-freezing">Caching versus freezing</h3>
+<p>Two different mechanisms both promise “don’t rerun code that hasn’t changed,” and they solve different problems. Chunk-level <code>cache: true</code> is a local performance optimization: knitr stores a chunk’s results in a hidden <code>_cache</code> folder on your own machine, meant to save time while you iterate, not to be committed to version control. Project-wide <code>execute: freeze: auto</code>, the setting this book’s own <code>_quarto.yml</code> actually uses, works differently: it stores each chapter’s execution results in a <code>_freeze</code> folder that <em>is</em> committed to git, so that Continuous Integration (or a collaborator on a different machine) can render the whole book without needing every package this book uses installed, reusing the cached results for any chapter whose source hasn’t changed. Confusing the two is an easy mistake (see Example 2.3).</p>
 </section>
 <section id="fringe-cases-and-common-pitfalls" class="level3">
 <h3 class="anchored" data-anchor-id="fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</h3>
-<p>R4DS’s data visualization chapter gets you plotting quickly, but a handful of ggplot2’s default behaviors are easy to miss on a first read, and each one has caused a real analysis to reach the wrong conclusion at some point.</p>
 <div class="callout callout-style-simple callout-example callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -690,28 +552,13 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Missing values vanish quietly, with only a warning.</strong></p>
-<p>The <code>penguins</code> data frame has a few birds with missing measurements. Watch what happens when we plot one of the affected columns and force the usual warning back on:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(penguins<span class="sc">$</span>bill_depth_mm))  <span class="co"># how many rows are affected?</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_depth_mm, <span class="at">y =</span> bill_length_mm)) <span class="sc">+</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>ggplot2 does not error out. It just drops the incomplete rows and tells you so in a warning: <em>“Removed n rows containing missing values.”</em> If that warning scrolls by unread (or is suppressed, as it is by default in this book’s <code>_quarto.yml</code>), you can end up interpreting a plot of, say, 342 penguins as if it represented all 344, without ever realizing two were silently excluded. <strong>Always check <code>sum(is.na(...))</code> on the variables you’re about to plot before you trust the picture.</strong></p>
+<p><strong>A duplicate chunk label doesn’t just cause a cosmetic warning; it stops the whole render.</strong></p>
+<p>Two chunks in the same document both labeled <code>#| label: setup</code> produce this real error:</p>
+<pre><code>Error in parse_block(g[-1], g[1], params.src, markdown_mode) :
+  Duplicate chunk label 'setup', which has been used for the chunk:
+1 + 1
+Execution halted</code></pre>
+<p>Quarto uses chunk labels for cross-references and for naming generated figure files, so it needs every label in a document to be unique, and it refuses to guess which “setup” chunk you actually meant. This is exactly the kind of error most likely to show up after copying a chunk (setup code, a common summary pattern) from an earlier assignment’s <code>.qmd</code> file into a new one without renaming its label. If a render fails with “Duplicate chunk label,” search the document for that exact label; there will be at least two.</p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-example callout-titled">
@@ -724,33 +571,13 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>A number is not automatically treated as a category.</strong></p>
-<p><code>stress_level</code> in our student survey is recorded as an integer from 1 to 5. If you map it to <code>color</code> directly, ggplot2 assumes it is a <em>continuous</em> measurement and draws a smooth color gradient with a colorbar legend, not five distinct colors:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stress, <span class="fu">aes</span>(<span class="at">x =</span> study_hours, <span class="at">y =</span> major, <span class="at">color =</span> stress_level)) <span class="sc">+</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="fl">0.2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Wrapping the variable in <code>factor()</code> tells ggplot2 to treat each integer as its own discrete category instead, which produces five distinct colors and a discrete legend:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(stress, <span class="fu">aes</span>(<span class="at">x =</span> study_hours, <span class="at">y =</span> major, <span class="at">color =</span> <span class="fu">factor</span>(stress_level))) <span class="sc">+</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"stress_level"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The underlying data never changed; only the way ggplot2 was told to interpret it did. Whenever a legend looks like a continuous gradient but you expected discrete groups, this is the first thing to check.</p>
+<p><strong>An error inside inline code halts the render too, the same as an error inside a full code chunk.</strong></p>
+<p>Writing a sentence that references an object that doesn’t exist through inline R code, such as an undefined <code>nonexistent_variable_xyz</code>, produces a real, render-halting failure the moment Quarto tries to evaluate it:</p>
+<pre><code>Error:
+! object 'nonexistent_variable_xyz' not found
+Quitting from report.qmd:42-42
+Execution halted</code></pre>
+<p>(This example describes the error rather than triggering it live, since doing so would halt the render of this very chapter, which is exactly the point being illustrated.) It can be tempting to think of inline code as “just text with a little bit of R sprinkled in,” safer somehow than a full chunk, but Quarto evaluates it exactly the same way, and a failure there is exactly as fatal to the render as a failure inside a chunk. This matters most right before an assignment is due: if the very last sentence of your document has a typo in an inline expression, the whole file fails to render, tables and plots included, not just that one sentence.</p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-example callout-titled">
@@ -763,41 +590,9 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Bin width can manufacture a pattern that isn’t really there.</strong></p>
-<p>The exact same <code>wait_minutes</code> data can look unimodal, lumpy, or almost uniform depending purely on the bin width you choose:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wait_times, <span class="fu">aes</span>(<span class="at">x =</span> wait_minutes)) <span class="sc">+</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">30</span>) <span class="sc">+</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"binwidth = 30: looks like one smooth hump"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wait_times, <span class="fu">aes</span>(<span class="at">x =</span> wait_minutes)) <span class="sc">+</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"binwidth = 5: same data, bumpier story"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02_files/figure-html/unnamed-chunk-19-2.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(wait_times, <span class="fu">aes</span>(<span class="at">x =</span> wait_minutes)) <span class="sc">+</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"binwidth = 1: mostly noise now"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02_files/figure-html/unnamed-chunk-19-3.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>None of these three plots is “the wrong one,” but none of them alone is “the truth” either. Always try a few different bin widths before drawing a conclusion about a distribution’s shape, and say what bin width you used when you report a histogram to someone else.</p>
+<p><strong><code>cache: true</code> and <code>execute: freeze</code> solve similar-sounding problems in genuinely different ways, and mixing them up causes real confusion.</strong></p>
+<p><code>cache: true</code> on an individual chunk tells knitr to save that chunk’s results locally (in a <code>_cache</code> folder next to the document) so that re-rendering the same document on the same machine can skip recomputing it, purely as a speed optimization for you, right now, while you iterate. It is not meant to be committed to git, and by default it does not know to invalidate itself if a chunk depends on an external file that changed (you’d need <code>cache.extra = file.mtime("data/some_file.csv")</code> to teach it that).</p>
+<p>This book’s own <code>_quarto.yml</code> uses something different: <code>execute: freeze: auto</code>, which stores each chapter’s full execution results in a <code>_freeze</code> folder that <em>is</em> committed to git. That’s precisely why the GitHub Actions workflow that builds and publishes this book doesn’t need to install <code>arrow</code>, <code>duckdb</code>, or every other package used somewhere in these twenty-plus chapters just to rebuild the one chapter you actually edited; unchanged chapters reuse their committed <code>_freeze</code> results, and only a chapter whose source actually changed gets re-executed. <code>cache: true</code> speeds up your own local iteration on one document; <code>execute: freeze</code> is what makes a whole multi-chapter book reproducible for anyone (or any CI system) that clones the repository.</p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-example callout-titled">
@@ -810,40 +605,56 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Truncating the y-axis can manufacture a crisis (or a triumph) out of noise.</strong></p>
-<p>Here is a real (simulated) two year run of monthly retail sales, in thousands of dollars:</p>
+<p><strong><code>knitr::kable()</code>’s default number of decimal places isn’t fixed, and missing values print as the literal text “NA.”</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/retail_sales.csv"</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sales, <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> sales_k)) <span class="sc">+</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">75</span>, <span class="dv">95</span>)) <span class="sc">+</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Sales are swinging wildly!"</span>, <span class="at">y =</span> <span class="st">"sales ($k)"</span>) <span class="sc">+</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">size =</span> <span class="dv">6</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">price =</span> <span class="fu">c</span>(<span class="fl">1.23456789</span>, <span class="cn">NA</span>), <span class="at">item =</span> <span class="fu">c</span>(<span class="st">"pen"</span>, <span class="st">"notebook"</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">price</th>
+<th style="text-align: left;">item</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1.234568</td>
+<td style="text-align: left;">pen</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">notebook</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-</div>
-<p>Starting the y-axis near the data’s minimum, rather than at zero, visually exaggerates every small month to month wiggle. Compare that to the same data with the axis anchored at zero:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sales, <span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> sales_k)) <span class="sc">+</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>)) <span class="sc">+</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The same 18 months, honestly scaled"</span>, <span class="at">y =</span> <span class="st">"sales ($k)"</span>) <span class="sc">+</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">size =</span> <span class="dv">6</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">price</th>
+<th style="text-align: left;">item</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1.24</td>
+<td style="text-align: left;">pen</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">notebook</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-</div>
-<p>Both charts are drawn from <em>identical</em> numbers. Bar charts in particular imply that height represents the full magnitude of a quantity, so a truncated y-axis on a bar chart is one of the most common (and most misleading) tricks in bad data journalism and marketing decks alike. When you see a dramatic looking bar chart, check the y-axis before you believe the drama.</p>
+<p>The same call to <code>kable()</code> on the same data frame produces a different number of decimal places (seven significant digits in the first table, three in the second) depending on the session-wide <code>options("digits")</code> setting, because <code>kable()</code> has no fixed default of its own; it inherits whatever the current R session’s numeric printing option happens to be. That option can be changed by earlier code in the same document (your own, or a package you loaded), so a table’s precision can shift for reasons that have nothing to do with the table itself. Separately, the missing <code>price</code> renders as the plain text <code>NA</code> sitting in the table cell, not as a blank space, which reads fine to someone who knows R but can look like a data error to a reader who doesn’t. Passing an explicit <code>digits</code> argument to <code>kable()</code> fixes the first problem, and wrapping a column in something like <code>replace_na(price, "")</code> before printing addresses the second, if a blank cell is what you actually want a reader to see.</p>
 </div>
 </div>
 </section>
@@ -862,52 +673,36 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Grammar of graphics</strong></td>
-<td>The idea that any plot can be built from independent pieces: data, aesthetic mappings, and geoms.</td>
+<td><strong>YAML header</strong></td>
+<td>The <code>---</code>-delimited metadata block at the top of a <code>.qmd</code> file: title, author, format, and execution defaults.</td>
 </tr>
 <tr class="even">
-<td><strong>Aesthetic mapping (<code>aes()</code>)</strong></td>
-<td>Connects a variable in your data to a visual property (x, y, color, shape, size, alpha).</td>
+<td><strong>Chunk label</strong></td>
+<td>A name (<code>#| label: ...</code>) identifying a code chunk; must be unique in the document, or the render fails.</td>
 </tr>
 <tr class="odd">
-<td><strong>Geom</strong></td>
-<td>The geometric object (<code>geom_point()</code>, <code>geom_bar()</code>, <code>geom_histogram()</code>, <code>geom_boxplot()</code>, and so on) used to represent each observation.</td>
+<td><strong><code>embed-resources</code></strong></td>
+<td>An HTML output option that bundles images and styling into one self-contained file, ideal for submitting a single file.</td>
 </tr>
 <tr class="even">
-<td><strong>Global vs.&nbsp;local mapping</strong></td>
-<td>An <code>aes()</code> inside <code>ggplot()</code> applies to every layer; an <code>aes()</code> inside a specific <code>geom_*()</code> applies only to that layer.</td>
+<td><strong><code>params</code></strong></td>
+<td>YAML-declared inputs (accessed as <code>params$name</code>), turning a <code>.qmd</code> into a re-render-able template.</td>
 </tr>
 <tr class="odd">
-<td><strong>Bar chart</strong></td>
-<td>Shows the distribution (counts) of a single categorical variable.</td>
+<td><strong><code>knitr::kable()</code></strong></td>
+<td>Formats a data frame as a proper table in the rendered output; its default decimal places follow the session’s <code>options("digits")</code>, and missing values print as the text <code>NA</code>.</td>
 </tr>
 <tr class="even">
-<td><strong>Histogram</strong></td>
-<td>Shows the distribution of a single numeric variable by counting observations in equal width bins.</td>
+<td><strong><code>cache: true</code></strong></td>
+<td>A local, per-chunk performance cache (not meant for git); doesn’t auto-invalidate on an external file change without <code>cache.extra</code>.</td>
 </tr>
 <tr class="odd">
-<td><strong>Binwidth</strong></td>
-<td>The width of each bin in a histogram; changing it can change the apparent shape of a distribution.</td>
+<td><strong><code>execute: freeze</code></strong></td>
+<td>A project-wide, git-committed cache of each document’s execution results, used for CI/collaborator reproducibility.</td>
 </tr>
 <tr class="even">
-<td><strong>Boxplot</strong></td>
-<td>Compares the distribution of a numeric variable across levels of a categorical variable.</td>
-</tr>
-<tr class="odd">
-<td><strong><code>position = "fill"</code></strong></td>
-<td>Rescales stacked bars to the same height so they show proportions rather than raw counts.</td>
-</tr>
-<tr class="even">
-<td><strong><code>facet_wrap()</code></strong></td>
-<td>Splits one plot into a grid of subplots, one per level of a categorical variable.</td>
-</tr>
-<tr class="odd">
-<td><strong>Overplotting</strong></td>
-<td>When many points are drawn on top of each other, hiding how much data is really there; mitigated with <code>alpha</code> or <code>geom_jitter()</code>.</td>
-</tr>
-<tr class="even">
-<td><strong>Truncated axis</strong></td>
-<td>An axis that doesn’t start at a natural baseline (usually zero); can visually exaggerate small differences, especially on bar charts.</td>
+<td><strong>Inline code</strong></td>
+<td>An R expression wrapped in inline-code syntax inside prose; evaluated at render time, and just as capable of halting the render as a full chunk.</td>
 </tr>
 </tbody>
 </table>
@@ -915,7 +710,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <section id="check-your-understanding" class="level3">
 <h3 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h3>
 <div class="callout callout-style-default callout-note callout-titled" title="Problems">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -924,23 +719,21 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse show">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><p>What are the three components every ggplot2 plot needs at minimum? Give an example of each using the <code>penguins</code> scatterplot from this session.</p></li>
-<li><p>You write the following code and get a syntax error:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> species))</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>What is wrong, and how do you fix it?</p></li>
-<li><p>A classmate maps a satisfaction rating from 1 to 5 to <code>color</code> in a scatterplot and gets a smooth blue to yellow gradient legend instead of five distinct colors. What happened, and how would you fix their code?</p></li>
-<li><p>You plot a histogram of exam scores with <code>binwidth = 1</code> and it looks like noisy static. Does that mean the data has no real pattern? What should you try next?</p></li>
-<li><p>A coworker shows you a bar chart with the title “Revenue has TRIPLED this quarter!” where the y-axis runs from 240 to 250. What should you check before believing the headline?</p></li>
+<li>What are the three components of a <code>.qmd</code> file, and what is each one responsible for?</li>
+<li>A report needs to be re-generated once per region, with only the region name changing each time. Which Quarto YAML feature is built for exactly this, and how would you access the region name inside the document?</li>
+<li>Two chunks in the same document are both labeled <code>analysis</code>. What happens when you try to render it, and why does Quarto insist on unique labels in the first place?</li>
+<li>Why should you submit an assignment as a single rendered HTML file with <code>embed-resources: true</code> rather than the raw <code>.html</code> file Quarto produces without it?</li>
+<li>A colleague says they added <code>cache: true</code> to a slow chunk that reads an external CSV, and now the chunk doesn’t rerun even after they edited that CSV. What is actually going on, and how is this different from how this book’s own chapters stay up to date?</li>
+<li>You call <code>knitr::kable()</code> on a data frame with a missing value and notice the table prints seven decimal places for one number and the literal text <code>NA</code> for the missing one. Explain both observations.</li>
 </ol>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Solutions">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -949,14 +742,15 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><p>Every plot needs <strong>data</strong> (a data frame, e.g.&nbsp;<code>penguins</code>), an <strong>aesthetic mapping</strong> (<code>aes(x = flipper_length_mm, y = body_mass_g)</code>, linking variables to the x and y positions), and a <strong>geom</strong> (<code>geom_point()</code>, the visual mark used to draw each observation).</p></li>
-<li><p>The <code>+</code> is at the start of the second line instead of the end of the first line. R considers <code>ggplot(penguins, aes(x = species))</code> a complete, runnable expression on its own, so it stops there and then chokes on a line that begins with <code>+ geom_bar()</code>. The fix is to move the <code>+</code> to the end of the first line: <code>ggplot(penguins, aes(x = species)) +</code> on one line, <code>geom_bar()</code> on the next.</p></li>
-<li><p>They mapped a <em>numeric</em> column directly to <code>color</code>, so ggplot2 assumed it was a continuous measurement and drew a gradient. Wrapping it in <code>factor()</code>, as in <code>aes(color = factor(rating))</code>, tells ggplot2 to treat each rating as a discrete category, producing five distinct colors and a discrete legend instead.</p></li>
-<li><p>No, it means the bin width is too narrow relative to the natural variability in the data, so each bin is mostly capturing random noise rather than the underlying shape. Try several wider bin widths (for example, 5, 10, or 30) and compare; the “right” bin width is often a range of reasonable choices rather than a single correct number.</p></li>
-<li><p>Check where the y-axis actually starts. Since it doesn’t start at zero (here, it starts at 240, not far below the smallest value being plotted), even a tiny absolute change can be stretched to fill the entire height of the chart, making a small change look dramatic. Ask to see the same chart with the y-axis starting at zero before drawing any conclusions.</p></li>
+<li><p>A YAML header (metadata and default settings, such as title and output format), narrative text in Markdown (headings, paragraphs, lists), and code chunks (executable code whose output is inserted into the rendered document).</p></li>
+<li><p>The <code>params</code> field in the YAML header declares an input, accessed inside the document as <code>params$name</code> (for example, <code>params$region</code>); re-rendering with a different value passed for that parameter regenerates the report for a different region without editing the <code>.qmd</code> file’s actual content.</p></li>
+<li><p>Quarto refuses to render and reports a “Duplicate chunk label” error naming the reused label, because labels are used to identify chunks for cross-referencing and to name generated figure files, and Quarto has no way to guess which of the two identically labeled chunks you actually meant in either context.</p></li>
+<li><p>Without <code>embed-resources: true</code>, the rendered HTML file depends on separate image and CSS files living alongside it; if you submit only the <code>.html</code> file (to an email attachment or a course dropbox that accepts one file), those separate files don’t travel with it, and the document a grader opens is missing its plots and styling. <code>embed-resources: true</code> bundles everything into the one file you actually submit.</p></li>
+<li><p><code>cache: true</code> is a local performance cache that does not automatically know to invalidate itself when a chunk’s underlying dependency (like the CSV file) changes; it only detects changes to the chunk’s own code, unless the colleague explicitly adds something like <code>cache.extra = file.mtime("data.csv")</code> to make the cache dependent on that file too. This book’s own reproducibility instead relies on <code>execute: freeze</code>, a different, project-wide, git-committed mechanism, and it faces an analogous risk: a frozen chapter’s cached results also won’t update on their own if only a referenced data file changes and the chapter’s own <code>.qmd</code> source doesn’t, which is why deleting the relevant <code>_freeze</code> entry (or re-rendering explicitly) is sometimes necessary after changing shared data.</p></li>
+<li><p><code>kable()</code> has no fixed decimal-place default of its own; it follows whatever the current R session’s <code>options("digits")</code> is set to, so the same table can print with different precision depending on code that ran earlier in the same session. Separately, <code>kable()</code> displays a missing value as the plain text <code>NA</code> inside the table cell rather than leaving the cell blank, since it has no way to know whether a reader would prefer a blank cell or an explicit marker; an explicit <code>digits</code> argument and a <code>replace_na()</code> step before printing address the two issues respectively.</p></li>
 </ol>
 </div>
 </div>

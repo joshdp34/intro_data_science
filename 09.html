@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>9&nbsp; Session 9: Variable types II: strings and regular expressions – STA 2300 Intro to Data Science</title>
+<title>9&nbsp; Session 9: Variable types I: logical and numeric vectors – STA 2300 Intro to Data Science</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -177,7 +177,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types II: strings and regular expressions</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types I: logical and numeric vectors</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -224,127 +224,133 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Data visualization basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Quarto basics for reproducible assignments</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: The layered grammar of graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: Data visualization basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: The layered grammar of graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (II): grouping and summarizing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data import: reading CSV and flat files</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data transformation (II): grouping and summarizing</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Tidy data and pivoting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Data import: reading CSV and flat files</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Variable types I: logical and numeric vectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Tidy data and pivoting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types II: strings and regular expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types I: logical and numeric vectors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types III: factors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types II: strings and regular expressions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types IV: dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types III: factors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12 – Missing values &amp; data cleaning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12: Variable types IV: dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13 –&nbsp;Relational data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13: Missing values and data cleaning</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14 – Advanced data import I: spreadsheets</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14: Relational data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15 – Advanced data import II: databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15: Advanced data import I: spreadsheets</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./16.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16 – Big‑data formats &amp; hierarchical data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16: Advanced data import II: databases</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17 – Web scraping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17: Big data formats and hierarchical data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./18.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18 – Basic programming I: functions &amp; code style</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18: Web scraping</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./19.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19 – Basic programming II: iteration &amp; functional programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19: Basic programming I: functions and code style</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./20.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20 – Reproducible research &amp; communication</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20: Basic programming II: iteration and functional programming</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./21.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21 – Exploratory data analysis (EDA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21: Communication</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./22.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22 – Statistical modelling&nbsp;I: simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22: Exploratory data analysis (EDA)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Session 23: Statistical modeling I: simple linear regression</span></span></a>
   </div>
 </li>
     </ul>
@@ -360,14 +366,15 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#creating-strings-quotes-escapes-and-raw-strings" id="toc-creating-strings-quotes-escapes-and-raw-strings" class="nav-link" data-scroll-target="#creating-strings-quotes-escapes-and-raw-strings">Creating strings: quotes, escapes, and raw strings</a></li>
-  <li><a href="#combining-and-formatting-strings" id="toc-combining-and-formatting-strings" class="nav-link" data-scroll-target="#combining-and-formatting-strings">Combining and formatting strings</a></li>
-  <li><a href="#regular-expressions-pattern-basics" id="toc-regular-expressions-pattern-basics" class="nav-link" data-scroll-target="#regular-expressions-pattern-basics">Regular expressions: pattern basics</a></li>
-  <li><a href="#detecting-counting-and-extracting-patterns" id="toc-detecting-counting-and-extracting-patterns" class="nav-link" data-scroll-target="#detecting-counting-and-extracting-patterns">Detecting, counting, and extracting patterns</a></li>
-  <li><a href="#capturing-groups-and-backreferences" id="toc-capturing-groups-and-backreferences" class="nav-link" data-scroll-target="#capturing-groups-and-backreferences">Capturing groups and backreferences</a></li>
-  <li><a href="#literal-matching-with-fixed" id="toc-literal-matching-with-fixed" class="nav-link" data-scroll-target="#literal-matching-with-fixed">Literal matching with <code>fixed()</code></a></li>
-  <li><a href="#splitting-a-column-into-several" id="toc-splitting-a-column-into-several" class="nav-link" data-scroll-target="#splitting-a-column-into-several">Splitting a column into several</a></li>
-  <li><a href="#working-with-messy-strings-in-tibbles" id="toc-working-with-messy-strings-in-tibbles" class="nav-link" data-scroll-target="#working-with-messy-strings-in-tibbles">Working with messy strings in tibbles</a></li>
+  <li><a href="#logical-vectors-and-comparisons" id="toc-logical-vectors-and-comparisons" class="nav-link" data-scroll-target="#logical-vectors-and-comparisons">Logical vectors and comparisons</a></li>
+  <li><a href="#boolean-algebra-and-missing-values" id="toc-boolean-algebra-and-missing-values" class="nav-link" data-scroll-target="#boolean-algebra-and-missing-values">Boolean algebra and missing values</a></li>
+  <li><a href="#summarizing-logical-vectors" id="toc-summarizing-logical-vectors" class="nav-link" data-scroll-target="#summarizing-logical-vectors">Summarizing logical vectors</a></li>
+  <li><a href="#recoding-values-with-if_else-and-case_when" id="toc-recoding-values-with-if_else-and-case_when" class="nav-link" data-scroll-target="#recoding-values-with-if_else-and-case_when">Recoding values with <code>if_else()</code> and <code>case_when()</code></a></li>
+  <li><a href="#numeric-vectors-making-numbers-and-parsing" id="toc-numeric-vectors-making-numbers-and-parsing" class="nav-link" data-scroll-target="#numeric-vectors-making-numbers-and-parsing">Numeric vectors: making numbers and parsing</a></li>
+  <li><a href="#vectorized-arithmetic-and-recycling" id="toc-vectorized-arithmetic-and-recycling" class="nav-link" data-scroll-target="#vectorized-arithmetic-and-recycling">Vectorized arithmetic and recycling</a></li>
+  <li><a href="#numeric-transformations" id="toc-numeric-transformations" class="nav-link" data-scroll-target="#numeric-transformations">Numeric transformations</a></li>
+  <li><a href="#ranking-offsets-and-positions" id="toc-ranking-offsets-and-positions" class="nav-link" data-scroll-target="#ranking-offsets-and-positions">Ranking, offsets, and positions</a></li>
+  <li><a href="#numeric-summaries" id="toc-numeric-summaries" class="nav-link" data-scroll-target="#numeric-summaries">Numeric summaries</a></li>
   <li><a href="#fringe-cases-and-common-pitfalls" id="toc-fringe-cases-and-common-pitfalls" class="nav-link" data-scroll-target="#fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</a></li>
   <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
   <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
@@ -380,7 +387,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types II: strings and regular expressions</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types I: logical and numeric vectors</span></h1>
 </div>
 
 
@@ -400,239 +407,256 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Create and manipulate strings.</strong> Recall that strings are sequences of characters defined by quotes. In R you can use single <code>'</code> or double <code>"</code> quotes to create strings; the R4DS text recommends double quotes by default, switching to single quotes only when the string itself contains double quotes, and raw strings when a string is otherwise full of backslashes. You’ll learn to escape special characters, measure length with <code>str_length()</code>, and extract or replace substrings with <code>str_sub()</code>.</li>
-<li><strong>Combine and format strings.</strong> Concatenate strings with <code>str_c()</code> (stringr’s equivalent to <code>paste0()</code>, but stricter about missing values), and build templated strings with <code>str_glue()</code>. Learn to collapse a vector of strings into one with <code>str_flatten()</code>.</li>
-<li><strong>Understand regular expressions.</strong> A regular expression (regex) is a concise language for describing patterns within strings. Learn the difference between literal characters and metacharacters, how quantifiers (<code>?</code>, <code>*</code>, <code>+</code>, <code>{n,m}</code>) control repetition, how character classes (<code>[...]</code>) and their shortcuts (<code>\d</code>, <code>\s</code>, <code>\w</code>) work, and how alternation (<code>|</code>) and anchors (<code>^</code>, <code>$</code>, <code>\b</code>) narrow a match.</li>
-<li><strong>Match, extract, and replace patterns.</strong> Use <code>str_detect()</code>, <code>str_subset()</code>, and <code>str_which()</code> to test or filter strings, <code>str_count()</code> to count matches, <code>str_extract()</code>/<code>str_extract_all()</code>/<code>str_match()</code> to pull out matches (including captured groups), and <code>str_replace()</code>/<code>str_remove()</code> (and their <code>_all()</code> variants) to edit strings in place.</li>
-<li><strong>Use capturing groups and literal matching.</strong> Recognize how parentheses create capturing groups you can reuse in a replacement, and know when to reach for <code>fixed()</code> instead of treating a search string as a regex at all.</li>
-<li><strong>Tidy multiple variables encoded in one string.</strong> Recognize when a single string stores several pieces of information and use <code>stringr</code> plus tidyr’s <code>separate_wider_delim()</code> to split it into proper columns.</li>
+<li><strong>Distinguish logical and numeric vectors.</strong> Logical vectors contain only <code>TRUE</code>, <code>FALSE</code>, or <code>NA</code>, whereas numeric vectors contain integers or doubles. Learn to convert strings to numbers with <code>parse_double()</code> and <code>parse_number()</code>.</li>
+<li><strong>Create and combine logical vectors.</strong> Use comparison operators (<code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>!=</code>, <code>==</code>) to generate logical vectors and combine them with <code>&amp;</code>, <code>|</code>, <code>!</code>, and <code>xor()</code>. Avoid the short-circuiting operators (<code>&amp;&amp;</code>, <code>||</code>) inside data-masking verbs. Understand exactly how missing values propagate through comparisons and Boolean operations, since <code>&amp;</code> and <code>|</code> do not treat <code>NA</code> the same way.</li>
+<li><strong>Summarize logical vectors.</strong> Collapse logical vectors with <code>any()</code> and <code>all()</code>, or coerce them to numeric and use <code>sum()</code>/<code>mean()</code> to count or compute the proportion of <code>TRUE</code>s. Detect missing values with <code>is.na()</code>.</li>
+<li><strong>Recode values conditionally.</strong> Use <code>if_else()</code> for a single condition and <code>case_when()</code> for several conditions evaluated in order, and understand why both require every possible output to share a compatible type.</li>
+<li><strong>Perform numeric operations and transformations.</strong> Recognize that R recycles shorter vectors in arithmetic. Use <code>pmin()</code>/<code>pmax()</code> for element-wise minima and maxima, <code>%/%</code> and <code>%%</code> for modular arithmetic, logarithms for rescaling, <code>round()</code>, <code>floor()</code>, and <code>ceiling()</code> for rounding, and <code>cut()</code> to bin numeric data.</li>
+<li><strong>Rank, offset, and pick out positions.</strong> Use <code>min_rank()</code>/<code>dense_rank()</code> to rank values, <code>lag()</code>/<code>lead()</code> to compare a value to its neighbor, and <code>first()</code>/<code>last()</code>/<code>nth()</code> to pull specific elements out of a vector.</li>
+<li><strong>Compute numeric summaries.</strong> Compare the mean and median (the mean is sensitive to extreme values while the median is robust), and use quantiles to summarize tails and spread measures such as the standard deviation and interquartile range.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="creating-strings-quotes-escapes-and-raw-strings" class="level3">
-<h3 class="anchored" data-anchor-id="creating-strings-quotes-escapes-and-raw-strings">Creating strings: quotes, escapes, and raw strings</h3>
-<p>Strings can be created with single or double quotes. Double quotes are preferred by convention; use single quotes only when the string itself contains double quotes, to avoid escaping them. Special characters (backslash, newline, tab) require escaping with <code>\\</code>, <code>\n</code>, or <code>\t</code>.</p>
+<section id="logical-vectors-and-comparisons" class="level3">
+<h3 class="anchored" data-anchor-id="logical-vectors-and-comparisons">Logical vectors and comparisons</h3>
+<p>Logical vectors are created by comparing values and can take on three states: <code>TRUE</code>, <code>FALSE</code>, or <code>NA</code>. Comparison operators return a logical vector the same length as their input.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>quote_example <span class="ot">&lt;-</span> <span class="st">"He said, 'R is great!'"</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>quote_example</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">late_dep =</span> dep_delay <span class="sc">&gt;</span> <span class="dv">30</span>,     <span class="co"># TRUE if departure delay &gt; 30 min</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">early_arr =</span> arr_delay <span class="sc">&lt;</span> <span class="dv">0</span>      <span class="co"># TRUE if arrival was early</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year<span class="sc">:</span>day, dep_delay, arr_delay, late_dep, early_arr) <span class="sc">|&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "He said, 'R is great!'"</code></pre>
+<pre><code># A tibble: 5 × 7
+   year month   day dep_delay arr_delay late_dep early_arr
+  &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;lgl&gt;    &lt;lgl&gt;    
+1  2013     1     1         2        11 FALSE    FALSE    
+2  2013     1     1         4        20 FALSE    FALSE    
+3  2013     1     1         2        33 FALSE    FALSE    
+4  2013     1     1        -1       -18 FALSE    TRUE     
+5  2013     1     1        -6       -25 FALSE    TRUE     </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">"C:</span><span class="sc">\\</span><span class="st">Users</span><span class="sc">\\</span><span class="st">Data</span><span class="sc">\\</span><span class="st">mydata</span><span class="sc">\n</span><span class="st">"</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>path</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "C:\\Users\\Data\\mydata\n"</code></pre>
 </div>
-</div>
-<p>When a string needs many literal backslashes, such as a Windows path or a regex pattern you don’t want to double-escape, a <strong>raw string</strong> written as <code>r"(...)"</code> treats everything inside as literal text, with no escaping at all:</p>
+<p>Be cautious when comparing floating-point numbers, since tiny rounding errors mean equality tests can fail even when two values are conceptually equal; use <code>dplyr::near()</code> to test approximate equality instead of <code>==</code>.</p>
+</section>
+<section id="boolean-algebra-and-missing-values" class="level3">
+<h3 class="anchored" data-anchor-id="boolean-algebra-and-missing-values">Boolean algebra and missing values</h3>
+<p>Combine logical vectors with Boolean algebra: <code>&amp;</code> means “and,” <code>|</code> means “or,” <code>!</code> means “not,” and <code>xor()</code> is exclusive or. The short-circuiting operators <code>&amp;&amp;</code> and <code>||</code> collapse to a single <code>TRUE</code>/<code>FALSE</code> and should never be used inside <code>filter()</code> or <code>mutate()</code>, which expect one result per row.</p>
+<p>Missing values are contagious, but not uniformly so. <code>NA</code> in a comparison always produces <code>NA</code>, and <code>NA</code> in a Boolean expression only resolves to a definite answer when that answer is already certain regardless of what the missing piece turns out to be:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>raw_path <span class="ot">&lt;-</span> r<span class="st">"(C:\Users\Data\mydata)"</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>raw_path</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="cn">NA</span> <span class="sc">|</span> <span class="cn">TRUE</span>, <span class="cn">NA</span> <span class="sc">|</span> <span class="cn">FALSE</span>, <span class="cn">NA</span> <span class="sc">&amp;</span> <span class="cn">TRUE</span>, <span class="cn">NA</span> <span class="sc">&amp;</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "C:\\Users\\Data\\mydata"</code></pre>
+<pre><code>[1]  TRUE    NA    NA FALSE</code></pre>
 </div>
 </div>
-<p>The length of a string (its number of characters) is computed with <code>str_length()</code>, which counts human-visible characters rather than bytes, so it handles multi-byte characters like emoji sensibly:</p>
+<p><code>NA | TRUE</code> is <code>TRUE</code> because <em>at least one</em> side is already <code>TRUE</code>, no matter what the unknown side turns out to be. <code>NA &amp; FALSE</code> is <code>FALSE</code> for the same reason in the other direction: since one side is already <code>FALSE</code>, the whole <code>&amp;</code> expression cannot possibly be <code>TRUE</code>. The other two combinations genuinely depend on the missing value, so they stay <code>NA</code>. Use <code>is.na()</code> when you specifically want to test for missingness rather than relying on a comparison or Boolean expression to reveal it (see Example 8.1 for a related surprise with <code>%in%</code>).</p>
+<p>When combining conditions, remember the order of operations. To filter flights departing in November or December, write <code>month == 11 | month == 12</code>, or use <code>%in%</code>; writing <code>month == 11 | 12</code> does not mean what it looks like it means, because <code>12</code> on its own is treated as a non-zero (and therefore <code>TRUE</code>) value rather than as a second thing to compare <code>month</code> against.</p>
+</section>
+<section id="summarizing-logical-vectors" class="level3">
+<h3 class="anchored" data-anchor-id="summarizing-logical-vectors">Summarizing logical vectors</h3>
+<p>Logical summaries collapse a logical vector to a single value. <code>any(x)</code> is <code>TRUE</code> if <em>any</em> element of <code>x</code> is <code>TRUE</code>; <code>all(x)</code> is <code>TRUE</code> only if <em>every</em> element is. Both accept <code>na.rm = TRUE</code> to ignore missing values.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_length</span>(<span class="fu">c</span>(<span class="st">""</span>, <span class="st">"abc"</span>, <span class="st">"😊"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">all_dep_within_hour =</span> <span class="fu">all</span>(dep_delay <span class="sc">&lt;=</span> <span class="dv">60</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">any_long_arr_delay =</span> <span class="fu">any</span>(arr_delay <span class="sc">&gt;=</span> <span class="dv">300</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0 3 1</code></pre>
+<pre><code># A tibble: 365 × 5
+    year month   day all_dep_within_hour any_long_arr_delay
+   &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;lgl&gt;               &lt;lgl&gt;             
+ 1  2013     1     1 FALSE               TRUE              
+ 2  2013     1     2 FALSE               TRUE              
+ 3  2013     1     3 FALSE               FALSE             
+ 4  2013     1     4 FALSE               FALSE             
+ 5  2013     1     5 FALSE               TRUE              
+ 6  2013     1     6 FALSE               FALSE             
+ 7  2013     1     7 FALSE               TRUE              
+ 8  2013     1     8 FALSE               FALSE             
+ 9  2013     1     9 FALSE               TRUE              
+10  2013     1    10 FALSE               TRUE              
+# ℹ 355 more rows</code></pre>
 </div>
 </div>
-<p><code>str_sub()</code> extracts or replaces substrings by position. Positive indices count from the start and negative indices count from the end, and the function is vectorized:</p>
+<p>Because logical vectors coerce to numeric (<code>TRUE</code> becomes 1, <code>FALSE</code> becomes 0), <code>sum()</code> counts <code>TRUE</code> values and <code>mean()</code> computes their proportion.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fruit <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"banana"</span>, <span class="st">"apple"</span>, <span class="st">"pear"</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(fruit, <span class="dv">1</span>, <span class="dv">3</span>)      <span class="co"># first three letters</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, month, day) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">prop_on_time_dep =</span> <span class="fu">mean</span>(dep_delay <span class="sc">&lt;=</span> <span class="dv">60</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">count_long_arr_delay =</span> <span class="fu">sum</span>(arr_delay <span class="sc">&gt;=</span> <span class="dv">300</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "ban" "app" "pea"</code></pre>
+<pre><code># A tibble: 365 × 5
+    year month   day prop_on_time_dep count_long_arr_delay
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;            &lt;dbl&gt;                &lt;int&gt;
+ 1  2013     1     1            0.939                    3
+ 2  2013     1     2            0.914                    3
+ 3  2013     1     3            0.941                    0
+ 4  2013     1     4            0.953                    0
+ 5  2013     1     5            0.964                    1
+ 6  2013     1     6            0.959                    0
+ 7  2013     1     7            0.956                    1
+ 8  2013     1     8            0.975                    0
+ 9  2013     1     9            0.986                    1
+10  2013     1    10            0.977                    2
+# ℹ 355 more rows</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(fruit, <span class="sc">-</span><span class="dv">3</span>, <span class="sc">-</span><span class="dv">1</span>)    <span class="co"># last three letters</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "ana" "ple" "ear"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(fruit, <span class="dv">1</span>, <span class="dv">1</span>) <span class="ot">&lt;-</span> <span class="fu">str_to_upper</span>(<span class="fu">str_sub</span>(fruit, <span class="dv">1</span>, <span class="dv">1</span>))  <span class="co"># capitalize first letter</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>fruit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Logical vectors also enable inline subsetting. Rather than filtering an entire data frame, you can subset a single vector directly with a logical condition (<code>arr_delay[arr_delay &gt; 0]</code>) to compute a summary on just the values that meet a criterion.</p>
+</section>
+<section id="recoding-values-with-if_else-and-case_when" class="level3">
+<h3 class="anchored" data-anchor-id="recoding-values-with-if_else-and-case_when">Recoding values with <code>if_else()</code> and <code>case_when()</code></h3>
+<p>Comparisons and Boolean algebra tell you <em>which</em> rows meet a condition; <code>if_else()</code> and <code>case_when()</code> let you turn that into a new value. <code>if_else()</code> takes a condition and two alternatives, one for <code>TRUE</code> and one for <code>FALSE</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">status =</span> <span class="fu">if_else</span>(arr_delay <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="st">"late"</span>, <span class="st">"on time or early"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(arr_delay, status) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Banana" "Apple"  "Pear"  </code></pre>
+<pre><code># A tibble: 6 × 2
+  arr_delay status          
+      &lt;dbl&gt; &lt;chr&gt;           
+1        11 late            
+2        20 late            
+3        33 late            
+4       -18 on time or early
+5       -25 on time or early
+6        12 late            </code></pre>
+</div>
+</div>
+<p><code>if_else()</code> also accepts a fourth argument for how to handle <code>NA</code> in the condition itself, which otherwise passes through as <code>NA</code> in the result. For more than two possible outcomes, <code>case_when()</code> evaluates a series of <code>condition ~ value</code> pairs in order and uses the value from the first condition that matches:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">delay_category =</span> <span class="fu">case_when</span>(</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">is.na</span>(arr_delay)  <span class="sc">~</span> <span class="st">"cancelled or diverted"</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>      arr_delay <span class="sc">&lt;=</span> <span class="dv">0</span>    <span class="sc">~</span> <span class="st">"on time or early"</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>      arr_delay <span class="sc">&lt;=</span> <span class="dv">30</span>   <span class="sc">~</span> <span class="st">"slightly late"</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>      arr_delay <span class="sc">&lt;=</span> <span class="dv">120</span>  <span class="sc">~</span> <span class="st">"very late"</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">.default =</span> <span class="st">"extremely late"</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(delay_category)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  delay_category             n
+  &lt;chr&gt;                  &lt;int&gt;
+1 cancelled or diverted   9430
+2 extremely late         10034
+3 on time or early      194342
+4 slightly late          81505
+5 very late              41465</code></pre>
+</div>
+</div>
+<p><code>.default</code> supplies a value for any row that matches none of the earlier conditions; leaving it off has a real consequence covered in Example 8.4.</p>
+</section>
+<section id="numeric-vectors-making-numbers-and-parsing" class="level3">
+<h3 class="anchored" data-anchor-id="numeric-vectors-making-numbers-and-parsing">Numeric vectors: making numbers and parsing</h3>
+<p>Numeric vectors may be integers or doubles. When numbers are stored as text (<code>"$1,234"</code>, <code>"59%"</code>), use <code>readr::parse_double()</code> to convert simple numeric strings, and <code>readr::parse_number()</code> to strip extraneous characters like currency symbols or percent signs first.</p>
+</section>
+<section id="vectorized-arithmetic-and-recycling" class="level3">
+<h3 class="anchored" data-anchor-id="vectorized-arithmetic-and-recycling">Vectorized arithmetic and recycling</h3>
+<p>R performs arithmetic element-wise and recycles the shorter vector to match the length of the longer one. Recycling a single number (<code>x / 5</code>) is convenient; recycling a longer vector against one that isn’t a clean multiple of its length produces a warning, and even a clean recycle can silently do something other than what you intended. Avoid comparing a vector to several values with <code>==</code>; use <code>%in%</code> instead.</p>
+<p>Element-wise minima and maxima come from <code>pmin()</code> and <code>pmax()</code>, and modular arithmetic (<code>%/%</code>, <code>%%</code>) performs integer division and finds remainders. For example, unpacking a four-digit scheduled departure time into hours and minutes:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">sched_hour =</span> sched_dep_time <span class="sc">%/%</span> <span class="dv">100</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sched_minute =</span> sched_dep_time <span class="sc">%%</span> <span class="dv">100</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sched_dep_time, sched_hour, sched_minute) <span class="sc">|&gt;</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  sched_dep_time sched_hour sched_minute
+           &lt;int&gt;      &lt;dbl&gt;        &lt;dbl&gt;
+1            515          5           15
+2            529          5           29
+3            540          5           40
+4            545          5           45
+5            600          6            0
+6            558          5           58</code></pre>
 </div>
 </div>
 </section>
-<section id="combining-and-formatting-strings" class="level3">
-<h3 class="anchored" data-anchor-id="combining-and-formatting-strings">Combining and formatting strings</h3>
-<p><code>str_c()</code> concatenates strings and returns a character vector; it behaves like <code>paste0()</code> but integrates more predictably with dplyr and, unlike <code>paste0()</code>, does not quietly turn a missing value into the text <code>"NA"</code> (see Example 9.2). A <code>sep</code> argument inserts a separator between pieces, and <code>collapse</code> further collapses the whole result into a single string.</p>
+<section id="numeric-transformations" class="level3">
+<h3 class="anchored" data-anchor-id="numeric-transformations">Numeric transformations</h3>
+<p>To handle wide ranges of values, apply a log transformation. <code>log2()</code> and <code>log10()</code> are easier to interpret than the natural log <code>log()</code>: a difference of 1 on the log2 scale corresponds to exactly doubling or halving the original value. Rounding functions include <code>round()</code> (see Example 8.3 for a rounding surprise), <code>floor()</code>, and <code>ceiling()</code>; to round to an arbitrary multiple, scale the vector, round, and scale back. <code>cut()</code> converts a continuous variable into categories from break points and optional labels.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(n, species, <span class="at">sep =</span> <span class="st">" "</span>, <span class="at">collapse =</span> <span class="st">"; "</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>, <span class="dv">20</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span>(x, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"small"</span>, <span class="st">"medium"</span>, <span class="st">"large"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "3 Adelie; 2 Chinstrap; 1 Gentoo"</code></pre>
-</div>
-</div>
-<p>Inside a <code>mutate()</code>, if any input to <code>str_c()</code> is <code>NA</code>, the whole result is <code>NA</code>; wrap a column in <code>coalesce(column, "")</code> first if you would rather treat a missing value as an empty string.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">first =</span> <span class="fu">c</span>(<span class="st">"John"</span>, <span class="cn">NA</span>, <span class="st">"Jenny"</span>), <span class="at">last =</span> <span class="fu">c</span>(<span class="st">"Smith"</span>, <span class="st">"Nguyen"</span>, <span class="cn">NA</span>))</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">full =</span> <span class="fu">str_c</span>(<span class="fu">coalesce</span>(first, <span class="st">""</span>), <span class="fu">coalesce</span>(last, <span class="st">""</span>), <span class="at">sep =</span> <span class="st">" "</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 3
-  first last   full        
-  &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;       
-1 John  Smith  "John Smith"
-2 &lt;NA&gt;  Nguyen " Nguyen"   
-3 Jenny &lt;NA&gt;   "Jenny "    </code></pre>
-</div>
-</div>
-<p><code>str_glue()</code> builds templated strings, inserting the value of any R expression written inside <code>{}</code>:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">message =</span> <span class="fu">str_glue</span>(<span class="st">"Hello {first} {last}!"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 3
-  first last   message          
-  &lt;chr&gt; &lt;chr&gt;  &lt;glue&gt;           
-1 John  Smith  Hello John Smith!
-2 &lt;NA&gt;  Nguyen Hello NA Nguyen! 
-3 Jenny &lt;NA&gt;   Hello Jenny NA!  </code></pre>
-</div>
-</div>
-<p>To combine many strings into one, <code>str_flatten()</code> collapses a character vector with a given delimiter, which reads more clearly than building the same string up manually:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_flatten</span>(<span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>), <span class="at">collapse =</span> <span class="st">", "</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "a, b, c"</code></pre>
+<pre><code>[1] small  small  small  medium large  large 
+Levels: small medium large</code></pre>
 </div>
 </div>
 </section>
-<section id="regular-expressions-pattern-basics" class="level3">
-<h3 class="anchored" data-anchor-id="regular-expressions-pattern-basics">Regular expressions: pattern basics</h3>
-<p>A regular expression describes a <em>set</em> of strings rather than one specific string. Most letters and digits match themselves literally; a handful of characters are metacharacters with special meaning:</p>
-<ul>
-<li><code>.</code> matches any single character except a newline.</li>
-<li>Quantifiers control repetition: <code>?</code> means zero or one, <code>*</code> means zero or more, <code>+</code> means one or more, and <code>{n,m}</code> means between <code>n</code> and <code>m</code> repetitions (either bound can be omitted).</li>
-<li>Character classes like <code>[aeiou]</code> match any one of the enclosed characters, and <code>[^0-9]</code> (a caret at the start) matches any character <em>not</em> in the class. <code>\d</code>, <code>\s</code>, and <code>\w</code> are shortcuts for a digit, whitespace, and a “word” character (letter, digit, or underscore), respectively.</li>
-<li>Alternation <code>|</code> matches one of several alternatives, so <code>apple|pear</code> matches either word.</li>
-<li>Anchors pin a match to a position rather than to any characters: <code>^</code> matches the start of a string, <code>$</code> matches the end, and <code>\b</code> matches a word boundary, the (zero-width) transition between a word character and a non-word character (see Example 9.4).</li>
-</ul>
+<section id="ranking-offsets-and-positions" class="level3">
+<h3 class="anchored" data-anchor-id="ranking-offsets-and-positions">Ranking, offsets, and positions</h3>
+<p>A handful of dplyr functions answer questions about a value’s place relative to the rest of a vector, rather than about the value on its own. <code>min_rank()</code> ranks values with ties sharing the same (lowest) rank and a gap afterward, while <code>dense_rank()</code> ranks the same way but without leaving a gap; <code>row_number()</code> breaks ties by position instead.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">30</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(scores, <span class="at">min_rank =</span> <span class="fu">min_rank</span>(scores), <span class="at">dense_rank =</span> <span class="fu">dense_rank</span>(scores))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+  scores min_rank dense_rank
+   &lt;dbl&gt;    &lt;int&gt;      &lt;int&gt;
+1     10        1          1
+2     20        2          2
+3     20        2          2
+4     30        4          3</code></pre>
+</div>
+</div>
+<p><code>lag()</code> and <code>lead()</code> shift a vector by one position (or more, with a second argument), which is exactly what you need to compare a value to the one before or after it, such as computing a change from the previous row within a group:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(month <span class="sc">==</span> <span class="dv">1</span>, day <span class="sc">==</span> <span class="dv">1</span>, origin <span class="sc">==</span> <span class="st">"EWR"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(sched_dep_time) <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prev_dep_delay =</span> <span class="fu">lag</span>(dep_delay), <span class="at">delay_change =</span> dep_delay <span class="sc">-</span> prev_dep_delay) <span class="sc">|&gt;</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sched_dep_time, dep_delay, prev_dep_delay, delay_change) <span class="sc">|&gt;</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  sched_dep_time dep_delay prev_dep_delay delay_change
+           &lt;int&gt;     &lt;dbl&gt;          &lt;dbl&gt;        &lt;dbl&gt;
+1            515         2             NA           NA
+2            558        -4              2           -6
+3            600        -5             -4           -1
+4            600        -2             -5            3
+5            600        -1             -2            1
+6            600         1             -1            2</code></pre>
+</div>
+</div>
+<p><code>first()</code>, <code>last()</code>, and <code>nth()</code> pull out a specific element of a (possibly grouped) vector, which is often clearer than indexing with <code>[</code> when the intent is “the first observation in each group” rather than “position 1.”</p>
 </section>
-<section id="detecting-counting-and-extracting-patterns" class="level3">
-<h3 class="anchored" data-anchor-id="detecting-counting-and-extracting-patterns">Detecting, counting, and extracting patterns</h3>
-<p><code>str_detect()</code> tests whether each string matches a pattern and returns a logical vector, which pairs naturally with <code>filter()</code>. <code>str_subset()</code> returns the matching strings themselves rather than a logical vector, and <code>str_which()</code> returns their positions. <code>str_count()</code> counts how many times a pattern matches within each string. <code>str_extract()</code> returns the first match (<code>str_extract_all()</code> returns every match, as a list), and <code>str_replace()</code>/<code>str_remove()</code> replace or delete the first match (<code>str_replace_all()</code>/<code>str_remove_all()</code> handle every match).</p>
+<section id="numeric-summaries" class="level3">
+<h3 class="anchored" data-anchor-id="numeric-summaries">Numeric summaries</h3>
+<p>Summarizing numeric vectors involves measures of center and spread. The mean is sensitive to extreme values, while the median is more robust; the median daily departure delay is always smaller than the mean, because a flight can be hours late but essentially never leaves hours early. Quantiles generalize the median: the 95th percentile, for instance, ignores the most extreme 5% of values. Measures of spread include the standard deviation and the interquartile range (IQR), the difference between the 75th and 25th percentiles.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>flights_small <span class="ot">&lt;-</span> flights <span class="sc">|&gt;</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(carrier, flight) <span class="sc">|&gt;</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">flight_id =</span> <span class="fu">str_c</span>(carrier, flight, <span class="at">sep =</span> <span class="st">"-"</span>))</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>flights_small <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">is_three_digit =</span> <span class="fu">str_detect</span>(flight_id, <span class="st">"-</span><span class="sc">\\</span><span class="st">d{3}$"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_arr_delay =</span> <span class="fu">mean</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_arr_delay =</span> <span class="fu">median</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">q95_arr_delay =</span> <span class="fu">quantile</span>(arr_delay, <span class="fl">0.95</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_arr_delay =</span> <span class="fu">sd</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">iqr_arr_delay =</span> <span class="fu">IQR</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 4
-  carrier flight flight_id is_three_digit
-  &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;     &lt;lgl&gt;         
-1 WN        1716 WN-1716   FALSE         
-2 AA         178 AA-178    TRUE          
-3 DL        1585 DL-1585   FALSE         
-4 WN        3494 WN-3494   FALSE         
-5 DL        2231 DL-2231   FALSE         </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>flights_small <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">number_only =</span> <span class="fu">str_extract</span>(flight_id, <span class="st">"</span><span class="sc">\\</span><span class="st">d+"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 4
-  carrier flight flight_id number_only
-  &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;      
-1 WN        1716 WN-1716   1716       
-2 AA         178 AA-178    178        
-3 DL        1585 DL-1585   1585       
-4 WN        3494 WN-3494   3494       
-5 DL        2231 DL-2231   2231       </code></pre>
-</div>
-</div>
-<p><code>\d</code> matches any digit, so <code>\d+</code> extracts one or more consecutive digits; the backslash itself has to be doubled (<code>\\d</code>) so that R’s own string-escaping rules pass a single backslash through to the regex engine.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>messy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"(202) 555-0198"</span>, <span class="st">"+1-303-555-1212"</span>)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(messy, <span class="st">"[^0-9]"</span>, <span class="st">""</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "2025550198"  "13035551212"</code></pre>
-</div>
-</div>
-</section>
-<section id="capturing-groups-and-backreferences" class="level3">
-<h3 class="anchored" data-anchor-id="capturing-groups-and-backreferences">Capturing groups and backreferences</h3>
-<p>Wrapping part of a pattern in parentheses creates a <strong>capturing group</strong>, which does two things at once: it groups that piece of the pattern together (useful with quantifiers and alternation), and it remembers exactly what matched so you can reuse it. <code>str_match()</code> returns the whole match together with the text captured by each group, as a matrix:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2026-01-15"</span>, <span class="st">"2026-02-20"</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_match</span>(dates, <span class="st">"(</span><span class="sc">\\</span><span class="st">d{4})-(</span><span class="sc">\\</span><span class="st">d{2})-(</span><span class="sc">\\</span><span class="st">d{2})"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     [,1]         [,2]   [,3] [,4]
-[1,] "2026-01-15" "2026" "01" "15"
-[2,] "2026-02-20" "2026" "02" "20"</code></pre>
-</div>
-</div>
-<p>Inside a replacement string, <code>\1</code>, <code>\2</code>, and so on refer back to whatever each group captured, which makes it possible to rearrange a match rather than just deleting or replacing it outright:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace</span>(dates, <span class="st">"(</span><span class="sc">\\</span><span class="st">d{4})-(</span><span class="sc">\\</span><span class="st">d{2})-(</span><span class="sc">\\</span><span class="st">d{2})"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">2/</span><span class="sc">\\</span><span class="st">3/</span><span class="sc">\\</span><span class="st">1"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "01/15/2026" "02/20/2026"</code></pre>
-</div>
-</div>
-</section>
-<section id="literal-matching-with-fixed" class="level3">
-<h3 class="anchored" data-anchor-id="literal-matching-with-fixed">Literal matching with <code>fixed()</code></h3>
-<p>Sometimes the string you are searching for is not a pattern at all, just literal text that happens to contain regex metacharacters, such as a period, parenthesis, or dollar sign. Wrapping the search string in <code>fixed()</code> tells stringr to match it character for character, with no regex interpretation (see Example 9.3 for what happens if you forget to).</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(<span class="fu">c</span>(<span class="st">"cat.txt"</span>, <span class="st">"cat"</span>), <span class="fu">fixed</span>(<span class="st">"."</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]  TRUE FALSE</code></pre>
-</div>
-</div>
-</section>
-<section id="splitting-a-column-into-several" class="level3">
-<h3 class="anchored" data-anchor-id="splitting-a-column-into-several">Splitting a column into several</h3>
-<p>When you know the delimiter, tidyr’s <code>separate_wider_delim()</code> splits one column into several. Suppose a column stores names as <code>"LAST, First Middle"</code>:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>people <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"SMITH, John A."</span>, <span class="st">"O'NEILL, Anne"</span>, <span class="st">"Lee, Chen"</span>)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">full =</span> people) <span class="sc">|&gt;</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_wider_delim</span>(full, <span class="at">delim =</span> <span class="st">","</span>, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"last"</span>, <span class="st">"rest"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rest =</span> <span class="fu">str_trim</span>(rest))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
-  last    rest   
-  &lt;chr&gt;   &lt;chr&gt;  
-1 SMITH   John A.
-2 O'NEILL Anne   
-3 Lee     Chen   </code></pre>
-</div>
-</div>
-<p><code>separate_wider_delim()</code> only consumes the literal delimiter itself, so the piece after a <code>", "</code> delimiter keeps its leading space; <code>str_trim()</code> cleans up any leading or trailing whitespace left behind by a split like this.</p>
-</section>
-<section id="working-with-messy-strings-in-tibbles" class="level3">
-<h3 class="anchored" data-anchor-id="working-with-messy-strings-in-tibbles">Working with messy strings in tibbles</h3>
-<p>Character columns often encode multiple variables in one field. The built-in <code>who2</code> dataset has column names like <code>sp_m_014</code>, packing together a diagnosis method, gender, and age group; combining <code>pivot_longer()</code> with a separator unpacks them into proper variables in one step, exactly as in Session 7.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>who2_long <span class="ot">&lt;-</span> who2 <span class="sc">|&gt;</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">!</span>(country<span class="sc">:</span>year),</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"diagnosis"</span>, <span class="st">"gender"</span>, <span class="st">"age"</span>),</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"_"</span>,</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"count"</span></span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>who2_long <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 6
-  country      year diagnosis gender age   count
-  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;
-1 Afghanistan  1980 sp        m      014      NA
-2 Afghanistan  1980 sp        m      1524     NA
-3 Afghanistan  1980 sp        m      2534     NA
-4 Afghanistan  1980 sp        m      3544     NA
-5 Afghanistan  1980 sp        m      4554     NA
-6 Afghanistan  1980 sp        m      5564     NA</code></pre>
+<pre><code># A tibble: 1 × 5
+  mean_arr_delay median_arr_delay q95_arr_delay sd_arr_delay iqr_arr_delay
+           &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;
+1           6.90               -5            91         44.6            31</code></pre>
 </div>
 </div>
 </section>
@@ -644,23 +668,26 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Example</span>Example 9.1
+<span class="screen-reader-only">Example</span>Example 8.1
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Quantifiers are greedy by default, and it shows.</strong></p>
+<p><strong><code>%in%</code> treats <code>NA</code> completely differently than <code>==</code> does.</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>html <span class="ot">&lt;-</span> <span class="st">"&lt;a&gt;&lt;b&gt;"</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(html, <span class="st">"&lt;.+&gt;"</span>)     <span class="co"># greedy: matches as much as possible</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cn">NA</span> <span class="sc">==</span> <span class="cn">NA</span>        <span class="co"># unknown compared to unknown: still unknown</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "&lt;a&gt;&lt;b&gt;"</code></pre>
+<pre><code>[1] NA</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(html, <span class="st">"&lt;.+?&gt;"</span>)    <span class="co"># lazy: matches as little as possible</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="cn">NA</span> <span class="sc">%in%</span> <span class="cn">NA</span>      <span class="co"># TRUE: is NA "in" the set {NA}? yes, literally</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "&lt;a&gt;"</code></pre>
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="cn">NA</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
 </div>
 </div>
-<p><code>+</code> (like <code>*</code> and <code>{n,m}</code>) grabs as much text as it possibly can while still letting the overall pattern match, so <code>&lt;.+&gt;</code> starts at the first <code>&lt;</code> and only stops at the <em>last</em> <code>&gt;</code> in the string, swallowing <code>&lt;a&gt;&lt;b&gt;</code> whole instead of stopping at the first <code>&gt;</code>. Adding <code>?</code> right after a quantifier (<code>+?</code>, <code>*?</code>, <code>??</code>) makes it lazy instead, matching as little as possible, which is almost always what you actually want when extracting something bounded by delimiters that might repeat.</p>
+<p><code>==</code> always returns <code>NA</code> when either side is missing, because R refuses to guess whether two unknown things are equal. <code>%in%</code> is different by design: it asks whether a value appears anywhere in a set, and <code>NA</code> genuinely does appear in a set that contains <code>NA</code>, so the answer is a definite <code>TRUE</code>, not a propagated <code>NA</code>. This makes <code>%in%</code> convenient for one specific purpose (matching against a fixed list that might include <code>NA</code>), but it means <code>x %in% NA</code> is not a safe way to test whether <code>x</code> is missing; <code>is.na(x)</code> is.</p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-example callout-titled">
@@ -669,23 +696,19 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Example</span>Example 9.2
+<span class="screen-reader-only">Example</span>Example 8.2
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong><code>str_c()</code> and <code>paste0()</code> treat a missing value very differently.</strong></p>
+<p><strong><code>if_else()</code> and <code>case_when()</code> refuse to mix incompatible output types.</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="cn">NA</span>, <span class="st">"c"</span>)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="st">"val: "</span>, x)     <span class="co"># NA stays a genuine NA</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "val: a" NA       "val: c"</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">"val: "</span>, x)    <span class="co"># NA becomes the literal text "val: NA"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "val: a"  "val: NA" "val: c" </code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">if_else</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>), <span class="dv">1</span>, <span class="st">"a"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in `if_else()`:
+! Can't combine `true` &lt;double&gt; and `false` &lt;character&gt;.</code></pre>
 </div>
 </div>
-<p><code>str_c()</code> propagates <code>NA</code> the way arithmetic does: if any input piece is missing, the whole result for that element is missing too, which is almost always the behavior you want, since it keeps <code>is.na()</code> meaningful on the result. <code>paste0()</code> instead coerces <code>NA</code> to the three-character string <code>"NA"</code> and glues it in like any other text, which can silently turn a genuinely missing value into a string that <em>looks</em> like real data (and will not be caught by a later <code>is.na()</code> check). If you’re translating old base R code that leans on <code>paste()</code>/<code>paste0()</code> into the tidyverse, this is one of the easiest behavior changes to miss.</p>
+<p>Every branch of <code>if_else()</code> (and every value in <code>case_when()</code>) has to produce something R can combine into one vector, so an outcome that is sometimes a number and sometimes a string throws an error immediately rather than quietly producing a vector with an unpredictable type. This is a deliberate safety feature: a column that is a number in some rows and text in others is exactly the kind of column that causes confusing errors several steps later in an analysis. Fix it by making every branch the same type, for example <code>if_else(x, "1", "a")</code> or <code>if_else(x, 1, NA_real_)</code>.</p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-example callout-titled">
@@ -694,23 +717,18 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Example</span>Example 9.3
+<span class="screen-reader-only">Example</span>Example 8.3
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Forgetting that a search string is a regex changes what “matches” means.</strong></p>
+<p><strong><code>round()</code> rounds half to even, not always “up.”</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>words <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cat.txt"</span>, <span class="st">"cat"</span>, <span class="st">"hat"</span>)</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(words, <span class="st">"."</span>)              <span class="co"># "." means "any character," not a literal period</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">round</span>(<span class="fl">0.5</span>), <span class="fu">round</span>(<span class="fl">1.5</span>), <span class="fu">round</span>(<span class="fl">2.5</span>), <span class="fu">round</span>(<span class="fl">3.5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE TRUE TRUE</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(words, <span class="fu">fixed</span>(<span class="st">"."</span>))       <span class="co"># fixed() treats "." as a literal period</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]  TRUE FALSE FALSE</code></pre>
+<pre><code>[1] 0 2 2 4</code></pre>
 </div>
 </div>
-<p>Every one of these strings contains at least one character, so the unquoted <code>.</code> pattern matches all three, which is almost certainly not what someone searching for filenames with a literal dot in them intended. The fix is either <code>fixed(".")</code>, which turns off regex interpretation entirely, or escaping the metacharacter directly in the pattern (<code>"\\."</code>). This mistake is easy to make with any of the regex metacharacters (<code>.</code>, <code>(</code>, <code>)</code>, <code>$</code>, <code>^</code>, <code>+</code>, <code>*</code>, <code>[</code>, <code>]</code>), not just the period.</p>
+<p><code>0.5</code> rounds to <code>0</code>, but <code>1.5</code> rounds to <code>2</code>, and <code>2.5</code> rounds back down to <code>2</code> while <code>3.5</code> rounds up to <code>4</code>. This is “round half to even” (also called banker’s rounding): whenever a value sits exactly halfway between two integers, R rounds to whichever one is even, rather than always rounding halves up. The idea is to avoid a systematic upward bias if you round a large number of <code>.5</code> values the more familiar “always round up” way. It rarely matters for numbers with real decimal noise (an actual computed value is essentially never exactly <code>x.5</code>), but it matters immediately for hand-typed test cases and small examples, which is exactly where people first notice it.</p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-example callout-titled">
@@ -719,23 +737,22 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Example</span>Example 9.4
+<span class="screen-reader-only">Example</span>Example 8.4
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Without a word boundary, a pattern matches inside unrelated words too.</strong></p>
+<p><strong><code>case_when()</code> without <code>.default</code> returns <code>NA</code> for anything that falls through, with no warning.</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cat"</span>, <span class="st">"category"</span>, <span class="st">"concatenate"</span>, <span class="st">"the cat sat"</span>)</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(text, <span class="st">"cat"</span>)            <span class="co"># matches inside "category" and "concatenate" too</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>severity <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">case_when</span>(</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  severity <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"low"</span>,</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  severity <span class="sc">&gt;</span> <span class="dv">8</span> <span class="sc">~</span> <span class="st">"high"</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE TRUE TRUE TRUE</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(text, <span class="st">"</span><span class="sc">\\</span><span class="st">bcat</span><span class="sc">\\</span><span class="st">b"</span>)      <span class="co"># only matches "cat" as a whole word</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]  TRUE FALSE FALSE  TRUE</code></pre>
+<pre><code>[1] "low"  NA     "high"</code></pre>
 </div>
 </div>
-<p>The plain pattern <code>"cat"</code> matches <em>any</em> occurrence of those three letters in sequence, including the middle of “con<strong>cat</strong>enate,” which has nothing to do with cats. <code>\b</code> matches the zero-width boundary between a word character and a non-word character (or the start/end of the string), so <code>\bcat\b</code> only matches “cat” when it is not glued to other letters on either side. Whenever you want to match a whole word rather than a substring, word boundaries are the fix.</p>
+<p><code>5</code> matches neither condition, so it silently becomes <code>NA</code> rather than raising an error or a warning telling you a case was missed. If you intend for every possible input to be covered, add <code>.default =</code> with a sensible fallback value (or <code>.default = NA_character_</code> to make the “nothing else matched” case explicit and intentional rather than accidental), and consider double-checking with <code>count()</code> or <code>sum(is.na(...))</code> on the result that every value ended up somewhere you expected.</p>
 </div>
 </div>
 </section>
@@ -754,40 +771,48 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Raw string (<code>r"(...)"</code>)</strong></td>
-<td>A string literal where nothing is escaped, useful for paths and regexes full of backslashes.</td>
+<td><strong>Logical vector</strong></td>
+<td>A vector containing only <code>TRUE</code>, <code>FALSE</code>, or <code>NA</code>, typically produced by a comparison.</td>
 </tr>
 <tr class="even">
-<td><strong><code>str_length()</code> / <code>str_sub()</code></strong></td>
-<td>Measure a string’s character length, or extract/replace a substring by position.</td>
+<td><strong><code>near()</code></strong></td>
+<td>Tests approximate equality for floating-point numbers, avoiding false negatives from rounding error.</td>
 </tr>
 <tr class="odd">
-<td><strong><code>str_c()</code> vs.&nbsp;<code>paste0()</code></strong></td>
-<td>Both concatenate strings, but <code>str_c()</code> propagates <code>NA</code> while <code>paste0()</code> converts it to the text <code>"NA"</code>.</td>
+<td><strong><code>&amp;</code> / <code>|</code> with <code>NA</code></strong></td>
+<td><code>NA</code> resolves to a definite answer only when that answer is already certain regardless of the missing value (<code>NA | TRUE</code> is <code>TRUE</code>; <code>NA &amp; FALSE</code> is <code>FALSE</code>).</td>
 </tr>
 <tr class="even">
-<td><strong>Character class shortcuts</strong></td>
-<td><code>\d</code> (digit), <code>\s</code> (whitespace), <code>\w</code> (word character: letter, digit, or underscore).</td>
+<td><strong><code>%in%</code></strong></td>
+<td>Tests set membership; unlike <code>==</code>, treats <code>NA %in% NA</code> as <code>TRUE</code> rather than propagating <code>NA</code>.</td>
 </tr>
 <tr class="odd">
-<td><strong>Quantifier</strong></td>
-<td><code>?</code>, <code>*</code>, <code>+</code>, or <code>{n,m}</code>, controlling how many times the preceding piece may repeat; greedy by default, lazy with a trailing <code>?</code>.</td>
+<td><strong><code>any()</code> / <code>all()</code></strong></td>
+<td>Collapse a logical vector to a single <code>TRUE</code>/<code>FALSE</code>, answering “was any/every element <code>TRUE</code>?”</td>
 </tr>
 <tr class="even">
-<td><strong>Word boundary (<code>\b</code>)</strong></td>
-<td>A zero-width anchor matching the edge of a word, preventing a pattern from matching inside a longer word.</td>
+<td><strong><code>if_else()</code></strong></td>
+<td>Chooses between two values based on a condition; both outputs must share a compatible type.</td>
 </tr>
 <tr class="odd">
-<td><strong>Capturing group (<code>(...)</code>)</strong></td>
-<td>Groups part of a pattern and remembers what it matched, for reuse via <code>\1</code>, <code>\2</code>, and so on, or extraction with <code>str_match()</code>.</td>
+<td><strong><code>case_when()</code></strong></td>
+<td>Evaluates several <code>condition ~ value</code> pairs in order; unmatched rows become <code>NA</code> unless <code>.default</code> is set.</td>
 </tr>
 <tr class="even">
-<td><strong><code>fixed()</code></strong></td>
-<td>Tells a stringr function to treat its pattern as literal text rather than a regex.</td>
+<td><strong><code>pmin()</code> / <code>pmax()</code></strong></td>
+<td>Element-wise minimum or maximum across vectors, as opposed to a single overall <code>min()</code>/<code>max()</code>.</td>
 </tr>
 <tr class="odd">
-<td><strong><code>separate_wider_delim()</code></strong></td>
-<td>Splits one column into several at a literal delimiter.</td>
+<td><strong><code>round()</code></strong></td>
+<td>Rounds to the nearest integer using “round half to even” for exact halfway values.</td>
+</tr>
+<tr class="even">
+<td><strong><code>min_rank()</code> / <code>dense_rank()</code></strong></td>
+<td>Rank values, with <code>dense_rank()</code> leaving no gap in the ranking after a tie.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>lag()</code> / <code>lead()</code></strong></td>
+<td>Shift a vector by one (or more) positions, for comparing a value to its neighbor.</td>
 </tr>
 </tbody>
 </table>
@@ -807,11 +832,11 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <div id="callout-5" class="callout-5-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>What is the difference between <code>str_extract(x, "&lt;.+&gt;")</code> and <code>str_extract(x, "&lt;.+?&gt;")</code> on the string <code>"&lt;a&gt;&lt;b&gt;"</code>? Which one would you want if you were trying to extract just the first tag?</li>
-<li>A dataset has a column where missing values were introduced with <code>str_c()</code>. Explain why <code>is.na()</code> still works correctly on that column, and why the same code using <code>paste0()</code> instead might not have.</li>
-<li>You want to find every row where a <code>notes</code> column contains a literal question mark. <code>str_detect(notes, "?")</code> returns strange results (or an error). What went wrong, and what are two ways to fix it?</li>
-<li>Explain what <code>\bcat\b</code> matches that plain <code>cat</code> does not, and give an example string where the two patterns would disagree.</li>
-<li>In <code>str_replace(dates, "(\\d{4})-(\\d{2})-(\\d{2})", "\\2/\\3/\\1")</code>, what do <code>\\1</code>, <code>\\2</code>, and <code>\\3</code> refer to?</li>
+<li>Explain the difference between <code>NA == NA</code> and <code>NA %in% NA</code>. Which one should you use to test whether a value is missing, and what should you use instead?</li>
+<li>Without running R, predict each result, then check your answer: <code>NA | TRUE</code>, <code>NA &amp; TRUE</code>, <code>NA | FALSE</code>, <code>NA &amp; FALSE</code>.</li>
+<li>A classmate writes <code>if_else(temperature &gt; 100, "hot", 0)</code> and gets an error. What is wrong, and how would you fix it?</li>
+<li>You write a <code>case_when()</code> with three conditions covering “low,” “medium,” and “high” categories, but no <code>.default</code>. A colleague later reports that some rows in your result are <code>NA</code> even though every row has a valid input value. What is the most likely explanation?</li>
+<li><code>round(2.5)</code> returns <code>2</code>, not <code>3</code>. Is this a bug? Explain what R is actually doing.</li>
 </ol>
 </div>
 </div>
@@ -829,11 +854,11 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><p><code>"&lt;.+&gt;"</code> is greedy and matches the entire string <code>"&lt;a&gt;&lt;b&gt;"</code>, since <code>+</code> grabs as much as possible while still allowing the pattern to match, stopping only at the last <code>&gt;</code>. <code>"&lt;.+?&gt;"</code> is lazy and matches just <code>"&lt;a&gt;"</code>, stopping at the first <code>&gt;</code> it can. To extract just the first tag, use the lazy version.</p></li>
-<li><p><code>str_c()</code> propagates missingness: if any piece being concatenated is <code>NA</code>, the whole result is <code>NA</code>, so <code>is.na()</code> still correctly identifies those rows afterward. <code>paste0()</code> instead converts a missing value into the literal three-character string <code>"NA"</code>, which is not a missing value at all as far as R is concerned, so <code>is.na()</code> would return <code>FALSE</code> for those rows even though the data started out missing.</p></li>
-<li><p><code>?</code> is a regex metacharacter (a quantifier meaning “zero or one of the preceding thing”), not a literal question mark, so a bare <code>"?"</code> pattern is not valid on its own without something for it to quantify (or is silently interpreted as an empty, always-matching pattern, depending on context). Fix it with <code>str_detect(notes, fixed("?"))</code>, which turns off regex interpretation entirely, or by escaping it directly: <code>str_detect(notes, "\\?")</code>.</p></li>
-<li><p><code>\b</code> anchors to a word boundary, so <code>\bcat\b</code> only matches “cat” as a complete, standalone word, not as part of a longer word. In <code>"concatenate"</code>, plain <code>cat</code> matches the “cat” hidden inside “con<strong>cat</strong>enate,” while <code>\bcat\b</code> does not match anywhere in that string at all, since “cat” there is not bounded by non-word characters on both sides.</p></li>
-<li><p><code>\1</code> refers to whatever the first parenthesized group captured (the four-digit year), <code>\2</code> refers to the second group (the two-digit month), and <code>\3</code> refers to the third group (the two-digit day). The replacement string rearranges them into <code>month/day/year</code> order using those backreferences instead of the original matched text.</p></li>
+<li><p><code>NA == NA</code> is <code>NA</code>, because R refuses to guess whether two unknown values are equal. <code>NA %in% NA</code> is <code>TRUE</code>, because <code>%in%</code> asks whether a value appears in a set, and <code>NA</code> does appear in a set consisting only of <code>NA</code>. Neither is the right tool for testing missingness; use <code>is.na(x)</code> instead.</p></li>
+<li><p><code>NA | TRUE</code> is <code>TRUE</code> (one side is already <code>TRUE</code>, so the result can’t change). <code>NA &amp; TRUE</code> is <code>NA</code> (the result depends entirely on the unknown side). <code>NA | FALSE</code> is <code>NA</code> (still depends on the unknown side). <code>NA &amp; FALSE</code> is <code>FALSE</code> (one side is already <code>FALSE</code>, so the whole expression can’t be <code>TRUE</code> no matter what).</p></li>
+<li><p>The <code>TRUE</code> branch produces a character string (<code>"hot"</code>) while the <code>FALSE</code> branch produces a number (<code>0</code>); <code>if_else()</code> requires both branches to have a compatible type. The fix is to make both branches the same type, for example <code>if_else(temperature &gt; 100, "hot", "not hot")</code> or <code>if_else(temperature &gt; 100, 1, 0)</code>.</p></li>
+<li><p>The three conditions almost certainly do not cover every possible input value (for example, a boundary value, an unexpected negative number, or a genuinely missing value slipping through), and without <code>.default</code>, any row that matches none of the conditions silently becomes <code>NA</code> instead of raising a warning. Adding <code>.default</code> with an explicit fallback (even <code>.default = NA_character_</code>) makes the “nothing matched” case visible and intentional rather than a surprise.</p></li>
+<li><p>It is not a bug; <code>round()</code> uses “round half to even” (banker’s rounding), so an input sitting exactly halfway between two integers rounds to whichever one is even, rather than always rounding up. <code>2.5</code> rounds to <code>2</code> for the same reason <code>1.5</code> rounds to <code>2</code> and <code>3.5</code> rounds to <code>4</code>: each halfway value rounds toward the nearest even number.</p></li>
 </ol>
 </div>
 </div>

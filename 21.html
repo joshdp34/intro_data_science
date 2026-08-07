@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>21&nbsp; Session 21 – Exploratory data analysis (EDA) – STA 2300 Intro to Data Science</title>
+<title>21&nbsp; Session 21: Communication – STA 2300 Intro to Data Science</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,6 +25,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -142,7 +177,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./21.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21 – Exploratory data analysis (EDA)</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./21.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21: Communication</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -189,127 +224,133 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Data visualization basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Quarto basics for reproducible assignments</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: The layered grammar of graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: Data visualization basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: The layered grammar of graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (II): grouping and summarizing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data import: reading CSV and flat files</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data transformation (II): grouping and summarizing</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Tidy data and pivoting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Data import: reading CSV and flat files</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Variable types I: logical and numeric vectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Tidy data and pivoting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types II: strings and regular expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types I: logical and numeric vectors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types III: factors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types II: strings and regular expressions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types IV: dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types III: factors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12 – Missing values &amp; data cleaning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12: Variable types IV: dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13 –&nbsp;Relational data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13: Missing values and data cleaning</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14 – Advanced data import I: spreadsheets</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14: Relational data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15 – Advanced data import II: databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15: Advanced data import I: spreadsheets</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./16.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16 – Big‑data formats &amp; hierarchical data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16: Advanced data import II: databases</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17 – Web scraping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17: Big data formats and hierarchical data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./18.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18 – Basic programming I: functions &amp; code style</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18: Web scraping</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./19.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19 – Basic programming II: iteration &amp; functional programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19: Basic programming I: functions and code style</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./20.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20 – Reproducible research &amp; communication</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20: Basic programming II: iteration and functional programming</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./21.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21 – Exploratory data analysis (EDA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21: Communication</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./22.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22 – Statistical modelling&nbsp;I: simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22: Exploratory data analysis (EDA)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Session 23: Statistical modeling I: simple linear regression</span></span></a>
   </div>
 </li>
     </ul>
@@ -325,12 +366,13 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#introduction-questiondriven-exploration" id="toc-introduction-questiondriven-exploration" class="nav-link" data-scroll-target="#introduction-questiondriven-exploration">Introduction: question‑driven exploration</a></li>
-  <li><a href="#variation-exploring-distributions" id="toc-variation-exploring-distributions" class="nav-link" data-scroll-target="#variation-exploring-distributions">Variation: exploring distributions</a></li>
-  <li><a href="#unusual-values-and-outliers" id="toc-unusual-values-and-outliers" class="nav-link" data-scroll-target="#unusual-values-and-outliers">Unusual values and outliers</a></li>
-  <li><a href="#covariation-exploring-relationships-between-variables" id="toc-covariation-exploring-relationships-between-variables" class="nav-link" data-scroll-target="#covariation-exploring-relationships-between-variables">Covariation: exploring relationships between variables</a></li>
-  <li><a href="#summarizing-with-dplyr" id="toc-summarizing-with-dplyr" class="nav-link" data-scroll-target="#summarizing-with-dplyr">Summarizing with dplyr</a></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key take‑aways</a></li>
+  <li><a href="#from-exploratory-to-expository-graphics" id="toc-from-exploratory-to-expository-graphics" class="nav-link" data-scroll-target="#from-exploratory-to-expository-graphics">From exploratory to expository graphics</a></li>
+  <li><a href="#annotating-a-plot" id="toc-annotating-a-plot" class="nav-link" data-scroll-target="#annotating-a-plot">Annotating a plot</a></li>
+  <li><a href="#themes-and-multi-panel-figures" id="toc-themes-and-multi-panel-figures" class="nav-link" data-scroll-target="#themes-and-multi-panel-figures">Themes and multi-panel figures</a></li>
+  <li><a href="#zooming-into-a-plot-honestly" id="toc-zooming-into-a-plot-honestly" class="nav-link" data-scroll-target="#zooming-into-a-plot-honestly">Zooming into a plot honestly</a></li>
+  <li><a href="#fringe-cases-and-common-pitfalls" id="toc-fringe-cases-and-common-pitfalls" class="nav-link" data-scroll-target="#fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -340,7 +382,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21 – Exploratory data analysis (EDA)</span></h1>
+<h1 class="title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21: Communication</span></h1>
 </div>
 
 
@@ -360,74 +402,330 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Take a question‑driven approach to EDA.</strong> Exploratory data analysis is an iterative cycle where you generate questions about your data, search for answers by visualizing, transforming and modelling, and use what you learn to ask new questions. There is no rigid procedure; you should feel free to investigate many ideas and follow up on interesting patterns.</li>
-<li><strong>Recognize variation and typical values.</strong> Variation is the tendency of a variable’s values to change from one observation to the next. Visualizing variation with histograms or bar charts helps you identify typical values and unusual patterns; look for the most common and rare values and ask why they occur.</li>
-<li><strong>Identify and handle unusual values.</strong> Outliers may be data entry errors or important discoveries. Learn to zoom in on plots, adjust bin widths, and decide whether to recode outliers as missing or omit them.</li>
-<li><strong>Explore covariation between variables.</strong> Covariation is the tendency for two or more variables to vary together. Use appropriate graphics—boxplots, frequency polygons, heatmaps, scatterplots and 2‑D binning—to examine the relationships between categorical and continuous variables, between two categorical variables and between two continuous variables.</li>
-<li><strong>Summarize data to support EDA.</strong> Use dplyr tools like <code>group_by()</code>, <code>summarise()</code>, <code>count()</code> and <code>mutate()</code> to compute counts, means and proportions that complement your visual exploration.</li>
+<li><strong>Communicate your findings clearly.</strong> Turn exploratory graphics into expository graphics. Write titles that summarize the finding rather than describing the plot; add subtitles and captions; label axes and legends with units.</li>
+<li><strong>Annotate a plot honestly.</strong> Use <code>annotate()</code> and <code>geom_hline()</code>/<code>geom_vline()</code> to call out a specific value directly on a plot, and know what happens when an annotation meets <code>facet_wrap()</code>.</li>
+<li><strong>Format scales for a real audience.</strong> Use <code>scales::label_dollar()</code> and <code>scales::label_percent()</code> so axis breaks read the way a reader actually expects, and know the one setting that determines whether <code>label_percent()</code> multiplies your numbers by 100 or not.</li>
+<li><strong>Zoom into a plot honestly.</strong> Distinguish <code>coord_cartesian()</code>, which only changes what’s visible, from filtering the data (or setting a scale’s <code>limits</code>), which actually removes data before anything, including a fitted trend line, is computed.</li>
+<li><strong>Combine plots with <code>patchwork</code>.</strong> Build a multi-panel figure with <code>+</code>/<code>|</code>/<code>/</code>, and know why combined plots sometimes show a legend once and sometimes show it once per panel.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<section id="introduction-questiondriven-exploration" class="level3">
-<h3 class="anchored" data-anchor-id="introduction-questiondriven-exploration">Introduction: question‑driven exploration</h3>
-<p>Exploratory data analysis (EDA) uses visualization and transformation to systematically explore your data. It is not a formal procedure but an <strong>iterative cycle</strong>: you generate questions, use plots and summaries to search for answers, and use those answers to refine your questions. Asking many questions early in your analysis exposes you to different aspects of your data and increases your chances of making discoveries. Two broad questions are particularly useful:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="from-exploratory-to-expository-graphics" class="level3">
+<h3 class="anchored" data-anchor-id="from-exploratory-to-expository-graphics">From exploratory to expository graphics</h3>
+<p>A reproducible analysis still needs to communicate clearly. <code>labs()</code> is the starting point: a title, subtitle, caption, and axis/legend labels.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>lifeexp_2007 <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(lifeexp_2007, <span class="fu">aes</span>(gdpPercap, lifeExp, <span class="at">color =</span> continent)) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>()) <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Wealthier countries tend to live longer, but Europe leads at every income level"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Each point is one country in 2007"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"GDP per capita"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Life expectancy (years)"</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Continent"</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: gapminder"</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="21_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A title should summarize the finding (“Wealthier countries tend to live longer…”) rather than merely describe the plot (“A scatterplot of GDP vs.&nbsp;life expectancy”); the subtitle adds context, and the caption is a natural place for a data source. <code>scales::label_dollar()</code> formats axis breaks the way a reader actually expects to see money, rather than as raw numbers; <code>scales::label_percent()</code> does the same for proportions, though it has a fringe case worth knowing before you rely on it (see Example 21.2).</p>
+</section>
+<section id="annotating-a-plot" class="level3">
+<h3 class="anchored" data-anchor-id="annotating-a-plot">Annotating a plot</h3>
+<p>Beyond labels, <code>annotate()</code> and <code>geom_hline()</code>/<code>geom_vline()</code> call out a specific value or region directly on the plot:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(lifeexp_2007, <span class="fu">aes</span>(gdpPercap, lifeExp)) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(lifeexp_2007<span class="sc">$</span>lifeExp), <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">500</span>, <span class="at">y =</span> <span class="fu">mean</span>(lifeexp_2007<span class="sc">$</span>lifeExp) <span class="sc">+</span> <span class="dv">2</span>, <span class="at">label =</span> <span class="st">"Global average"</span>, <span class="at">hjust =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="21_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><code>annotate()</code> places its mark at a fixed, literal position in data space, which is exactly what you want on a single panel, and exactly what can surprise you the moment <code>facet_wrap()</code> enters the picture (see Example 21.3).</p>
+</section>
+<section id="themes-and-multi-panel-figures" class="level3">
+<h3 class="anchored" data-anchor-id="themes-and-multi-panel-figures">Themes and multi-panel figures</h3>
+<p><code>theme_minimal()</code> (used throughout this book) is a reasonable default for reducing visual clutter; <code>theme()</code> adjusts specific elements (title position, legend placement) beyond what a built-in theme covers, and the <code>patchwork</code> package combines several separate ggplots into one figure with <code>+</code>/<code>|</code>/<code>/</code>, handy for a multi-panel figure with one shared title.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(lifeexp_2007, <span class="fu">aes</span>(gdpPercap, lifeExp)) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>()) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Life expectancy"</span>) <span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(lifeexp_2007, <span class="fu">aes</span>(continent, pop)) <span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_comma</span>()) <span class="sc">+</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Population"</span>) <span class="sc">+</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">|</span> p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="21_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Combining plots that each carry their own color legend raises a question <code>patchwork</code> doesn’t answer for you automatically: does the combined figure need one legend or several (see Example 21.4)?</p>
+</section>
+<section id="zooming-into-a-plot-honestly" class="level3">
+<h3 class="anchored" data-anchor-id="zooming-into-a-plot-honestly">Zooming into a plot honestly</h3>
+<p>Zooming into part of a plot deserves special care: <code>coord_cartesian(ylim = ...)</code> changes only what’s visible, while filtering the data first (or setting a scale’s <code>limits</code>) actually removes data before anything, including a fitted trend line, is computed, which can silently change the numbers a plot is telling you about (see Example 21.1).</p>
+</section>
+<section id="fringe-cases-and-common-pitfalls" class="level3">
+<h3 class="anchored" data-anchor-id="fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</h3>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 21.1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Zooming with <code>coord_cartesian()</code> and zooming by filtering data are not the same operation, and a fitted line proves it.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="at">y =</span> x <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">10</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(<span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>), <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">200</span>, <span class="dv">250</span>)))  <span class="co"># two extreme outliers</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>full_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> df)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(full_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)           x 
+ 15.9015204   0.7871535 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>filtered_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> df <span class="sc">|&gt;</span> <span class="fu">filter</span>(y <span class="sc">&lt;=</span> <span class="dv">120</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(filtered_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)           x 
+  1.3166573   0.9954894 </code></pre>
+</div>
+</div>
+<p>The slope and intercept are meaningfully different (roughly 0.79 versus 1.00) depending on whether the two outliers were included when the line was fit, even though both versions might be <em>displayed</em> zoomed into the exact same visible range. <code>coord_cartesian(ylim = c(0, 120))</code> would zoom the plot’s viewport into that range while still fitting <code>geom_smooth()</code> on every point, outliers included; filtering the data down to <code>y &lt;= 120</code> first, or setting a scale’s <code>limits</code> (which drops out-of-range values the same way filtering does), actually removes the outliers before any statistic is computed. Visually, both can look like “the same zoomed-in plot”; only one of them is telling you the truth about a trend fit to the <em>complete</em> data.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 21.2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong><code>scales::label_percent()</code> assumes its input is already a proportion between 0 and 1, and silently multiplies by 100 if it isn’t.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>props <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.42</span>, <span class="fl">0.87</span>, <span class="fl">0.15</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>scales<span class="sc">::</span><span class="fu">label_percent</span>()(props)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "42%" "87%" "15%"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>already_pct <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">42</span>, <span class="dv">87</span>, <span class="dv">15</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>scales<span class="sc">::</span><span class="fu">label_percent</span>()(already_pct)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "4 200%" "8 700%" "1 500%"</code></pre>
+</div>
+</div>
+<p><code>label_percent()</code> multiplies whatever you give it by 100 and appends a <code>%</code> sign, which is exactly right for a proportion (<code>0.42</code> becomes <code>"42%"</code>) and exactly wrong for a value that’s already a percentage (<code>42</code> becomes <code>"4200%"</code>), a mistake that’s easy to make if a column was computed as <code>count / total * 100</code> upstream rather than left as a raw proportion. <code>label_percent(scale = 1)</code> fixes it by turning off that multiplication for values already on a 0-100 scale:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">scale =</span> <span class="dv">1</span>)(already_pct)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "42%" "87%" "15%"</code></pre>
+</div>
+</div>
+<p>Before formatting a column with <code>label_percent()</code>, check whether it already looks like a percentage or still looks like a proportion; the function has no way to tell the difference for you.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 21.3
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong><code>annotate()</code> places its label at a fixed position in every facet, not just the one you had in mind.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_facet <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>),</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>),</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">g =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>), <span class="at">each =</span> <span class="dv">3</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_facet, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>g) <span class="sc">+</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">12</span>, <span class="at">label =</span> <span class="st">"note"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="21_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The word “note” appears in <em>both</em> facet panels, identically positioned, even though <code>annotate()</code> was called only once. <code>facet_wrap()</code> works by repeating every layer once per panel, and <code>annotate()</code> is a single literal layer like any other, so it gets repeated too; it has no built-in concept of “only panel b.” To annotate a single facet, build a small data frame with one row per panel you actually want annotated (including a column matching the faceting variable) and pass it to <code>geom_text()</code> with <code>data =</code> instead of using <code>annotate()</code>, so the annotation layer only draws for the panel whose facet value matches.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 21.4
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Combining plots with <code>patchwork</code> keeps every legend by default, even identical, redundant ones.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(displ, hwy, <span class="at">color =</span> class)) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(cty, hwy, <span class="at">color =</span> class)) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="21_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Both panels map <code>class</code> to color with the exact same set of categories, so the combined figure shows the identical legend twice, once per panel, wasting space on a repeated explanation of the same colors. <code>plot_layout(guides = "collect")</code> tells <code>patchwork</code> to gather matching legends into a single shared one instead:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2 <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">guides =</span> <span class="st">"collect"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="21_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This only collapses legends that are actually identical (same aesthetic, same categories); two panels that color by genuinely different variables still each need, and each keep, their own legend.</p>
+</div>
+</div>
+</section>
+<section id="recap" class="level3">
+<h3 class="anchored" data-anchor-id="recap">Recap</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 76%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Term</strong></th>
+<th><strong>Definition</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><code>labs()</code></strong></td>
+<td>Sets a plot’s title, subtitle, caption, and axis/legend labels; a title should state the finding, not describe the plot.</td>
+</tr>
+<tr class="even">
+<td><strong><code>annotate()</code></strong></td>
+<td>Draws a single literal mark (text, a rectangle, a line) at a fixed position in data space; repeated once per panel under <code>facet_wrap()</code>.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>geom_hline()</code> / <code>geom_vline()</code></strong></td>
+<td>Draws a horizontal or vertical reference line at a specified value.</td>
+</tr>
+<tr class="even">
+<td><strong><code>scales::label_dollar()</code></strong></td>
+<td>Formats axis breaks as currency.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>scales::label_percent()</code></strong></td>
+<td>Formats axis breaks as percentages; multiplies input by 100 unless <code>scale = 1</code> is set for input already on a 0-100 scale.</td>
+</tr>
+<tr class="even">
+<td><strong><code>coord_cartesian()</code></strong></td>
+<td>Zooms a plot’s visible range without discarding any underlying data, so fitted statistics (like <code>geom_smooth()</code>) stay computed on the full dataset.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>patchwork</code></strong></td>
+<td>Combines separate ggplots into one figure with operators like <code>+</code> and <code>/</code>; <code>plot_layout(guides = "collect")</code> merges identical legends into one.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="check-your-understanding" class="level3">
+<h3 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Problems">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Problems
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
 <ol type="1">
-<li><strong>What type of variation occurs within my variables?</strong></li>
-<li><strong>What type of covariation occurs between my variables?</strong></li>
+<li>Why should a plot title state the finding rather than describe the plot, and what belongs in the caption instead?</li>
+<li>You zoom into a scatterplot with a fitted trend line by filtering out points above a threshold, rather than using <code>coord_cartesian()</code>. Explain how this could change the reported trend, not just how much of the plot is visible.</li>
+<li>A column of percentages was computed as <code>count / total * 100</code>, so its values already range from 0 to 100. What happens if you format it with the default <code>scales::label_percent()</code>, and how do you fix it?</li>
+<li>You call <code>annotate("text", ...)</code> once on a plot that uses <code>facet_wrap()</code> with four panels, intending the note to appear only in the first panel. What actually happens, and how would you annotate just that one panel instead?</li>
+<li>Two ggplots, each colored by the same categorical variable with the same categories, are combined with <code>patchwork</code>’s <code>+</code>. What shows up twice by default, and what one addition removes the duplication?</li>
 </ol>
-<p>These questions focus your attention on a single variable or on the relationship between variables.</p>
-</section>
-<section id="variation-exploring-distributions" class="level3">
-<h3 class="anchored" data-anchor-id="variation-exploring-distributions">Variation: exploring distributions</h3>
-<p><strong>Variation</strong> is the tendency of a variable’s values to change from measurement to measurement. Every variable has its own pattern of variation that may reveal interesting information about the population or measurement process. The best way to understand that pattern is to <strong>visualize the distribution</strong> of the variable’s values. For <strong>numerical variables</strong>, histograms and density plots reveal the shape of the distribution, typical values and unusual patterns. For <strong>categorical variables</strong>, bar charts show how common each level is. When inspecting a distribution:</p>
-<ul>
-<li>Identify the <strong>most common values</strong> (tall bars) and <strong>rare values</strong> (short bars) and ask why they occur.</li>
-<li>Look for <strong>clusters</strong>, which may indicate subgroups. How are observations within each cluster similar? How are clusters different from each other? Visualizing clusters may prompt you to explore covariation with another variable.</li>
-<li>Experiment with the <strong>binwidth</strong> of your histogram: narrow bins can reveal fine‑scale structure, while wider bins give a smoother overview.</li>
-</ul>
-</section>
-<section id="unusual-values-and-outliers" class="level3">
-<h3 class="anchored" data-anchor-id="unusual-values-and-outliers">Unusual values and outliers</h3>
-<p>Outliers are observations that don’t fit the pattern of the rest of the data. They may arise from data entry errors, unusual but valid observations or important new discoveries. Because outliers can distort your perception of a distribution, zoom in on the region where most data lie or adjust the y‑axis limits to make rare values visible. Once you identify an outlier you have two options:</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solutions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solutions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <ol type="1">
-<li><strong>Drop the entire row</strong> containing the unusual value, though this can discard valid data and is not recommended for low‑quality data.</li>
-<li><strong>Recode the unusual value as missing</strong> using <code>mutate()</code> and <code>if_else()</code>. ggplot2 automatically drops missing values from plots; add <code>na.rm = TRUE</code> to suppress warnings.</li>
+<li><p>A title that describes the plot (“A scatterplot of X vs.&nbsp;Y”) makes the reader do the work of finding the pattern themselves; a title that states the finding (“Wealthier countries tend to live longer”) tells them what to look for before they even study the axes. The caption is the natural place for supporting detail that isn’t the headline, most often the data source.</p></li>
+<li><p>Filtering the data before fitting a trend line removes those points from the calculation entirely, not just from the visible plot area, so the fitted line reflects a different (smaller) dataset than the one being discussed. <code>coord_cartesian()</code> only changes the visible viewport; every point, including ones now outside the visible range, is still included when the trend line itself is computed.</p></li>
+<li><p><code>label_percent()</code> assumes its input is a proportion between 0 and 1 and multiplies by 100 before appending <code>%</code>, so a value like <code>42</code> (already a percentage) becomes <code>"4200%"</code> instead of <code>"42%"</code>. Passing <code>scale = 1</code> to <code>label_percent()</code> turns off that multiplication for values already on a 0-100 scale.</p></li>
+<li><p><code>annotate()</code> draws its literal mark once per facet panel, since <code>facet_wrap()</code> repeats every layer for every panel and has no way to know the annotation was meant for only one of them; the note appears identically in all four panels. To annotate only one panel, build a small data frame with one row per panel that should get the annotation, including a column that matches the faceting variable’s values, and pass it to <code>geom_text(data = ...)</code> instead of <code>annotate()</code>, so the layer only draws for the matching panel.</p></li>
+<li><p>The color legend appears twice, once per panel, even though both legends show the exact same categories and colors. Adding <code>plot_layout(guides = "collect")</code> merges matching legends into a single shared one for the whole combined figure.</p></li>
 </ol>
-<p>Investigate why outliers occur; sometimes they signal important phenomena or errors that need correction. When comparing groups, consider plotting the data with and without outliers to assess their influence.</p>
-</section>
-<section id="covariation-exploring-relationships-between-variables" class="level3">
-<h3 class="anchored" data-anchor-id="covariation-exploring-relationships-between-variables">Covariation: exploring relationships between variables</h3>
-<p><strong>Covariation</strong> describes how two or more variables vary together. Visualizing covariation helps you understand relationships, identify trends and generate hypotheses.</p>
-<section id="a-categorical-and-a-numerical-variable" class="level4">
-<h4 class="anchored" data-anchor-id="a-categorical-and-a-numerical-variable">A categorical and a numerical variable</h4>
-<p>To examine how a numerical variable varies across categories, you can overlay histograms or frequency polygons for each group. For example, comparing diamond prices across different cuts with <code>geom_freqpoly()</code> shows that the default y‑axis (counts) may make it hard to compare shapes when group sizes differ; mapping density to the y‑axis standardizes the distributions. <strong>Boxplots</strong> provide a compact summary of the distribution for each category, making it easier to compare medians and spreads. For unordered categorical variables you can reorder the categories with <code>fct_reorder()</code> so that the levels appear in a meaningful order. If category labels are long, flip the axes with <code>coord_flip()</code> to improve readability.</p>
-</section>
-<section id="two-categorical-variables" class="level4">
-<h4 class="anchored" data-anchor-id="two-categorical-variables">Two categorical variables</h4>
-<p>When both variables are categorical, first <strong>count</strong> the number of observations in each combination using <code>count()</code>. You can visualize the counts with <code>geom_count()</code>, which draws points whose size represents the number of observations. Alternatively, use <code>geom_tile()</code> to create a heatmap where the fill color encodes the count. Reordering rows and columns or using seriation methods can reveal patterns. Because the counts may vary widely across categories, consider rescaling or normalizing the counts to compare distributions within rows or columns.</p>
-</section>
-<section id="two-numerical-variables" class="level4">
-<h4 class="anchored" data-anchor-id="two-numerical-variables">Two numerical variables</h4>
-<p>To explore the relationship between two continuous variables, draw a <strong>scatterplot</strong> with <code>geom_point()</code>. Look for patterns such as trends, clusters or nonlinear relationships. When your dataset is large, reduce overplotting by using the <code>alpha</code> aesthetic to make points partially transparent. Another strategy is <strong>two‑dimensional binning</strong>: <code>geom_bin2d()</code> and <code>geom_hex()</code> divide the plane into rectangles or hexagons and fill each bin according to the number of observations. Binning one variable with <code>cut_width()</code> and plotting side‑by‑side boxplots is yet another way to visualize how the distribution of <code>y</code> changes with ranges of <code>x</code>.</p>
-</section>
-</section>
-<section id="summarizing-with-dplyr" class="level3">
-<h3 class="anchored" data-anchor-id="summarizing-with-dplyr">Summarizing with dplyr</h3>
-<p>Graphs tell compelling stories, but numeric summaries provide precise answers. Use <code>group_by()</code> and <code>summarise()</code> to compute means, medians, counts and proportions. The <code>count()</code> helper is convenient for computing counts for combinations of categories. When comparing a continuous variable across categories, you might compute summary statistics (e.g., mean, median, standard deviation) for each group. Combining these summaries with your plots will deepen your understanding of variation and covariation.</p>
-</section>
-<section id="key-takeaways" class="level3">
-<h3 class="anchored" data-anchor-id="key-takeaways">Key take‑aways</h3>
-<ul>
-<li><strong>EDA is iterative and question‑driven.</strong> Generate many questions, explore with plots and summaries, and refine your questions as you learn.</li>
-<li><strong>Understand variation.</strong> Visualize the distribution of each variable; identify typical values, clusters and unusual patterns; adjust bin widths to reveal structure.</li>
-<li><strong>Handle outliers thoughtfully.</strong> Zoom in to detect outliers, investigate their cause, and decide whether to drop or recode them as missing.</li>
-<li><strong>Examine covariation with appropriate tools.</strong> Use frequency polygons, boxplots and reorder factors for categorical–numerical relationships; use counts and heatmaps for categorical–categorical relationships; use scatterplots, transparency and 2D bins for numerical–numerical relationships.</li>
-<li><strong>Supplement plots with summaries.</strong> Compute numeric summaries with <code>dplyr</code> functions like <code>summarise()</code> and <code>count()</code>. Together, visual and numeric summaries provide a robust understanding of your data.</li>
-</ul>
-<!-- ## In‑class activity and suggested reading -->
-<!-- The in‑class activity for this session uses the `babynames` dataset from the **babynames** package.  Students will explore variation in baby name popularity and the relationship between name popularity, year and sex.  They will create histograms of name counts for a given year, compare the distributions of name proportions across sexes, and examine how the popularity of selected names has changed over time.  They will also summarise and visualise the counts of names by first letter and sex using `count()`, `geom_tile()` and boxplots.  See the separate assignment file for details. -->
-<!-- **Suggested reading for Session 22:**  To prepare for our introduction to statistical modelling and simple linear regression, read **Chapter 23 “Model basics”** from the first edition of *R for Data Science*.  The chapter explains that the goal of a model is to provide a simple low‑dimensional summary of a dataset by partitioning it into patterns and residuals【29141514205487†L50-L55】.  You will learn how to define a family of models by specifying an equation (e.g., `y = a_1 * x + a_2`) and then fit the model by finding the parameters that make it closest to the data【29141514205487†L64-L75】.  The authors emphasise that a fitted model is just the closest model from the family—it may not be “true,” but it can still be useful【29141514205487†L77-L101】.  The chapter also introduces the famous aphorism “All models are wrong, but some are useful” and shows how models help peel back layers of structure so that you can see more subtle trends【29141514205487†L80-L101】. -->
+</div>
+</div>
+</div>
 
 
 </section>

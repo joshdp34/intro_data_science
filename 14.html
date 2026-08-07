@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>14&nbsp; Session 14 – Advanced data import I: spreadsheets – STA 2300 Intro to Data Science</title>
+<title>14&nbsp; Session 14: Relational data – STA 2300 Intro to Data Science</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -177,7 +177,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./14.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14 – Advanced data import I: spreadsheets</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./14.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14: Relational data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -224,127 +224,133 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Data visualization basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Quarto basics for reproducible assignments</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: The layered grammar of graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: Data visualization basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: The layered grammar of graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (II): grouping and summarizing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data import: reading CSV and flat files</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data transformation (II): grouping and summarizing</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Tidy data and pivoting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Data import: reading CSV and flat files</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Variable types I: logical and numeric vectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Tidy data and pivoting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types II: strings and regular expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types I: logical and numeric vectors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types III: factors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types II: strings and regular expressions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types IV: dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types III: factors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12 – Missing values &amp; data cleaning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12: Variable types IV: dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13 –&nbsp;Relational data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13: Missing values and data cleaning</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14 – Advanced data import I: spreadsheets</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14: Relational data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15 – Advanced data import II: databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15: Advanced data import I: spreadsheets</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./16.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16 – Big‑data formats &amp; hierarchical data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16: Advanced data import II: databases</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17 – Web scraping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17: Big data formats and hierarchical data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./18.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18 – Basic programming I: functions &amp; code style</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18: Web scraping</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./19.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19 – Basic programming II: iteration &amp; functional programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19: Basic programming I: functions and code style</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./20.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20 – Reproducible research &amp; communication</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20: Basic programming II: iteration and functional programming</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./21.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21 – Exploratory data analysis (EDA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21: Communication</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./22.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22 – Statistical modelling&nbsp;I: simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22: Exploratory data analysis (EDA)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Session 23: Statistical modeling I: simple linear regression</span></span></a>
   </div>
 </li>
     </ul>
@@ -360,14 +366,14 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#why-spreadsheets" id="toc-why-spreadsheets" class="nav-link" data-scroll-target="#why-spreadsheets">Why spreadsheets?</a></li>
-  <li><a href="#reading-excel-spreadsheets" id="toc-reading-excel-spreadsheets" class="nav-link" data-scroll-target="#reading-excel-spreadsheets">Reading Excel spreadsheets</a></li>
-  <li><a href="#working-with-multiple-worksheets" id="toc-working-with-multiple-worksheets" class="nav-link" data-scroll-target="#working-with-multiple-worksheets">Working with multiple worksheets</a></li>
-  <li><a href="#reading-part-of-a-sheet" id="toc-reading-part-of-a-sheet" class="nav-link" data-scroll-target="#reading-part-of-a-sheet">Reading part of a sheet</a></li>
-  <li><a href="#data-types-and-type-guessing" id="toc-data-types-and-type-guessing" class="nav-link" data-scroll-target="#data-types-and-type-guessing">Data types and type guessing</a></li>
-  <li><a href="#writing-excel-files" id="toc-writing-excel-files" class="nav-link" data-scroll-target="#writing-excel-files">Writing Excel files</a></li>
-  <li><a href="#google-sheets" id="toc-google-sheets" class="nav-link" data-scroll-target="#google-sheets">Google Sheets</a></li>
-  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key take‑aways</a></li>
+  <li><a href="#what-is-relational-data" id="toc-what-is-relational-data" class="nav-link" data-scroll-target="#what-is-relational-data">What is relational data?</a></li>
+  <li><a href="#mutating-joins" id="toc-mutating-joins" class="nav-link" data-scroll-target="#mutating-joins">Mutating joins</a></li>
+  <li><a href="#filtering-joins" id="toc-filtering-joins" class="nav-link" data-scroll-target="#filtering-joins">Filtering joins</a></li>
+  <li><a href="#handling-missing-matches-and-duplicate-keys" id="toc-handling-missing-matches-and-duplicate-keys" class="nav-link" data-scroll-target="#handling-missing-matches-and-duplicate-keys">Handling missing matches and duplicate keys</a></li>
+  <li><a href="#a-glance-at-more-advanced-joins" id="toc-a-glance-at-more-advanced-joins" class="nav-link" data-scroll-target="#a-glance-at-more-advanced-joins">A glance at more advanced joins</a></li>
+  <li><a href="#fringe-cases-and-common-pitfalls" id="toc-fringe-cases-and-common-pitfalls" class="nav-link" data-scroll-target="#fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -377,7 +383,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14 – Advanced data import I: spreadsheets</span></h1>
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14: Relational data</span></h1>
 </div>
 
 
@@ -397,120 +403,343 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Recognize why spreadsheets are common and problematic.</strong> Data often arrives as Excel or Google Sheets files. Compared to CSVs, spreadsheets can contain multiple worksheets, extraneous formatting and mixed data types. Understand why a clean import requires careful selection of sheets, ranges and column names.</li>
-<li><strong>Load Excel spreadsheets into R.</strong> Use the <code>readxl</code> package to read <code>.xls</code> and <code>.xlsx</code> files with functions such as <code>read_xls()</code>, <code>read_xlsx()</code> and the convenience wrapper <code>read_excel()</code>. Specify column names, skip rows and define custom missing‑value strings when importing.</li>
-<li><strong>Work with multiple worksheets.</strong> List the sheet names in a workbook with <code>excel_sheets()</code>, read individual sheets with <code>read_excel()</code> and combine them with <code>bind_rows()</code>.</li>
-<li><strong>Read part of a sheet.</strong> Use the <code>range</code> argument to select a specific rectangle of cells when a worksheet contains extraneous text above or below the data frame.</li>
-<li><strong>Understand type guessing and specify column types.</strong> Excel cells can contain booleans, numbers, datetimes or strings; readxl guesses column types but you can override them. Learn how to inspect and set <code>col_types</code> when necessary.</li>
-<li><strong>Write Excel files.</strong> Create spreadsheets using the <code>writexl::write_xlsx()</code> function and appreciate its limitations; learn when to use <code>openxlsx</code> for more advanced formatting.</li>
-<li><strong>Load data from Google Sheets.</strong> Use the <code>googlesheets4</code> package to read public or shared spreadsheets. <code>read_sheet()</code> works similarly to <code>read_excel()</code>: it accepts a URL or sheet ID and allows you to specify column names, missing values and column types. Understand that many tasks translate directly from Excel to Google Sheets, but minor differences may require adjustments.</li>
+<li><strong>Recognize relational data and keys.</strong> A relational dataset organizes information across multiple tables; each table has a primary key that uniquely identifies each row, and a foreign key links a row in one table to a row in another. Learn to identify keys, verify their uniqueness, and create a surrogate key with <code>row_number()</code> when no natural key exists.</li>
+<li><strong>Use mutating joins to combine tables.</strong> Mutating joins (<code>left_join()</code>, <code>inner_join()</code>, <code>right_join()</code>, <code>full_join()</code>) add new columns from a matching table by matching rows on keys. Understand how a left join keeps every row of the left table, and how duplicates arise in a many-to-many join.</li>
+<li><strong>Specify join keys explicitly with <code>join_by()</code>.</strong> The default join behavior uses every common variable name as the key, which is convenient right up until two tables happen to share a column name that means two different things. Learn to specify keys manually, including keys with different names on each side.</li>
+<li><strong>Use filtering joins to filter rows.</strong> Filtering joins (<code>semi_join()</code>, <code>anti_join()</code>) keep or drop rows in one table based on whether a match exists in another; unlike mutating joins, they never add columns and never duplicate rows.</li>
+<li><strong>Avoid pitfalls with joins.</strong> Recognize issues such as missing matches, duplicate keys, many-to-many relationships that inflate row counts, and the surprising way a <code>NA</code> in a join key is treated.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<section id="why-spreadsheets" class="level3">
-<h3 class="anchored" data-anchor-id="why-spreadsheets">Why spreadsheets?</h3>
-<p>Plain‑text formats like CSV are easy to version control and read into R, but many collaborators use <strong>spreadsheets</strong> to store data. A spreadsheet file can hold multiple <strong>worksheets</strong>, merge cells for visual layout and apply formatting. This flexibility makes spreadsheets convenient for humans but harder for code. When you receive a workbook, you need to identify which worksheet(s) contain the data, decide if there are header or footer rows to skip, and ensure that each column represents a single variable.</p>
-</section>
-<section id="reading-excel-spreadsheets" class="level3">
-<h3 class="anchored" data-anchor-id="reading-excel-spreadsheets">Reading Excel spreadsheets</h3>
-<p>The <code>readxl</code> package provides three functions to import Excel files: <code>read_xls()</code> for the older <code>.xls</code> format, <code>read_xlsx()</code> for the newer <code>.xlsx</code> format and <code>read_excel()</code>, which automatically detects the file type. All three functions return a tibble and have a consistent interface. The first argument is the path to the file and the optional <code>sheet</code> argument selects a worksheet by name or position. For example, to read a spreadsheet called <code>students.xlsx</code> you would call:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>students <span class="ot">=</span> <span class="fu">read_excel</span>(<span class="st">"data/students.xlsx"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>When importing, you often need to adjust the <strong>column names</strong> and <strong>missing‑value strings</strong>. Provide a character vector to <code>col_names</code> to set variable names explicitly and set <code>skip</code> to ignore extraneous header rows. Use the <code>na</code> argument to tell readxl which strings should be converted to <code>NA</code>. For example, the spreadsheet in Chapter 20 of <em>R for Data Science</em> uses <code>"N/A"</code> to denote missing values, so you would write:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>students <span class="ot">=</span> <span class="fu">read_excel</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/students.xlsx"</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"student_id"</span>, <span class="st">"full_name"</span>, <span class="st">"favourite_food"</span>, <span class="st">"meal_plan"</span>, <span class="st">"age"</span>),</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">1</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"N/A"</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<section id="what-is-relational-data" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-relational-data">What is relational data?</h3>
+<p>Data rarely lives in a single flat table. When information naturally splits into multiple tables, you have relational data. The <code>nycflights13</code> package is a good example: separate tables describe individual flights, airlines, planes, airports, and weather. To connect them, each table has a <strong>primary key</strong>, a variable (or set of variables) that uniquely identifies each row, and other tables contain <strong>foreign keys</strong> that reference those primary keys. Keys let you work with smaller, more coherent tables instead of duplicating the same information across many columns.</p>
+<p>To reliably join tables, check that a candidate key is actually unique within its table, using <code>count()</code> and <code>filter(n &gt; 1)</code> to surface any duplicates. When no single column is unique on its own, a <strong>compound key</strong> made of several columns together, such as airport and hour for weather observations, can serve the same purpose. If a table genuinely has no natural key at all, <code>row_number()</code> creates a simple <strong>surrogate key</strong>, useful mainly for referring to a specific row unambiguously (in a bug report, for instance) rather than for anything relational.</p>
 </section>
-<section id="working-with-multiple-worksheets" class="level3">
-<h3 class="anchored" data-anchor-id="working-with-multiple-worksheets">Working with multiple worksheets</h3>
-<p>Spreadsheets can contain multiple datasets in separate <strong>worksheets</strong>. Use <code>excel_sheets()</code> to list the sheet names and then supply a sheet name or index to <code>read_excel()</code>. When a workbook splits a dataset across sheets (e.g.&nbsp;one sheet per site), read each sheet into its own tibble and then combine the tibbles with <code>bind_rows()</code>. For example, suppose <code>penguins.xlsx</code> contains three sheets – Torgersen, Biscoe and Dream islands – each with the same variables:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>path <span class="ot">=</span> <span class="st">"data/penguins.xlsx"</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>sheet_names <span class="ot">=</span> <span class="fu">excel_sheets</span>(path)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read each sheet and combine into one tibble</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">=</span> sheet_names <span class="sc">|&gt;</span> </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_names</span>() <span class="sc">|&gt;</span>  <span class="co"># preserve the sheet names</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span> <span class="fu">read_excel</span>(path, <span class="at">sheet =</span> .x, <span class="at">na =</span> <span class="st">"NA"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="reading-part-of-a-sheet" class="level3">
-<h3 class="anchored" data-anchor-id="reading-part-of-a-sheet">Reading part of a sheet</h3>
-<p>Many spreadsheets mix notes and formatting with data. When the data table occupies only a portion of the worksheet, use the <code>range</code> argument to read a specific rectangle of cells. For example, the <code>deaths.xlsx</code> example in the readxl package has non‑data text above and below the table. The data starts in cell <code>A5</code> and ends in cell <code>F15</code>, so you would call:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>deaths_path <span class="ot">=</span> <span class="fu">readxl_example</span>(<span class="st">"deaths.xlsx"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>deaths <span class="ot">=</span> <span class="fu">read_excel</span>(deaths_path, <span class="at">range =</span> <span class="st">"A5:F15"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>This reads only the ten rows of interest.</p>
-</section>
-<section id="data-types-and-type-guessing" class="level3">
-<h3 class="anchored" data-anchor-id="data-types-and-type-guessing">Data types and type guessing</h3>
-<p>Unlike CSV files, Excel cells can hold <strong>booleans</strong>, <strong>numbers</strong>, <strong>datetimes</strong> or <strong>text</strong>. When you import a spreadsheet, readxl guesses the column type by scanning a sample of cells. If all values look like numbers, it will treat the column as numeric; if some cells contain dates, the column becomes a datetime; otherwise it becomes a character vector. Mixed types or hidden formatting can lead to surprises. You can always inspect the inferred types and, if necessary, override them with the <code>col_types</code> argument. Recognize that Excel stores dates internally as numbers (days since 1970) and that you may need to convert them to proper date or datetime objects.</p>
-</section>
-<section id="writing-excel-files" class="level3">
-<h3 class="anchored" data-anchor-id="writing-excel-files">Writing Excel files</h3>
-<p>To share results with collaborators who use spreadsheets, write data frames back to Excel using the <code>writexl</code> package. The <code>write_xlsx()</code> function accepts a data frame and a path and writes an <code>.xlsx</code> file with simple formatting. For example:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(writexl)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>bake_sale <span class="ot">=</span> <span class="fu">tibble</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">item =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"brownie"</span>, <span class="st">"cupcake"</span>, <span class="st">"cookie"</span>)),</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">quantity =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">8</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(bake_sale, <span class="at">path =</span> <span class="st">"bake-sale.xlsx"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>If you need more control over formatting, writing to multiple worksheets or styling cells, consider the <code>openxlsx</code> package, which provides functions for adjusting column widths, font styles and cell colours.</p>
-</section>
-<section id="google-sheets" class="level3">
-<h3 class="anchored" data-anchor-id="google-sheets">Google Sheets</h3>
-<p>Excel files live on your computer, but many teams use <strong>Google Sheets</strong> to collaborate. The <code>googlesheets4</code> package reads and writes Google Sheets using the Sheets API. Its main function <code>read_sheet()</code> downloads data given a Google Sheets URL or file ID. The syntax parallels <code>read_excel()</code>: you can supply <code>col_names</code>, <code>skip</code>, <code>na</code> and <code>col_types</code> to clean up the import. For example, to read a publicly shared sheet by its ID:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(googlesheets4)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Deauthorize if the sheet is publicly accessible</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gs4_deauth</span>()</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>sheet_id <span class="ot">=</span> <span class="st">"1V1nPp1tzOuutXFLb3G9Eyxi3qxeEhnOXUzL5_BcCQ0w"</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>students <span class="ot">=</span> <span class="fu">read_sheet</span>(</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  sheet_id,</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"student_id"</span>, <span class="st">"full_name"</span>, <span class="st">"favourite_food"</span>, <span class="st">"meal_plan"</span>, <span class="st">"age"</span>),</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">1</span>,</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"N/A"</span>),</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="st">"dcccc"</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Google Sheets differ from Excel in a few ways. The file is identified by a long URL; <code>read_sheet()</code> needs an internet connection; and some functions (e.g., <code>sheet_names()</code>, <code>sheet_write()</code>) behave differently. However, most tasks transfer directly by swapping <code>read_excel()</code> for <code>read_sheet()</code>. If a sheet contains multiple worksheets (tabs), you can specify the <code>sheet</code> argument to read a particular tab or call <code>sheet_names()</code> to list all tabs.</p>
-</section>
-<section id="key-takeaways" class="level3">
-<h3 class="anchored" data-anchor-id="key-takeaways">Key take‑aways</h3>
+<section id="mutating-joins" class="level3">
+<h3 class="anchored" data-anchor-id="mutating-joins">Mutating joins</h3>
+<p>A mutating join combines variables from two tables by matching rows on their keys, and the four common mutating joins differ only in which rows survive.</p>
 <ul>
-<li>Spreadsheets are convenient for people but messy for code. Identify the correct worksheet and cell range before importing.</li>
-<li>Use <code>readxl::read_excel()</code> or the specialized <code>read_xls()</code>/<code>read_xlsx()</code> to load Excel files. Specify column names, skip header rows and define missing‑value strings to clean up the import.</li>
-<li>Call <code>excel_sheets()</code> to list worksheets and iterate with <code>purrr::map()</code> when you need to import multiple sheets.</li>
-<li>Use the <code>range</code> argument to read only the rectangle containing the data. Understand that Excel’s underlying data types may differ from their display and adjust <code>col_types</code> accordingly.</li>
-<li>Write data back to Excel with <code>writexl::write_xlsx()</code>; use <code>openxlsx</code> for more advanced formatting.</li>
-<li>The <code>googlesheets4</code> package brings similar functionality to Google Sheets; <code>read_sheet()</code> reads a sheet by URL or ID and accepts the same cleaning arguments.</li>
+<li><strong>Inner join</strong> (<code>inner_join(x, y)</code>): keeps only rows where the key appears in both <code>x</code> and <code>y</code>.</li>
+<li><strong>Left join</strong> (<code>left_join(x, y)</code>): keeps every row of <code>x</code>, filling unmatched rows’ new columns with <code>NA</code>. This is the most common join, since it augments your existing data without silently dropping any of it.</li>
+<li><strong>Right join</strong> (<code>right_join(x, y)</code>): keeps every row of <code>y</code>, matching as many rows of <code>x</code> as possible.</li>
+<li><strong>Full join</strong> (<code>full_join(x, y)</code>): keeps every row from both tables, filling <code>NA</code> wherever there’s no match.</li>
 </ul>
-<!-- ## In‑class activity -->
-<!-- In this session’s activity you will practice importing and exporting spreadsheet data using the `readxl` and `writexl` packages.  The dataset used here is **chickwts**, which records the weight of chicks fed different diets; it is available in the example Excel workbook that comes with `readxl` and has not been used in *R for Data Science*.  Start by installing or loading `readxl` and `writexl`.  Then: -->
-<!-- 1. **Explore the workbook (5 min).**  Use `readxl_example("datasets.xlsx")` to find the path to the example workbook and call `excel_sheets()` to list the worksheet names.  Which sheets are available? -->
-<!-- 2. **Import the `chickwts` sheet (10 min).**  Read the worksheet named `"chickwts"` with `read_excel()`.  Clean up the import by specifying the column names (`"feed"` and `"weight"`) and using the `skip` argument if needed.  Inspect the tibble with `glimpse()` and `summary()`.  Convert the weights from grams to kilograms (divide by 1000) and add a new `weight_kg` column. -->
-<!-- 3. **Summarise chick weights (10 min).**  Group the data by `feed` and compute the number of chicks, the mean and median weight (in kilograms) using `summarise()`.  Arrange the summary by descending mean weight.  Visualise the results in a bar chart with `ggplot2`. -->
-<!-- 4. **Read a partial range (5 min).**  Suppose you are only interested in the first 25 rows.  Use the `range` argument with `read_excel()` to read rows 1–25 and re-run the summary.  Does it differ from the full data? -->
-<!-- 5. **Write the summary to Excel (5 min).**  Use `writexl::write_xlsx()` to save your summary tibble to a new file, for example `"chickwts-summary.xlsx"`.  Open the file in a spreadsheet program to confirm that it looks correct. -->
-<!-- This activity will give you hands-on practice listing sheets, cleaning up imports with `read_excel()`, selecting a cell range, summarising data, and writing results back to Excel.  It uses an example dataset not covered in the textbook. -->
-<!-- --- -->
-<!-- **Suggested reading for Session 15:**  Chapter 21 of *R for Data Science* (2nd ed.), “Databases”, explains why connecting to a database directly is critical: exporting CSV snapshots creates delays, whereas DBI lets you retrieve data on demand【394627012992149†L119-L133】.  The chapter introduces DBI and dbplyr—DBI provides a low-level interface to connect and send queries, and dbplyr translates your dplyr code to SQL【394627012992149†L137-L139】.  It contrasts database tables with data frames: tables live on disk, can be arbitrarily large, and have indexes【394627012992149†L150-L159】; classical row‑oriented databases prioritise writing over analysis, while column‑oriented databases support faster analytical queries【394627012992149†L162-L166】.  You’ll learn about different database management systems (client–server, cloud and in‑process)【394627012992149†L168-L180】 and how to connect from R using `DBI::dbConnect()` with a DBMS‑specific package【394627012992149†L184-L203】.  The book uses `duckdb` as an easy in‑process database for teaching【394627012992149†L223-L249】 and shows how to load data with `dbWriteTable()` and list tables with `dbListTables()`【394627012992149†L270-L279】.  Once connected, you create lazy table objects with `tbl()` and write dplyr code; dbplyr lazily translates operations to SQL and only executes them when you call `collect()`【394627012992149†L325-L331】【394627012992149†L360-L409】.  The remainder of the chapter teaches basic SQL clauses (SELECT, FROM, WHERE, GROUP BY, ORDER BY) and encourages using `show_query()` to see the generated SQL【394627012992149†L439-L468】. -->
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">left_join</span>(airlines, <span class="at">by =</span> <span class="st">"carrier"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 336,776 × 20
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+ 1  2013     1     1      517            515         2      830            819
+ 2  2013     1     1      533            529         4      850            830
+ 3  2013     1     1      542            540         2      923            850
+ 4  2013     1     1      544            545        -1     1004           1022
+ 5  2013     1     1      554            600        -6      812            837
+ 6  2013     1     1      554            558        -4      740            728
+ 7  2013     1     1      555            600        -5      913            854
+ 8  2013     1     1      557            600        -3      709            723
+ 9  2013     1     1      557            600        -3      838            846
+10  2013     1     1      558            600        -2      753            745
+# ℹ 336,766 more rows
+# ℹ 12 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
+#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, name &lt;chr&gt;</code></pre>
+</div>
+</div>
+<p>Because a mutating join adds columns the same way <code>mutate()</code> does, it’s easy not to notice new columns arriving if the table already has many; <code>select()</code> down to the relevant keys and columns before joining if you want to see exactly what changed.</p>
+<section id="specifying-join-keys" class="level4">
+<h4 class="anchored" data-anchor-id="specifying-join-keys">Specifying join keys</h4>
+<p>By default, dplyr joins on every variable name the two tables have in common, which is convenient exactly until two tables share a column name that doesn’t mean the same thing in both places (see Example 13.1). <code>join_by()</code> lets you name the key (or keys) explicitly, including an <em>equi join</em> where the matching columns have different names on each side:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">left_join</span>(airports, <span class="fu">join_by</span>(dest <span class="sc">==</span> faa))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 336,776 × 26
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+ 1  2013     1     1      517            515         2      830            819
+ 2  2013     1     1      533            529         4      850            830
+ 3  2013     1     1      542            540         2      923            850
+ 4  2013     1     1      544            545        -1     1004           1022
+ 5  2013     1     1      554            600        -6      812            837
+ 6  2013     1     1      554            558        -4      740            728
+ 7  2013     1     1      555            600        -5      913            854
+ 8  2013     1     1      557            600        -3      709            723
+ 9  2013     1     1      557            600        -3      838            846
+10  2013     1     1      558            600        -2      753            745
+# ℹ 336,766 more rows
+# ℹ 18 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
+#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, name &lt;chr&gt;, lat &lt;dbl&gt;,
+#   lon &lt;dbl&gt;, alt &lt;dbl&gt;, tz &lt;dbl&gt;, dst &lt;chr&gt;, tzone &lt;chr&gt;</code></pre>
+</div>
+</div>
+<p>The older syntax <code>by = "carrier"</code> or <code>by = c("playerID" = "id")</code> still works and does the same thing; <code>join_by()</code> is simply the more explicit, more readable modern spelling, and the one you’ll need for the non-equi joins mentioned below.</p>
+</section>
+</section>
+<section id="filtering-joins" class="level3">
+<h3 class="anchored" data-anchor-id="filtering-joins">Filtering joins</h3>
+<p>A filtering join keeps or drops rows from the first table based solely on whether a match exists in the second, and, unlike a mutating join, never adds a single column and never duplicates a row (see Example 13.3).</p>
+<ul>
+<li><strong>Semi join</strong> (<code>semi_join(x, y)</code>): keeps rows in <code>x</code> that have at least one match in <code>y</code>. Use it to restrict <code>x</code> to cases that also appear somewhere in another table.</li>
+<li><strong>Anti join</strong> (<code>anti_join(x, y)</code>): keeps rows in <code>x</code> that have <em>no</em> match in <code>y</code>. Use it to find observations in <code>x</code> that are missing from <code>y</code>, exactly the technique previewed for spotting implicit missing values back in Session 13.</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># flights whose plane has no recorded details in the planes table</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">anti_join</span>(planes, <span class="at">by =</span> <span class="st">"tailnum"</span>) <span class="sc">|&gt;</span> <span class="fu">distinct</span>(tailnum) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 1
+  tailnum
+  &lt;chr&gt;  
+1 N3ALAA 
+2 N3DUAA 
+3 N542MQ 
+4 N730MQ 
+5 N9EAMQ 
+6 N532UA </code></pre>
+</div>
+</div>
+</section>
+<section id="handling-missing-matches-and-duplicate-keys" class="level3">
+<h3 class="anchored" data-anchor-id="handling-missing-matches-and-duplicate-keys">Handling missing matches and duplicate keys</h3>
+<p>Missing matches are inevitable in real data. Left-joining plane characteristics onto flight records leaves some planes’ details unknown, filled with <code>NA</code>, and it’s worth deciding whether that reflects data that genuinely doesn’t exist or a foreign key that’s simply wrong somewhere upstream.</p>
+<p>Duplicate keys are the bigger risk, since a join multiplies rows whenever a key isn’t unique on at least one side (see Example 13.2). Check for duplicates before joining, and decide whether you actually want every combination (setting <code>relationship = "many-to-many"</code> to say so explicitly) or whether one table needs to be summarized down to one row per key first.</p>
+</section>
+<section id="a-glance-at-more-advanced-joins" class="level3">
+<h3 class="anchored" data-anchor-id="a-glance-at-more-advanced-joins">A glance at more advanced joins</h3>
+<p>Every join so far has matched rows on exact equality. dplyr’s <code>join_by()</code> also supports <strong>non-equi joins</strong>: inequality conditions (<code>join_by(x &gt;= y)</code>) for matching ranges, <code>cross_join()</code> for every possible pairing between two tables, rolling joins (<code>join_by(closest(x &lt;= y))</code>) for matching each row to its nearest counterpart rather than an exact one, and overlap joins (<code>join_by(between(x, y_lower, y_upper))</code> and similar) for matching a value against a range. These come up most often when matching events to time windows or matching on approximate rather than exact criteria; the four joins covered above handle the large majority of everyday relational work.</p>
+</section>
+<section id="fringe-cases-and-common-pitfalls" class="level3">
+<h3 class="anchored" data-anchor-id="fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</h3>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 13.1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>The default join can silently match on a shared column name that means two different things.</strong></p>
+<p>Both <code>flights</code> and <code>planes</code> happen to have a column called <code>year</code>, but in <code>flights</code> it means “year the flight occurred” (every value is <code>2013</code>), while in <code>planes</code> it means “year the plane was manufactured” (ranging from 1956 to 2013). Joining on every shared column name by default pulls <code>year</code> in as part of the key without asking:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>small_flights <span class="ot">&lt;-</span> flights <span class="sc">|&gt;</span> <span class="fu">select</span>(year, tailnum) <span class="sc">|&gt;</span> <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># accidental: joins on tailnum AND year, so it only "matches" a plane</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># manufactured in exactly 2013, which is almost never true</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>small_flights <span class="sc">|&gt;</span> <span class="fu">left_join</span>(planes, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"tailnum"</span>, <span class="st">"year"</span>)) <span class="sc">|&gt;</span> <span class="fu">select</span>(tailnum, manufacturer)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  tailnum manufacturer
+  &lt;chr&gt;   &lt;chr&gt;       
+1 N14228  &lt;NA&gt;        
+2 N24211  &lt;NA&gt;        
+3 N619AA  &lt;NA&gt;        
+4 N804JB  &lt;NA&gt;        
+5 N668DN  &lt;NA&gt;        </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># correct: join on tailnum alone</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>small_flights <span class="sc">|&gt;</span> <span class="fu">left_join</span>(planes, <span class="at">by =</span> <span class="st">"tailnum"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(tailnum, manufacturer)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  tailnum manufacturer
+  &lt;chr&gt;   &lt;chr&gt;       
+1 N14228  BOEING      
+2 N24211  BOEING      
+3 N619AA  BOEING      
+4 N804JB  AIRBUS      
+5 N668DN  BOEING      </code></pre>
+</div>
+</div>
+<p>The first join looks like it worked, since it runs without an error or a warning, but nearly every <code>manufacturer</code> comes back <code>NA</code>, because almost no plane was manufactured the same year as any given 2013 flight. <code>join_by()</code> (or an explicit <code>by =</code>) removes the ambiguity entirely by naming exactly which column, or columns, should actually be compared. Whenever two tables share a column name, pause and check whether it means the same thing in both places before letting a natural join use it.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 13.2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>An unexpected many-to-many relationship inflates your row count, but at least it warns you.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="at">val_x =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">id =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="at">val_y =</span> <span class="fu">c</span>(<span class="st">"m"</span>, <span class="st">"n"</span>, <span class="st">"o"</span>))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(x, y, <span class="at">by =</span> <span class="st">"id"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in left_join(x, y, by = "id"): Detected an unexpected many-to-many relationship between `x` and `y`.
+ℹ Row 1 of `x` matches multiple rows in `y`.
+ℹ Row 1 of `y` matches multiple rows in `x`.
+ℹ If a many-to-many relationship is expected, set `relationship =
+  "many-to-many"` to silence this warning.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+     id val_x val_y
+  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
+1     1 a     m    
+2     1 a     n    
+3     1 b     m    
+4     1 b     n    
+5     2 c     o    </code></pre>
+</div>
+</div>
+<p><code>id = 1</code> appears twice in both <code>x</code> and <code>y</code>, so the join produces every combination of the two, four rows for <code>id = 1</code> alone, growing a 3-row table into a 5-row result. dplyr detects that this many-to-many situation wasn’t declared up front and warns you, which is exactly the kind of warning worth reading rather than dismissing, since a quietly duplicated dataset can throw off every downstream count and average. If the many-to-many relationship is genuinely intended, <code>relationship = "many-to-many"</code> silences the warning; if it isn’t, the fix is almost always to deduplicate one side of the join first.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 13.3
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Filtering joins never add columns, even though it’s tempting to expect them to.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="fu">semi_join</span>(small_flights, planes, <span class="at">by =</span> <span class="st">"tailnum"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "year"    "tailnum"</code></pre>
+</div>
+</div>
+<p>The result of <code>semi_join()</code> has exactly the same columns <code>small_flights</code> started with, nothing from <code>planes</code> at all, because a filtering join only ever asks “does a match exist?” and uses the answer to keep or drop rows. If you actually want columns from the second table, you need a mutating join (typically <code>inner_join()</code>, if you also want to drop the rows without a match); reach for <code>semi_join()</code>/<code>anti_join()</code> only when the columns you already have are all you need, and you’re just trying to filter based on another table’s contents.</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-example callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Example</span>Example 13.4
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>A <code>NA</code> in a join key matches another <code>NA</code>, unlike in SQL.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">key =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="dv">3</span>), <span class="at">val_a =</span> <span class="fu">c</span>(<span class="st">"x"</span>, <span class="st">"y"</span>, <span class="st">"z"</span>))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">key =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="dv">4</span>), <span class="at">val_b =</span> <span class="fu">c</span>(<span class="st">"p"</span>, <span class="st">"q"</span>, <span class="st">"r"</span>))</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(a, b, <span class="at">by =</span> <span class="st">"key"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+    key val_a val_b
+  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;
+1     1 x     p    
+2    NA y     q    </code></pre>
+</div>
+</div>
+<p>Anyone with a SQL background may expect two <code>NULL</code>s to never match each other, since SQL treats <code>NULL</code> as “unknown,” and two unknowns can’t be asserted equal. dplyr’s joins work differently: they treat <code>NA</code> as an ordinary value for matching purposes, so a row with <code>key = NA</code> in <code>a</code> does match a row with <code>key = NA</code> in <code>b</code>. This is rarely what you actually want if <code>NA</code> represents “missing” rather than a genuine shared category, so filtering out <code>NA</code> keys before joining (<code>filter(!is.na(key))</code>) is worth doing explicitly whenever a missing key showing up as a false match would be a real problem.</p>
+</div>
+</div>
+</section>
+<section id="recap" class="level3">
+<h3 class="anchored" data-anchor-id="recap">Recap</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 76%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Term</strong></th>
+<th><strong>Definition</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Primary key</strong></td>
+<td>A variable (or set of variables) that uniquely identifies each row in a table.</td>
+</tr>
+<tr class="even">
+<td><strong>Foreign key</strong></td>
+<td>A variable in one table that refers to a primary key in another table.</td>
+</tr>
+<tr class="odd">
+<td><strong>Surrogate key</strong></td>
+<td>An artificial identifier (typically from <code>row_number()</code>) added when no natural key exists.</td>
+</tr>
+<tr class="even">
+<td><strong>Mutating join</strong></td>
+<td>Adds columns from a second table by matching keys (<code>inner_join()</code>, <code>left_join()</code>, <code>right_join()</code>, <code>full_join()</code>).</td>
+</tr>
+<tr class="odd">
+<td><strong><code>join_by()</code></strong></td>
+<td>Specifies join keys explicitly, including keys with different names on each side or non-equality conditions.</td>
+</tr>
+<tr class="even">
+<td><strong>Filtering join</strong></td>
+<td>Keeps or drops rows from one table based on whether a match exists in another (<code>semi_join()</code>, <code>anti_join()</code>); never adds columns or duplicates rows.</td>
+</tr>
+<tr class="odd">
+<td><strong>Many-to-many relationship</strong></td>
+<td>When a key isn’t unique on either side of a join, so matching rows are duplicated for every combination; triggers a warning unless declared with <code>relationship = "many-to-many"</code>.</td>
+</tr>
+<tr class="even">
+<td><strong><code>NA</code> in a join key</strong></td>
+<td>Matches another <code>NA</code> in dplyr’s joins, unlike SQL’s <code>NULL</code>, which never matches another <code>NULL</code>.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="check-your-understanding" class="level3">
+<h3 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h3>
+<div class="callout callout-style-default callout-note callout-titled" title="Problems">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Problems
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>What is the difference between a primary key and a foreign key? What is a surrogate key, and when would you need one?</li>
+<li>Two tables both have a column called <code>id</code>, but in one table it identifies a customer and in the other it identifies an order. What would happen if you joined them with the default <code>by</code> behavior, and how would <code>join_by()</code> help?</li>
+<li>A <code>left_join()</code> you expected to simply add a couple of columns instead produces a table with far more rows than you started with, along with a warning. What almost certainly happened?</li>
+<li>Explain why <code>semi_join(orders, customers, by = "customer_id")</code> cannot be used to add a customer’s name to the orders table, even though both tables share a <code>customer_id</code> column.</li>
+<li>You join two tables on a key that can be <code>NA</code> in both tables, expecting rows with an unknown key to simply be excluded from the match. What actually happens in dplyr, and how would you get the behavior you expected?</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Solutions">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Solutions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>A primary key uniquely identifies each row within its own table; a foreign key is a column in a different table that refers back to that primary key, linking the two tables together. A surrogate key is an artificial identifier, typically created with <code>row_number()</code>, added when a table has no natural column (or combination of columns) that’s already unique; it’s mainly useful for referring to a specific row unambiguously, not for representing any real-world relationship.</p></li>
+<li><p>By default, the join would use <code>id</code> as the key, silently comparing a customer identifier to an order identifier as though they meant the same thing, which would produce meaningless or empty matches without any error. <code>join_by()</code> (or an explicit <code>by =</code>) lets you name the actual keys you want compared, or simply avoid using <code>id</code> as the join key at all if the two columns aren’t meant to be compared.</p></li>
+<li><p>The join key almost certainly isn’t unique on at least one side, creating a many-to-many relationship: every duplicate key on one side gets matched against every duplicate key on the other, multiplying rows far beyond a simple one-to-one or one-to-many join. Checking each table’s key with <code>count()</code> and <code>filter(n &gt; 1)</code> before joining would reveal the duplicates.</p></li>
+<li><p><code>semi_join()</code> is a filtering join: it only ever keeps or drops rows from the first table based on whether a match exists in the second, and never brings in any columns from the second table at all. To add a customer’s name to the orders table, you need a mutating join, such as <code>left_join(orders, customers, by = "customer_id")</code>.</p></li>
+<li><p>dplyr treats <code>NA</code> as an ordinary matchable value in a join key, so rows with <code>NA</code> in both tables’ key columns will match each other, the opposite of SQL’s <code>NULL</code>, which never matches another <code>NULL</code>. To exclude rows with a missing key from matching, filter them out of one or both tables first, for example with <code>filter(!is.na(key))</code>, before joining.</p></li>
+</ol>
+</div>
+</div>
+</div>
 
 
 </section>

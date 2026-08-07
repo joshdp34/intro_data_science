@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; Session 10: Variable types III: factors – STA 2300 Intro to Data Science</title>
+<title>10&nbsp; Session 10: Variable types II: strings and regular expressions – STA 2300 Intro to Data Science</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -177,7 +177,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types III: factors</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types II: strings and regular expressions</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -224,127 +224,133 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Data visualization basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Session 2: Quarto basics for reproducible assignments</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: The layered grammar of graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Session 3: Data visualization basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Session 4: The layered grammar of graphics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (II): grouping and summarizing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Session 5: Data transformation (I): filtering, arranging, selecting and mutating</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data import: reading CSV and flat files</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Session 6: Data transformation (II): grouping and summarizing</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Tidy data and pivoting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Session 7: Data import: reading CSV and flat files</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Variable types I: logical and numeric vectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Session 8: Tidy data and pivoting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types II: strings and regular expressions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Session 9: Variable types I: logical and numeric vectors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types III: factors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types II: strings and regular expressions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types IV: dates and times</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Session 11: Variable types III: factors</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12 – Missing values &amp; data cleaning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Session 12: Variable types IV: dates and times</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13 –&nbsp;Relational data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Session 13: Missing values and data cleaning</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14 – Advanced data import I: spreadsheets</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Session 14: Relational data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15 – Advanced data import II: databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Session 15: Advanced data import I: spreadsheets</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./16.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16 – Big‑data formats &amp; hierarchical data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Session 16: Advanced data import II: databases</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./17.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17 – Web scraping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Session 17: Big data formats and hierarchical data</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./18.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18 – Basic programming I: functions &amp; code style</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Session 18: Web scraping</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./19.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19 – Basic programming II: iteration &amp; functional programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Session 19: Basic programming I: functions and code style</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./20.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20 – Reproducible research &amp; communication</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Session 20: Basic programming II: iteration and functional programming</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./21.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21 – Exploratory data analysis (EDA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Session 21: Communication</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./22.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22 – Statistical modelling&nbsp;I: simple linear regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Session 22: Exploratory data analysis (EDA)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Session 23: Statistical modeling I: simple linear regression</span></span></a>
   </div>
 </li>
     </ul>
@@ -360,11 +366,14 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives">Objectives</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a>
   <ul class="collapse">
-  <li><a href="#why-factors" id="toc-why-factors" class="nav-link" data-scroll-target="#why-factors">Why factors?</a></li>
-  <li><a href="#creating-factors" id="toc-creating-factors" class="nav-link" data-scroll-target="#creating-factors">Creating factors</a></li>
-  <li><a href="#reordering-levels" id="toc-reordering-levels" class="nav-link" data-scroll-target="#reordering-levels">Reordering levels</a></li>
-  <li><a href="#modifying-levels" id="toc-modifying-levels" class="nav-link" data-scroll-target="#modifying-levels">Modifying levels</a></li>
-  <li><a href="#ordered-factors" id="toc-ordered-factors" class="nav-link" data-scroll-target="#ordered-factors">Ordered factors</a></li>
+  <li><a href="#creating-strings-quotes-escapes-and-raw-strings" id="toc-creating-strings-quotes-escapes-and-raw-strings" class="nav-link" data-scroll-target="#creating-strings-quotes-escapes-and-raw-strings">Creating strings: quotes, escapes, and raw strings</a></li>
+  <li><a href="#combining-and-formatting-strings" id="toc-combining-and-formatting-strings" class="nav-link" data-scroll-target="#combining-and-formatting-strings">Combining and formatting strings</a></li>
+  <li><a href="#regular-expressions-pattern-basics" id="toc-regular-expressions-pattern-basics" class="nav-link" data-scroll-target="#regular-expressions-pattern-basics">Regular expressions: pattern basics</a></li>
+  <li><a href="#detecting-counting-and-extracting-patterns" id="toc-detecting-counting-and-extracting-patterns" class="nav-link" data-scroll-target="#detecting-counting-and-extracting-patterns">Detecting, counting, and extracting patterns</a></li>
+  <li><a href="#capturing-groups-and-backreferences" id="toc-capturing-groups-and-backreferences" class="nav-link" data-scroll-target="#capturing-groups-and-backreferences">Capturing groups and backreferences</a></li>
+  <li><a href="#literal-matching-with-fixed" id="toc-literal-matching-with-fixed" class="nav-link" data-scroll-target="#literal-matching-with-fixed">Literal matching with <code>fixed()</code></a></li>
+  <li><a href="#splitting-a-column-into-several" id="toc-splitting-a-column-into-several" class="nav-link" data-scroll-target="#splitting-a-column-into-several">Splitting a column into several</a></li>
+  <li><a href="#working-with-messy-strings-in-tibbles" id="toc-working-with-messy-strings-in-tibbles" class="nav-link" data-scroll-target="#working-with-messy-strings-in-tibbles">Working with messy strings in tibbles</a></li>
   <li><a href="#fringe-cases-and-common-pitfalls" id="toc-fringe-cases-and-common-pitfalls" class="nav-link" data-scroll-target="#fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</a></li>
   <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
   <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
@@ -377,7 +386,7 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types III: factors</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Session 10: Variable types II: strings and regular expressions</span></h1>
 </div>
 
 
@@ -397,12 +406,12 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <ul>
-<li><strong>Understand why factors exist.</strong> Factors represent categorical variables with a fixed and known set of possible values. They prevent accidental typos and give you control over the order in which categories appear in summaries and plots. Learn why treating categories as plain strings can lead to problems, and how factors solve those problems.</li>
-<li><strong>Create and inspect factors.</strong> Use <code>factor()</code> or <code>forcats::fct()</code> to convert character vectors to factors, specify levels, and handle invalid values. Learn to inspect and summarize factor levels with <code>levels()</code> and <code>count()</code>.</li>
-<li><strong>Reorder factor levels for better visualization.</strong> Use <code>fct_reorder()</code> to order levels by the values of another variable, <code>fct_relevel()</code> to manually move levels to the front, and <code>fct_reorder2()</code> when ordering line-plot legends. Explore <code>fct_infreq()</code> and <code>fct_rev()</code> to arrange levels by frequency.</li>
-<li><strong>Modify and collapse levels.</strong> Relabel categories with <code>fct_recode()</code>, combine multiple levels with <code>fct_collapse()</code>, and lump rare categories into “Other” with the <code>fct_lump_*()</code> family, understanding what happens when categories are tied at the cutoff.</li>
-<li><strong>Work with ordered factors.</strong> Create ordered factors for ordinal data (such as satisfaction ratings), appreciate when an intrinsic order genuinely exists, and know why two ordered factors aren’t always comparable to each other.</li>
-<li><strong>Avoid the classic factor-to-number trap.</strong> Recognize why converting a factor straight to a number almost never does what you expect.</li>
+<li><strong>Create and manipulate strings.</strong> Recall that strings are sequences of characters defined by quotes. In R you can use single <code>'</code> or double <code>"</code> quotes to create strings; the R4DS text recommends double quotes by default, switching to single quotes only when the string itself contains double quotes, and raw strings when a string is otherwise full of backslashes. You’ll learn to escape special characters, measure length with <code>str_length()</code>, and extract or replace substrings with <code>str_sub()</code>.</li>
+<li><strong>Combine and format strings.</strong> Concatenate strings with <code>str_c()</code> (stringr’s equivalent to <code>paste0()</code>, but stricter about missing values), and build templated strings with <code>str_glue()</code>. Learn to collapse a vector of strings into one with <code>str_flatten()</code>.</li>
+<li><strong>Understand regular expressions.</strong> A regular expression (regex) is a concise language for describing patterns within strings. Learn the difference between literal characters and metacharacters, how quantifiers (<code>?</code>, <code>*</code>, <code>+</code>, <code>{n,m}</code>) control repetition, how character classes (<code>[...]</code>) and their shortcuts (<code>\d</code>, <code>\s</code>, <code>\w</code>) work, and how alternation (<code>|</code>) and anchors (<code>^</code>, <code>$</code>, <code>\b</code>) narrow a match.</li>
+<li><strong>Match, extract, and replace patterns.</strong> Use <code>str_detect()</code>, <code>str_subset()</code>, and <code>str_which()</code> to test or filter strings, <code>str_count()</code> to count matches, <code>str_extract()</code>/<code>str_extract_all()</code>/<code>str_match()</code> to pull out matches (including captured groups), and <code>str_replace()</code>/<code>str_remove()</code> (and their <code>_all()</code> variants) to edit strings in place.</li>
+<li><strong>Use capturing groups and literal matching.</strong> Recognize how parentheses create capturing groups you can reuse in a replacement, and know when to reach for <code>fixed()</code> instead of treating a search string as a regex at all.</li>
+<li><strong>Tidy multiple variables encoded in one string.</strong> Recognize when a single string stores several pieces of information and use <code>stringr</code> plus tidyr’s <code>separate_wider_delim()</code> to split it into proper columns.</li>
 </ul>
 </section>
 <section id="notes" class="level2">
@@ -410,200 +419,228 @@ div.callout-example.callout-style-default .callout-icon::before, div.callout-exa
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="why-factors" class="level3">
-<h3 class="anchored" data-anchor-id="why-factors">Why factors?</h3>
-<p>Categorical variables often have a limited set of allowed values, such as months, continents, or income bands. Storing them as plain strings introduces two problems: you can type an invalid value with nothing to catch it, and the default alphabetical sorting is rarely meaningful. A factor solves both problems by enforcing a list of valid levels and giving you explicit control over their order. The months “Jan,” “Feb,” … “Dec” should appear in calendar order, not alphabetical order; converting a character vector of month names to a factor with those 12 levels, in that order, makes calendar order the default everywhere that factor is used.</p>
-<p>Factors also matter for plotting. When you map a factor to an axis, or to color or shape, ggplot2 displays the categories in the factor’s level order. Leave a categorical variable as plain character text, and ggplot2 silently converts it to a factor using alphabetical order anyway, just without giving you any say in the matter.</p>
+<section id="creating-strings-quotes-escapes-and-raw-strings" class="level3">
+<h3 class="anchored" data-anchor-id="creating-strings-quotes-escapes-and-raw-strings">Creating strings: quotes, escapes, and raw strings</h3>
+<p>Strings can be created with single or double quotes. Double quotes are preferred by convention; use single quotes only when the string itself contains double quotes, to avoid escaping them. Special characters (backslash, newline, tab) require escaping with <code>\\</code>, <code>\n</code>, or <code>\t</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>quote_example <span class="ot">&lt;-</span> <span class="st">"He said, 'R is great!'"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>quote_example</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "He said, 'R is great!'"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">"C:</span><span class="sc">\\</span><span class="st">Users</span><span class="sc">\\</span><span class="st">Data</span><span class="sc">\\</span><span class="st">mydata</span><span class="sc">\n</span><span class="st">"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>path</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "C:\\Users\\Data\\mydata\n"</code></pre>
+</div>
+</div>
+<p>When a string needs many literal backslashes, such as a Windows path or a regex pattern you don’t want to double-escape, a <strong>raw string</strong> written as <code>r"(...)"</code> treats everything inside as literal text, with no escaping at all:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>raw_path <span class="ot">&lt;-</span> r<span class="st">"(C:\Users\Data\mydata)"</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>raw_path</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "C:\\Users\\Data\\mydata"</code></pre>
+</div>
+</div>
+<p>The length of a string (its number of characters) is computed with <code>str_length()</code>, which counts human-visible characters rather than bytes, so it handles multi-byte characters like emoji sensibly:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_length</span>(<span class="fu">c</span>(<span class="st">""</span>, <span class="st">"abc"</span>, <span class="st">"😊"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0 3 1</code></pre>
+</div>
+</div>
+<p><code>str_sub()</code> extracts or replaces substrings by position. Positive indices count from the start and negative indices count from the end, and the function is vectorized:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fruit <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"banana"</span>, <span class="st">"apple"</span>, <span class="st">"pear"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(fruit, <span class="dv">1</span>, <span class="dv">3</span>)      <span class="co"># first three letters</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "ban" "app" "pea"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(fruit, <span class="sc">-</span><span class="dv">3</span>, <span class="sc">-</span><span class="dv">1</span>)    <span class="co"># last three letters</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "ana" "ple" "ear"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(fruit, <span class="dv">1</span>, <span class="dv">1</span>) <span class="ot">&lt;-</span> <span class="fu">str_to_upper</span>(<span class="fu">str_sub</span>(fruit, <span class="dv">1</span>, <span class="dv">1</span>))  <span class="co"># capitalize first letter</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>fruit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Banana" "Apple"  "Pear"  </code></pre>
+</div>
+</div>
 </section>
-<section id="creating-factors" class="level3">
-<h3 class="anchored" data-anchor-id="creating-factors">Creating factors</h3>
-<p>Base R’s <code>factor()</code> takes a character vector and, optionally, a vector of <code>levels</code>.</p>
+<section id="combining-and-formatting-strings" class="level3">
+<h3 class="anchored" data-anchor-id="combining-and-formatting-strings">Combining and formatting strings</h3>
+<p><code>str_c()</code> concatenates strings and returns a character vector; it behaves like <code>paste0()</code> but integrates more predictably with dplyr and, unlike <code>paste0()</code>, does not quietly turn a missing value into the text <code>"NA"</code> (see Example 9.2). A <code>sep</code> argument inserts a separator between pieces, and <code>collapse</code> further collapses the whole result into a single string.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>months_raw <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Dec"</span>, <span class="st">"Apr"</span>, <span class="st">"Jan"</span>, <span class="st">"Mar"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>month_levels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Jan"</span>, <span class="st">"Feb"</span>, <span class="st">"Mar"</span>, <span class="st">"Apr"</span>, <span class="st">"May"</span>, <span class="st">"Jun"</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Jul"</span>, <span class="st">"Aug"</span>, <span class="st">"Sep"</span>, <span class="st">"Oct"</span>, <span class="st">"Nov"</span>, <span class="st">"Dec"</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>months_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(months_raw, <span class="at">levels =</span> month_levels)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>months_factor</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>, <span class="st">"Gentoo"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(n, species, <span class="at">sep =</span> <span class="st">" "</span>, <span class="at">collapse =</span> <span class="st">"; "</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] Dec Apr Jan Mar
-Levels: Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec</code></pre>
+<pre><code>[1] "3 Adelie; 2 Chinstrap; 1 Gentoo"</code></pre>
 </div>
 </div>
-<p>If a value doesn’t appear in <code>levels</code>, <code>factor()</code> quietly converts it to <code>NA</code>. The forcats package’s <code>fct()</code> is a stricter alternative that raises an error instead, which catches a typo immediately rather than letting it become a silent missing value.</p>
+<p>Inside a <code>mutate()</code>, if any input to <code>str_c()</code> is <code>NA</code>, the whole result is <code>NA</code>; wrap a column in <code>coalesce(column, "")</code> first if you would rather treat a missing value as an empty string.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(months_factor)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">first =</span> <span class="fu">c</span>(<span class="st">"John"</span>, <span class="cn">NA</span>, <span class="st">"Jenny"</span>), <span class="at">last =</span> <span class="fu">c</span>(<span class="st">"Smith"</span>, <span class="st">"Nguyen"</span>, <span class="cn">NA</span>))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">full =</span> <span class="fu">str_c</span>(<span class="fu">coalesce</span>(first, <span class="st">""</span>), <span class="fu">coalesce</span>(last, <span class="st">""</span>), <span class="at">sep =</span> <span class="st">" "</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov" "Dec"</code></pre>
+<pre><code># A tibble: 3 × 3
+  first last   full        
+  &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;       
+1 John  Smith  "John Smith"
+2 &lt;NA&gt;  Nguyen " Nguyen"   
+3 Jenny &lt;NA&gt;   "Jenny "    </code></pre>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span><code>col_factor()</code> only knows the levels it has actually seen
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Reading a column with <code>col_factor(levels = NULL)</code> builds the level list from whatever values happen to appear in that particular file. If a valid category exists but simply never shows up in this file (a product that had zero sales this month, a survey response nobody picked), it will not become a level at all, which can cause trouble later if you combine several such files and expect a consistent, complete set of levels across all of them. Specify <code>levels</code> explicitly whenever you know the full set of valid categories ahead of time.</p>
-</div>
-</div>
-<p>The <code>gss_cat</code> dataset, bundled with forcats, contains survey responses with several factor columns such as <code>race</code>, <code>marital</code>, <code>rincome</code>, and <code>partyid</code>, and is a convenient way to practice summarizing and visualizing real categorical data.</p>
+<p><code>str_glue()</code> builds templated strings, inserting the value of any R expression written inside <code>{}</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>gss_cat <span class="sc">|&gt;</span> <span class="fu">count</span>(race)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">message =</span> <span class="fu">str_glue</span>(<span class="st">"Hello {first} {last}!"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  first last   message          
+  &lt;chr&gt; &lt;chr&gt;  &lt;glue&gt;           
+1 John  Smith  Hello John Smith!
+2 &lt;NA&gt;  Nguyen Hello NA Nguyen! 
+3 Jenny &lt;NA&gt;   Hello Jenny NA!  </code></pre>
+</div>
+</div>
+<p>To combine many strings into one, <code>str_flatten()</code> collapses a character vector with a given delimiter, which reads more clearly than building the same string up manually:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_flatten</span>(<span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>), <span class="at">collapse =</span> <span class="st">", "</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "a, b, c"</code></pre>
+</div>
+</div>
+</section>
+<section id="regular-expressions-pattern-basics" class="level3">
+<h3 class="anchored" data-anchor-id="regular-expressions-pattern-basics">Regular expressions: pattern basics</h3>
+<p>A regular expression describes a <em>set</em> of strings rather than one specific string. Most letters and digits match themselves literally; a handful of characters are metacharacters with special meaning:</p>
+<ul>
+<li><code>.</code> matches any single character except a newline.</li>
+<li>Quantifiers control repetition: <code>?</code> means zero or one, <code>*</code> means zero or more, <code>+</code> means one or more, and <code>{n,m}</code> means between <code>n</code> and <code>m</code> repetitions (either bound can be omitted).</li>
+<li>Character classes like <code>[aeiou]</code> match any one of the enclosed characters, and <code>[^0-9]</code> (a caret at the start) matches any character <em>not</em> in the class. <code>\d</code>, <code>\s</code>, and <code>\w</code> are shortcuts for a digit, whitespace, and a “word” character (letter, digit, or underscore), respectively.</li>
+<li>Alternation <code>|</code> matches one of several alternatives, so <code>apple|pear</code> matches either word.</li>
+<li>Anchors pin a match to a position rather than to any characters: <code>^</code> matches the start of a string, <code>$</code> matches the end, and <code>\b</code> matches a word boundary, the (zero-width) transition between a word character and a non-word character (see Example 9.4).</li>
+</ul>
+</section>
+<section id="detecting-counting-and-extracting-patterns" class="level3">
+<h3 class="anchored" data-anchor-id="detecting-counting-and-extracting-patterns">Detecting, counting, and extracting patterns</h3>
+<p><code>str_detect()</code> tests whether each string matches a pattern and returns a logical vector, which pairs naturally with <code>filter()</code>. <code>str_subset()</code> returns the matching strings themselves rather than a logical vector, and <code>str_which()</code> returns their positions. <code>str_count()</code> counts how many times a pattern matches within each string. <code>str_extract()</code> returns the first match (<code>str_extract_all()</code> returns every match, as a list), and <code>str_replace()</code>/<code>str_remove()</code> replace or delete the first match (<code>str_replace_all()</code>/<code>str_remove_all()</code> handle every match).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>flights_small <span class="ot">&lt;-</span> flights <span class="sc">|&gt;</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(carrier, flight) <span class="sc">|&gt;</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">flight_id =</span> <span class="fu">str_c</span>(carrier, flight, <span class="at">sep =</span> <span class="st">"-"</span>))</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>flights_small <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">is_three_digit =</span> <span class="fu">str_detect</span>(flight_id, <span class="st">"-</span><span class="sc">\\</span><span class="st">d{3}$"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  carrier flight flight_id is_three_digit
+  &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;     &lt;lgl&gt;         
+1 WN        1716 WN-1716   FALSE         
+2 AA         178 AA-178    TRUE          
+3 DL        1585 DL-1585   FALSE         
+4 WN        3494 WN-3494   FALSE         
+5 DL        2231 DL-2231   FALSE         </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>flights_small <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">number_only =</span> <span class="fu">str_extract</span>(flight_id, <span class="st">"</span><span class="sc">\\</span><span class="st">d+"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  carrier flight flight_id number_only
+  &lt;chr&gt;    &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;      
+1 WN        1716 WN-1716   1716       
+2 AA         178 AA-178    178        
+3 DL        1585 DL-1585   1585       
+4 WN        3494 WN-3494   3494       
+5 DL        2231 DL-2231   2231       </code></pre>
+</div>
+</div>
+<p><code>\d</code> matches any digit, so <code>\d+</code> extracts one or more consecutive digits; the backslash itself has to be doubled (<code>\\d</code>) so that R’s own string-escaping rules pass a single backslash through to the regex engine.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>messy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"(202) 555-0198"</span>, <span class="st">"+1-303-555-1212"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(messy, <span class="st">"[^0-9]"</span>, <span class="st">""</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025550198"  "13035551212"</code></pre>
+</div>
+</div>
+</section>
+<section id="capturing-groups-and-backreferences" class="level3">
+<h3 class="anchored" data-anchor-id="capturing-groups-and-backreferences">Capturing groups and backreferences</h3>
+<p>Wrapping part of a pattern in parentheses creates a <strong>capturing group</strong>, which does two things at once: it groups that piece of the pattern together (useful with quantifiers and alternation), and it remembers exactly what matched so you can reuse it. <code>str_match()</code> returns the whole match together with the text captured by each group, as a matrix:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"2026-01-15"</span>, <span class="st">"2026-02-20"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_match</span>(dates, <span class="st">"(</span><span class="sc">\\</span><span class="st">d{4})-(</span><span class="sc">\\</span><span class="st">d{2})-(</span><span class="sc">\\</span><span class="st">d{2})"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1]         [,2]   [,3] [,4]
+[1,] "2026-01-15" "2026" "01" "15"
+[2,] "2026-02-20" "2026" "02" "20"</code></pre>
+</div>
+</div>
+<p>Inside a replacement string, <code>\1</code>, <code>\2</code>, and so on refer back to whatever each group captured, which makes it possible to rearrange a match rather than just deleting or replacing it outright:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace</span>(dates, <span class="st">"(</span><span class="sc">\\</span><span class="st">d{4})-(</span><span class="sc">\\</span><span class="st">d{2})-(</span><span class="sc">\\</span><span class="st">d{2})"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">2/</span><span class="sc">\\</span><span class="st">3/</span><span class="sc">\\</span><span class="st">1"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "01/15/2026" "02/20/2026"</code></pre>
+</div>
+</div>
+</section>
+<section id="literal-matching-with-fixed" class="level3">
+<h3 class="anchored" data-anchor-id="literal-matching-with-fixed">Literal matching with <code>fixed()</code></h3>
+<p>Sometimes the string you are searching for is not a pattern at all, just literal text that happens to contain regex metacharacters, such as a period, parenthesis, or dollar sign. Wrapping the search string in <code>fixed()</code> tells stringr to match it character for character, with no regex interpretation (see Example 9.3 for what happens if you forget to).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(<span class="fu">c</span>(<span class="st">"cat.txt"</span>, <span class="st">"cat"</span>), <span class="fu">fixed</span>(<span class="st">"."</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE</code></pre>
+</div>
+</div>
+</section>
+<section id="splitting-a-column-into-several" class="level3">
+<h3 class="anchored" data-anchor-id="splitting-a-column-into-several">Splitting a column into several</h3>
+<p>When you know the delimiter, tidyr’s <code>separate_wider_delim()</code> splits one column into several. Suppose a column stores names as <code>"LAST, First Middle"</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>people <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"SMITH, John A."</span>, <span class="st">"O'NEILL, Anne"</span>, <span class="st">"Lee, Chen"</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">full =</span> people) <span class="sc">|&gt;</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_wider_delim</span>(full, <span class="at">delim =</span> <span class="st">","</span>, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"last"</span>, <span class="st">"rest"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rest =</span> <span class="fu">str_trim</span>(rest))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
-  race      n
-  &lt;fct&gt; &lt;int&gt;
-1 Other  1959
-2 Black  3129
-3 White 16395</code></pre>
+  last    rest   
+  &lt;chr&gt;   &lt;chr&gt;  
+1 SMITH   John A.
+2 O'NEILL Anne   
+3 Lee     Chen   </code></pre>
 </div>
 </div>
+<p><code>separate_wider_delim()</code> only consumes the literal delimiter itself, so the piece after a <code>", "</code> delimiter keeps its leading space; <code>str_trim()</code> cleans up any leading or trailing whitespace left behind by a split like this.</p>
 </section>
-<section id="reordering-levels" class="level3">
-<h3 class="anchored" data-anchor-id="reordering-levels">Reordering levels</h3>
-<p>The alphabetical or import-order default for factor levels is often arbitrary, and reordering can make a plot far easier to read. <code>fct_reorder()</code> takes the factor to reorder and a numeric vector whose values determine the new order.</p>
+<section id="working-with-messy-strings-in-tibbles" class="level3">
+<h3 class="anchored" data-anchor-id="working-with-messy-strings-in-tibbles">Working with messy strings in tibbles</h3>
+<p>Character columns often encode multiple variables in one field. The built-in <code>who2</code> dataset has column names like <code>sp_m_014</code>, packing together a diagnosis method, gender, and age group; combining <code>pivot_longer()</code> with a separator unpacks them into proper variables in one step, exactly as in Session 8.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>relig_summary <span class="ot">&lt;-</span> gss_cat <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(relig) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">tvhours =</span> <span class="fu">mean</span>(tvhours, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># without reordering, the default level order controls the y-axis</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(relig_summary, <span class="fu">aes</span>(<span class="at">x =</span> tvhours, <span class="at">y =</span> relig)) <span class="sc">+</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="10_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reordered by tvhours, the pattern jumps out immediately</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(relig_summary, <span class="fu">aes</span>(<span class="at">x =</span> tvhours, <span class="at">y =</span> <span class="fu">fct_reorder</span>(relig, tvhours))) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="10_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Use <code>fct_relevel()</code> to manually move one or more levels to the front, for example to keep a special category like “Not applicable” visually separate from the rest regardless of its value:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rincome_summary <span class="ot">&lt;-</span> gss_cat <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(rincome) <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">age =</span> <span class="fu">mean</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rincome_summary, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> <span class="fu">fct_relevel</span>(rincome, <span class="st">"Not applicable"</span>))) <span class="sc">+</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="10_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>For line plots with several categories, <code>fct_reorder2()</code> orders the legend to match the y-value at the largest x-value, so the legend order matches the visual order of the lines where they end. <code>fct_infreq()</code> orders levels by frequency, and <code>fct_rev()</code> reverses whatever order is currently in place; combining them is a quick way to sort a bar chart from most to least (or least to most) common category.</p>
-</section>
-<section id="modifying-levels" class="level3">
-<h3 class="anchored" data-anchor-id="modifying-levels">Modifying levels</h3>
-<p>Reordering changes the order of levels; sometimes you need to change the labels themselves, or combine several levels into one. <code>fct_recode()</code> renames levels, with the new name on the left and the existing name on the right.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gss_cat <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">partyid =</span> <span class="fu">fct_recode</span>(partyid,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Republican, strong"</span>    <span class="ot">=</span> <span class="st">"Strong republican"</span>,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Republican, weak"</span>      <span class="ot">=</span> <span class="st">"Not str republican"</span>,</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Independent, near rep"</span> <span class="ot">=</span> <span class="st">"Ind,near rep"</span>,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Independent, near dem"</span> <span class="ot">=</span> <span class="st">"Ind,near dem"</span>,</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Democrat, weak"</span>        <span class="ot">=</span> <span class="st">"Not str democrat"</span>,</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Democrat, strong"</span>      <span class="ot">=</span> <span class="st">"Strong democrat"</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(partyid)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>who2_long <span class="ot">&lt;-</span> who2 <span class="sc">|&gt;</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">!</span>(country<span class="sc">:</span>year),</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"diagnosis"</span>, <span class="st">"gender"</span>, <span class="st">"age"</span>),</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"_"</span>,</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"count"</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>who2_long <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 2
-   partyid                   n
-   &lt;fct&gt;                 &lt;int&gt;
- 1 No answer               154
- 2 Don't know                1
- 3 Other party             393
- 4 Republican, strong     2314
- 5 Republican, weak       3032
- 6 Independent, near rep  1791
- 7 Independent            4119
- 8 Independent, near dem  2499
- 9 Democrat, weak         3690
-10 Democrat, strong       3490</code></pre>
+<pre><code># A tibble: 6 × 6
+  country      year diagnosis gender age   count
+  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;
+1 Afghanistan  1980 sp        m      014      NA
+2 Afghanistan  1980 sp        m      1524     NA
+3 Afghanistan  1980 sp        m      2534     NA
+4 Afghanistan  1980 sp        m      3544     NA
+5 Afghanistan  1980 sp        m      4554     NA
+6 Afghanistan  1980 sp        m      5564     NA</code></pre>
 </div>
 </div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span><code>fct_recode()</code> warns, but only warns, about a typo
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If the name on the right of a <code>fct_recode()</code> pair doesn’t match an existing level exactly, forcats issues a warning like <em>“Unknown levels in <code>f</code>: …”</em> rather than an error. The recoding for that one pair silently does nothing (that level keeps its original name), while everything else in the call still runs. Read the warning; it is easy to miss in a long script and easy to mistake for harmless noise.</p>
-</div>
-</div>
-<p>To collapse multiple categories into a smaller set, <code>fct_collapse()</code> takes new category names paired with a vector of existing levels to combine into each one.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>gss_cat <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">partyid =</span> <span class="fu">fct_collapse</span>(partyid,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">other =</span> <span class="fu">c</span>(<span class="st">"No answer"</span>, <span class="st">"Don't know"</span>, <span class="st">"Other party"</span>),</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">rep   =</span> <span class="fu">c</span>(<span class="st">"Strong republican"</span>, <span class="st">"Not str republican"</span>),</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">ind   =</span> <span class="fu">c</span>(<span class="st">"Ind,near rep"</span>, <span class="st">"Independent"</span>, <span class="st">"Ind,near dem"</span>),</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">dem   =</span> <span class="fu">c</span>(<span class="st">"Not str democrat"</span>, <span class="st">"Strong democrat"</span>)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(partyid)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 2
-  partyid     n
-  &lt;fct&gt;   &lt;int&gt;
-1 other     548
-2 rep      5346
-3 ind      8409
-4 dem      7180</code></pre>
-</div>
-</div>
-<p>When a factor has many rare categories, the <code>fct_lump_*()</code> family groups the smallest ones into “Other” automatically. <code>fct_lump_n(x, n)</code> keeps the <code>n</code> most common categories; related variants <code>fct_lump_min()</code> and <code>fct_lump_prop()</code> lump based on a minimum count or a minimum proportion instead of a fixed number of categories to keep.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>gss_cat <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">relig =</span> <span class="fu">fct_lump_n</span>(relig, <span class="at">n =</span> <span class="dv">10</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(relig, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 2
-   relig                       n
-   &lt;fct&gt;                   &lt;int&gt;
- 1 Protestant              10846
- 2 Catholic                 5124
- 3 None                     3523
- 4 Christian                 689
- 5 Other                     458
- 6 Jewish                    388
- 7 Buddhism                  147
- 8 Inter-nondenominational   109
- 9 Moslem/islam              104
-10 Orthodox-christian         95</code></pre>
-</div>
-</div>
-</section>
-<section id="ordered-factors" class="level3">
-<h3 class="anchored" data-anchor-id="ordered-factors">Ordered factors</h3>
-<p>Some categories have an intrinsic order, such as “low,” “medium,” “high,” or a 1 to 5 rating scale. Create an ordered factor with <code>ordered = TRUE</code> in <code>factor()</code>, or with <code>forcats::fct()</code>’s <code>ordered</code> argument. Ordered factors print with <code>&lt;</code> between levels to make the order visible, and support <code>&lt;</code>/<code>&gt;</code> comparisons the way numbers do (with an important caveat covered in Example 10.4). Think carefully before imposing an order: a variable like <code>region</code> has categories, but no natural ranking, and forcing an arbitrary order onto it is misleading rather than helpful.</p>
 </section>
 <section id="fringe-cases-and-common-pitfalls" class="level3">
 <h3 class="anchored" data-anchor-id="fringe-cases-and-common-pitfalls">Fringe cases and common pitfalls</h3>
@@ -613,23 +650,23 @@ Levels: Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Example</span>Example 10.1
+<span class="screen-reader-only">Example</span>Example 9.1
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Converting a factor straight to a number gives you the level’s position, not the label’s value.</strong></p>
+<p><strong>Quantifiers are greedy by default, and it shows.</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"10"</span>, <span class="st">"20"</span>, <span class="st">"5"</span>))</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(f)          <span class="co"># sorted alphabetically as text: "10", "20", "5"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>html <span class="ot">&lt;-</span> <span class="st">"&lt;a&gt;&lt;b&gt;"</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(html, <span class="st">"&lt;.+&gt;"</span>)     <span class="co"># greedy: matches as much as possible</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "10" "20" "5" </code></pre>
+<pre><code>[1] "&lt;a&gt;&lt;b&gt;"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(f)       <span class="co"># the *position* of each value within that level order</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(html, <span class="st">"&lt;.+?&gt;"</span>)    <span class="co"># lazy: matches as little as possible</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1 2 3</code></pre>
+<pre><code>[1] "&lt;a&gt;"</code></pre>
 </div>
 </div>
-<p><code>as.numeric()</code> on a factor never looks at the text of the label at all; it returns the integer code R uses internally to store that level. Here the levels happen to sort as <code>"10"</code>, <code>"20"</code>, <code>"5"</code> (ordinary alphabetical string order, not numeric order), so <code>as.numeric()</code> returns <code>1</code>, <code>2</code>, <code>3</code>, three numbers that have nothing to do with the original <code>10</code>, <code>20</code>, <code>5</code>. The fix is to go through the label’s text first: <code>as.numeric(as.character(f))</code>, or <code>readr::parse_number(as.character(f))</code> if the labels have extra formatting to strip. This single line, <code>as.numeric(some_factor)</code>, is probably the most common way real R analyses get silently corrupted numbers.</p>
+<p><code>+</code> (like <code>*</code> and <code>{n,m}</code>) grabs as much text as it possibly can while still letting the overall pattern match, so <code>&lt;.+&gt;</code> starts at the first <code>&lt;</code> and only stops at the <em>last</em> <code>&gt;</code> in the string, swallowing <code>&lt;a&gt;&lt;b&gt;</code> whole instead of stopping at the first <code>&gt;</code>. Adding <code>?</code> right after a quantifier (<code>+?</code>, <code>*?</code>, <code>??</code>) makes it lazy instead, matching as little as possible, which is almost always what you actually want when extracting something bounded by delimiters that might repeat.</p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-example callout-titled">
@@ -638,44 +675,23 @@ Levels: Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Example</span>Example 10.2
+<span class="screen-reader-only">Example</span>Example 9.2
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Filtering out every row of a level doesn’t remove that level from the factor.</strong></p>
+<p><strong><code>str_c()</code> and <code>paste0()</code> treat a missing value very differently.</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">grp =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"a"</span>)))</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>filtered <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span> <span class="fu">filter</span>(grp <span class="sc">!=</span> <span class="st">"c"</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(filtered<span class="sc">$</span>grp)         <span class="co"># "c" is still listed as a valid level</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="cn">NA</span>, <span class="st">"c"</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="st">"val: "</span>, x)     <span class="co"># NA stays a genuine NA</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "a" "b" "c"</code></pre>
+<pre><code>[1] "val: a" NA       "val: c"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(filtered<span class="sc">$</span>grp)          <span class="co"># base R's table() shows it, with a count of 0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">"val: "</span>, x)    <span class="co"># NA becomes the literal text "val: NA"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-a b c 
-2 1 0 </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(filtered, grp)         <span class="co"># dplyr's count() quietly hides empty levels by default</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 2
-  grp       n
-  &lt;fct&gt; &lt;int&gt;
-1 a         2
-2 b         1</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(filtered, grp, <span class="at">.drop =</span> <span class="cn">FALSE</span>)   <span class="co"># ask explicitly, and the phantom level reappears</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
-  grp       n
-  &lt;fct&gt; &lt;int&gt;
-1 a         2
-2 b         1
-3 c         0</code></pre>
+<pre><code>[1] "val: a"  "val: NA" "val: c" </code></pre>
 </div>
 </div>
-<p>A factor’s levels are metadata about what values are <em>allowed</em>, separate from which rows happen to be present, so removing every row with <code>grp == "c"</code> does not update <code>levels()</code>. Depending which tool you reach for next, that phantom level either quietly disappears (<code>count()</code>‘s default) or quietly reappears (<code>table()</code>, or <code>count(..., .drop = FALSE)</code>), which can make two summaries of the exact same filtered data look inconsistent with each other. <code>droplevels()</code> (or forcats’ <code>fct_drop()</code>) removes any level with zero remaining observations, and is worth calling right after a <code>filter()</code> if you plan to rely on <code>levels()</code> downstream.</p>
+<p><code>str_c()</code> propagates <code>NA</code> the way arithmetic does: if any input piece is missing, the whole result for that element is missing too, which is almost always the behavior you want, since it keeps <code>is.na()</code> meaningful on the result. <code>paste0()</code> instead coerces <code>NA</code> to the three-character string <code>"NA"</code> and glues it in like any other text, which can silently turn a genuinely missing value into a string that <em>looks</em> like real data (and will not be caught by a later <code>is.na()</code> check). If you’re translating old base R code that leans on <code>paste()</code>/<code>paste0()</code> into the tidyverse, this is one of the easiest behavior changes to miss.</p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-example callout-titled">
@@ -684,27 +700,23 @@ a b c
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Example</span>Example 10.3
+<span class="screen-reader-only">Example</span>Example 9.3
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong><code>fct_lump_n()</code> can hand back more categories than you asked for.</strong></p>
+<p><strong>Forgetting that a search string is a regex changes what “matches” means.</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"a"</span>, <span class="dv">3</span>), <span class="fu">rep</span>(<span class="st">"b"</span>, <span class="dv">3</span>), <span class="fu">rep</span>(<span class="st">"c"</span>, <span class="dv">2</span>), <span class="fu">rep</span>(<span class="st">"d"</span>, <span class="dv">2</span>), <span class="fu">rep</span>(<span class="st">"e"</span>, <span class="dv">1</span>)))</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>words <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cat.txt"</span>, <span class="st">"cat"</span>, <span class="st">"hat"</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(words, <span class="st">"."</span>)              <span class="co"># "." means "any character," not a literal period</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>x
-a b c d e 
-3 3 2 2 1 </code></pre>
+<pre><code>[1] TRUE TRUE TRUE</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">fct_lump_n</span>(x, <span class="at">n =</span> <span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(words, <span class="fu">fixed</span>(<span class="st">"."</span>))       <span class="co"># fixed() treats "." as a literal period</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-    a     b     c     d Other 
-    3     3     2     2     1 </code></pre>
+<pre><code>[1]  TRUE FALSE FALSE</code></pre>
 </div>
 </div>
-<p>Categories <code>c</code> and <code>d</code> are tied for third place with 2 observations each, so asking for the top 3 categories returns 4 non-“Other” categories, not 3, because <code>fct_lump_n()</code> keeps every category tied at the cutoff rather than arbitrarily breaking the tie for you. This is the same kind of tie behavior you saw with <code>slice_max()</code> back in Session 5: whenever a function’s job is to keep “the top <code>n</code>,” check whether ties are possible in your data before assuming the output has exactly <code>n</code> rows or categories.</p>
+<p>Every one of these strings contains at least one character, so the unquoted <code>.</code> pattern matches all three, which is almost certainly not what someone searching for filenames with a literal dot in them intended. The fix is either <code>fixed(".")</code>, which turns off regex interpretation entirely, or escaping the metacharacter directly in the pattern (<code>"\\."</code>). This mistake is easy to make with any of the regex metacharacters (<code>.</code>, <code>(</code>, <code>)</code>, <code>$</code>, <code>^</code>, <code>+</code>, <code>*</code>, <code>[</code>, <code>]</code>), not just the period.</p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-example callout-titled">
@@ -713,21 +725,23 @@ a b c d e
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Example</span>Example 10.4
+<span class="screen-reader-only">Example</span>Example 9.4
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Two ordered factors that look compatible can still refuse to compare.</strong></p>
+<p><strong>Without a word boundary, a pattern matches inside unrelated words too.</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>o1 <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"low"</span>, <span class="st">"high"</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"low"</span>, <span class="st">"medium"</span>, <span class="st">"high"</span>), <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>o2 <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"low"</span>, <span class="st">"high"</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"high"</span>, <span class="st">"low"</span>), <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>o1 <span class="sc">&lt;</span> o2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in Ops.ordered(o1, o2): level sets of factors are different</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cat"</span>, <span class="st">"category"</span>, <span class="st">"concatenate"</span>, <span class="st">"the cat sat"</span>)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(text, <span class="st">"cat"</span>)            <span class="co"># matches inside "category" and "concatenate" too</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE TRUE TRUE TRUE</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(text, <span class="st">"</span><span class="sc">\\</span><span class="st">bcat</span><span class="sc">\\</span><span class="st">b"</span>)      <span class="co"># only matches "cat" as a whole word</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE FALSE  TRUE</code></pre>
 </div>
 </div>
-<p>Both <code>o1</code> and <code>o2</code> are ordered factors built from sensible-looking level sets, but R refuses to compare them at all, because their level sets are not identical (<code>o2</code> is missing <code>"medium"</code>, and even the shared levels are listed in a different order). Ordered comparisons are only meaningful when both sides agree on the complete, ordered list of possible categories; if you need to compare ordered factors that came from different sources, make sure both are built from the exact same <code>levels</code> vector, in the exact same order, before comparing them.</p>
+<p>The plain pattern <code>"cat"</code> matches <em>any</em> occurrence of those three letters in sequence, including the middle of “con<strong>cat</strong>enate,” which has nothing to do with cats. <code>\b</code> matches the zero-width boundary between a word character and a non-word character (or the start/end of the string), so <code>\bcat\b</code> only matches “cat” when it is not glued to other letters on either side. Whenever you want to match a whole word rather than a substring, word boundaries are the fix.</p>
 </div>
 </div>
 </section>
@@ -746,44 +760,40 @@ a b c d e
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Factor</strong></td>
-<td>A variable with a fixed, known set of valid values (levels), stored internally as integer codes paired with level labels.</td>
+<td><strong>Raw string (<code>r"(...)"</code>)</strong></td>
+<td>A string literal where nothing is escaped, useful for paths and regexes full of backslashes.</td>
 </tr>
 <tr class="even">
-<td><strong><code>fct()</code></strong></td>
-<td>Like <code>factor()</code>, but errors on a value not in <code>levels</code> instead of silently producing <code>NA</code>.</td>
+<td><strong><code>str_length()</code> / <code>str_sub()</code></strong></td>
+<td>Measure a string’s character length, or extract/replace a substring by position.</td>
 </tr>
 <tr class="odd">
-<td><strong><code>fct_reorder()</code> / <code>fct_relevel()</code></strong></td>
-<td>Reorder a factor’s levels by another variable’s values, or manually move specific levels to the front.</td>
+<td><strong><code>str_c()</code> vs.&nbsp;<code>paste0()</code></strong></td>
+<td>Both concatenate strings, but <code>str_c()</code> propagates <code>NA</code> while <code>paste0()</code> converts it to the text <code>"NA"</code>.</td>
 </tr>
 <tr class="even">
-<td><strong><code>fct_infreq()</code> / <code>fct_rev()</code></strong></td>
-<td>Order levels by frequency, or reverse the current level order.</td>
+<td><strong>Character class shortcuts</strong></td>
+<td><code>\d</code> (digit), <code>\s</code> (whitespace), <code>\w</code> (word character: letter, digit, or underscore).</td>
 </tr>
 <tr class="odd">
-<td><strong><code>fct_recode()</code></strong></td>
-<td>Renames specific levels; silently no-ops (with only a warning) on a level name that doesn’t exist.</td>
+<td><strong>Quantifier</strong></td>
+<td><code>?</code>, <code>*</code>, <code>+</code>, or <code>{n,m}</code>, controlling how many times the preceding piece may repeat; greedy by default, lazy with a trailing <code>?</code>.</td>
 </tr>
 <tr class="even">
-<td><strong><code>fct_collapse()</code></strong></td>
-<td>Combines several existing levels into one new level.</td>
+<td><strong>Word boundary (<code>\b</code>)</strong></td>
+<td>A zero-width anchor matching the edge of a word, preventing a pattern from matching inside a longer word.</td>
 </tr>
 <tr class="odd">
-<td><strong><code>fct_lump_n()</code></strong></td>
-<td>Keeps the <code>n</code> most common levels and lumps the rest into “Other”; can keep more than <code>n</code> if there’s a tie at the cutoff.</td>
+<td><strong>Capturing group (<code>(...)</code>)</strong></td>
+<td>Groups part of a pattern and remembers what it matched, for reuse via <code>\1</code>, <code>\2</code>, and so on, or extraction with <code>str_match()</code>.</td>
 </tr>
 <tr class="even">
-<td><strong><code>droplevels()</code> / <code>fct_drop()</code></strong></td>
-<td>Removes any level with zero remaining observations, typically used after filtering.</td>
+<td><strong><code>fixed()</code></strong></td>
+<td>Tells a stringr function to treat its pattern as literal text rather than a regex.</td>
 </tr>
 <tr class="odd">
-<td><strong><code>as.numeric()</code> on a factor</strong></td>
-<td>Returns the integer position of each value’s level, not the numeric value of its label; use <code>as.numeric(as.character(x))</code> instead.</td>
-</tr>
-<tr class="even">
-<td><strong>Ordered factor</strong></td>
-<td>A factor with a meaningful ranking between levels; comparable to another ordered factor only if both share identical levels in identical order.</td>
+<td><strong><code>separate_wider_delim()</code></strong></td>
+<td>Splits one column into several at a literal delimiter.</td>
 </tr>
 </tbody>
 </table>
@@ -791,7 +801,7 @@ a b c d e
 <section id="check-your-understanding" class="level3">
 <h3 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h3>
 <div class="callout callout-style-default callout-note callout-titled" title="Problems">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -800,20 +810,20 @@ a b c d e
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>Why is storing a categorical variable as a factor usually better than storing it as a plain character vector?</li>
-<li>A colleague runs <code>as.numeric()</code> on a factor column of survey years (like <code>"2019"</code>, <code>"2020"</code>, <code>"2021"</code>) and gets <code>1</code>, <code>2</code>, <code>3</code> instead of the actual years. What went wrong, and how do they get the real years back?</li>
-<li>You filter a factor column down to just two of its five original levels. <code>count()</code> shows only two rows, but <code>table()</code> on the same column shows all five. Explain why these two summaries disagree, and how you would make <code>levels()</code> match what you actually have left.</li>
-<li>What does <code>fct_lump_n(x, n = 5)</code> guarantee, and what does it not guarantee, about the number of categories in its result?</li>
-<li>Two ordered factors both look like a “low/medium/high” scale, but comparing them with <code>&lt;</code> throws an error. What is the most likely cause?</li>
+<li>What is the difference between <code>str_extract(x, "&lt;.+&gt;")</code> and <code>str_extract(x, "&lt;.+?&gt;")</code> on the string <code>"&lt;a&gt;&lt;b&gt;"</code>? Which one would you want if you were trying to extract just the first tag?</li>
+<li>A dataset has a column where missing values were introduced with <code>str_c()</code>. Explain why <code>is.na()</code> still works correctly on that column, and why the same code using <code>paste0()</code> instead might not have.</li>
+<li>You want to find every row where a <code>notes</code> column contains a literal question mark. <code>str_detect(notes, "?")</code> returns strange results (or an error). What went wrong, and what are two ways to fix it?</li>
+<li>Explain what <code>\bcat\b</code> matches that plain <code>cat</code> does not, and give an example string where the two patterns would disagree.</li>
+<li>In <code>str_replace(dates, "(\\d{4})-(\\d{2})-(\\d{2})", "\\2/\\3/\\1")</code>, what do <code>\\1</code>, <code>\\2</code>, and <code>\\3</code> refer to?</li>
 </ol>
 </div>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Solutions">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -822,14 +832,14 @@ a b c d e
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><p>A factor enforces a fixed list of valid values, so a typo becomes an immediately visible problem (a stray <code>NA</code>, or an outright error with <code>fct()</code>) instead of silently creating a new, subtly misspelled category. A factor also carries an explicit level order, which controls sorting and how the variable appears in plots, instead of relying on default alphabetical order.</p></li>
-<li><p><code>as.numeric()</code> on a factor returns the integer code behind each level (its position in the level order), not the number represented by the label’s text. The fix is to convert through the character representation first: <code>as.numeric(as.character(year_factor))</code>, or <code>parse_number(as.character(year_factor))</code> if the labels have any extra formatting.</p></li>
-<li><p>A factor’s <code>levels()</code> lists every value that is <em>allowed</em>, independent of which rows are actually present, so filtering out three levels’ worth of rows does not remove those levels from the factor’s metadata. <code>count()</code> quietly drops levels with zero remaining rows by default, while <code>table()</code> still shows them (with a count of 0), which is why the two disagree. <code>droplevels()</code> (or forcats’ <code>fct_drop()</code>) updates <code>levels()</code> to match what is actually left in the data.</p></li>
-<li><p><code>fct_lump_n(x, n = 5)</code> guarantees that the result keeps at most the 5 most common categories as their own named levels, with everything else grouped into “Other.” It does not guarantee exactly 5 non-“Other” categories: if there is a tie in count at the 5th-place cutoff, every tied category is kept, so the result can have more than 5.</p></li>
-<li><p>The two ordered factors almost certainly don’t share the exact same set of levels in the exact same order. R only allows <code>&lt;</code>/<code>&gt;</code> comparisons between ordered factors whose level sets match exactly, including the order of levels not directly involved in that particular comparison, so even a small difference (an extra level, a missing level, or the same levels listed in a different order) causes the comparison to fail with an error.</p></li>
+<li><p><code>"&lt;.+&gt;"</code> is greedy and matches the entire string <code>"&lt;a&gt;&lt;b&gt;"</code>, since <code>+</code> grabs as much as possible while still allowing the pattern to match, stopping only at the last <code>&gt;</code>. <code>"&lt;.+?&gt;"</code> is lazy and matches just <code>"&lt;a&gt;"</code>, stopping at the first <code>&gt;</code> it can. To extract just the first tag, use the lazy version.</p></li>
+<li><p><code>str_c()</code> propagates missingness: if any piece being concatenated is <code>NA</code>, the whole result is <code>NA</code>, so <code>is.na()</code> still correctly identifies those rows afterward. <code>paste0()</code> instead converts a missing value into the literal three-character string <code>"NA"</code>, which is not a missing value at all as far as R is concerned, so <code>is.na()</code> would return <code>FALSE</code> for those rows even though the data started out missing.</p></li>
+<li><p><code>?</code> is a regex metacharacter (a quantifier meaning “zero or one of the preceding thing”), not a literal question mark, so a bare <code>"?"</code> pattern is not valid on its own without something for it to quantify (or is silently interpreted as an empty, always-matching pattern, depending on context). Fix it with <code>str_detect(notes, fixed("?"))</code>, which turns off regex interpretation entirely, or by escaping it directly: <code>str_detect(notes, "\\?")</code>.</p></li>
+<li><p><code>\b</code> anchors to a word boundary, so <code>\bcat\b</code> only matches “cat” as a complete, standalone word, not as part of a longer word. In <code>"concatenate"</code>, plain <code>cat</code> matches the “cat” hidden inside “con<strong>cat</strong>enate,” while <code>\bcat\b</code> does not match anywhere in that string at all, since “cat” there is not bounded by non-word characters on both sides.</p></li>
+<li><p><code>\1</code> refers to whatever the first parenthesized group captured (the four-digit year), <code>\2</code> refers to the second group (the two-digit month), and <code>\3</code> refers to the third group (the two-digit day). The replacement string rearranges them into <code>month/day/year</code> order using those backreferences instead of the original matched text.</p></li>
 </ol>
 </div>
 </div>
