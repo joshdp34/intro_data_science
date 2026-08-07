@@ -1,76 +1,180 @@
-# Session 17 – Web scraping
+# Session 17: Web scraping
 
 ## Objectives
 
-* **Understand the ethics and legalities of web scraping.**  Scraping data can raise legal and ethical questions.  You’ll learn to assess whether data are public, non‑personal and factual, respect terms of service and avoid scraping sensitive personal information.  Use tools like the polite package to space out your requests.
-* **Understand the structure of HTML.**  Web pages are hierarchical documents written in HTML.  Each element consists of a start tag, optional attributes and an end tag.  Recognize block tags (e.g., `<p>`, `<section>`) and inline tags (e.g., `<a>`, `<b>`).
-* **Learn basic CSS selectors.**  CSS selectors define patterns for locating HTML elements.  You’ll see how simple selectors like `p`, `.class` and `#id` identify elements by tag, class or id.
-* **Use rvest to extract data.**  The rvest package provides functions to find elements (`html_elements()` and `html_element()`), extract text (`html_text2()`), extract attributes (`html_attr()`) and convert HTML tables to tibbles (`html_table()`).  Understand the difference between `html_elements()` and `html_element()` and when to use each.
-* **Find the right selector.**  Selecting the right elements often requires trial and error.  Learn to use SelectorGadget and browser developer tools to identify CSS selectors and copy them.
-* **Prepare for dynamic sites.**  Recognize that some websites load content via JavaScript, which rvest alone cannot handle.  Understand alternatives like using APIs when available.
+- **Understand the ethics and legalities of web scraping.** Scraping can raise legal and ethical questions. Learn to assess whether data are public, non-personal, and factual, to respect terms of service, and to avoid scraping sensitive personal information. Use tools like the `polite` package to space out requests.
+- **Understand the structure of HTML.** Web pages are hierarchical documents written in HTML. Each element consists of a start tag, optional attributes, and an end tag. Recognize block tags (`<p>`, `<section>`) and inline tags (`<a>`, `<b>`).
+- **Learn basic CSS selectors.** CSS selectors define patterns for locating HTML elements: simple selectors like `p`, `.class`, and `#id` identify elements by tag, class, or id, and a selector can match more elements than you expect once nesting is involved.
+- **Use rvest to extract data.** `rvest` provides functions to find elements (`html_elements()` and `html_element()`), extract text (`html_text2()`), extract attributes (`html_attr()`), and convert HTML tables to tibbles (`html_table()`). Understand the difference between `html_elements()` and `html_element()`, and why picking the wrong one can silently misalign your results.
+- **Find the right selector.** Selecting the right elements often requires trial and error. Learn to use SelectorGadget and browser developer tools to identify CSS selectors.
+- **Prepare for dynamic sites.** Recognize that some websites load content via JavaScript, which rvest alone cannot handle. Understand alternatives, such as using an API when one is available.
 
 ## Notes
 
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(rvest)
+```
+
 ### Ethics and legalities
 
-Before you scrape a website, ask whether it’s **legal and ethical**.  **Legalities vary by jurisdiction**, but a good rule of thumb is that if the data are **public, non‑personal and factual**, you’re usually okay.  Avoid scraping proprietary or sensitive data or anything behind a login.  Even when data are public, respect the website’s **terms of service** (often in the footer) and any `robots.txt` directives; although these terms may not always be enforceable, it’s polite to follow them.  **Never scrape personally identifiable information** such as names, email addresses or dates of birth; scraping such data can violate privacy laws.  Additionally, respect the website’s resources: spread out your requests and avoid overloading the server.  The **polite** package automates pauses between requests and caches pages to avoid repeated downloads.
+Before scraping a website, ask whether it's legal and ethical. Legalities vary by jurisdiction, but a reasonable rule of thumb is that data which are public, non-personal, and factual are usually safe to collect. Avoid scraping proprietary or sensitive data, or anything behind a login. Even for public data, respect a site's terms of service (often in the footer) and its `robots.txt` directives; these may not always be legally enforceable, but following them is the polite (and often the wise) choice. Never scrape personally identifiable information, such as names, email addresses, or dates of birth; doing so can violate privacy laws even when the underlying page is public. Also respect the site's resources: spread out your requests rather than hammering a server, which is exactly what the `polite` package automates, alongside caching pages so you don't re-download the same content repeatedly.
 
 ### HTML basics
 
-Web pages are built with **HyperText Markup Language (HTML)**.  An HTML document consists of nested **elements**, each with a **start tag**, optional **attributes**, an **end tag** and **contents**.  The `<html>` element contains two main children: `<head>`, which holds metadata, and `<body>`, which holds the content you see in the browser.  Elements like `<h1>`, `<p>` and `<section>` structure the document, while inline elements like `<b>` and `<a>` format text.  HTML uses **entity escapes** such as `&gt;` and `&lt;` for `<` and `>`; however, rvest automatically handles these escapes.  Because HTML is hierarchical, the data you want to scrape is often nested within several layers of tags.
+A web page is built from HyperText Markup Language (HTML): a document of nested elements, each with a start tag, optional attributes, an end tag, and contents in between. The `<html>` element holds two main children: `<head>` (metadata) and `<body>` (the visible content). Block elements like `<h1>`, `<p>`, and `<section>` structure the document; inline elements like `<b>` and `<a>` format or link text within it. HTML escapes characters like `<` and `>` as `&lt;` and `&gt;`, but rvest handles that automatically. Because HTML is hierarchical, the data you want is often nested several layers deep inside other elements.
 
 ### CSS selectors
 
-To extract information from HTML, you need to identify **which elements contain your data**.  **CSS selectors** provide a concise language for selecting elements on a page.  Basic selectors include:
-
-* `p` – selects all `<p>` elements.
-* `.title` – selects elements whose `class` attribute is “title”.
-* `#title` – selects the element with `id="title"`.
-
-You can combine selectors with spaces to nest selections.  For example, `ul li` selects all `<li>` elements inside a `<ul>`.  CSS selectors are case‑sensitive for classes and ids.
+A CSS selector is a concise pattern for finding elements on a page. The basics: `p` selects every `<p>` element; `.title` selects every element whose `class` attribute includes `title`; `#title` selects the one element with `id="title"` (an id is supposed to be unique on a page). Combining selectors with a space nests them, so `ul li` selects every `<li>` inside a `<ul>`. Selectors are case-sensitive for classes and ids, and, importantly, a selector matches an element wherever it appears in the document, including inside another element that also matches (see Example 17.2).
 
 ### Extracting data with rvest
 
-The **rvest** package makes it straightforward to scrape HTML.  The typical workflow is:
+The typical rvest workflow: download a page with `read_html()`, which returns a parsed document; find elements with `html_elements()` (every match) or `html_element()` (the first match relative to each thing you're calling it on, filled with `NA` where there isn't one); then pull out data with `html_text2()` (visible text, whitespace normalized), `html_attr()` (a named attribute, like `href`), or `html_table()` (an entire `<table>`, as a tibble).
 
-1. **Download the page** with `read_html(url)`, which returns an XML document.
-2. **Find elements** with `html_elements(doc, "selector")` to return all matches or `html_element(doc, "selector")` to return the first match.  Use the singular form when you need exactly one element per observation.
-3. **Extract data**:
-   * Use `html_text2()` to extract the textual content of an element.  The `html_text2()` function strips whitespace and handles HTML escapes.
-   * Use `html_attr(element, "href")` or another attribute name to extract the value of an attribute.
-   * To extract tables, use `html_table()` on a `<table>` element.  It returns a list of tibbles; each tibble corresponds to one table on the page.
-4. **Tidy the result** using dplyr and tidyr.
+Here's the whole workflow end to end, on a small self-contained page (small enough to write out inline; a real scrape would start from `read_html("https://...")` instead):
 
-Here is a minimal example that demonstrates the difference between `html_elements()` and `html_element()`.  Suppose `html` is a list of `<li>` elements; `html_elements(html, ".weight")` returns all weight spans, which may not align with the number of `<li>`s, whereas `html_element(html, ".weight")` returns one match per `<li>`, returning `NA` if an element is missing.
+```{r}
+catalog_html <- '
+<html><body>
+<ul id="catalog">
+  <li class="book">
+    <span class="title">R for Data Science</span>
+    <span class="price">$0</span>
+    <a href="https://r4ds.hadley.nz">details</a>
+  </li>
+  <li class="book">
+    <span class="title">Advanced R</span>
+    <a href="https://adv-r.hadley.nz">details</a>
+  </li>
+</ul>
+</body></html>
+'
 
-When extracting tables, rvest automatically converts numeric columns to numbers, but conversion isn’t perfect.  You can disable automatic conversion by passing `convert = FALSE` to `html_table()` and then use readr or dplyr functions to convert columns.
+page <- read_html(catalog_html)
+books <- page |> html_elements(".book")
+
+tibble(
+  title = books |> html_element(".title") |> html_text2(),
+  price = books |> html_element(".price") |> html_text2(),
+  url   = books |> html_element("a") |> html_attr("href")
+)
+```
+
+Notice `price` comes back `NA` for *Advanced R*, which has no `.price` element at all; `html_element()` (singular) reliably returns exactly one result per input, `NA` or not, which keeps `title`, `price`, and `url` aligned row for row. `html_table()` converts an entire HTML table into a tibble in one call, guessing column types the same way `read_csv()` does, with the same kind of guessing failures possible (see Example 17.3); pass `convert = FALSE` to keep every column as character text and convert it yourself when the automatic guess gets something wrong.
 
 ### Finding selectors
 
-Choosing the right selector often requires **trial and error**.  Use browser developer tools (e.g., Chrome DevTools) to inspect the HTML structure: right‑click on the element of interest and choose **Inspect**.  You can then copy a unique selector or identify classes and ids to build your own.  **SelectorGadget** is a bookmarklet that helps generate selectors by clicking on positive and negative examples.  If the selectors are hard to understand, consult the CSS Dinner game or MDN Web Docs for a friendly introduction to CSS selectors.
+Choosing the right selector is usually trial and error. Browser developer tools (right-click an element, choose "Inspect") show you the underlying HTML and let you test a selector interactively before writing any R code. SelectorGadget is a bookmarklet that helps build a selector by clicking positive and negative examples on the live page. If CSS selector syntax itself is unfamiliar, resources like the CSS Diner game or MDN's documentation are a gentler introduction than jumping straight into a real scrape.
 
 ### Workflow and dynamic sites
 
-A typical **scraping workflow** combines these tools:
+A typical scraping session: identify candidate elements with developer tools, write and refine a selector against the real page, extract the elements with `html_text2()`/`html_attr()`/`html_table()`, clean and tidy the result the same way you would any other messy import, and add pauses between requests (`Sys.sleep()`, or let `polite` do it for you) so you aren't hammering someone else's server.
 
-1. Load the page and identify candidate elements using developer tools.
-2. Start with simple selectors and refine them until you extract the desired elements.
-3. Use `html_text2()`, `html_attr()` and `html_table()` to convert the elements into R data structures.
-4. Clean and tidy the data; convert strings to numbers, handle missing values and join tables as needed.
-5. Be respectful: add pauses (`Sys.sleep()`) between requests or use `polite`.
+Some sites render their real content with JavaScript after the initial page loads, and `read_html()` only ever sees the static HTML that arrives before any JavaScript runs, so content that JavaScript builds later is often simply absent from what rvest can see. If the data you need isn't in the downloaded HTML at all, look for an API before reaching for a heavier tool like a headless browser; an API gives you stable, structured data without needing to reverse-engineer a page's rendering at all.
 
-Be aware that some websites render their content with **JavaScript**.  rvest only downloads the static HTML; it cannot run JavaScript.  If the data you need isn’t present in the downloaded HTML, consider looking for an API or using tools like RSelenium.  Whenever possible, prefer APIs because they provide stable, structured data.
+### Fringe cases and common pitfalls
 
-### Key take‑aways
+::: {.example title="Example 17.1"}
+**`html_elements()` and `html_element()` disagree the moment an element is missing somewhere, and only one of them keeps your data aligned.**
 
-* **Ethics first:** only scrape public, non‑personal, factual data and obey terms of service.
-* **HTML is hierarchical:** understand tags, attributes and nesting to find your data.
-* **CSS selectors are powerful:** simple selectors like tag, class and id get you far.
-* **rvest functions:** use `html_elements()`/`html_element()` to find elements, `html_text2()` and `html_attr()` to extract text and attributes, and `html_table()` to read HTML tables.
-* **Iterative process:** expect to iterate when choosing selectors; use tools like SelectorGadget and developer tools.
+```{r}
+products_html <- '
+<div id="products">
+  <div class="product"><h2 class="name">Widget A</h2><span class="price">$10</span></div>
+  <div class="product"><h2 class="name">Widget B</h2></div>
+  <div class="product"><h2 class="name">Widget C</h2><span class="price">$30</span></div>
+</div>
+'
+products <- read_html(products_html) |> html_elements(".product")
 
-<!-- ## In‑class activity -->
+# wrong: flattens across all three products, silently dropping the missing price
+products |> html_elements(".price") |> html_text2()
 
-<!-- In this session’s activity you will practise web scraping and data wrangling using the built‑in **state.x77** dataset (from base R) and a Wikipedia table.  The `state.x77` matrix contains statistics about the 50 U.S. states (population, income, illiteracy, life expectancy, murder rate, high‑school graduation rate, frost days and area).  The activity guides you to convert it to a tibble, identify states with high murder rates, and join those data with the state capitals scraped from Wikipedia.  You’ll use rvest functions (`read_html()`, `html_element()`, `html_table()`, `html_text2()`, `html_attr()`) and dplyr to clean and analyze the data.  Detailed instructions are in the separate activity file. -->
+# right: one result per product, NA where a product has no price
+products |> html_element(".price") |> html_text2()
+```
 
-<!-- **Suggested reading for Session 18:**  For the next class on writing functions and code style, read Chapter 25 of *R for Data Science* (2nd ed.).  The authors explain why writing functions is one of the best ways to extend your reach as a data scientist: functions let you give repeated code an evocative name, centralize changes in one place, reduce copy‑and‑paste errors and promote reuse【390287695928021†L120-L135】.  A good rule of thumb is to write a function whenever you find yourself copying and pasting code more than twice【390287695928021†L137-L139】.  The chapter introduces three broad categories of functions—vector functions, data‑frame functions and plot functions—and demonstrates how to write them.  Pay particular attention to section 25.3, which discusses tidy evaluation and how to write functions that take column names as arguments. -->
+Widget B has no `.price` element at all. `html_elements()` (plural), called on the whole set of products, simply returns however many `.price` elements it actually finds, two, with no indication of which product each one belongs to; pairing that two-element result back up with three product names would silently misalign Widget B's row with Widget C's price. `html_element()` (singular) is the one built for exactly this situation: it always returns one result per input element, using `NA` to mark "no match here," which is what keeps a `tibble()` built from several such calls aligned row for row (as in the worked example above).
+:::
+
+::: {.example title="Example 17.2"}
+**A selector matches an element wherever it appears, including inside another element that also matches, so nested content shows up more than once.**
+
+```{r}
+nested_html <- '<div class="outer">outer text <div class="inner">inner text</div></div>'
+divs <- read_html(nested_html) |> html_elements("div")
+
+length(divs)         # 2, not 1: the selector matches the parent AND the child
+html_text2(divs)
+```
+
+The selector `div` matches every `div` in the document, and the inner `div` is still a `div` even though it's nested inside another one, so it counts twice: once as its own element, and again as part of the outer `div`'s text content, which includes everything inside it, child elements included. If you only wanted the outermost containers, you need a more specific selector (a class or id on just the outer elements) rather than a bare tag name; if you only wanted leaf-level content, filtering out elements that themselves contain further matches is one way to avoid the double count.
+:::
+
+::: {.example title="Example 17.3"}
+**`html_table()`'s automatic type conversion can quietly destroy a code that only looks numeric.**
+
+```{r}
+codes_html <- '<table><tr><th>code</th><th>qty</th></tr>
+<tr><td>007</td><td>5</td></tr><tr><td>042</td><td>3</td></tr></table>'
+tbl <- read_html(codes_html) |> html_element("table")
+
+tbl |> html_table()                    # default: guesses types automatically
+tbl |> html_table(convert = FALSE)     # every column kept as character text
+```
+
+`"007"` becomes the integer `7`, exactly the leading-zero problem you first saw with `read_csv()` back in Session 6, and for the same underlying reason: something that looks like a number gets guessed as one, and a leading zero has no meaning in a plain integer. Product codes, ID numbers, and ZIP codes scraped out of an HTML table are exactly the kind of column to import with `convert = FALSE` and convert deliberately yourself, rather than trusting the automatic guess.
+:::
+
+::: {.example title="Example 17.4"}
+**`html_text()` and `html_text2()` disagree about whitespace, and the difference matters more than it looks.**
+
+```{r}
+spaced_html <- '<p>  Hello    <b>world</b>  \n  this   is   spaced  </p>'
+p <- read_html(spaced_html) |> html_element("p")
+
+html_text(p)
+html_text2(p)
+```
+
+`html_text()` returns the text exactly as it's laid out in the HTML source, extra spaces, line breaks, and all, because that's genuinely what's between the tags. `html_text2()` normalizes whitespace the way a browser actually displays it: runs of spaces and newlines collapse to single spaces, matching what a person reading the rendered page would actually see. Browsers do this collapsing for display purposes, which is exactly why HTML source is so often full of extra whitespace that was never meant to be meaningful; `html_text2()` is almost always the one you want, and it's a reasonable default to reach for `html_text2()` first and only fall back to `html_text()` if you specifically need the raw, unnormalized text.
+:::
+
+### Recap
+
+| **Term** | **Definition** |
+|-------------------|-------------------------------------------------------------|
+| **`read_html()`** | Downloads and parses an HTML page (or string) into a document rvest can query. |
+| **CSS selector** | A pattern (`p`, `.class`, `#id`, or a combination) for locating elements; matches an element wherever it appears, nested or not. |
+| **`html_elements()`** | Returns every element matching a selector; the count may not align with any other set of elements on the page. |
+| **`html_element()`** | Returns exactly one result per input (using `NA` for "no match"), which is what keeps several extracted columns aligned row for row. |
+| **`html_text2()`** | Extracts an element's visible text with whitespace normalized, the way a browser would display it. |
+| **`html_text()`** | Extracts an element's text exactly as laid out in the HTML source, whitespace included. |
+| **`html_attr()`** | Extracts the value of a named attribute (such as `href`) from an element. |
+| **`html_table()`** | Converts an HTML `<table>` into a tibble, guessing column types the same way `read_csv()` does; `convert = FALSE` keeps everything as text. |
+| **`polite`** | Automates pauses between requests and caching, so scraping doesn't overload someone else's server. |
+
+### Check your understanding
+
+::: {.callout-note collapse="false" title="Problems"}
+1. Give two conditions that make scraped data more likely to be ethical and legal to collect, and one thing you should never scrape regardless of those conditions.
+2. You scrape a list of ten products, but only seven of them have a listed price. Which rvest function, `html_elements()` or `html_element()`, keeps your prices aligned with the correct products, and why?
+3. A page has `<div class="section">` elements, and some of those sections contain other `<div class="section">` elements nested inside them. What happens if you select every `.section` and count them, expecting one count per top-level section?
+4. You scrape a table of employee ID numbers like `"00458"` and get back the number `458`. What happened, and how would you prevent it?
+5. Why does `html_text2()` usually give you cleaner-looking output than `html_text()`, even though both are reading the exact same HTML?
+:::
+
+::: {.callout-tip collapse="true" title="Solutions"}
+1. Data that are public (not behind a login), non-personal (not identifying an individual), and factual are generally safer to scrape; respecting a site's terms of service and `robots.txt` also matters. Regardless of those conditions, you should never scrape personally identifiable information, such as names, email addresses, or dates of birth, since doing so can violate privacy laws even when the page itself is public.
+
+2. `html_element()` (singular), because it always returns exactly one result per input, filling in `NA` for any product without a price. `html_elements()` (plural) would only return the seven prices that actually exist, with no indication of which three products they belong to, silently misaligning the result if you tried to combine it with all ten product names.
+
+3. The count would be higher than the number of top-level sections, because a CSS selector matches an element wherever it occurs in the document, including a `.section` nested inside another `.section`. Each nested section gets counted once on its own and again as part of its parent's contents, so "count of `.section` elements" does not mean "count of top-level sections."
+
+4. `html_table()`'s automatic type guessing treated `"00458"` as a number and converted it to `458`, dropping the leading zeros the same way `read_csv()` would. Passing `convert = FALSE` to `html_table()` keeps every column as character text, letting you decide explicitly (and correctly) how an ID-like column should be handled.
+
+5. `html_text2()` normalizes whitespace the way a browser renders it, collapsing the extra spaces, indentation, and line breaks that are usually present in HTML source purely for the file's own readability and were never meant to be visually meaningful. `html_text()` returns that whitespace exactly as written, which is accurate to the source but rarely what you actually want for further analysis.
+:::
