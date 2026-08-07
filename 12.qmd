@@ -1,4 +1,4 @@
-# Session 12: Variable types IV: dates and times
+# Variable types IV: dates and times
 
 ## Objectives
 

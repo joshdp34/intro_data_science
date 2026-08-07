@@ -1,4 +1,4 @@
-# Session 8: Tidy data and pivoting
+# Tidy data and pivoting
 
 ## Objectives
 

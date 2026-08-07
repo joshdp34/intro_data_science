@@ -1,4 +1,4 @@
-# Session 11: Variable types III: factors
+# Variable types III: factors
 
 ## Objectives
 

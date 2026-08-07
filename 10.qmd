@@ -1,4 +1,4 @@
-# Session 10: Variable types II: strings and regular expressions
+# Variable types II: strings and regular expressions
 
 ## Objectives
 

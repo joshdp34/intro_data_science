@@ -1,4 +1,4 @@
-# Session 22: Exploratory data analysis (EDA)
+# Exploratory data analysis (EDA)
 
 ## Objectives
 

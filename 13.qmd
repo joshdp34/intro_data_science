@@ -1,4 +1,4 @@
-# Session 13: Missing values and data cleaning
+# Missing values and data cleaning
 
 ## Objectives
 

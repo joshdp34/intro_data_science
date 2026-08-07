@@ -1,4 +1,4 @@
-# Session 17: Big data formats and hierarchical data
+# Big data formats and hierarchical data
 
 ## Objectives
 

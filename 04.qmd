@@ -1,4 +1,4 @@
-# Session 4: The layered grammar of graphics
+# The layered grammar of graphics
 
 ## Objectives
 

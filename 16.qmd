@@ -1,4 +1,4 @@
-# Session 16: Advanced data import II: databases
+# Advanced data import II: databases
 
 ## Objectives
 

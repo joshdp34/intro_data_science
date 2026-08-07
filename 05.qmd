@@ -1,4 +1,4 @@
-# Session 5: Data transformation (I): filtering, arranging, selecting and mutating
+# Data transformation (I): filtering, arranging, selecting and mutating
 
 ## Objectives
 

@@ -1,4 +1,4 @@
-# Session 19: Basic programming I: functions and code style
+# Basic programming I: functions and code style
 
 ## Objectives
 

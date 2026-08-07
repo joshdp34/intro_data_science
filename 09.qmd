@@ -1,4 +1,4 @@
-# Session 9: Variable types I: logical and numeric vectors
+# Variable types I: logical and numeric vectors
 
 ## Objectives
 

@@ -1,4 +1,4 @@
-# Session 23: Statistical modeling I: simple linear regression
+# Statistical modeling I: simple linear regression
 
 ## Objectives
 

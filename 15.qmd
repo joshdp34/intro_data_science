@@ -1,4 +1,4 @@
-# Session 15: Advanced data import I: spreadsheets
+# Advanced data import I: spreadsheets
 
 ## Objectives
 

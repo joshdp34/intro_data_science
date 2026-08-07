@@ -1,4 +1,4 @@
-# Session 20: Basic programming II: iteration and functional programming
+# Basic programming II: iteration and functional programming
 
 ## Objectives
 

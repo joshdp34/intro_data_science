@@ -1,4 +1,4 @@
-# Session 6: Data transformation (II): grouping and summarizing
+# Data transformation (II): grouping and summarizing
 
 ## Objectives
 
