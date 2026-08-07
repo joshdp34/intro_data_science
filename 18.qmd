@@ -1,141 +1,261 @@
-# Session 18 – Basic programming I: functions & code style
+# Session 18: Basic programming I: functions and code style
 
 ## Objectives
 
-* **Recognize why writing functions matters.**  Functions let you automate common tasks and greatly extend your reach as a data scientist.  Writing a function has four big advantages over copy‑and‑paste: you can give your code an evocative name, you only need to update code in one place as requirements change, you avoid copy‑and‑paste mistakes, and you can easily reuse your work on future projects.  A good rule of thumb is to write a function whenever you’ve copied and pasted the same block of code more than twice.
-* **Differentiate types of functions.**  Learn the three broad categories of functions: **vector functions** that take one or more vectors and return a vector, **data‑frame functions** that take a data frame as input and return a data frame or vector, and **plot functions** that take a data frame and return a plot.
-* **Construct functions from repeated code.**  Identify the parts of your code that vary and those that stay constant; choose a short, descriptive name, list the varying pieces as arguments and wrap the repeated body of code in `function()`.  Test your function on simple inputs before using it in pipelines.
-* **Understand tidy evaluation and embracing.**  When you write data‑frame functions that call dplyr verbs, you encounter the problem of **indirection**: passing column names as arguments doesn’t work because dplyr uses tidy evaluation.  Use the embracing operator `{{ }}` to tell dplyr to look inside the argument for the variable to use.  Recognize which arguments require embracing by checking whether the underlying verb uses data‑masking (computations like `filter()` and `summarize()`) or tidy‑selection (selectors like `select()` and `rename()`).
-* **Write simple plot functions.**  Plot functions wrap ggplot2 code into reusable helpers.  Because `aes()` is a data‑masking function you can embrace variables passed to your function so the user can specify which column to plot.
-* **Adopt good naming and style conventions.**  Choose function names that are verbs and argument names that are nouns; clarity is more important than brevity.  Put the body of your function inside curly braces with proper indentation and add spaces inside `{{ }}` to make embracing obvious.
+- **Recognize why writing functions matters.** Functions let you automate common tasks and extend your reach as a data scientist. Writing a function has four advantages over copy-and-paste: an evocative name, one place to update as requirements change, no copy-paste mistakes, and easy reuse on future projects. A good rule of thumb: write a function once you've copied and pasted the same code more than twice.
+- **Differentiate types of functions.** Learn the three broad categories: vector functions (take one or more vectors, return a vector), data-frame functions (take a data frame, return a data frame or a summary), and plot functions (take a data frame, return a plot).
+- **Construct functions from repeated code.** Identify what varies and what stays constant; choose a short, descriptive name, list the varying pieces as arguments, and wrap the repeated body in `function()`. Test on simple inputs before using a function in a real pipeline.
+- **Understand tidy evaluation and embracing.** Writing a data-frame function that calls dplyr verbs runs into indirection: a bare argument name doesn't work, because dplyr's tidy evaluation looks for a column with that literal name. Use `{{ }}` to tell dplyr to use the argument's value instead, and `pick()` when the argument represents more than one column at once.
+- **Write simple plot functions.** Plot functions wrap ggplot2 code into reusable helpers; since `aes()` is data-masking, you embrace variables passed into it exactly the same way. `rlang::englue()` can build a plot title that names the variable automatically.
+- **Adopt good naming and style conventions.** Choose function names that are verbs and argument names that are nouns; clarity beats brevity. Indent the body inside curly braces, and add spaces inside `{{ }}` to make embracing visually obvious.
 
 ## Notes
 
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+```
+
 ### Why write functions?
 
-One of the most effective ways to *reduce duplication* and avoid errors is to move repeated code into a function.  R for Data Science argues that writing a function has four important benefits: you can give the code a clear name, centralize changes in one place, eliminate copy‑and‑paste mistakes and reuse work across projects.  Whenever you find yourself copying and pasting the same code more than twice, it’s time to consider writing a function.
+Moving repeated code into a function is one of the most effective ways to reduce duplication and avoid errors. Writing a function gives the code a clear name, centralizes future changes in one place, eliminates copy-paste mistakes, and makes the logic reusable across projects. Whenever you find yourself copying and pasting the same code more than twice, that's the signal to write a function instead.
 
 ### Anatomy of a function
 
-To convert repeated code into a function, identify **what changes and what stays the same**.  A function needs three things: a **name**, a set of **arguments** and a **body** that contains the repeated code.  For example, suppose you need to rescale a numeric vector to lie between 0 and 1.  You can encapsulate this pattern in a function called `rescale01()`:
+Turning repeated code into a function starts with identifying what changes and what stays the same. Every function needs a name, a set of arguments, and a body containing the repeated code. Rescaling a numeric vector to lie between 0 and 1 is a good first example:
 
 ```{r}
-rescale01 = function(x) {
-  rng = range(x, na.rm = TRUE, finite = TRUE)
+rescale01 <- function(x) {
+  rng <- range(x, na.rm = TRUE, finite = TRUE)
   (x - rng[1]) / (rng[2] - rng[1])
 }
 
-# test it
 rescale01(c(-10, 0, 10))
 ```
 
-The example illustrates the basic template `name = function(arguments) { body }`.  By encapsulating the code, you only need to modify the function in one place if you decide to handle infinite values differently.
+This is the basic template: `name <- function(arguments) { body }`. `finite = TRUE` inside `range()` is doing real work here, not just tidying up; leaving it out changes the answer the moment an infinite value shows up (see Example 18.2).
 
 ### Vector functions
 
-A **vector function** takes one or more vectors as input and returns a vector of the same length.  Common examples include rescaling or transforming variables.  You can use vector functions inside `mutate()` or other dplyr verbs.  For instance, a z‑score function:
+A vector function takes one or more vectors and returns a vector of the same length, which is exactly the shape `mutate()` expects. A z-score function is a common example:
 
 ```{r}
-z_score = function(x) {
+z_score <- function(x) {
   (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
 }
 ```
 
-Because `z_score()` returns a vector, you can apply it to multiple columns in one step using `across()` (covered in the next session).
+Because `z_score()` returns a vector rather than a data frame, it drops directly into `mutate()` on one column at a time, or across several columns at once with `across()` (covered next session).
 
-### Data‑frame functions and tidy evaluation
+### Data-frame functions and tidy evaluation
 
-Data‑frame functions take a data frame as input, perform some operation and return a new data frame or summary.  The challenge is that dplyr verbs use **tidy evaluation**: they interpret bare variable names within the context of the data.  If you write a function like:
+A data-frame function takes a data frame, does something to it, and returns a new data frame or summary. The obstacle is that dplyr verbs use tidy evaluation: they interpret a bare name like `group_var` as a literal column name, not as "whatever column the caller passed in." Writing the function the naive way fails as soon as you call it (see Example 18.1):
 
 ```{r}
-library(tidyverse)
-
-grouped_mean = function(df, group_var, mean_var) {
+#| eval: false
+grouped_mean <- function(df, group_var, mean_var) {
   df |>
     group_by(group_var) |>
     summarize(mean(mean_var))
 }
 ```
 
-it won’t work because `group_by()` and `summarize()` look for columns literally named `group_var` and `mean_var`.  To solve this problem, **embrace** your arguments with `{{ }}`, which tells dplyr to use the *value* of the argument rather than its name:
+**Embracing** an argument with `{{ }}` tells dplyr to substitute the argument's *value* wherever it appears, rather than treating its name literally:
 
 ```{r}
-grouped_mean = function(df, group_var, mean_var) {
+grouped_mean <- function(df, group_var, mean_var) {
   df |>
     group_by({{ group_var }}) |>
     summarize(mean = mean({{ mean_var }}, na.rm = TRUE), .groups = "drop")
 }
 
-# use it
-diamonds |>
-  grouped_mean(cut, carat)
+diamonds |> grouped_mean(cut, carat)
 ```
 
-Embracing works for both **data‑masking** arguments (e.g., in `filter()`, `summarize()` or `arrange()`) and **tidy‑selection** arguments (e.g., in `select()` or `rename()`).  When in doubt, consult the documentation to see whether an argument uses tidy evaluation and needs embracing.
+Embracing works the same way whether the underlying verb is data-masking (`filter()`, `summarize()`, `arrange()`) or tidy-selection (`select()`, `rename()`); when you're not sure which kind an argument needs, the function's documentation will say.
 
-Another useful pattern is to wrap up a common set of summaries into a helper function.  The following `summary6()` computes the minimum, mean, median and maximum of a variable along with the number of observations and missing values:
+Bundling a common set of summaries into one helper is a natural extension of the same idea:
 
 ```{r}
-summary6 = function(data, var) {
+summary6 <- function(data, var) {
   data |>
     summarize(
-      min   = min({{ var }}, na.rm = TRUE),
-      mean  = mean({{ var }}, na.rm = TRUE),
-      median= median({{ var }}, na.rm = TRUE),
-      max   = max({{ var }}, na.rm = TRUE),
-      n     = n(),
-      n_miss= sum(is.na({{ var }})),
+      min = min({{ var }}, na.rm = TRUE),
+      mean = mean({{ var }}, na.rm = TRUE),
+      median = median({{ var }}, na.rm = TRUE),
+      max = max({{ var }}, na.rm = TRUE),
+      n = n(),
+      n_miss = sum(is.na({{ var }})),
       .groups = "drop"
     )
 }
 ```
 
-Because it wraps `summarize()`, you can apply `summary6()` to grouped data or use it inside other functions.  Always drop grouping (`.groups = "drop"`) inside helpers to avoid surprises.
+Because `summary6()` just wraps `summarize()`, it works equally well on grouped data or ungrouped data, and it's worth always adding `.groups = "drop"` inside a helper like this so it doesn't leave surprise grouping behind for whatever code runs next.
+
+### Accepting more than one column: `pick()`
+
+Embracing works cleanly for a single column, but passing several columns at once into a data-masking argument needs one more piece: `pick()`. Without it, a multi-column tidy-selection like `c(cut, clarity)` gets misinterpreted as a data-masking computation instead of a set of columns to group by (see Example 18.3 for exactly how that goes wrong).
+
+```{r}
+count_missing <- function(df, group_vars, x) {
+  df |>
+    group_by(pick({{ group_vars }})) |>
+    summarize(n_miss = sum(is.na({{ x }})), .groups = "drop")
+}
+
+diamonds |> count_missing(c(cut, clarity), carat) |> head()
+```
+
+`pick()` tells dplyr "treat this embraced argument as a tidy-selection of columns," which is exactly what `group_by()` needs when the caller might hand it more than one grouping column at once.
 
 ### Plot functions
 
-You can also write functions that return plots.  For example, repeated calls to `ggplot()` and `geom_histogram()` can be wrapped into a `histogram()` helper:
+Plot functions wrap repeated `ggplot()` calls the same way data-frame functions wrap repeated dplyr pipelines:
 
 ```{r}
-histogram = function(df, var, binwidth = NULL) {
+histogram <- function(df, var, binwidth = NULL) {
   df |>
     ggplot(aes(x = {{ var }})) +
     geom_histogram(binwidth = binwidth)
 }
 
-# example
-diamonds |>
-  histogram(carat, binwidth = 0.1)
+diamonds |> histogram(carat, binwidth = 0.1)
 ```
 
-The key is that `aes()` is a data‑masking function, so you can embrace the variable passed to the function.  Users can still add layers to the returned plot with `+`.  You can write other plot helpers, such as a `linearity_check()` that overlays a smooth curve and straight line to diagnose linear relationships.
+`aes()` is data-masking, so embracing `var` works exactly the way it did inside `summarize()`. The plot this returns is an ordinary ggplot object, so a caller can still add more layers with `+` afterward. `rlang::englue()` goes one step further and builds a label that names the embraced variable automatically, which is a nice touch for a helper other people (including future you) will reuse:
+
+```{r}
+histogram <- function(df, var, binwidth = NULL) {
+  label <- rlang::englue("Histogram of {{ var }}")
+  df |>
+    ggplot(aes(x = {{ var }})) +
+    geom_histogram(binwidth = binwidth) +
+    labs(title = label)
+}
+
+diamonds |> histogram(carat, binwidth = 0.1)
+```
+
+### Naming a column dynamically
+
+Sometimes you want the *name* of a new column, not just its value, to depend on an argument, such as labeling a computed average `avg_carat` when the caller passes in `carat`. A plain `=` can't do this (see Example 18.4); dplyr's `:=` ("walrus") operator, combined with unquoting (`!!`), can:
+
+```{r}
+my_summary <- function(df, var) {
+  var_name <- paste0("avg_", rlang::as_label(enquo(var)))
+  df |> summarize(!!var_name := mean({{ var }}, na.rm = TRUE))
+}
+
+diamonds |> my_summary(carat)
+```
+
+`enquo()` captures the argument as an expression, `rlang::as_label()` turns that expression into a plain string, and `!!` unquotes `var_name` on the left of `:=` so dplyr uses its *value* (`"avg_carat"`) as the new column's name, rather than the six literal characters `v`, `a`, `r`, `_`, `n`, `a`... which is what a plain `=` would do instead.
 
 ### Function style
 
-Good naming and formatting make your functions readable for future you and others.  R doesn’t care about names or white space, but humans do.  Prefer **verbs** for function names and **nouns** for arguments; clarity beats brevity.  For example, `impute_missing()` and `collapse_years()` are more informative than `f()` or `my_awesome_function()`.  Always follow `function()` with curly braces and indent the body by two spaces.  When embracing variables, put spaces inside `{{ }}` to make it obvious that something special is happening.
+Good naming and formatting make a function readable for whoever reads it next, including you. R doesn't care about names or whitespace; people do. Prefer verbs for function names and nouns for arguments, since `impute_missing()` and `collapse_years()` communicate far more than `f()` or `my_awesome_function()`. Always follow `function()` with curly braces, indent the body consistently, and add spaces inside `{{ }}` so embracing is visually obvious at a glance rather than easy to miss.
 
-### Key take‑aways
+### Fringe cases and common pitfalls
 
-* **Functions reduce duplication and errors.**  When you see repeated code, bundle it into a function.  Functions centralize changes, reduce mistakes and make your code more readable.
-* **Identify what varies.**  Analyse your code to determine which pieces vary and make those arguments; the rest becomes the body of the function.
-* **Use embracing with dplyr verbs.**  Tidy evaluation means that column names inside dplyr verbs are treated differently.  When writing data‑frame functions, use `{{ }}` around arguments that refer to column names.
-* **Wrap up summaries and plots.**  Helper functions like `summary6()` or `histogram()` reduce copy‑and‑paste when you need the same summaries or plots repeatedly.
-* **Name and style your functions thoughtfully.**  Use descriptive verbs, nouns for arguments, proper indentation and spaces in braces to make your code easy to read.
+::: {.example title="Example 18.1"}
+**Forgetting to embrace produces a specific, informative error, not a silently wrong answer.**
 
-<!-- ## In‑class activity
+```{r}
+#| error: true
+grouped_mean_bad <- function(df, group_var, mean_var) {
+  df |>
+    group_by(group_var) |>
+    summarize(mean = mean(mean_var), .groups = "drop")
+}
 
-In today’s activity you will practise writing functions using the **storms** dataset from the `dplyr` package (this dataset does not appear in *R for Data Science*).  The storms data records the position, intensity and category of tropical cyclones from 1975–2022【832489152038428†L46-L112】.  You’ll:
+diamonds |> grouped_mean_bad(cut, carat)
+```
 
-1. **Explore the data (5 min).**  Load the tidyverse and the `storms` dataset.  Use `glimpse(storms)` to understand its 13 variables (e.g., `name`, `year`, `status`, `category`, `wind`, `pressure` and storm‑force diameters)【832489152038428†L58-L112】.
-2. **Write a vector function (10 min).**  Create a function `knots_to_mph(x)` that converts wind speed from knots to miles per hour (1 knot = 1.15078 mph) and returns a numeric vector.  Add a new column `wind_mph` to `storms` with `mutate(wind_mph = knots_to_mph(wind))`.
-3. **Write a data‑frame function (15 min).**  Write a function `summarise_by(df, group_var, num_var)` that groups `df` by `group_var`, computes the mean and maximum of `num_var` and returns a summary tibble.  Embrace the grouping and numeric variables with `{{ }}`.  Use the function to compare average wind speed across storm statuses (`status`) and categories (`category`).
-4. **Write a plot function (15 min).**  Define `hist_plot(df, var, binwidth = NULL)` that takes a data frame and a numeric variable and returns a histogram of that variable.  Embrace `var` in the call to `aes()` and allow users to specify `binwidth`.  Use your function to compare the distribution of `pressure` and `wind`.
-5. **Apply your functions (10 min).**  Combine your helper functions to answer questions: *Which storm category has the highest average wind speed?*  *How does wind speed differ between tropical storms and hurricanes?*  Present your findings in a short paragraph.
+dplyr looks for a column literally named `group_var`, finds none, and says so directly: *"Column `group_var` is not found."* This is a comparatively friendly failure, as function bugs go, precisely because it fails loudly right at the point of the mistake rather than quietly grouping by the wrong thing or returning a nonsensical summary. If you ever see an unexpected column name from inside your own function show up in an error message like this, forgetting to embrace an argument is the first thing to check.
+:::
 
-These exercises will help you practise writing vector, data‑frame and plot functions, using tidy evaluation and embracing, and following code style guidelines.  The storms dataset is built into dplyr, so no additional packages are needed.
+::: {.example title="Example 18.2"}
+**`finite = TRUE` in `rescale01()` isn't decoration; leaving it out breaks the function the moment an `Inf` shows up.**
 
-## Suggested reading for Session 19
+```{r}
+rescale01_no_finite <- function(x) {
+  rng <- range(x, na.rm = TRUE)
+  (x - rng[1]) / (rng[2] - rng[1])
+}
 
-The next class will introduce **iteration** and **functional programming**.  Read Chapter 26 of *R for Data Science* (2nd ed.), which explains why iteration often looks different in R: many operations are vectorised, so doubling a vector is as simple as `2 * x`【522291174810979†L123-L128】.  The chapter emphasises that you’ve already used simple iteration tools such as faceting (`facet_wrap()` and `facet_grid()`), group‑wise summaries (`group_by()` + `summarize()`) and unnesting list‑columns【522291174810979†L130-L140】.  You’ll learn more general tools for three common tasks: **modifying multiple columns, reading multiple files and saving multiple outputs**【522291174810979†L143-L147】.  Pay special attention to the `across()` function: it lets you apply the same function to many columns and replaces tedious copy‑and‑paste code【522291174810979†L185-L197】.  The first argument, `.cols`, selects columns; the second argument, `.fns`, specifies the function to apply; and the `.names` argument controls the output names【522291174810979†L198-L205】.  Understanding these arguments will prepare you for functional programming with `purrr::map()` in later sections.
+x <- c(1, 2, 3, Inf)
+rescale01_no_finite(x)      # every finite value collapses to 0
+rescale01(x)                 # finite = TRUE keeps the finite values properly scaled
+```
 
--->
+Without `finite = TRUE`, `range()` includes `Inf` as the maximum, so every ordinary value gets divided by a gap that's effectively infinite, collapsing every one of them to `0`, and `Inf` itself becomes `Inf / Inf`, which is `NaN`. With `finite = TRUE`, `range()` ignores the infinite value when computing the scale, so the three ordinary values rescale sensibly (`0`, `0.5`, `1`) and only the genuinely infinite input stays `Inf`. A single argument buried inside a helper function can be the difference between a function that degrades gracefully and one that quietly returns all zeros.
+:::
+
+::: {.example title="Example 18.3"}
+**Embracing more than one column directly, without `pick()`, fails with a confusing size-mismatch error.**
+
+```{r}
+#| error: true
+count_missing_bad <- function(df, group_vars, x) {
+  df |>
+    group_by({{ group_vars }}) |>
+    summarize(n_miss = sum(is.na({{ x }})), .groups = "drop")
+}
+
+diamonds |> count_missing_bad(c(cut, clarity), carat)
+```
+
+`{{ group_vars }}` embraces `c(cut, clarity)` as a single data-masking expression, the same as it would for one column, but a data-masking expression is supposed to produce one computed vector, not "please group by these two separate columns." The result is an internal length mismatch that has nothing obviously to do with the real problem. Wrapping the embraced argument in `pick()`, as in the working `count_missing()` earlier in this session, tells dplyr to treat it as a tidy-selection of columns instead, which is what actually fixes it.
+:::
+
+::: {.example title="Example 18.4"}
+**A plain `=` can't compute a column name from an argument; it just uses your variable's literal name as the column name.**
+
+```{r}
+my_summary_wrong <- function(df, var) {
+  var_name <- paste0("avg_", rlang::as_label(enquo(var)))
+  df |> summarize(var_name = mean({{ var }}, na.rm = TRUE))
+}
+
+diamonds |> my_summary_wrong(carat)
+```
+
+The resulting column is named `var_name`, the literal name of the R variable on the left of `=`, not `avg_carat`, the string that variable actually holds. `=` inside a dplyr verb always takes the text written on its left as the new column's name; it never looks at what a variable with that name currently contains. `:=` behaves the same way *unless* you explicitly unquote the left-hand side with `!!`, which is precisely what tells dplyr "use the value of this variable as the name," rather than the variable's own name.
+:::
+
+### Recap
+
+| **Term** | **Definition** |
+|-------------------|-------------------------------------------------------------|
+| **Vector function** | Takes one or more vectors, returns a vector of the same length; drops into `mutate()`. |
+| **Data-frame function** | Takes a data frame, returns a data frame or summary; needs embracing to accept column names as arguments. |
+| **Plot function** | Takes a data frame, returns a ggplot object; embraces variables the same way inside `aes()`. |
+| **Embracing (`{{ }}`)** | Tells a tidy-eval-aware verb to use an argument's value, rather than treating its name literally. |
+| **`pick()`** | Lets an embraced argument represent a tidy-selection of several columns inside a data-masking verb like `group_by()`. |
+| **`rlang::englue()`** | Builds a string (such as a plot title) that automatically names an embraced variable. |
+| **`:=` (walrus operator)** | Like `=` inside a dplyr verb, but its left side can be unquoted with `!!` to use a computed name instead of a literal one. |
+| **`finite = TRUE`** | A `range()` argument that excludes `Inf`/`-Inf` from the computed range; leaving it out lets one infinite value distort an entire calculation. |
+
+### Check your understanding
+
+::: {.callout-note collapse="false" title="Problems"}
+1. What are the three broad categories of functions covered in this session, and what does each one take as input and return as output?
+2. You write `filter_by(df, col, val) { df |> filter(col == val) }` (without embracing) and call `filter_by(diamonds, cut, "Ideal")`. What happens, and how would embracing fix it?
+3. Why does `rescale01(c(1, 2, Inf))` behave differently depending on whether `range()` was called with `finite = TRUE`?
+4. A function accepts a `group_vars` argument meant to represent one or more grouping columns, and calls `group_by({{ group_vars }})`. What goes wrong when a caller passes `c(cut, clarity)`, and what one change fixes it?
+5. Inside a function, you write `summarize(col_name = mean(x))` hoping the new column will be named whatever string `col_name` currently holds. What actually happens, and what would you write instead?
+:::
+
+::: {.callout-tip collapse="true" title="Solutions"}
+1. Vector functions take one or more vectors and return a vector of the same length, for use inside `mutate()` or `filter()`. Data-frame functions take a data frame and return a data frame or a summary, typically by wrapping a dplyr pipeline. Plot functions take a data frame and return a ggplot object, typically by wrapping a `ggplot()` call.
+
+2. `filter(col == val)` looks for a column literally named `col`, which almost certainly doesn't exist in `diamonds`, so it either errors immediately or, if a column happens to be named `col`, silently filters on the wrong thing. Embracing (`filter({{ col }} == val)`) tells `filter()` to use the actual column the caller passed in, `cut`, instead of the literal word `col`.
+
+3. Without `finite = TRUE`, `range()` includes `Inf` as the maximum, so the denominator becomes effectively infinite and every finite input collapses to `0` while `Inf` itself becomes `NaN`. With `finite = TRUE`, `range()` ignores infinite values entirely, so the finite inputs are scaled using only the finite range, and only the truly infinite input stays `Inf`.
+
+4. `{{ group_vars }}` treats `c(cut, clarity)` as a single data-masking expression rather than a selection of two separate columns, producing an internal length mismatch rather than grouping by both columns. Wrapping it as `group_by(pick({{ group_vars }}))` tells dplyr to treat the embraced argument as a tidy-selection instead, which correctly groups by every column named in it.
+
+5. The new column is named `col_name`, the literal text of the variable's name, because `=` inside a dplyr verb always uses the text on its left as the column name and never evaluates it. To use the actual string stored in `col_name` as the new column's name, use `!!col_name := mean(x)` instead, which unquotes `col_name` so dplyr uses its value.
+:::
