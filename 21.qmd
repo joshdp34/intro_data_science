@@ -1,71 +1,210 @@
-# Session 21 – Exploratory data analysis (EDA)
+# Session 21: Exploratory data analysis (EDA)
 
 ## Objectives
 
-* **Take a question‑driven approach to EDA.**  Exploratory data analysis is an iterative cycle where you generate questions about your data, search for answers by visualizing, transforming and modelling, and use what you learn to ask new questions.  There is no rigid procedure; you should feel free to investigate many ideas and follow up on interesting patterns.
-* **Recognize variation and typical values.**  Variation is the tendency of a variable’s values to change from one observation to the next.  Visualizing variation with histograms or bar charts helps you identify typical values and unusual patterns; look for the most common and rare values and ask why they occur.
-* **Identify and handle unusual values.**  Outliers may be data entry errors or important discoveries.  Learn to zoom in on plots, adjust bin widths, and decide whether to recode outliers as missing or omit them.
-* **Explore covariation between variables.**  Covariation is the tendency for two or more variables to vary together.  Use appropriate graphics—boxplots, frequency polygons, heatmaps, scatterplots and 2‑D binning—to examine the relationships between categorical and continuous variables, between two categorical variables and between two continuous variables.
-* **Summarize data to support EDA.**  Use dplyr tools like `group_by()`, `summarise()`, `count()` and `mutate()` to compute counts, means and proportions that complement your visual exploration.
+- **Take a question-driven approach to EDA.** Exploratory data analysis is an iterative cycle: generate questions about your data, search for answers by visualizing, transforming, and modeling, and use what you learn to ask new questions. There is no rigid procedure; investigate many ideas and follow up on interesting patterns.
+- **Recognize variation and typical values.** Variation is the tendency of a variable's values to change from one observation to the next. Visualizing variation with histograms or bar charts reveals typical values and unusual patterns.
+- **Identify and handle unusual values.** Outliers may be data entry errors or genuine discoveries. Learn to zoom in without discarding data, and know the difference between a zoom that preserves every observation and one that quietly deletes some.
+- **Explore covariation between variables.** Covariation is the tendency for two or more variables to vary together. Use boxplots, frequency polygons, heatmaps, scatterplots, and 2D binning to examine relationships between categorical and continuous variables, between two categorical variables, and between two continuous variables.
+- **Use models to isolate a relationship.** A simple model can remove a known source of variation (like size) so that its residuals reveal a relationship that a raw comparison would get backwards.
+- **Summarize data to support EDA.** Use `group_by()`, `summarise()`, `count()`, and `mutate()` to compute counts, means, and proportions that complement visual exploration.
 
 ## Notes
 
-### Introduction: question‑driven exploration
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+```
 
-Exploratory data analysis (EDA) uses visualization and transformation to systematically explore your data.  It is not a formal procedure but an **iterative cycle**: you generate questions, use plots and summaries to search for answers, and use those answers to refine your questions.  Asking many questions early in your analysis exposes you to different aspects of your data and increases your chances of making discoveries.  Two broad questions are particularly useful:
+### Introduction: question-driven exploration
 
-1. **What type of variation occurs within my variables?**
-2. **What type of covariation occurs between my variables?**
-
-These questions focus your attention on a single variable or on the relationship between variables.
+Exploratory data analysis uses visualization and transformation to systematically explore data. It isn't a formal procedure but an iterative cycle: generate questions, use plots and summaries to search for answers, and use those answers to refine the next question. Asking many questions early exposes you to different aspects of the data and improves your odds of finding something worth reporting. Two broad questions organize most of what follows: what kind of variation shows up within a single variable, and what kind of covariation shows up between variables?
 
 ### Variation: exploring distributions
 
-**Variation** is the tendency of a variable’s values to change from measurement to measurement.  Every variable has its own pattern of variation that may reveal interesting information about the population or measurement process.  The best way to understand that pattern is to **visualize the distribution** of the variable’s values.  For **numerical variables**, histograms and density plots reveal the shape of the distribution, typical values and unusual patterns.  For **categorical variables**, bar charts show how common each level is.  When inspecting a distribution:
+Variation is the tendency of a variable's values to change from measurement to measurement, and visualizing the distribution is the most direct way to understand it: histograms and density plots for numeric variables, bar charts for categorical ones.
 
-* Identify the **most common values** (tall bars) and **rare values** (short bars) and ask why they occur.
-* Look for **clusters**, which may indicate subgroups.  How are observations within each cluster similar?  How are clusters different from each other?  Visualizing clusters may prompt you to explore covariation with another variable.
-* Experiment with the **binwidth** of your histogram: narrow bins can reveal fine‑scale structure, while wider bins give a smoother overview.
+```{r}
+ggplot(diamonds, aes(x = carat)) +
+  geom_histogram(binwidth = 0.1)
+```
+
+Look for the most common values (tall bars) and the rare ones (short bars), and ask why each occurs; look for clusters, which can hint at subgroups worth exploring with another variable; and try more than one bin width, since a narrow bin width reveals fine structure that a wide one smooths away, and vice versa.
 
 ### Unusual values and outliers
 
-Outliers are observations that don’t fit the pattern of the rest of the data.  They may arise from data entry errors, unusual but valid observations or important new discoveries.  Because outliers can distort your perception of a distribution, zoom in on the region where most data lie or adjust the y‑axis limits to make rare values visible.  Once you identify an outlier you have two options:
+An outlier doesn't fit the pattern of the rest of the data, and it can come from a data entry error, a genuinely unusual (but valid) observation, or a discovery worth reporting on its own. `coord_cartesian()` zooms into the region where most of the data lives without discarding anything, which is essential for spotting a rare value at all (it's often invisible at the default, whole-dataset scale) without corrupting whatever else you compute from the same data (see Example 21.1 for exactly what goes wrong if you zoom the wrong way).
 
-1. **Drop the entire row** containing the unusual value, though this can discard valid data and is not recommended for low‑quality data.
-2. **Recode the unusual value as missing** using `mutate()` and `if_else()`.  ggplot2 automatically drops missing values from plots; add `na.rm = TRUE` to suppress warnings.
+```{r}
+ggplot(diamonds, aes(x = y)) +
+  geom_histogram(binwidth = 0.5) +
+  coord_cartesian(ylim = c(0, 50))
+```
 
-Investigate why outliers occur; sometimes they signal important phenomena or errors that need correction.  When comparing groups, consider plotting the data with and without outliers to assess their influence.
+Once you've found unusual values, you have two real options: drop the entire row (rarely a good default, since it discards everything else in that row too), or recode just the unusual value as `NA` with `mutate()` and `if_else()`, which keeps the rest of the observation intact. ggplot2 drops `NA`s automatically when plotting; add `na.rm = TRUE` if you'd rather not see the warning about it.
 
-### Covariation: exploring relationships between variables
+```{r}
+diamonds2 <- diamonds |> mutate(y = if_else(y < 3 | y > 20, NA, y))
+sum(is.na(diamonds2$y))
+```
 
-**Covariation** describes how two or more variables vary together.  Visualizing covariation helps you understand relationships, identify trends and generate hypotheses.
+### Covariation: a categorical and a numerical variable
 
-#### A categorical and a numerical variable
+Comparing a numeric variable's distribution across categories works best with `geom_boxplot()` for a compact summary, or `geom_freqpoly()` when you want to see the actual shape of each group's distribution overlaid. Raw counts can be misleading when group sizes differ a lot (see Example 21.3); mapping `after_stat(density)` standardizes each group to the same total area, making shapes directly comparable regardless of how many observations are in each one.
 
-To examine how a numerical variable varies across categories, you can overlay histograms or frequency polygons for each group.  For example, comparing diamond prices across different cuts with `geom_freqpoly()` shows that the default y‑axis (counts) may make it hard to compare shapes when group sizes differ; mapping density to the y‑axis standardizes the distributions.  **Boxplots** provide a compact summary of the distribution for each category, making it easier to compare medians and spreads.  For unordered categorical variables you can reorder the categories with `fct_reorder()` so that the levels appear in a meaningful order.  If category labels are long, flip the axes with `coord_flip()` to improve readability.
+```{r}
+ggplot(diamonds, aes(x = price, y = after_stat(density), color = cut)) +
+  geom_freqpoly(binwidth = 500)
 
-#### Two categorical variables
+ggplot(diamonds, aes(x = fct_reorder(cut, price), y = price)) +
+  geom_boxplot() +
+  labs(x = "cut")
+```
 
-When both variables are categorical, first **count** the number of observations in each combination using `count()`.  You can visualize the counts with `geom_count()`, which draws points whose size represents the number of observations.  Alternatively, use `geom_tile()` to create a heatmap where the fill color encodes the count.  Reordering rows and columns or using seriation methods can reveal patterns.  Because the counts may vary widely across categories, consider rescaling or normalizing the counts to compare distributions within rows or columns.
+`fct_reorder()` orders the categories by a summary of another variable (here, price) instead of alphabetically or by factor definition order, which usually makes the pattern in a plot like this easier to read at a glance.
 
-#### Two numerical variables
+### Covariation: two categorical variables
 
-To explore the relationship between two continuous variables, draw a **scatterplot** with `geom_point()`.  Look for patterns such as trends, clusters or nonlinear relationships.  When your dataset is large, reduce overplotting by using the `alpha` aesthetic to make points partially transparent.  Another strategy is **two‑dimensional binning**: `geom_bin2d()` and `geom_hex()` divide the plane into rectangles or hexagons and fill each bin according to the number of observations.  Binning one variable with `cut_width()` and plotting side‑by‑side boxplots is yet another way to visualize how the distribution of `y` changes with ranges of `x`.
+When both variables are categorical, start by counting every combination with `count()`, then visualize with `geom_tile()` (fill mapped to the count) or `geom_count()` (point size mapped to the count).
+
+```{r}
+diamonds |>
+  count(cut, clarity) |>
+  ggplot(aes(x = cut, y = clarity, fill = n)) +
+  geom_tile()
+```
+
+### Covariation: two numerical variables
+
+A scatterplot is the starting point for two continuous variables; `alpha` fights overplotting in a large dataset, and 2D binning (`geom_bin2d()`, `geom_hex()`) replaces individual overlapping points with a count per region entirely, which scales far better to tens of thousands of points.
+
+```{r}
+ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_hex()
+```
+
+Alternatively, `cut_width()` turns a continuous variable into discrete bins so you can compare its relationship to another variable with side-by-side boxplots, one per bin.
+
+```{r}
+ggplot(diamonds, aes(x = cut_width(carat, 0.5), y = price)) +
+  geom_boxplot()
+```
+
+### Patterns and models
+
+A model can remove a relationship you already understand, so its leftovers (residuals) can reveal a second relationship that would otherwise be hidden behind, or confused with, the first one. Diamond price is overwhelmingly driven by carat (size), so fitting that relationship first and looking at what's left over lets you compare diamonds of *equivalent* size to each other, rather than comparing a large Fair-cut diamond to a small Ideal-cut one.
+
+```{r}
+diamonds2 <- diamonds |>
+  filter(carat < 2.5) |>
+  mutate(log_price = log(price), log_carat = log(carat))
+
+carat_model <- lm(log_price ~ log_carat, data = diamonds2)
+
+diamonds2 <- diamonds2 |> mutate(resid = resid(carat_model))
+
+ggplot(diamonds2, aes(x = cut, y = resid)) +
+  geom_boxplot()
+```
+
+A positive residual means a diamond sold for more than its carat alone would predict; a negative one means it sold for less. Plotted this way, cut quality and price line up the way intuition suggests (see Example 21.4 for what the *raw*, uncontrolled comparison looks like, and why it looks backwards).
 
 ### Summarizing with dplyr
 
-Graphs tell compelling stories, but numeric summaries provide precise answers.  Use `group_by()` and `summarise()` to compute means, medians, counts and proportions.  The `count()` helper is convenient for computing counts for combinations of categories.  When comparing a continuous variable across categories, you might compute summary statistics (e.g., mean, median, standard deviation) for each group.  Combining these summaries with your plots will deepen your understanding of variation and covariation.
+Plots suggest patterns; numeric summaries pin them down precisely. `group_by()` and `summarise()` compute means, medians, counts, and proportions per group, and `count()` is a convenient shortcut when all you need is how many observations fall into each combination of categories. Pairing a summary table with the plot that motivated it is usually more convincing than either alone.
 
-### Key take‑aways
+### Fringe cases and common pitfalls
 
-* **EDA is iterative and question‑driven.**  Generate many questions, explore with plots and summaries, and refine your questions as you learn.
-* **Understand variation.**  Visualize the distribution of each variable; identify typical values, clusters and unusual patterns; adjust bin widths to reveal structure.
-* **Handle outliers thoughtfully.**  Zoom in to detect outliers, investigate their cause, and decide whether to drop or recode them as missing.
-* **Examine covariation with appropriate tools.**  Use frequency polygons, boxplots and reorder factors for categorical–numerical relationships; use counts and heatmaps for categorical–categorical relationships; use scatterplots, transparency and 2D bins for numerical–numerical relationships.
-* **Supplement plots with summaries.**  Compute numeric summaries with `dplyr` functions like `summarise()` and `count()`.  Together, visual and numeric summaries provide a robust understanding of your data.
+::: {.example title="Example 21.1"}
+**`xlim()`/`ylim()` zoom by deleting data first; `coord_cartesian()` zooms without deleting anything, and only one of them warns you about it.**
 
-<!-- ## In‑class activity and suggested reading -->
+```{r}
+#| warning: true
+ggplot(diamonds, aes(x, y)) +
+  geom_point() +
+  xlim(4, 10) +
+  ylim(4, 10)
+```
 
-<!-- The in‑class activity for this session uses the `babynames` dataset from the **babynames** package.  Students will explore variation in baby name popularity and the relationship between name popularity, year and sex.  They will create histograms of name counts for a given year, compare the distributions of name proportions across sexes, and examine how the popularity of selected names has changed over time.  They will also summarise and visualise the counts of names by first letter and sex using `count()`, `geom_tile()` and boxplots.  See the separate assignment file for details. -->
+```{r}
+ggplot(diamonds, aes(x, y)) +
+  geom_point() +
+  coord_cartesian(xlim = c(4, 10), ylim = c(4, 10))
+```
 
-<!-- **Suggested reading for Session 22:**  To prepare for our introduction to statistical modelling and simple linear regression, read **Chapter 23 “Model basics”** from the first edition of *R for Data Science*.  The chapter explains that the goal of a model is to provide a simple low‑dimensional summary of a dataset by partitioning it into patterns and residuals【29141514205487†L50-L55】.  You will learn how to define a family of models by specifying an equation (e.g., `y = a_1 * x + a_2`) and then fit the model by finding the parameters that make it closest to the data【29141514205487†L64-L75】.  The authors emphasise that a fitted model is just the closest model from the family—it may not be “true,” but it can still be useful【29141514205487†L77-L101】.  The chapter also introduces the famous aphorism “All models are wrong, but some are useful” and shows how models help peel back layers of structure so that you can see more subtle trends【29141514205487†L80-L101】. -->
+`xlim()`/`ylim()` (and setting `limits` on an individual scale) work by treating anything outside the given range as missing, which is why the first plot prints a real warning about hundreds of removed rows; the point is genuinely gone from the computation, not just off-screen. `coord_cartesian()` instead changes only which part of the already-fully-computed plot is visible, so nothing is removed and no warning appears. For a plot that's just a scatterplot, the visual difference might be hard to spot; the moment a geom computes a statistic from the data (a `geom_smooth()` line, a `geom_boxplot()`'s quartiles, anything in Session 20's Example 20.1), the two approaches can produce genuinely different numbers, not just different amounts of visible whitespace.
+:::
+
+::: {.example title="Example 21.2"}
+**A real dataset can contain physically impossible measurements, and they're invisible until you actually go looking.**
+
+```{r}
+diamonds |> filter(x == 0 | y == 0 | z == 0) |> nrow()
+diamonds |> filter(y > 20) |> select(carat, x, y, z, price)
+```
+
+Twenty diamonds in this dataset have a recorded length, width, or depth of exactly zero millimeters, which is not a real diamond; and at least one has a recorded width of nearly 59 millimeters (roughly the width of a golf ball) on a stone weighing only 2 carats, which is equally impossible. Both are almost certainly data entry errors, and both are essentially invisible in a plot of the whole dataset at its default scale, since a handful of extreme points among 54,000 observations barely register. This is exactly why deliberately zooming into the bulk of a distribution (Example 21.1's `coord_cartesian()`, not `xlim()`/`ylim()`) is a standard early step in EDA: the outliers you're looking for are, by definition, not where most of your attention is already drawn.
+:::
+
+::: {.example title="Example 21.3"}
+**Comparing raw counts across groups of very different sizes compares the sample sizes, not the shapes.**
+
+```{r}
+diamonds |> count(cut)
+```
+
+`Fair` has 1,610 diamonds and `Ideal` has 21,551, more than a thirteen-fold difference, so a `geom_freqpoly()` of raw counts would show a tall, prominent curve for `Ideal` and a barely visible sliver for `Fair`, regardless of whether their underlying price *distributions* (as opposed to their sample sizes) actually differ much at all. Mapping `y = after_stat(density)` rescales every group's curve to the same total area, so the comparison becomes "do these two groups have similarly shaped distributions," which is almost always the more interesting EDA question, rather than "which group happened to have more rows in this dataset."
+:::
+
+::: {.example title="Example 21.4"}
+**The raw relationship between cut and price runs backwards, until a model controls for size.**
+
+```{r}
+diamonds |> group_by(cut) |> summarize(mean_price = mean(price))
+```
+
+Averaged directly, `Fair`-cut diamonds sell for *more* than `Ideal`-cut diamonds, which seems to say worse-cut diamonds are worth more, exactly backwards from what a jeweler would tell you. The missing piece is carat: `Fair`-cut diamonds in this dataset happen to be larger on average, and size drives price far more than cut quality does, so the raw comparison is really comparing "a bunch of big, poorly cut diamonds" to "a bunch of smaller, well cut ones." The residuals computed in this session's Notes, from a model that predicts price from carat alone, tell a different and more sensible story:
+
+```{r}
+diamonds2 |> group_by(cut) |> summarize(mean_resid = mean(resid))
+```
+
+Once carat is accounted for, `Ideal`-cut diamonds sell for *more* than their size alone would predict (a positive average residual), and `Fair`-cut diamonds sell for *less* than their size alone would predict (a negative one), which matches ordinary intuition about cut quality. The raw averages weren't wrong, exactly; they were answering a different, confounded question ("which group has bigger diamonds") while looking like they answered the one you actually asked ("which cut is worth more").
+:::
+
+### Recap
+
+| **Term** | **Definition** |
+|-------------------|-------------------------------------------------------------|
+| **Variation** | The tendency of a variable's values to differ from one observation to the next; visualized with a histogram, density plot, or bar chart. |
+| **Covariation** | The tendency for two or more variables to vary together. |
+| **`coord_cartesian()`** | Zooms a plot's visible range without removing any underlying data. |
+| **`xlim()` / `ylim()`** | Zoom by setting scale limits, which treats out-of-range values as missing and removes them from the computation, not just the view. |
+| **`after_stat(density)`** | Rescales a distribution to a common total area, making shape comparisons fair across groups of very different sizes. |
+| **`fct_reorder()`** | Orders a factor's levels by a summary statistic of another variable, instead of alphabetically. |
+| **`geom_bin2d()` / `geom_hex()`** | Replace individually plotted, overlapping points with a count per rectangular or hexagonal region. |
+| **`cut_width()`** | Converts a continuous variable into discrete bins, useful for side-by-side boxplots against a continuous x-variable. |
+| **Residual** | What's left of a variable after a model's prediction is subtracted out; can reveal a second relationship hidden behind a confounding one. |
+
+### Check your understanding
+
+::: {.callout-note collapse="false" title="Problems"}
+1. State the two broad questions that organize exploratory data analysis, and explain what each one focuses your attention on.
+2. You zoom into a scatterplot using `xlim()` and `ylim()` and get a warning about removed rows; a colleague zooms into the same plot using `coord_cartesian()` and gets no warning at all. Are the two plots showing the same thing? Explain.
+3. A dataset has a `weight_kg` column with a recorded value of `0`. Is this necessarily a data entry error? What would you check before deciding, and what are your two basic options once you're confident it's not a real measurement?
+4. Why can comparing raw counts (rather than densities) across two groups of very different sizes give a misleading impression of how their distributions compare?
+5. A raw comparison shows that neighborhood A has a higher average home price than neighborhood B, but a model controlling for square footage shows the opposite: B's homes sell for more per square foot. Explain how both statements can be true at once.
+:::
+
+::: {.callout-tip collapse="true" title="Solutions"}
+1. "What type of variation occurs within my variables?" focuses attention on one variable at a time (its typical values, rare values, and overall shape). "What type of covariation occurs between my variables?" focuses attention on relationships between two or more variables (whether they tend to move together, and how).
+
+2. No. `xlim()`/`ylim()` treat any point outside the given range as missing and remove it from the plot's computation entirely, which is why removing rows triggers a warning; `coord_cartesian()` only changes which part of the fully computed plot is visible, without deleting anything. For a plain scatterplot, the visible result might look similar, but any statistic computed from the data (a trend line, a boxplot's quartiles) can come out differently between the two.
+
+3. Not necessarily; a weight of exactly zero could be a genuine data entry error, a placeholder for "not measured," or (rarely) a legitimate value depending on what's being weighed. Check whether zero is even a physically plausible value for whatever `weight_kg` represents, and look at whether other columns in that same row look normal or also suspicious. Once you're confident it's not real, your two options are dropping the entire row (losing the rest of that observation too) or recoding just that value to `NA` with `mutate()` and `if_else()`, which is usually the better default.
+
+4. A group with far more observations will have taller bars or a taller frequency polygon purely because it has more data, regardless of whether its underlying distribution's shape (where the data is concentrated, how spread out it is) actually differs from the smaller group's. Rescaling to density (`after_stat(density)`) puts every group's curve on the same total-area footing, so differences in the plot reflect differences in shape rather than differences in sample size.
+
+5. This is exactly the diamonds cut-versus-price situation from this session: the raw comparison is confounded by a third variable, square footage, that's correlated with both neighborhood and price. If neighborhood A's homes tend to be larger, they can have a higher average price overall while actually being a worse value per square foot than neighborhood B's smaller, more efficiently priced homes. A model that controls for square footage isolates the price-per-neighborhood effect from the size effect, which is precisely what the raw, uncontrolled average could not do.
+:::
