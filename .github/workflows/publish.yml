@@ -24,7 +24,11 @@ jobs:
         with:
           cache-version: 1
           packages: |
+            any::rmarkdown
+            any::knitr
             any::tidyverse
+            any::scales
+            any::patchwork
             any::palmerpenguins
             any::nycflights13
             any::gapminder

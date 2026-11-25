@@ -28,3 +28,10 @@ Thumbs.db
 
 **/*.quarto_ipynb
 Rplots.pdf
+
+# Answer keys / solutions - keep out of the public repo
+*_SOLVED.qmd
+
+# Box / Office clutter
+desktop.ini
+~$*
